@@ -557,6 +557,20 @@ class rightPname BG
 
 - See [Ex2.9](#exercise-29)
 
+## Summary
+
+- Computers view data as binary
+- Computers process input data into output data
+- Humans intepret data as *information*
+- Computers do not naturally understand meaningful or nonsense input or output
+- A program is the process of telling a computer how to convert input data into output data
+  - Programming languages are a way to write these programs that the computer understands
+- Python is one such language
+  - It can also be viewed as a program that takes language statements, and then converts them to orders for the computer to carry out
+- Programmers create sequences of instructions to describe the task a computer needs to carry out
+  - Good code means knowing what the code needs to do
+  - Formal requirements solicitation and communication skills are key for programmers
+
 ## Question and Answers
 
 1. *Would a computer "know" that its stupid for someone to have an age of* $-20$?
