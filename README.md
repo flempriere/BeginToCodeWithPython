@@ -24,3 +24,11 @@ This repository is structured as follows,
 ### Advanced Programming
 
 ### Useful Python
+
+>[!NOTE]
+>Chapter 1 only provides basic information on installing *python* and assumes a Windows environment. So we have ignored it.
+
+## Python Version
+
+The original book was written with *python 2.X* and *python 3.6* in mind. Currently we've written for *python 3.12* but may change this if compatibility issues arise.
+
