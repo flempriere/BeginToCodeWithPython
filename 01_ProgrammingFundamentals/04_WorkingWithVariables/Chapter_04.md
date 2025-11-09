@@ -40,7 +40,7 @@ block
     block:argumentblock
     columns 1
         zero["0"]
-        zeroName["expresssion"]
+        zeroName["expression"]
         zeroDescr["(value to assign)"]
     end
 
