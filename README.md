@@ -11,7 +11,7 @@ This repository is structured as follows,
     - We mostly use this for the `snaps.py` "library" used in several cases
 2. Part - A Collection of Chapters with similar themes
     1. Chapter - A specific Chapter
-        1. `index.md` - A markdown file containing notes, and descriptions of examples and exercises
+        1. `Chapter_XX.md` - A markdown file containing notes, and descriptions of examples and exercises
         2. `Examples` - A folder containing any examples from the book
         3. `Exercises` - A folder containing exercise code, often modified from the examples
 
@@ -19,6 +19,8 @@ This repository is structured as follows,
 
 ### [Programming Fundamentals](./01_ProgrammingFundamentals/)
 
-### [Advanced Programming](./02_AdvancedProgramming/)
+- [Chapter 2: Python and Programming](./01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.md)
 
-### [Useful Python](./03_UsefulPython/)
+### Advanced Programming
+
+### Useful Python
