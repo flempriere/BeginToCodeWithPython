@@ -1,0 +1,7 @@
+[project]
+name = "begintocodewithpython"
+version = "0.1.0"
+description = "A Collection of Exercises and Examples from the book, Begin to Code With Python by Rob Miles"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
