@@ -28,6 +28,7 @@ This repository is structured as follows,
 
 - [Chapter 2: Python and Programming](./01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.md)
 - [Chapter 3: Python Program Structure](./01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.md)
+- [Chapter 4: Working with Variables](./01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.md)
 
 ### Useful Python
 
