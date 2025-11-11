@@ -7,3 +7,9 @@ requires-python = ">=3.12"
 dependencies = [
     "pygame>=2.6.1",
 ]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+    "quarto-cli>=1.8.25",
+]
