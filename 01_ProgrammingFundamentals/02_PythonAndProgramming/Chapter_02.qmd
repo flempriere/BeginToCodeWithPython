@@ -11,7 +11,8 @@ format:
   ipynb:
     ipynb-output: all
 
-execute: 
+execute:
+  enabled: true
   error: true
 engine: jupyter
 ---

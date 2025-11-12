@@ -212,7 +212,7 @@ computer-->output
       NameError: name 'hello' is not defined
       [31m---------------------------------------------------------------------------[39m
       [31mNameError[39m                                 Traceback (most recent call last)
-      [36mCell[39m[36m [39m[32mIn[13][39m[32m, line 1[39m
+      [36mCell[39m[36m [39m[32mIn[121][39m[32m, line 1[39m
       [32m----> [39m[32m1[39m [43mhello[49m
 
       [31mNameError[39m: name 'hello' is not defined
@@ -248,7 +248,7 @@ computer-->output
 > ```
 >
 >     SyntaxError: invalid syntax (4209523232.py, line 1)
->       [36mCell[39m[36m [39m[32mIn[16][39m[32m, line 1[39m
+>       [36mCell[39m[36m [39m[32mIn[124][39m[32m, line 1[39m
 >     [31m    [39m[31m2+[39m
 >           ^
 >     [31mSyntaxError[39m[31m:[39m invalid syntax
@@ -288,7 +288,7 @@ sequence in the shell might be,
 ```
 
     SyntaxError: incomplete input (4019191811.py, line 1)
-      [36mCell[39m[36m [39m[32mIn[19][39m[32m, line 1[39m
+      [36mCell[39m[36m [39m[32mIn[127][39m[32m, line 1[39m
     [31m    [39m[31m(2 + 3 * 4[39m
                   ^
     [31mSyntaxError[39m[31m:[39m incomplete input
@@ -317,7 +317,7 @@ case were the shell hung. So here we would expect a syntax error.
 ```
 
     SyntaxError: unmatched ')' (1306523100.py, line 1)
-      [36mCell[39m[36m [39m[32mIn[21][39m[32m, line 1[39m
+      [36mCell[39m[36m [39m[32mIn[129][39m[32m, line 1[39m
     [31m    [39m[31m)2+3*4[39m
         ^
     [31mSyntaxError[39m[31m:[39m unmatched ')'
