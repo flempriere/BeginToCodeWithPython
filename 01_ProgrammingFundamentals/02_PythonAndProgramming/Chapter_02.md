@@ -1,5 +1,27 @@
 # Chapter 2: Python and Programming
 
+- [Notes](#notes)
+  - [What makes a Programmer?](#what-makes-a-programmer)
+    - [Programming and Problems](#programming-and-problems)
+    - [Programmers and People](#programmers-and-people)
+  - [Computers as Data Processors](#computers-as-data-processors)
+    - [Machines, Computers and Us](#machines-computers-and-us)
+    - [Programs as Data Processors](#programs-as-data-processors)
+    - [Python as a Data Processor](#python-as-a-data-processor)
+    - [Example: Playing with the Shell](#example-playing-with-the-shell)
+    - [Exercise: Python Expressions](#exercise-python-expressions)
+    - [Python as a Scripting Language](#python-as-a-scripting-language)
+  - [Data and Information](#data-and-information)
+    - [Data Processing in Python](#data-processing-in-python)
+    - [Text and Numbers as Data Types](#text-and-numbers-as-data-types)
+  - [Working with Python Functions](#working-with-python-functions)
+    - [The `ord` function](#the-ord-function)
+    - [The `chr` function](#the-chr-function)
+    - [Investigate data storage using
+      `bin`](#investigate-data-storage-using-bin)
+- [Summary](#summary)
+- [Question and Answers](#question-and-answers)
+
 ## Notes
 
 ### What makes a Programmer?
@@ -177,7 +199,7 @@ computer-->output
   `python command shell` (*the computer*) and turned into results
   (*output*)
 
-### Example: Playing with the Shell
+#### Example: Playing with the Shell
 
 - Start up a python interpreter and run the following, explaining was
   happens in each case
@@ -190,7 +212,7 @@ computer-->output
       NameError: name 'hello' is not defined
       [31m---------------------------------------------------------------------------[39m
       [31mNameError[39m                                 Traceback (most recent call last)
-      [36mCell[39m[36m [39m[32mIn[11][39m[32m, line 1[39m
+      [36mCell[39m[36m [39m[32mIn[13][39m[32m, line 1[39m
       [32m----> [39m[32m1[39m [43mhello[49m
 
       [31mNameError[39m: name 'hello' is not defined
@@ -226,12 +248,12 @@ computer-->output
 > ```
 >
 >     SyntaxError: invalid syntax (4209523232.py, line 1)
->       [36mCell[39m[36m [39m[32mIn[14][39m[32m, line 1[39m
+>       [36mCell[39m[36m [39m[32mIn[16][39m[32m, line 1[39m
 >     [31m    [39m[31m2+[39m
 >           ^
 >     [31mSyntaxError[39m[31m:[39m invalid syntax
 
-### Exercise: Python Expressions
+#### Exercise: Python Expressions
 
 1. *What do you think would happen if you tried to evaluate `2+3*4`?*
 
@@ -266,16 +288,25 @@ sequence in the shell might be,
 ```
 
     SyntaxError: incomplete input (4019191811.py, line 1)
-      [36mCell[39m[36m [39m[32mIn[17][39m[32m, line 1[39m
+      [36mCell[39m[36m [39m[32mIn[19][39m[32m, line 1[39m
     [31m    [39m[31m(2 + 3 * 4[39m
                   ^
     [31mSyntaxError[39m[31m:[39m incomplete input
 
-Try this one yourself! Note that if you use a jupyter notebook like
-environment, like has been used for rendering the code in these notes,
-you might instead get a `SyntaxError: Incomplete Input`
+Try this one yourself! Note that if you use a jupyter notebook like the
+one provided in this environment, like has been used for rendering the
+code in these notes, you might instead get a
+`SyntaxError: Incomplete Input`. Try adding a new line and then `)` and
+run the cell again.
 
-4. *What do you think would happen if you tried to evaluate `)2+3*4`?*
+``` python
+(2 + 3 * 4
+)
+```
+
+    14
+
+4.  *What do you think would happen if you tried to evaluate `)2+3*4`?*
 
 If we see a right parenthesis before a left parenthesis there is no way
 to retroactively go back and fix the missing left, like in the previous
@@ -286,7 +317,7 @@ case were the shell hung. So here we would expect a syntax error.
 ```
 
     SyntaxError: unmatched ')' (1306523100.py, line 1)
-      [36mCell[39m[36m [39m[32mIn[18][39m[32m, line 1[39m
+      [36mCell[39m[36m [39m[32mIn[21][39m[32m, line 1[39m
     [31m    [39m[31m)2+3*4[39m
         ^
     [31mSyntaxError[39m[31m:[39m unmatched ')'
@@ -352,9 +383,10 @@ case were the shell hung. So here we would expect a syntax error.
   - Let’s examine the use,
 
     ``` python
-    >>> ord('W')
-    87
+    ord('W')
     ```
+
+        87
 
 - See [Example: Investigate Text Representation using
   `ord`](#investigate-text-representation-using-ord)

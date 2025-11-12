@@ -6,7 +6,8 @@ format:
     toc-depth: 4
     code-fold: false
   gfm:
-    toc: false
+    toc: true
+    toc-depth: 4
   ipynb:
     ipynb-output: all
 
