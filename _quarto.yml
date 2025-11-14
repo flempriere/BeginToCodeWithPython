@@ -1,0 +1,19 @@
+project:
+  title: "Beginning to Code with Python: Notes, Examples and Exercises"
+
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    code-fold: false
+  gfm:
+    toc: true
+    toc-depth: 4
+    filters:
+      - quartoScripts/remove_ansi.lua
+  ipynb:
+    ipynb-output: all
+execute:
+  enabled: true
+  error: true
+engine: jupyter

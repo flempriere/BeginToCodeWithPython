@@ -1,22 +1,16 @@
 ---
 title: "Chapter 2: Python and Programming"
-format:
-  html:
-    toc: true
-    toc-depth: 4
-    code-fold: false
-  gfm:
-    toc: true
-    toc-depth: 4
-  ipynb:
-    ipynb-output: all
-
-execute:
-  enabled: true
-  error: true
-engine: jupyter
 ---
 ## Notes
+
+:::{.callout-tip}
+**hello**
+
+:::{.callout-caution}
+*world*
+:::
+
+:::
 
 ### What makes a Programmer?
 
@@ -33,7 +27,7 @@ engine: jupyter
 ::: {.callout-tip}
 **Specifications must always exist**
 
-One should never write a program without getting a solid specification first. Defining a specification is essential even (or perhaps especially) when I do a job for a friend
+One should never write a program without getting a solid specification first. Defining a specification is essential even(or perhaps especially) when I do a job for a friend
 :::
 
 - Modern design techniques emphasise *prototyping*

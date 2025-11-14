@@ -1,5 +1,6 @@
 # Chapter 2: Python and Programming
 
+
 - [Notes](#notes)
   - [What makes a Programmer?](#what-makes-a-programmer)
     - [Programming and Problems](#programming-and-problems)
@@ -24,6 +25,13 @@
 
 ## Notes
 
+>[!TIP]
+>**hello**
+>>[!WARNING]
+>>*world*
+
+
+
 ### What makes a Programmer?
 
 - The ability to solve a program yourself
@@ -42,7 +50,7 @@
 > **Specifications must always exist**
 >
 > One should never write a program without getting a solid specification
-> first. Defining a specification is essential even (or perhaps
+> first. Defining a specification is essential even(or perhaps
 > especially) when I do a job for a friend
 
 - Modern design techniques emphasise *prototyping*
@@ -203,19 +211,19 @@ computer-->output
 
 - Start up a python interpreter and run the following, explaining was
   happens in each case
-  1. `hello` - An error, an arbitrary word is unrecognised
+  1.  `hello` - An error, an arbitrary word is unrecognised
 
   ``` python
   hello
   ```
 
       NameError: name 'hello' is not defined
-      [31m---------------------------------------------------------------------------[39m
-      [31mNameError[39m                                 Traceback (most recent call last)
-      [36mCell[39m[36m [39m[32mIn[121][39m[32m, line 1[39m
-      [32m----> [39m[32m1[39m [43mhello[49m
+      ---------------------------------------------------------------------------
+      NameError                                 Traceback (most recent call last)
+      Cell In[37], line 1
+      ----> 1 hello
 
-      [31mNameError[39m: name 'hello' is not defined
+      NameError: name 'hello' is not defined
 
   2.  `2` - `2` is echoed back out
 
@@ -248,14 +256,14 @@ computer-->output
 > ```
 >
 >     SyntaxError: invalid syntax (4209523232.py, line 1)
->       [36mCell[39m[36m [39m[32mIn[124][39m[32m, line 1[39m
->     [31m    [39m[31m2+[39m
+>       Cell In[40], line 1
+>         2+
 >           ^
->     [31mSyntaxError[39m[31m:[39m invalid syntax
+>     SyntaxError: invalid syntax
 
 #### Exercise: Python Expressions
 
-1. *What do you think would happen if you tried to evaluate `2+3*4`?*
+1.  *What do you think would happen if you tried to evaluate `2+3*4`?*
 
 We would expect `14` from the basic mathematical order of operations.
 Plugging this into the shell,
@@ -288,10 +296,10 @@ sequence in the shell might be,
 ```
 
     SyntaxError: incomplete input (4019191811.py, line 1)
-      [36mCell[39m[36m [39m[32mIn[127][39m[32m, line 1[39m
-    [31m    [39m[31m(2 + 3 * 4[39m
+      Cell In[43], line 1
+        (2 + 3 * 4
                   ^
-    [31mSyntaxError[39m[31m:[39m incomplete input
+    SyntaxError: incomplete input
 
 Try this one yourself! Note that if you use a jupyter notebook like the
 one provided in this environment, like has been used for rendering the
@@ -317,10 +325,10 @@ case were the shell hung. So here we would expect a syntax error.
 ```
 
     SyntaxError: unmatched ')' (1306523100.py, line 1)
-      [36mCell[39m[36m [39m[32mIn[129][39m[32m, line 1[39m
-    [31m    [39m[31m)2+3*4[39m
+      Cell In[45], line 1
+        )2+3*4
         ^
-    [31mSyntaxError[39m[31m:[39m unmatched ')'
+    SyntaxError: unmatched ')'
 
 #### Python as a Scripting Language
 
@@ -504,32 +512,32 @@ bin(87)
 
 ## Question and Answers
 
-1. *Would a computer “know” that its stupid for someone to have an age
+1.  *Would a computer “know” that its stupid for someone to have an age
     of* $-20$?
     - No. As far as the computer is concerned, the age valueis just a
       pattern of bits that represents a number. If we want a computer to
       reject negative ages, we must actually build that understanding
       into the program
-2. *If the output from a program is settings for the fuel-injection
+2.  *If the output from a program is settings for the fuel-injection
     system on a car, is the output data or information?*
     - As soon as something starts acting on data, it becomes
       information. A human being is not doing anything with these
       values, but they will cause the speed of the engine to change,
       which might affect humans, so this makes the output information
       rather than data by the authors opinion
-3. *Is the computer stupid because it can’t understand English?*
+3.  *Is the computer stupid because it can’t understand English?*
     - No, english can be a quite ambiguous languge. The legal profession
       is an example of somewhere were debate over the semantics of
       language is tricky
-4. *If I don’t know how to solve a problem, can I write a program to do
+4.  *If I don’t know how to solve a problem, can I write a program to do
     it?*
     - No, you need to understand the solution before you can write it
       and make sure that it does exactly what you want it to do
-5. *Is it sensible to assume the customer measures everything in
+5.  *Is it sensible to assume the customer measures everything in
     inches?*
     - It’s never sensible to assume anything about a project. Every
       assumption increases the chance of a potential disaster
-6. *If the program does the wrong thing, is it my fault or the
+6.  *If the program does the wrong thing, is it my fault or the
     customer’s fault?*
 
 | **Specification?** | **Program?** | **Whose Fault?** |
