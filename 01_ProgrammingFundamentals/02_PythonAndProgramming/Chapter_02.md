@@ -30,8 +30,6 @@
 >>[!WARNING]
 >>*world*
 
-
-
 ### What makes a Programmer?
 
 - The ability to solve a program yourself
