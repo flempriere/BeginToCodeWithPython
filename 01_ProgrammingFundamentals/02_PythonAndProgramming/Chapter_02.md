@@ -25,10 +25,13 @@
 
 ## Notes
 
->[!TIP]
->**hello**
->>[!WARNING]
->>*world*
+> [!TIP]
+>
+> **hello**
+>
+> > [!CAUTION]
+> >
+> > *world*
 
 ### What makes a Programmer?
 
@@ -218,7 +221,7 @@ computer-->output
       NameError: name 'hello' is not defined
       ---------------------------------------------------------------------------
       NameError                                 Traceback (most recent call last)
-      Cell In[37], line 1
+      Cell In[13], line 1
       ----> 1 hello
 
       NameError: name 'hello' is not defined
@@ -254,7 +257,7 @@ computer-->output
 > ```
 >
 >     SyntaxError: invalid syntax (4209523232.py, line 1)
->       Cell In[40], line 1
+>       Cell In[16], line 1
 >         2+
 >           ^
 >     SyntaxError: invalid syntax
@@ -294,7 +297,7 @@ sequence in the shell might be,
 ```
 
     SyntaxError: incomplete input (4019191811.py, line 1)
-      Cell In[43], line 1
+      Cell In[19], line 1
         (2 + 3 * 4
                   ^
     SyntaxError: incomplete input
@@ -323,7 +326,7 @@ case were the shell hung. So here we would expect a syntax error.
 ```
 
     SyntaxError: unmatched ')' (1306523100.py, line 1)
-      Cell In[45], line 1
+      Cell In[21], line 1
         )2+3*4
         ^
     SyntaxError: unmatched ')'

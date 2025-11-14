@@ -439,13 +439,13 @@ computer--&gt;output
 <ol type="1">
 <li><code>hello</code> - An error, an arbitrary word is unrecognised</li>
 </ol>
-<div id="203de3e5" class="cell" data-execution_count="1">
+<div id="1520e799" class="cell" data-execution_count="1">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hello</span></code></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[25]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">hello</span>
 
 <span class="ansi-red-fg">NameError</span>: name 'hello' is not defined</pre>
@@ -455,18 +455,18 @@ computer--&gt;output
 <ol start="2" type="1">
 <li><code>2</code> - <code>2</code> is echoed back out</li>
 </ol>
-<div id="2fefb2b7" class="cell" data-execution_count="2">
+<div id="52238650" class="cell" data-execution_count="2">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>2</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
 <li><code>2+2</code> - <code>4</code>, the arithmetic is performed</li>
 </ol>
-<div id="d82ce51b" class="cell" data-execution_count="3">
+<div id="600d3625" class="cell" data-execution_count="3">
 <div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>4</code></pre>
 </div>
 </div></li>
@@ -485,11 +485,11 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>As seen in the previous example, when invalid code is entered into the shell, an error message occurs. The same happens for an incomplete expression. e.g. the following is a shell sequence,</p>
-<div id="24607548" class="cell" data-execution_count="4">
+<div id="4fbf62b8" class="cell" data-execution_count="4">
 <div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">+</span></span></code></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[28]</span><span class="ansi-green-fg">, line 1</span>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-red-fg">    </span><span class="ansi-red-fg">2+</span>
       ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
@@ -506,9 +506,9 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>2+3*4</code>?</em></li>
 </ol>
 <p>We would expect <code>14</code> from the basic mathematical order of operations. Plugging this into the shell,</p>
-<div id="5c2ab1c3" class="cell" data-execution_count="5">
+<div id="9318ba73" class="cell" data-execution_count="5">
 <div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>14</code></pre>
 </div>
 </div>
@@ -516,9 +516,9 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>(2+3)*4</code>?</em></li>
 </ol>
 <p>We would expect <code>20</code> from the basic mathematical order of operations. Plugging this into the shell,</p>
-<div id="720bdfdc" class="cell" data-execution_count="6">
+<div id="9d2a898a" class="cell" data-execution_count="6">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">4</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>20</code></pre>
 </div>
 </div>
@@ -526,11 +526,11 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>(2+3*4</code>?</em></li>
 </ol>
 <p>We might expect a syntax error, instead the interpreter, simply goes to a new line, and waits for us to enter the matching parenthesis. One such sequence in the shell might be,</p>
-<div id="952c25e1" class="cell" data-execution_count="7">
+<div id="6e379e6f" class="cell" data-execution_count="7">
 <div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span></span></code></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[31]</span><span class="ansi-green-fg">, line 1</span>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-red-fg">    </span><span class="ansi-red-fg">(2 + 3 * 4</span>
               ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
@@ -539,10 +539,10 @@ Warning
 </div>
 </div>
 <p>Try this one yourself! Note that if you use a jupyter notebook like the one provided in this environment, like has been used for rendering the code in these notes, you might instead get a <code>SyntaxError: Incomplete Input</code>. Try adding a new line and then <code>)</code> and run the cell again.</p>
-<div id="235451f3" class="cell" data-execution_count="8">
+<div id="7a5f1b62" class="cell" data-execution_count="8">
 <div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>14</code></pre>
 </div>
 </div>
@@ -550,11 +550,11 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>)2+3*4</code>?</em></li>
 </ol>
 <p>If we see a right parenthesis before a left parenthesis there is no way to retroactively go back and fix the missing left, like in the previous case were the shell hung. So here we would expect a syntax error.</p>
-<div id="d06aae3c" class="cell" data-execution_count="9">
+<div id="c9cea1fb" class="cell" data-execution_count="9">
 <div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>)<span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">*</span><span class="dv">4</span></span></code></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[33]</span><span class="ansi-green-fg">, line 1</span>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-red-fg">    </span><span class="ansi-red-fg">)2+3*4</span>
     ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unmatched ')'
@@ -645,9 +645,9 @@ Important
 <ul>
 <li><p>Built-in function, mean’s <em>“give me the number representing this character”</em></p></li>
 <li><p>Let’s examine the use,</p>
-<div id="ebe78160" class="cell" data-execution_count="10">
+<div id="ca4fc9d7" class="cell" data-execution_count="10">
 <div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">ord</span>(<span class="st">&#39;W&#39;</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>87</code></pre>
 </div>
 </div></li>
@@ -722,9 +722,9 @@ class rightPname BG
 <li>Converts numbers to text</li>
 </ul></li>
 </ul>
-<div id="ac0416db" class="cell" data-execution_count="11">
+<div id="c2e781fc" class="cell" data-execution_count="11">
 <div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">chr</span>(<span class="dv">87</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>&#39;W&#39;</code></pre>
 </div>
 </div>
@@ -744,9 +744,9 @@ class rightPname BG
 <li>Bytes can be grouped together to represent larger blocks of data</li>
 <li><code>bin</code> converts a number to a string containing it’s binary representation</li>
 </ul>
-<div id="a838ca11" class="cell" data-execution_count="12">
+<div id="844a1826" class="cell" data-execution_count="12">
 <div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>(<span class="dv">87</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>&#39;0b1010111&#39;</code></pre>
 </div>
 </div>
