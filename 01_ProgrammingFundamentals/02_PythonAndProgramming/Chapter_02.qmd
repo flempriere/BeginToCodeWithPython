@@ -3,15 +3,6 @@ title: "Chapter 2: Python and Programming"
 ---
 ## Notes
 
-:::{.callout-tip}
-**hello**
-
-:::{.callout-caution}
-*world*
-:::
-
-:::
-
 ### What makes a Programmer?
 
 - The ability to solve a program yourself
@@ -183,21 +174,21 @@ computer-->output
 - Start up a python interpreter and run the following, explaining was happens in each case
     1. `hello` - An error, an arbitrary word is unrecognised
 
-  ```{python}
-  hello
-  ```
+```{python}
+hello
+```
 
     2. `2` - `2` is echoed back out
 
-  ```{python}
-  2
-  ```
+```{python}
+2
+```
 
     3. `2+2` - `4`, the arithmetic is performed
 
-  ```{python}
-  2 + 2
-  ```
+```{python}
+2 + 2
+```
 
 - `2 + 2` in the previous example is a representation of an *expression*
 - Python evaluates expressions

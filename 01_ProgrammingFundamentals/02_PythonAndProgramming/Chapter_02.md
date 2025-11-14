@@ -25,14 +25,6 @@
 
 ## Notes
 
-> [!TIP]
->
-> **hello**
->
-> > [!CAUTION]
-> >
-> > *world*
-
 ### What makes a Programmer?
 
 - The ability to solve a program yourself
@@ -210,8 +202,7 @@ computer-->output
 
 #### Example: Playing with the Shell
 
-- Start up a python interpreter and run the following, explaining was
-  happens in each case
+- Start up a python interpreter and run the following, explaining what happens in each case
   1.  `hello` - An error, an arbitrary word is unrecognised
 
   ``` python
