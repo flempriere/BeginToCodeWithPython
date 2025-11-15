@@ -1,14 +1,24 @@
 project:
-  title: "Beginning to Code with Python: Notes, Examples and Exercises"
+  type: website
+  render:
+    - "*.qmd"
+  post-render: quartoScripts/restoreMarkdownToRepositoryHierachy.sh
 
+website:
+  title: "Beginning to Code with Python: Notes, Examples and Exercises"
+  navbar:
+    left:
+      - href: index.qmd
+      - text: Home
 format:
   html:
     toc: true
-    toc-depth: 4
+    toc-depth: 5
     code-fold: false
+    code-links: repo
   gfm:
     toc: true
-    toc-depth: 4
+    toc-depth: 5
     filters:
       - quartoScripts/remove_ansi.lua
 execute:

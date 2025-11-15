@@ -9,7 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+# Quarto
 /.luarc.json
-
 /.quarto/
+/_site/
 **/*.quarto_ipynb
