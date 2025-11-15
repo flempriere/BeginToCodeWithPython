@@ -11,8 +11,6 @@ format:
     toc-depth: 4
     filters:
       - quartoScripts/remove_ansi.lua
-  ipynb:
-    ipynb-output: all
 execute:
   enabled: true
   error: true

@@ -171,20 +171,20 @@ computer-->output
 
 #### Example: Playing with the Shell
 
-- Start up a python interpreter and run the following, explaining was happens in each case
+- *Start up a python interpreter and run the following, what is the output each time?*
     1. `hello` - An error, an arbitrary word is unrecognised
 
 ```{python}
 hello
 ```
 
-    2. `2` - `2` is echoed back out
+  2. `2` - `2` is echoed back out
 
 ```{python}
 2
 ```
 
-    3. `2+2` - `4`, the arithmetic is performed
+  3. `2+2` - `4`, the arithmetic is performed
 
 ```{python}
 2 + 2
@@ -227,14 +227,18 @@ We might expect a syntax error, instead the interpreter, simply goes to a new li
 
 ```{python}
 (2 + 3 * 4
+)
+```
+
+Since I use https://jupyter.org/
+
+```{python}
+(2 + 3 * 4
 ```
 
 Try this one yourself! Note that if you use a jupyter notebook like the one provided in this environment, like has been used for rendering the code in these notes, you might instead get a `SyntaxError: Incomplete Input`. Try adding a new line and then `)` and run the cell again.
 
-```{python}
-(2 + 3 * 4
-)
-```
+
 
 4. *What do you think would happen if you tried to evaluate `)2+3*4`?*
 
