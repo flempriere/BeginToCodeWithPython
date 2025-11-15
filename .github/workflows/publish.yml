@@ -1,6 +1,3 @@
-env:
-  UV_PROJECT_ENVIRONMENT: /usr/local/
-
 on:
   workflow_dispatch:
   push:
@@ -29,11 +26,8 @@ jobs:
       - name: "Install the project"
         run: uv sync --locked --all-extras --dev
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
       - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+        uses: uv run quarto publish qh-pages
         with:
           target: gh-pages
         env:
