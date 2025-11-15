@@ -27,4 +27,4 @@ jobs:
         run: uv sync --locked --all-extras --dev
 
       - name: Render and Publish
-        run: uv run quarto publish qh-pages
+        run: uv run quarto publish gh-pages
