@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-684316ac2ec3dc9c75a339f98dadaf30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-fd21d93db373728c2f8fcda4b672d2ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -139,7 +139,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -159,13 +159,8 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Beginning to Code with Python: Notes, Examples and Exercises</span></a>
-  </li>  
-  <li class="nav-item">
-    <span class="nav-link">
-<span class="menu-text">Home</span>
-    </span>
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -173,10 +168,68 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Programming Fundamentals</a></li><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Chapter 2: Python and Programming</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Programming Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 2: Python and Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Python Program Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Working With Variables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -195,7 +248,7 @@ window.Quarto = {
   <li><a href="#machines-computers-and-us" id="toc-machines-computers-and-us" class="nav-link" data-scroll-target="#machines-computers-and-us">Machines, Computers and Us</a></li>
   <li><a href="#programs-as-data-processors" id="toc-programs-as-data-processors" class="nav-link" data-scroll-target="#programs-as-data-processors">Programs as Data Processors</a></li>
   <li><a href="#python-as-a-data-processor" id="toc-python-as-a-data-processor" class="nav-link" data-scroll-target="#python-as-a-data-processor">Python as a Data Processor</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#example-playing-with-the-shell" id="toc-example-playing-with-the-shell" class="nav-link" data-scroll-target="#example-playing-with-the-shell">Example: Playing with the Shell</a></li>
   <li><a href="#exercise-python-expressions" id="toc-exercise-python-expressions" class="nav-link" data-scroll-target="#exercise-python-expressions">Exercise: Python Expressions</a></li>
   </ul></li>
@@ -204,7 +257,7 @@ window.Quarto = {
   <li><a href="#data-and-information" id="toc-data-and-information" class="nav-link" data-scroll-target="#data-and-information">Data and Information</a>
   <ul>
   <li><a href="#data-processing-in-python" id="toc-data-processing-in-python" class="nav-link" data-scroll-target="#data-processing-in-python">Data Processing in Python</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#example-work-with-text-in-python" id="toc-example-work-with-text-in-python" class="nav-link" data-scroll-target="#example-work-with-text-in-python">Example: Work with Text in Python</a></li>
   <li><a href="#exercise-break-the-rules-with-python" id="toc-exercise-break-the-rules-with-python" class="nav-link" data-scroll-target="#exercise-break-the-rules-with-python">Exercise: Break the rules with Python</a></li>
   </ul></li>
@@ -213,15 +266,15 @@ window.Quarto = {
   <li><a href="#working-with-python-functions" id="toc-working-with-python-functions" class="nav-link" data-scroll-target="#working-with-python-functions">Working with Python Functions</a>
   <ul>
   <li><a href="#the-ord-function" id="toc-the-ord-function" class="nav-link" data-scroll-target="#the-ord-function">The <code>ord</code> function</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#example-investigate-text-representation-using-ord" id="toc-example-investigate-text-representation-using-ord" class="nav-link" data-scroll-target="#example-investigate-text-representation-using-ord">Example: Investigate Text Representation using <code>ord</code></a></li>
   </ul></li>
   <li><a href="#the-chr-function" id="toc-the-chr-function" class="nav-link" data-scroll-target="#the-chr-function">The <code>chr</code> function</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#example-convert-numbers-to-text-using-chr" id="toc-example-convert-numbers-to-text-using-chr" class="nav-link" data-scroll-target="#example-convert-numbers-to-text-using-chr">Example: Convert Numbers to text using <code>chr</code></a></li>
   </ul></li>
   <li><a href="#investigate-data-storage-using-bin" id="toc-investigate-data-storage-using-bin" class="nav-link" data-scroll-target="#investigate-data-storage-using-bin">Investigate data storage using <code>bin</code></a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#exercise-discover-binary-representation" id="toc-exercise-discover-binary-representation" class="nav-link" data-scroll-target="#exercise-discover-binary-representation">Exercise: Discover Binary Representation</a></li>
   </ul></li>
   </ul></li>
@@ -234,7 +287,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Programming Fundamentals</a></li><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Chapter 2: Python and Programming</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Chapter 2: Python and Programming</h1>
 </div>
@@ -506,13 +559,13 @@ computer--&gt;output
 <li><em>Start up a python interpreter and run the following</em>
 <ol type="1">
 <li><p><code>hello</code></p>
-<div id="b154ab2d" class="cell" data-execution_count="1">
+<div id="c731011b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hello</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[29]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">hello</span>
 
 <span class="ansi-red-fg">NameError</span>: name 'hello' is not defined</pre>
@@ -523,9 +576,9 @@ computer--&gt;output
 <li><em>The interpreter doesn’t recognise the arbitrary word</em> <code>hello</code> <em>and produces an error message</em></li>
 </ul></li>
 <li><p><code>2</code> - <code>2</code></p>
-<div id="d9c94cad" class="cell" data-execution_count="2">
+<div id="8d7d6974" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>2</code></pre>
 </div>
 </div>
@@ -533,9 +586,9 @@ computer--&gt;output
 <li><em>The interpreter echoes a number back out!</em></li>
 </ul></li>
 <li><p><code>2 + 2</code></p>
-<div id="abd7251b" class="cell" data-execution_count="3">
+<div id="65f87762" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>4</code></pre>
 </div>
 </div></li>
@@ -604,11 +657,11 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>As seen in the previous example, when invalid code is entered into the shell, an error message occurs. The same happens for an incomplete expression. e.g.&nbsp;the following is a shell sequence,</p>
-<div id="f375948d" class="cell" data-execution_count="4">
+<div id="280c84de" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">+</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[32]</span><span class="ansi-green-fg">, line 1</span>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-red-fg">    </span><span class="ansi-red-fg">2+</span>
       ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
@@ -625,9 +678,9 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>2+3*4</code>?</em></li>
 </ol>
 <p>We would expect <code>14</code> from the basic mathematical order of operations. Plugging this into the shell,</p>
-<div id="69af0ca7" class="cell" data-execution_count="5">
+<div id="c8fdd6fd" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>14</code></pre>
 </div>
 </div>
@@ -635,9 +688,9 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>(2+3)*4</code>?</em></li>
 </ol>
 <p>We would expect <code>20</code> from the basic mathematical order of operations. Plugging this into the shell,</p>
-<div id="3ce2b252" class="cell" data-execution_count="6">
+<div id="f1a3831a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>20</code></pre>
 </div>
 </div>
@@ -645,19 +698,19 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>(2+3*4</code>?</em></li>
 </ol>
 <p>We might expect a syntax error, instead the interpreter, simply goes to a new line, and waits for us to enter the matching parenthesis. One such sequence in the shell might be,</p>
-<div id="054abc31" class="cell" data-execution_count="7">
+<div id="d7524c8a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>14</code></pre>
 </div>
 </div>
 <p>These notes use a slightly different version of a python interpreter called a <a href="https://jupyter.org/">Jupyter Notebook</a> to render the inline code. In Jupyter Notebooks code is written in cells and executed cell-by cell. This means that the interpreter can’t <em>wait</em> for the user to provide the missing input, so instead we get the slightly different error message below,</p>
-<div id="65c09a59" class="cell" data-execution_count="8">
+<div id="d8e36929" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[36]</span><span class="ansi-green-fg">, line 1</span>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-red-fg">    </span><span class="ansi-red-fg">(2 + 3 * 4</span>
               ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
@@ -669,11 +722,11 @@ Warning
 <li><em>What do you think would happen if you tried to evaluate <code>)2+3*4</code>?</em></li>
 </ol>
 <p>If we see a right parenthesis before a left parenthesis there is no way to retroactively go back and fix the missing left, like in the previous case where the shell simply waited for us to add the parenthesis. So here we would expect a syntax error.</p>
-<div id="62ed786d" class="cell" data-execution_count="9">
+<div id="abf7de93" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>)<span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">*</span><span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[37]</span><span class="ansi-green-fg">, line 1</span>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-red-fg">    </span><span class="ansi-red-fg">)2+3*4</span>
     ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unmatched ')'
@@ -730,9 +783,9 @@ Note
 <p><em>Start up the python interpreter and run the following</em></p>
 <ol type="1">
 <li><p><code>'hello'</code></p>
-<div id="4be09ae4" class="cell" data-execution_count="10">
+<div id="42149a22" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'hello'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>'hello'</code></pre>
 </div>
 </div>
@@ -740,9 +793,9 @@ Note
 <li>Like before with <span class="math inline">\(2\)</span> the word is echoed.</li>
 </ul></li>
 <li><p>`‘hello’ + ’ world’</p>
-<div id="af339871" class="cell" data-execution_count="11">
+<div id="da329f31" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'hello'</span> <span class="op">+</span> <span class="st">'world'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>'helloworld'</code></pre>
 </div>
 </div>
@@ -760,11 +813,11 @@ Note
 <ul>
 <li>We would expect it, to either hang waiting for the closing quote like with the missing left parenthesis, or a syntax error like a right quote. We find,</li>
 </ul>
-<div id="638cfd75" class="cell" data-execution_count="12">
+<div id="7e1e9f50" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">'hello</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[40]</span><span class="ansi-green-fg">, line 1</span>
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-red-fg">    </span><span class="ansi-red-fg">'hello</span>
     ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unterminated string literal (detected at line 1)
@@ -782,13 +835,13 @@ Note
 <li>While addition of strings can be easily seen as concatenation, there is no meaningful equivalent for substraction.</li>
 <li>We could think of it as substring removal, but that has a lot of nuance that is hard to capture in a single symbol. We expect an error.</li>
 </ul>
-<div id="50f8777d" class="cell" data-execution_count="13">
+<div id="2c868472" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'hello'</span> <span class="op">-</span> <span class="st">' world'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[41]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[13]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-fg ansi-yellow-bg">hello</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">-</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-fg ansi-yellow-bg"> world</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span>
 
 <span class="ansi-red-fg">TypeError</span>: unsupported operand type(s) for -: 'str' and 'str'</pre>
@@ -808,13 +861,13 @@ Note
 </ul></li>
 <li>Most languages, use the former choice and so we make the assumption that python does too</li>
 </ul>
-<div id="18894152" class="cell" data-execution_count="14">
+<div id="4540cefa" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'hello'</span> <span class="op">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[42]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[14]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-fg ansi-yellow-bg">hello</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">+</span><span class="ansi-yellow-bg"> </span><span class="ansi-green-fg ansi-yellow-bg">2</span>
 
 <span class="ansi-red-fg">TypeError</span>: can only concatenate str (not "int") to str</pre>
@@ -833,9 +886,9 @@ Note
 </ul></li>
 <li>Lets see what choice python uses,</li>
 </ul>
-<div id="cfcf3007" class="cell" data-execution_count="15">
+<div id="623389a6" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'hello'</span> <span class="op">*</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>'hellohellohello'</code></pre>
 </div>
 </div>
@@ -886,9 +939,9 @@ Important
 <ul>
 <li><p>Built-in function, mean’s <em>“give me the number representing this character”</em></p></li>
 <li><p>Let’s examine the use,</p>
-<div id="b4e8c6a1" class="cell" data-execution_count="16">
+<div id="285a0b8b" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">ord</span>(<span class="st">'W'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>87</code></pre>
 </div>
 </div></li>
@@ -899,9 +952,9 @@ Important
 <p><em>Start up a python interpreter, and run the following,</em></p>
 <ol type="1">
 <li><p><code>ord('W')</code></p>
-<div id="aa12c329" class="cell" data-execution_count="17">
+<div id="4c1d5435" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">ord</span>(<span class="st">'W'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>87</code></pre>
 </div>
 </div>
@@ -909,13 +962,13 @@ Important
 <li><em>This matches our first example</em></li>
 </ul></li>
 <li><p><code>ord(W)</code></p>
-<div id="709b269b" class="cell" data-execution_count="18">
+<div id="3bdccccc" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">ord</span>(W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[46]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[18]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span style="color:rgb(0,135,0)">ord</span>(<span class="ansi-yellow-bg">W</span>)
 
 <span class="ansi-red-fg">NameError</span>: name 'W' is not defined</pre>
@@ -997,9 +1050,9 @@ class rightPname BG
 <ul>
 <li>Converts numbers to text</li>
 </ul>
-<div id="84cfa4c9" class="cell" data-execution_count="19">
+<div id="ec913ac5" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">chr</span>(<span class="dv">87</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>'W'</code></pre>
 </div>
 </div></li>
@@ -1009,9 +1062,9 @@ class rightPname BG
 <p><em>Start up a python interpreter, and run the following,</em></p>
 <ol type="1">
 <li><p><code>chr(87)</code></p>
-<div id="1cd34047" class="cell" data-execution_count="20">
+<div id="224b5864" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">chr</span>(<span class="dv">87</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>'W'</code></pre>
 </div>
 </div>
@@ -1019,9 +1072,9 @@ class rightPname BG
 <li><em>Exactly what we saw before, and what we would expect from</em> <code>ord</code></li>
 </ul></li>
 <li><p><code>chr(88)</code></p>
-<div id="fe9be8b9" class="cell" data-execution_count="21">
+<div id="526b315a" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">chr</span>(<span class="dv">88</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>'X'</code></pre>
 </div>
 </div>
@@ -1046,9 +1099,9 @@ class rightPname BG
 <li>Bytes can be grouped together to represent larger blocks of data</li>
 <li><code>bin</code> converts a number to a string containing it’s binary representation</li>
 </ul>
-<div id="85199845" class="cell" data-execution_count="22">
+<div id="5a31eacc" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>(<span class="dv">87</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>'0b1010111'</code></pre>
 </div>
 </div>
@@ -1063,9 +1116,9 @@ class rightPname BG
 <ul>
 <li>Would expect this to also be <span class="math inline">\(0\)</span></li>
 </ul>
-<div id="94be74f2" class="cell" data-execution_count="23">
+<div id="a3ff7f23" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">bin</span>(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>'0b0'</code></pre>
 </div>
 </div></li>
@@ -1073,9 +1126,9 @@ class rightPname BG
 <ul>
 <li>Would also expect this to be <span class="math inline">\(1\)</span></li>
 </ul>
-<div id="f049f8a6" class="cell" data-execution_count="24">
+<div id="866d9c28" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">bin</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>'0b1'</code></pre>
 </div>
 </div></li>
@@ -1084,9 +1137,9 @@ class rightPname BG
 <li>In binary, digits are in columns of powers of <span class="math inline">\(2\)</span> i.e.&nbsp;<span class="math inline">\(1\)</span> like before is viewed as <span class="math inline">\(1 \times 2^{0}\)</span></li>
 <li><span class="math inline">\(2\)</span> can be viewed as <span class="math inline">\(1 \times 2^{1} + 0 \times 2^{0}\)</span>, so we would expect the representation to be <span class="math inline">\(10\)</span></li>
 </ul>
-<div id="979b0066" class="cell" data-execution_count="25">
+<div id="8fa595ab" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">bin</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>'0b10'</code></pre>
 </div>
 </div></li>
@@ -1094,9 +1147,9 @@ class rightPname BG
 <ul>
 <li>If we consider the above discussion, we expect this to be decimal <span class="math inline">\(3\)</span></li>
 </ul>
-<div id="68965c69" class="cell" data-execution_count="26">
+<div id="8a297fb1" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>3</code></pre>
 </div>
 </div></li>
@@ -1104,18 +1157,18 @@ class rightPname BG
 <ul>
 <li>Lets look at <code>87</code> first.</li>
 </ul>
-<div id="ca0c8ef3" class="cell" data-execution_count="27">
+<div id="f8fbf0df" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">bin</span>(<span class="dv">87</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>'0b1010111'</code></pre>
 </div>
 </div>
 <ul>
 <li><span class="math inline">\(86\)</span> differs by one, so we would expect <span class="math inline">\(86\)</span> to be <span class="math inline">\(1010110\)</span></li>
 </ul>
-<div id="c3f3b583" class="cell" data-execution_count="28">
+<div id="ba8b85be" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">bin</span>(<span class="dv">86</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>'0b1010110'</code></pre>
 </div>
 </div></li>
@@ -1275,7 +1328,7 @@ class rightPname BG
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/flempriere\.github\.io\/BeginToCodeWithPython\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
