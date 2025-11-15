@@ -1,5 +1,5 @@
 env:
-  UV_SYSTEM_PYTHON: 1
+  UV_PROJECT_ENVIRONMENT: /usr/local
 
 on:
   workflow_dispatch:
