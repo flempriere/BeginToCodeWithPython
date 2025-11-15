@@ -18,15 +18,17 @@ website:
       - section: "Programming Fundamentals"
         contents:
           - 01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.qmd
+          - 01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.qmd
+          - 01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.qmd
 format:
   html:
     toc: true
-    toc-depth: 5
+    toc-depth: 6
     code-fold: false
     code-links: repo
   gfm:
     toc: true
-    toc-depth: 5
+    toc-depth: 6
     filters:
       - quartoScripts/remove_ansi.lua
 execute:
