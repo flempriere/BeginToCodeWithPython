@@ -1,3 +1,6 @@
+env:
+  UV_SYSTEM_PYTHON: 1
+
 on:
   workflow_dispatch:
   push:
@@ -24,7 +27,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: "Install the project"
-        run: uv pip sync --system -- --locked --all-extras --dev
+        run: uv sync --locked --all-extras --dev
 
       - name: Render and Publish
 
