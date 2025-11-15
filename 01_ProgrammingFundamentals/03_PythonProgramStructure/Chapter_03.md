@@ -1,20 +1,8 @@
-# Chapter 2: Python and Programming
+# Chapter 3: Python Program Structure
 
 
-- [Examples](#examples)
-  - [Investigate the `random` Library](#investigate-the-random-library)
-    - [Using `sleep`](#using-sleep)
-  - [Displaying Text](#displaying-text)
-  - [Displaying Images](#displaying-images)
-  - [Playing Sound](#playing-sound)
-- [Exercises](#exercises)
-  - [Exercise 3.1: Egg Timer](#exercise-31-egg-timer)
-  - [Exercise 3.2: Improved Egg Timer](#exercise-32-improved-egg-timer)
-  - [Exercise 3.3: High-Low](#exercise-33-high-low)
-  - [Exercise 3.4: Nerves of Steel](#exercise-34-nerves-of-steel)
 - [Notes](#notes)
-  - [Example: Write Your First Python
-    Program](#example-write-your-first-python-program)
+  - [Write Your First Python Program](#write-your-first-python-program)
     - [Running a Python Program](#running-a-python-program)
       - [Example: Run a Python Program](#example-run-a-python-program)
     - [Get Program output using the `print`
@@ -23,22 +11,200 @@
         program](#example-work-with-print-in-a-program)
   - [Use Python Libraries](#use-python-libraries)
     - [The `random` library](#the-random-library)
+      - [Example: Investigate the `random`
+        Library](#example-investigate-the-random-library)
     - [The `time` library](#the-time-library)
+      - [Using `sleep`](#using-sleep)
+        - [Exercise: Egg Timer](#exercise-egg-timer)
   - [Python Comments](#python-comments)
   - [Delay the End of a Program](#delay-the-end-of-a-program)
   - [Adding some `Snaps`](#adding-some-snaps)
     - [Adding the `pygame` library](#adding-the-pygame-library)
     - [Snaps function](#snaps-function)
       - [Display Text](#display-text)
+        - [Example: Displaying Text](#example-displaying-text)
       - [Display Images](#display-images)
+        - [Example: Displaying Images](#example-displaying-images)
       - [Making Sounds](#making-sounds)
-      - [Using `snaps` in your program](#using-snaps-in-your-program)
+        - [Playing Sound](#playing-sound)
+    - [Using `snaps` in your program](#using-snaps-in-your-program)
+      - [Exercise: Improved Egg Timer](#exercise-improved-egg-timer)
+      - [Exercise: High-Low](#exercise-high-low)
+      - [Exercise: Nerves of Steel](#exercise-nerves-of-steel)
 - [Summary](#summary)
 - [Question and Answers](#question-and-answers)
 
-## Examples
+## Notes
 
-### [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
+### Write Your First Python Program
+
+- A program is a sequence of actions performed in order
+  - A script is a type of program that often repeats a series of simple
+    tasks
+- Python programs are stored as text files, traditionally with a `.py`
+  extension
+
+#### Running a Python Program
+
+- To run a program, you first need to write it. Any text editor should
+  do.
+
+##### Example: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
+
+*Open a text editor and enter the following into the file*,
+
+``` python
+2+2
+```
+
+*Save the file somewhere appropriate with a name and the .py extension.
+Then run the program, if you have* `IDLE` *you can run it through that.
+I personally use the command line as*
+
+``` bash
+python path-to-file
+```
+
+*You may need to use `python3` or `python3.X` depending on how your
+environment is setup where `X` is the python subversion. The code should
+execute but produce no output.*
+
+#### Get Program output using the `print` function
+
+- Why did the example produce an empty output when run as a program, but
+  $4$ when run through the interpreter?
+  - Program returns $4$ to the caller, which for the program, is the
+    shell that executes it
+  - What we really want is to output to the user
+
+``` mermaid
+---
+title: Python Data Processing with I/O
+config:
+  flowchart:
+    htmlLabels: false
+---
+flowchart LR
+
+input(("Python 
+        Commands"))
+computer["Python Command Shell"]
+output(("Results"))
+user["User"]
+
+input-->computer
+computer-->output
+user <--> computer
+```
+
+- We want the program to be able to interact with the user to provide
+  output, and request input
+  - The first such function we need is `print`
+
+##### Example: Work with `print` in a program
+
+*Write a python file
+([`using_print.py`](./Examples/02_UsingPrint/using_print.py)) with the
+following contents*
+
+``` python
+print(2+2)
+```
+
+    4
+
+*Now run the program. It should produce the same output as above* ($4$).
+*On my machine, running the following in terminal, leads to the output*
+$4$ *as expected*
+
+``` bash
+uv run using_print.py
+4
+```
+
+*Now create a new file
+([using_print2.py](./Examples/02_UsingPrint/using_print2.py)) with the
+following contents*
+
+``` python
+print('The answer is: ')
+print(2 + 2)
+```
+
+    The answer is: 
+    4
+
+*Save and run this file. The output should match the above*
+
+*Observe here that the program automatically adds a new line, if we want
+to avoid that we can instead write*
+
+``` python
+print('The answer is:', 2+2)
+```
+
+    The answer is: 4
+
+*Write and run a new file
+([using_print3.py](./Examples/02_UsingPrint/using_print3.py)) containing
+the above line and check the output matches the above.*
+
+*Here we see that one of the ways to call `print` is to provide a comma
+seperated list of values. By default `print` adds a space between these
+elements*
+
+> [!CAUTION]
+>
+> There are several ways a python program can fail, for example
+>
+> ``` python
+> print('The answer is: '}
+> ```
+>
+>     SyntaxError: closing parenthesis '}' does not match opening parenthesis '(' (816620756.py, line 1)
+>       Cell In[4], line 1
+>         print('The answer is: '}
+>                                ^
+>     SyntaxError: closing parenthesis '}' does not match opening parenthesis '('
+>
+> leads to a syntax error, because the wrong parentheses have been used.
+> Or,
+>
+> ``` python
+> Print(2 + 2)
+> ```
+>
+>     NameError: name 'Print' is not defined
+>     ---------------------------------------------------------------------------
+>     NameError                                 Traceback (most recent call last)
+>     Cell In[5], line 1
+>     ----> 1 Print(2 + 2)
+>
+>     NameError: name 'Print' is not defined
+>
+> leads to a `NameError` because function names are case sensitive, and
+> we have put `Print` not `print`. Proper use of tooling can catch these
+> syntax and other errors before you run the code, however sometimes
+> errors slip through and you end up with errors occuring at run time!
+
+### Use Python Libraries
+
+- Libraries provide additional built in functions, like `ord` and `chr`
+  already seen
+- Libraries can be supplied *built-in*, i.e. supplied with the python
+  install, or installed later
+
+#### The `random` library
+
+- Provides a source of random numbers
+- To add a library we use the `import` command, e.g. `import random`
+  - i.e. `import` then the name of the library
+- We can then use functions from the library with the format,
+  `module_name.function_name(arguments)`
+  - e.g. for `random` we can use `randint` as `random.randint(1,6)` to
+    generate a random number from $1$ to $6$
+
+##### Example: [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
 
 *Write and run a python program containing the following lines*
 
@@ -47,11 +213,15 @@ import random
 print('You have rolled:', random.randint(1,6))
 ```
 
+    You have rolled: 5
+
 *Try running this program multiple times and see what the output is*
 
-> \[!CAUTION\] If we try calling `random.randint` without importing
-> `random` we will get a `NameError` since neither `random` or `randint`
-> will be recognised by the interpreter.
+> [!CAUTION]
+>
+> If we try calling `random.randint` without importing `random` we will
+> get a `NameError` since neither `random` or `randint` will be
+> recognised by the interpreter.
 >
 > If we get the name of the module wrong, e.g. `import Random`, then we
 > should get a `ModuleNotFoundError`
@@ -66,7 +236,15 @@ def randint(a : int, b : int) -> int
 Return random integer in range [a,b], including both end points
 ```
 
-#### [Using `sleep`](./Examples/04_Sleep/sleep.py)
+#### The `time` library
+
+- The `time` function contains functions for managing dates and times
+- The `sleep` function lets a program for a given time period
+  - Tells the operating system to pause execution of the program for a
+    set time period
+  - Other programs continue running as normal
+
+##### [Using `sleep`](./Examples/04_Sleep/sleep.py)
 
 *Write an execute the following program*
 
@@ -77,10 +255,130 @@ time.sleep(5)
 print('The answer is: 42')
 ```
 
-*You should see the program print the first line, pause for about* $5$
-*seconds, then print the second line*
+    I will need to think about that...
+    The answer is: 42
 
-### [Displaying Text](./Examples/05_DisplayingText)
+*You should see the program print the first line, pause for about* $5$
+*seconds, then print the second line. The above shell should show the
+code after all lines have run*
+
+###### Exercise: [Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
+
+*Make an egg timer program. The program should allow the user to time a
+5-minute boiled egg. You can do this by modifying the [example sleep
+program](#using-sleep) which paused for* $5$ *seconds. For extra style
+points, you could make the program print, “Nearly cooked, get your spoon
+ready,”* $30$ *seconds before the* $5$*-minute deadline. You could even
+expand this into an interactive recipe program that describes the steps
+to be performed at each point in the recipe and then pauses until the
+next step is performed*
+
+Currently we haven’t been show a way to get input from the user so we
+can’t add that final step of interactivity. But the first two are fairly
+simple. There are $300$ seconds in $5$ minutes. So we want to tell the
+user to put the egg in, then sleep for $270$ seconds, then print our
+message to get ready, sleep for another $30$ seconds then tell the user
+to remove the egg.
+
+The final code is then, (with sample output)
+
+``` python
+import time
+
+print('Make sure the water is boiling!!!')
+print('Drop the egg in...')
+time.sleep(270)
+print('Nearly cooked, get your spoon ready')
+time.sleep(300)
+print('Egg cooked, remove now.')
+```
+
+    Make sure the water is boiling!!!
+    Drop the egg in...
+    Nearly cooked, get your spoon ready
+    Egg cooked, remove now.
+
+### Python Comments
+
+- Comments are used to add *metadata* to code, i.e. extra information
+  that does not impact how the code is run
+- e.g. version numbers, authorship attribution, modification dates
+- A comment is marked with a `#` and extends to the end of the line
+
+``` python
+#Egg Timer program 1.0 by Rob Miles
+import time
+print('Put the egg in boiling water now!')
+time.sleep(300)
+print('Take the egg out now')
+```
+
+- Comments can be added at the end of statements, e.g.
+
+``` python
+time.sleep(300) #sleep while egg cooks (300 seconds or 5 minutes)
+```
+
+- The above comment is good because it explains why the function is
+  called
+- A bad comment simply repeats the code
+- Comments have a maintainence overhead, you must keep them consistent
+  with the surrounding code or they will generate confusion
+
+### Delay the End of a Program
+
+- You can use `sleep` to delay the end of a program. This can be useful
+  in some environments where the calling window automatically closes
+  after the program finishes execution, `sleep` lets you actually see
+  the output
+
+### Adding some `Snaps`
+
+- `snaps` is a library provided with the book code that provides simple
+  functions for working with text, images and sound
+- Uses the `pygame` library
+
+#### Adding the `pygame` library
+
+- Pygame is a not packaged with python: we have to install it
+- Normally this is done through a *package manager*, **pip** is a python
+  package manager provided with python
+- In a terminal run one of the following lines,
+
+``` {bash}
+py -m pip install pygame --user #Windows
+python -m pip install pygame --user #Mac or Linux
+```
+
+- You may need to use `python3` instead of `python`
+
+> [!TIP]
+>
+> Installing python packages and python package management is a whole
+> issue. In general one should prefer virtual environments, user
+> installations to isolate packages to the specific project. A program
+> that I use that assists with all of this is called `uv`. In `uv` a
+> package is added with the command `uv add package-name`. Package
+> management and `uv` is a complicated topic, but to get started look at
+> their [homepage](https://docs.astral.sh/uv/) which is quite well
+> documented.
+
+#### Snaps function
+
+- The `snaps` library, is a python file contained in the provided book
+  [sample code](https://github.com/Begintocodewithpython/samples), in
+  each chapter folder with examples.
+  - If you want to use `snaps` we could *install* it, but this is a bit
+    more involved than where we are at right now
+  - Instead simply copy it into the same folder as any python file that
+    wants to use it
+
+##### Display Text
+
+- snaps contains a `display_message` function that takes a string of
+  text and displays it on the screen
+
+###### Example: Displaying Text
 
 - *The [first example](./Examples/05_DisplayingText/displayText.py) uses
   the most basic form of `display_message`*
@@ -96,7 +394,9 @@ time.sleep(5)
 ```
 
 - *The above creates a window with red text saying ‘Hello World’.*
-  - *We’ve added the `sleep` so the window doesn’t automatically close*
+  - *We’ve added the `sleep` so the window doesn’t automatically close -
+    see discussion about [Delaying the end of a
+    program](#delay-the-end-of-a-program)*
 - *The `from snaps import *` is an alternate import structure*
   - *It says’s from the module `snaps` import everything (`*`)*
   - *This means we don’t need to use the `snaps` prefix*
@@ -117,7 +417,15 @@ snaps.display_message('This is smaller text in green on the top left', color=(0,
 time.sleep(5) #so window doesn't immediately close
 ```
 
-### [Displaying Images](./Examples/06_DisplayingImages/displayImage.py)
+##### Display Images
+
+- Like `display_message`, the `display_image` function in `snaps` can be
+  used to display an image file.
+- Function takes the path to the image and can be an png or jpeg
+- Text can be overlayed on an image by calling `display_message` *after*
+  \`display_image\*
+
+###### Example: [Displaying Images](./Examples/06_DisplayingImages/displayImage.py)
 
 - *Here we use `display_image` to render a jpeg, with some overlayed
   text*
@@ -138,7 +446,12 @@ time.sleep(5)
 - *The order of the display messages matters, try changing the order and
   seeing the result*
 
-### [Playing Sound](./Examples/07_PlaySound/playSound.py)
+##### Making Sounds
+
+- We have text and images, the last we need is *sound*, `snaps` has the
+  `play_sound` function for this purpose
+
+###### [Playing Sound](./Examples/07_PlaySound/playSound.py)
 
 - *Here we use `play_sound` to play a `.wav` audio file*
 
@@ -154,41 +467,15 @@ time.sleep(5)
 
 - *Again, note we need to use `sleep` to prevent the program immediately
   ending, which will make it seem like the sound doesn’t play!*
+- *If you want to work with audio files, a commonly used program is
+  [Audacity](https://www.audacityteam.org/)*
 
-## Exercises
+#### Using `snaps` in your program
 
-### [Exercise 3.1: Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
+- You can use the `snaps` program to add visuals and sound to some of
+  the previous examples
 
-*Make an egg timer program. The program should allow the user to time a
-5-minute boiled egg. You can do this by modifying the [example sleep
-program](#using-sleep) which paused for* $5$ *seconds. For extra style
-points, you could make the program print, “Nearly cooked, get your spoon
-ready,”* $30$ *seconds before the* $5$*-minute deadline. You could even
-expand this into an interactive recipe program that describes the steps
-to be performed at each point in the recipe and then pauses until the
-next step is performed*
-
-Currently we haven’t been show a way to get input from the user so we
-can’t add that final step of interativity. But the first two are fairly
-simple. There are $300$ seconds in $5$ minutes. So we want to tell the
-user to put the egg in, then sleep for $270$ seconds, then print our
-message to get ready, sleep for another $30$ seconds then tell the user
-to remove the egg.
-
-The final code is then,
-
-``` python
-import time
-
-print('Make sure the water is boiling!!!')
-print('Drop the egg in...')
-time.sleep(270)
-print('Nearly cooked, get your spoon ready')
-time.sleep(300)
-print('Egg cooked, remove now.')
-```
-
-### [Exercise 3.2: Improved Egg Timer](./Exercises/02_GUIEggTimer/eggTimer.py)
+##### Exercise: [Improved Egg Timer](./Exercises/02_GUIEggTimer/eggTimer.py)
 
 *Use the `snaps` program to make an egg-timer*
 
@@ -199,7 +486,6 @@ Our implementation is a modification of [Exercise
 ``` python
 # reimplements the Egg Timer Exercise using the snaps library
 # to add a visual and audio component
-# By Felix Lempriere
 
 import snaps
 import time
@@ -234,7 +520,7 @@ time.sleep(30)
 - We then sleep for $30$ seconds so the user has time to notice and hear
   the sound
 
-### [Exercise 3.3: High-Low](./Exercises/03_HighLow/highLow.py)
+##### Exercise: [High-Low](./Exercises/03_HighLow/highLow.py)
 
 *Use the random number generator and sleep to make a high-low party
 game. The game works like this,*
@@ -280,8 +566,16 @@ time.sleep(10) # leave time for the players to read
 
 - Observe that we have to wrap the `display_message` calls with calls to
   `sleep` to ensure that there is time for the user to read the messages
+- The output of (a terminal implementation of the program) should look
+  something like,
 
-### [Exercise 3.4: Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
+<!-- -->
+
+    The first number is:  7
+    Will the next be higher or lower?
+    The second number is:  9
+
+##### Exercise: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
 *Use the random number generator and `sleep` to make a Nerves of Steel
 game. This game works like this*
@@ -319,287 +613,12 @@ time.sleep(5) #so program doesn't immediately end
 - We add a sleep at the end so the players have time to read the text.
   We also switch the final text from the initial red to green to
   celebrate the winner
+- The output of a terminal-based implementation might look like,
 
-## Notes
+<!-- -->
 
-### Example: Write Your First Python Program
-
-- A program is a sequence of actions performed in order
-  - A script is a type of program that often repeats a series of simple
-    tasks
-- Python programs are stored as text files, traditionally with a `.py`
-  extension
-
-#### Running a Python Program
-
-- To run a program, you first need to write it. Any text editor should
-  do.
-
-##### Example: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
-
-*Open a text editor and enter the following into the file*,
-
-``` python
-2+2
-```
-
-*Save the file somewhere appropriate with a name and the .py extension.
-Then run the program, if you have* `IDLE` *you can run it through that.
-I personally use the command line as*
-
-``` bash
-python path-to-file
-```
-
-*You may need to use `python3` or `python3.X` depending on how your
-environment is setup where `X` is the python subversion. The code should
-execute but produce no output.*
-
-- See [Example: Run your first Python
-  program](#run-your-first-python-program)
-
-#### Get Program output using the `print` function
-
-- Why did the example produce an empty output when run as a program, but
-  $4$ when run through the interpreter?
-  - Program returns $4$ to the caller, which for the program, is the
-    shell that executes it
-  - What we really want is to output to the user
-
-``` mermaid
----
-title: Python Data Processing with I/O
-config:
-  flowchart:
-    htmlLabels: false
----
-flowchart LR
-
-input(("Python 
-        Commands"))
-computer["Python Command Shell"]
-output(("Results"))
-user["User"]
-
-input-->computer
-computer-->output
-user <--> computer
-```
-
-- We want the program to be able to interact with the user to provide
-  output, and request input
-  - The first such function we need is `print`
-
-##### Example: Work with `print` in a program
-
-*Write a python file
-([`using_print.py`](./Examples/02_UsingPrint/using_print.py)) with the
-following contents*
-
-``` python
-print(2+2)
-```
-
-*Now run the program. It should produce the output* $4$. *On my machine,
-running the following in terminal, leads to the output* $4$ *as
-expected*
-
-``` shell
-$ python3 using_print.py
-4
-```
-
-*Now create a new file
-([using_print2.py](./Examples/02_UsingPrint/using_print2.py)) with the
-following contents*
-
-``` python
-print('The answer is: ')
-print(2 + 2)
-```
-
-    The answer is: 
-    4
-
-*Save and run this file. The output should be,*
-
-``` shell
-The answer is:
-4
-```
-
-*Observe here that the program automatically adds a new line, if we want
-to avoid that we can instead write*
-
-``` python
-print('The answer is:', 2+2)
-```
-
-*Write and run a new file
-([using_print3.py](./Examples/02_UsingPrint/using_print3.py)) containing
-the above line and check the output. It should produce,*
-
-``` shell
-The answer is: 4
-```
-
-*Here we see that one of the ways to call `print` is to provide a comma
-seperated list of values. By default `print` adds a space between these
-elements*
-
-- See [Example: Work with `print` in a
-  program](#work-with-print-in-a-program)
-
-> \[!CAUTION\] There are several ways a python program can fail, for
-> example
->
-> ``` python
-> print('The answer is: '}
-> ```
->
-> leads to a syntax error, because the wrong parentheses have been used.
-> Or,
->
-> ``` python
-> Print(2 + 2)
-> ```
->
-> leads to a `NameError` because function names are case sensitive, and
-> we have put `Print` not `print`. Proper use of tooling can catch these
-> syntax and other errors before you run the code, however sometimes
-> errors slip through and you end up with errors occuring at run time!
-
-### Use Python Libraries
-
-- Libraries provide additional built in functions, like `ord` and `chr`
-  already seen
-- Libraries can be supplied *built-in*, i.e. supplied with the python
-  install, or installed later
-
-#### The `random` library
-
-- Provides a source of random numbers
-- To add a library we use the `import` command, e.g. `import random`
-  - i.e. `import` then the name of the library
-- We can then use functions from the library with the format,
-  `module_name.function_name(arguments)`
-  - e.g. for `random` we can use `randint` as `random.randint(1,6)` to
-    generate a random number from $1$ to $6$
-- See [Example: Investigate the `random`
-  library](#investigate-the-random-library)
-
-#### The `time` library
-
-- The `time` function contains functions for managing dates and times
-- The `sleep` function lets a program for a given time period
-  - Tells the operating system to pause execution of the program for a
-    set time period
-  - Other programs continue running as normal
-- See [Example: Sleep](#using-sleep)
-- See [Exercise 3.1](#exercise-31-egg-timer)
-
-### Python Comments
-
-- Comments are used to add *metadata* to code, i.e. extra information
-  that does not impact how the code is run
-- e.g. version numbers, authorship attribution, modification dates
-- A comment is marked with a `#` and extends to the end of the line
-
-``` python
-#Egg Timer program 1.0 by Rob Miles
-import time
-print('Put the egg in boiling water now!')
-time.sleep(300)
-print('Take the egg out now')
-```
-
-- Comments can be added at the end of statements, e.g.
-
-``` python
-time.sleep(300) #sleep while egg cooks (300 seconds or 5 minutes)
-```
-
-- The above comment is good because it explains why the function is
-  called
-- A bad comment simply repeats the code
-- Comments have a maintainence overhead, you must keep them consistent
-  with the surrounding code or they will generate confusion
-
-### Delay the End of a Program
-
-- You can use `sleep` to delay the end of a program. This can be useful
-  in some environments where the calling window automatically closes
-  after the program finishes execution, `sleep` lets you actually see
-  the output
-
-### Adding some `Snaps`
-
-- `snaps` is a library provided with the book code that provides simple
-  functions for working with text, images and sound
-- Uses the `pygame` library
-
-#### Adding the `pygame` library
-
-- Pygame is a not packaged with python we have to install it
-- Normally this is done through pip, which is a python package manager
-  provided with python
-- In a terminal run one of the following lines,
-
-``` shell
-py -m pip install pygame --user #Windows
-python -m pip install pygame --user #Mac or Linux
-```
-
-- You may need to use `python3` instead of `python`
-
-> \[!TIP\] Installing python packages and python package management is a
-> whole issue. In general one should prefer virtual environments, user
-> installations to isolate packages to the specific project. A program
-> that I use that assists with all of this is called `uv`. In `uv` a
-> package is added with the command `uv add package-name`. Package
-> management and `uv` is a complicated topic, but to get started look at
-> their [homepage](https://docs.astral.sh/uv/) which is quite well
-> documented.
-
-#### Snaps function
-
-- The `snaps` library, is a python file contained in the provided book
-  [sample code](../../samples/), in each chapter folder with examples.
-  - If you want to use `snaps` we could *install* it, but this is a bit
-    more involved than where we are at right now
-  - Instead simply copy it into the same folder as any python file that
-    wants to use it
-
-##### Display Text
-
-- snaps contains a `display_message` function that takes a string of
-  text and displays it on the screen
-- See [Example: Display Text](#displaying-text)
-
-##### Display Images
-
-- Like `display_message`, the `display_image` function in `snaps` can be
-  used to display an image file.
-- Function takes the path to the image and can be an png or jpeg
-- Text can be overlayed on an image by calling `display_message` *after*
-  \`display_image\*
-- See [Example: Display Image](#displaying-images)
-
-##### Making Sounds
-
-- We have text and images, the last we need is *sound*, `snaps` has the
-  `play_sound` function for this purpose
-- See [Example: Play Sound](#playing-sound)
-- If you want to work with audio files, a commonly used program is
-  [Audacity](https://www.audacityteam.org/)
-
-##### Using `snaps` in your program
-
-- You can use the `snaps` program to add visuals and sound to some of
-  the previous examples
-
-- See [Ex3.2](#exercise-32-improved-egg-timer),
-  [Ex3.3](#exercise-33-high-low), [Ex3.4](#exercise-34-nerves-of-steel)
+    Players Stand
+    Last to sit down wins
 
 ## Summary
 

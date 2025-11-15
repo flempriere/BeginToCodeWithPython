@@ -124,13 +124,6 @@ sequence*
     - `10` *output*
     - *The new value of* `total` *is printed*
 
-> [!NOTE]
->
-> In the above, each time I have to perform this initial assignment to
-> total, because the notebooks I’m using to write this cannot carry the
-> state between them. In an interpreter, as long as we are in the same
-> session, the declaration of `total` will be remembered between lines.
-
 #### Python Names
 
 - Variables require names
@@ -182,20 +175,14 @@ been defined*
     to add* $10$ *to the variable* `total`*?*
 
     ``` python
-     %reset #ignore this line, this is notebook magic to say "forget all variables"
-     Total = total + 10
+     #| echo: false
+     %reset
     ```
 
-        Don't know how to reset  #ignore, please run `%reset?` for details
-        Don't know how to reset  this, please run `%reset?` for details
-        Don't know how to reset  line,, please run `%reset?` for details
-        Don't know how to reset  this, please run `%reset?` for details
-        Don't know how to reset  is, please run `%reset?` for details
-        Don't know how to reset  notebook, please run `%reset?` for details
-        Don't know how to reset  magic, please run `%reset?` for details
-        Don't know how to reset  to, please run `%reset?` for details
-        Don't know how to reset  say, please run `%reset?` for details
-        Don't know how to reset  forget all variables, please run `%reset?` for details
+    ``` python
+     total = 0
+     Total = total + 10
+    ```
 
     - Variable names are case-sensitive. Therefore `Total` and `total`
       are distinct variables. So this declares a new variable `Total`
@@ -236,14 +223,23 @@ been defined*
     equals is mispelled. What will happen when this program runs?*
 
     ``` python
-     %reset #again ignore this line
+     #| echo: false
+     %reset
+    ```
+
+    ``` python
+     total = 0
      total = Total + 10
     ```
 
-        Don't know how to reset  #again, please run `%reset?` for details
-        Don't know how to reset  ignore, please run `%reset?` for details
-        Don't know how to reset  this, please run `%reset?` for details
-        Don't know how to reset  line, please run `%reset?` for details
+        NameError: name 'Total' is not defined
+        ---------------------------------------------------------------------------
+        NameError                                 Traceback (most recent call last)
+        Cell In[9], line 2
+              1 total = 0
+        ----> 2 total = Total + 10
+
+        NameError: name 'Total' is not defined
 
     - In this case, `Total` is not defined as a variable, so there is no
       meaningful way to interpret a value. Hence we would expect an
@@ -305,7 +301,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 13 seconds.
+    Stay standing for 19 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -345,13 +341,13 @@ following line*
 customer_age_in_years + customer_name
 ```
 
-    NameError: name 'customer_age_in_years' is not defined
+    TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[134], line 1
+    TypeError                                 Traceback (most recent call last)
+    Cell In[12], line 1
     ----> 1 customer_age_in_years + customer_name
 
-    NameError: name 'customer_age_in_years' is not defined
+    TypeError: unsupported operand type(s) for +: 'int' and 'str'
 
 *Here we are trying to add a number and a string, which we saw
 previously shouldn’t work. The terminal should provide some error output

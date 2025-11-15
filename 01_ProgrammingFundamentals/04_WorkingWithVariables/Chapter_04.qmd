@@ -88,6 +88,7 @@ class zeroDescr BG
    ```{python}
     total
    ```
+
     - `10` *output*
     - *The new value of* `total` *is printed*
 
@@ -185,7 +186,7 @@ Other languages with more strict type systems and variable declarations, may be 
 
 *Observe that the time is required to be used in two places, displaying the time remaining and then sleeping for that period of time. This means we need to use a variable to store the value of the time remaining*
 
-```{python}
+```python
 # Chapter 4 Example 2: Self Timer
 # Based on original code by Rob Miles
 # Extends the Nerves of Steel Game from Chapter 3, by adding a skill element
@@ -206,6 +207,27 @@ stand_time = random.randint(5, 20) #generate the time to stand for
 
 print('Stay standing for', stand_time, 'seconds.') #display standing time
 time.sleep(stand_time) #sleep for the standing time
+print('****TIMES UP, LAST TO SIT WINS!****')
+```
+
+```{python}
+#| echo: false
+# same trick to avoid sleep
+
+import time
+import random
+
+print('Welcome to Self Timer')
+print() #just prints a newline
+print('Everybody stand up')
+print('Stay standing until you think the time has ended')
+print('Then sit down')
+print('Anyone still standing when the time expires loses')
+print('The last person to sit down before the time ended will win')
+
+stand_time = random.randint(5, 20) #generate the time to stand for
+
+print('Stay standing for', stand_time, 'seconds.') #display standing time
 print('****TIMES UP, LAST TO SIT WINS!****')
 ```
 

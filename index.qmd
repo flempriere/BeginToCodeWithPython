@@ -4,7 +4,7 @@ title: "Beginning to Code with Python: Notes, Examples and Exercises"
 format:
   html:
     toc: true
-    toc-depth: 5
+    toc-depth: 6
     code-fold: false
     code-links: repo
 ---

@@ -4,7 +4,7 @@ title: "Chapter 3: Python Program Structure"
 
 ## Notes
 
-### Example: Write Your First Python Program
+### Write Your First Python Program
 
 - A program is a sequence of actions performed in order
     - A script is a type of program that often repeats a series of simple tasks
@@ -29,10 +29,6 @@ python path-to-file
 ```
 
 *You may need to use `python3` or `python3.X` depending on how your environment is setup where `X` is the python subversion. The code should execute but produce no output.*
-
-
-
-- See [Example: Run your first Python program](#run-your-first-python-program)
 
 #### Get Program output using the `print` function
 
@@ -138,9 +134,11 @@ print('You have rolled:', random.randint(1,6))
 *Try running this program multiple times and see what the output is*
 
 ::: {.callout-caution}
+
 If we try calling `random.randint` without importing `random` we will get a `NameError` since neither `random` or `randint` will be recognised by the interpreter.
 
 If we get the name of the module wrong, e.g. `import Random`, then we should get a `ModuleNotFoundError`
+
 :::
 
 - *The python shell and most modern text editors can access documentation about pythons functions to help you with using them, typically by hovering over the function name. Try this in your setup, in mine I get the documentation:*
@@ -180,7 +178,7 @@ Currently we haven't been show a way to get input from the user so we can't add 
 
 The final code is then, (with sample output)
 
-```{python}
+```python
 import time
 
 print('Make sure the water is boiling!!!')
@@ -188,6 +186,17 @@ print('Drop the egg in...')
 time.sleep(270)
 print('Nearly cooked, get your spoon ready')
 time.sleep(300)
+print('Egg cooked, remove now.')
+```
+
+```{python}
+#| echo: false
+# cheating a little by having the actual executed code omit the sleeps so it doesn't take forever to render
+import time
+
+print('Make sure the water is boiling!!!')
+print('Drop the egg in...')
+print('Nearly cooked, get your spoon ready')
 print('Egg cooked, remove now.')
 ```
 

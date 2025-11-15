@@ -26,5 +26,15 @@ jobs:
       - name: "Install the project"
         run: uv sync --locked --all-extras --dev
 
+      - name: Add venv to PATH
+        run: echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
       - name: Render and Publish
-        run: uv run quarto publish gh-pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

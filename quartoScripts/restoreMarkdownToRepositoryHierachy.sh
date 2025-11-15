@@ -13,6 +13,9 @@ shopt -s dotglob   # include hidden items when matching `*`
 shopt -s nullglob  # expand patterns that don't match anything to the empty string
 shopt -s globstar  # search multiple layers of directories
 
+## first delete index file
+rm $dirFrom/**/index.md
+
 # Use globbing to find all subdirectories - note the trailing '/'
 # to ensure that only directories match.
 for markdown_file in "$dirFrom"/**/*.md; do
