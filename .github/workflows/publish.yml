@@ -27,8 +27,4 @@ jobs:
         run: uv sync --locked --all-extras --dev
 
       - name: Render and Publish
-        uses: uv run quarto publish qh-pages
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: uv run quarto publish qh-pages
