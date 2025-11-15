@@ -24,7 +24,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: "Install the project"
-        run: uv sync --system --locked --all-extras --dev
+        run: uv pip sync --system --locked --all-extras --dev
 
       - name: Render and Publish
 
