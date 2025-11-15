@@ -1,5 +1,5 @@
 env:
-  UV_PROJECT_ENVIRONMENT: /usr/local
+  UV_PROJECT_ENVIRONMENT: /usr/local/
 
 on:
   workflow_dispatch:
