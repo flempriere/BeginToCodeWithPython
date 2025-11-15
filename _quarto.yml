@@ -7,9 +7,17 @@ project:
 website:
   title: "Beginning to Code with Python: Notes, Examples and Exercises"
   navbar:
+    search: true
     left:
       - href: index.qmd
-      - text: Home
+        text: Home
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Programming Fundamentals"
+        contents:
+          - 01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.qmd
 format:
   html:
     toc: true
