@@ -12,6 +12,13 @@
       Variables](#example-text-and-numeric-variables)
     - [Marking the Start and End of
       Strings](#marking-the-start-and-end-of-strings)
+    - [Escape Characters in Text](#escape-characters-in-text)
+      - [Exercise: Investigating Escape
+        Sequences](#exercise-investigating-escape-sequences)
+    - [Read in Text using the `input`
+      Function](#read-in-text-using-the-input-function)
+      - [Example: Use `input` to make a “greeter”
+        Program](#example-use-input-to-make-a-greeter-program)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -235,7 +242,7 @@ been defined*
         NameError: name 'Total' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[9], line 2
+        Cell In[55], line 2
               1 total = 0
         ----> 2 total = Total + 10
 
@@ -301,7 +308,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 10 seconds.
+    Stay standing for 5 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -344,7 +351,7 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[12], line 1
+    Cell In[58], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -383,6 +390,242 @@ typically disliked outside of quick prototyping*
 > place
 
 #### Marking the Start and End of Strings
+
+- Python lets you use either single-quotes (’) or double-quotes (“)
+  - Lets us include ’ or ” in a string
+- For example, compare the two quote snippets,
+
+``` python
+print("It's a trap")
+```
+
+    It's a trap
+
+- Whereas if we tried to just use single quotes,
+
+``` python
+print('It's a trap')
+```
+
+    SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
+      Cell In[61], line 1
+        print('It's a trap')
+                          ^
+    SyntaxError: unterminated string literal (detected at line 1)
+
+- The single quote in `It's` ends the string, and we get a syntax error
+  detecting what should be the closing single quote as opening a new
+  string literal
+- How do we handle the case where we have mixed quotes in a string?
+  - We use triple quotes, a series of three single or double quotes in a
+    row, see the example below
+
+``` python
+print('''...and then Luke said "It's a trap"''')
+```
+
+    ...and then Luke said "It's a trap"
+
+- Triple quoted strings have the added advantage of capturing newlines.
+  To see this, we could rewrite the intro string in [Nerves of
+  Steel](../03_PythonProgramStructure/Chapter_03.qmd#exercise-nerves-of-steel)
+  as
+
+``` python
+print('''Welcome to Nerves of Steel
+
+Everybody stand up
+Stay standing as long as you dare.
+Sit down just before you think the time will end. ''')
+```
+
+    Welcome to Nerves of Steel
+
+    Everybody stand up
+    Stay standing as long as you dare.
+    Sit down just before you think the time will end.
+
+> [!CAUTION]
+>
+> You must using matching delimiters, if we try to mix them we’ll get an
+> error
+>
+> ``` python
+> print('hello")
+> ```
+>
+>     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
+>       Cell In[64], line 1
+>         print('hello")
+>               ^
+>     SyntaxError: unterminated string literal (detected at line 1)
+
+#### Escape Characters in Text
+
+- *Escape sequences* are another way to include quote characters
+- Extends to other symbols with meaning other than their literal
+  character glyph in a string
+- Denoted by the `\` character
+
+| **Escape Sequence** | **Meaning** | **Effect** |
+|----|----|----|
+| `\\` | Backslash character (`\`) | Enter a backslash into a string |
+| `\'` | Single Quote (`'`) | Enter a single quote into the string |
+| `\"` | Double Quote (`"`) | Enter a double quote into the string |
+| `\n` | ASCII Line Feed/New Line | End this line and take a new one |
+| `\t` | ASCII Tab | Move to the right to the next tab stop |
+| `\r` | ASCII Carriage Return | Return the printing position to the start of the line |
+| `\a` | ASCII Bell | Sound the bell on the terminal |
+
+> [!NOTE]
+> **ASCII**
+>
+> ASCII (short for American Standard Code for Information Interchange)
+> is an old format for character encoding that covers a small range of
+> symbols including the latin alphabet and digits.
+>
+> ASCII itself is less used today since it only covers around $100$
+> characters, which is nowhere near enough to cover all modern
+> languages, before you start adding in characters like emojis. However
+> modern text encodings like *unicode* are typically backwards
+> compatible with ASCII.
+>
+> Not all ASCII escape sequences may work on a modern computer. `\a` was
+> designed to ring a mechanical bell on old computers. Some modern
+> computers may play a beep while others may do nothing. Similarly `\r`
+> is supposed to return the print head of a computer back to the start
+> of the line. This has very limited use cases, and may not be
+> implemented on all systems.
+>
+> The most common escape characters are newline `\n` and escaping quotes
+
+> [!NOTE]
+> **Newline in Python**
+>
+> Python uses `\n` as the newline character. Technically this is known
+> as a line feed and means “go to the next line”. In Linux and similar
+> operating systems this is equivalent to starting a new line, but in
+> windows going to the start of a new line is achieved via `\r\n`,
+> i.e. return to the start of the line, and then feed to the next.
+> Luckily python handles the conversion between the conventions
+> automatically and we can just use `\n` regardless of the operating
+> system we are actually running on
+
+##### Exercise: Investigating Escape Sequences
+
+*Start a python interpreter and answer the following questions*
+
+1. *What do you think the following quote would print?*
+
+    ``` python
+    print('hello\nworld')
+    ```
+
+    - We would expect this print `hello` on one line, then `world` on
+      the next
+
+    <!-- -->
+
+        IndentationError: unexpected indent (999447328.py, line 1)
+          Cell In[65], line 1
+            print('hello\nworld')
+            ^
+        IndentationError: unexpected indent
+
+    - We can see this prints a series of tab seperated lines. So this is
+      essentially a tab seperated table (a similar format to the more
+      familiar *comma*-seperated table)
+
+    ``` python
+    pri"t('Item\tSales\ncar\t50\nboat\"10')
+    ```
+
+        SyntaxError: unterminated string literal (detected at line 1) (3486270260.py, line 1)
+          Cell In[66], line 1
+            pri"t('Item\tSales\ncar\t50\nboat\"10')
+               ^
+        SyntaxError: unterminated string literal (detected at line 1)
+
+    - The exact spacing of tab characters can depend on the computer
+      system, and it is quite common for text editors to convert tabs to
+      spaces, so this format isn’t the best. We’ll see other ways to
+      format strings later
+
+2. *How could I use Python escape sequences to print out this message?*
+
+    > and then Luke said “It’s a trap”
+
+    - We saw how to do this with triple-delimited strings before.
+      Instead we just have to remember to instead use a single-delimiter
+      string and then escape the quotes that actually form the string
+      contents. See,
+
+    ``` python
+     print('and then Luke said "It\'s a trap"')
+    ```
+
+        and then Luke said "It's a trap"
+
+- Since the string is delimited by single quotes we only have to delimit
+  the one single quote in `It's` rather than the two double quotes
+
+#### Read in Text using the `input` Function
+
+- We’ve seen how to *output* data with `print`
+- We can also *input* data with the appropriately named `input`
+- The code snippet below, takes input from the user and stores it in
+  `name`
+
+``` python
+  name = input()
+```
+
+- The program will pause until the user supplies the input, (Try it
+  yourself in the interpreter!)
+- We can add a display prompt to the input statement
+
+``` python
+  name = input('Enter your name please: ')
+```
+
+- The above should output something like the below when run
+
+<!-- -->
+
+    Enter your name please:
+
+- As mentioned `input` passes what it receives into the receiving
+  variable.
+  - If we just immediately press enter this is the *empty* string i.e. a
+    string containing no characters
+- `input` is another technique for delaying the end of a program,
+  e.g. the below prints a prompt and then holds the program until some
+  input is received
+
+``` python
+input('Press enter to continue...')
+```
+
+##### Example: Use `input` to make a “greeter” Program
+
+*Use python to create a simple program that will issue a personalised
+greeting. Create a new program with the following contents*
+
+``` python
+name = input('Enter your name please: ')
+print('Hello', name)
+```
+
+*Save the program and execute it to see the output. For me the proram
+would output,*
+
+    Enter your name please: Felix
+    Hello Felix
+
+> [!TIP]
+>
+> I’ve used colour to emphase what is my *input*, versus the *program’s*
+> output
 
 ## Summary
 
