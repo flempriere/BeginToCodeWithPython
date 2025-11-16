@@ -1,5 +1,7 @@
 # Begin to Code with Python
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/flempriere/BeginToCodeWithPython/main.svg)](https://results.pre-commit.ci/latest/github/flempriere/BeginToCodeWithPython/main)
+
 This repository contains code fragments, notes and exercises from the book Begin to Code With Python by Rob Miles. The book is available at the [official Microsoft Press Store](https://www.microsoftpressstore.com/store/begin-to-code-with-python-9781509304523).
 
 I started this repository to work through an easy and basic book before working on some more intermediate level python projects and books.

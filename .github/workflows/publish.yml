@@ -37,13 +37,15 @@ jobs:
         run: uv run quarto render
 
       - name: Commit GFM notes back to branch
-        if: github.event_name != 'pull_request' || github.events.action != 'closed'
+        if: github.event_name != 'pull_request' || github.event.action != 'closed'
         run: |
           LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
           if [[ "$LAST_COMMIT_MSG" == "Update generated Markdown"* ]]; then
             echo "Last commit was generated Markdown, skipping commit to avoid loop."
             exit 0
           fi
+
+          uv run pre-commit run --all-files
 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -83,6 +85,7 @@ jobs:
         with:
           target: gh-pages
           path: _site
+          skip-render: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
