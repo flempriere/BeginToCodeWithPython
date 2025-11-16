@@ -37,6 +37,14 @@ jobs:
       - name: Render Quarto
         run: uv run quarto render
 
+      - name: lint and format with pre-commit
+        run: uv run pre-commit run --all-files
+        continue-on-error: true
+
+      - name: confirm pre-commit
+        run: uv run pre-commit run --all-files
+        continue-on-error: false
+
       - name: Commit GFM notes back to branch
         if: github.event_name != 'pull_request' || github.event.action != 'closed'
         run: |
@@ -45,8 +53,6 @@ jobs:
             echo "Last commit was generated Markdown, skipping commit to avoid loop."
             exit 0
           fi
-
-          uv run pre-commit run --all-files
 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
