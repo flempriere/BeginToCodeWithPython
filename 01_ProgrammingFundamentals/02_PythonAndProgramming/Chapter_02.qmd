@@ -158,7 +158,7 @@ config:
 ---
 flowchart LR
 
-input(("Python 
+input(("Python
         Commands"))
 computer["Python Command Shell"]
 output(("Results"))
@@ -177,8 +177,8 @@ computer-->output
      ```{python}
      hello
      ```
-    
-      
+
+
       - *The interpreter doesn't recognise the arbitrary word* `hello` *and produces an error message*
 
   2. `2` - `2`
@@ -189,7 +189,7 @@ computer-->output
 
       - *The interpreter echoes a number back out!*
 
-  
+
   3. `2 + 2`
 
      ```{python}
@@ -353,7 +353,7 @@ Not all languages are scripting languages. Some are converted to low-level hardw
     - Operands like strings and numbers can't span multiple lines
     - A string literal is just a string there in the code
 2. *What do you think would happen if you tried to subtract one string from another?*
-    - While addition of strings can be easily seen as concatenation, there is no meaningful equivalent for substraction. 
+    - While addition of strings can be easily seen as concatenation, there is no meaningful equivalent for substraction.
     - We could think of it as substring removal, but that has a lot of nuance that is hard to capture in a single symbol. We expect an error.
 
    ```{python}
@@ -418,7 +418,7 @@ Learning a new language often involves learning the functions it natively suppor
 
 ##### Example: Investigate Text Representation using `ord`
 
-*Start up a python interpreter, and run the following,* 
+*Start up a python interpreter, and run the following,*
 
 1. `ord('W')`
 
@@ -554,7 +554,7 @@ bin(87)
 3. *What does the binary value of* $2$ *look like?*
     - In binary, digits are in columns of powers of $2$ i.e. $1$ like before is viewed as $1 \times 2^{0}$
     - $2$ can be viewed as $1 \times 2^{1} + 0 \times 2^{0}$, so we would expect the representation to be $10$
-   
+
    ```{python}
     bin(2)
    ```

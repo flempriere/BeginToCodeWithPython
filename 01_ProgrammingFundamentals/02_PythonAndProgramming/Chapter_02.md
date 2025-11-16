@@ -197,7 +197,7 @@ config:
 ---
 flowchart LR
 
-input(("Python 
+input(("Python
         Commands"))
 computer["Python Command Shell"]
 output(("Results"))

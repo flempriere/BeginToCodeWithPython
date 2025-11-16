@@ -144,9 +144,9 @@ Some languages recommend using *camel case* for variable naming. In this format 
       - Python typically cannot warn you about them ahead of time
     - This variable misassignment is why python style guides recommend the use of all lowercase letters for variable names
 
-:::{.callout-note}
-Other languages with more strict type systems and variable declarations, may be able to identify logic errors like the one above.
-:::
+   :::{.callout-note}
+    Other languages with more strict type systems and variable declarations, may be able to identify logic errors like the one above.
+   :::
 
 2. *How do we prevent logic errors?*
     - Testing

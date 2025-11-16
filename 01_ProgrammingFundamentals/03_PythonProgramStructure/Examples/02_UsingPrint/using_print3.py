@@ -1,1 +1,1 @@
-print('The answer:', 2+2)
+print("The answer:", 2 + 2)
