@@ -23,6 +23,6 @@ for markdown_file in "$dirFrom"/**/*.md; do
     #strip of from directory and replace with to directory then move
     mv_to="${markdown_file//$dirFrom/$dirTo}"
 
-    cp $markdown_file $mv_to
+    mv $markdown_file $mv_to
 
 done
