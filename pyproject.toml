@@ -11,5 +11,8 @@ dependencies = [
 [dependency-groups]
 dev = [
     "ipykernel>=7.1.0",
+    "pre-commit>=4.4.0",
+    "pre-commit-uv>=4.2.0",
     "quarto-cli>=1.8.25",
+    "ruff>=0.14.5",
 ]
