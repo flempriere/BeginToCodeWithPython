@@ -1,5 +1,6 @@
 # Chapter 2: Python and Programming
 
+
 - [Notes](#notes)
   - [What makes a Programmer?](#what-makes-a-programmer)
     - [Programming and Problems](#programming-and-problems)
@@ -213,7 +214,7 @@ computer-->output
 ##### Example: Playing with the Shell
 
 - *Start up a python interpreter and run the following*
-  1. `hello`
+  1.  `hello`
 
       ``` python
       hello
@@ -230,7 +231,7 @@ computer-->output
       - *The interpreter doesn’t recognise the arbitrary word* `hello`
         *and produces an error message*
 
-  2. `2` - `2`
+  2.  `2` - `2`
 
       ``` python
       2
@@ -240,7 +241,7 @@ computer-->output
 
       - *The interpreter echoes a number back out!*
 
-  3. `2 + 2`
+  3.  `2 + 2`
 
       ``` python
       2 + 2
@@ -310,7 +311,7 @@ class operatorDescr BG
 
 ##### Exercise: Python Expressions
 
-1. *What do you think would happen if you tried to evaluate `2+3*4`?*
+1.  *What do you think would happen if you tried to evaluate `2+3*4`?*
 
 We would expect `14` from the basic mathematical order of operations.
 Plugging this into the shell,
@@ -413,7 +414,7 @@ here we would expect a syntax error.
 
 *Start up the python interpreter and run the following*
 
-1. `'hello'`
+1.  `'hello'`
 
     ``` python
      'hello'
@@ -423,7 +424,7 @@ here we would expect a syntax error.
 
     - Like before with $2$ the word is echoed.
 
-2. \`‘hello’ + ’ world’
+2.  \`‘hello’ + ’ world’
 
     ``` python
      'hello' + 'world'
@@ -439,7 +440,7 @@ here we would expect a syntax error.
 
 ##### Exercise: Break the rules with Python
 
-1. *What do you think would happen if missed the closing quote of a
+1.  *What do you think would happen if missed the closing quote of a
     string you were typing?*
 
     - We would expect it, to either hang waiting for the closing quote
@@ -460,7 +461,7 @@ here we would expect a syntax error.
     - Operands like strings and numbers can’t span multiple lines
     - A string literal is just a string there in the code
 
-2. *What do you think would happen if you tried to subtract one string
+2.  *What do you think would happen if you tried to subtract one string
     from another?*
 
     - While addition of strings can be easily seen as concatenation,
@@ -485,7 +486,7 @@ here we would expect a syntax error.
     - The error message is somewhat obtuse but simply means that for the
       operand (-) we can’t subtract a string from another string
 
-3. *What do you think would happen if you tried to add a number to a
+3.  *What do you think would happen if you tried to add a number to a
     string?*
 
     - This one can vary. There a two valid interpretations,
@@ -509,7 +510,7 @@ here we would expect a syntax error.
     - The result is as expected, the error tells we can only concatenate
       a string to another string
 
-4. What do you think would happen if you tried to multiply a string by
+4.  What do you think would happen if you tried to multiply a string by
     a number?
 
     - Again there are two interpretations,
@@ -564,7 +565,7 @@ here we would expect a syntax error.
 
 *Start up a python interpreter, and run the following,*
 
-1. `ord('W')`
+1.  `ord('W')`
 
     ``` python
      ord('W')
@@ -574,7 +575,7 @@ here we would expect a syntax error.
 
     - *This matches our first example*
 
-2. `ord(W)`
+2.  `ord(W)`
 
     ``` python
      ord(W)
@@ -660,7 +661,7 @@ class rightPname BG
 
 *Start up a python interpreter, and run the following,*
 
-1. `chr(87)`
+1.  `chr(87)`
 
     ``` python
      chr(87)
@@ -670,7 +671,7 @@ class rightPname BG
 
     - *Exactly what we saw before, and what we would expect from* `ord`
 
-2. `chr(88)`
+2.  `chr(88)`
 
     ``` python
      chr(88)
@@ -708,7 +709,7 @@ bin(87)
 
 *Answer the following questions about binary representations*
 
-1. *What does the binary value of* $0$ *look like?*
+1.  *What does the binary value of* $0$ *look like?*
     - Would expect this to also be $0$
 
     ``` python
@@ -716,7 +717,7 @@ bin(87)
     ```
 
         '0b0'
-2. *What does the binary value of* $1$ *look like?*
+2.  *What does the binary value of* $1$ *look like?*
     - Would also expect this to be $1$
 
     ``` python
@@ -724,7 +725,7 @@ bin(87)
     ```
 
         '0b1'
-3. *What does the binary value of* $2$ *look like?*
+3.  *What does the binary value of* $2$ *look like?*
     - In binary, digits are in columns of powers of $2$ i.e. $1$ like
       before is viewed as $1 \times 2^{0}$
     - $2$ can be viewed as $1 \times 2^{1} + 0 \times 2^{0}$, so we
@@ -735,7 +736,7 @@ bin(87)
     ```
 
         '0b10'
-4. *What do you think the binary value of* $11$ *means?*
+4.  *What do you think the binary value of* $11$ *means?*
     - If we consider the above discussion, we expect this to be decimal
       $3$
 
@@ -744,7 +745,7 @@ bin(87)
     ```
 
         3
-5. *How does the binary value* $86$ *differ from the binary value of*
+5.  *How does the binary value* $86$ *differ from the binary value of*
     $87$*?*
     - Lets look at `87` first.
 
@@ -784,32 +785,32 @@ bin(87)
 
 ## Question and Answers
 
-1. *Would a computer “know” that its stupid for someone to have an age
+1.  *Would a computer “know” that its stupid for someone to have an age
     of* $-20$*?*
     - No. As far as the computer is concerned, the age valueis just a
       pattern of bits that represents a number. If we want a computer to
       reject negative ages, we must actually build that understanding
       into the program
-2. *If the output from a program is settings for the fuel-injection
+2.  *If the output from a program is settings for the fuel-injection
     system on a car, is the output data or information?*
     - As soon as something starts acting on data, it becomes
       information. A human being is not doing anything with these
       values, but they will cause the speed of the engine to change,
       which might affect humans, so this makes the output information
       rather than data by the authors opinion
-3. *Is the computer stupid because it can’t understand English?*
+3.  *Is the computer stupid because it can’t understand English?*
     - No, english can be a quite ambiguous languge. The legal profession
       is an example of somewhere were debate over the semantics of
       language is tricky
-4. *If I don’t know how to solve a problem, can I write a program to do
+4.  *If I don’t know how to solve a problem, can I write a program to do
     it?*
     - No, you need to understand the solution before you can write it
       and make sure that it does exactly what you want it to do
-5. *Is it sensible to assume the customer measures everything in
+5.  *Is it sensible to assume the customer measures everything in
     inches?*
     - It’s never sensible to assume anything about a project. Every
       assumption increases the chance of a potential disaster
-6. *If the program does the wrong thing, is it my fault or the
+6.  *If the program does the wrong thing, is it my fault or the
     customer’s fault?*
 
 | **Specification?** | **Program?** | **Whose Fault?** |

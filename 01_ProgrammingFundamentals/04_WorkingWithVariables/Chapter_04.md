@@ -1,5 +1,6 @@
 # Chapter 4: Working With Variables
 
+
 - [Notes](#notes)
   - [Variables in Python](#variables-in-python)
     - [Example: Working with Variables](#example-working-with-variables)
@@ -80,7 +81,7 @@ class zeroDescr BG
 *Start up a python interpreter, then run the following commands in
 sequence*
 
-1. `total = 0`
+1.  `total = 0`
 
     ``` python
      total = 0
@@ -88,7 +89,7 @@ sequence*
 
     - *No output is generated, the assignment is performed silently*
 
-2. `total`
+2.  `total`
 
     ``` python
      total
@@ -100,7 +101,7 @@ sequence*
     - `total` *has been assigned* `0`*, putting the variable name into
       the terminal returns the value associated with this value*
 
-3. `total = total + 10`
+3.  `total = total + 10`
 
     ``` python
      total = total + 10
@@ -112,7 +113,7 @@ sequence*
     - *Here we assign* `total` *the value given by the **current** value
       of* `total` *plus* $10$
 
-4. `total`
+4.  `total`
 
     ``` python
      total
@@ -127,8 +128,8 @@ sequence*
 
 - Variables require names
 - Python variable names must obey a number of rules
-  1. Must start with a letter or \_
-  2. Can contain letters, numbers or \_ characters
+  1.  Must start with a letter or \_
+  2.  Can contain letters, numbers or \_ characters
 - Some valid names are
   - `total`
   - `xyz` -`t0tal`
@@ -170,7 +171,7 @@ to interpret an input. Answer the following questions to investigate how
 errors can arise in using variables. Assume that `total` has already
 been defined*
 
-1. *Can you identify an error in the statement below, which is supposed
+1.  *Can you identify an error in the statement below, which is supposed
     to add* $10$ *to the variable* `total`*?*
 
     ``` python
@@ -202,7 +203,7 @@ been defined*
     > declarations, may be able to identify logic errors like the one
     > above.
 
-2. *How do we prevent logic errors?*
+2.  *How do we prevent logic errors?*
 
     - Testing
       - i.e checking that the actual behaviour of a program matches the
@@ -218,7 +219,7 @@ been defined*
       using *test-driven development* the tests are written *before* the
       program itself is written
 
-3. *The statement below also contains a misspelling of the variable*
+3.  *The statement below also contains a misspelling of the variable*
     `total`*. However, this time the name on the right-hand side of the
     equals is mispelled. What will happen when this program runs?*
 
@@ -261,10 +262,10 @@ track of the time*
 
 *The “game” sequence is*
 
-1. *Set the time to remain standing to a random number*
-2. *Display time to remain standing*
-3. *Sleep for the time to remain standing*
-4. *Display a message for the winner*
+1.  *Set the time to remain standing to a random number*
+2.  *Display time to remain standing*
+3.  *Sleep for the time to remain standing*
+4.  *Display a message for the winner*
 
 *Observe that the time is required to be used in two places, displaying
 the time remaining and then sleeping for that period of time. This means
@@ -301,7 +302,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 17 seconds.
+    Stay standing for 14 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line

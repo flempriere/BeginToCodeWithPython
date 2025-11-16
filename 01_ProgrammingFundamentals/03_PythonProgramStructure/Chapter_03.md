@@ -1,5 +1,6 @@
 # Chapter 3: Python Program Structure
 
+
 - [Notes](#notes)
   - [Write Your First Python Program](#write-your-first-python-program)
     - [Running a Python Program](#running-a-python-program)
@@ -130,7 +131,7 @@ print('The answer is: ')
 print(2 + 2)
 ```
 
-    The answer is:
+    The answer is: 
     4
 
 *Save and run this file. The output should match the above*
@@ -212,7 +213,7 @@ import random
 print('You have rolled:', random.randint(1,6))
 ```
 
-    You have rolled: 4
+    You have rolled: 5
 
 *Try running this program multiple times and see what the output is*
 
@@ -524,13 +525,13 @@ time.sleep(30)
 *Use the random number generator and sleep to make a high-low party
 game. The game works like this,*
 
-1. *The program displays a number between* $1$ *and* $10$ *inclusive*
-2. *The program then sleeps for* $20$ *seconds. While the program is
+1.  *The program displays a number between* $1$ *and* $10$ *inclusive*
+2.  *The program then sleeps for* $20$ *seconds. While the program is
     asleep, the players are invited to decide if the next number is
     higher or lower than the number just printed. Players who chose
     **high** stand on the right. Players who chose **low** stand on the
     left*
-3. *The program then displays a second number between* $1$ *and* $10$*,
+3.  *The program then displays a second number between* $1$ *and* $10$*,
     and anyone who was wrong is eliminated from the game. The program is
     then re-run with the players that are left until you have a winner*
 
@@ -570,20 +571,20 @@ time.sleep(10) # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  3
+    The first number is:  5
     Will the next be higher or lower?
-    The second number is:  3
+    The second number is:  5
 
 ##### Exercise: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
 *Use the random number generator and `sleep` to make a Nerves of Steel
 game. This game works like this*
 
-1. *The program displays “Players Stand”*
-2. *The program sleeps for a random time between* $5$ *and* $20$
+1.  *The program displays “Players Stand”*
+2.  *The program sleeps for a random time between* $5$ *and* $20$
     *seconds. While the program is sleeping, players can sit down. Keep
     track of the last person to sit down*
-3. *The program displays “Last to sit down wins.” Players still
+3.  *The program displays “Last to sit down wins.” Players still
     standing are eliminated, and the winner is the last person to sit
     down*
 
@@ -638,11 +639,11 @@ time.sleep(5) #so program doesn't immediately end
 
 ## Question and Answers
 
-1. *Would a user ever use the Python Command Shell?*
+1.  *Would a user ever use the Python Command Shell?*
     - The command shell is very useful for programmers. Programmers can
       toy with code to check the output. Typically a user won’t interact
       with the shell but a program instead
-2. *What would happen if two libraries contain a function with the same
+2.  *What would happen if two libraries contain a function with the same
     name?*
     - If we use the `import library` approach nothing. Since functions
       are *namespaced* by their library we would simply have
@@ -650,21 +651,21 @@ time.sleep(5) #so program doesn't immediately end
     - e.g. we might have `user.menu` and `system.menu`
     - If we use the `from library import *` function then we might have
       an issue as the names will clash
-3. *Can I make comments more than one line long?*
+3.  *Can I make comments more than one line long?*
     - Several languages support multiline comments (e.g. Java, C, C#),
       these are comments that by default span multiple lines
     - Python requires you to use multiple `#`, i.e. one for each line
       - This is referred to as only supporting single line comments
     - Later we’ll see a syntax for adding multiline strings that can be
       used for documentation in a similar way to multiline comments
-4. *Can a python program run on any computer?*
+4.  *Can a python program run on any computer?*
     - Yes and No. If a computer has a python interpreter installed then
       code should be able to run on it. However, there are caveats, the
       computer might require the same version of python and any
       libraries used some of which may be hardware or software
       dependent, e.g. a library might be specifically written to utilise
       the Windows API
-5. *Is the python language the same on every machine?*
+5.  *Is the python language the same on every machine?*
     - Again Yes and No. Every computer should have the same core
       language, however different computers may have different versions
       of the same language which have slightly different feature sets.
@@ -673,5 +674,5 @@ time.sleep(5) #so program doesn't immediately end
     - More common is for different computers to rely on libraries, that
       may not be commonly shared and may rely on hardware or software
       specific features to run.
-6. *Can I use Snaps in my program?*
+6.  *Can I use Snaps in my program?*
     - Yes, it is provided by the book author to be used
