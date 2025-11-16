@@ -92,7 +92,7 @@ jobs:
         with:
           target: gh-pages
           path: _site
-          skip-render: true
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

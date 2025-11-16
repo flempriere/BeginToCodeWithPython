@@ -19,6 +19,21 @@
       Function](#read-in-text-using-the-input-function)
       - [Example: Use `input` to make a “greeter”
         Program](#example-use-input-to-make-a-greeter-program)
+  - [Working with Numbers](#working-with-numbers)
+    - [Convert Strings into Integer
+      Values](#convert-strings-into-integer-values)
+      - [Example: Configurable Egg
+        Timer](#example-configurable-egg-timer)
+      - [Exercise: Reading Numbers](#exercise-reading-numbers)
+    - [Whole Numbers and Real Numbers](#whole-numbers-and-real-numbers)
+      - [Exercise: Whole Numbers vs Real
+        Numbers](#exercise-whole-numbers-vs-real-numbers)
+    - [Real Numbers and Floating
+      Point](#real-numbers-and-floating-point)
+      - [Exercise: Floating Point Variables and
+        Errors](#exercise-floating-point-variables-and-errors)
+      - [Example: Working with Floating Point
+        Variables](#example-working-with-floating-point-variables)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -242,7 +257,7 @@ been defined*
         NameError: name 'Total' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[55], line 2
+        Cell In[35], line 2
               1 total = 0
         ----> 2 total = Total + 10
 
@@ -351,7 +366,7 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[58], line 1
+    Cell In[38], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -408,7 +423,7 @@ print('It's a trap')
 ```
 
     SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
-      Cell In[61], line 1
+      Cell In[41], line 1
         print('It's a trap')
                           ^
     SyntaxError: unterminated string literal (detected at line 1)
@@ -455,7 +470,7 @@ Sit down just before you think the time will end. ''')
 > ```
 >
 >     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
->       Cell In[64], line 1
+>       Cell In[44], line 1
 >         print('hello")
 >               ^
 >     SyntaxError: unterminated string literal (detected at line 1)
@@ -478,6 +493,7 @@ Sit down just before you think the time will end. ''')
 | `\a` | ASCII Bell | Sound the bell on the terminal |
 
 > [!NOTE]
+>
 > **ASCII**
 >
 > ASCII (short for American Standard Code for Information Interchange)
@@ -500,6 +516,7 @@ Sit down just before you think the time will end. ''')
 > The most common escape characters are newline `\n` and escaping quotes
 
 > [!NOTE]
+>
 > **Newline in Python**
 >
 > Python uses `\n` as the newline character. Technically this is known
@@ -527,7 +544,7 @@ Sit down just before you think the time will end. ''')
     <!-- -->
 
         IndentationError: unexpected indent (999447328.py, line 1)
-          Cell In[65], line 1
+          Cell In[45], line 1
             print('hello\nworld')
             ^
         IndentationError: unexpected indent
@@ -541,7 +558,7 @@ Sit down just before you think the time will end. ''')
     ```
 
         SyntaxError: unterminated string literal (detected at line 1) (3486270260.py, line 1)
-          Cell In[66], line 1
+          Cell In[46], line 1
             pri"t('Item\tSales\ncar\t50\nboat\"10')
                ^
         SyntaxError: unterminated string literal (detected at line 1)
@@ -609,7 +626,9 @@ input('Press enter to continue...')
 ##### Example: Use `input` to make a “greeter” Program
 
 *Use python to create a simple program that will issue a personalised
-greeting. Create a new program with the following contents*
+greeting. Create a new program
+([greeter.py](./Examples/03_Greeter/greeter.py)) with the following
+contents*
 
 ``` python
 name = input('Enter your name please: ')
@@ -626,6 +645,229 @@ would output,*
 >
 > I’ve used colour to emphase what is my *input*, versus the *program’s*
 > output
+
+### Working with Numbers
+
+#### Convert Strings into Integer Values
+
+- `input` returns a string
+  - Fine if we want that, but what if we want to handle numbers?
+  - e.g. if we wanted to have a user-specified [egg
+    timer](../03_PythonProgramStructure/Chapter_03.qmd#exercise-egg-timer)
+- `int` is a function that converts the argument to a whole number e.g.
+
+``` python
+time_text = input('Enter the cooking time in seconds: ') #receive time in seconds
+time_int = int(time_next) #perform conversion to number
+```
+
+##### Example: Configurable Egg Timer
+
+- *The complete program ([ConfigurableEggTimer.py](./Examples/)) would
+  then look like,*
+
+``` python
+# Example 4: Configurable Egg Timer
+# Reads in a user specified time to set the timer for
+
+import time
+
+time_text = input("Enter the cooking time in seconds: ")
+time_int = int(time_text)
+
+print("Put the egg in boiling water now")
+input("Press enter to continue once the egg is in...")
+
+time.sleep(time_int)
+
+print("Take the egg out now")
+```
+
+##### Exercise: Reading Numbers
+
+*Consider the previous [example](#example-configurable-egg-timer), and
+answer the following questions*
+
+1. *How many variables are used in the program above?*
+    - two, the first `time_text` stores the initial text input, while
+      the second `time_int` contains the converted numeric
+      representation
+2. *Could you write the program without the time_text variable?*
+    - Yes, we could immediately pass the input result to `int`, e.g.
+
+    ``` python
+     time_int = int(input('Enter the cooking time in seconds: '))
+    ```
+
+    - It’s an open debate which format is clearer. In the second there’s
+      more to grok on one line, but the whole workflow is there
+3. *What do you think will happen if the user enters something other
+    than a number?*
+    - Let us find out,
+
+    ``` python
+     x = int('kaboom')
+    ```
+
+        ValueError: invalid literal for int() with base 10: 'kaboom'
+        ---------------------------------------------------------------------------
+        ValueError                                Traceback (most recent call last)
+        Cell In[50], line 1
+        ----> 1 x = int('kaboom')
+
+        ValueError: invalid literal for int() with base 10: 'kaboom'
+
+    - We get an error, `int` tries to convert the string `'kaboom'` to
+      an integer, which it clearly cant
+    - The art of programming to handle invalid input like the above is
+      called error-handling, we’ll see that later
+
+#### Whole Numbers and Real Numbers
+
+- There are two types of numbers
+  - Whole numbers or *integers*
+    - Are always held accurately by the computer
+  - Real numbers (or representations of) or *floating point*
+    - Contain a fractional component
+    - Must be truncated to be stored in memory, so cannot always be
+      stored accurately
+
+##### Exercise: Whole Numbers vs Real Numbers
+
+*Learn about the differences between whole numbers and real numbers
+through the following questions*
+
+1. *I’m building a device that can count the number of hairs on your
+    head. Should this be stored as a whole or real number?*
+    - Integer, we generally wouldn’t count fractions of a hair
+    - Alternatively, given how many hairs there are, and that we might
+      not care about being precise, we *might* instead want to use a
+      real number to store the approximate magnitude
+2. *I want to use my hair-counting machine on* $100$ *people and
+    determine the average number of hairs on all their heads. Should I
+    use this value as a whole or real number?*
+    - We expect that the average will not be a whole number, so we
+      should store it as a real number
+    - Alternatively, we may not *care* about getting the number exact
+      down to the fraction, so we could use a whole number to round to
+      the nearest number
+3. *I want to keep track of the price of a product in my program.
+    Should I use whole numbers or real numbers?*
+    - Naively we would a real number, however as we mentioned real
+      numbers have some uncertainty stored in them
+    - When dealing with financial values we *need* to maintain that
+      precision
+      - Instead we might then use whole cents
+        - Works straightforward if we only care about the total
+        - If we care about averages, or fractions of a total then we
+          might have to reconsider
+      - There are techniques used to control the error in a real number
+        calculation
+
+- As you can see the argument of *what* numerical type to use, requires
+  understanding both the nature of the value itself, and what you want
+  to do with it. You can then consider the properties of the numeric
+  representation and choose the most appropriate one
+
+> [!IMPORTANT]
+>
+> **The way you store a variable depends on what you want to do with
+> it**
+
+#### Real Numbers and Floating Point
+
+- Real numbers have a fractional part
+  - Their representation may not align 1:1 with what was originally
+    input
+- The most common way to store real numbers is called *floating point*
+  - The floating means that the decimal point moves around in the
+    representation, as opposed to a fixed point representation which has
+    a set number of digits after the decimal point
+  - Using more memory to store a float lets us store it with greater
+    precision, but we can never accurately represent all floating point
+    numbers
+- Real numbers can be defined by *range* and *precision*
+  - *Precision* governs how precisely a number is stored e.g. a float
+    may be able to store $123456789.0$ or $0.123456789$ but not
+    $123456789.987654321$ because the precision required is too great
+  - *Range* determines how much we can *slide* the decimal point to
+    represent large or small numbers e.g. we could store $123456700$ or
+    $0.0001234567$
+  - In Python floats have $15-16$ digits of precision and can range from
+    $10^{308}$ and $10^{-324}$
+- A quirk of floating point is that some apparently simple numbers like
+  $0.1$ can’t be stored exactly
+
+##### Exercise: Floating Point Variables and Errors
+
+*Conduct the following experiments in the python shell to learn about
+floating points*
+
+1. *What happens if we try to store a value that can’t be held
+    accurately as a floating-point value?*
+
+    ``` python
+    0.1
+    ```
+
+        0.1
+
+    - Above we said that $0.1$ couldn’t be exactly represented, but that
+      doesn’t match with what we just saw. The answer is because the
+      error in the representation is very small, and `print` rounds off
+      the answer
+
+2. *Does the rounding really happen? Run the following and comment on
+    the result*
+
+    ``` python
+     0.1 + 0.2
+    ```
+
+        0.30000000000000004
+
+    - We expected the answer to be $0.3$ but instead we see a slight
+      error. This is because there is an error accumulation from adding
+      $0.1$ to $0.2$ and the underlying floating point representations
+
+- These issues are not python specific. They are an inate challenge of
+  trying to represent real numbers on hardware. Modern floating-point
+  numbers are also an internationally recognised standard which lets
+  different programs and hardware talk to each other.
+- Python differs from some languages in only providing a single floating
+  point type that is $8$ bytes. In many languages this is referred to as
+  a *double-precision floating point* or just a *double* and is one of
+  several floating point types
+
+> [!WARNING]
+>
+> **Don’t confuse precision with accuracy**
+>
+> Numbers don’t become more accurate when they are stored with more
+> precision. Scientists often measure values with a measure of
+> *uncertainty* which captures how sure they are in the accuracy of
+> their number. There is no point storing a value to $15$ decimal places
+> of precision, if the accuracy of a measurement is only to $1-2$
+> places, e.g. if we measure with a ruler
+>
+> Using higher precision can result in slower programs that use more
+> memory
+
+##### Example: Working with Floating Point Variables
+
+- *Python automatically creates variables for use in programs*
+- *The type of a variable is determined by what is stored in it*
+
+``` python
+name = 'Rob'
+age = 25
+```
+
+- The above creates two variables
+  - One `name` is a `string` type
+  - The other `age` is an `int` or integer type
+- *You can create a floating point variable by assigning a floating
+  point number*
 
 ## Summary
 
