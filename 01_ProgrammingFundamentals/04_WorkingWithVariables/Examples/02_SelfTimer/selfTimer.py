@@ -6,16 +6,16 @@
 import time
 import random
 
-print('Welcome to Self Timer')
-print() #just prints a newline
-print('Everybody stand up')
-print('Stay standing until you think the time has ended')
-print('Then sit down')
-print('Anyone still standing when the time expires loses')
-print('The last person to sit down before the time ended will win')
+print("Welcome to Self Timer")
+print()  # just prints a newline
+print("Everybody stand up")
+print("Stay standing until you think the time has ended")
+print("Then sit down")
+print("Anyone still standing when the time expires loses")
+print("The last person to sit down before the time ended will win")
 
-stand_time = random.randint(5, 20) #generate the time to stand for
+stand_time = random.randint(5, 20)  # generate the time to stand for
 
-print('Stay standing for', stand_time, 'seconds.') #display standing time
-time.sleep(stand_time) #sleep for the standing time
-print('****TIMES UP, LAST TO SIT WINS!****')
+print("Stay standing for", stand_time, "seconds.")  # display standing time
+time.sleep(stand_time)  # sleep for the standing time
+print("****TIMES UP, LAST TO SIT WINS!****")

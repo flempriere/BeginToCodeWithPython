@@ -10,8 +10,8 @@ import snaps
 import random
 import time
 
-snaps.display_message('Players Stand')
+snaps.display_message("Players Stand")
 time.sleep(random.randint(5, 20))
-snaps.display_message('Last to sit down wins', color=(0, 255, 0))
+snaps.display_message("Last to sit down wins", color=(0, 255, 0))
 
-time.sleep(5) #so program doesn't immediately end
+time.sleep(5)  # so program doesn't immediately end

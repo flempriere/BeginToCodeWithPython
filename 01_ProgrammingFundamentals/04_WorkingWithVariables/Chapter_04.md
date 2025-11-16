@@ -197,10 +197,11 @@ been defined*
     - This variable misassignment is why python style guides recommend
       the use of all lowercase letters for variable names
 
-> [!NOTE]
->
-> Other languages with more strict type systems and variable
-> declarations, may be able to identify logic errors like the one above.
+    > [!NOTE]
+    >
+    > Other languages with more strict type systems and variable
+    > declarations, may be able to identify logic errors like the one
+    > above.
 
 2.  *How do we prevent logic errors?*
 
@@ -301,7 +302,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 19 seconds.
+    Stay standing for 16 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line

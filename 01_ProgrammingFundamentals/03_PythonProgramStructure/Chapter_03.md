@@ -86,7 +86,7 @@ config:
 ---
 flowchart LR
 
-input(("Python 
+input(("Python
         Commands"))
 computer["Python Command Shell"]
 output(("Results"))
@@ -213,7 +213,7 @@ import random
 print('You have rolled:', random.randint(1,6))
 ```
 
-    You have rolled: 4
+    You have rolled: 6
 
 *Try running this program multiple times and see what the output is*
 
@@ -480,7 +480,7 @@ time.sleep(5)
 *Use the `snaps` program to make an egg-timer*
 
 Our implementation is a modification of [Exercise
-3.1](#exercise-31-egg-timer), essentially replacing the `print` with
+3.1](#exercise-egg-timer), essentially replacing the `print` with
 `snaps` `display_message`
 
 ``` python
@@ -491,14 +491,14 @@ import snaps
 import time
 
 snaps.display_image('egg_timer_background.png')
-snaps.display_message('Drop the egg in boiling water', 
+snaps.display_message('Drop the egg in boiling water',
                       color=(255, 0, 0), vert='top', size=100)
 time.sleep(270)
-snaps.display_message('Nearly cooked, get your spoon ready!', 
+snaps.display_message('Nearly cooked, get your spoon ready!',
                       color=(0, 0, 255), size=100)
 time.sleep(30)
 snaps.play_sound('ding.wav')
-snaps.display_message('Egg cooked, remove now.', 
+snaps.display_message('Egg cooked, remove now.',
                       color=(0, 255, 0), vert='bottom', size=100)
 time.sleep(30)
 ```
@@ -571,9 +571,9 @@ time.sleep(10) # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  8
+    The first number is:  3
     Will the next be higher or lower?
-    The second number is:  1
+    The second number is:  9
 
 ##### Exercise: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
