@@ -34,6 +34,16 @@
         Errors](#exercise-floating-point-variables-and-errors)
       - [Example: Working with Floating Point
         Variables](#example-working-with-floating-point-variables)
+    - [Converting `string` into `float`
+      values](#converting-string-into-float-values)
+      - [Example: Ultra-Precise Egg
+        Timer](#example-ultra-precise-egg-timer)
+    - [Perform Calculations](#perform-calculations)
+      - [Exercise: Work out the Results](#exercise-work-out-the-results)
+    - [Convert Between `float` and
+      `int`](#convert-between-float-and-int)
+      - [Exercise: Calculating a Pizza
+        Order](#exercise-calculating-a-pizza-order)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -257,7 +267,7 @@ been defined*
         NameError: name 'Total' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[35], line 2
+        Cell In[48], line 2
               1 total = 0
         ----> 2 total = Total + 10
 
@@ -323,7 +333,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 5 seconds.
+    Stay standing for 18 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -366,7 +376,7 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[38], line 1
+    Cell In[51], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -423,7 +433,7 @@ print('It's a trap')
 ```
 
     SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
-      Cell In[41], line 1
+      Cell In[54], line 1
         print('It's a trap')
                           ^
     SyntaxError: unterminated string literal (detected at line 1)
@@ -470,7 +480,7 @@ Sit down just before you think the time will end. ''')
 > ```
 >
 >     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
->       Cell In[44], line 1
+>       Cell In[57], line 1
 >         print('hello")
 >               ^
 >     SyntaxError: unterminated string literal (detected at line 1)
@@ -544,7 +554,7 @@ Sit down just before you think the time will end. ''')
     <!-- -->
 
         IndentationError: unexpected indent (999447328.py, line 1)
-          Cell In[45], line 1
+          Cell In[58], line 1
             print('hello\nworld')
             ^
         IndentationError: unexpected indent
@@ -558,7 +568,7 @@ Sit down just before you think the time will end. ''')
     ```
 
         SyntaxError: unterminated string literal (detected at line 1) (3486270260.py, line 1)
-          Cell In[46], line 1
+          Cell In[59], line 1
             pri"t('Item\tSales\ncar\t50\nboat\"10')
                ^
         SyntaxError: unterminated string literal (detected at line 1)
@@ -661,10 +671,9 @@ time_text = input('Enter the cooking time in seconds: ') #receive time in second
 time_int = int(time_next) #perform conversion to number
 ```
 
-##### Example: Configurable Egg Timer
+##### Example: [Configurable Egg Timer](./Examples/04_ConfigurableEggTimer/ConfigurableEggTimer.py)
 
-- *The complete program ([ConfigurableEggTimer.py](./Examples/)) would
-  then look like,*
+- *The complete program would then look like,*
 
 ``` python
 # Example 4: Configurable Egg Timer
@@ -712,7 +721,7 @@ answer the following questions*
         ValueError: invalid literal for int() with base 10: 'kaboom'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[50], line 1
+        Cell In[63], line 1
         ----> 1 x = int('kaboom')
 
         ValueError: invalid literal for int() with base 10: 'kaboom'
@@ -867,7 +876,286 @@ age = 25
   - One `name` is a `string` type
   - The other `age` is an `int` or integer type
 - *You can create a floating point variable by assigning a floating
-  point number*
+  point number e.g. the below creates a variable* `x` *and assigns it
+  the floating point value* $1.5$
+
+``` python
+x = 1.5
+x
+```
+
+    1.5
+
+- *Let’s consider what happens if we assign integral values to floating
+  point variables*
+
+  - *The below assigns the integer value* $1.0$ to a variable\* `y`
+  - *If we print the value back we can say it keeps the decimal,
+    indicating it is a floating point value*
+
+  ``` python
+    y = 1.0
+    y
+  ```
+
+      1.0
+
+  - *i.e. by writing the decimal point we* **coerce** *the type of* `y`
+    *to be floating point*
+
+- *The next question is to consider what happens when we mix integer and
+  floating point types in operations, e.g. if we compare the two
+  additions below, we can see that when we add floating points, the
+  addition stays a floating point even if the result is integral*
+
+  ``` python
+    2 + 2
+  ```
+
+      4
+
+  ``` python
+    2.0 + 2.0
+  ```
+
+      4.0
+
+- *If we mix a floating point and integer type we can also see that the
+  result is returned as a floating point (even when the final result is
+  integral)*
+
+  ``` python
+  2 + 2.0
+  ```
+
+      4.0
+
+- *Lastly what happens if we divide two coprime integers?, we see that
+  the result gives the appropriate floating point fraction*
+
+``` python
+1/2
+```
+
+    0.5
+
+> [!WARNING]
+>
+> While the last point about division behaviour may seem obvious if you
+> haven’t programmed before you would do well to be careful. In many
+> common languages, division of two integers is treated as integer
+> division. In this case the result is always an integer with the result
+> being rounded according to some scheme. Three common schemes are
+> *towards zero*, in which the result is always rounded towards the
+> number $0$; *towards the nearest*, where the result is rounded to the
+> nearest whole number and *floored division* in which the number is
+> rounded towards negative infinity.
+>
+> | **Division** | **Example** | **Interpretation** |
+> |----|----|----|
+> | towards zero | $-1/2 = 0$ | Discard decimal digits |
+> | towards nearest | $3.2/2 = 2$ | Minimise the difference between “true” division and result |
+> | floored division | $-1/2 = -1$ | Round “down” |
+>
+> Python lets you perform integer division using floored division
+> behaviour with the `//` operator e.g.
+>
+> ``` python
+> -1//2
+> ```
+>
+>     -1
+
+#### Converting `string` into `float` values
+
+- Converting `string` to float, works identically to as for `int` but we
+  use `float` instead
+  - e.g. We could rewrite the configurable egg timer with floats as,
+
+``` python
+time_text = input('Enter the cooking time in seconds: ')
+time_float = float(time_text)
+```
+
+##### Example: [Ultra-Precise Egg Timer](./Examples/05_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
+
+*The complete program would then look like*
+
+``` python
+# Example 4.5
+# Ultra-Precise Egg Timer
+#
+# A version of the Configurable Egg Timer using floating point for the input time
+
+import time
+
+time_text = input("Enter the cooking time in seconds: ")
+time_float = float(time_text)
+
+print("Put the egg in boiling water now")
+input("Press enter to continue once the egg is in...")
+
+time.sleep(time_float)
+
+print("Take the egg out now")
+```
+
+*You can see the code is the same except we make the subsitution* `int`
+$\to$ `float`
+
+#### Perform Calculations
+
+- As mentioned before python is an *expression* evaluator
+- An expression consists of *operators* and *operands*
+- Python evaluates an expression *left* to *right*, and carries out
+  *operations* according to their order of operations
+  - Analogous to mathematical order of operations (and includes them)
+    but must extend for programming specific syntax
+  - As in maths, parentheses are used to enforce an evaluation order
+
+| **Operator** | **Usecase**                            |
+|--------------|----------------------------------------|
+| `-`          | Unary minus, denotes a negative number |
+| `*`          | Multiplication (inlieu of $\times$)    |
+| `/`          | Division                               |
+| `+`          | Addition                               |
+| `-`          | binary minus or subtraction            |
+
+- Basic operators and their precedence
+
+##### Exercise: Work out the Results
+
+*See if you can work out the values of* `a`, `b` and `c` when the
+following statements are evaluated,
+
+``` python
+a = 1
+b = 2
+c = a + b
+
+c = c * (a + b)
+b = a + b + c
+```
+
+The first three lines give `a` = $1$, `b` = $2$ and `c` = $3$.
+Substituting those into the second evaluation for `c`,
+
+``` python
+a = 1
+b = 2
+c = a + b
+c = 3 * (1 + 2)
+c
+```
+
+    9
+
+So `c` is assigned $9$. We then repeat for the second assignment to `b`
+to get,
+
+``` python
+b = 1 + 2 + 9
+```
+
+So the final values are, `a` = $1$, `b` = $12$, `c` = $9$. If we execute
+the original cell we can confirm this
+
+``` python
+a = 1
+b = 2
+c = a + b
+
+c = c * (a + b)
+b = a + b + c
+
+print('a: ', a)
+print('b: ', b)
+print('c: ', c)
+```
+
+    a:  1
+    b:  12
+    c:  9
+
+> [!CAUTION]
+>
+> Python won’t try and stop you if you do something that mathematically
+> makes no sense like dividing a number by zero, instead an error is
+> raised, but this won’t occur until your program runs! Therefore when
+> using division you should always take care to make sure you either
+> handling division by zero cases appropriately or preventing them from
+> occuring
+>
+> ``` python
+> 1/0
+> ```
+>
+>     ZeroDivisionError: division by zero
+>     ---------------------------------------------------------------------------
+>     ZeroDivisionError                         Traceback (most recent call last)
+>     Cell In[76], line 1
+>     ----> 1 1/0
+>
+>     ZeroDivisionError: division by zero
+>
+> When using other languages, they may not raise and error, instead
+> unexpected behaviour may occur including your program crashing.
+
+#### Convert Between `float` and `int`
+
+- We saw `float`can be used to convert a `string` to a float.
+  - It can also be used to convert an integer value to a floating point
+    value, e.g.
+
+``` python
+z = float(1)
+z
+```
+
+    1.0
+
+- If we want to go the other way we can use `int` to convert a `float`
+  to an `int`.
+  - The number is rounded towards zero, i.e. fractional components are
+    truncated (see @integer-division)
+
+``` python
+i = int(2.9)
+i
+```
+
+    2
+
+##### Exercise: Calculating a Pizza Order
+
+*Consider the following
+[program](./Examples/06_PizzaOrderCalculator/PizzaOrderCalculator.py)
+which is designed to calculate the number of pizzas needed for a
+hackathon with* $x$ *number of particpants using the heuristic that* $1$
+*pizza can satisfy* $1.5$ *people*
+
+``` python
+# Example 4.6: Pizza Order Calculator
+# A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
+
+students_int = int(
+    input("How many students are attending? ")
+)  # read in string, convert to int and store
+pizza_count = students_int / 1.5  # perform division int -> float
+print("You will need", pizza_count, "pizzas")
+```
+
+Note, that I’ve modified the code to directly pass the input to `int`
+and then to a variable, to demonstrate that it’s possible.
+
+*The above program has the problem that for any number not divisible by*
+$1.5$*, the program recommends ordering a fractional number of pizzas.
+This is generally not possible, so we need to convert the output to an
+integer.*
+
+1. *Modify the [program](#exercise-calculating-a-pizza-order) return an
+    `int` by calling `int` directly on `pizza_count`. What potential
+    problems does this solution have?*
 
 ## Summary
 
