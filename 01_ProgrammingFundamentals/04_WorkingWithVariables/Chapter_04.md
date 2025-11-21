@@ -44,6 +44,13 @@
       `int`](#convert-between-float-and-int)
       - [Exercise: Calculating a Pizza
         Order](#exercise-calculating-a-pizza-order)
+      - [Exercise: Converting Between Fahrenheit and
+        Centigrade](#exercise-converting-between-fahrenheit-and-centigrade)
+  - [Weather Snaps](#weather-snaps)
+    - [Example: Seattle Temperature](#example-seattle-temperature)
+    - [Example: Seattle Weather](#example-seattle-weather)
+    - [Exercise: Weather Display
+      Program](#exercise-weather-display-program)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -267,7 +274,7 @@ been defined*
         NameError: name 'Total' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[48], line 2
+        Cell In[51], line 2
               1 total = 0
         ----> 2 total = Total + 10
 
@@ -303,7 +310,7 @@ the time remaining and then sleeping for that period of time. This means
 we need to use a variable to store the value of the time remaining*
 
 ``` python
-# Chapter 4 Example 2: Self Timer
+# Chapter 4 Example 1: Self Timer
 # Based on original code by Rob Miles
 # Extends the Nerves of Steel Game from Chapter 3, by adding a skill element
 # with the players being informed of how long they have to stand for
@@ -333,7 +340,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 18 seconds.
+    Stay standing for 15 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -376,7 +383,7 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[51], line 1
+    Cell In[54], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -433,7 +440,7 @@ print('It's a trap')
 ```
 
     SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
-      Cell In[54], line 1
+      Cell In[57], line 1
         print('It's a trap')
                           ^
     SyntaxError: unterminated string literal (detected at line 1)
@@ -480,7 +487,7 @@ Sit down just before you think the time will end. ''')
 > ```
 >
 >     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
->       Cell In[57], line 1
+>       Cell In[60], line 1
 >         print('hello")
 >               ^
 >     SyntaxError: unterminated string literal (detected at line 1)
@@ -553,23 +560,26 @@ Sit down just before you think the time will end. ''')
 
     <!-- -->
 
-        IndentationError: unexpected indent (999447328.py, line 1)
-          Cell In[58], line 1
-            print('hello\nworld')
-            ^
-        IndentationError: unexpected indent
+        hello
+        world
+
+2. *What do you think the following would print?*
+
+    ``` python
+     print('Item\tSales\ncar\t50\nboat\t10')
+    ```
 
     - We can see this prints a series of tab seperated lines. So this is
       essentially a tab seperated table (a similar format to the more
       familiar *comma*-seperated table)
 
     ``` python
-    pri"t('Item\tSales\ncar\t50\nboat\"10')
+    pri"t('Item\tSales\ncar\t50\nbat\"10')
     ```
 
-        SyntaxError: unterminated string literal (detected at line 1) (3486270260.py, line 1)
-          Cell In[59], line 1
-            pri"t('Item\tSales\ncar\t50\nboat\"10')
+        SyntaxError: unterminated string literal (detected at line 1) (2633366241.py, line 1)
+          Cell In[62], line 1
+            pri"t('Item\tSales\ncar\t50\nbat\"10')
                ^
         SyntaxError: unterminated string literal (detected at line 1)
 
@@ -578,7 +588,7 @@ Sit down just before you think the time will end. ''')
       spaces, so this format isn’t the best. We’ll see other ways to
       format strings later
 
-2. *How could I use Python escape sequences to print out this message?*
+3. *How could I use Python escape sequences to print out this message?*
 
     > and then Luke said “It’s a trap”
 
@@ -676,7 +686,7 @@ time_int = int(time_next) #perform conversion to number
 - *The complete program would then look like,*
 
 ``` python
-# Example 4: Configurable Egg Timer
+# Example 4.3: Configurable Egg Timer
 # Reads in a user specified time to set the timer for
 
 import time
@@ -721,7 +731,7 @@ answer the following questions*
         ValueError: invalid literal for int() with base 10: 'kaboom'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[63], line 1
+        Cell In[66], line 1
         ----> 1 x = int('kaboom')
 
         ValueError: invalid literal for int() with base 10: 'kaboom'
@@ -889,7 +899,7 @@ x
 - *Let’s consider what happens if we assign integral values to floating
   point variables*
 
-  - *The below assigns the integer value* $1.0$ to a variable\* `y`
+  - *The below assigns the integer value* $1.0$ to a variable `y`
   - *If we print the value back we can say it keeps the decimal,
     indicating it is a floating point value*
 
@@ -982,7 +992,7 @@ time_float = float(time_text)
 *The complete program would then look like*
 
 ``` python
-# Example 4.5
+# Example 4.4
 # Ultra-Precise Egg Timer
 #
 # A version of the Configurable Egg Timer using floating point for the input time
@@ -1093,7 +1103,7 @@ print('c: ', c)
 >     ZeroDivisionError: division by zero
 >     ---------------------------------------------------------------------------
 >     ZeroDivisionError                         Traceback (most recent call last)
->     Cell In[76], line 1
+>     Cell In[79], line 1
 >     ----> 1 1/0
 >
 >     ZeroDivisionError: division by zero
@@ -1135,7 +1145,7 @@ hackathon with* $x$ *number of particpants using the heuristic that* $1$
 *pizza can satisfy* $1.5$ *people*
 
 ``` python
-# Example 4.6: Pizza Order Calculator
+# Example 4.5: Pizza Order Calculator
 # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
 
 students_int = int(
@@ -1153,10 +1163,222 @@ $1.5$*, the program recommends ordering a fractional number of pizzas.
 This is generally not possible, so we need to convert the output to an
 integer.*
 
-1. *Modify the [program](#exercise-calculating-a-pizza-order) return an
-    `int` by calling `int` directly on `pizza_count`. What potential
-    problems does this solution have?*
+1. *Modify the [program](#exercise-calculating-a-pizza-order) to return
+    an `int` by calling `int` directly during the calculation of
+    `pizza_count`. What potential problems does this solution have?*
+
+    ``` python
+    # Exercise 4.1.1: Pizza Order Calculator
+    # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
+    # Converts the rseult to an integer using int when calculating pizza_count
+    # has the disadvantage it will tend to underestimate the number of pizzas needed
+
+    students_int = int(
+     input("How many students are attending? ")
+    )  # read in string, convert to int and store
+    pizza_count = int(students_int / 1.5)  # perform division int -> float
+    print("You will need", pizza_count, "pizzas")
+    ```
+
+    - This method has the disadvantage that it will tend to
+      underestimate the number of pizzas needed. For example if we
+      needed to feed $40$ people, the program would give us $26$, which
+      can satisfy, $39$ people, meaning someone goes hungry
+
+2. *Modify the
+    [program](./Exercises/01_PizzaOrderCalculator/PizzaOrderCalculatorIntOnResultPlusOne.py)
+    to return an `int` by calling `int` to convert the division to an
+    `int` then adding $1$. Explain how this changes the behaviour*
+
+    ``` python
+    # Exercise 4.1.2: Pizza Order Calculator
+    # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
+    # Converts the rseult to an integer using int on pizza_count then adding one
+    # has the disadvantage it will tend to overestimate the number of pizzas needed
+
+    students_int = int(
+        input("How many students are attending? ")
+    )  # read in string, convert to int and store
+    pizza_count = int(students_int / 1.5) + 1  # perform division int -> float
+    print("You will need", pizza_count, "pizzas")
+    ```
+
+    - This method will tend to add an additional spare pizza or
+      overestimate the number of pizzas needed. Since it’s generally
+      better for there to be a little left over than someone go hungry,
+      this behaviour is probably preferred.
+
+> [!IMPORTANT]
+>
+> **Never assume you know what a program is supposed to do**
+>
+> When faced with a choice like the above for the [pizza order
+> calculator](#exercise-calculating-a-pizza-order) for a product being
+> made by a client, you should *not* decide what the expected behaviour
+> is yourself. For example, in the above the customer may prefer to
+> round down the number of pizzas to reduce cost.
+>
+> Never assume you know what the program should do, ask the client
+
+##### Exercise: Converting Between Fahrenheit and Centigrade
+
+*Write a program to convert from Fahrenheit to Centigrade. The formula
+for this is*
+
+$$
+\begin{align}
+\text{Centrigrade} &= \frac{\text{Fahrenheit} - 32}{1.8}
+\end{align}
+$$
+
+Our solution is very similar to the [Pizza
+Calculator](#exercise-calculating-a-pizza-order), but with some of the
+text changed. The other major difference is that we want to be able to
+accept a `float` value, and output a `float` value.
+
+``` python
+  # Exercise 4.2: Fahrenheit to Celcius
+  # Converts Fahrenheit to Celcius
+
+  temperature_fahrenheit = float(
+      input("Enter a temperature in Fahrenheit: ")
+  )  # read in string, convert to float
+  temperature_centrigrade = (temperature_fahrenheit - 32) / 1.8
+  print("The temperature is", temperature_centrigrade, "degrees Celcius")
+```
+
+A sample output may look like,
+
+    Enter a temperature in Fahrenheit: 0
+    The temperature is -17.77777777777778 degrees Celcius
+
+### Weather Snaps
+
+- [Snaps](../03_PythonProgramStructure/Chapter_03.qmd#adding-some-snaps)
+  contains a function `get_weather_temp` for to return the temperature
+  of a location in the United States
+  - Data is scraped from the US National Weather Service website
+  - Function takes the latitude and longitude as an argument
+
+#### Example: [Seattle Temperature](./Examples/06_SeattleTemperature/SeattleTemperature.py)
+
+*The following program can be used to get the current temperature
+reading from Seattle using* `snaps`
+
+``` python
+# Example 4.6: Seattle Temperature
+# Get the current temperature in Seattle
+
+import snaps
+
+temp = snaps.get_weather_temp(latitude=47.61, longitude=122.33)
+
+print("The temperature in Seattle is:", temp)
+```
+
+    ModuleNotFoundError: No module named 'snaps'
+    ---------------------------------------------------------------------------
+    ModuleNotFoundError                       Traceback (most recent call last)
+    Cell In[83], line 4
+          1 # Example 4.6: Seattle Temperature
+          2 # Get the current temperature in Seattle
+    ----> 4 import snaps
+          6 temp = snaps.get_weather_temp(latitude=47.61, longitude=122.33)
+          8 print("The temperature in Seattle is:", temp)
+
+    ModuleNotFoundError: No module named 'snaps'
+
+#### Example: [Seattle Weather](./Examples/07_SeattleWeather/SeattleWeather.py)
+
+*We can also use* `snaps` *to get a short description of the current
+weather*
+
+``` python
+# Example 4.7: Seattle Weather
+# Uses snaps to get a description of the weather in Seattle
+
+import snaps
+
+desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+print("The conditions are:", desc)
+```
+
+    ModuleNotFoundError: No module named 'snaps'
+    ---------------------------------------------------------------------------
+    ModuleNotFoundError                       Traceback (most recent call last)
+    Cell In[84], line 4
+          1 # Example 4.7: Seattle Weather
+          2 # Uses snaps to get a description of the weather in Seattle
+    ----> 4 import snaps
+          6 desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+          7 print("The conditions are:", desc)
+
+    ModuleNotFoundError: No module named 'snaps'
+
+#### Exercise: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
+
+*Write a program that displays the current weather conditions. If you
+use the* `display_text` *function from snaps, your program can display
+the current weather and description*
+
+Our solution is written below,
+
+``` python
+# Exercise 4.3: Weather Display
+# Displays the Weather in Seattle
+
+import snaps
+
+temperature_fahrenheit = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
+temperature_string = "The temperature in Seattle is: " + str(temperature_fahrenheit)
+
+weather_descr = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+weather_descr_string = "The conditions are: " + str(weather_descr)
+
+weather_string = temperature_string + "\n" + weather_descr_string
+
+snaps.display_message(weather_string, size=100)
+
+input("Press enter to continue...")
+```
+
+As we can see most of the work is done to construct the appropriate
+strings and merge them together so they can be passed to the
+`display_message` function for output
 
 ## Summary
 
+- Variables can be created
+  - Variables are effectively named regions of memory
+  - Variables must start with a letter or underscore and can only
+    consist of alphanumeric characters or underscores
+- Data can be viewed as two fundamental types, text or numeric
+  - `string` is a type for holding text
+    - `input` can be used to get strings from the user
+    - `int` and `float` can convert a string to an integer or floating
+      point number respectively
+  - Numeric values have two forms
+    - `int` for whole numbers with no fractional part
+    - `float` for real numbers with a fractional part
+      - `float` only approximate real numbers and can be subject to some
+        errors
+
 ## Questions and Answers
+
+1. **What happens if I “overwrite” a variable of one type with a value
+    of another type?**
+    - Python replaces the old variable with a new one of the same name
+      but the new type
+2. **Does using a long variable name slow the program down?**
+    - If it does it is insignificant, it’s much more important to use a
+      name that clearly conveys meaning
+3. **Can we write all our programs using floating point numbers?**
+    - You could, but you should use `int` where appropriate because
+      `float` representation is inexact and subject to errors
+      - These errors mean that it is often hard to compare for exact
+        equality e.g. `1.0` might actually have the representation
+        `1.0000...4`
+4. **Can I stop my program from crashing if someone types in an invalid
+    input?**
+    - Yes, this is called error handling. This will be covered later in
+      Chapter 6

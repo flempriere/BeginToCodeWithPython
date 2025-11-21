@@ -1,4 +1,4 @@
-# Chapter 4 Example 2: Self Timer
+# Example 4.1: Self Timer
 # Authored by Felix Lempriere based on original code by Rob Miles
 # Extends the Nerves of Steel Game from Chapter 3, by adding a skill element
 # with the players being informed of how long they have to stand for

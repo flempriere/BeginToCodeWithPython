@@ -1,16 +1,14 @@
-# Example 4.5
-# Ultra-Precise Egg Timer
-#
-# A version of the Configurable Egg Timer using floating point for the input time
+# Example 4.3: Configurable Egg Timer
+# Reads in a user specified time to set the timer for
 
 import time
 
 time_text = input("Enter the cooking time in seconds: ")
-time_float = float(time_text)
+time_int = int(time_text)
 
 print("Put the egg in boiling water now")
 input("Press enter to continue once the egg is in...")
 
-time.sleep(time_float)
+time.sleep(time_int)
 
 print("Take the egg out now")
