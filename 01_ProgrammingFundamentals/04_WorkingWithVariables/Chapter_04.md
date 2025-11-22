@@ -340,7 +340,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 9 seconds.
+    Stay standing for 20 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -1271,108 +1271,17 @@ reading from Seattle using* `snaps`
 
 import snaps
 
-temp = snaps.get_weather_temp(latitude=47.61, longitude=122.33)
+temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
 
 print("The temperature in Seattle is:", temp)
 ```
 
     pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
     Hello from the pygame community. https://www.pygame.org/contribute.html
+    The temperature in Seattle is: 54
 
-    /home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    /home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
       from pkg_resources import resource_stream, resource_exists
-
-    HTTPError: HTTP Error 400: Bad Request
-    ---------------------------------------------------------------------------
-    HTTPError                                 Traceback (most recent call last)
-    Cell In[41], line 6
-          1 # Example 4.6: Seattle Temperature
-          2 # Get the current temperature in Seattle
-          4 import snaps
-    ----> 6 temp = snaps.get_weather_temp(latitude=47.61, longitude=122.33)
-          8 print("The temperature in Seattle is:", temp)
-
-    File ~/personal_projects/Languages/Python/BeginToCodeWithPython/01_ProgrammingFundamentals/04_WorkingWithVariables/snaps.py:482, in get_weather_temp(latitude, longitude)
-        475 """
-        476 Uses forecast.weather.gov to get the weather
-        477 for the specified latitude and longitude
-        478 """
-        479 url = "http://forecast.weather.gov/MapClick.php?lat={0}&lon={1}&unit=0&lg=english&FcstType=dwml".format(
-        480     latitude, longitude
-        481 )
-    --> 482 req = urllib.request.urlopen(url)
-        483 page = req.read()
-        484 doc = xml.etree.ElementTree.fromstring(page)
-
-    File /usr/lib/python3.12/urllib/request.py:215, in urlopen(url, data, timeout, cafile, capath, cadefault, context)
-        213 else:
-        214     opener = _opener
-    --> 215 return opener.open(url, data, timeout)
-
-    File /usr/lib/python3.12/urllib/request.py:521, in OpenerDirector.open(self, fullurl, data, timeout)
-        519 for processor in self.process_response.get(protocol, []):
-        520     meth = getattr(processor, meth_name)
-    --> 521     response = meth(req, response)
-        523 return response
-
-    File /usr/lib/python3.12/urllib/request.py:630, in HTTPErrorProcessor.http_response(self, request, response)
-        627 # According to RFC 2616, "2xx" code indicates that the client's
-        628 # request was successfully received, understood, and accepted.
-        629 if not (200 <= code < 300):
-    --> 630     response = self.parent.error(
-        631         'http', request, response, code, msg, hdrs)
-        633 return response
-
-    File /usr/lib/python3.12/urllib/request.py:553, in OpenerDirector.error(self, proto, *args)
-        551     http_err = 0
-        552 args = (dict, proto, meth_name) + args
-    --> 553 result = self._call_chain(*args)
-        554 if result:
-        555     return result
-
-    File /usr/lib/python3.12/urllib/request.py:492, in OpenerDirector._call_chain(self, chain, kind, meth_name, *args)
-        490 for handler in handlers:
-        491     func = getattr(handler, meth_name)
-    --> 492     result = func(*args)
-        493     if result is not None:
-        494         return result
-
-    File /usr/lib/python3.12/urllib/request.py:745, in HTTPRedirectHandler.http_error_302(self, req, fp, code, msg, headers)
-        742 fp.read()
-        743 fp.close()
-    --> 745 return self.parent.open(new, timeout=req.timeout)
-
-    File /usr/lib/python3.12/urllib/request.py:521, in OpenerDirector.open(self, fullurl, data, timeout)
-        519 for processor in self.process_response.get(protocol, []):
-        520     meth = getattr(processor, meth_name)
-    --> 521     response = meth(req, response)
-        523 return response
-
-    File /usr/lib/python3.12/urllib/request.py:630, in HTTPErrorProcessor.http_response(self, request, response)
-        627 # According to RFC 2616, "2xx" code indicates that the client's
-        628 # request was successfully received, understood, and accepted.
-        629 if not (200 <= code < 300):
-    --> 630     response = self.parent.error(
-        631         'http', request, response, code, msg, hdrs)
-        633 return response
-
-    File /usr/lib/python3.12/urllib/request.py:559, in OpenerDirector.error(self, proto, *args)
-        557 if http_err:
-        558     args = (dict, 'default', 'http_error_default') + orig_args
-    --> 559     return self._call_chain(*args)
-
-    File /usr/lib/python3.12/urllib/request.py:492, in OpenerDirector._call_chain(self, chain, kind, meth_name, *args)
-        490 for handler in handlers:
-        491     func = getattr(handler, meth_name)
-    --> 492     result = func(*args)
-        493     if result is not None:
-        494         return result
-
-    File /usr/lib/python3.12/urllib/request.py:639, in HTTPDefaultErrorHandler.http_error_default(self, req, fp, code, msg, hdrs)
-        638 def http_error_default(self, req, fp, code, msg, hdrs):
-    --> 639     raise HTTPError(req.full_url, code, msg, hdrs, fp)
-
-    HTTPError: HTTP Error 400: Bad Request
 
 #### Example: [Seattle Weather](./Examples/07_SeattleWeather/SeattleWeather.py)
 
