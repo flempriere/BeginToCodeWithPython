@@ -274,7 +274,7 @@ been defined*
         NameError: name 'Total' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[51], line 2
+        Cell In[9], line 2
               1 total = 0
         ----> 2 total = Total + 10
 
@@ -340,7 +340,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 15 seconds.
+    Stay standing for 9 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -383,7 +383,7 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[54], line 1
+    Cell In[12], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -440,7 +440,7 @@ print('It's a trap')
 ```
 
     SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
-      Cell In[57], line 1
+      Cell In[15], line 1
         print('It's a trap')
                           ^
     SyntaxError: unterminated string literal (detected at line 1)
@@ -487,7 +487,7 @@ Sit down just before you think the time will end. ''')
 > ```
 >
 >     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
->       Cell In[60], line 1
+>       Cell In[18], line 1
 >         print('hello")
 >               ^
 >     SyntaxError: unterminated string literal (detected at line 1)
@@ -578,7 +578,7 @@ Sit down just before you think the time will end. ''')
     ```
 
         SyntaxError: unterminated string literal (detected at line 1) (2633366241.py, line 1)
-          Cell In[62], line 1
+          Cell In[20], line 1
             pri"t('Item\tSales\ncar\t50\nbat\"10')
                ^
         SyntaxError: unterminated string literal (detected at line 1)
@@ -731,7 +731,7 @@ answer the following questions*
         ValueError: invalid literal for int() with base 10: 'kaboom'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[66], line 1
+        Cell In[24], line 1
         ----> 1 x = int('kaboom')
 
         ValueError: invalid literal for int() with base 10: 'kaboom'
@@ -1103,7 +1103,7 @@ print('c: ', c)
 >     ZeroDivisionError: division by zero
 >     ---------------------------------------------------------------------------
 >     ZeroDivisionError                         Traceback (most recent call last)
->     Cell In[79], line 1
+>     Cell In[37], line 1
 >     ----> 1 1/0
 >
 >     ZeroDivisionError: division by zero
@@ -1279,7 +1279,7 @@ print("The temperature in Seattle is:", temp)
     ModuleNotFoundError: No module named 'snaps'
     ---------------------------------------------------------------------------
     ModuleNotFoundError                       Traceback (most recent call last)
-    Cell In[83], line 4
+    Cell In[41], line 4
           1 # Example 4.6: Seattle Temperature
           2 # Get the current temperature in Seattle
     ----> 4 import snaps
@@ -1306,7 +1306,7 @@ print("The conditions are:", desc)
     ModuleNotFoundError: No module named 'snaps'
     ---------------------------------------------------------------------------
     ModuleNotFoundError                       Traceback (most recent call last)
-    Cell In[84], line 4
+    Cell In[42], line 4
           1 # Example 4.7: Seattle Weather
           2 # Uses snaps to get a description of the weather in Seattle
     ----> 4 import snaps
@@ -1365,20 +1365,20 @@ strings and merge them together so they can be passed to the
 
 ## Questions and Answers
 
-1. **What happens if I “overwrite” a variable of one type with a value
-    of another type?**
+1. *What happens if I “overwrite” a variable of one type with a value
+    of another type?*
     - Python replaces the old variable with a new one of the same name
       but the new type
-2. **Does using a long variable name slow the program down?**
+2. *Does using a long variable name slow the program down?*
     - If it does it is insignificant, it’s much more important to use a
       name that clearly conveys meaning
-3. **Can we write all our programs using floating point numbers?**
+3. *Can we write all our programs using floating point numbers?*
     - You could, but you should use `int` where appropriate because
       `float` representation is inexact and subject to errors
       - These errors mean that it is often hard to compare for exact
         equality e.g. `1.0` might actually have the representation
         `1.0000...4`
-4. **Can I stop my program from crashing if someone types in an invalid
-    input?**
+4. *Can I stop my program from crashing if someone types in an invalid
+    input?*
     - Yes, this is called error handling. This will be covered later in
       Chapter 6
