@@ -4,6 +4,10 @@ title: "Chapter 5: Making Decisions"
 
 ## Notes
 
+:::{.callout-caution}
+A number of the code examples in this use the file *siren.wav*, this can be found in the corresponding chapter in the samples submodule. For space reasons we haven't uploaded it to the github
+:::
+
 ### Boolean Data
 
 - Boolean values are a type that is used to distinguish between values that are *True* or *False*

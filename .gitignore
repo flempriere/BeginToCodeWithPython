@@ -15,3 +15,7 @@ wheels/
 /_site/
 **/*.quarto_ipynb
 **/Chapter_*_files
+
+# Large Files
+
+**/siren.wav
