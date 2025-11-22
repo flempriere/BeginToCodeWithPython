@@ -274,7 +274,7 @@ been defined*
         NameError: name 'Total' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[51], line 2
+        Cell In[9], line 2
               1 total = 0
         ----> 2 total = Total + 10
 
@@ -340,7 +340,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 15 seconds.
+    Stay standing for 7 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -383,7 +383,7 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[54], line 1
+    Cell In[12], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -440,7 +440,7 @@ print('It's a trap')
 ```
 
     SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
-      Cell In[57], line 1
+      Cell In[15], line 1
         print('It's a trap')
                           ^
     SyntaxError: unterminated string literal (detected at line 1)
@@ -487,7 +487,7 @@ Sit down just before you think the time will end. ''')
 > ```
 >
 >     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
->       Cell In[60], line 1
+>       Cell In[18], line 1
 >         print('hello")
 >               ^
 >     SyntaxError: unterminated string literal (detected at line 1)
@@ -578,7 +578,7 @@ Sit down just before you think the time will end. ''')
     ```
 
         SyntaxError: unterminated string literal (detected at line 1) (2633366241.py, line 1)
-          Cell In[62], line 1
+          Cell In[20], line 1
             pri"t('Item\tSales\ncar\t50\nbat\"10')
                ^
         SyntaxError: unterminated string literal (detected at line 1)
@@ -731,7 +731,7 @@ answer the following questions*
         ValueError: invalid literal for int() with base 10: 'kaboom'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[66], line 1
+        Cell In[24], line 1
         ----> 1 x = int('kaboom')
 
         ValueError: invalid literal for int() with base 10: 'kaboom'
@@ -1103,7 +1103,7 @@ print('c: ', c)
 >     ZeroDivisionError: division by zero
 >     ---------------------------------------------------------------------------
 >     ZeroDivisionError                         Traceback (most recent call last)
->     Cell In[79], line 1
+>     Cell In[37], line 1
 >     ----> 1 1/0
 >
 >     ZeroDivisionError: division by zero
@@ -1276,17 +1276,103 @@ temp = snaps.get_weather_temp(latitude=47.61, longitude=122.33)
 print("The temperature in Seattle is:", temp)
 ```
 
-    ModuleNotFoundError: No module named 'snaps'
+    pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
+    Hello from the pygame community. https://www.pygame.org/contribute.html
+
+    /home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+      from pkg_resources import resource_stream, resource_exists
+
+    HTTPError: HTTP Error 400: Bad Request
     ---------------------------------------------------------------------------
-    ModuleNotFoundError                       Traceback (most recent call last)
-    Cell In[83], line 4
+    HTTPError                                 Traceback (most recent call last)
+    Cell In[41], line 6
           1 # Example 4.6: Seattle Temperature
           2 # Get the current temperature in Seattle
-    ----> 4 import snaps
-          6 temp = snaps.get_weather_temp(latitude=47.61, longitude=122.33)
+          4 import snaps
+    ----> 6 temp = snaps.get_weather_temp(latitude=47.61, longitude=122.33)
           8 print("The temperature in Seattle is:", temp)
 
-    ModuleNotFoundError: No module named 'snaps'
+    File ~/personal_projects/Languages/Python/BeginToCodeWithPython/01_ProgrammingFundamentals/04_WorkingWithVariables/snaps.py:482, in get_weather_temp(latitude, longitude)
+        475 """
+        476 Uses forecast.weather.gov to get the weather
+        477 for the specified latitude and longitude
+        478 """
+        479 url = "http://forecast.weather.gov/MapClick.php?lat={0}&lon={1}&unit=0&lg=english&FcstType=dwml".format(
+        480     latitude, longitude
+        481 )
+    --> 482 req = urllib.request.urlopen(url)
+        483 page = req.read()
+        484 doc = xml.etree.ElementTree.fromstring(page)
+
+    File /usr/lib/python3.12/urllib/request.py:215, in urlopen(url, data, timeout, cafile, capath, cadefault, context)
+        213 else:
+        214     opener = _opener
+    --> 215 return opener.open(url, data, timeout)
+
+    File /usr/lib/python3.12/urllib/request.py:521, in OpenerDirector.open(self, fullurl, data, timeout)
+        519 for processor in self.process_response.get(protocol, []):
+        520     meth = getattr(processor, meth_name)
+    --> 521     response = meth(req, response)
+        523 return response
+
+    File /usr/lib/python3.12/urllib/request.py:630, in HTTPErrorProcessor.http_response(self, request, response)
+        627 # According to RFC 2616, "2xx" code indicates that the client's
+        628 # request was successfully received, understood, and accepted.
+        629 if not (200 <= code < 300):
+    --> 630     response = self.parent.error(
+        631         'http', request, response, code, msg, hdrs)
+        633 return response
+
+    File /usr/lib/python3.12/urllib/request.py:553, in OpenerDirector.error(self, proto, *args)
+        551     http_err = 0
+        552 args = (dict, proto, meth_name) + args
+    --> 553 result = self._call_chain(*args)
+        554 if result:
+        555     return result
+
+    File /usr/lib/python3.12/urllib/request.py:492, in OpenerDirector._call_chain(self, chain, kind, meth_name, *args)
+        490 for handler in handlers:
+        491     func = getattr(handler, meth_name)
+    --> 492     result = func(*args)
+        493     if result is not None:
+        494         return result
+
+    File /usr/lib/python3.12/urllib/request.py:745, in HTTPRedirectHandler.http_error_302(self, req, fp, code, msg, headers)
+        742 fp.read()
+        743 fp.close()
+    --> 745 return self.parent.open(new, timeout=req.timeout)
+
+    File /usr/lib/python3.12/urllib/request.py:521, in OpenerDirector.open(self, fullurl, data, timeout)
+        519 for processor in self.process_response.get(protocol, []):
+        520     meth = getattr(processor, meth_name)
+    --> 521     response = meth(req, response)
+        523 return response
+
+    File /usr/lib/python3.12/urllib/request.py:630, in HTTPErrorProcessor.http_response(self, request, response)
+        627 # According to RFC 2616, "2xx" code indicates that the client's
+        628 # request was successfully received, understood, and accepted.
+        629 if not (200 <= code < 300):
+    --> 630     response = self.parent.error(
+        631         'http', request, response, code, msg, hdrs)
+        633 return response
+
+    File /usr/lib/python3.12/urllib/request.py:559, in OpenerDirector.error(self, proto, *args)
+        557 if http_err:
+        558     args = (dict, 'default', 'http_error_default') + orig_args
+    --> 559     return self._call_chain(*args)
+
+    File /usr/lib/python3.12/urllib/request.py:492, in OpenerDirector._call_chain(self, chain, kind, meth_name, *args)
+        490 for handler in handlers:
+        491     func = getattr(handler, meth_name)
+    --> 492     result = func(*args)
+        493     if result is not None:
+        494         return result
+
+    File /usr/lib/python3.12/urllib/request.py:639, in HTTPDefaultErrorHandler.http_error_default(self, req, fp, code, msg, hdrs)
+        638 def http_error_default(self, req, fp, code, msg, hdrs):
+    --> 639     raise HTTPError(req.full_url, code, msg, hdrs, fp)
+
+    HTTPError: HTTP Error 400: Bad Request
 
 #### Example: [Seattle Weather](./Examples/07_SeattleWeather/SeattleWeather.py)
 
@@ -1303,17 +1389,7 @@ desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
 print("The conditions are:", desc)
 ```
 
-    ModuleNotFoundError: No module named 'snaps'
-    ---------------------------------------------------------------------------
-    ModuleNotFoundError                       Traceback (most recent call last)
-    Cell In[84], line 4
-          1 # Example 4.7: Seattle Weather
-          2 # Uses snaps to get a description of the weather in Seattle
-    ----> 4 import snaps
-          6 desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
-          7 print("The conditions are:", desc)
-
-    ModuleNotFoundError: No module named 'snaps'
+    The conditions are: Mostly Cloudy
 
 #### Exercise: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
 
@@ -1365,20 +1441,20 @@ strings and merge them together so they can be passed to the
 
 ## Questions and Answers
 
-1. **What happens if I “overwrite” a variable of one type with a value
-    of another type?**
+1. *What happens if I “overwrite” a variable of one type with a value
+    of another type?*
     - Python replaces the old variable with a new one of the same name
       but the new type
-2. **Does using a long variable name slow the program down?**
+2. *Does using a long variable name slow the program down?*
     - If it does it is insignificant, it’s much more important to use a
       name that clearly conveys meaning
-3. **Can we write all our programs using floating point numbers?**
+3. *Can we write all our programs using floating point numbers?*
     - You could, but you should use `int` where appropriate because
       `float` representation is inexact and subject to errors
       - These errors mean that it is often hard to compare for exact
         equality e.g. `1.0` might actually have the representation
         `1.0000...4`
-4. **Can I stop my program from crashing if someone types in an invalid
-    input?**
+4. *Can I stop my program from crashing if someone types in an invalid
+    input?*
     - Yes, this is called error handling. This will be covered later in
       Chapter 6
