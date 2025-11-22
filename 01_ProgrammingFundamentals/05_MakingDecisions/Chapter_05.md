@@ -41,6 +41,8 @@
         Clock](#exercise-make-an-advanced-alarm-clock)
   - [Use Decisions to make an
     Application](#use-decisions-to-make-an-application)
+    - [Design the User Interface](#design-the-user-interface)
+    - [Implement the User Interface](#implement-the-user-interface)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -146,7 +148,7 @@ to understand booleans*
         TypeError: can only concatenate str (not "bool") to str
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[32], line 1
+        Cell In[148], line 1
         ----> 1 'Hello' + True
 
         TypeError: can only concatenate str (not "bool") to str
@@ -244,7 +246,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 18
+    The hour is: 20
 
 *Run the program, it should print out the current hour*
 
@@ -278,7 +280,7 @@ print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
     The date is 22 / 11 / 2025
-    The time is 18 : 34 : 1
+    The time is 20 : 10 : 49
 
 #### Comparing Values
 
@@ -678,7 +680,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 18 : 34
+    The time is 20 : 10
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*
@@ -708,7 +710,7 @@ print("The time is", hour, ":", minute)
 >       ```
 >
 >           IndentationError: unexpected indent (1845908205.py, line 8)
->             Cell In[53], line 8
+>             Cell In[169], line 8
 >               print("The early bird gets the worm...")
 >               ^
 >           IndentationError: unexpected indent
@@ -810,7 +812,7 @@ class ifDescr BG
 > ```
 >
 >     IndentationError: unexpected indent (1682748311.py, line 7)
->       Cell In[55], line 7
+>       Cell In[171], line 7
 >         print("The early bird gets the worm...")
 >         ^
 >     IndentationError: unexpected indent
@@ -1078,6 +1080,111 @@ Lastly we pass the method to `snaps` for display
 > | Jungle Adventure Water Splash | At least 6 years old                   |
 > | Downhill Mountain Run         | At least 12 years old                  |
 > | The Regurgitator              | At least 12 years old and less than 70 |
+
+#### Design the User Interface
+
+- We will use a simple text interface
+
+``` text
+Welcome to our Theme Park
+
+These are the available rides
+
+1. Scenic River Cruise
+2. Carnival Carousel
+3. Jungle Adventure Water Splash
+4. Downhill Mountain Run
+5. The Regurgitator
+
+Please enter the ride you want: 1
+You have selected the Scenic River Cruise
+There are no age limits for this ride
+```
+
+> [!IMPORTANT]
+>
+> **Design the User Interface with the Customer**
+>
+> The UI can be the most important and most difficult part of design
+> because it can be very subjective. Ultimately the Customer is the one
+> paying and so they should be involved in the UI design throughout!
+
+#### Implement the User Interface
+
+- We have a UI design, now we need to implement it
+- Our code starts as below,
+
+``` python
+# Example 5.10: Ride Selector Start
+# The basic shell of the Ride Selector UI
+
+print("""Welcome to our Theme Park
+      These are the available ride:
+
+      1. Scenic River Cruise
+      2. Carnival Carousel
+      3. Jungle Adventure Water Splash
+      4. Downhill Mountain Run
+      5. The Regurgitator
+      """)
+
+ride_number_text = input("Please enter the ride number you want: ")
+ride_number = int(ride_number_text)
+
+if ride_number == 1:
+    print("You have selected Scenic River Cruise")
+    print("There are no age limits for this ride")
+```
+
+- We first print out our Menu, using a triple-delimited string so we can
+  multiline it
+- Then we implement the menu using a series of `if` statements.
+  - For the first case (Scenci River Cruise) we don’t need the user’s
+    age so we can output the result immediately
+- For other rides the user needs to supply their age, so we continue,
+
+``` python
+else:  # need to get the age of the user
+    age_text = input("Please enter your age: ")
+    age = int(age_text)
+
+    if ride_number == 2:
+        print("You have selected the Carnival Carousel")
+        if age >= 3:
+            print("You can go on the ride")
+        else:
+            print("Sorry, you are too young")
+    if ride_number == 3:
+        print("You have selected Jungle Adventure Water Splash")
+        if age >= 6:
+            print("You can go on the ride")
+        else:
+            print("Sorry, you are too young")
+```
+
+- We have to get the age using another input pair
+- We then use nested `if` statements, with each case checking against
+  the ride’s age restriction
+
+> [!TIP]
+>
+> You may have noticed that the above statement appears to have a bunch
+> of duplicated code. The rough structure is,
+>
+> ``` text
+> select ride
+> if age of user is greater than or equal to the rides min age
+>     Inform the user they can go on the ride
+> else:
+>     Inform the user they cannot go on the ride
+> ```
+>
+> Programmers typically don’t like to repeat themselves as it increases
+> the number of ways a program can go wrong. So ideally we would like a
+> way were we could write something like the above *once* and have the
+> appropriate checks be carried out, and the message printed without
+> having to write it out for every case. We’ll look at some ways to do
+> this later in the book.
 
 ## Summary
 

@@ -821,10 +821,232 @@ The UI can be the most important and most difficult part of design because it ca
 #### Implement the User Interface
 
 - We have a UI design, now we need to implement it
-- See the code below,
+- Our code starts as below,
+
+```python
+# Example 5.10: Ride Selector Start
+# The basic shell of the Ride Selector UI
+
+print("""Welcome to our Theme Park
+      These are the available ride:
+
+      1. Scenic River Cruise
+      2. Carnival Carousel
+      3. Jungle Adventure Water Splash
+      4. Downhill Mountain Run
+      5. The Regurgitator
+      """)
+
+ride_number_text = input("Please enter the ride number you want: ")
+ride_number = int(ride_number_text)
+
+if ride_number == 1:
+    print("You have selected Scenic River Cruise")
+    print("There are no age limits for this ride")
+```
+
+- We first print out our Menu, using a triple-delimited string so we can multiline it
+- Then we implement the menu using a series of `if` statements.
+    - For the first case (Scenci River Cruise) we don't need the user's age so we can output
+    the result immediately
+- For other rides the user needs to supply their age, so we continue,
+
+```python
+else:  # need to get the age of the user
+    age_text = input("Please enter your age: ")
+    age = int(age_text)
+```
+
+- We have to get the age using another input pair
+- This should already be familiar to you
+
+##### Testing User Input
+
+- Once we have the age, we need to compare against the restrictions for the selected ride
+- We can do this with a nested series of `if` statements which
+    1. First selects the appropriate ride
+    2. Checks the age against the ride's age requirements
+
+```python
+    if ride_number == 2:
+        print("You have selected the Carnival Carousel")
+        if age >= 3:
+            print("You can go on the ride")
+        else:
+            print("Sorry, you are too young")
+    if ride_number == 3:
+        print("You have selected Jungle Adventure Water Splash")
+        if age >= 6:
+            print("You can go on the ride")
+        else:
+            print("Sorry, you are too young")
+```
+
+- Downhill Mountain Splash (ride number 4) can  be implemented exactly as above
+
+:::{.callout-tip}
+You may have noticed that the above statement appears to have a bunch of duplicated code. The rough structure is,
+
+```text
+select ride
+if age of user is greater than or equal to the rides min age
+    Inform the user they can go on the ride
+else:
+    Inform the user they cannot go on the ride
+```
+
+Programmers typically don't like to repeat themselves as it increases the number of ways a program can go wrong. So ideally we would like a way were we could write something like the above *once* and have the appropriate checks be carried out, and the message printed without having to write it out for every case. We'll look at some ways to do this later in the book.
+:::
+
+##### Complete the Program
+
+- The last ride introduces an additional check, we have a minimum and a *maximum* age.
+    - Need to introduce another layer nested conditional to differentiate between the **too old** and **too young** case
+
+```python
+    if ride_number == 5:
+        print("You have selected The Regurgitator")
+        if age >= 12:
+            # first check age not too lowe
+            if age < 70:
+                # Age is too old
+                print("Sorry, you are too old")
+            else:
+                # In the valid range
+                print("You can go on the ride")
+        else:
+            # Age is too young
+            print("Sorry, you are too young")
+```
+
+- You can see the final Program [here](./Examples/10_RideSelector/RideSelector.py)
 
 
+#### Input Snaps
 
+- We can add some extra quality to our implementation using `snaps`
+- snaps `get_string` method
+
+```python
+# Example 5.11: Snaps get_string function
+
+import time
+import snaps
+
+name = snaps.get_string("Enter your name: ")
+snaps.display_message("Hello " + name)
+time.sleep(5) #so there is time to read the message
+```
+
+:::{.callout-important}
+As written, the snaps `get_string` method on my machine, did not work when running *Pygame 2*. I had to modify the method to the following,
+
+```python
+def get_string(prompt, size=50, margin=20,
+               color=(255, 0, 0), horiz='left', vert='center',
+               max_line_length=20):
+    '''
+    Reads a string from the user
+    '''
+
+    setup()
+
+    result = ''
+    cursor_char = '*'
+    cursor = None
+
+    def redraw():
+        clear_display()
+
+        render_message(prompt+result, margin=margin, size=size,
+                       horiz=horiz, vert=vert, color=color, cursor=cursor)
+
+    def cursor_flip():
+        nonlocal cursor
+
+    # create a timer for the cursor
+
+    cursor_event = pygame.USEREVENT+1
+
+    pygame.time.set_timer(cursor_event,500)
+    pygame.key.start_text_input()
+
+    while True:
+        event = pygame.event.wait()
+
+        if event.type == cursor_event:
+            if cursor:
+                cursor = None
+            else:
+                cursor = cursor_char
+            redraw()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                break
+            elif event.key == pygame.K_BACKSPACE:
+                if len(result) > 0:
+                    result = result[:-1]
+                    redraw()
+        elif event.type == pygame.TEXTINPUT:
+            if len(result) < max_line_length:
+                result += event.text
+                redraw()
+
+    # disable the timer for the cursor
+    pygame.time.set_timer(cursor_event,0)
+    return result
+```
+
+I won't go into detail on explaining the changes since it's above the level we've currently been discussing but if you have issues with the running any of the snaps `get_string` programs in this book, I would recommend trying the above replacement to the function
+:::
+
+- Using the above and some optional arguments to play around with text placement we can create the start of a GUI implementation of the [Ride Selector Program](#implement-the-user-interface)
+
+##### Example: Theme Park Snaps Display
+
+*The below program is the outline for an implementation of the Ride Selector Program using `snaps` to provide a GUI*
+
+```python
+# Example 5.12: Theme Park Snaps Display
+# Reimplments the shell of the Ride Selector Menu using Snaps
+
+import time
+import snaps
+
+
+snaps.display_image("themepark.png")
+
+prompt = """Welcome to our Theme Park
+      These are the available ride:
+
+      1. Scenic River Cruise
+      2. Carnival Carousel
+      3. Jungle Adventure Water Splash
+      4. Downhill Mountain Run
+      5. The Regurgitator
+
+      Select your ride: """
+
+ride_number_text = snaps.get_string(prompt, vert="bottom", max_line_length=3)
+confirm = "Ride " + ride_number_text
+
+snaps.display_message(confirm)
+time.sleep(5) #gives user time to read the output
+```
+
+##### Exercise: Snaps Ride Selector
+
+*Using the previous [example](#example-theme-park-snaps-display), complete the ride selector program. Extending its features where reasonable*
+
+We'll reimplement all the features of the original text-based interface, but add in the siren sound effect if the user is unable to ride the ride.
+
+##### Exercise: Weather Helper
+
+*Using snaps and the weather functions it includes, write a simple program to remind the user to wrap up warm, wear sunscreen etc.*
+
+##### Exercise: Fortune Teller
+
+*Using `randint` and `if` statements write a fortune teller program that gives random fortunes to the user*
 
 ## Summary
 
