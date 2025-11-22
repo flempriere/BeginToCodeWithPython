@@ -16,10 +16,41 @@
       - [Example: Examining Boolean
         Operators](#example-examining-boolean-operators)
   - [The `if` Construct](#the-if-construct)
+    - [Example: Simple Alarm Clock](#example-simple-alarm-clock)
+    - [Conditions in Python](#conditions-in-python)
+    - [Combine Python Statements into a
+      Suite](#combine-python-statements-into-a-suite)
+      - [Example: Siren Alarm Clock](#example-siren-alarm-clock)
+      - [Example: Time Display Alarm
+        Clock](#example-time-display-alarm-clock)
+    - [Structure of an `if` Statement](#structure-of-an-if-statement)
+      - [Example: Layout of Conditional
+        Statements](#example-layout-of-conditional-statements)
+    - [Add an `else` to an `if`
+      Construction](#add-an-else-to-an-if-construction)
+      - [Example: Simple Alarm Clock with
+        Else](#example-simple-alarm-clock-with-else)
+      - [Example: If Constructions](#example-if-constructions)
+    - [Compare Strings in Programs](#compare-strings-in-programs)
+      - [Example: Broken Greeter](#example-broken-greeter)
+      - [Example: Methods and Functions](#example-methods-and-functions)
+    - [Nesting `if` Conditions](#nesting-if-conditions)
+      - [Example: Protected Greeter](#example-protected-greeter)
+    - [Working with Logic](#working-with-logic)
+      - [Exercise: Make an Advanced Alarm
+        Clock](#exercise-make-an-advanced-alarm-clock)
+  - [Use Decisions to make an
+    Application](#use-decisions-to-make-an-application)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
 ## Notes
+
+> [!CAUTION]
+>
+> A number of the code examples in this use the file *siren.wav*, this
+> can be found in the corresponding chapter in the samples submodule.
+> For space reasons we haven’t uploaded it to the github
 
 ### Boolean Data
 
@@ -115,7 +146,7 @@ to understand booleans*
         TypeError: can only concatenate str (not "bool") to str
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[143], line 1
+        Cell In[32], line 1
         ----> 1 'Hello' + True
 
         TypeError: can only concatenate str (not "bool") to str
@@ -180,8 +211,6 @@ to understand booleans*
 | tm_wday | Day of the Week (in the range 0 … 6 with Monday as 0) |
 | tm_yday | Day in the Year (in the range 0 … 364 or 365 depending on if the year is a leap year) |
 
-</div>
-
 - An example of a `localtime` object might look like,
 
 | **Attribute** | **Value** |
@@ -215,7 +244,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 15
+    The hour is: 18
 
 *Run the program, it should print out the current hour*
 
@@ -225,9 +254,8 @@ print("The hour is:", hour)
 [example](./Chapter_05.qmd#example-one-handed-clock) to produce a more
 fully featured clock that reports the time, and date when run*
 
-We can use the table above to grab
-the correct attributes. We then simply need to format the attribute as
-nessecary. The final
+We can use the table above to grab the correct attributes. We then
+simply need to format the attribute as nessecary. The final
 [program](./Exercises/01_ImprovedClock/ImprovedClock.py) is given below
 
 ``` python
@@ -250,7 +278,7 @@ print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
     The date is 22 / 11 / 2025
-    The time is 15 : 38 : 49
+    The time is 18 : 34 : 1
 
 #### Comparing Values
 
@@ -529,6 +557,527 @@ it_is_time_to_get_up = (hour > 7) or (hour == 7 and minute > 29)
 > logic matches what you expect!
 
 ### The `if` Construct
+
+- Suppose we want a program to tell me if it’s time to get out of bed
+- Need the ability to run code `if` a boolean condition is met
+  - Can do so using the aptly named `if` operator
+
+#### Example: Simple Alarm Clock
+
+- *Create a new python program
+  ([SimpleAlarmClock.py](./Examples/02_SimpleAlarmClock/SimpleAlarmClock.py))
+  with the following contents*
+
+``` python
+# Example 5.2: Simple Alarm Clock
+# Demonstrates `if` using a simple alarm clock
+
+import time
+
+current_time = time.localtime()
+hour = current_time.tm_hour
+minute = current_time.tm_sec
+
+it_is_time_to_get_up = (hour > 7) or (hour == 7 and minute > 29)
+
+if it_is_time_to_get_up:
+    print("IT IS TIME TO GET UP")
+```
+
+    IT IS TIME TO GET UP
+
+- *The program should print* `IT IS TIME TO GET UP` *only if the time is
+  after* $7:30$
+
+- The `if` construct starts with the word `if`, following by a boolean
+  value called the `condition`, then a `:`
+
+- Any statements we want to execute *if* the `if` is `True` are then
+  written below the `if` and *indented* one level
+
+#### Conditions in Python
+
+- Condition is a term for the expression that controls which branch of
+  the `if` is executed
+- If the condition evaluates `True` the indented branch is run
+- If the condition evluates `False` the indented branch is skipped
+- We could simply the above code by including the check directly in the
+  `if` rather than an intermediate variable
+
+``` python
+if (hour > 7) or (hour == 7 and minutes > 29):
+    print("IT IS TIME TO GET UP")
+```
+
+    IT IS TIME TO GET UP
+
+#### Combine Python Statements into a Suite
+
+- What if we want multiple statements to run after an `if` statement
+- We just write them as a sequence of indented statements
+
+##### Example: Siren Alarm Clock
+
+*Let us improve the previous [example](#example-simple-alarm-clock) to
+also play a sound if it’s time to get up. Create a program
+([SirenAlarmClock.py](./Examples/03_SirenAlarmClock/SirenAlarmClock.py))
+with the contents below*
+
+``` python
+# Example 5.3: Siren Alarm Clock
+# Improves the Simple Alarm Clock to also play a sound
+import time
+
+import snaps
+
+current_time = time.localtime()
+hour = current_time.tm_hour
+minute = current_time.tm_min
+
+if (hour > 7) or (hour == 7 and minute > 29):
+    snaps.display_message("TIME TO GET UP")
+    snaps.play_sound("siren.wav")
+    # pause the program to give time for the sound to play
+    time.sleep(10)
+```
+
+*This program now runs three statements in the* `if`
+
+1. *First a message is displayed*
+2. *Second a sound is played*
+3. *Third the program sleeps so the sound has time to play*
+
+- If we want something to run regardless of the `if` condition, we write
+  it either before or after the `if` statement
+
+##### Example: Time Display Alarm Clock
+
+*Add to the simple Alarm Clock, by making it so the program will always
+print the current time regardless of if the alarm goes off. Create a new
+program
+([AlarmClockWithTimeDisplay.py](./Examples/04_AlarmClockWithTimeDisplay/AlarmClockWithTimeDisplay.py)).
+Enter the following contents,*
+
+``` python
+# Example 5.4: Alarm Clock with Time Display
+# A variant of Alarm Clock to also always display the time
+
+import time
+
+current_time = time.localtime()
+hour = current_time.tm_hour
+minute = current_time.tm_min
+
+if (hour > 7) or (hour == 7 and minute > 29):
+    print("TIME TO GET UP")
+    print("RISE AND SHINE")
+    print("THE EARLY BIRD GETS THE WORM")
+print("The time is", hour, ":", minute)
+```
+
+    TIME TO GET UP
+    RISE AND SHINE
+    THE EARLY BIRD GETS THE WORM
+    The time is 18 : 34
+
+- *The program above will always print the current time, regardless of
+  if the alarm block is run*
+
+> [!CAUTION]
+>
+> **Indented Text can cause Big Problems**
+>
+> As seen above, python uses indentation for control flow, this has the
+> advantage in that it follows normal code style practices, but has some
+> pitfalls
+>
+> 1. If the indention is wrong the program won’t run
+>
+>     - i.e. if one line is indented four spaces, and the next three an
+>       error will be thrown
+>
+>       ``` python
+>       import time
+>       current_time = time.localtime()
+>       hour = current_time.tm_hour
+>       minutes = current_time.tm_min
+>
+>       if (hour > 7) or (hour == 7 and minute > 29):
+>         print("IT IS TIME TO GET UP")
+>             print("The early bird gets the worm...")
+>       ```
+>
+>           IndentationError: unexpected indent (1845908205.py, line 8)
+>             Cell In[53], line 8
+>               print("The early bird gets the worm...")
+>               ^
+>           IndentationError: unexpected indent
+>
+> 2. A more insidious error, occurs if one mixes tabs and spaces in the
+>     indentation, since the code may appear to be fine until it
+>     attempts to run
+>
+>     ``` python
+>      import time
+>      current_time = time.localtime()
+>      hour = current_time.tm_hour
+>      minutes = current_time.tm_min
+>
+>      if (hour > 7) or (hour == 7 and minute > 29):
+>          print("IT IS TIME TO GET UP")
+>          print("The early bird gets the worm...")
+>     ```
+>
+>         IT IS TIME TO GET UP
+>         The early bird gets the worm...
+>
+>     - Most programmers and even text editors will automatically
+>       convert one style of indentation to the other (commonly tabs to
+>       spaces, but sometimes spaces to tabs) to avoid this issue
+>       - In the above code, my editor converted the second line which
+>         was indented with spaces to a tab to match the previous line
+
+#### Structure of an `if` Statement
+
+- Formally, an `if` has a structure like
+
+``` mermaid
+block-beta
+    columns 4
+    space
+    title["Breakdown of an if statement"]:2
+    space
+
+    block:Input
+    columns 1
+        if["if"]
+        ifDescr["(start of the if construction)"]
+    end
+
+    block:Condition
+    columns 1
+        condition["condition"]
+        conditionDescr["(value that is true or false)"]
+    end
+
+    block:Colon
+    columns 1
+        colon[":"]
+        colonDescr["colon"]
+    end
+
+    block:Suite
+    columns 1
+        suite["suite"]
+        suiteDescr["statements"]
+    end
+
+classDef BG stroke:transparent, fill:transparent
+class title BG
+class condition BG
+class conditionDescr BG
+class colon BG
+class colonDescr BG
+class suite BG
+class suiteDescr BG
+class if BG
+class ifDescr BG
+```
+
+- There are two ways to write the *suite*
+  1. A set of indented statements on the lines proceeding the `if`
+
+  2. A set of statements on the same line as the `if` each seperated by
+      a semicolon (`;`) e.g.
+
+      ``` python
+       if (hour > 6): print('IT IS TIME TO GET UP'); print('THE EARLY BIRD GETS THE WORM')
+      ```
+
+> [!WARNING]
+>
+> You can’t combine inline `if` statements, with indented `if`
+> statements, e.g.
+>
+> ``` python
+>     import time
+>     current_time = time.localtime()
+>     hour = current_time.tm_hour
+>     minutes = current_time.tm_min
+>
+>     if (hour > 7) or (hour == 7 and minute > 29): print("IT IS TIME TO GET UP"); print("RISE AND SHINE")
+>         print("The early bird gets the worm...")
+> ```
+>
+>     IndentationError: unexpected indent (1682748311.py, line 7)
+>       Cell In[55], line 7
+>         print("The early bird gets the worm...")
+>         ^
+>     IndentationError: unexpected indent
+
+##### Example: Layout of Conditional Statements
+
+*Use the python interpreter to answer the following questions to
+understand conditional statements*
+
+1. *Can we work with conditional statements using the python shell?*
+    - *Yes you can, type the following into the shell,*
+
+    ``` python
+    if True:
+    ```
+
+    - *The shell may display* `...` *instead of* `>>>` *or, omit* `>>>`
+      *and indent*
+
+      - *In the first case we can indent ourselves to write the suite*
+      - *In the second we simply write the suite*
+
+    - *Once done writing the* `if` *suite, simply deindent*
+
+    - *Try write the following in the shell, and verify the output*
+
+      ``` python
+        if True:
+            print('True')
+            print('Still True')
+      ```
+
+          True
+          Still True
+2. *How many spaces must you indent a suite of Python statements
+    controlled by an* `if` *statement?*
+    - *There is no approved value, but it must be consistent, i.e. if
+      the first indentation is four, then all future indentations must
+      also be four*
+      - *Common choices are 4, 8 or 2*
+
+#### Add an `else` to an `if` Construction
+
+- Sometimes we want conditional behaviour on both the `True` and `False`
+  branches
+- `else` is a keyword that lets us add behaviour that executes when an
+  `if` evaluates as `False`
+
+##### Example: Simple Alarm Clock with Else
+
+*Modify the [Simple Alarm Clock](#example-simple-alarm-clock) to now
+print a message telling us to go back to bed if it before our alarm
+should go off. Write a new program
+([SimpleAlarmClockWithElse.py](./Examples/05_SimpleAlarmClockWithElse/SimpleAlarmClockWithElse.py))
+with the following contents,*
+
+``` python
+# Example 5.5: Simple Alarm Clock
+# Variant of the Simple Alarm Clock
+# that modifies the output depending on if its time to get up
+
+import time
+
+current_time = time.localtime()
+hour = current_time.tm_hour
+minute = current_time.tm_min
+
+if (hour > 7) or (hour == 7 and minute > 29):
+    print("IT IS TIME TO GET UP")
+else:
+    print("Go back to bed")
+```
+
+    IT IS TIME TO GET UP
+
+- *Observe that only one line of the paired `if-else` statements is
+  printed*
+
+##### Example: If Constructions
+
+*Work through the following questions to understand `if` constructions*
+
+1. *Must an* `if` *construction have an* `else` *part?*
+    - **No***,we saw when first working with* `if` *that we could
+      exclude the* `else` *in that case no additional code runs if the*
+      `if` *evaluates* `False`
+2. *What happens if a condition is never* `True`*?*
+    - *It simply never executes*
+
+#### Compare Strings in Programs
+
+- The `if` statement can be used to compare strings, as seen with the
+  [comparison operators](#comparison-operators)
+
+##### Example: Broken Greeter
+
+*The following program uses the equality operator and an `if` statement
+to greet a person if their name matches. What is a potential issue with
+this [program](./Examples/06_BrokenGreeter/BrokenGreeter.py)?*
+
+``` python
+# Example 5.6: Broken Greeter
+# A Greeter program using string matching
+# Identify the issues with this program
+
+name = input("Enter your name: ")
+
+if name == "Rob":
+    print("Hello, Oh great one")
+```
+
+*The equality operator checks against the string* `"Rob"` *exactly,
+i.e. it is case sensitive, if we write* `"ROB"`*, or* `"rob"` *or some
+variation thereof, the statement will not match.*
+
+*We can fix this by using the string method* `upper`*, this converts all
+forms of the word* `"rob"` *to* `"ROB"` *which we can reliably check
+against. The new
+[program](./Examples/07_UppercaseGreeter/UppercaseGreeter.py) looks
+like*
+
+``` python
+# Example 5.7: Uppercase Greeter
+# A Greeter program using string matching
+# Fixes the issues with Example 5.6 by using
+# str.upper()
+
+name = input("Enter your name: ")
+
+if name.upper() == "ROB":
+    print("Hello, Oh great one")
+```
+
+- *We could also use the string method `lower` to compare against an all
+  lowercase word*
+
+##### Example: Methods and Functions
+
+*Consider the following questions to learn about methods and functions*
+
+1. *How do `lower()` and `upper()` work?*
+    - *Python types are objects that provide* **methods**.
+    - *Methods are called like functions*
+2. *Why do we have to write `lower()` and not `lower`?*
+    - *Leave the parentheses off, and see what happens*
+
+      ``` python
+        name = 'Rob'
+        name.upper
+      ```
+
+          <function str.upper()>
+
+    - *We are instead returned a description of the method itself*
+3. *What’s the difference between functions and methods?*
+    - *They are used the same way, but they differ in where they are
+      created*
+    - *Functions are not associated any specific object*
+    - *Methods are bound as attributes of objects*
+
+#### Nesting `if` Conditions
+
+- You can nest conditions, e.g. if you want to perform sequential checks
+
+##### Example: Protected Greeter
+
+*Let us demonstrate nested `if` through a greeter which requires a
+follow on code word to confirm the identity of the user. Create a
+program ([CodedGreeter.py](./Examples/08_CodedGreeter/CodedGreeter.py))
+with the following contents*
+
+``` python
+# Example 5.8: Coded Greeter
+# Asks the user for a follow on code to confirm their ID
+# before the program greets them
+
+name = input("Enter your name: ")
+
+if name.upper() == "ROB":
+    code = input("Enter the codeword: ")
+    if code == "secret":
+        print("Hello, Oh great one")
+    else:
+        print("Begone. Imposter")
+```
+
+- *Play around with the above code to see what happens for various input
+  combinations. You should see if the first input is not a variant of
+  `"rob"` the second prompt never occurs and the program ends. Adjust
+  the above by writing a new program
+  ([CodedGreeterWithOuterElse.py](./Examples/09_CodedGreeterWithOuterElse/CodedGreeterWithOuterElse.py))*
+
+#### Working with Logic
+
+##### Exercise: Make an Advanced Alarm Clock
+
+*Improve the [Alarm Clock](#example-time-display-alarm-clock). Make the
+alarm display the date as well as the time, and let the user sleep in on
+the weekends.*
+
+Our implementation is given below,
+
+``` python
+# Exercise 4.2: Advanced Alarm Clock
+# An Advanced Alarm Combining the Behaviour
+# of most increments of the alarm clock
+# and allowing you to sleep in on weekends
+
+import time
+import snaps
+
+current_time = time.localtime()
+hour = current_time.tm_hour
+minute = current_time.tm_min
+day = current_time.tm_mday
+month = current_time.tm_mon
+is_weekend = current_time.tm_wday >= 5
+
+date_message = "The date is " + str(day) + "/" + str(month)
+time_message = "The time is " + str(hour) + ":" + str(minute)
+
+msg = ""
+up_hour = 7 + is_weekend  # get to sleep in an extra hour on weekends
+
+if (hour > up_hour) or (hour == up_hour and minute > 29):
+    msg = msg + "TIME TO GET UP"
+    snaps.play_sound("siren.wav")
+else:
+    msg = msg + "Go back to bed!"
+msg = msg + "\n" + date_message + "\n" + time_message
+snaps.display_message(msg, size=50)
+time.sleep(10)  # leave time for the sound and to read
+```
+
+Most of the text simply exists to correctly create the final message we
+will display on the screen. The most important parts are,
+`is_weekend = current_time.tm_wday >= 5` which uses the fact that
+Saturday and Sunday have the value $5$ and $6$ in the
+`current_time.tm_wday` attribute (A number representing the day in the
+week) to set a boolean flag. We then use the fact that `True` acts
+numerically as one, and `False` acts numerically as zero to let us sleep
+in an hour on the weekend using `up_hour = 7 + is_weekend` which is $8$
+on weekends and $7$ on weekdays.
+
+We then run through the code as we have for most of the alarm clock
+cases, using an `else` clause to ensure we always have a message for the
+user, and appending the date and time message to this output.
+
+Lastly we pass the method to `snaps` for display
+
+### Use Decisions to make an Application
+
+- In this next section we’ll write our first semi-sophisticated program
+
+> **Scenario:**
+>
+> A local theme park wants you to write a program that will let users
+> check if they meet the age requirements to go on a ride. They provide
+> the following table covering the current rides
+>
+> | **Ride**                      | **Restrictions**                       |
+> |-------------------------------|----------------------------------------|
+> | Scenic River Cruise           | None                                   |
+> | Carnival Carousel             | At least 3 years old                   |
+> | Jungle Adventure Water Splash | At least 6 years old                   |
+> | Downhill Mountain Run         | At least 12 years old                  |
+> | The Regurgitator              | At least 12 years old and less than 70 |
 
 ## Summary
 

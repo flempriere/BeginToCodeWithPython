@@ -778,6 +778,52 @@ Lastly we pass the method to `snaps` for display
 
 ### Use Decisions to make an Application
 
+- In this next section we'll write our first semi-sophisticated program
+
+>**Scenario:**
+>
+>A local theme park wants you to write a program that will let users check if they meet the age requirements to go on a ride. They provide the following table covering the current rides
+>
+>| **Ride**                      | **Restrictions**                       |
+|-------------------------------|----------------------------------------|
+| Scenic River Cruise           | None                                   |
+| Carnival Carousel             | At least 3 years old                   |
+| Jungle Adventure Water Splash | At least 6 years old                   |
+| Downhill Mountain Run         | At least 12 years old                  |
+| The Regurgitator              | At least 12 years old and less than 70 |
+
+#### Design the User Interface
+
+- We will use a simple text interface
+
+```text
+Welcome to our Theme Park
+
+These are the available rides
+
+1. Scenic River Cruise
+2. Carnival Carousel
+3. Jungle Adventure Water Splash
+4. Downhill Mountain Run
+5. The Regurgitator
+
+Please enter the ride you want: 1
+You have selected the Scenic River Cruise
+There are no age limits for this ride
+```
+
+:::{.callout-important}
+**Design the User Interface with the Customer**
+
+The UI can be the most important and most difficult part of design because it can be very subjective. Ultimately the Customer is the one paying and so they should be involved in the UI design throughout!
+:::
+
+#### Implement the User Interface
+
+- We have a UI design, now we need to implement it
+- See the code below,
+
+
 
 
 ## Summary
