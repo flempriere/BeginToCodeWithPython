@@ -43,7 +43,7 @@ else:  # need to get the age of the user
         print("You have selected The Regurgitator")
         if age >= 12:
             # first check age not too lowe
-            if age < 70:
+            if age > 70:
                 # Age is too old
                 print("Sorry, you are too old")
             else:
