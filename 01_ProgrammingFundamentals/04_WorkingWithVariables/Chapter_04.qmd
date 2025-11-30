@@ -377,7 +377,7 @@ Python uses `\n` as the newline character. Technically this is known as a line f
    - We can see this prints a series of tab seperated lines. So this is essentially a tab seperated table (a similar format to the more familiar *comma*-seperated table)
 
    ```{python}
-   pri"t('Item\tSales\ncar\t50\nbat\"10')
+   print('Item\tSales\ncar\t50\nat\"10')
    ```
 
     - The exact spacing of tab characters can depend on the computer system, and it is quite common for text editors to convert tabs to spaces, so this format isn't the best. We'll see other ways to format strings later
