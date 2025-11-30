@@ -20,6 +20,7 @@ website:
           - 01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.qmd
           - 01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.qmd
           - 01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.qmd
+          - 01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.qmd
 format:
   html:
     code-fold: false
