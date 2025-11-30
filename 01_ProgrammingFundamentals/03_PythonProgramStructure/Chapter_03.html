@@ -395,7 +395,7 @@ user &lt;--&gt; computer
 <section id="example-work-with-print-in-a-program" class="level5">
 <h5 class="anchored" data-anchor-id="example-work-with-print-in-a-program">Example: Work with <code>print</code> in a program</h5>
 <p><em>Write a python file (<a href="./Examples/02_UsingPrint/using_print.py"><code>using_print.py</code></a>) with the following contents</em></p>
-<div id="6713a07e" class="cell" data-execution_count="1">
+<div id="29d795f9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>4</code></pre>
@@ -405,7 +405,7 @@ user &lt;--&gt; computer
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run using_print.py</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Now create a new file (<a href="./Examples/02_UsingPrint/using_print2.py">using_print2.py</a>) with the following contents</em></p>
-<div id="11672629" class="cell" data-execution_count="2">
+<div id="244ada47" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The answer is: '</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -415,7 +415,7 @@ user &lt;--&gt; computer
 </div>
 <p><em>Save and run this file. The output should match the above</em></p>
 <p><em>Observe here that the program automatically adds a new line, if we want to avoid that we can instead write</em></p>
-<div id="6d03ae82" class="cell" data-execution_count="3">
+<div id="9d6d52aa" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The answer is:'</span>, <span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The answer is: 4</code></pre>
@@ -434,7 +434,7 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p>There are several ways a python program can fail, for example</p>
-<div id="71ca71c9" class="cell" data-execution_count="4">
+<div id="e4afbdba" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The answer is: '</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -447,7 +447,7 @@ Caution
 </div>
 </div>
 <p>leads to a syntax error, because the wrong parentheses have been used. Or,</p>
-<div id="330dd89e" class="cell" data-execution_count="5">
+<div id="dc556db2" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Print(<span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -488,11 +488,11 @@ Caution
 <section id="example-investigate-the-random-library" class="level5">
 <h5 class="anchored" data-anchor-id="example-investigate-the-random-library">Example: <a href="./Examples/03_InvestigateRandom/throw_die.py">Investigate the <code>random</code> Library</a></h5>
 <p><em>Write and run a python program containing the following lines</em></p>
-<div id="a49f778d" class="cell" data-execution_count="6">
+<div id="93babf66" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'You have rolled:'</span>, random.randint(<span class="dv">1</span>,<span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>You have rolled: 3</code></pre>
+<pre><code>You have rolled: 4</code></pre>
 </div>
 </div>
 <p><em>Try running this program multiple times and see what the output is</em></p>
@@ -530,7 +530,7 @@ Caution
 <section id="using-sleep" class="level5">
 <h5 class="anchored" data-anchor-id="using-sleep"><a href="./Examples/04_Sleep/sleep.py">Using <code>sleep</code></a></h5>
 <p><em>Write an execute the following program</em></p>
-<div id="3a4c014e" class="cell" data-execution_count="7">
+<div id="94ed9f59" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'I will need to think about that...'</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span>
@@ -554,7 +554,7 @@ The answer is: 42</code></pre>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nearly cooked, get your spoon ready'</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">300</span>)</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Egg cooked, remove now.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="a7033b48" class="cell" data-execution_count="8">
+<div id="4550c297" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>Make sure the water is boiling!!!
 Drop the egg in...
@@ -814,11 +814,11 @@ Tip
 <li>Observe that we have to wrap the <code>display_message</code> calls with calls to <code>sleep</code> to ensure that there is time for the user to read the messages</li>
 <li>The output of (a terminal implementation of the program) should look something like,</li>
 </ul>
-<div id="d2159272" class="cell" data-execution_count="9">
+<div id="c44c72c0" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>The first number is:  8
 Will the next be higher or lower?
-The second number is:  10</code></pre>
+The second number is:  2</code></pre>
 </div>
 </div>
 </section>
@@ -854,7 +854,7 @@ The second number is:  10</code></pre>
 <li>We add a sleep at the end so the players have time to read the text. We also switch the final text from the initial red to green to celebrate the winner</li>
 <li>The output of a terminal-based implementation might look like,</li>
 </ul>
-<div id="75eb3f94" class="cell" data-execution_count="10">
+<div id="1b31f929" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>Players Stand
 Last to sit down wins</code></pre>
