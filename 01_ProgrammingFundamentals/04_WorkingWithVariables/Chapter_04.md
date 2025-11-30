@@ -285,7 +285,7 @@ been defined*
       error. Since the error is that `Total` doesn’t exist, we see a
       `NameError`.
 
-#### Example: [Self-Timer Party Game](./Examples/02_SelfTimer/selfTimer.py)
+#### Example: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
 
 *Consider the [Nerves of
 Steel](../03_PythonProgramStructure/Chapter_03.qmd#exercise-34-nerves-of-steel)
@@ -340,7 +340,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 17 seconds.
+    Stay standing for 8 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -573,13 +573,11 @@ Sit down just before you think the time will end. ''')
       essentially a tab seperated table (a similar format to the more
       familiar *comma*-seperated table)
 
-    ``` python
-    print('Item\tSales\ncar\t50\nat\"10')
-    ```
+    <!-- -->
 
         Item Sales
         car  50
-        at"10
+        boat 10
 
     - The exact spacing of tab characters can depend on the computer
       system, and it is quite common for text editors to convert tabs to
@@ -645,7 +643,7 @@ input('Press enter to continue...')
 
 *Use python to create a simple program that will issue a personalised
 greeting. Create a new program
-([greeter.py](./Examples/03_Greeter/greeter.py)) with the following
+([greeter.py](./Examples/02_Greeter/greeter.py)) with the following
 contents*
 
 ``` python
@@ -679,7 +677,7 @@ time_text = input('Enter the cooking time in seconds: ') #receive time in second
 time_int = int(time_next) #perform conversion to number
 ```
 
-##### Example: [Configurable Egg Timer](./Examples/04_ConfigurableEggTimer/ConfigurableEggTimer.py)
+##### Example: [Configurable Egg Timer](./Examples/03_ConfigurableEggTimer/ConfigurableEggTimer.py)
 
 - *The complete program would then look like,*
 
@@ -985,7 +983,7 @@ time_text = input('Enter the cooking time in seconds: ')
 time_float = float(time_text)
 ```
 
-##### Example: [Ultra-Precise Egg Timer](./Examples/05_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
+##### Example: [Ultra-Precise Egg Timer](./Examples/04_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
 
 *The complete program would then look like*
 
@@ -1137,7 +1135,7 @@ i
 ##### Exercise: Calculating a Pizza Order
 
 *Consider the following
-[program](./Examples/06_PizzaOrderCalculator/PizzaOrderCalculator.py)
+[program](./Examples/05_PizzaOrderCalculator/PizzaOrderCalculator.py)
 which is designed to calculate the number of pizzas needed for a
 hackathon with* $x$ *number of particpants using the heuristic that* $1$
 *pizza can satisfy* $1.5$ *people*
