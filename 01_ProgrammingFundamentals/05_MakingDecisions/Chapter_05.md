@@ -254,7 +254,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 22
+    The hour is: 11
 
 *Run the program, it should print out the current hour*
 
@@ -288,7 +288,7 @@ print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
     The date is 30 / 11 / 2025
-    The time is 22 : 9 : 53
+    The time is 11 : 59 : 20
 
 #### Comparing Values
 
@@ -688,7 +688,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 22 : 9
+    The time is 11 : 59
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*
@@ -1574,8 +1574,8 @@ else:
 ```
 
     You will meet a tall, dark stranger
-    You would do well to husband your wealth
-    To define your future, avoid getting hung up on the past
+    A life of comfort is coming
+    You will soon face a decision that will redefine everything
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise
