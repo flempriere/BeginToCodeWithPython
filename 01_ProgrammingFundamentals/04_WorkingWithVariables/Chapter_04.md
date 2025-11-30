@@ -340,7 +340,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 18 seconds.
+    Stay standing for 17 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -574,14 +574,12 @@ Sit down just before you think the time will end. ''')
       familiar *comma*-seperated table)
 
     ``` python
-    pri"t('Item\tSales\ncar\t50\nbat\"10')
+    print('Item\tSales\ncar\t50\nat\"10')
     ```
 
-        SyntaxError: unterminated string literal (detected at line 1) (2633366241.py, line 1)
-          Cell In[20], line 1
-            pri"t('Item\tSales\ncar\t50\nbat\"10')
-               ^
-        SyntaxError: unterminated string literal (detected at line 1)
+        Item Sales
+        car  50
+        at"10
 
     - The exact spacing of tab characters can depend on the computer
       system, and it is quite common for text editors to convert tabs to
