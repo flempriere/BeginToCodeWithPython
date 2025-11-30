@@ -919,7 +919,7 @@ Programmers typically don't like to repeat themselves as it increases the number
             print("Sorry, you are too young")
 ```
 
-- You can see the final Program [here](./Examples/10_RideSelector/RideSelector.py)
+- You can see the final Program ([Ride Selector](./Examples/10_RideSelector/RideSelector.py))
 
 
 #### Input Snaps
@@ -1045,7 +1045,7 @@ Otherwise this proceeds as with most of our conversions to snaps. We replace `pr
 2. The name of the ride
 3. A message letting them know if they are allowed to ride
 
-Our final implementation can be found [here](./Exercises/03_SnapsRideSelector/ThemeParkSnapsDisplay.py), or read from down below, observe the usual use of the `time.sleep` function to prevent the window from immediately closing
+Our final implementation can be found in the file [ThemeParkSnapsDisplay.py](./Exercises/03_SnapsRideSelector/ThemeParkSnapsDisplay.py), or read from down below, observe the usual use of the `time.sleep` function to prevent the window from immediately closing
 
 ```python
 # Exercise 5.3: Snaps Ride Selector
@@ -1132,16 +1132,128 @@ else:  # need to get the age of the user
 time.sleep(5)
 ```
 
-
-
 ##### Exercise: Weather Helper
 
 *Using snaps and the weather functions it includes, write a simple program to remind the user to wrap up warm, wear sunscreen etc.*
+
+We'll use the basic outline of the solution in the book,
+
+```python
+#EG5-14 Weather Helper
+
+import snaps
+
+temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
+print("The temperature is:", temp)
+
+if temp < 40:
+    print("Wear a coat - it is cold out there")
+elif temp > 70:
+    print("Remember to wear sunscreen")
+```
+
+The first step is to convert the `print` statements to instead use the `snaps`, `display_message` function. This requires us to do the usual work of building the string before we display it. Next we also want to display an image, either a sun or a snowflake depending on if the weather is hot or cold. Since we're grabbing some new images, we run into an issue that `snaps` doesn't work to rescale the images out of the box. We can fix this by adding the line `image = image.convert_alpha()` before the `image = pygame.transform.smoothscale(image, window_size)` line in `display_image` in `snaps`. Our final program ([Weather Helper](./Exercises/04_WeatherHelper/WeatherHelper.py)) looks like,
+
+```python
+# Exercise 5.4 Weather Helper
+# Simple Weather Program that reminds the user about
+# the weather conditions, with helpful text and
+# pictures
+
+import time
+import snaps
+
+temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
+conditions = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+
+if temp is None or conditions is None:
+    msg = "Could not retrieve Weather..."
+else:
+    msg = "The temperature is: " + str(temp)
+    if temp < 40:
+        msg = msg + "\n\nWear a coat - it is cold out there"
+        snaps.display_image("snowflake.png")
+    elif temp > 70:
+        msg = msg + "\n\nRemember to wear sunscreen"
+        snaps.display_image("sun.png")
+    msg = msg + "\n\nThe weather is " + conditions
+
+snaps.display_message(msg, size=100, color="red")
+time.sleep(5)
+```
+
+Ignore the line `if temp is None or conditions is None`, this is some error handling code we'll look at in a latter chapter.
+Notice that since no matter which path we go through the `if, elif` chain we'll post a message at the end. So we use the branch code in order to set up the appropriate message, while the call to `display_message` sits outside the loop, so we don't have to call it on every path.
 
 ##### Exercise: Fortune Teller
 
 *Using `randint` and `if` statements write a fortune teller program that gives random fortunes to the user*
 
+We'll expand on the prototype given by providing two additional statements, one relating to the future
+and the other relating to the wealth. We'll follow the structure of using `random.randint(1, 6)` to simulate rolling
+a six-sided die, but spice it up by using `if-elif-else` clauses to play with the relative weighting of different
+statements.
+
+```{python}
+# Exercise 5.5
+# Fortune Teller Program
+#
+# A simple program that uses random numbers to generate a sequence of
+# fortunes for the user
+
+import random
+
+# Meeting someone
+if random.randint(1, 6) < 4:
+    print("You will meet a tall, dark stranger")
+else:
+    print("Nobody unexpected will enter your life")
+
+# Money
+result = random.randint(1, 6)
+if result == 1:
+    print("I see untold riches in your future")
+elif result <= 3:
+    print("A life of comfort is coming")
+elif result < 6:
+    print("You would do well to husband your wealth")
+else:
+    print("I see a future lived on the streets...")
+
+# Advice
+result = random.randint(1, 6)
+if result <= 2:
+    print("Sometimes the answers to our future, come from the past")
+elif result < 6:
+    print("To define your future, avoid getting hung up on the past")
+else:
+    print("You will soon face a decision that will redefine everything")
+```
+
+We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of the branching.
+This implementation is quite simple (because the exercise does not personally interest me that much)
+Feel free to expand on my [solution](./Exercises/05_FortuneTeller/FortuneTeller.py)
+
 ## Summary
 
+- Python can work with boolean values
+    - Bool values are either `True` or `False`
+- Comparison operators compare expressions to generate boolean values
+- `if` is used to control program execution in response to boolean expressions
+    - `if` executes code *if* a *condition* is `True`
+- Logic operators `and`, `or` and `not` are used to create new boolean expressions from existing ones
+    - `and` is `True` if both expressions are `True` else `False`
+    - `or` is `True` if either expression is `True` else `False`
+    - `not` flips the truth of a boolean expression
+        - e.g. `True` $\rightarrow$ `False`
+        - `False` $\rightarrow$ `True`
+
 ## Questions and Answers
+
+1. *Does the use of Boolean values mean a program will always do the same thing given the same data inputs?*
+    - It is very important that given the same inputs (including any inputs from a source of randomness) a program behaves the same way
+2. *Will the computer always do the right thing when we write programs that make decisions?*
+    - A computer running a program is only as correct as the program that was written. Formally verifing anything but the most trivial program as being correct is very difficult (and the problem in general is not-computable (see [The Halting Problem](https://en.wikipedia.org/wiki/Halting_problem)))
+    - It is typically the responsibility of the programmer to to ensure a program behaves correctly (in conjuction with the customer.) Even in cases where a user inputs *wrong* data, the customer would probably expect the programmer to build into the program the appropriate checks to deal with these wrong data inputs
+3. *Is there a limit to how many `if` conditions you can nest inside each other?*
+    - No, the python interpreter should be able to handle many many layers of nested `if` statements. Most people will emphasise that if you're finding that you're needing to write heavily nested code (the exact number of what constitutes *heavy* is debated but $3$ is a rough guide) you should look at if there's a better way to write

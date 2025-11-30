@@ -43,6 +43,14 @@
     Application](#use-decisions-to-make-an-application)
     - [Design the User Interface](#design-the-user-interface)
     - [Implement the User Interface](#implement-the-user-interface)
+      - [Testing User Input](#testing-user-input)
+      - [Complete the Program](#complete-the-program)
+    - [Input Snaps](#input-snaps)
+      - [Example: Theme Park Snaps
+        Display](#example-theme-park-snaps-display)
+      - [Exercise: Snaps Ride Selector](#exercise-snaps-ride-selector)
+      - [Exercise: Weather Helper](#exercise-weather-helper)
+      - [Exercise: Fortune Teller](#exercise-fortune-teller)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -148,7 +156,7 @@ to understand booleans*
         TypeError: can only concatenate str (not "bool") to str
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[148], line 1
+        Cell In[3], line 1
         ----> 1 'Hello' + True
 
         TypeError: can only concatenate str (not "bool") to str
@@ -246,7 +254,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 20
+    The hour is: 22
 
 *Run the program, it should print out the current hour*
 
@@ -279,8 +287,8 @@ hours = current_datetime.tm_hour
 print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 22 / 11 / 2025
-    The time is 20 : 10 : 49
+    The date is 30 / 11 / 2025
+    The time is 22 : 9 : 53
 
 #### Comparing Values
 
@@ -680,7 +688,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 20 : 10
+    The time is 22 : 9
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*
@@ -710,7 +718,7 @@ print("The time is", hour, ":", minute)
 >       ```
 >
 >           IndentationError: unexpected indent (1845908205.py, line 8)
->             Cell In[169], line 8
+>             Cell In[24], line 8
 >               print("The early bird gets the worm...")
 >               ^
 >           IndentationError: unexpected indent
@@ -812,7 +820,7 @@ class ifDescr BG
 > ```
 >
 >     IndentationError: unexpected indent (1682748311.py, line 7)
->       Cell In[171], line 7
+>       Cell In[26], line 7
 >         print("The early bird gets the worm...")
 >         ^
 >     IndentationError: unexpected indent
@@ -1147,7 +1155,20 @@ if ride_number == 1:
 else:  # need to get the age of the user
     age_text = input("Please enter your age: ")
     age = int(age_text)
+```
 
+- We have to get the age using another input pair
+- This should already be familiar to you
+
+##### Testing User Input
+
+- Once we have the age, we need to compare against the restrictions for
+  the selected ride
+- We can do this with a nested series of `if` statements which
+  1. First selects the appropriate ride
+  2. Checks the age against the ride’s age requirements
+
+``` python
     if ride_number == 2:
         print("You have selected the Carnival Carousel")
         if age >= 3:
@@ -1162,9 +1183,8 @@ else:  # need to get the age of the user
             print("Sorry, you are too young")
 ```
 
-- We have to get the age using another input pair
-- We then use nested `if` statements, with each case checking against
-  the ride’s age restriction
+- Downhill Mountain Splash (ride number 4) can be implemented exactly as
+  above
 
 > [!TIP]
 >
@@ -1186,6 +1206,421 @@ else:  # need to get the age of the user
 > having to write it out for every case. We’ll look at some ways to do
 > this later in the book.
 
+##### Complete the Program
+
+- The last ride introduces an additional check, we have a minimum and a
+  *maximum* age.
+  - Need to introduce another layer nested conditional to differentiate
+    between the **too old** and **too young** case
+
+``` python
+    if ride_number == 5:
+        print("You have selected The Regurgitator")
+        if age >= 12:
+            # first check age not too low
+            if age > 70:
+                # Age is too old
+                print("Sorry, you are too old")
+            else:
+                # In the valid range
+                print("You can go on the ride")
+        else:
+            # Age is too young
+            print("Sorry, you are too young")
+```
+
+- You can see the final Program ([Ride
+  Selector](./Examples/10_RideSelector/RideSelector.py))
+
+#### Input Snaps
+
+- We can add some extra quality to our implementation using `snaps`
+- snaps `get_string` method
+
+``` python
+# Example 5.11: Snaps get_string function
+
+import time
+import snaps
+
+name = snaps.get_string("Enter your name: ")
+snaps.display_message("Hello " + name)
+time.sleep(5) #so there is time to read the message
+```
+
+> [!IMPORTANT]
+>
+> As written, the snaps `get_string` method on my machine, did not work
+> when running *Pygame 2*. I had to modify the method to the following,
+>
+> ``` python
+> def get_string(prompt, size=50, margin=20,
+>                color=(255, 0, 0), horiz='left', vert='center',
+>                max_line_length=20):
+>     '''
+>     Reads a string from the user
+>     '''
+>
+>     setup()
+>
+>     result = ''
+>     cursor_char = '*'
+>     cursor = None
+>
+>     def redraw():
+>         clear_display()
+>
+>         render_message(prompt+result, margin=margin, size=size,
+>                        horiz=horiz, vert=vert, color=color, cursor=cursor)
+>
+>     def cursor_flip():
+>         nonlocal cursor
+>
+>     # create a timer for the cursor
+>
+>     cursor_event = pygame.USEREVENT+1
+>
+>     pygame.time.set_timer(cursor_event,500)
+>     pygame.key.start_text_input()
+>
+>     while True:
+>         event = pygame.event.wait()
+>
+>         if event.type == cursor_event:
+>             if cursor:
+>                 cursor = None
+>             else:
+>                 cursor = cursor_char
+>             redraw()
+>         elif event.type == pygame.KEYDOWN:
+>             if event.key == pygame.K_RETURN:
+>                 break
+>             elif event.key == pygame.K_BACKSPACE:
+>                 if len(result) > 0:
+>                     result = result[:-1]
+>                     redraw()
+>         elif event.type == pygame.TEXTINPUT:
+>             if len(result) < max_line_length:
+>                 result += event.text
+>                 redraw()
+>
+>     # disable the timer for the cursor
+>     pygame.time.set_timer(cursor_event,0)
+>     return result
+> ```
+>
+> I won’t go into detail on explaining the changes since it’s above the
+> level we’ve currently been discussing but if you have issues with the
+> running any of the snaps `get_string` programs in this book, I would
+> recommend trying the above replacement to the function
+
+- Using the above and some optional arguments to play around with text
+  placement we can create the start of a GUI implementation of the [Ride
+  Selector Program](#implement-the-user-interface)
+
+##### Example: Theme Park Snaps Display
+
+*The below program is the outline for an implementation of the Ride
+Selector Program using `snaps` to provide a GUI*
+
+``` python
+# Example 5.12: Theme Park Snaps Display
+# Reimplments the shell of the Ride Selector Menu using Snaps
+
+import time
+import snaps
+
+
+snaps.display_image("themepark.png")
+
+prompt = """Welcome to our Theme Park
+      These are the available ride:
+
+      1. Scenic River Cruise
+      2. Carnival Carousel
+      3. Jungle Adventure Water Splash
+      4. Downhill Mountain Run
+      5. The Regurgitator
+
+      Select your ride: """
+
+ride_number_text = snaps.get_string(prompt, vert="bottom", max_line_length=3)
+confirm = "Ride " + ride_number_text
+
+snaps.display_message(confirm)
+time.sleep(5) #gives user time to read the output
+```
+
+##### Exercise: Snaps Ride Selector
+
+*Using the previous [example](#example-theme-park-snaps-display),
+complete the ride selector program. Extending its features where
+reasonable*
+
+We’ll reimplement all the features of the original text-based interface,
+but add in the siren sound effect if the user is unable to ride the
+ride. Otherwise this proceeds as with most of our conversions to snaps.
+We replace `print` with `snaps.display_message` and introduce some work
+to build the string that we want to send to `snaps.display_message`. In
+this case we create a string that is nicely formatted to output
+
+1. The ride number the user selected
+2. The name of the ride
+3. A message letting them know if they are allowed to ride
+
+Our final implementation can be found in the file
+[ThemeParkSnapsDisplay.py](./Exercises/03_SnapsRideSelector/ThemeParkSnapsDisplay.py),
+or read from down below, observe the usual use of the `time.sleep`
+function to prevent the window from immediately closing
+
+``` python
+# Exercise 5.3: Snaps Ride Selector
+# Reimplments the entirety of the Theme Park Ride Selector using
+# a snaps interface, and adds some audio ques to warn the user
+# when they are ineligable for ride
+
+import time
+import snaps
+
+
+snaps.display_image("themepark.png")
+
+prompt = """Welcome to our Theme Park
+      These are the available ride:
+
+      1. Scenic River Cruise
+      2. Carnival Carousel
+      3. Jungle Adventure Water Splash
+      4. Downhill Mountain Run
+      5. The Regurgitator
+
+      Select your ride: """
+
+ride_number_text = snaps.get_string(prompt, vert="bottom", max_line_length=3)
+confirm = "Ride " + ride_number_text
+
+snaps.display_message(confirm)
+time.sleep(2)  # gives user time to read the output
+
+ride_number = int(ride_number_text)
+
+if ride_number == 1:
+    msg = confirm + "\nScenic River Cruise\n\nThere are no age limits for this ride"
+    snaps.display_message(msg, size=100)
+else:  # need to get the age of the user
+    age_text = snaps.get_string(
+        "Please enter your age: ", vert="bottom", max_line_length=3
+    )
+    age = int(age_text)
+
+    if ride_number == 2:
+        msg = confirm + "\nCarnival Cruise"
+        if age >= 3:
+            msg = msg + "\n\nYou can go on the ride"
+            snaps.display_message(msg, size=100)
+        else:
+            snaps.play_sound("siren.wav")
+            msg = msg + "\n\nSorry, you are too young"
+            snaps.display_message(msg, size=100)
+    if ride_number == 3:
+        msg = confirm + "\nJungle Adventure Water Splash"
+        if age >= 6:
+            msg = msg + "\n\nYou can go on the ride"
+            snaps.display_message(msg, size=100)
+        else:
+            msg = msg + "\n\nSorry, you are too young"
+            snaps.play_sound("siren.wav")
+            snaps.display_message(msg, size=100)
+    if ride_number == 4:
+        msg = confirm + "\nDownhill Mountain Run"
+        if age >= 12:
+            msg = msg + "\n\nYou can go on the ride"
+            snaps.display_message(msg, size=100)
+        else:
+            msg = msg + "\n\nSorry, you are too young"
+            snaps.play_sound("siren.wav")
+            snaps.display_message(msg, size=100)
+    if ride_number == 5:
+        msg = confirm + "\nThe Regurgitator"
+        if age >= 12:
+            # first check age not too lowe
+            if age > 70:
+                # Age is too old
+                msg = msg + "\n\nSorry, you are too old"
+                snaps.play_sound("siren.wav")
+                snaps.display_message(msg, size=100)
+            else:
+                msg = msg + "\n\nYou can go on the ride"
+                snaps.display_message(msg, size=100)
+        else:
+            msg = msg + "\n\nSorry, you are too young"
+            snaps.display_message(msg, size=100)
+time.sleep(5)
+```
+
+##### Exercise: Weather Helper
+
+*Using snaps and the weather functions it includes, write a simple
+program to remind the user to wrap up warm, wear sunscreen etc.*
+
+We’ll use the basic outline of the solution in the book,
+
+``` python
+#EG5-14 Weather Helper
+
+import snaps
+
+temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
+print("The temperature is:", temp)
+
+if temp < 40:
+    print("Wear a coat - it is cold out there")
+elif temp > 70:
+    print("Remember to wear sunscreen")
+```
+
+The first step is to convert the `print` statements to instead use the
+`snaps`, `display_message` function. This requires us to do the usual
+work of building the string before we display it. Next we also want to
+display an image, either a sun or a snowflake depending on if the
+weather is hot or cold. Since we’re grabbing some new images, we run
+into an issue that `snaps` doesn’t work to rescale the images out of the
+box. We can fix this by adding the line `image = image.convert_alpha()`
+before the `image = pygame.transform.smoothscale(image, window_size)`
+line in `display_image` in `snaps`. Our final program ([Weather
+Helper](./Exercises/04_WeatherHelper/WeatherHelper.py)) looks like,
+
+``` python
+# Exercise 5.4 Weather Helper
+# Simple Weather Program that reminds the user about
+# the weather conditions, with helpful text and
+# pictures
+
+import time
+import snaps
+
+temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
+conditions = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+
+if temp is None or conditions is None:
+    msg = "Could not retrieve Weather..."
+else:
+    msg = "The temperature is: " + str(temp)
+    if temp < 40:
+        msg = msg + "\n\nWear a coat - it is cold out there"
+        snaps.display_image("snowflake.png")
+    elif temp > 70:
+        msg = msg + "\n\nRemember to wear sunscreen"
+        snaps.display_image("sun.png")
+    msg = msg + "\n\nThe weather is " + conditions
+
+snaps.display_message(msg, size=100, color="red")
+time.sleep(5)
+```
+
+Ignore the line `if temp is None or conditions is None`, this is some
+error handling code we’ll look at in a latter chapter. Notice that since
+no matter which path we go through the `if, elif` chain we’ll post a
+message at the end. So we use the branch code in order to set up the
+appropriate message, while the call to `display_message` sits outside
+the loop, so we don’t have to call it on every path.
+
+##### Exercise: Fortune Teller
+
+*Using `randint` and `if` statements write a fortune teller program that
+gives random fortunes to the user*
+
+We’ll expand on the prototype given by providing two additional
+statements, one relating to the future and the other relating to the
+wealth. We’ll follow the structure of using `random.randint(1, 6)` to
+simulate rolling a six-sided die, but spice it up by using
+`if-elif-else` clauses to play with the relative weighting of different
+statements.
+
+``` python
+# Exercise 5.5
+# Fortune Teller Program
+#
+# A simple program that uses random numbers to generate a sequence of
+# fortunes for the user
+
+import random
+
+# Meeting someone
+if random.randint(1, 6) < 4:
+    print("You will meet a tall, dark stranger")
+else:
+    print("Nobody unexpected will enter your life")
+
+# Money
+result = random.randint(1, 6)
+if result == 1:
+    print("I see untold riches in your future")
+elif result <= 3:
+    print("A life of comfort is coming")
+elif result < 6:
+    print("You would do well to husband your wealth")
+else:
+    print("I see a future lived on the streets...")
+
+# Advice
+result = random.randint(1, 6)
+if result <= 2:
+    print("Sometimes the answers to our future, come from the past")
+elif result < 6:
+    print("To define your future, avoid getting hung up on the past")
+else:
+    print("You will soon face a decision that will redefine everything")
+```
+
+    You will meet a tall, dark stranger
+    You would do well to husband your wealth
+    To define your future, avoid getting hung up on the past
+
+We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
+the branching. This implementation is quite simple (because the exercise
+does not personally interest me that much) Feel free to expand on my
+[solution](./Exercises/05_FortuneTeller/FortuneTeller.py)
+
 ## Summary
 
+- Python can work with boolean values
+  - Bool values are either `True` or `False`
+- Comparison operators compare expressions to generate boolean values
+- `if` is used to control program execution in response to boolean
+  expressions
+  - `if` executes code *if* a *condition* is `True`
+- Logic operators `and`, `or` and `not` are used to create new boolean
+  expressions from existing ones
+  - `and` is `True` if both expressions are `True` else `False`
+  - `or` is `True` if either expression is `True` else `False`
+  - `not` flips the truth of a boolean expression
+    - e.g. `True` $\rightarrow$ `False`
+    - `False` $\rightarrow$ `True`
+
 ## Questions and Answers
+
+1. *Does the use of Boolean values mean a program will always do the
+    same thing given the same data inputs?*
+    - It is very important that given the same inputs (including any
+      inputs from a source of randomness) a program behaves the same way
+2. *Will the computer always do the right thing when we write programs
+    that make decisions?*
+    - A computer running a program is only as correct as the program
+      that was written. Formally verifing anything but the most trivial
+      program as being correct is very difficult (and the problem in
+      general is not-computable (see [The Halting
+      Problem](https://en.wikipedia.org/wiki/Halting_problem)))
+    - It is typically the responsibility of the programmer to to ensure
+      a program behaves correctly (in conjuction with the customer.)
+      Even in cases where a user inputs *wrong* data, the customer would
+      probably expect the programmer to build into the program the
+      appropriate checks to deal with these wrong data inputs
+3. *Is there a limit to how many `if` conditions you can nest inside
+    each other?*
+    - No, the python interpreter should be able to handle many many
+      layers of nested `if` statements. Most people will emphasise that
+      if you’re finding that you’re needing to write heavily nested code
+      (the exact number of what constitutes *heavy* is debated but $3$
+      is a rough guide) you should look at if there’s a better way to
+      write
