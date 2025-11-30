@@ -171,7 +171,7 @@ Some languages recommend using *camel case* for variable naming. In this format 
 
     - In this case, `Total` is not defined as a variable, so there is no meaningful way to interpret a value. Hence we would expect an error. Since the error is that `Total` doesn't exist, we see a `NameError`.
 
-#### Example: [Self-Timer Party Game](./Examples/02_SelfTimer/selfTimer.py)
+#### Example: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
 
 *Consider the [Nerves of Steel](../03_PythonProgramStructure/Chapter_03.qmd#exercise-34-nerves-of-steel) exercise from [Chapter 3](../03_PythonProgramStructure/Chapter_03.qmd). In the game, players must remain standing right up to the moment before they think a random timer will expire*
 
@@ -377,7 +377,8 @@ Python uses `\n` as the newline character. Technically this is known as a line f
    - We can see this prints a series of tab seperated lines. So this is essentially a tab seperated table (a similar format to the more familiar *comma*-seperated table)
 
    ```{python}
-   print('Item\tSales\ncar\t50\nat\"10')
+   #| echo: false
+    print("Item\tSales\ncar\t50\nboat\t10")
    ```
 
     - The exact spacing of tab characters can depend on the computer system, and it is quite common for text editors to convert tabs to spaces, so this format isn't the best. We'll see other ways to format strings later
@@ -428,7 +429,7 @@ input('Press enter to continue...')
 
 ##### Example: Use `input` to make a "greeter" Program
 
-*Use python to create a simple program that will issue a personalised greeting. Create a new program ([greeter.py](./Examples/03_Greeter/greeter.py)) with the following contents*
+*Use python to create a simple program that will issue a personalised greeting. Create a new program ([greeter.py](./Examples/02_Greeter/greeter.py)) with the following contents*
 
 ```python
 name = input('Enter your name please: ')
@@ -461,7 +462,7 @@ time_text = input('Enter the cooking time in seconds: ') #receive time in second
 time_int = int(time_next) #perform conversion to number
 ```
 
-##### Example: [Configurable Egg Timer](./Examples/04_ConfigurableEggTimer/ConfigurableEggTimer.py)
+##### Example: [Configurable Egg Timer](./Examples/03_ConfigurableEggTimer/ConfigurableEggTimer.py)
 
 - *The complete program would then look like,*
 
@@ -665,7 +666,7 @@ time_text = input('Enter the cooking time in seconds: ')
 time_float = float(time_text)
 ```
 
-##### Example: [Ultra-Precise Egg Timer](./Examples/05_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
+##### Example: [Ultra-Precise Egg Timer](./Examples/04_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
 
 *The complete program would then look like*
 
@@ -782,7 +783,7 @@ i
 
 ##### Exercise: Calculating a Pizza Order
 
-*Consider the following [program](./Examples/06_PizzaOrderCalculator/PizzaOrderCalculator.py) which is designed to calculate the number of pizzas needed for a hackathon with* $x$ *number of particpants using the heuristic that* $1$ *pizza can satisfy* $1.5$ *people*
+*Consider the following [program](./Examples/05_PizzaOrderCalculator/PizzaOrderCalculator.py) which is designed to calculate the number of pizzas needed for a hackathon with* $x$ *number of particpants using the heuristic that* $1$ *pizza can satisfy* $1.5$ *people*
 
 
 ```python
