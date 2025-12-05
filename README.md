@@ -16,11 +16,9 @@ This repository is structured as follows,
 2. *Part* - A Folder Collecting Chapters with similar themes
     1. *Chapter* - A Folder collecting a specific Chapter
         1. `Chapter_XX.md` - A markdown file containing notes, and descriptions of examples and exercises. Structured as follows,
-            1. *Examples* - Explanations of examples and links to the code
-            2. *Exercises* - Explanations of exercises and links to the code
-            3. *Notes* - More detailed notes summarising the Chapter contents and contextualising examples and exercises
-            4. *Summary* - End of Chapter summary of key take aways
-            5. *Questions and Answers* - Frequently asked or important discussion questions posed by the book at the end of each Chapter
+            1. *Notes* - More detailed notes summarising the Chapter contents and contextualising examples and exercises
+            2. *Summary* - End of Chapter summary of key take aways
+            3. *Questions and Answers* - Frequently asked or important discussion questions posed by the book at the end of each Chapter
         2. `Examples` - A folder containing any examples from the book
         3. `Exercises` - A folder containing exercise code, often modified from the examples
 
@@ -31,6 +29,8 @@ This repository is structured as follows,
 - [Chapter 2: Python and Programming](./01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.md)
 - [Chapter 3: Python Program Structure](./01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.md)
 - [Chapter 4: Working with Variables](./01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.md)
+- [Chapter 5: Making Decisions](./01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.md)
+- [Chapter 6: Repeating Actions with Loops](./01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.md)
 
 ### Useful Python
 
