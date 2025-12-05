@@ -332,10 +332,287 @@ else:
     #continue on to normal ride selection code...
 ```
 
+### Detect Invalid Number Entry using Exceptions
+
+- **Problem:** We can easily write a loop that checks if a value is invalid but **how** do we deal with the *type* being invalid?
+    - e.g. in the ride selector how do we deal with the user typing in a word rather than a number?
+    - Consider the snippet below, emulating the ride selector given a string input, we get an error, *before* we even get a chance to validate the value
+  ```{python}
+    ride_number_text = "three"
+    ride_number = int(ride_number_text)
+  ```
+
+    - This occurs because `int` requires it's input to be convertable to a number
+        - Unfortunately this does not extend to human-language written versions of a number
+        - In this case `int` *throws* an error, it is better to end the program than continue in an erroneous state
+    - In general, when a program encounters an error state, it should aim to fail fast, rather than continue and generate unexpected outcomes
+
+- *Exceptions* are a mechanism by which elements of a program can inform other parts about errors that have occured
+    - *Exceptions* combine a description of *what* the error that occured was, with *where* the error occured
+    - In the example above e.g. we are told that we got a `ValueError`
+    - i.e. an invalid value was found, we are given the additional detail "invalid literal for int() with base 10: 'three'"
+    - In plain english, the program did not know how to convert 'three' to an integer
+    - We are also told *where*, in this case the second line, in the function `int`
+- To recover from an exception we have to *handle* it, i.e. do something
+    - The first step is to *catch* the exception
+    - We wrap code that might *throw* an exception in a `try... except` block
+
+  ```python
+  # Example 6.3: Catching Exceptions
+  #
+  # Demonstrates how to catch and handle
+  # an exception
+
+    try:
+        ride_number_text = input("Please enter a ride number: ")
+        ride_number = int(ride_number_text) #statement that might raise exception
+        print("You have entered", ride_number)
+    except ValueError: # Start of an exception handler
+        print("Invalid number") # Performed if exception raised
+  ```
+
+- We wrap the code that may throw an exception in a `try`
+- We then use `except` to define statements we want to run if an exception is thrown
+    - If an exception is thrown, control immediately jumps to the `except` block
+    - e.g. In the above example if `int` throws a `ValueError` then the line `print("You have entered", ride_number)` won't run
+        - Instead `print("Invalid number")` runs
+- As observed `except` is followed by the exception type we want to catch (in this case `ValueError`)
+
+```{mermaid}
+block-beta
+    columns 4
+    space
+    title["Breakdown of a Try-Except Block"]:2
+    space
+
+    block:Try:2
+    columns 1
+        try["try"]
+        tryDescr["(start of the try construction)"]
+    end
+
+    block:TryColon
+    columns 1
+        Trycolon[":"]
+        TryColonDescr["colon"]
+    end
+
+    block:TrySuite
+    columns 1
+        Trysuite["Statements"]
+        TrysuiteDescr[("statements to execute normally")]
+    end
 
 
 
-#### Detect Invalid Number Entry using Exceptions
+classDef BG stroke:transparent, fill:transparent
+class title BG
+class try BG
+class tryDescr BG
+class Trycolon BG
+class TryColonDescr BG
+class Trysuite BG
+class TrysuiteDescr BG
+
+    block:ExceptOne
+    columns 1
+        exceptOne["except"]
+        exceptOneDescr["(start of an exception construction)"]
+    end
+
+    block:ExceptNameOne
+    columns 1
+        exceptOneName["Name"]
+        exceptOneNameDescr["(exception name)"]
+    end
+
+    block:ExceptOneColon
+    columns 1
+        exceptOneColon[":"]
+        exceptOneColonDescr["colon"]
+    end
+
+    block:ExceptOneStatements
+    columns 1
+        exceptOneStatements["statements"]
+        exceptOneStatementsDescr[("statements to execute if exception caught")]
+    end
+
+class exceptOne BG
+class exceptOneDescr BG
+class exceptOneName BG
+class exceptOneNameDescr BG
+class exceptOneColon BG
+class exceptOneColonDescr BG
+class exceptOneStatements BG
+class exceptOneStatementsDescr BG
+
+    block:ExceptTwo
+    columns 1
+        exceptTwo["except"]
+        exceptTwoDescr["(start of an exception construction)"]
+    end
+
+    block:ExceptNameTwo
+    columns 1
+        exceptTwoName["Name"]
+        exceptTwoNameDescr["(exception name)"]
+    end
+
+    block:ExceptTwoColon
+    columns 1
+        exceptTwoColon[":"]
+        exceptTwoColonDescr["colon"]
+    end
+
+    block:ExceptTwoStatements
+    columns 1
+        exceptTwoStatements["statements"]
+        exceptTwoStatementsDescr[("statements to execute if exception caught")]
+    end
+
+class exceptTwo BG
+class exceptTwoDescr BG
+class exceptTwoName BG
+class exceptTwoNameDescr BG
+class exceptTwoColon BG
+class exceptTwoColonDescr BG
+class exceptTwoStatements BG
+class exceptTwoStatementsDescr BG
+```
+
+- As demonstrated above a `try...except` block may contain multiple `except` statements designed to handle different exception types
+
+#### Exceptions and Number Reading
+
+- We've seen how to use loops to handle invalid values
+- We've seen how to use exceptions to handle invalid types
+- Now let's put that together to write a loop to handle exceptions
+
+##### Example: Handling Exceptions in Loops
+
+*We want to make a program that will perform a* `while` *construction as long as the user keeps typing in text that cannot be converted into a number. Look at the example code below, (see [HandlingInvalidText.py](./Examples/04_HandlingInvalidText/HandlingInvalidText.py)) and answer the questions*
+
+```python
+# Example 6.4: Handling Invalid Text
+#
+# Combines loops and exception handling to prompt a user
+# for a valid number and repeat until a number is provided
+
+ride_number_valid = False  # create and set a flag to False
+while not ride_number_valid:  # repeats while flag is False
+    try:
+        ride_number_text = input("Please enter the ride number you want: ")
+        ride_number = int(ride_number_text)  # can throw a ValueError
+        ride_number_valid = True  # successfully read a number
+    except ValueError:  # catch the ValueError
+        print("Invalid number. Please enter a number in digits")
+# Once outside the loop we have a valid number
+print("You have selected ride", ride_number)
+```
+
+1. *What is the purpose of the variable,* `ride_number_valid`*?*
+    - It is a *flag*
+    - Tracks the state of a program, in this case a valid number been read
+    - Starts `False` once successfully received an `int` flips to `True`
+2. *How many times would you expect the* `while` *construction to loop when the program is used?*
+    - Ideally we would expect it to run once
+        - i.e. The user enters a number straight away
+    - In the next best case we would expect it run twice
+        - The user experiences an error, reads the message and corrects their input the next time
+3. *Why don't we have to test* `ride_number_valid` *at line* $10$*, to make sure that the ride number is valid?*
+    - The while loop stops when it's condition is `False`
+    - This corresponds to `ride_number_valid = True`
+    - So we know that once we leave the loop `ride_number_valid` **must** be `True`
+
+#### Handling Multiple Exceptions
+
+- Sometimes there a multiple exception types we wish to handle
+- e.g. a `KeyboardInterrupt` allows a user to issue an exception which could stop a program
+    - If the user is interacting with somebody else's external facing program, we might not want them to be able to do this
+- *Simultaneously* we might need to ensure that the user inputs valid data like numbers
+- We can just add an additional `except` block
+    - When an exception is thrown, the appropriate handler takes control
+
+```python
+# Example 6.5: Improved Handling Invalid Text
+#
+# Extends Example 6.4 by preventing the user from issuing a
+# keyboard interrupt to stop the program
+
+ride_number_valid = False  # create and set a flag to False
+while not ride_number_valid:  # repeats while flag is False
+    try:
+        ride_number_text = input("Please enter the ride number you want: ")
+        ride_number = int(ride_number_text)  # can throw a ValueError
+        ride_number_valid = True  # successfully read a number
+    except ValueError:  # catch the ValueError
+        print("Invalid number. Please enter a number in digits")
+    except KeyboardInterrupt:  # catches the interrupt
+        print("You do not have permission to interupt this program")
+# Once outside the loop we have a valid number
+print("You have selected ride", ride_number)  # type: ignore
+```
+
+:::{.callout-important}
+**Plan for Failure**
+
+When writing a program you should always be thinking about how it could fail and the appropriate response. Any point that asks for user input is a major potential point of failure and should be handled correctly.
+
+You should never catch exceptions to hide errors. You *could* all statements in a `try...except` block, but then you can't identify any errors that occur.
+:::
+
+### Break out of Loops
+
+- `break` statements allow you to exit a loop from inside
+- As soon as a `break` is encountered control immediately jumps to the next statement after the loop
+
+```python
+# Example 6.6 Using Break to Exit Loops
+#
+# Demonstrates using a break statement to exit
+# a while loop from inside the loop
+
+while True:  # use break rather than a condition to exit
+    try:
+        ride_number_text = input("Please enter the ride number you want: ")
+        ride_number = int(ride_number_text)
+        break
+    except ValueError:
+        print("Invalid number text. Please enter digits")
+    except KeyboardInterrupt:
+        print("You do not have permission to interupt this program")
+# Once outside the loop we have a valid number
+print("You have selected ride", ride_number)  # type: ignore
+```
+
+- The above follows the previous example, but uses `break` rather than a flag to control the loop
+- `break` statements can be paired with conditionals like `if`
+
+```{python}
+# Example 6.7 Loop with condition ending early
+#
+# Demonstrates the pairing of break and conditional
+# statements to end a program early
+
+count = 0
+while count < 5:
+    print("Inside Loop")
+    count = count + 1
+    if count == 3:
+        break
+print("Outside loop")
+```
+
+
+:::{.callout-tip}
+**Don't use too many** `break` **statements**
+
+A loop can theoretically only use many `break` statements to control flow. However `break` statements make it harder to reason about the flow of a loop. Sometimes they are the cleanest way to do something, but often they just make the code less readable.
+
+In general prefer to use conditions to control loops, they are easier to reason about the state at the end of the loop
+:::
+
 
 ## Summary
 
