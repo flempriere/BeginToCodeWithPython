@@ -241,7 +241,8 @@ enters a number we first check if it corresponds to a ride number and if
 not, we set the program to quit on the next loop iteration by setting
 `run_program` to `False`. We now change the original
 `if ride_number == 1` to and `elif` so it is only checked if we know the
-ride_number is valid
+ride_number is valid. (The full code is in
+[LoopingRideSelector.py](./Exercises/01_LoopingRideSelector/LoopingRideSelector.py))
 
 #### Exercise: Create a Looping Countdown Program
 
@@ -276,9 +277,10 @@ while time_left >= 0:
     1
     0
 
-This is a straightforward exercise, we set up our counter value to $10$
-and use the appropriate loop expression (here `time_left >= 0`) to
-ensure that $0$ is included in the countdown.
+This is a straightforward exercise (see
+[Countdown.py](./Exercises/02_Countdown/Countdown.py)), we set up our
+counter value to $10$ and use the appropriate loop expression (here
+`time_left >= 0`) to ensure that $0$ is included in the countdown.
 
 In the loop we print the current value of `time_left`, then *decrement*
 time_left by $1$, and sleep for the required time. Observe that after
@@ -379,6 +381,9 @@ while run_program:
         run_program = False
 ```
 
+The complete code is given in
+[RideNumberValidation.py](./Exercises/03_RideNumberValidation/RideNumberValidation.py)
+
 ###### Example: When good loops go bad
 
 *When creating composite conditions for loops, making sure the logic is
@@ -460,6 +465,9 @@ else:
     #continue on to normal ride selection code...
 ```
 
+The full code is given in
+[AgeValidation.py](./Exercises/04_AgeValidation/AgeValidation.py)
+
 ### Detect Invalid Number Entry using Exceptions
 
 - **Problem:** We can easily write a loop that checks if a value is
@@ -478,7 +486,7 @@ else:
       ValueError: invalid literal for int() with base 10: 'three'
       ---------------------------------------------------------------------------
       ValueError                                Traceback (most recent call last)
-      Cell In[40], line 2
+      Cell In[27], line 2
             1 ride_number_text = "three"
       ----> 2 ride_number = int(ride_number_text)
 
@@ -532,6 +540,8 @@ else:
     - Instead `print("Invalid number")` runs
 - As observed `except` is followed by the exception type we want to
   catch (in this case `ValueError`)
+- The full example is given in
+  [CatchingExceptions](./Examples/03_CatchingExceptions/CatchingExceptions.py)
 
 ``` mermaid
 block-beta
@@ -701,6 +711,8 @@ print("You have selected ride", ride_number)
   data like numbers
 - We can just add an additional `except` block
   - When an exception is thrown, the appropriate handler takes control
+- The improved exception handling code is given in
+  [HandlingInvalidTextMultipleExceptions](./Examples/05_HandlingInvalidTextMultipleExceptions/HandlingInvalidTextMultipleExceptions.py)
 
 ``` python
 # Example 6.5: Improved Handling Invalid Text
@@ -740,6 +752,8 @@ print("You have selected ride", ride_number)  # type: ignore
 - `break` statements allow you to exit a loop from inside
 - As soon as a `break` is encountered control immediately jumps to the
   next statement after the loop
+- The example code is given in
+  [UsingBreakToExitLoops.py](./Examples/06_UsingBreakToExitLoops/UsingBreakToExitLoops.py)
 
 ``` python
 # Example 6.6 Using Break to Exit Loops
@@ -762,7 +776,9 @@ print("You have selected ride", ride_number)  # type: ignore
 
 - The above follows the previous example, but uses `break` rather than a
   flag to control the loop
-- `break` statements can be paired with conditionals like `if`
+- `break` statements can be paired with conditionals like `if`, as
+  demonstrated in
+  [EarlyExitLoop.py](./Examples/07_EarlyExitLoop/EarlyExitLoop.py)
 
 ``` python
 # Example 6.7 Loop with condition ending early
