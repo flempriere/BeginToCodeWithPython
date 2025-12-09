@@ -22,7 +22,20 @@
       - [Example: Handling Exceptions in
         Loops](#example-handling-exceptions-in-loops)
     - [Handling Multiple Exceptions](#handling-multiple-exceptions)
-  - [Break out of Loops](#break-out-of-loops)
+  - [`break` out of Loops](#break-out-of-loops)
+  - [Return to the top of a loop with
+    `continue`](#return-to-the-top-of-a-loop-with-continue)
+  - [Count a Repeating Loop](#count-a-repeating-loop)
+    - [Example: CounterIntelligence](#example-counterintelligence)
+    - [Exercise: Allow the User to Select the Times
+      Value](#exercise-allow-the-user-to-select-the-times-value)
+  - [The `for` Loop Construction](#the-for-loop-construction)
+    - [Example: Loops, `break` and
+      `continue`](#example-loops-break-and-continue)
+    - [Exercise: Make a Times Table
+      Quiz](#exercise-make-a-times-table-quiz)
+  - [Make a Digital Clock using
+    Snaps](#make-a-digital-clock-using-snaps)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -486,7 +499,7 @@ The full code is given in
       ValueError: invalid literal for int() with base 10: 'three'
       ---------------------------------------------------------------------------
       ValueError                                Traceback (most recent call last)
-      Cell In[27], line 2
+      Cell In[21], line 2
             1 ride_number_text = "three"
       ----> 2 ride_number = int(ride_number_text)
 
@@ -747,7 +760,7 @@ print("You have selected ride", ride_number)  # type: ignore
 > statements in a `try...except` block, but then you can’t identify any
 > errors that occur.
 
-### Break out of Loops
+### `break` out of Loops
 
 - `break` statements allow you to exit a loop from inside
 - As soon as a `break` is encountered control immediately jumps to the
@@ -811,6 +824,446 @@ print("Outside loop")
 >
 > In general prefer to use conditions to control loops, they are easier
 > to reason about the state at the end of the loop
+
+### Return to the top of a loop with `continue`
+
+- `continue` causes control to immediately jump to the start of the next
+  loop iteration
+- For example consider the Ride Selector example. If a ride is
+  temporarily down we might push a patch to skip any selection of the
+  ride, e.g. [IgnoreRide.py](./Examples/08_IgnoreRide/IgnoreRide.py)
+  given below
+
+``` python
+while True:
+    ride_number_text = input("Please enter the ride number you want: ")
+    ride_number = int(ride_number_text)
+    if ride_number == 3:
+        print("sorry, this ride is unavailable")
+        continue
+    print("you have selected ride number: ", ride_number)
+```
+
+> [!NOTE]
+>
+> **You wont use** `continue` **as often as you use** `break`
+>
+> `break` can be useful in quite a few use cases. `continue` tends to be
+> much more niche and isn’t used often
+
+### Count a Repeating Loop
+
+- You can use a variable to make a loop repeat a specified number of
+  times, e.g. in the below [Times Tables
+  Program](./Examples/09_TimesTablesTutor/TimesTablesTutor.py)
+
+``` python
+# Example 6.9 Times Tables Tutor
+#
+# Uses Times Tables to demonstrate use of a counter
+# variable to control a loop
+
+count = 1
+times_value = 2
+while count < 13:
+    result = count * times_value
+    print(count, "times", times_value, "equals", result)
+    count = count + 1
+```
+
+    1 times 2 equals 2
+    2 times 2 equals 4
+    3 times 2 equals 6
+    4 times 2 equals 8
+    5 times 2 equals 10
+    6 times 2 equals 12
+    7 times 2 equals 14
+    8 times 2 equals 16
+    9 times 2 equals 18
+    10 times 2 equals 20
+    11 times 2 equals 22
+    12 times 2 equals 24
+
+- The combination of `while count < 13` and `count = count + 1` means
+  that after $12$ loop iterations the loop condition evaluates `False`
+  and the loop ends
+
+#### Example: CounterIntelligence
+
+- *Consider the previous [example](#count-a-repeating-loop) and answer
+  the following questions*
+
+1. *What statement would you change if you wanted to generate the times
+    table for three instead of two?*
+    - *We would change* `times_value`
+2. *Which statement would you change if you wanted to generate up to
+    the* $24$ *times table?*
+    - We would change the loop condition to `count < 25`
+3. *What would happen to the program if we changed the line*
+    `count = count + 1` *to* `count = count - 1`
+    - *The loop would produce negative times tables, and never stop
+      since* `count` *will be decreased every iteration and thus is
+      always less than* $13$
+
+#### Exercise: Allow the User to Select the Times Value
+
+*Write a version of the [previous example](#count-a-repeating-loop) that
+asks the user for the value of the times table they want. Add validation
+so that the user must enter a number between* $2$ *and* $12$ *inclusive*
+
+- Our solution (given in
+  [UserSelectedTimesTableTutor.py](./Exercises/05_UserSelectedTimesTableTutor.py/UserSelectedTimesTableTutor.py))
+  prompts the user to enter a number between $2$ - $12$ inclusive, and
+  then validates that the input is in the range. A `try`, `except` block
+  is used to catch any invalid input type, and the whole thing is
+  wrapped in a `while True` block that only ends once a valid integer in
+  the range $2$ - $12$ is received through the use of a `break`
+  statement.
+- The actual times tables code is then identical
+
+``` python
+# Exercise 6.5 User SelectedTimes Tables Tutor
+#
+# Version of the times table tutor that allows the user to select the
+# times table in the range 2 - 12 they are interested in
+
+count = 1
+while True:
+    try:
+        times_value_text = input(
+            "Please enter a times table between 2-12 (inclusive): "
+        )
+        times_value = int(times_value_text)
+        if times_value < 2 or times_value > 12:
+            print("Sorry, that is not between 2-12 (inclusive)")
+        else:
+            break
+    except ValueError:
+        print("Please enter an integer")
+
+while count < 13:
+    result = count * times_value
+    print(count, "times", times_value, "equals", result)
+    count = count + 1
+```
+
+### The `for` Loop Construction
+
+- `For` loops operate similar to `while` loops, but are designed for
+  when the number of iterations are known
+
+``` mermaid
+block-beta
+    columns 6
+    space
+    space
+    title["Breakdown of a For"]:2
+    space
+    space
+
+    block:Input
+    columns 1
+        while["for"]
+        whileDescr["(start of the for construction)"]
+    end
+
+    block:MiddleOne
+    columns 1
+        condition["variable"]
+        conditionName["function name"]
+        conditionDescr["(variable controlled in the for)"]
+    end
+
+    block:In
+    columns 1
+        in["in"]
+    end
+
+    block:Items
+    columns 1
+        items["items"]
+        itemsDescr["(items to work through)"]
+    end
+
+    block:MiddleTwo
+    columns 1
+        colon[":"]
+        colonDescr["Colon"]
+    end
+
+    block:Suite
+    columns 1
+        suite["Statement block"]
+        suiteDescr["(statements)"]
+    end
+
+classDef BG stroke:transparent, fill:transparent
+class title BG
+class condition BG
+class conditionName BG
+class conditionDescr BG
+class colon BG
+class colonDescr BG
+class while BG
+class whileDescr BG
+class items BG
+class itemsDescr BG
+class suite BG
+class suiteDescr BG
+class in BG
+```
+
+- `for` loops over a collection of items, acting on each item in turn
+- Each iteration acts on next item in the collection
+- An example of a collection is a tuple, e.g.
+  - `names = ('Rob', 'Mary', 'David', 'Jenny', 'Chris', 'Imogen')`
+  - `names` is a tuple (denoted by the `()` containing the above names)
+  - We’ll discuss Tuples in more detail in Chapter 8
+- We can pair the above tuple with a `for` loop e.g.
+
+``` python
+# Example 6.10 Name Printer
+#
+# Prints a collection of names
+names = ('Rob', 'Mary', 'David', 'Jenny', 'Chris', 'Imogen')
+for name in names:
+    print(name)
+```
+
+    Rob
+    Mary
+    David
+    Jenny
+    Chris
+    Imogen
+
+- `range` is a python function for generating a collection of numbers
+  - syntax is `range(start, stop)` where `start` is included, but `stop`
+    is excluded
+  - e.g. We could rewrite ours times table program as using range (see
+    \[RangeBasedTimeTables.py\])
+
+``` python
+# Example 6.11 Range Based Times Tables
+#
+# Demonstrates Python's range function using a for
+# loop to generate a times table
+
+times_value = 2
+for count in range(1, 13):
+    result = count * times_value
+    print(count, "times", times_value, "equals", result)
+```
+
+    1 times 2 equals 2
+    2 times 2 equals 4
+    3 times 2 equals 6
+    4 times 2 equals 8
+    5 times 2 equals 10
+    6 times 2 equals 12
+    7 times 2 equals 14
+    8 times 2 equals 16
+    9 times 2 equals 18
+    10 times 2 equals 20
+    11 times 2 equals 22
+    12 times 2 equals 24
+
+- `break` and `continue` also work with `for` loops
+  - `continue` causes the loop to proceed to the next item in the
+    collection
+
+#### Example: Loops, `break` and `continue`
+
+*Look at the following simple programs, and answer the corresponding
+questions about* `break` *and* `continue`
+
+1. *What would the following code print?*
+
+    ``` python
+     for count in range(1, 13):
+         if count == 5:
+             break
+         print(count)
+     print('Finished')
+    ```
+
+        1
+        2
+        3
+        4
+        Finished
+
+    - *It would print* `1`, `2`, `3`, `4` *then* `"finished"` *since
+      when* `count` *is* $5$ *the loop breaks* **before** *the print
+      statement and then the print outside the loop is called*
+
+2. *What would the following code print?*
+
+    ``` python
+     for count in range(1, 13):
+         if count == 5:
+             continue
+         print(count)
+     print('Finished')
+    ```
+
+        1
+        2
+        3
+        4
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        Finished
+
+    - *This program is similar to the above, except it would print* `1`
+      *through to* `12` *but skip* `5`*, before printing* `"Finished"`*.
+      This is because the* `continue` *causes the loop iteration for*
+      `count = 5` *to skip the print statement in the loop and go to the
+      next loop iteration*
+
+3. *What would the following code print?*
+
+    ``` python
+     for count in range(1, 13):
+         count = 13
+         print(count)
+     print('Finished')
+    ```
+
+        13
+        13
+        13
+        13
+        13
+        13
+        13
+        13
+        13
+        13
+        13
+        13
+        Finished
+
+    - *This will print* $13$ *twelve times, because each time* `count`
+      *starts a loop iteration it is set to the next value in the*
+      `range(1, 13)`
+      - *Then inside the loop* `count` *is set to* `13` *and that value
+        is printed*
+    - *Of course* `"Finished"` *is printed after the loop is down*
+
+4. *Would the following program run forever?*
+
+    ``` python
+     while True:
+         break
+     print('Finished')
+    ```
+
+        Finished
+
+    - *No, it will immediately end because* `break` *exits the loop*
+
+5. *Would the following program print the message “Looping”?*
+
+    ``` python
+     while True:
+         continue
+         print('Looping')
+    ```
+
+    - *No, the loop will hit the* `continue` *keyword and the go back to
+      the start*
+    - *This happens forever*
+
+6. *What would the following program do? Is it legal?*
+
+    ``` python
+     for letter in 'hello world':
+         print(letter)
+    ```
+
+        h
+        e
+        l
+        l
+        o
+
+        w
+        o
+        r
+        l
+        d
+
+    - *Strings are collections of letters*
+    - *The above program works, it loops over and prints each letter in
+      the string*
+
+#### Exercise: Make a Times Table Quiz
+
+*Reverse the behaviour of the times-table program so that rather than
+printing out the times-table your program insteads asks questions like,*
+“What is $6$ times $4$?” *The user could enter their answer, and the
+program could compare it with the correct answer and keep score of how
+many correct answers are given. You could use a loop to make the program
+produce* $12$ *“times-table” questions, and you could use random numbers
+so that the quiz is different every time*
+
+Our solution given in
+[TimesTableQuiz.py](./Exercises/06_TimesTableQuiz/TimesTableQuiz.py) is
+relatively complete. We use first print a header message, then we set up
+a variable to track the number of correct answers total and a second
+variable to track the number of questions to ask. We then go into our
+`for` loop, looping over `range(0, NumberOfQuestions)`, this makes the
+loop run `NumberOfQuestions` times.
+
+The actual quiz then proceeds, we randomly generate the two numbers, the
+`times_value` from the range `[2, 12]` and the `count` from the range
+`[1, 12]`. We then calculate the correct answer, and prompt the user for
+an answer, using the standard `ValueError` exception handling. If the
+user’s answer is correct we congratulate them and increment the score,
+else we tell them what the correct answer is. After they’ve answered all
+the questions we give them the final score
+
+``` python
+# Exercise 6.6: Times Table Quiz
+#
+# Generates a times table quiz
+
+import random
+
+print("===Times table Quiz===")
+score = 0
+NumberOfQuestions = 12
+
+for question in range(0, NumberOfQuestions):
+    times_value = random.randint(2, 12)
+    count = random.randint(1, 12)
+    correct_answer = times_value * count
+    while True:
+        try:
+            answer_text = input(
+                "What is " + str(count) + " x " + str(times_value) + ": "
+            )
+            answer = int(answer_text)
+            break
+        except ValueError:
+            print("Please enter an integer")
+    if answer == correct_answer:
+        score = score + 1
+        print("Corect!")
+    else:
+        print("Sorry that's wrong!")
+        print("The correct answer is", correct_answer, "you gave", answer)
+
+print("You got", score, "/", NumberOfQuestions, "correct")
+```
+
+### Make a Digital Clock using Snaps
 
 ## Summary
 
