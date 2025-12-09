@@ -500,7 +500,7 @@ The full code is given in
       ValueError: invalid literal for int() with base 10: 'three'
       ---------------------------------------------------------------------------
       ValueError                                Traceback (most recent call last)
-      Cell In[6], line 2
+      Cell In[21], line 2
             1 ride_number_text = "three"
       ----> 2 ride_number = int(ride_number_text)
 

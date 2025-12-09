@@ -22,6 +22,7 @@ I started this repository to work through an easy and basic book before working 
 - [Chapter 4: Working with Variables](./01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.qmd)
 - [Chapter 5: Making Decisions](./01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.qmd)
 - [Chapter 6: Repeating Actions with Loops](./01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.qmd)
+- [Chapter 7: Using Functions to Simplify Programs](./01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.qmd)
 
 ### Useful Python
 

@@ -31,6 +31,7 @@ This repository is structured as follows,
 - [Chapter 4: Working with Variables](./01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.md)
 - [Chapter 5: Making Decisions](./01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.md)
 - [Chapter 6: Repeating Actions with Loops](./01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.md)
+- [Chapter 7: Using Functions to Simplify Programs](./01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.md)
 
 ### Useful Python
 
