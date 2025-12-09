@@ -21,6 +21,7 @@ I started this repository to work through an easy and basic book before working 
 - [Chapter 3: Python Program Structure](./01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.qmd)
 - [Chapter 4: Working with Variables](./01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.qmd)
 - [Chapter 5: Making Decisions](./01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.qmd)
+- [Chapter 6: Repeating Actions with Loops](./01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.qmd)
 
 ### Useful Python
 
