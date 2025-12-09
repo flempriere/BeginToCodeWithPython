@@ -340,7 +340,7 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 8 seconds.
+    Stay standing for 6 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 - *Most of the code is just text, but the key takeaway is the line
@@ -1274,7 +1274,7 @@ print("The temperature in Seattle is:", temp)
 
     pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
     Hello from the pygame community. https://www.pygame.org/contribute.html
-    The temperature in Seattle is: 32
+    The temperature in Seattle is: 49
 
     /home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
       from pkg_resources import resource_stream, resource_exists
@@ -1294,7 +1294,7 @@ desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
 print("The conditions are:", desc)
 ```
 
-    The conditions are: Mist
+    The conditions are: Mostly Cloudy
 
 #### Exercise: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
 
