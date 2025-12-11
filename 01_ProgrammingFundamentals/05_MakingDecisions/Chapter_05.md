@@ -288,7 +288,7 @@ print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
     The date is 11 / 12 / 2025
-    The time is 11 : 11 : 4
+    The time is 11 : 14 : 41
 
 #### Comparing Values
 
@@ -688,7 +688,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 11 : 11
+    The time is 11 : 14
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*
@@ -1596,9 +1596,9 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    You will meet a tall, dark stranger
-    I see a future lived on the streets...
-    Sometimes the answers to our future, come from the past
+    Nobody unexpected will enter your life
+    You would do well to husband your wealth
+    To define your future, avoid getting hung up on the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise
