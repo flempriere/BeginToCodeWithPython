@@ -236,6 +236,12 @@ window.Quarto = {
  <span class="menu-text">Chapter 6: Repeating Actions with Loops</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Using Functions to Simplify Programs</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -391,7 +397,7 @@ Caution
 <p><em>Open up the python interpreter and work through the following questions to understand booleans</em></p>
 <ol type="1">
 <li><p>*What do you think would happen if you printed the contents of a boolean value?</p>
-<div id="e54543b9" class="cell" data-execution_count="1">
+<div id="4a09208f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(it_is_time_to_get_up)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -411,7 +417,7 @@ Caution
 <ul>
 <li><em>Yes there is, consistent behaviour with bool. Consider the following examples</em></li>
 </ul>
-<div id="80a357aa" class="cell" data-execution_count="2">
+<div id="15e90191" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">1</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">0</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="fl">0.0</span>))</span>
@@ -434,7 +440,7 @@ True</code></pre>
 <ul>
 <li><em>We should already expect that if we try to mix incompatible data that an error should be generated</em></li>
 </ul>
-<div id="84621212" class="cell" data-execution_count="3">
+<div id="99218f46" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'Hello'</span> <span class="op">+</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -451,7 +457,7 @@ True</code></pre>
 <li><em>We can see that we cannot concatenate a boolean value to a string</em></li>
 <li><em>The behaviour can be a little less intuitive with numbers though</em>,</li>
 </ul>
-<div id="5e53d7e9" class="cell" data-execution_count="4">
+<div id="6374eff2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>2</code></pre>
@@ -460,7 +466,7 @@ True</code></pre>
 <ul>
 <li><code>True</code> <em>is implicitly converted to the integer value</em> <span class="math inline">\(1\)</span></li>
 </ul>
-<div id="222a3594" class="cell" data-execution_count="5">
+<div id="36101e26" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>1</code></pre>
@@ -587,7 +593,7 @@ True</code></pre>
 <section id="example-one-handed-clock" class="level5">
 <h5 class="anchored" data-anchor-id="example-one-handed-clock">Example: One-Handed Clock</h5>
 <p><em>Lets make a clock that displays only the hour value, using <code>localtime</code>. These</em> <strong>one-handed clocks</strong> <em>are supposed promote a more relaxed attitude. Create a new program (<a href="./Examples/01_OneHandedClock/OneHandedClock.py">OneHandedClock.py</a>) and copy the below text.</em></p>
-<div id="db29e087" class="cell" data-execution_count="6">
+<div id="fd9fc1a9" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.1: One Handed Clock</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses time to display the hour</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -598,7 +604,7 @@ True</code></pre>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The hour is:"</span>, hour)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The hour is: 12</code></pre>
+<pre><code>The hour is: 10</code></pre>
 </div>
 </div>
 <p><em>Run the program, it should print out the current hour</em></p>
@@ -607,7 +613,7 @@ True</code></pre>
 <h5 class="anchored" data-anchor-id="exercise-improved-clock">Exercise: Improved Clock</h5>
 <p><em>Improve the previous <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html#example-one-handed-clock">example</a> to produce a more fully featured clock that reports the time, and date when run</em></p>
 <p>We can use the table above to grab the correct attributes. We then simply need to format the attribute as nessecary. The final <a href="./Exercises/01_ImprovedClock/ImprovedClock.py">program</a> is given below</p>
-<div id="3984e7f4" class="cell" data-execution_count="7">
+<div id="7e931edf" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.1: Improved Clock</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># An improved clock that displays the date and time when run</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,8 +631,8 @@ True</code></pre>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> current_datetime.tm_hour</span>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The time is"</span>, hours, <span class="st">":"</span>, minutes, <span class="st">":"</span>, seconds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The date is 9 / 12 / 2025
-The time is 12 : 5 : 55</code></pre>
+<pre><code>The date is 11 / 12 / 2025
+The time is 10 : 35 : 53</code></pre>
 </div>
 </div>
 </section>
@@ -749,7 +755,7 @@ class operatorDescr BG
 <ul>
 <li><em>The equality operator evaluates to</em> <code>True</code> <em>if the two operands hold the same value</em></li>
 </ul>
-<div id="af3acc8c" class="cell" data-execution_count="8">
+<div id="e2543402" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>True</code></pre>
@@ -758,13 +764,13 @@ class operatorDescr BG
 <ul>
 <li><em>The equality operator can be used to compare strings and bools</em></li>
 </ul>
-<div id="1ef2dfea" class="cell" data-execution_count="9">
+<div id="5fe85db9" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'Rob'</span> <span class="op">==</span> <span class="st">'Rob'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="c4b432b0" class="cell" data-execution_count="10">
+<div id="da9e46a5" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a> <span class="va">True</span> <span class="op">==</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>True</code></pre>
@@ -777,7 +783,7 @@ class operatorDescr BG
 <li><em>Can we apply relational operators between other types of expressions?</em>
 <ul>
 <li><p><em>Yes. For example, the</em> <span class="math inline">\(&gt;\)</span> <em>and</em> <span class="math inline">\(&lt;\)</span> <em>operators when used to compare strings will use an alphabetic ordering</em>, e.g.</p>
-<div id="44f35f1d" class="cell" data-execution_count="11">
+<div id="ad89f768" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Alice'</span> <span class="op">&lt;</span> <span class="st">'Brian'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>True</code></pre>
@@ -796,7 +802,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>In <a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html#real-numbers-and-floating-point">Chapter 4</a> we noted that floating points only approximate a specific real-value. These approximations can cause issues when using comparison operators, e.g.</p>
-<div id="aa46f645" class="cell" data-execution_count="12">
+<div id="65a53ec5" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">==</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -828,7 +834,7 @@ Warning
 <p><em>Use the python interpreter to answer the following questions and investigate boolean operators</em></p>
 <ol type="1">
 <li><p><em>What does the following expression evaluate too?</em></p>
-<div id="ada1acdc" class="cell" data-execution_count="13">
+<div id="17f173ec" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>False</code></pre>
@@ -838,7 +844,7 @@ Warning
 <li><code>not</code> <em>inverts the value of a boolean, so</em> <code>True</code> <em>is converted to</em> <code>False</code></li>
 </ul></li>
 <li><p><em>How about this expression?</em></p>
-<div id="6eb2678b" class="cell" data-execution_count="14">
+<div id="4dd541e1" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>True</code></pre>
@@ -848,7 +854,7 @@ Warning
 <li><code>and</code> <em>is</em> <code>True</code> <em>iff both arguments are</em> <code>True</code> <em>as is the case above, so the result is</em> <code>True</code></li>
 </ul></li>
 <li><p><em>How about this expression?</em></p>
-<div id="811f5936" class="cell" data-execution_count="15">
+<div id="9d3696e5" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>False</code></pre>
@@ -858,7 +864,7 @@ Warning
 <li><em>Since one of the arguments is</em> <code>False</code> <code>and</code> <em>will evaluate to</em> <code>False</code></li>
 </ul></li>
 <li><p><em>How about this expression?</em></p>
-<div id="d7b02b5d" class="cell" data-execution_count="16">
+<div id="7a6244ee" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">or</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>True</code></pre>
@@ -868,7 +874,7 @@ Warning
 <li><em>Since one of the arguments is <code>True</code> <code>or</code> </em>will evaluate to* <code>True</code></li>
 </ul></li>
 <li><p><em>So far, the examples have only used boolean values. What happens if we mix boolean and numeric values?</em></p>
-<div id="047e7131" class="cell" data-execution_count="17">
+<div id="416236ab" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>1</code></pre>
@@ -882,7 +888,7 @@ Warning
 <li><em>So simply returns the second argument, since the</em> <strong>truthfulness</strong> <em>of</em> <span class="math inline">\(1\)</span><em>, is equivalent to the original expression</em></li>
 </ul></li>
 <li><p><em>If we flip the arguments, we should see this more clearly</em></p>
-<div id="98b14c97" class="cell" data-execution_count="18">
+<div id="4b029d22" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">and</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>True</code></pre>
@@ -892,7 +898,7 @@ Warning
 <li><em>This time the above expressions should return</em> <code>True</code></li>
 </ul></li>
 <li><p><em>The same behaviour will also occur with</em> <code>or</code></p>
-<div id="4cd6ffd5" class="cell" data-execution_count="19">
+<div id="696412ac" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">or</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>1</code></pre>
@@ -901,7 +907,7 @@ Warning
 <ul>
 <li><em>Here the</em> <code>or</code> <em>operator short-circuits on</em> <span class="math inline">\(1\)</span>, <em>so returns</em> <span class="math inline">\(1\)</span></li>
 </ul>
-<div id="ad66452d" class="cell" data-execution_count="20">
+<div id="20a6c1e8" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="kw">or</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>True</code></pre>
@@ -997,7 +1003,7 @@ Warning
 <ul>
 <li><em>Create a new python program (<a href="./Examples/02_SimpleAlarmClock/SimpleAlarmClock.py">SimpleAlarmClock.py</a>) with the following contents</em></li>
 </ul>
-<div id="afc0f992" class="cell" data-execution_count="21">
+<div id="52b9edde" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.2: Simple Alarm Clock</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrates `if` using a simple alarm clock</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1029,7 +1035,7 @@ Warning
 <li>If the condition evluates <code>False</code> the indented branch is skipped</li>
 <li>We could simply the above code by including the check directly in the <code>if</code> rather than an intermediate variable</li>
 </ul>
-<div id="caf6c059" class="cell" data-execution_count="22">
+<div id="f17af9e7" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minutes <span class="op">&gt;</span> <span class="dv">29</span>):</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1074,7 +1080,7 @@ Warning
 <section id="example-time-display-alarm-clock" class="level5">
 <h5 class="anchored" data-anchor-id="example-time-display-alarm-clock">Example: Time Display Alarm Clock</h5>
 <p><em>Add to the simple Alarm Clock, by making it so the program will always print the current time regardless of if the alarm goes off. Create a new program (<a href="./Examples/04_AlarmClockWithTimeDisplay/AlarmClockWithTimeDisplay.py">AlarmClockWithTimeDisplay.py</a>). Enter the following contents,</em></p>
-<div id="154217b8" class="cell" data-execution_count="23">
+<div id="337066c5" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.4: Alarm Clock with Time Display</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A variant of Alarm Clock to also always display the time</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1093,7 +1099,7 @@ Warning
 <pre><code>TIME TO GET UP
 RISE AND SHINE
 THE EARLY BIRD GETS THE WORM
-The time is 12 : 5</code></pre>
+The time is 10 : 35</code></pre>
 </div>
 </div>
 <ul>
@@ -1115,7 +1121,7 @@ Caution
 <li><p>If the indention is wrong the program won’t run</p>
 <ul>
 <li><p>i.e.&nbsp;if one line is indented four spaces, and the next three an error will be thrown</p>
-<div id="15979ec9" class="cell" data-execution_count="24">
+<div id="c8a779b8" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
@@ -1136,7 +1142,7 @@ Caution
 </div></li>
 </ul></li>
 <li><p>A more insidious error, occurs if one mixes tabs and spaces in the indentation, since the code may appear to be fine until it attempts to run</p>
-<div id="363d4b97" class="cell" data-execution_count="25">
+<div id="3a04d7a3" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> time</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a> current_time <span class="op">=</span> time.localtime()</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a> hour <span class="op">=</span> current_time.tm_hour</span>
@@ -1236,7 +1242,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>You can’t combine inline <code>if</code> statements, with indented <code>if</code> statements, e.g.</p>
-<div id="b97f34cc" class="cell" data-execution_count="26">
+<div id="c00b100f" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> time</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    current_time <span class="op">=</span> time.localtime()</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    hour <span class="op">=</span> current_time.tm_hour</span>
@@ -1273,7 +1279,7 @@ Warning
 </ul></li>
 <li><p><em>Once done writing the</em> <code>if</code> <em>suite, simply deindent</em></p></li>
 <li><p><em>Try write the following in the shell, and verify the output</em></p>
-<div id="269a8778" class="cell" data-execution_count="27">
+<div id="ccaf259f" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">True</span>:</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">'True'</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">'Still True'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1302,7 +1308,7 @@ Still True</code></pre>
 <section id="example-simple-alarm-clock-with-else" class="level5">
 <h5 class="anchored" data-anchor-id="example-simple-alarm-clock-with-else">Example: Simple Alarm Clock with Else</h5>
 <p><em>Modify the <a href="#example-simple-alarm-clock">Simple Alarm Clock</a> to now print a message telling us to go back to bed if it before our alarm should go off. Write a new program (<a href="./Examples/05_SimpleAlarmClockWithElse/SimpleAlarmClockWithElse.py">SimpleAlarmClockWithElse.py</a>) with the following contents,</em></p>
-<div id="922df4ee" class="cell" data-execution_count="28">
+<div id="b61ed674" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.5: Simple Alarm Clock</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Variant of the Simple Alarm Clock</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that modifies the output depending on if its time to get up</span></span>
@@ -1383,7 +1389,7 @@ Still True</code></pre>
 <li><em>Why do we have to write <code>lower()</code> and not <code>lower</code>?</em>
 <ul>
 <li><p><em>Leave the parentheses off, and see what happens</em></p>
-<div id="255679c2" class="cell" data-execution_count="29">
+<div id="4100d2ec" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  name <span class="op">=</span> <span class="st">'Rob'</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  name.upper</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -1424,6 +1430,23 @@ Still True</code></pre>
 <ul>
 <li><em>Play around with the above code to see what happens for various input combinations. You should see if the first input is not a variant of <code>"rob"</code> the second prompt never occurs and the program ends. Adjust the above by writing a new program (<a href="./Examples/09_CodedGreeterWithOuterElse/CodedGreeterWithOuterElse.py">CodedGreeterWithOuterElse.py</a>)</em></li>
 </ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.9: Coded Greeter with Outer Else</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Asks the user for a follow on code to confirm their ID</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># before the program greets them</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Has an additional outer else clause for the case that the nested</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if does not run</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter your name: "</span>)</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> name.upper() <span class="op">==</span> <span class="st">"ROB"</span>:</span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter the codeword: "</span>)</span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> code <span class="op">==</span> <span class="st">"secret"</span>:</span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Hello, Oh great one"</span>)</span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Begone. Imposter"</span>)</span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You are not Rob. Shame."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>The above code uses a second</em> <code>else</code> <em>clause, attached to the</em> <strong>first</strong> <em>outer,</em> <code>if</code> <em>condition. This means that it will run whenever the original name is not some variant of <code>"ROB"</code></em></p>
 </section>
 </section>
 <section id="working-with-logic" class="level4">
@@ -1432,35 +1455,35 @@ Still True</code></pre>
 <h5 class="anchored" data-anchor-id="exercise-make-an-advanced-alarm-clock">Exercise: Make an Advanced Alarm Clock</h5>
 <p><em>Improve the <a href="#example-time-display-alarm-clock">Alarm Clock</a>. Make the alarm display the date as well as the time, and let the user sleep in on the weekends.</em></p>
 <p>Our implementation is given below,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 4.2: Advanced Alarm Clock</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># An Advanced Alarm Combining the Behaviour</span></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of most increments of the alarm clock</span></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># and allowing you to sleep in on weekends</span></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
-<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>minute <span class="op">=</span> current_time.tm_min</span>
-<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>day <span class="op">=</span> current_time.tm_mday</span>
-<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> current_time.tm_mon</span>
-<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>is_weekend <span class="op">=</span> current_time.tm_wday <span class="op">&gt;=</span> <span class="dv">5</span></span>
-<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>date_message <span class="op">=</span> <span class="st">"The date is "</span> <span class="op">+</span> <span class="bu">str</span>(day) <span class="op">+</span> <span class="st">"/"</span> <span class="op">+</span> <span class="bu">str</span>(month)</span>
-<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a>time_message <span class="op">=</span> <span class="st">"The time is "</span> <span class="op">+</span> <span class="bu">str</span>(hour) <span class="op">+</span> <span class="st">":"</span> <span class="op">+</span> <span class="bu">str</span>(minute)</span>
-<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a>up_hour <span class="op">=</span> <span class="dv">7</span> <span class="op">+</span> is_weekend  <span class="co"># get to sleep in an extra hour on weekends</span></span>
-<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> up_hour) <span class="kw">or</span> (hour <span class="op">==</span> up_hour <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
-<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"TIME TO GET UP"</span></span>
-<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a>    snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
-<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb69-26"><a href="#cb69-26" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"Go back to bed!"</span></span>
-<span id="cb69-27"><a href="#cb69-27" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> date_message <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> time_message</span>
-<span id="cb69-28"><a href="#cb69-28" aria-hidden="true" tabindex="-1"></a>snaps.display_message(msg, size<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb69-29"><a href="#cb69-29" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">10</span>)  <span class="co"># leave time for the sound and to read</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 4.2: Advanced Alarm Clock</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co"># An Advanced Alarm Combining the Behaviour</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of most increments of the alarm clock</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co"># and allowing you to sleep in on weekends</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>minute <span class="op">=</span> current_time.tm_min</span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>day <span class="op">=</span> current_time.tm_mday</span>
+<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> current_time.tm_mon</span>
+<span id="cb70-14"><a href="#cb70-14" aria-hidden="true" tabindex="-1"></a>is_weekend <span class="op">=</span> current_time.tm_wday <span class="op">&gt;=</span> <span class="dv">5</span></span>
+<span id="cb70-15"><a href="#cb70-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-16"><a href="#cb70-16" aria-hidden="true" tabindex="-1"></a>date_message <span class="op">=</span> <span class="st">"The date is "</span> <span class="op">+</span> <span class="bu">str</span>(day) <span class="op">+</span> <span class="st">"/"</span> <span class="op">+</span> <span class="bu">str</span>(month)</span>
+<span id="cb70-17"><a href="#cb70-17" aria-hidden="true" tabindex="-1"></a>time_message <span class="op">=</span> <span class="st">"The time is "</span> <span class="op">+</span> <span class="bu">str</span>(hour) <span class="op">+</span> <span class="st">":"</span> <span class="op">+</span> <span class="bu">str</span>(minute)</span>
+<span id="cb70-18"><a href="#cb70-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-19"><a href="#cb70-19" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb70-20"><a href="#cb70-20" aria-hidden="true" tabindex="-1"></a>up_hour <span class="op">=</span> <span class="dv">7</span> <span class="op">+</span> is_weekend  <span class="co"># get to sleep in an extra hour on weekends</span></span>
+<span id="cb70-21"><a href="#cb70-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-22"><a href="#cb70-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> up_hour) <span class="kw">or</span> (hour <span class="op">==</span> up_hour <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb70-23"><a href="#cb70-23" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"TIME TO GET UP"</span></span>
+<span id="cb70-24"><a href="#cb70-24" aria-hidden="true" tabindex="-1"></a>    snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb70-25"><a href="#cb70-25" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb70-26"><a href="#cb70-26" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"Go back to bed!"</span></span>
+<span id="cb70-27"><a href="#cb70-27" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> date_message <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> time_message</span>
+<span id="cb70-28"><a href="#cb70-28" aria-hidden="true" tabindex="-1"></a>snaps.display_message(msg, size<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb70-29"><a href="#cb70-29" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">10</span>)  <span class="co"># leave time for the sound and to read</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Most of the text simply exists to correctly create the final message we will display on the screen. The most important parts are, <code>is_weekend = current_time.tm_wday &gt;= 5</code> which uses the fact that Saturday and Sunday have the value <span class="math inline">\(5\)</span> and <span class="math inline">\(6\)</span> in the <code>current_time.tm_wday</code> attribute (A number representing the day in the week) to set a boolean flag. We then use the fact that <code>True</code> acts numerically as one, and <code>False</code> acts numerically as zero to let us sleep in an hour on the weekend using <code>up_hour = 7 + is_weekend</code> which is <span class="math inline">\(8\)</span> on weekends and <span class="math inline">\(7\)</span> on weekdays.</p>
 <p>We then run through the code as we have for most of the alarm clock cases, using an <code>else</code> clause to ensure we always have a message for the user, and appending the date and time message to this output.</p>
 <p>Lastly we pass the method to <code>snaps</code> for display</p>
@@ -1549,25 +1572,25 @@ Important
 <li>We have a UI design, now we need to implement it</li>
 <li>Our code starts as below,</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.10: Ride Selector Start</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The basic shell of the Ride Selector UI</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""Welcome to our Theme Park</span></span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
-<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
-<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
-<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
-<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
-<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="st">      """</span>)</span>
-<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Please enter the ride number you want: "</span>)</span>
-<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a>ride_number <span class="op">=</span> <span class="bu">int</span>(ride_number_text)</span>
-<span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-17"><a href="#cb71-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You have selected Scenic River Cruise"</span>)</span>
-<span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"There are no age limits for this ride"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.10: Ride Selector Start</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The basic shell of the Ride Selector UI</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""Welcome to our Theme Park</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="st">      """</span>)</span>
+<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Please enter the ride number you want: "</span>)</span>
+<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a>ride_number <span class="op">=</span> <span class="bu">int</span>(ride_number_text)</span>
+<span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-17"><a href="#cb72-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb72-18"><a href="#cb72-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You have selected Scenic River Cruise"</span>)</span>
+<span id="cb72-19"><a href="#cb72-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"There are no age limits for this ride"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>We first print out our Menu, using a triple-delimited string so we can multiline it</li>
 <li>Then we implement the menu using a series of <code>if</code> statements.
@@ -1576,9 +1599,9 @@ Important
 </ul></li>
 <li>For other rides the user needs to supply their age, so we continue,</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:  <span class="co"># need to get the age of the user</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    age_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Please enter your age: "</span>)</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> <span class="bu">int</span>(age_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:  <span class="co"># need to get the age of the user</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    age_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Please enter your age: "</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> <span class="bu">int</span>(age_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>We have to get the age using another input pair</li>
 <li>This should already be familiar to you</li>
@@ -1593,18 +1616,18 @@ Important
 <li>Checks the age against the ride’s age requirements</li>
 </ol></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">2</span>:</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected the Carnival Carousel"</span>)</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">3</span>:</span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected Jungle Adventure Water Splash"</span>)</span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">6</span>:</span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected the Carnival Carousel"</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected Jungle Adventure Water Splash"</span>)</span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">6</span>:</span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Downhill Mountain Splash (ride number 4) can be implemented exactly as above</li>
 </ul>
@@ -1636,19 +1659,19 @@ else:
 <li>Need to introduce another layer nested conditional to differentiate between the <strong>too old</strong> and <strong>too young</strong> case</li>
 </ul></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">5</span>:</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected The Regurgitator"</span>)</span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>            <span class="co"># first check age not too low</span></span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> age <span class="op">&gt;</span> <span class="dv">70</span>:</span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Age is too old</span></span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"Sorry, you are too old"</span>)</span>
-<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>                <span class="co"># In the valid range</span></span>
-<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
-<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Age is too young</span></span>
-<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected The Regurgitator"</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>            <span class="co"># first check age not too low</span></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> age <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Age is too old</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"Sorry, you are too old"</span>)</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>                <span class="co"># In the valid range</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Age is too young</span></span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>You can see the final Program (<a href="./Examples/10_RideSelector/RideSelector.py">Ride Selector</a>)</li>
 </ul>
@@ -1660,14 +1683,14 @@ else:
 <li>We can add some extra quality to our implementation using <code>snaps</code></li>
 <li>snaps <code>get_string</code> method</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.11: Snaps get_string function</span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> snaps.get_string(<span class="st">"Enter your name: "</span>)</span>
-<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>snaps.display_message(<span class="st">"Hello "</span> <span class="op">+</span> name)</span>
-<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>) <span class="co">#so there is time to read the message</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.11: Snaps get_string function</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> snaps.get_string(<span class="st">"Enter your name: "</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>snaps.display_message(<span class="st">"Hello "</span> <span class="op">+</span> name)</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>) <span class="co">#so there is time to read the message</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1679,59 +1702,59 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p>As written, the snaps <code>get_string</code> method on my machine, did not work when running <em>Pygame 2</em>. I had to modify the method to the following,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_string(prompt, size<span class="op">=</span><span class="dv">50</span>, margin<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span>(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>), horiz<span class="op">=</span><span class="st">'left'</span>, vert<span class="op">=</span><span class="st">'center'</span>,</span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>               max_line_length<span class="op">=</span><span class="dv">20</span>):</span>
-<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Reads a string from the user</span></span>
-<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
-<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>    setup()</span>
-<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="st">''</span></span>
-<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>    cursor_char <span class="op">=</span> <span class="st">'*'</span></span>
-<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>    cursor <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redraw():</span>
-<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>        clear_display()</span>
-<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>        render_message(prompt<span class="op">+</span>result, margin<span class="op">=</span>margin, size<span class="op">=</span>size,</span>
-<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>                       horiz<span class="op">=</span>horiz, vert<span class="op">=</span>vert, color<span class="op">=</span>color, cursor<span class="op">=</span>cursor)</span>
-<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cursor_flip():</span>
-<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nonlocal</span> cursor</span>
-<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a timer for the cursor</span></span>
-<span id="cb77-24"><a href="#cb77-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-25"><a href="#cb77-25" aria-hidden="true" tabindex="-1"></a>    cursor_event <span class="op">=</span> pygame.USEREVENT<span class="op">+</span><span class="dv">1</span></span>
-<span id="cb77-26"><a href="#cb77-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-27"><a href="#cb77-27" aria-hidden="true" tabindex="-1"></a>    pygame.time.set_timer(cursor_event,<span class="dv">500</span>)</span>
-<span id="cb77-28"><a href="#cb77-28" aria-hidden="true" tabindex="-1"></a>    pygame.key.start_text_input()</span>
-<span id="cb77-29"><a href="#cb77-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-30"><a href="#cb77-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb77-31"><a href="#cb77-31" aria-hidden="true" tabindex="-1"></a>        event <span class="op">=</span> pygame.event.wait()</span>
-<span id="cb77-32"><a href="#cb77-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-33"><a href="#cb77-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.<span class="bu">type</span> <span class="op">==</span> cursor_event:</span>
-<span id="cb77-34"><a href="#cb77-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> cursor:</span>
-<span id="cb77-35"><a href="#cb77-35" aria-hidden="true" tabindex="-1"></a>                cursor <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb77-36"><a href="#cb77-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb77-37"><a href="#cb77-37" aria-hidden="true" tabindex="-1"></a>                cursor <span class="op">=</span> cursor_char</span>
-<span id="cb77-38"><a href="#cb77-38" aria-hidden="true" tabindex="-1"></a>            redraw()</span>
-<span id="cb77-39"><a href="#cb77-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
-<span id="cb77-40"><a href="#cb77-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> event.key <span class="op">==</span> pygame.K_RETURN:</span>
-<span id="cb77-41"><a href="#cb77-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
-<span id="cb77-42"><a href="#cb77-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> event.key <span class="op">==</span> pygame.K_BACKSPACE:</span>
-<span id="cb77-43"><a href="#cb77-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">len</span>(result) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb77-44"><a href="#cb77-44" aria-hidden="true" tabindex="-1"></a>                    result <span class="op">=</span> result[:<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb77-45"><a href="#cb77-45" aria-hidden="true" tabindex="-1"></a>                    redraw()</span>
-<span id="cb77-46"><a href="#cb77-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.TEXTINPUT:</span>
-<span id="cb77-47"><a href="#cb77-47" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(result) <span class="op">&lt;</span> max_line_length:</span>
-<span id="cb77-48"><a href="#cb77-48" aria-hidden="true" tabindex="-1"></a>                result <span class="op">+=</span> event.text</span>
-<span id="cb77-49"><a href="#cb77-49" aria-hidden="true" tabindex="-1"></a>                redraw()</span>
-<span id="cb77-50"><a href="#cb77-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-51"><a href="#cb77-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># disable the timer for the cursor</span></span>
-<span id="cb77-52"><a href="#cb77-52" aria-hidden="true" tabindex="-1"></a>    pygame.time.set_timer(cursor_event,<span class="dv">0</span>)</span>
-<span id="cb77-53"><a href="#cb77-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_string(prompt, size<span class="op">=</span><span class="dv">50</span>, margin<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span>(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>), horiz<span class="op">=</span><span class="st">'left'</span>, vert<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>               max_line_length<span class="op">=</span><span class="dv">20</span>):</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Reads a string from the user</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>    setup()</span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>    cursor_char <span class="op">=</span> <span class="st">'*'</span></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>    cursor <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redraw():</span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>        clear_display()</span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a>        render_message(prompt<span class="op">+</span>result, margin<span class="op">=</span>margin, size<span class="op">=</span>size,</span>
+<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a>                       horiz<span class="op">=</span>horiz, vert<span class="op">=</span>vert, color<span class="op">=</span>color, cursor<span class="op">=</span>cursor)</span>
+<span id="cb78-19"><a href="#cb78-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-20"><a href="#cb78-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cursor_flip():</span>
+<span id="cb78-21"><a href="#cb78-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nonlocal</span> cursor</span>
+<span id="cb78-22"><a href="#cb78-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-23"><a href="#cb78-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a timer for the cursor</span></span>
+<span id="cb78-24"><a href="#cb78-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-25"><a href="#cb78-25" aria-hidden="true" tabindex="-1"></a>    cursor_event <span class="op">=</span> pygame.USEREVENT<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb78-26"><a href="#cb78-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-27"><a href="#cb78-27" aria-hidden="true" tabindex="-1"></a>    pygame.time.set_timer(cursor_event,<span class="dv">500</span>)</span>
+<span id="cb78-28"><a href="#cb78-28" aria-hidden="true" tabindex="-1"></a>    pygame.key.start_text_input()</span>
+<span id="cb78-29"><a href="#cb78-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-30"><a href="#cb78-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb78-31"><a href="#cb78-31" aria-hidden="true" tabindex="-1"></a>        event <span class="op">=</span> pygame.event.wait()</span>
+<span id="cb78-32"><a href="#cb78-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-33"><a href="#cb78-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.<span class="bu">type</span> <span class="op">==</span> cursor_event:</span>
+<span id="cb78-34"><a href="#cb78-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> cursor:</span>
+<span id="cb78-35"><a href="#cb78-35" aria-hidden="true" tabindex="-1"></a>                cursor <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb78-36"><a href="#cb78-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb78-37"><a href="#cb78-37" aria-hidden="true" tabindex="-1"></a>                cursor <span class="op">=</span> cursor_char</span>
+<span id="cb78-38"><a href="#cb78-38" aria-hidden="true" tabindex="-1"></a>            redraw()</span>
+<span id="cb78-39"><a href="#cb78-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb78-40"><a href="#cb78-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> event.key <span class="op">==</span> pygame.K_RETURN:</span>
+<span id="cb78-41"><a href="#cb78-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb78-42"><a href="#cb78-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> event.key <span class="op">==</span> pygame.K_BACKSPACE:</span>
+<span id="cb78-43"><a href="#cb78-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">len</span>(result) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb78-44"><a href="#cb78-44" aria-hidden="true" tabindex="-1"></a>                    result <span class="op">=</span> result[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb78-45"><a href="#cb78-45" aria-hidden="true" tabindex="-1"></a>                    redraw()</span>
+<span id="cb78-46"><a href="#cb78-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.TEXTINPUT:</span>
+<span id="cb78-47"><a href="#cb78-47" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(result) <span class="op">&lt;</span> max_line_length:</span>
+<span id="cb78-48"><a href="#cb78-48" aria-hidden="true" tabindex="-1"></a>                result <span class="op">+=</span> event.text</span>
+<span id="cb78-49"><a href="#cb78-49" aria-hidden="true" tabindex="-1"></a>                redraw()</span>
+<span id="cb78-50"><a href="#cb78-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-51"><a href="#cb78-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># disable the timer for the cursor</span></span>
+<span id="cb78-52"><a href="#cb78-52" aria-hidden="true" tabindex="-1"></a>    pygame.time.set_timer(cursor_event,<span class="dv">0</span>)</span>
+<span id="cb78-53"><a href="#cb78-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>I won’t go into detail on explaining the changes since it’s above the level we’ve currently been discussing but if you have issues with the running any of the snaps <code>get_string</code> programs in this book, I would recommend trying the above replacement to the function</p>
 </div>
 </div>
@@ -1741,31 +1764,31 @@ Important
 <section id="example-theme-park-snaps-display" class="level5">
 <h5 class="anchored" data-anchor-id="example-theme-park-snaps-display">Example: Theme Park Snaps Display</h5>
 <p><em>The below program is the outline for an implementation of the Ride Selector Program using <code>snaps</code> to provide a GUI</em></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.12: Theme Park Snaps Display</span></span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reimplments the shell of the Ride Selector Menu using Snaps</span></span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>snaps.display_image(<span class="st">"themepark.png"</span>)</span>
-<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""Welcome to our Theme Park</span></span>
-<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
-<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
-<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
-<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
-<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
-<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
-<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-19"><a href="#cb78-19" aria-hidden="true" tabindex="-1"></a><span class="st">      Select your ride: """</span></span>
-<span id="cb78-20"><a href="#cb78-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-21"><a href="#cb78-21" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> snaps.get_string(prompt, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb78-22"><a href="#cb78-22" aria-hidden="true" tabindex="-1"></a>confirm <span class="op">=</span> <span class="st">"Ride "</span> <span class="op">+</span> ride_number_text</span>
-<span id="cb78-23"><a href="#cb78-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-24"><a href="#cb78-24" aria-hidden="true" tabindex="-1"></a>snaps.display_message(confirm)</span>
-<span id="cb78-25"><a href="#cb78-25" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>) <span class="co">#gives user time to read the output</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.12: Theme Park Snaps Display</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reimplments the shell of the Ride Selector Menu using Snaps</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>snaps.display_image(<span class="st">"themepark.png"</span>)</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""Welcome to our Theme Park</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
+<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
+<span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a><span class="st">      Select your ride: """</span></span>
+<span id="cb79-20"><a href="#cb79-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-21"><a href="#cb79-21" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> snaps.get_string(prompt, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb79-22"><a href="#cb79-22" aria-hidden="true" tabindex="-1"></a>confirm <span class="op">=</span> <span class="st">"Ride "</span> <span class="op">+</span> ride_number_text</span>
+<span id="cb79-23"><a href="#cb79-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-24"><a href="#cb79-24" aria-hidden="true" tabindex="-1"></a>snaps.display_message(confirm)</span>
+<span id="cb79-25"><a href="#cb79-25" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>) <span class="co">#gives user time to read the output</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="exercise-snaps-ride-selector" class="level5">
 <h5 class="anchored" data-anchor-id="exercise-snaps-ride-selector">Exercise: Snaps Ride Selector</h5>
@@ -1777,174 +1800,174 @@ Important
 <li>A message letting them know if they are allowed to ride</li>
 </ol>
 <p>Our final implementation can be found in the file <a href="./Exercises/03_SnapsRideSelector/ThemeParkSnapsDisplay.py">ThemeParkSnapsDisplay.py</a>, or read from down below, observe the usual use of the <code>time.sleep</code> function to prevent the window from immediately closing</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.3: Snaps Ride Selector</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reimplments the entirety of the Theme Park Ride Selector using</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a snaps interface, and adds some audio ques to warn the user</span></span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="co"># when they are ineligable for ride</span></span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>snaps.display_image(<span class="st">"themepark.png"</span>)</span>
-<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""Welcome to our Theme Park</span></span>
-<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
-<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
-<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
-<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
-<span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
-<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
-<span id="cb79-20"><a href="#cb79-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-21"><a href="#cb79-21" aria-hidden="true" tabindex="-1"></a><span class="st">      Select your ride: """</span></span>
-<span id="cb79-22"><a href="#cb79-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-23"><a href="#cb79-23" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> snaps.get_string(prompt, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb79-24"><a href="#cb79-24" aria-hidden="true" tabindex="-1"></a>confirm <span class="op">=</span> <span class="st">"Ride "</span> <span class="op">+</span> ride_number_text</span>
-<span id="cb79-25"><a href="#cb79-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-26"><a href="#cb79-26" aria-hidden="true" tabindex="-1"></a>snaps.display_message(confirm)</span>
-<span id="cb79-27"><a href="#cb79-27" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># gives user time to read the output</span></span>
-<span id="cb79-28"><a href="#cb79-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-29"><a href="#cb79-29" aria-hidden="true" tabindex="-1"></a>ride_number <span class="op">=</span> <span class="bu">int</span>(ride_number_text)</span>
-<span id="cb79-30"><a href="#cb79-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-31"><a href="#cb79-31" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb79-32"><a href="#cb79-32" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Scenic River Cruise</span><span class="ch">\n\n</span><span class="st">There are no age limits for this ride"</span></span>
-<span id="cb79-33"><a href="#cb79-33" aria-hidden="true" tabindex="-1"></a>    snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-34"><a href="#cb79-34" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:  <span class="co"># need to get the age of the user</span></span>
-<span id="cb79-35"><a href="#cb79-35" aria-hidden="true" tabindex="-1"></a>    age_text <span class="op">=</span> snaps.get_string(</span>
-<span id="cb79-36"><a href="#cb79-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please enter your age: "</span>, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb79-37"><a href="#cb79-37" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb79-38"><a href="#cb79-38" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> <span class="bu">int</span>(age_text)</span>
-<span id="cb79-39"><a href="#cb79-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-40"><a href="#cb79-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">2</span>:</span>
-<span id="cb79-41"><a href="#cb79-41" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Carnival Cruise"</span></span>
-<span id="cb79-42"><a href="#cb79-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
-<span id="cb79-43"><a href="#cb79-43" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
-<span id="cb79-44"><a href="#cb79-44" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-45"><a href="#cb79-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb79-46"><a href="#cb79-46" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
-<span id="cb79-47"><a href="#cb79-47" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
-<span id="cb79-48"><a href="#cb79-48" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-49"><a href="#cb79-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">3</span>:</span>
-<span id="cb79-50"><a href="#cb79-50" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Jungle Adventure Water Splash"</span></span>
-<span id="cb79-51"><a href="#cb79-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">6</span>:</span>
-<span id="cb79-52"><a href="#cb79-52" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
-<span id="cb79-53"><a href="#cb79-53" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-54"><a href="#cb79-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb79-55"><a href="#cb79-55" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
-<span id="cb79-56"><a href="#cb79-56" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
-<span id="cb79-57"><a href="#cb79-57" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-58"><a href="#cb79-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">4</span>:</span>
-<span id="cb79-59"><a href="#cb79-59" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Downhill Mountain Run"</span></span>
-<span id="cb79-60"><a href="#cb79-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
-<span id="cb79-61"><a href="#cb79-61" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
-<span id="cb79-62"><a href="#cb79-62" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-63"><a href="#cb79-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb79-64"><a href="#cb79-64" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
-<span id="cb79-65"><a href="#cb79-65" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
-<span id="cb79-66"><a href="#cb79-66" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-67"><a href="#cb79-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">5</span>:</span>
-<span id="cb79-68"><a href="#cb79-68" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">The Regurgitator"</span></span>
-<span id="cb79-69"><a href="#cb79-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
-<span id="cb79-70"><a href="#cb79-70" aria-hidden="true" tabindex="-1"></a>            <span class="co"># first check age not too lowe</span></span>
-<span id="cb79-71"><a href="#cb79-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> age <span class="op">&gt;</span> <span class="dv">70</span>:</span>
-<span id="cb79-72"><a href="#cb79-72" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Age is too old</span></span>
-<span id="cb79-73"><a href="#cb79-73" aria-hidden="true" tabindex="-1"></a>                msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too old"</span></span>
-<span id="cb79-74"><a href="#cb79-74" aria-hidden="true" tabindex="-1"></a>                snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
-<span id="cb79-75"><a href="#cb79-75" aria-hidden="true" tabindex="-1"></a>                snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-76"><a href="#cb79-76" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb79-77"><a href="#cb79-77" aria-hidden="true" tabindex="-1"></a>                msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
-<span id="cb79-78"><a href="#cb79-78" aria-hidden="true" tabindex="-1"></a>                snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-79"><a href="#cb79-79" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb79-80"><a href="#cb79-80" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
-<span id="cb79-81"><a href="#cb79-81" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb79-82"><a href="#cb79-82" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.3: Snaps Ride Selector</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reimplments the entirety of the Theme Park Ride Selector using</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a snaps interface, and adds some audio ques to warn the user</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># when they are ineligable for ride</span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>snaps.display_image(<span class="st">"themepark.png"</span>)</span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""Welcome to our Theme Park</span></span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
+<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
+<span id="cb80-16"><a href="#cb80-16" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
+<span id="cb80-17"><a href="#cb80-17" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
+<span id="cb80-18"><a href="#cb80-18" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
+<span id="cb80-19"><a href="#cb80-19" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
+<span id="cb80-20"><a href="#cb80-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-21"><a href="#cb80-21" aria-hidden="true" tabindex="-1"></a><span class="st">      Select your ride: """</span></span>
+<span id="cb80-22"><a href="#cb80-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-23"><a href="#cb80-23" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> snaps.get_string(prompt, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb80-24"><a href="#cb80-24" aria-hidden="true" tabindex="-1"></a>confirm <span class="op">=</span> <span class="st">"Ride "</span> <span class="op">+</span> ride_number_text</span>
+<span id="cb80-25"><a href="#cb80-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-26"><a href="#cb80-26" aria-hidden="true" tabindex="-1"></a>snaps.display_message(confirm)</span>
+<span id="cb80-27"><a href="#cb80-27" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># gives user time to read the output</span></span>
+<span id="cb80-28"><a href="#cb80-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-29"><a href="#cb80-29" aria-hidden="true" tabindex="-1"></a>ride_number <span class="op">=</span> <span class="bu">int</span>(ride_number_text)</span>
+<span id="cb80-30"><a href="#cb80-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-31"><a href="#cb80-31" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb80-32"><a href="#cb80-32" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Scenic River Cruise</span><span class="ch">\n\n</span><span class="st">There are no age limits for this ride"</span></span>
+<span id="cb80-33"><a href="#cb80-33" aria-hidden="true" tabindex="-1"></a>    snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-34"><a href="#cb80-34" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:  <span class="co"># need to get the age of the user</span></span>
+<span id="cb80-35"><a href="#cb80-35" aria-hidden="true" tabindex="-1"></a>    age_text <span class="op">=</span> snaps.get_string(</span>
+<span id="cb80-36"><a href="#cb80-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please enter your age: "</span>, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb80-37"><a href="#cb80-37" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb80-38"><a href="#cb80-38" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> <span class="bu">int</span>(age_text)</span>
+<span id="cb80-39"><a href="#cb80-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-40"><a href="#cb80-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb80-41"><a href="#cb80-41" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Carnival Cruise"</span></span>
+<span id="cb80-42"><a href="#cb80-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
+<span id="cb80-43"><a href="#cb80-43" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-44"><a href="#cb80-44" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-45"><a href="#cb80-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-46"><a href="#cb80-46" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-47"><a href="#cb80-47" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-48"><a href="#cb80-48" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-49"><a href="#cb80-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb80-50"><a href="#cb80-50" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Jungle Adventure Water Splash"</span></span>
+<span id="cb80-51"><a href="#cb80-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">6</span>:</span>
+<span id="cb80-52"><a href="#cb80-52" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-53"><a href="#cb80-53" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-54"><a href="#cb80-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-55"><a href="#cb80-55" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-56"><a href="#cb80-56" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-57"><a href="#cb80-57" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-58"><a href="#cb80-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">4</span>:</span>
+<span id="cb80-59"><a href="#cb80-59" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Downhill Mountain Run"</span></span>
+<span id="cb80-60"><a href="#cb80-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
+<span id="cb80-61"><a href="#cb80-61" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-62"><a href="#cb80-62" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-63"><a href="#cb80-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-64"><a href="#cb80-64" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-65"><a href="#cb80-65" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-66"><a href="#cb80-66" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-67"><a href="#cb80-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb80-68"><a href="#cb80-68" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">The Regurgitator"</span></span>
+<span id="cb80-69"><a href="#cb80-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
+<span id="cb80-70"><a href="#cb80-70" aria-hidden="true" tabindex="-1"></a>            <span class="co"># first check age not too lowe</span></span>
+<span id="cb80-71"><a href="#cb80-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> age <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb80-72"><a href="#cb80-72" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Age is too old</span></span>
+<span id="cb80-73"><a href="#cb80-73" aria-hidden="true" tabindex="-1"></a>                msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too old"</span></span>
+<span id="cb80-74"><a href="#cb80-74" aria-hidden="true" tabindex="-1"></a>                snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-75"><a href="#cb80-75" aria-hidden="true" tabindex="-1"></a>                snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-76"><a href="#cb80-76" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb80-77"><a href="#cb80-77" aria-hidden="true" tabindex="-1"></a>                msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-78"><a href="#cb80-78" aria-hidden="true" tabindex="-1"></a>                snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-79"><a href="#cb80-79" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-80"><a href="#cb80-80" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-81"><a href="#cb80-81" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-82"><a href="#cb80-82" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="exercise-weather-helper" class="level5">
 <h5 class="anchored" data-anchor-id="exercise-weather-helper">Exercise: Weather Helper</h5>
 <p><em>Using snaps and the weather functions it includes, write a simple program to remind the user to wrap up warm, wear sunscreen etc.</em></p>
 <p>We’ll use the basic outline of the solution in the book,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">#EG5-14 Weather Helper</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The temperature is:"</span>, temp)</span>
-<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> temp <span class="op">&lt;</span> <span class="dv">40</span>:</span>
-<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Wear a coat - it is cold out there"</span>)</span>
-<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> temp <span class="op">&gt;</span> <span class="dv">70</span>:</span>
-<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Remember to wear sunscreen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#EG5-14 Weather Helper</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The temperature is:"</span>, temp)</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> temp <span class="op">&lt;</span> <span class="dv">40</span>:</span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Wear a coat - it is cold out there"</span>)</span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> temp <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Remember to wear sunscreen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first step is to convert the <code>print</code> statements to instead use the <code>snaps</code>, <code>display_message</code> function. This requires us to do the usual work of building the string before we display it. Next we also want to display an image, either a sun or a snowflake depending on if the weather is hot or cold. Since we’re grabbing some new images, we run into an issue that <code>snaps</code> doesn’t work to rescale the images out of the box. We can fix this by adding the line <code>image = image.convert_alpha()</code> before the <code>image = pygame.transform.smoothscale(image, window_size)</code> line in <code>display_image</code> in <code>snaps</code>. Our final program (<a href="./Exercises/04_WeatherHelper/WeatherHelper.py">Weather Helper</a>) looks like,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.4 Weather Helper</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple Weather Program that reminds the user about</span></span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the weather conditions, with helpful text and</span></span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pictures</span></span>
-<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
-<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
-<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> snaps.get_weather_desciption(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
-<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> temp <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> conditions <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="st">"Could not retrieve Weather..."</span></span>
-<span id="cb81-14"><a href="#cb81-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb81-15"><a href="#cb81-15" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="st">"The temperature is: "</span> <span class="op">+</span> <span class="bu">str</span>(temp)</span>
-<span id="cb81-16"><a href="#cb81-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> <span class="dv">40</span>:</span>
-<span id="cb81-17"><a href="#cb81-17" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Wear a coat - it is cold out there"</span></span>
-<span id="cb81-18"><a href="#cb81-18" aria-hidden="true" tabindex="-1"></a>        snaps.display_image(<span class="st">"snowflake.png"</span>)</span>
-<span id="cb81-19"><a href="#cb81-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> temp <span class="op">&gt;</span> <span class="dv">70</span>:</span>
-<span id="cb81-20"><a href="#cb81-20" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Remember to wear sunscreen"</span></span>
-<span id="cb81-21"><a href="#cb81-21" aria-hidden="true" tabindex="-1"></a>        snaps.display_image(<span class="st">"sun.png"</span>)</span>
-<span id="cb81-22"><a href="#cb81-22" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">The weather is "</span> <span class="op">+</span> conditions</span>
-<span id="cb81-23"><a href="#cb81-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-24"><a href="#cb81-24" aria-hidden="true" tabindex="-1"></a>snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb81-25"><a href="#cb81-25" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.4 Weather Helper</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple Weather Program that reminds the user about</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the weather conditions, with helpful text and</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pictures</span></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> snaps.get_weather_desciption(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> temp <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> conditions <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="st">"Could not retrieve Weather..."</span></span>
+<span id="cb82-14"><a href="#cb82-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="st">"The temperature is: "</span> <span class="op">+</span> <span class="bu">str</span>(temp)</span>
+<span id="cb82-16"><a href="#cb82-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> <span class="dv">40</span>:</span>
+<span id="cb82-17"><a href="#cb82-17" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Wear a coat - it is cold out there"</span></span>
+<span id="cb82-18"><a href="#cb82-18" aria-hidden="true" tabindex="-1"></a>        snaps.display_image(<span class="st">"snowflake.png"</span>)</span>
+<span id="cb82-19"><a href="#cb82-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> temp <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb82-20"><a href="#cb82-20" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Remember to wear sunscreen"</span></span>
+<span id="cb82-21"><a href="#cb82-21" aria-hidden="true" tabindex="-1"></a>        snaps.display_image(<span class="st">"sun.png"</span>)</span>
+<span id="cb82-22"><a href="#cb82-22" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">The weather is "</span> <span class="op">+</span> conditions</span>
+<span id="cb82-23"><a href="#cb82-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-24"><a href="#cb82-24" aria-hidden="true" tabindex="-1"></a>snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb82-25"><a href="#cb82-25" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Ignore the line <code>if temp is None or conditions is None</code>, this is some error handling code we’ll look at in a latter chapter. Notice that since no matter which path we go through the <code>if, elif</code> chain we’ll post a message at the end. So we use the branch code in order to set up the appropriate message, while the call to <code>display_message</code> sits outside the loop, so we don’t have to call it on every path.</p>
 </section>
 <section id="exercise-fortune-teller" class="level5">
 <h5 class="anchored" data-anchor-id="exercise-fortune-teller">Exercise: Fortune Teller</h5>
 <p><em>Using <code>randint</code> and <code>if</code> statements write a fortune teller program that gives random fortunes to the user</em></p>
 <p>We’ll expand on the prototype given by providing two additional statements, one relating to the future and the other relating to the wealth. We’ll follow the structure of using <code>random.randint(1, 6)</code> to simulate rolling a six-sided die, but spice it up by using <code>if-elif-else</code> clauses to play with the relative weighting of different statements.</p>
-<div id="0ad493d7" class="cell" data-execution_count="30">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.5</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fortune Teller Program</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A simple program that uses random numbers to generate a sequence of</span></span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fortunes for the user</span></span>
-<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Meeting someone</span></span>
-<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>) <span class="op">&lt;</span> <span class="dv">4</span>:</span>
-<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You will meet a tall, dark stranger"</span>)</span>
-<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Nobody unexpected will enter your life"</span>)</span>
-<span id="cb82-14"><a href="#cb82-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Money</span></span>
-<span id="cb82-16"><a href="#cb82-16" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb82-17"><a href="#cb82-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> result <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb82-18"><a href="#cb82-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"I see untold riches in your future"</span>)</span>
-<span id="cb82-19"><a href="#cb82-19" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;=</span> <span class="dv">3</span>:</span>
-<span id="cb82-20"><a href="#cb82-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"A life of comfort is coming"</span>)</span>
-<span id="cb82-21"><a href="#cb82-21" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;</span> <span class="dv">6</span>:</span>
-<span id="cb82-22"><a href="#cb82-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You would do well to husband your wealth"</span>)</span>
-<span id="cb82-23"><a href="#cb82-23" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb82-24"><a href="#cb82-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"I see a future lived on the streets..."</span>)</span>
-<span id="cb82-25"><a href="#cb82-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-26"><a href="#cb82-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Advice</span></span>
-<span id="cb82-27"><a href="#cb82-27" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb82-28"><a href="#cb82-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> result <span class="op">&lt;=</span> <span class="dv">2</span>:</span>
-<span id="cb82-29"><a href="#cb82-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sometimes the answers to our future, come from the past"</span>)</span>
-<span id="cb82-30"><a href="#cb82-30" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;</span> <span class="dv">6</span>:</span>
-<span id="cb82-31"><a href="#cb82-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"To define your future, avoid getting hung up on the past"</span>)</span>
-<span id="cb82-32"><a href="#cb82-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb82-33"><a href="#cb82-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You will soon face a decision that will redefine everything"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5ad0b53d" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.5</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fortune Teller Program</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A simple program that uses random numbers to generate a sequence of</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fortunes for the user</span></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Meeting someone</span></span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>) <span class="op">&lt;</span> <span class="dv">4</span>:</span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You will meet a tall, dark stranger"</span>)</span>
+<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Nobody unexpected will enter your life"</span>)</span>
+<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Money</span></span>
+<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> result <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb83-18"><a href="#cb83-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"I see untold riches in your future"</span>)</span>
+<span id="cb83-19"><a href="#cb83-19" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;=</span> <span class="dv">3</span>:</span>
+<span id="cb83-20"><a href="#cb83-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"A life of comfort is coming"</span>)</span>
+<span id="cb83-21"><a href="#cb83-21" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;</span> <span class="dv">6</span>:</span>
+<span id="cb83-22"><a href="#cb83-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You would do well to husband your wealth"</span>)</span>
+<span id="cb83-23"><a href="#cb83-23" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb83-24"><a href="#cb83-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"I see a future lived on the streets..."</span>)</span>
+<span id="cb83-25"><a href="#cb83-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-26"><a href="#cb83-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Advice</span></span>
+<span id="cb83-27"><a href="#cb83-27" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb83-28"><a href="#cb83-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> result <span class="op">&lt;=</span> <span class="dv">2</span>:</span>
+<span id="cb83-29"><a href="#cb83-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sometimes the answers to our future, come from the past"</span>)</span>
+<span id="cb83-30"><a href="#cb83-30" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;</span> <span class="dv">6</span>:</span>
+<span id="cb83-31"><a href="#cb83-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"To define your future, avoid getting hung up on the past"</span>)</span>
+<span id="cb83-32"><a href="#cb83-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb83-33"><a href="#cb83-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You will soon face a decision that will redefine everything"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nobody unexpected will enter your life
 A life of comfort is coming
-Sometimes the answers to our future, come from the past</code></pre>
+You will soon face a decision that will redefine everything</code></pre>
 </div>
 </div>
 <p>We use a mix of <code>==</code>, <code>&lt;=</code> and <code>&lt;</code> operators to emphasise the clarity of the branching. This implementation is quite simple (because the exercise does not personally interest me that much) Feel free to expand on my <a href="./Exercises/05_FortuneTeller/FortuneTeller.py">solution</a></p>
