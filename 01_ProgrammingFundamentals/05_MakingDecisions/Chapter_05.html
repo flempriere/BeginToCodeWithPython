@@ -397,7 +397,7 @@ Caution
 <p><em>Open up the python interpreter and work through the following questions to understand booleans</em></p>
 <ol type="1">
 <li><p>*What do you think would happen if you printed the contents of a boolean value?</p>
-<div id="09a4d437" class="cell" data-execution_count="1">
+<div id="70cedd76" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(it_is_time_to_get_up)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -417,7 +417,7 @@ Caution
 <ul>
 <li><em>Yes there is, consistent behaviour with bool. Consider the following examples</em></li>
 </ul>
-<div id="5e654b64" class="cell" data-execution_count="2">
+<div id="78574fbc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">1</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">0</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="fl">0.0</span>))</span>
@@ -440,7 +440,7 @@ True</code></pre>
 <ul>
 <li><em>We should already expect that if we try to mix incompatible data that an error should be generated</em></li>
 </ul>
-<div id="9471df6f" class="cell" data-execution_count="3">
+<div id="141cf423" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'Hello'</span> <span class="op">+</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -457,7 +457,7 @@ True</code></pre>
 <li><em>We can see that we cannot concatenate a boolean value to a string</em></li>
 <li><em>The behaviour can be a little less intuitive with numbers though</em>,</li>
 </ul>
-<div id="4a457239" class="cell" data-execution_count="4">
+<div id="ec79a113" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>2</code></pre>
@@ -466,7 +466,7 @@ True</code></pre>
 <ul>
 <li><code>True</code> <em>is implicitly converted to the integer value</em> <span class="math inline">\(1\)</span></li>
 </ul>
-<div id="b1f8c682" class="cell" data-execution_count="5">
+<div id="45078c7c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>1</code></pre>
@@ -593,7 +593,7 @@ True</code></pre>
 <section id="example-one-handed-clock" class="level5">
 <h5 class="anchored" data-anchor-id="example-one-handed-clock">Example: One-Handed Clock</h5>
 <p><em>Lets make a clock that displays only the hour value, using <code>localtime</code>. These</em> <strong>one-handed clocks</strong> <em>are supposed promote a more relaxed attitude. Create a new program (<a href="./Examples/01_OneHandedClock/OneHandedClock.py">OneHandedClock.py</a>) and copy the below text.</em></p>
-<div id="8e5247d3" class="cell" data-execution_count="6">
+<div id="a8861531" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.1: One Handed Clock</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses time to display the hour</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -613,7 +613,7 @@ True</code></pre>
 <h5 class="anchored" data-anchor-id="exercise-improved-clock">Exercise: Improved Clock</h5>
 <p><em>Improve the previous <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html#example-one-handed-clock">example</a> to produce a more fully featured clock that reports the time, and date when run</em></p>
 <p>We can use the table above to grab the correct attributes. We then simply need to format the attribute as nessecary. The final <a href="./Exercises/01_ImprovedClock/ImprovedClock.py">program</a> is given below</p>
-<div id="2a43370d" class="cell" data-execution_count="7">
+<div id="3d5ae6d9" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.1: Improved Clock</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># An improved clock that displays the date and time when run</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -632,7 +632,7 @@ True</code></pre>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The time is"</span>, hours, <span class="st">":"</span>, minutes, <span class="st">":"</span>, seconds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The date is 11 / 12 / 2025
-The time is 11 : 10 : 59</code></pre>
+The time is 11 : 14 : 36</code></pre>
 </div>
 </div>
 </section>
@@ -755,7 +755,7 @@ class operatorDescr BG
 <ul>
 <li><em>The equality operator evaluates to</em> <code>True</code> <em>if the two operands hold the same value</em></li>
 </ul>
-<div id="028dd7d7" class="cell" data-execution_count="8">
+<div id="6a338ea0" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>True</code></pre>
@@ -764,13 +764,13 @@ class operatorDescr BG
 <ul>
 <li><em>The equality operator can be used to compare strings and bools</em></li>
 </ul>
-<div id="2b3a10af" class="cell" data-execution_count="9">
+<div id="2412bad8" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'Rob'</span> <span class="op">==</span> <span class="st">'Rob'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="f90a5ca1" class="cell" data-execution_count="10">
+<div id="98b2036e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a> <span class="va">True</span> <span class="op">==</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>True</code></pre>
@@ -783,7 +783,7 @@ class operatorDescr BG
 <li><em>Can we apply relational operators between other types of expressions?</em>
 <ul>
 <li><p><em>Yes. For example, the</em> <span class="math inline">\(&gt;\)</span> <em>and</em> <span class="math inline">\(&lt;\)</span> <em>operators when used to compare strings will use an alphabetic ordering</em>, e.g.</p>
-<div id="24de3690" class="cell" data-execution_count="11">
+<div id="a2475b11" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Alice'</span> <span class="op">&lt;</span> <span class="st">'Brian'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>True</code></pre>
@@ -802,7 +802,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>In <a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html#real-numbers-and-floating-point">Chapter 4</a> we noted that floating points only approximate a specific real-value. These approximations can cause issues when using comparison operators, e.g.</p>
-<div id="90432087" class="cell" data-execution_count="12">
+<div id="3abb6f17" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">==</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -834,7 +834,7 @@ Warning
 <p><em>Use the python interpreter to answer the following questions and investigate boolean operators</em></p>
 <ol type="1">
 <li><p><em>What does the following expression evaluate too?</em></p>
-<div id="36c514e1" class="cell" data-execution_count="13">
+<div id="d2836e50" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>False</code></pre>
@@ -844,7 +844,7 @@ Warning
 <li><code>not</code> <em>inverts the value of a boolean, so</em> <code>True</code> <em>is converted to</em> <code>False</code></li>
 </ul></li>
 <li><p><em>How about this expression?</em></p>
-<div id="653e25c8" class="cell" data-execution_count="14">
+<div id="02f859d6" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>True</code></pre>
@@ -854,7 +854,7 @@ Warning
 <li><code>and</code> <em>is</em> <code>True</code> <em>iff both arguments are</em> <code>True</code> <em>as is the case above, so the result is</em> <code>True</code></li>
 </ul></li>
 <li><p><em>How about this expression?</em></p>
-<div id="0a9416ab" class="cell" data-execution_count="15">
+<div id="a471bdb6" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>False</code></pre>
@@ -864,7 +864,7 @@ Warning
 <li><em>Since one of the arguments is</em> <code>False</code> <code>and</code> <em>will evaluate to</em> <code>False</code></li>
 </ul></li>
 <li><p><em>How about this expression?</em></p>
-<div id="0e8f120d" class="cell" data-execution_count="16">
+<div id="bbb46dfa" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">or</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>True</code></pre>
@@ -874,7 +874,7 @@ Warning
 <li><em>Since one of the arguments is <code>True</code> <code>or</code> </em>will evaluate to* <code>True</code></li>
 </ul></li>
 <li><p><em>So far, the examples have only used boolean values. What happens if we mix boolean and numeric values?</em></p>
-<div id="be447ea6" class="cell" data-execution_count="17">
+<div id="2fc78f8f" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>1</code></pre>
@@ -888,7 +888,7 @@ Warning
 <li><em>So simply returns the second argument, since the</em> <strong>truthfulness</strong> <em>of</em> <span class="math inline">\(1\)</span><em>, is equivalent to the original expression</em></li>
 </ul></li>
 <li><p><em>If we flip the arguments, we should see this more clearly</em></p>
-<div id="f5494e35" class="cell" data-execution_count="18">
+<div id="7d449918" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">and</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>True</code></pre>
@@ -898,7 +898,7 @@ Warning
 <li><em>This time the above expressions should return</em> <code>True</code></li>
 </ul></li>
 <li><p><em>The same behaviour will also occur with</em> <code>or</code></p>
-<div id="9cef3abd" class="cell" data-execution_count="19">
+<div id="3938be9d" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">or</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>1</code></pre>
@@ -907,7 +907,7 @@ Warning
 <ul>
 <li><em>Here the</em> <code>or</code> <em>operator short-circuits on</em> <span class="math inline">\(1\)</span>, <em>so returns</em> <span class="math inline">\(1\)</span></li>
 </ul>
-<div id="b574bd2d" class="cell" data-execution_count="20">
+<div id="5cd1a235" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="kw">or</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>True</code></pre>
@@ -1003,7 +1003,7 @@ Warning
 <ul>
 <li><em>Create a new python program (<a href="./Examples/02_SimpleAlarmClock/SimpleAlarmClock.py">SimpleAlarmClock.py</a>) with the following contents</em></li>
 </ul>
-<div id="d457dc9f" class="cell" data-execution_count="21">
+<div id="bdbc8664" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.2: Simple Alarm Clock</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrates `if` using a simple alarm clock</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1035,7 +1035,7 @@ Warning
 <li>If the condition evluates <code>False</code> the indented branch is skipped</li>
 <li>We could simply the above code by including the check directly in the <code>if</code> rather than an intermediate variable</li>
 </ul>
-<div id="c7f4166e" class="cell" data-execution_count="22">
+<div id="43ffa4eb" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minutes <span class="op">&gt;</span> <span class="dv">29</span>):</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1080,7 +1080,7 @@ Warning
 <section id="example-time-display-alarm-clock" class="level5">
 <h5 class="anchored" data-anchor-id="example-time-display-alarm-clock">Example: Time Display Alarm Clock</h5>
 <p><em>Add to the simple Alarm Clock, by making it so the program will always print the current time regardless of if the alarm goes off. Create a new program (<a href="./Examples/04_AlarmClockWithTimeDisplay/AlarmClockWithTimeDisplay.py">AlarmClockWithTimeDisplay.py</a>). Enter the following contents,</em></p>
-<div id="8fb32b4d" class="cell" data-execution_count="23">
+<div id="6cd2ade8" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.4: Alarm Clock with Time Display</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A variant of Alarm Clock to also always display the time</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1099,7 +1099,7 @@ Warning
 <pre><code>TIME TO GET UP
 RISE AND SHINE
 THE EARLY BIRD GETS THE WORM
-The time is 11 : 10</code></pre>
+The time is 11 : 14</code></pre>
 </div>
 </div>
 <ul>
@@ -1121,7 +1121,7 @@ Caution
 <li><p>If the indention is wrong the program won’t run</p>
 <ul>
 <li><p>i.e.&nbsp;if one line is indented four spaces, and the next three an error will be thrown</p>
-<div id="48096281" class="cell" data-execution_count="24">
+<div id="91046752" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
@@ -1142,7 +1142,7 @@ Caution
 </div></li>
 </ul></li>
 <li><p>A more insidious error, occurs if one mixes tabs and spaces in the indentation, since the code may appear to be fine until it attempts to run</p>
-<div id="35fa61a1" class="cell" data-execution_count="25">
+<div id="2a91f39c" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> time</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a> current_time <span class="op">=</span> time.localtime()</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a> hour <span class="op">=</span> current_time.tm_hour</span>
@@ -1242,7 +1242,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>You can’t combine inline <code>if</code> statements, with indented <code>if</code> statements, e.g.</p>
-<div id="09a49e7f" class="cell" data-execution_count="26">
+<div id="dbc8b06c" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> time</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    current_time <span class="op">=</span> time.localtime()</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    hour <span class="op">=</span> current_time.tm_hour</span>
@@ -1279,7 +1279,7 @@ Warning
 </ul></li>
 <li><p><em>Once done writing the</em> <code>if</code> <em>suite, simply deindent</em></p></li>
 <li><p><em>Try write the following in the shell, and verify the output</em></p>
-<div id="545fa8dd" class="cell" data-execution_count="27">
+<div id="c0caecbf" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">True</span>:</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">'True'</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">'Still True'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1308,7 +1308,7 @@ Still True</code></pre>
 <section id="example-simple-alarm-clock-with-else" class="level5">
 <h5 class="anchored" data-anchor-id="example-simple-alarm-clock-with-else">Example: Simple Alarm Clock with Else</h5>
 <p><em>Modify the <a href="#example-simple-alarm-clock">Simple Alarm Clock</a> to now print a message telling us to go back to bed if it before our alarm should go off. Write a new program (<a href="./Examples/05_SimpleAlarmClockWithElse/SimpleAlarmClockWithElse.py">SimpleAlarmClockWithElse.py</a>) with the following contents,</em></p>
-<div id="17f71df5" class="cell" data-execution_count="28">
+<div id="3670eea0" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.5: Simple Alarm Clock</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Variant of the Simple Alarm Clock</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that modifies the output depending on if its time to get up</span></span>
@@ -1389,7 +1389,7 @@ Still True</code></pre>
 <li><em>Why do we have to write <code>lower()</code> and not <code>lower</code>?</em>
 <ul>
 <li><p><em>Leave the parentheses off, and see what happens</em></p>
-<div id="56761e5a" class="cell" data-execution_count="29">
+<div id="306924dc" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  name <span class="op">=</span> <span class="st">'Rob'</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  name.upper</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -1930,7 +1930,7 @@ Important
 <h5 class="anchored" data-anchor-id="exercise-fortune-teller">Exercise: Fortune Teller</h5>
 <p><em>Using <code>randint</code> and <code>if</code> statements write a fortune teller program that gives random fortunes to the user</em></p>
 <p>We’ll expand on the prototype given by providing two additional statements, one relating to the future and the other relating to the wealth. We’ll follow the structure of using <code>random.randint(1, 6)</code> to simulate rolling a six-sided die, but spice it up by using <code>if-elif-else</code> clauses to play with the relative weighting of different statements.</p>
-<div id="5c762c4f" class="cell" data-execution_count="30">
+<div id="50ebf064" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.5</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fortune Teller Program</span></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -1965,9 +1965,9 @@ Important
 <span id="cb83-32"><a href="#cb83-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb83-33"><a href="#cb83-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You will soon face a decision that will redefine everything"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Nobody unexpected will enter your life
-You would do well to husband your wealth
-You will soon face a decision that will redefine everything</code></pre>
+<pre><code>You will meet a tall, dark stranger
+A life of comfort is coming
+Sometimes the answers to our future, come from the past</code></pre>
 </div>
 </div>
 <p>We use a mix of <code>==</code>, <code>&lt;=</code> and <code>&lt;</code> operators to emphasise the clarity of the branching. This implementation is quite simple (because the exercise does not personally interest me that much) Feel free to expand on my <a href="./Exercises/05_FortuneTeller/FortuneTeller.py">solution</a></p>
