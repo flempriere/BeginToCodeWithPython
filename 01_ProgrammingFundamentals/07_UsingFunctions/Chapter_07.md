@@ -204,22 +204,22 @@ m1()
         RecursionError: maximum recursion depth exceeded
         ---------------------------------------------------------------------------
         RecursionError                            Traceback (most recent call last)
-        Cell In[6], line 4
+        Cell In[36], line 4
               1 def m1():
               2     m1()
         ----> 4 m1()
 
-        Cell In[6], line 2, in m1()
+        Cell In[36], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
-        Cell In[6], line 2, in m1()
+        Cell In[36], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
             [... skipping similar frames: m1 at line 2 (2975 times)]
 
-        Cell In[6], line 2, in m1()
+        Cell In[36], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
@@ -510,12 +510,12 @@ questions*
         Exception: print_times_table requires an integer argument
         ---------------------------------------------------------------------------
         Exception                                 Traceback (most recent call last)
-        Cell In[11], line 17
+        Cell In[41], line 17
              13         print(count, "times", times_value, "equals", result)
              14         count = count + 1
         ---> 17 print_times_table("six")
 
-        Cell In[11], line 9, in print_times_table(times_value)
+        Cell In[41], line 9, in print_times_table(times_value)
               7 def print_times_table(times_value):
               8     if not isinstance(times_value, int):
         ----> 9         raise Exception("print_times_table requires an integer argument")
