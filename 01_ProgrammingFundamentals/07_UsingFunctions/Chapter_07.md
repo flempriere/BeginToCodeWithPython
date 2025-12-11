@@ -204,22 +204,22 @@ m1()
         RecursionError: maximum recursion depth exceeded
         ---------------------------------------------------------------------------
         RecursionError                            Traceback (most recent call last)
-        Cell In[36], line 4
+        Cell In[6], line 4
               1 def m1():
               2     m1()
         ----> 4 m1()
 
-        Cell In[36], line 2, in m1()
+        Cell In[6], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
-        Cell In[36], line 2, in m1()
+        Cell In[6], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
             [... skipping similar frames: m1 at line 2 (2975 times)]
 
-        Cell In[36], line 2, in m1()
+        Cell In[6], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
@@ -510,12 +510,12 @@ questions*
         Exception: print_times_table requires an integer argument
         ---------------------------------------------------------------------------
         Exception                                 Traceback (most recent call last)
-        Cell In[41], line 17
+        Cell In[11], line 17
              13         print(count, "times", times_value, "equals", result)
              14         count = count + 1
         ---> 17 print_times_table("six")
 
-        Cell In[41], line 9, in print_times_table(times_value)
+        Cell In[11], line 9, in print_times_table(times_value)
               7 def print_times_table(times_value):
               8     if not isinstance(times_value, int):
         ----> 9         raise Exception("print_times_table requires an integer argument")
@@ -794,6 +794,76 @@ teletype_printer("hello")
 *Use the function you wrote for a teletype output to add some style to
 the [Fortune Teller
 Program](../05_MakingDecisions/Chapter_05.qmd#exercise-fortune-teller)*
+
+Our solution is given in
+[TeletypeFortuneTeller.py](./Exercises/02_TeletypeFortuneTeller/TeletypeFortuneTeller.py)
+and repeated below
+
+``` python
+# Exercise 7.2 Teletype Fortune Teller
+#
+# Version of the Fortune Teller Program that uses the teletype_printer function
+# to delay the output
+
+import time
+import random
+
+
+def teletype_printer(text, delay=0.25):
+    jitter = delay / random.randint(1, 10)
+    if random.randint(0, 1):
+        delay = delay + jitter
+    else:
+        delay = delay - jitter
+
+    for ch in text:
+        print(ch, end="", flush=True)
+        time.sleep(delay)
+    print("")
+
+
+teletype_printer("...", delay=0.5)
+# Meeting someone
+if random.randint(1, 6) < 4:
+    teletype_printer("You will meet a tall, dark stranger")
+else:
+    teletype_printer("Nobody unexpected will enter your life")
+
+teletype_printer("...", delay=0.5)
+# Money
+result = random.randint(1, 6)
+if result == 1:
+    teletype_printer("I see untold riches in your future")
+elif result <= 3:
+    teletype_printer("A life of comfort is coming")
+elif result < 6:
+    teletype_printer("You would do well to husband your wealth")
+else:
+    teletype_printer("I see a future lived on the streets...")
+
+teletype_printer("...", delay=0.5)
+# Advice
+result = random.randint(1, 6)
+if result <= 2:
+    teletype_printer("Sometimes the answers to our future, come from the past")
+elif result < 6:
+    teletype_printer("To define your future, avoid getting hung up on the past")
+else:
+    teletype_printer("You will soon face a decision that will redefine everything")
+```
+
+We basically copy across the `teletype_printer` function from the
+[previous exercise](#exercise-creating-a-teletype-printer) and replace
+the previous `print` statements with the new function. For fun we change
+the default delay to a lower number so the prints occur faster but
+between advice add a new
+
+``` python
+teletype_printer("...", delay=0.5)
+```
+
+call, with a longer delay that makes it look like the fortune teller is
+thinking between each piece of advice
 
 #### Return Values from Function Calls
 
@@ -1383,7 +1453,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 > To use correctly setup `BTCInput.py` ensure the variable
 > `DEBUG_MODE = FALSE`
 
-1. [Greeter](./Exercises/02_BTCInputApplications/Greeter.py)
+1. [Greeter](./Exercises/03_BTCInputApplications/Greeter.py)
 
     - This change is straight forward, we replace `input` with
       `read_text`
@@ -1399,7 +1469,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
     ```
 
 2. [Ultra Precise Egg
-    Timer](./Exercises/02_BTCInputApplications/UltraPreciseEggTimer.py)
+    Timer](./Exercises/03_BTCInputApplications/UltraPreciseEggTimer.py)
 
     - We can combine the original code that reads in the egg boiling
       time and the float conversion to one call to the `BTCInput`
@@ -1426,7 +1496,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
     ```
 
 3. [Pizza Order
-    Calculator](./Exercises/02_BTCInputApplications/PizzaOrderCalculator.py)
+    Calculator](./Exercises/03_BTCInputApplications/PizzaOrderCalculator.py)
 
     - Again we simply replace the `int(input())` structure with the
       BTCInput equivalent, `BTCInput.read_int`
@@ -1445,7 +1515,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
     ```
 
 4. [Fahrenheit To
-    Celcius](./Exercises/02_BTCInputApplications/FahrenheitToCelcius.py)
+    Celcius](./Exercises/03_BTCInputApplications/FahrenheitToCelcius.py)
 
     - Again a simple replacement, here `float(input(...))` becomes
       `BTCInput.read_float()`
@@ -1462,7 +1532,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
      print("The temperature is", temperature_centrigrade, "degrees Celcius")
     ```
 
-5. [Ride Selector](./Exercises/02_BTCInputApplications/RideSelector.py)
+5. [Ride Selector](./Exercises/03_BTCInputApplications/RideSelector.py)
 
     - The implementation is based on the [Full input validated version
       of Ride
@@ -1492,7 +1562,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
       ```
 
 6. [User Selected Times
-    Tables](./Exercises/02_BTCInputApplications/TimesTables.py)
+    Tables](./Exercises/03_BTCInputApplications/TimesTables.py)
 
     - Here we can remove all the validation code we wrote and simply
       replace it with the `BTCInput.read_int_ranged` call
