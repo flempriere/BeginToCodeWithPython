@@ -730,6 +730,27 @@ if name.upper() == "ROB":
 
 - *Play around with the above code to see what happens for various input combinations. You should see if the first input is not a variant of `"rob"` the second prompt never occurs and the program ends. Adjust the above by writing a new program ([CodedGreeterWithOuterElse.py](./Examples/09_CodedGreeterWithOuterElse/CodedGreeterWithOuterElse.py))*
 
+```python
+# Example 5.9: Coded Greeter with Outer Else
+# Asks the user for a follow on code to confirm their ID
+# before the program greets them
+# Has an additional outer else clause for the case that the nested
+# if does not run
+
+name = input("Enter your name: ")
+
+if name.upper() == "ROB":
+    code = input("Enter the codeword: ")
+    if code == "secret":
+        print("Hello, Oh great one")
+    else:
+        print("Begone. Imposter")
+else:
+    print("You are not Rob. Shame.")
+```
+
+*The above code uses a second* `else` *clause, attached to the* **first** *outer,* `if` *condition. This means that it will run whenever the original name is not some variant of `"ROB"`*
+
 #### Working with Logic
 
 ##### Exercise: Make an Advanced Alarm Clock

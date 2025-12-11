@@ -983,9 +983,188 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 6. *[User-Selected Times Table](../06_RepeatingActionsWithLoops/Chapter_06.qmd#exercise-allow-the-user-to-select-the-times-value)*
 
 :::{.callout-note}
-I've linked to where each of these programs are first referenced, but we'll generally try to update the most comprehensive version of the respective program
+We've linked to where each of these programs are first referenced, but we'll generally try to update the most comprehensive version of the respective program. We use the version of `BTCInput.py` included in Chapter 8 of the original code (see samples in the repo) since it
+offers a more complete set of validation functions based on the discussion above.
+
+To use correctly setup `BTCInput.py` ensure the variable `DEBUG_MODE = FALSE`
 :::
 
+1. [Greeter](./Exercises/02_BTCInputApplications/Greeter.py)
+
+    - This change is straight forward, we replace `input` with `read_text`
+
+   ```python
+    # Exercise 7.2.1: Greeter
+    # An implementation of Greeter than uses BTCInput for validation
+
+    import BTCInput
+
+    name = BTCInput.read_text("Enter your name please: ")
+    print("Hello", name)
+   ```
+
+2. [Ultra Precise Egg Timer](./Exercises/02_BTCInputApplications/UltraPreciseEggTimer.py)
+
+    - We can combine the original code that reads in the egg boiling time and the float conversion to one call to the `BTCInput` function `read_float`. Note that we don't change the second input which just asks the user to press enter, since they might want to stop the program early, and enter is not a word
+
+   ```python
+    # Exercise 7.2.2 Ultra-Precise Egg Timer
+    #
+    # Implementation of Ultra-Precise Egg Timer using BTCInput
+
+    import time
+    import BTCInput
+
+    egg_time = BTCInput.read_float("Enter the cooking time in seconds: ")
+
+    print("Put the egg in boiling water now")
+    input("Press enter to continue once the egg is in...")
+
+    time.sleep(egg_time)
+
+    print("Take the egg out now")
+   ```
+
+3. [Pizza Order Calculator](./Exercises/02_BTCInputApplications/PizzaOrderCalculator.py)
+
+    - Again we simply replace the `int(input())` structure with the BTCInput equivalent, `BTCInput.read_int`
+
+   ```python
+    # Exercise 7.2.3: Pizza Order Calculator
+    #
+    # Implementation of Pizza Order Calculator that uses BTCInput
+
+    import BTCInput
+
+    students_int = BTCInput.read_int("How many students are attending? ")
+
+    pizza_count = int(students_int / 1.5) + 1  # perform division int -> float
+    print("You will need", pizza_count, "pizzas")
+   ```
+
+4. [Fahrenheit To Celcius](./Exercises/02_BTCInputApplications/FahrenheitToCelcius.py)
+
+    - Again a simple replacement, here `float(input(...))` becomes `BTCInput.read_float()`
+
+   ```python
+    # Exercise 7.2.4: Fahrenheit to Celcius
+    #
+    # Version of Fahrenheit to Celcius that uses BTCInput
+
+    import BTCInput
+
+    temperature_fahrenheit = BTCInput.read_float("Enter a temperature in Fahrenheit: ")
+    temperature_centrigrade = (temperature_fahrenheit - 32) / 1.8
+    print("The temperature is", temperature_centrigrade, "degrees Celcius")
+   ```
+
+5. [Ride Selector](./Exercises/02_BTCInputApplications/RideSelector.py)
+
+    - The implementation is based on the [Full input validated version of Ride Selector](../06_RepeatingActionsWithLoops/Chapter_06.qmd#exercise-add-validation-to-the-theme-park-age-input) in Chapter 6
+    - There are two important changes, first to ensure the user selects a valid theme park ride option, we use
+    `BTCInput.read_int_ranged`
+
+      ```python
+        ride_number = BTCInput.read_int_ranged(
+            "Please enter the ride number you want: ", 0, 5
+        )
+      ```
+    - *Remember that* $0$ *is the number to quit*
+    - Second the ensure the user adds an age, here even though we have a valid age range, this is for being able to ride
+        - We still want to accept those ages, *and then* inform the user of the issue
+        - So here we use `BTCInput.read_int` (note unranged)
+
+      ```python
+        age = BTCInput.read_int("Please enter your age: ")
+      ```
+
+6. [User Selected Times Tables](./Exercises/02_BTCInputApplications/TimesTables.py)
+
+    - Here we can remove all the validation code we wrote and simply replace it with the `BTCInput.read_int_ranged` call
+    - This highlights the advantage of functions, the final program is much cleaner and easier to read
+
+      ```python
+        # Exercise 7.2.6 Tables Tables
+        #
+        # Variant of the User Selected Times Tables Tutor that uses BTCInput for
+        # validation
+
+        import BTCInput
+
+        count = 1
+        times_value = BTCInput.read_int("Please enter a times table between 2-12 (inclusive): ")
+
+        while count < 13:
+            result = count * times_value
+            print(count, "times", times_value, "equals", result)
+            count = count + 1
+      ```
+
+### Using a Debugger
+
+- Most python development environments support a *debugger*
+- A *debugger* is a program designed to help you identify (and solve) *bugs* or
+problems in your program
+- This section will introduce concepts of a debugger
+    - The book discusses the specifics of using the debugger packaged in IDLE
+    - The notes here discuss generics
+- A *debugger* runs code like normal, but supports extra tools and techniques for interrogating the internal state of a program
+- A *breakpoint* causes the program being run in the debugger to pause when it reaches the line where the break occurs.
+    - breakpoints allow the programmer to halt the program at a desired point (typically close to where a problem occurs) and inspect variable contents
+
+:::{.callout-note}
+A *breakpoint* is different to the `break` keyword
+:::
+
+#### Exercise: Investigate Programmers with a Debugger
+
+*Use the following example, found in* [InvestigateTheDebugger.py](./Examples/14_InvestigateTheDebugger/InvestigateTheDebugger.py) *as the basis to learn the debugger*
+
+```python
+# Example 7.14 Investigate the Debugger
+#
+# A sample code for practicing with the debugger
+
+
+def increment_function(input_value):
+    result = input_value + 1
+    return result
+
+
+x = 99
+y = increment_function(x)
+print("The answer is:", y)
+```
+
+*Using your debugger, set a breakpoint on the line* `x = 99`
+
+-  In *VSCode* for my setup with the python extensions I simply click on line, left of the line number, a red circle appears indicating a breakpoint
+    - To clear the breakpoint just click on it again
+- Then run your program using the debugger
+    - In *VSCode* I simply go to the *Run and Debug* tab, and click the *Run and Debug* button
+        - I then select from a dropdown menu, *python debugger* followed by *debug the current file*
+    - The code starts running then stops at the breakpoint
+    - On the left a panel shows the *call stack*
+        - The call stack shows the sequence of function calls we are in
+    - Above a panel shows the contents of variables
+        - Broken up into a tab for
+            - Local variables
+            - Global variables
+            - There are also tabs for special and function variables which can be ignored for now
+    - A control panel shows at the top of the program, the options are as follows,
+        - **Go** continues running the program
+        - **Step Over** goes to the next line in the program
+            - If the line the program is on is a function, the program will calculate the results of the function and then go to the line after the program
+        - **Step In** goes to the next line in the program, if the program is on a function, the debugger will step into the function and go through it line by line
+            - This includes opening any files where a function is defined in another file
+        - **Step Out** completes the current function and goes to the line after it
+        - **Restart** restarts the program
+        - **Stop** immediately stops the program
+- Use the step function to watch how python flows through this program, observe the call stack and the variable values when you step into `increment_function`
+    - Observe what happens when you step into `print`
+        - Depending on the debugger it may or may not step into the `print` function
+        - Use **Step Out** to leave `print`
+        - Use **Step Out** again, the program should end
 
 ## Summary
 
