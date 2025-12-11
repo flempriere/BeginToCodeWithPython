@@ -43,6 +43,9 @@
       Module](#convert-our-functions-into-a-python-module)
       - [Exercise: Add `BTCInput` to your Existing
         Programs](#exercise-add-btcinput-to-your-existing-programs)
+  - [Using a Debugger](#using-a-debugger)
+    - [Exercise: Investigate Programmers with a
+      Debugger](#exercise-investigate-programmers-with-a-debugger)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -201,22 +204,22 @@ m1()
         RecursionError: maximum recursion depth exceeded
         ---------------------------------------------------------------------------
         RecursionError                            Traceback (most recent call last)
-        Cell In[36], line 4
+        Cell In[6], line 4
               1 def m1():
               2     m1()
         ----> 4 m1()
 
-        Cell In[36], line 2, in m1()
+        Cell In[6], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
-        Cell In[36], line 2, in m1()
+        Cell In[6], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
             [... skipping similar frames: m1 at line 2 (2975 times)]
 
-        Cell In[36], line 2, in m1()
+        Cell In[6], line 2, in m1()
               1 def m1():
         ----> 2     m1()
 
@@ -507,12 +510,12 @@ questions*
         Exception: print_times_table requires an integer argument
         ---------------------------------------------------------------------------
         Exception                                 Traceback (most recent call last)
-        Cell In[41], line 17
+        Cell In[11], line 17
              13         print(count, "times", times_value, "equals", result)
              14         count = count + 1
         ---> 17 print_times_table("six")
 
-        Cell In[41], line 9, in print_times_table(times_value)
+        Cell In[11], line 9, in print_times_table(times_value)
               7 def print_times_table(times_value):
               8     if not isinstance(times_value, int):
         ----> 9         raise Exception("print_times_table requires an integer argument")
@@ -1513,6 +1516,94 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
             print(count, "times", times_value, "equals", result)
             count = count + 1
       ```
+
+### Using a Debugger
+
+- Most python development environments support a *debugger*
+- A *debugger* is a program designed to help you identify (and solve)
+  *bugs* or problems in your program
+- This section will introduce concepts of a debugger
+  - The book discusses the specifics of using the debugger packaged in
+    IDLE
+  - The notes here discuss generics
+- A *debugger* runs code like normal, but supports extra tools and
+  techniques for interrogating the internal state of a program
+- A *breakpoint* causes the program being run in the debugger to pause
+  when it reaches the line where the break occurs.
+  - breakpoints allow the programmer to halt the program at a desired
+    point (typically close to where a problem occurs) and inspect
+    variable contents
+
+> [!NOTE]
+>
+> A *breakpoint* is different to the `break` keyword
+
+#### Exercise: Investigate Programmers with a Debugger
+
+*Use the following example, found in*
+[InvestigateTheDebugger.py](./Examples/14_InvestigateTheDebugger/InvestigateTheDebugger.py)
+*as the basis to learn the debugger*
+
+``` python
+# Example 7.14 Investigate the Debugger
+#
+# A sample code for practicing with the debugger
+
+
+def increment_function(input_value):
+    result = input_value + 1
+    return result
+
+
+x = 99
+y = increment_function(x)
+print("The answer is:", y)
+```
+
+*Using your debugger, set a breakpoint on the line* `x = 99`
+
+- In *VSCode* for my setup with the python extensions I simply click on
+  line, left of the line number, a red circle appears indicating a
+  breakpoint
+  - To clear the breakpoint just click on it again
+- Then run your program using the debugger
+  - In *VSCode* I simply go to the *Run and Debug* tab, and click the
+    *Run and Debug* button
+    - I then select from a dropdown menu, *python debugger* followed by
+      *debug the current file*
+  - The code starts running then stops at the breakpoint
+  - On the left a panel shows the *call stack*
+    - The call stack shows the sequence of function calls we are in
+  - Above a panel shows the contents of variables
+    - Broken up into a tab for
+      - Local variables
+      - Global variables
+      - There are also tabs for special and function variables which can
+        be ignored for now
+  - A control panel shows at the top of the program, the options are as
+    follows,
+    - **Go** continues running the program
+    - **Step Over** goes to the next line in the program
+      - If the line the program is on is a function, the program will
+        calculate the results of the function and then go to the line
+        after the program
+    - **Step In** goes to the next line in the program, if the program
+      is on a function, the debugger will step into the function and go
+      through it line by line
+      - This includes opening any files where a function is defined in
+        another file
+    - **Step Out** completes the current function and goes to the line
+      after it
+    - **Restart** restarts the program
+    - **Stop** immediately stops the program
+- Use the step function to watch how python flows through this program,
+  observe the call stack and the variable values when you step into
+  `increment_function`
+  - Observe what happens when you step into `print`
+    - Depending on the debugger it may or may not step into the `print`
+      function
+    - Use **Step Out** to leave `print`
+    - Use **Step Out** again, the program should end
 
 ## Summary
 

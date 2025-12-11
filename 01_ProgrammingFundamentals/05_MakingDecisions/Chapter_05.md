@@ -254,7 +254,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 12
+    The hour is: 10
 
 *Run the program, it should print out the current hour*
 
@@ -287,8 +287,8 @@ hours = current_datetime.tm_hour
 print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 9 / 12 / 2025
-    The time is 12 : 5 : 59
+    The date is 11 / 12 / 2025
+    The time is 10 : 35 : 58
 
 #### Comparing Values
 
@@ -688,7 +688,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 12 : 5
+    The time is 10 : 35
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*
@@ -1012,6 +1012,29 @@ if name.upper() == "ROB":
   `"rob"` the second prompt never occurs and the program ends. Adjust
   the above by writing a new program
   ([CodedGreeterWithOuterElse.py](./Examples/09_CodedGreeterWithOuterElse/CodedGreeterWithOuterElse.py))*
+
+``` python
+# Example 5.9: Coded Greeter with Outer Else
+# Asks the user for a follow on code to confirm their ID
+# before the program greets them
+# Has an additional outer else clause for the case that the nested
+# if does not run
+
+name = input("Enter your name: ")
+
+if name.upper() == "ROB":
+    code = input("Enter the codeword: ")
+    if code == "secret":
+        print("Hello, Oh great one")
+    else:
+        print("Begone. Imposter")
+else:
+    print("You are not Rob. Shame.")
+```
+
+*The above code uses a second* `else` *clause, attached to the*
+**first** *outer,* `if` *condition. This means that it will run whenever
+the original name is not some variant of `"ROB"`*
 
 #### Working with Logic
 
@@ -1575,7 +1598,7 @@ else:
 
     Nobody unexpected will enter your life
     A life of comfort is coming
-    To define your future, avoid getting hung up on the past
+    Sometimes the answers to our future, come from the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise
