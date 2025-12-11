@@ -1,0 +1,187 @@
+---
+title: "Chapter 8: Storing Collections of Data"
+---
+
+## Notes
+
+### Lists and Tracking Sales
+
+- Consider the following vignette
+- The owner of an ice-cream stand wants a program to track sales
+    - There are ten stands, each selling multiple items
+    - The program should take sales data as input and then provide the following views on the data
+        - Sorted from lowest to highest
+        - Sorted from highest to lowest
+        - Show just the highest and the lowest
+        - Show the total number of sales
+        - Show the average number of sales
+
+:::{.callout-important}
+**Getting the specification right: Storyboarding**
+
+Agreeing on the specification with your client is important. A technique is called storyboarding, best done by sitting down with a paper and pen (or a whiteboard)
+
+A storyboard shows how the program should flow in response to various user inputs. E.g. depicting the menus the user might use, with a storyboard for each
+menu choice. The storyboard should also show how the program will work
+
+For bigger programs you can break different components out into their own storyboards, much in the same way we built up functions. Storyboards depict what needs to happen, but not how to do it.
+:::
+
+- Given the spec for the ice cream stand we can now outline the program
+    1. Store the sales data in variables
+    2. Implement a way to sort the data
+    3. A way to print the output
+    4. Store the data globally and pass it to functions to handle the work
+
+- We can construct the prototype interface, similar to the [Ride Selector Program](../05_MakingDecisions/Chapter_05.qmd#use-decisions-to-make-an-application)
+
+  ```shell
+    Ice-Cream Sales
+
+    1: Print the Sales
+    2: Sort Low to High
+    3: Sort High to Low
+    4: Highest and Lowest
+    5: Total Sales
+    6: Average Sales
+    7: Enter Figures
+
+    Enter your command: 3
+  ```
+
+#### Limitations of Individual Variables
+
+- We first need to store the sales
+    - For ten stores, we could theoretically use ten variables, one for each store
+    - But this method becomes clunky when we want to start analysing the variables
+    - E.g. the following code ([FindingLargestSales.py](./Examples/01_FindingLargestSales/FindingLargestSales.py)), only handles finding the store with the largest sales
+
+      ```python
+        # Example 8.1 Finding the Largest Sales
+        #
+        # Checks if sales1 has the largest sales. Demonstrates the difficulty of using
+        # individual named variables to deal with aggregate data
+
+        import BTCInput
+
+        sales1 = BTCInput.read_int("Enter the sales for stand 1: ")
+        sales2 = BTCInput.read_int("Enter the sales for stand 2: ")
+        sales3 = BTCInput.read_int("Enter the sales for stand 3: ")
+        sales4 = BTCInput.read_int("Enter the sales for stand 4: ")
+        sales5 = BTCInput.read_int("Enter the sales for stand 5: ")
+        sales6 = BTCInput.read_int("Enter the sales for stand 6: ")
+        sales7 = BTCInput.read_int("Enter the sales for stand 7: ")
+        sales8 = BTCInput.read_int("Enter the sales for stand 8: ")
+        sales9 = BTCInput.read_int("Enter the sales for stand 9: ")
+        sales10 = BTCInput.read_int("Enter the sales for stand 10: ")
+
+        if (
+            sales1 > sales2
+            and sales1 > sales3
+            and sales1 > sales4
+            and sales1 > sales5
+            and sales1 > sales6
+            and sales1 > sales7
+            and sales1 > sales8
+            and sales1 > sales9
+            and sales1 > sales10
+        ):
+            print("Stand 1 had the best sales")
+      ```
+
+    - Problem: We would have to repeat the code each time for each individual sales variable
+    - If we add more stands, we have add another named variable and another big `if` statement
+        - **AND** modify all the previous `if` statements
+- Clearly this approach is not very maintainable
+
+#### Lists in Python
+
+- A collection is a *composite* type
+    - It stores multiple elements of another type
+- We've already (briefly) seen one type of collection the *tuple*
+- The most common form of collection is the `list`
+    - What it sounds like, a list of items
+
+##### Example: Creating a List
+
+*Open a python interpreter and work through the following steps to learn about* `list`
+
+1. *A list is created using brackets around the contents* `[]`*, e.g.*
+
+   ```{python}
+    sales = []
+   ```
+
+    - *The above defines* `sales` *as an empty list*
+
+2. *Items can be appended to a* `list` *using the* `append` *function*
+
+   ```{python}
+    sales.append(99)
+    sales
+   ```
+
+    - *As we can see from above* `sales` *now contains the value* `99`
+
+3. *Calling append again, adds the new item to the end of the list*
+
+   ```{python}
+    sales.append(100)
+    sales
+   ```
+
+4. *Observe from above you can see the contents of a list, by simply typing the variable name in the interpreter*
+    - *In scripts we can also use the explicit* `print` *call*
+
+      ```{python}
+        print(sales)
+      ```
+
+5. *You can access individual items of the list, using the **indexing** operator* `[]`
+
+   ```{python}
+    sales[0]
+   ```
+
+    - *Syntax is* `list_name[index]` *where* `index` *is an integer giving the index of the item*
+    - *Python lists are zero-indexed. i.e. the first value is stored at index* $0$
+
+6. *The indexing operator can be used to change the value of an item at a given index*
+
+   ```{python}
+    sales[1] = 101
+    sales
+   ```
+
+   - *The above changes the value of the second item in* `sales` *to* $101$
+- **Note:** *Whenever we use the indexing operator the index must exist! For example if we tried to view the (non-existent) third item, we would get an error*
+
+  ```{python}
+    sales[2]
+  ```
+
+    - *Observe the error type is an* `IndexError`
+    - *Thus something we can catch and handle*
+
+7. *A single list can store values of different types, and can replace items with new items of a different type*
+
+   ```{python}
+    sales.append("Rob")
+    sales[0] = "Python"
+    sales
+   ```
+
+    - *The above appends a new string* `"Rob"`*, converts* `sales[0]` *from an int to the string* `"Python"` *and leaves the number* $101$ *in* `sales[1]` *untouched*
+    - *Overall list thus mixes string and integer types*
+
+:::{.callout-warning}
+**Avoid Mixing Types in Lists**
+
+*Just because you **can** mix types in lists, doesn't mean you **should.** Typically lists and list processing is much easier when a list stores all items of the same type*
+:::
+
+#### Read in a List
+
+## Summary
+
+## Questions and Answers
