@@ -54,6 +54,13 @@
     - [Exercise: Record a List with a `save`
       Function](#exercise-record-a-list-with-a-save-function)
   - [Store Tables of Data](#store-tables-of-data)
+    - [Example: Inadequate Index
+      Values](#example-inadequate-index-values)
+    - [Use Loops to Work with Tables](#use-loops-to-work-with-tables)
+      - [Example: Loop Counting](#example-loop-counting)
+    - [More than Two Dimensions](#more-than-two-dimensions)
+  - [Use Lists as Lookup Tables](#use-lists-as-lookup-tables)
+  - [Tuples](#tuples)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -261,7 +268,7 @@ about* `list`
       IndexError: list index out of range
       ---------------------------------------------------------------------------
       IndexError                                Traceback (most recent call last)
-      Cell In[23], line 1
+      Cell In[7], line 1
       ----> 1 sales[2]
 
       IndexError: list index out of range
@@ -797,7 +804,7 @@ following questions to understand what’s going on*
         IndexError: list index out of range
         ---------------------------------------------------------------------------
         IndexError                                Traceback (most recent call last)
-        Cell In[25], line 3
+        Cell In[9], line 3
               1 a_list = [1,2]
               2 for count in range(0, len(a_list)):
         ----> 3     if a_list[count] < a_list[count + 1]:
@@ -2233,21 +2240,21 @@ block-beta
     classDef BG stroke:transparent, fill:transparent
 
     space:2
-    title["Data Table"]
-    space:2
+    title["Data Table"]:2
+    space:1
 
     class title BG
 
-    Block:header:5
-    columns 5
-        start[" "]
+    space
+    block:fields:4
+    columns 4
         monday["Monday"]
         tuesday["Tuesday"]
         wednesday["Wednesday"]
         stop["..."]
     end
 
-    class header Header
+    class fields Header
 
     Stand1["Stand 1"]
     50
@@ -2255,17 +2262,23 @@ block-beta
     10
     Blank1[" "]
 
+    class Stand1 BG
+
     Stand2["Stand 2"]
     54
     98
     7
     Blank2[" "]
 
+    class Stand2 BG
+
     Stand3["Stand 3"]
     29
     40
-    80
+    80_2["80"]
     Blank3[" "]
+
+    class Stand3 BG
 
     Stand4["..."]
     stand4_1[" "]
@@ -2273,8 +2286,488 @@ block-beta
     stand4_3[" "]
     stand4_4[" "]
 
+    class Stand4 BG
+
 ```
+
+- Our current implementation is effectively a vertical slice for one of
+  the days
+
+- Can implement multiple lists, one per day of the week
+
+  - Effectively repeats the problem we had before of a distinct named
+    variable for each item
+
+- We want a *list of lists*
+
+  ``` python
+    mon_sales = [50, 54, 29, 33,  22, 100, 45, 54, 89, 75]
+    tue_sales = [80, 98, 40, 43, 43, 80, 50, 60, 79, 30]
+    wed_sales = [10, 7, 80, 43, 48, 82, 33, 55, 83, 80]
+    thu_sales = [15, 20, 38, 10, 36, 50, 20, 26, 45, 20]
+    fri_sales = [20, 25, 47, 18, 56, 70, 30, 36, 65, 28]
+    sat_sales = [122, 140, 245, 128, 156, 163, 90, 140, 150, 128]
+    sun_sales = [100, 130, 234, 114, 138, 156, 107, 132, 134, 148]
+
+    week_sales = [mon_sales, tue_sales, wed_sales, thu_sales, fri_sales, sat_sales, sun_sales]
+  ```
+
+- Think of lists of lists as a collection of rows and columns
+
+  - We first specify the row we want say `tue_sales`
+
+  - Then the column, say Stand 1
+
+    ``` python
+      print(week_sales[1][0])
+    ```
+
+        80
+
+#### Example: Inadequate Index Values
+
+*It can be difficult to get the hang of working with multiple indices.
+Which of the following indices would fail when the program runs?*
+
+``` text
+Statement 1: week_sales[0][0] = 50
+Statement 2: week_sales[8][7] = 88
+Statement 3: week_sales[7][10] = 100
+```
+
+1. *Statement 1 is valid*
+2. *Statement 2 is invalid because the first index* $8$ *corresponds to
+    the day of the week. The valid indices here are* $0$ *to* $6$
+3. *Statement 3 is also invalid for the same reason; even though there
+    are seven days of the week, the list is zero indexed*
+
+*Let’s see this in action*
+
+- Statement 1:
+
+``` python
+week_sales[0][0]
+```
+
+    50
+
+- Statement 2:
+
+``` python
+week_sales[8][7]
+```
+
+    IndexError: list index out of range
+    ---------------------------------------------------------------------------
+    IndexError                                Traceback (most recent call last)
+    Cell In[20], line 1
+    ----> 1 week_sales[8][7]
+
+    IndexError: list index out of range
+
+- Statement 3:
+
+``` python
+week_sales[7][10]
+```
+
+    IndexError: list index out of range
+    ---------------------------------------------------------------------------
+    IndexError                                Traceback (most recent call last)
+    Cell In[21], line 1
+    ----> 1 week_sales[7][10]
+
+    IndexError: list index out of range
+
+> [!TIP]
+>
+> **Make it easy to test your program**
+>
+> Testing is important, but unless it’s easy or automatic it’s pretty
+> common to get left by the wayside.
+>
+> In a program one might use a function `make_test_data` or for larger
+> projects a *test framework* that is used to generate test data.
+>
+> Whenever you find yourself repeating a pattern to test code, consider
+> how you can automate or bypass that process
+
+#### Use Loops to Work with Tables
+
+- We can use nested `for` loops to work through individual values in a
+  list of lists
+
+- E.g. if we want to calculate the total sales over a week, (full code
+  given in
+  [TablesOfSaleData.py](./Examples/21_TablesOfSalesData/TablesOfSaleData.py))
+
+  ``` python
+    total_sales = 0
+    for day_sales in week_sales:
+        for sales_value in day_sales:
+            total_sales = total_sales + sales_value
+
+    print("Total sales for the week are", total_sales)
+  ```
+
+      Total sales for the week are 5205
+
+  - `day_sales` in the outer loop iterates over each constituent list in
+    the list of lists
+  - `sales_value` is then each value in the current list referenced by
+    `day_sales`
+
+##### Example: Loop Counting
+
+*Consider the code for summing the sales data in [the previous
+example](#use-loops-to-work-with-tables). Answer the following questions
+to make sure you understand how it works*
+
+1. *How many times will the statements inside the two loops be obeyed?*
+    - *In total they will be run* $70$ *times. The outer loop runs seven
+      times (once for each day of the week) and the inner loop runs ten
+      times (one for each stand) for each iteration of the outer loop*
+2. *How would you change this program so that it could handle more than
+    one week’s worth of sales?*
+    - *We can add more days to the list. Rather than have them
+      correspond to Monday - Friday it might be Week 1 Day 1 etc.*
+    - *These would be additional rows in the list of lists*
+3. *How would we add a day’s worth of sales to the list?*
+    - *We have to read in a new list of values, we can then append it to
+      the list of lists*
+
+      ``` python
+        read_sales(10) # read ten values into sales list
+        week_sales.append(sales) # append the values to the   weekly sales list
+      ```
+
+#### More than Two Dimensions
+
+- It is possible to work with higher dimensions
+
+- For example we might want to store multiple weeks of data
+
+  - Then we would have a *list of (list of (lists))s*
+
+- Works just like two dimensions but with an extra index, for example we
+  can append a week of sales like so,
+
+  ``` python
+    annual_sales.append(week_sales)
+  ```
+
+> [!TIP]
+>
+> **Keep your dimensions low**
+>
+> You should rarely have to use more than three dimensions. If you find
+> yourself using highly nested / high-dimensional structures you might
+> want to rethink how you’re representing your data
+>
+> One technique we will see later is the use of classes, which can make
+> it easier to create linear collections
+>
+> The computer itself is perfectly happy working in higher dimensions.
+> The real difficulty is that you probably aren’t and it can be hard to
+> reason about high dimensional data
+
+### Use Lists as Lookup Tables
+
+- Now we have the ability to manipulate weekly sales data, the next
+  question is how to display that data and the requests.
+
+- When we enter the data we want to see something like,
+
+  ``` text
+    Enter the Monday sales figures for stand 2:
+  ```
+
+- Here we need to have a variable to control what day is printed
+
+  - Most simple implementation is an integer to track the day,
+    implemented in [DayNameIf.py](./Examples/22_DayNameIf/DayNameIf.py)
+
+  ``` python
+    # Example 8.22 Day Name If
+    #
+    # Uses a if, elif, else construction to convert an integer
+    # to a string representation of the day of the week
+
+    import time
+
+    current_time = time.localtime()
+    day_number = current_time.tm_wday
+
+    if day_number == 0:
+        day_name = "Monday"
+    elif day_number == 1:
+        day_name = "Tuesday"
+    elif day_number == 2:
+        day_name = "Wednesday"
+    elif day_number == 3:
+        day_name = "Thursday"
+    elif day_number == 4:
+        day_name = "Friday"
+    elif day_number == 5:
+        day_name = "Saturday"
+    elif day_number == 6:
+        day_name = "Sunday"
+    else:
+        raise ValueError("Unexpected day_number " + str(day_number) + " encountered")
+
+    print(day_name)
+  ```
+
+      Sunday
+
+- This works, but is fragile, a cleaner way to do this is to use a
+  *lookup table*
+
+  - i.e. we use `day_number` to index a list that stores the correct day
+
+- We `import time` for fun so the program prints the current day
+
+  ``` python
+    # Example 8.23 Day Name List
+    #
+    # Uses a lookup table to correctly print the day
+
+    import time
+
+    current_time = time.localtime()
+    day_number = current_time.tm_wday
+
+    day_names = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]
+
+    day_name = day_names[day_number]
+
+    print("Today is", day_name)
+  ```
+
+      Today is Sunday
+
+- Lookup tables are powerful for shrinking written code
+
+- They also are used to create *data-driven applications*
+
+  - Programs that use built-in or loaded data rather than fixed
+    behaviour
+
+### Tuples
+
+- Lists are the standard collection type
+  - They are mutable, i.e. we can change the value of a given index or
+    add new items
+- Consider the `day_names` list, once defined we don’t want to change it
+  - We would like to also prevent this, to catch potential programming
+    errors e.g.
+
+    ``` python
+      day_names[5] = "Splatterday"
+    ```
+
+- A tuple is like a list, but the contents cannot be changed
+  - A tuple is said to be *immutable*
+
+  - If we attempt to change the tuple we get an error, (demonstrated in
+    the implementation
+    [DayNameList.py](./Examples/24_DayNameTuple/DayNameTuple.py))
+
+    ``` python
+      # Example 8.24 Day Name Tuple
+      #
+      # Reimplements the Day Name lookup table with a tuple
+      # and demonstrates the immutability of the data structure
+
+      import time
+
+      current_time = time.localtime()
+      day_number = current_time.tm_wday
+
+      day_names = (
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+      )
+
+      day_name = day_names[day_number]
+
+      print("Today is", day_name)
+
+      print("Attempting to change the lookup table...")
+
+      day_names[day_number] = "Splatterday"  # type: ignore
+      print("Today is", day_names[day_number])
+    ```
+
+        Today is Sunday
+        Attempting to change the lookup table...
+
+        TypeError: 'tuple' object does not support item assignment
+        ---------------------------------------------------------------------------
+        TypeError                                 Traceback (most recent call last)
+        Cell In[25], line 27
+             23 print("Today is", day_name)
+             25 print("Attempting to change the lookup table...")
+        ---> 27 day_names[day_number] = "Splatterday"  # type: ignore
+             28 print("Today is", day_names[day_number])
+
+        TypeError: 'tuple' object does not support item assignment
+- Tuple is created as for a list but using `()` to delimit the items
+  rather than `[]`
+- Tuples are good for working with complicated values
+  - e.g. composite types
+- Example: Consider a pirates treasure map, the treasure’s location is
+  given by a reference landmark, then a number of steps north and a
+  number of steps east
+- A function can strictly speaking `return` *one* value
+  - We can return multiple values as a `tuple`
+
+  ``` python
+    def get_treasure_location():
+        # get the treasures location
+        return ("The old oak tree", 20, 30)
+  ```
+
+  - This returns three values
+    1. The string `"The old oak tree"`
+    2. The number of steps north, `20`
+    3. The number of steps east, `30`
+- Like lists, tuples are zero-indexed
+
+> [!WARNING]
+>
+> **Take care with your tuple indices**
+>
+> When returning multiple items from a function via a tuple, we have to
+> be clear to specify the order of what the items in the tuple
+> correspond to. This is effectively a contract between the function and
+> any caller (if you change the order, you will break the code of anyone
+> who relies on the current order)
+>
+> The order that parameters are returned in should thus be clearly
+> documented, e.g.
+>
+> ``` python
+> def get_treasure_location():
+>     """
+>     Gets the location of the treasure
+>
+>     Returns
+>     -------
+>     tuple(str, int, int)
+>
+>     [0] is a string naming the landmark to start
+>     [1] is the number of paces north
+>     [2] is the number of paces east
+>     """
+>
+>     return ("The old oak tree", 20, 30)
+> ```
+
+- An alternative to explicitly referencing the index of a returned
+  tuple, is called *tuple-unpacking*
+  - We provide a comma-seperated list of variables to assign the tuple
+    values (in order) to, e.g.
+
+    ``` python
+          landmark, north, east = get_treasure_location()
+      print("Start at", landmark, "walk", north, "paces north and", east, "paces east")
+    ```
+
+- The complete Pirate’s Treasure program implemention is given in
+  [PiratesTreasure.py](./Examples/25_PiratesTreasure/PiratesTreasure.py)
 
 ## Summary
 
+- Lists can be used to store large and arbitarily sized data
+  - We refer to the individual elements of a list as items
+  - `append` lets us add new elements to a list (at the end)
+  - `len` returns the number of items in a list
+  - lists can contain different types of data in the same list
+  - list values are accessed via the indexing operator `[]`
+    - lists are indexed from $0$
+    - The last index in a list is `len(list) - 1`
+  - Nested lists allow for multi-dimensional structures
+- Files can be manipulated by python
+  - `open` is used to access a file
+  - files can be read from or written to
+  - `for` can be used to loop over lines from a file
+  - when using `write` to write to a file, newlines (`'\n'`) must be
+    added exactly
+  - `strip` can be used to remove whitespace when reading lines from a
+    file
+  - Files must be closed using the `close` method once they are no
+    longer in use
+  - Files can raise exceptions which must be handled or notified to the
+    user
+    - They must ensure the file is still closed
+  - `with` can be used to automatically ensure a file is closed once it
+    is no longer used, even in error scenarios
+- Tuples are immutable collections
+  - Once they are defined we cannot modify or add values
+  - Tuples are suitable for tuples or other fixed collections
+  - Tuples can be used by functions that return more than one value
+
 ## Questions and Answers
+
+1. *Do we **really** need lists?*
+    - Yes, any scenario with large or arbitrary data needs collections
+      to meaningfully handle and manipulate them
+2. *Do we **really** need tuples?*
+    - No, techically we could just use lists instead. They are useful
+      though because they enforce properties that lists don’t such as
+      immutability which is useful in some cases
+3. *How does the list actually work?*
+    - When a list is created the program reserves memory to hold a few
+      items
+    - The memory also tracks the number of items currently stored in the
+      list
+    - Appending an item consumes part of the allocated memory
+    - If the list doesn’t have enough room, then more memory is
+      allocated to the list
+    - When accessing a list item, the list checks if the item exists
+      - If the item doesn’t exist, an exception is thrown
+      - else, the item is found and returned
+4. *Why are tuples called tuples?*
+    - Tuples are ordered collections of elements in mathematics. Python
+      adopted the terminology
+5. *Should the sales program use a list to store the sales figures or a
+    tuple?*
+    - It depends on the operations we want to peform
+    - Once we have the list of sales figures, none of our operations
+      strictly change the tuple (except sorting)
+      - Can implement sorting them as creating a new tuple
+      - Probably good to then use a tuple from a security perspective
+      - However, this makes the code more complicated
+    - If we wanted to introduce an *edit* function later to modify sales
+      data we might prefer a list for the clean implementation
+      - As again opposed to the tuple approach
+6. *Can functions return lists instead of tuples?*
+    - Yes, they can.
+    - However, typically the results of functions cannot be changed
+      - So naturally a tuple
+7. *Will my program run faster if I use tuples to store all the data in
+    it?*
+    - Potentially, tuples are faster to implement than lists
+    - Depends on what the program does, if you’re mutating a lot of
+      data, the cost of constantly recreating multiple tuples might be
+      greater than the cost of creating and modifying a list
+    - The speed difference should hardly be noticable in any case
+8. *Does the* `with` *construction stop objects from throwing
+    exceptions?*
+    - No, `with` is designed to ensure that even if an object throws an
+      exception the managed resource is released correctly
+    - `with` will still pass on the exception
