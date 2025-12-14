@@ -37,6 +37,23 @@
     - [Complete the Program](#complete-the-program)
   - [Store Data in a File](#store-data-in-a-file)
     - [Write into a File](#write-into-a-file)
+      - [Example: File Writing](#example-file-writing)
+      - [Write the Sales Figures](#write-the-sales-figures)
+      - [Example: The `save_sales`
+        Function](#example-the-save_sales-function)
+    - [Read from a File](#read-from-a-file)
+      - [Example: Reading from Files](#example-reading-from-files)
+      - [Read the Sales Figures](#read-the-sales-figures)
+        - [Example: The `load_sales`
+          Function](#example-the-load_sales-function)
+    - [Deal with File Errors](#deal-with-file-errors)
+      - [Example: Dealing with File Handling
+        Exceptions](#example-dealing-with-file-handling-exceptions)
+    - [Use the `with` Construction to Tidy up File
+      Access](#use-the-with-construction-to-tidy-up-file-access)
+    - [Exercise: Record a List with a `save`
+      Function](#exercise-record-a-list-with-a-save-function)
+  - [Store Tables of Data](#store-tables-of-data)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -1542,6 +1559,721 @@ while True:
   - The two arguments are called the `file_path` and the `mode`
     - `file_path` is the file you want to open
     - `mode` is what you want to do with it
+
+> [!CAUTION]
+>
+> **It’s very easy to overwrite an existing file**
+>
+> The `open` function will not prevent you from modifying important
+> files. For example files opened for write will first wipe the contents
+> of any existing file that matches the path then write the new
+> contents.
+>
+> Python provides the `os` module which has some extra functionality for
+> handling files and directories, e.g. you can check that a file exists
+> before you open it if you then want check if the user wants to
+> overwrite it *before* opening it
+>
+> ``` python
+> import os.path
+> if os.path.isfile("text.txt"):
+>     print("The file exists")
+> ```
+
+- If we’ve opened a file in write mode, we can use the `write` method on
+  the file object to write to the file
+
+  ``` python
+    output_file.write("First line\n")
+    output_file.write("Second line\n")
+    output_file.close()
+  ```
+
+- Once you’re done with a file you need to call `close`
+
+  - Completes any unfinished writes (ensures data integrity)
+  - Releases the file so other programs or processes can use it
+    - Files open for writing are locked for editing by that process,
+      nothing else can use them
+
+- Putting everything together our simple [file writing
+  program](./Examples/15_FileOutput/FileOutput.py) is,
+
+  ``` python
+    # Exercise 8.2 File Output
+    #
+    # A simple program to demonstrate opening and writing to a file
+
+    output_file = open("test.txt", "w")
+    output_file.write("line 1\n")
+    output_file.write("line 2\n")
+    output_file.close()
+  ```
+
+##### Example: File Writing
+
+*Consider the following questions about file writing*
+
+1. *Why have you called the* `write` *function a method? Isn’t it a
+    function?*
+    - *As discussed earlier, methods are functions associated with a
+      specific object. Typically when we say functionw we refer to a
+      function that is defined outside of an object.* `write` *is a
+      method on the file object. It is impossible to use* `write`
+      *without there being a file object to use. Methods allow us to
+      work with multiple file objects without having to worry about
+      making sure we pass the correct one to the function*
+2. *What does the* `\n` *mean at the end of the strings?*
+    - *It’s the new line symbol* `write` *doesn’t automatically end the
+      line after we call it, so we have to manually pass the new line*
+3. *Where is the file* `text.txt` *actually created?*
+    - *The file_path is relative to the current running python program.
+      So the file is written to the same directory. E.g. if we had a
+      folder called “My Programs” with a python program “MakeFiles.py”,
+      when we run “MakeFiles.py” the files it makes are stored in “My
+      Programs”. You can use more complicated file_paths*
+      1. `path = "./data/test.txt"` *would look for test.txt in the
+          data subdirectory of the current python program (relative
+          path)*
+      2. `path = "c:/data/test.txt"` *would look for test.txt in the
+          data subdirectory of the c drive (absolute path)*
+    - **Note**: On Windows the `\` is used to seperate directories, but
+      in python you always use `/`
+4. *Can any program use a file written from a Python program?*
+    - *Yes, python uses the underlying operating systems file handling
+      services, so any other program on the operating system can access
+      it.*
+5. *Can I add lines at the end of a python file?*
+    - *Yes, rather than open the file in write* `w`*, you open the file
+      in append* `a`*. Any writes will then be appended to the end of
+      the file. A non-existent file will be created*
+
+##### Write the Sales Figures
+
+- Using the above discussion we can implement the `write_sales` function
+
+  ``` python
+    # Example 8.16 Write Sales
+    #
+    # Implements the Write Sales function
+
+    # test data
+    sales = [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
+
+
+    def save_sales(file_path):
+        """
+        Saves the contents of the sales list in the file given by file_path
+
+        Parameters
+        ----------
+
+        file_path : str
+            string giving the file path to save to
+
+        Raises
+        ------
+        FileException
+            Raised if the save fails
+
+        Returns
+        -------
+        None
+        """
+        print("Save the sales in: ", file_path)
+        output_file = open(file_path, "w")
+        for sale in sales:
+            output_file.write(str(sale) + "\n")
+        output_file.close()
+
+
+    save_sales("test_output.txt")
+  ```
+
+##### Example: The `save_sales` Function
+
+*The* `save_sales` *function combines several behaviours and is worth
+examining in detail. What is the purpose of the function? To take a list
+of sales figures and write those figures to a file (preferably in a
+format that is easy for a human to read and to load back into the
+program.) Consider the following questions*
+
+1. *What does the* `str` *function do? Why are we using it?*
+    - *The* `str` *function converts the sales number to a string*
+    - *While* `print` *can handle non-string inputs,* `write` *can only
+      take a string*
+2. *Why can’t we just write out the sales list as one object?*
+    - *A* `list` *does not provide any built-in methods for writing an
+      object out to a file*
+    - *We could try and print out it’s string representation (i.e. call*
+      `str` *and output that, but that doesn’t give us great ability to
+      control the way the data is output)*
+
+#### Read from a File
+
+- We an also use `open` to read from a file, we just use the read mode
+  (`r`)
+
+  ``` python
+    input_file = open("test.txt", "r")
+  ```
+
+- We can then loop over the lines in a file using a `for` loop
+
+  ``` python
+  for line in input_file:
+        print(line)
+  ```
+
+- We should still use `close()` when we’re done reading
+
+  ``` python
+    input_file.close()
+  ```
+
+- The complete sample program looks like,
+
+  ``` python
+    # Example 8.17 File Input
+    #
+    # Demonstrates reading input from a file
+
+    input_file = open("test.txt", "r")
+    for line in input_file:
+        print(line)
+    input_file.close()
+  ```
+
+##### Example: Reading from Files
+
+*Work through the following questions to understand how reading from
+files works*
+
+1. *If you look at the following output, you’ll notice there are empty
+    lines after each line of text. Why is that?*
+
+    ``` text
+     line 1
+
+     line 2
+    ```
+
+    - *Every time we read a line from a file, we read the terminating
+      new line. This is included in the string stored in* `line` *so
+      when we call print we get that new line **and** the new line added
+      by* `print`
+
+    - *We could fix this by modifying our* `print` *call, to remove the
+      new line*
+
+      ``` python
+        print(line, end='')
+      ```
+
+    - *A more natural way to fix this is to remove the newline when we
+      first read in the string. The* `strip` *method when called without
+      arguments returns a copy of the string with all leading and
+      trailing whitespace removed from the string*
+
+      ``` python
+        line = line.strip()
+      ```
+
+    - *This is an example of conditioning input. Which is the process of
+      making sure that an input does not contain any unexpected values.
+      For example we might also want to use* `strip` *to remove
+      non-printable characters*
+
+      - `lstrip` *and* `rstrip` *are variants of* `strip` *that only
+        work on the lead or end of the string respectively*
+
+2. *Why do we have to close the file we’re reading?*
+
+    - *For reading a file forgetting to close it won’t cause issues with
+      other programs or processes that also try to read from the file*
+    - *However, lets other programs now write to that file*
+    - *Releases the memory associated with holding the connection*
+    - *Your computer might not let you shut down if it thinks there are
+      still unclosed files*
+
+3. *What would happen if you tried to write to a file that had been
+    opened for reading?*
+
+    - *An exception will be raised*
+    - `r+` *is a mode that lets you read and write to a file*
+    - *You typically don’t want to read and write to a file at the same
+      time*
+      - *Hard to ensure the integrity of the data and avoid corrupting
+        it, (Such as by writing a line longer than the one previously
+        written - this may corrupt the next line)*
+    - *A better pattern is to load data, update the data then write that
+      back into the file*
+
+4. *Can a program read an entire file at once?*
+
+    - *Yes, the* `read` *method by default will try to read an entire
+      file*
+    - *line endings are preserved*
+    - *Be careful with large files, as this may overwhelm your computers
+      memory…*
+
+    ``` python
+     # Example 8.18 File Read
+     #
+     # Demonstrates the use of file_object.read to read
+     # the contents of a file in one go
+
+     input_file = open("test.txt", "r")
+     total_file = input_file.read()
+     print(total_file)
+     input_file.close()
+    ```
+
+##### Read the Sales Figures
+
+- Let’s now implement `load_sales`
+
+  ``` python
+    # Example 8.19 Load Sales
+    #
+    # Implements the Load Sales function
+
+    sales = []
+
+
+    def load_sales(file_path):
+        """
+        loads the contents of the file given by file_path into the sales list
+
+        Parameters
+        ----------
+
+        file_path : str
+            string giving the file path to load from
+
+        Raises
+        ------
+        FileException
+            Raised if the load fails
+
+        Returns
+        -------
+        None
+        """
+        print("Load the sales in:", file_path)
+        sales.clear()
+        input_file = open(file_path, "r")
+        for line in input_file:
+            line = line.strip()
+            sales.append(int(line))
+        input_file.close()
+  ```
+
+###### Example: The `load_sales` Function
+
+`load_sales` *works as the opposite of* `save_sales` *instead of taking
+a sales list and putting it into a text file, we pull the figures from a
+file and load them into the sales list. Consider the following
+questions*
+
+1. *What does the* `int` *function do?*
+    - *The numbers pulled out of the file are initially stored as a
+      string*
+    - *We need to convert them to a number, so we call* `int`
+2. *What happens if the input file was empty?*
+    - *The function works as one would hope, the loop doesn’t iterate
+      and we get an empty sales list*
+
+#### Deal with File Errors
+
+- Dealing with files, also means dealing with the errors they can
+  introduce
+  - e.g. A file might have been deleted, a USB removed, or simply the
+    user might pass the wrong name
+- When an error occurs we want to ensure two things:
+  1. No files are left open
+  2. The user is aware that the error has occured
+- File objects typically raise exceptions when their methods
+  - Enables us to handle and report on their errors
+  - Use the `try ... except` syntax we’ve seen before
+
+  ``` python
+    try:
+        output_file = open(file_path, "w")
+        for sale in sales:
+            output_file.write(str(sale) + "\n")
+        output_file.close()
+        print("File Written Successfully")
+    except:
+        print("Something went wrong with the file")
+  ```
+
+##### Example: Dealing with File Handling Exceptions
+
+*The code performing the file write is wrapped in a* `try...except`
+*block. If* `write`, `open` *or* `close` *causes an exception it will be
+caught and handled by the* `except` *clause. Let’s work through the
+following questions to see if this solves the ensures that the file is
+closed and the user is informed*
+
+1. *In what circumstances will the code in the* `except` *part be
+    executed?*
+    - *If any of the file functions,* `write`*,* `open`*, or* `close`
+      *raise an exception, the code in the* `except` *part will be
+      executed. An error is thus only printed when an error occurs*
+2. *In what circumstances will the “File written successfully?” message
+    be printed?*
+    - *This is only printed if every step in the file writing process is
+      completed successfully*
+3. *An error message is always printed if an error is thrown, but will
+    the file always be closed?*
+    - *No, this is a problem, as we said that all files needed to be
+      closed even when an error occurs!*
+    - *We could put the* `close` *statement in the exception handling
+      section to, but a more general solution to this problem is to use
+      a* `finally` *block*
+      - *A* `finally` *block contains code that is always executed after
+        all of the* `try` *and/or* `except` *code has executed*
+      - *Could for code that we naturally want to run after the block no
+        matter if the process succeeds or fail (such as clean-up)*
+
+    ``` python
+     try:
+         output_file = open(filename, "w")
+         for sale in sales:
+             output_file.write(str(sale) + "\n")
+     except:
+         print("Something went wrong with writing to the file")
+     finally:
+         output_file.close()
+    ```
+
+#### Use the `with` Construction to Tidy up File Access
+
+- It would be great if we didn’t have to remember to manually ensure a
+  file gets closed
+  - Failing to properly close a file can lead to hard to pin down
+    behaviour
+
+> [!WARNING]
+>
+> **Intermittent Faults are the Worst Kind to Fix**
+>
+> A piece of code that is broken all the time is annoying, but at least
+> you can typically easily identify what is not working. If a program
+> fails only some of the time this can be much harder to solve. Often
+> you require precise directions as to the steps taken up to the point
+> of failure in order to be able to attempt to replicate the problem.
+> This adds significant overhead to fixing the problem
+
+- The `with` construct allows the programmer to automatically manage the
+  acquisition and release of resources
+  - More generic than just file access
+  - You can write your own services to work with `with`
+    - Advanced topic we can ignore for now
+
+``` mermaid
+block-beta
+    columns 6
+
+    classDef BG stroke:transparent, fill:transparent
+
+
+    space
+    title["Breakdown of a with statement"]:4
+    space
+
+    class title BG
+
+    block:With
+    columns 1
+        with["with"]
+        withDescr["(start of a with block)"]
+    end
+
+    class with BG
+    class withDescr BG
+
+
+    block:Expression
+    columns 1
+        expression["expression"]
+        expressionDescr["(expression generating resource to use)"]
+    end
+
+    class expression BG
+    class expressionDescr BG
+
+    block:As
+    columns 1
+        as["as"]
+        space
+    end
+
+    class as BG
+
+    block:Name
+    columns 1
+        name["name"]
+        nameDescr["(name to represent the resource)"]
+    end
+
+    class name BG
+    class nameDescr BG
+
+    block:Colon
+    columns 1
+        colon[":"]
+        space
+    end
+
+    class colon BG
+
+    block:Suite
+    columns 1
+        suite["Statement block"]
+        suiteDescr["(statements)"]
+    end
+
+    class suite BG
+    class suiteDescr BG
+```
+
+- `with` is used to provide an object that provides a service
+
+- `as` is used to assign a semantically meaningful name to the resource
+
+- `with` activates an “enter” behaviour on its object
+
+  - For files this is `open`
+
+- When the block is finished, `with` calls some exit behaviour on the
+  object
+
+  - For files this causes the file to be closed
+
+- `with` allows us to ensure a few things
+
+  1. The file is always closed
+  2. The reference to the file only exists as long as we are using it
+
+  ``` python
+    # Example 8.20 Using with to Access Files
+    #
+    # Rewrites read_sales and load_sales to use the with functionality
+    # implemented in python
+
+    # test data
+    sales = [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
+
+
+    def save_sales(file_path):
+        """
+        Saves the contents of the sales list in the file given by file_path
+
+        Parameters
+        ----------
+
+        file_path : str
+            string giving the file path to save to
+
+        Raises
+        ------
+        FileException
+            Raised if the save fails
+
+        Returns
+        -------
+        None
+        """
+        print("Save the sales in:", file_path)
+        try:
+            with open(file_path, "w") as output_file:
+                for sale in sales:
+                    output_file.write(str(sale) + "\n")
+        except:  # noqa: E722
+            print("Something went wrong with the file")
+
+
+    def load_sales(file_path):
+        """
+        loads the contents of the file given by file_path into the sales list
+
+        Parameters
+        ----------
+
+        file_path : str
+            string giving the file path to load from
+
+        Raises
+        ------
+        FileException
+            Raised if the load fails
+
+        Returns
+        -------
+        None
+        """
+        print("Load the sales in:", file_path)
+        sales.clear()
+        try:
+            with open(file_path, "r") as input_file:
+                for line in input_file:
+                    line = line.strip()
+                    sales.append(int(line))
+        except:  # noqa: E722
+            print("Something went wrong with the file")
+
+
+    print("Sales before save and load:", sales)
+    save_sales("test.txt")
+    load_sales("test.txt")
+    print("Sales after save and load:", sales)
+  ```
+
+- Observe that we no longer have to explicitly include the `close` call
+
+- `with` does not handle exceptions however, so we still have to include
+  a `try...except` block
+
+- When an exception occurs the `with` first releases the resource with
+  its exit behaviour
+
+  - e.g. closes the file
+  - *Then* the excecution moves to the `except` block
+
+- If we wanted to handle exceptions without releasing the resource, we
+  would have to swap the order to,
+
+  ``` python
+    with open("file", "mode"):
+        try:
+            #do standard thing here
+        except:
+            # handle exception without releasing resource
+        finally:
+            # do something regardless of success or fail without releasing resource
+  ```
+
+#### Exercise: Record a List with a `save` Function
+
+*Add a* `save` *function to your party guest program so that you can
+record a list of people who attended your party*
+
+We build off our version that generates a [sorted
+list](#exercise-sort-alphabetically). We can basically copy the
+`save_sales` function making changes to the refer to the `guests` list
+instead of `sales` and giving a more appropriate name to the loop
+variable.
+
+``` python
+def save(file_path):
+    """
+    Saves the guest list to a user-specified file given by file path
+
+    Informs the user if an error occurs
+
+    Parameters
+    ----------
+
+    file_path : str
+        string giving the file path to save to
+
+    Returns
+    -------
+    None
+    """
+    print("Save the guest list in:", file_path)
+    try:
+        with open(file_path, "w") as output_file:
+            for guest in guests:
+                output_file.write(str(guest) + "\n")
+    except:  # noqa: E722
+        print("Something went wrong with the file")
+```
+
+We then run the program as normal
+
+1. Ask for the number of guests
+2. Read in the guests
+3. Sort the guest list
+4. Display the guest list
+
+We then ask the user if they want to save the guest list. For simplicity
+we use `BTCInput.read_input_ranged` to ask for a $0$ or a $1$ where a
+$1$ indicates the user wishes to save, while $0$ indicates they dont. If
+the user wishes to save we then prompt them using `BTCInput.read_text`
+for a file name and then call save on the given file path
+
+``` python
+user_wants_to_save = BTCInput.read_int_ranged(
+    "Would you like save the list? (1 for yes, 0 for no): ", min_value=0, max_value=1
+)
+
+if user_wants_to_save:
+    save_file_name = BTCInput.read_text("Enter file name to save as: ")
+    save(save_file_name)
+```
+
+- The complete integrated code is given in
+  [GuestListWithSave.py](./Exercises/03_ListWithSave/GuestListWithSave.py)
+
+### Store Tables of Data
+
+- A list holds data in one dimension, i.e. its length
+- Often data is multi-dimensional
+- e.g. Our Ice Cream Sales client might now ask for the ability to track
+  sales, by store *and* by day of the week
+
+``` mermaid
+block-beta
+    columns 5
+
+    classDef Header fill:#bbf,stroke:#333,stroke-width:4px;
+    classDef BG stroke:transparent, fill:transparent
+
+    space:2
+    title["Data Table"]
+    space:2
+
+    class title BG
+
+    Block:header:5
+    columns 5
+        start[" "]
+        monday["Monday"]
+        tuesday["Tuesday"]
+        wednesday["Wednesday"]
+        stop["..."]
+    end
+
+    class header Header
+
+    Stand1["Stand 1"]
+    50
+    80
+    10
+    Blank1[" "]
+
+    Stand2["Stand 2"]
+    54
+    98
+    7
+    Blank2[" "]
+
+    Stand3["Stand 3"]
+    29
+    40
+    80
+    Blank3[" "]
+
+    Stand4["..."]
+    stand4_1[" "]
+    stand4_2[" "]
+    stand4_3[" "]
+    stand4_4[" "]
+
+```
 
 ## Summary
 
