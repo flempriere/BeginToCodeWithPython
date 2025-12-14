@@ -24,6 +24,9 @@ website:
           - 01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.qmd
           - 01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.qmd
           - 01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.qmd
+      - section: "Advanced Programming"
+        contents:
+          - 02_AdvancedProgramming/09_UsingClasses/Chapter_09.qmd
 format:
   html:
     code-fold: false

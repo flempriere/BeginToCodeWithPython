@@ -25,6 +25,10 @@ I started this repository to work through an easy and basic book before working 
 - [Chapter 7: Using Functions to Simplify Programs](./01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.qmd)
 - [Chapter 8: Storing Collections of Data](./01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.qmd)
 
+### Part 2. Advanced Programming
+
+  - [Chapter 9: Using Classes to Store Data](./02_AdvancedProgramming/09_UsingClasses/Chapter_09.qmd)
+
 ### Useful Python
 
 ::: {.callout-important}

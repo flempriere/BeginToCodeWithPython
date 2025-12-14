@@ -34,6 +34,10 @@ This repository is structured as follows,
 - [Chapter 7: Using Functions to Simplify Programs](./01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.md)
 - [Chapter 8: Storing Collections of Data](./01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.md)
 
+### [Advanced Programming](./02_AdvancedProgramming/)
+
+- [Chapter 9: Usiing Classes  to Store Data](./02_AdvancedProgramming/09_UsingClasses/Chapter_09.md)
+
 ### Useful Python
 
 >[!NOTE]

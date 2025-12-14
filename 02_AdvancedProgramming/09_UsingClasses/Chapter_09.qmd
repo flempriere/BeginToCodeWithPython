@@ -1,0 +1,63 @@
+---
+title: "Chapter 9: Use Classes to Store Data"
+---
+
+## Notes
+
+### Make a Tiny Contacts App
+
+- Let's develop a lightweight program to store contact details
+    1. Names
+    2. Addresses
+    3. Telephone Numbers
+
+- We storyboard the interface
+
+  ```text
+    Tiny Contacts
+
+    1. New Contact
+    2. Find Contact
+    3. Exit Program
+
+    Enter your command:
+  ```
+
+- We then want to extend the storyboard to the different interface options
+
+  ```text
+    Create new contact
+
+    Enter the contact name: Rob Miles
+    Enter the contact address: 18 Pussycat Mews, London, NE1 410S
+    Enter the contact phone: +44(1234) 56789
+
+    Contact record stored for Rob Miles
+  ```
+
+- The matching storyboard for find is then,
+
+  ```text
+    Find Contact
+
+    Enter the contact name: Rob Miles
+    Name: Rob Miles
+    Address: 18 Pussycat Mews, London, NE1 410S
+    Phone: +44(1234) 56789
+  ```
+
+  - With a matching storyboard for a contact not existing
+
+    ```text
+        Find Contact
+
+        Enter the contact name: Fred Bloggs
+        This name was not found
+    ```
+#### Make a Prototype
+
+
+
+## Summary
+
+## Questions and Answers
