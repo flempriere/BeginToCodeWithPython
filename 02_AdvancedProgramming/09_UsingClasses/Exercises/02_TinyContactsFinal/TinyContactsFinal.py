@@ -1,6 +1,8 @@
-# Example 9.6 Tiny Contacts with Constructor
+# Exercise 9.2 Tiny Contacts Final
 #
-# Uses a constructor to create Contact class objects
+# Final Version of Tiny Contacts that documents support for listing all contacts,
+# add's the ability to sort the contacts in alphabetical order and refactors out
+# remaining common code
 
 import pickle
 
@@ -30,9 +32,6 @@ class Contact:
         self.name = name
         self.address = address
         self.telephone = telephone
-
-
-contacts = []
 
 
 def new_contact():
@@ -74,6 +73,24 @@ def find_contacts(search_name):
     return results
 
 
+def display_contact(contact):
+    """
+    Displays the Contact details for the supplied contact
+
+    Params
+    ------
+    contact : Contact
+        contact to display
+
+    Returns
+    -------
+    None
+    """
+    print("Name:", contact.name)
+    print("Address:", contact.address)
+    print("Telephone:", contact.telephone, "\n")
+
+
 def display_contacts():
     """
     Prompts the user for a contact name and
@@ -84,12 +101,12 @@ def display_contacts():
     None
     """
     print("Find contact")
-    contacts = find_contacts(BTCInput.read_text("Enter the contact name: "))
+    contacts = find_contacts(
+        BTCInput.read_text("Enter the contact name (Press enter to display all): ")
+    )
     if len(contacts) > 0:
         for contact in contacts:
-            print("Name: ", contact.name)
-            print("Address: ", contact.address)
-            print("Telephone: ", contact.telephone, "\n")
+            display_contact(contact)
     else:
         print("This name was not found")
 
@@ -107,15 +124,15 @@ def edit_contacts():
     None
     """
     print("Edit Contact")
-    contacts = find_contacts(BTCInput.read_text("Enter the contact name: "))
+    contacts = find_contacts(
+        BTCInput.read_text("Enter the contact name ((Press enter to edit all)): ")
+    )
 
     print("Found", len(contacts), "matches")
 
     if len(contacts) > 0:
         for contact in contacts:
-            print("Name:", contact.name)
-            print("Address:", contact.address)
-            print("Telephone:", contact.telephone)
+            display_contact(contact)
             edit = BTCInput.read_int_ranged(
                 "Edit this contact? (1 - Yes, 0 - No): ", min_value=0, max_value=1
             )
@@ -154,7 +171,7 @@ def save_contacts(file_name):
     -------
     None
     """
-    print("save contacts")
+    print("Save contacts")
     with open(file_name, "wb") as out_file:
         pickle.dump(contacts, out_file)
 
@@ -181,12 +198,34 @@ def load_contacts(file_name):
         contacts = pickle.load(input_file)
 
 
+def sort_contacts():
+    """
+    sorts the contacts list into alphabetical order
+
+    Returns
+    -------
+    None
+    """
+    print("Sort contacts")
+    for sort_pass in range(0, len(contacts)):
+        done_swap = False
+        for count in range(0, len(contacts) - 1 - sort_pass):
+            if contacts[count].name > contacts[count + 1].name:
+                temp = contacts[count]
+                contacts[count] = contacts[count + 1]
+                contacts[count + 1] = temp
+                done_swap = True
+        if not done_swap:
+            break
+
+
 menu = """Tiny Contacts
 
 1. New Contact
 2. Find Contact
 3. Edit Contact
-4. Exit Program
+4. Sort Contacts
+5. Exit Program
 
 Enter your command: """
 
@@ -198,7 +237,7 @@ except:  # noqa: E722
     contacts = []
 
 while True:
-    command = BTCInput.read_int_ranged(prompt=menu, min_value=1, max_value=4)
+    command = BTCInput.read_int_ranged(prompt=menu, min_value=1, max_value=5)
     if command == 1:
         new_contact()
     elif command == 2:
@@ -206,6 +245,8 @@ while True:
     elif command == 3:
         edit_contacts()
     elif command == 4:
+        sort_contacts()
+    elif command == 5:
         try:
             save_contacts(file_name)
         except:  # noqa: E722

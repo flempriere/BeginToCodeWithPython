@@ -27,9 +27,9 @@ def new_contact():
     """
     print("Create the new contact")
     new_contact = Contact()
-    new_contact.name = BTCInput.read_text("Enter the contact name: ")
-    new_contact.address = BTCInput.read_text("Enter the contact address: ")
-    new_contact.telephone = BTCInput.read_text("Enter the contact phone: ")
+    new_contact.name = BTCInput.read_text("Enter the contact name: ")  # type: ignore
+    new_contact.address = BTCInput.read_text("Enter the contact address: ")  # type: ignore
+    new_contact.telephone = BTCInput.read_text("Enter the contact phone: ")  # type: ignore
     contacts.append(new_contact)
 
 

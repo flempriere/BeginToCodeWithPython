@@ -1,6 +1,6 @@
-# Example 9.6 Tiny Contacts with Load and Save
+# Example 9.6 Tiny Contacts with Constructor
 #
-# Adds loading and saving functionality for contacts using the pickle library
+# Uses a constructor to create Contact class objects
 
 import pickle
 
@@ -9,10 +9,27 @@ import BTCInput
 
 class Contact:
     """
-    Stores Contact Information
+    Contact with a name, address and telephone number.
+
+    Attributes
+    ----------
+    name : str
+        Contact Name
+    address : str
+        Contact's postal or street address.
+    telephone : str
+        Contact phone number (stored as a string).
+
+    Examples
+    --------
+    >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
+    <Contact ...>
     """
 
-    pass
+    def __init__(self, name, address, telephone):
+        self.name = name
+        self.address = address
+        self.telephone = telephone
 
 
 def new_contact():
@@ -24,11 +41,10 @@ def new_contact():
     None
     """
     print("Create the new contact")
-    new_contact = Contact()
-    new_contact.name = BTCInput.read_text("Enter the contact name: ")  # type: ignore
-    new_contact.address = BTCInput.read_text("Enter the contact address: ")  # type: ignore
-    new_contact.telephone = BTCInput.read_text("Enter the contact phone: ")  # type: ignore
-    contacts.append(new_contact)
+    name = BTCInput.read_text("Enter the contact name: ")
+    address = BTCInput.read_text("Enter the contact address: ")
+    telephone = BTCInput.read_text("Enter the contact phone: ")
+    contacts.append(Contact(name=name, address=address, telephone=telephone))
 
 
 def find_contacts(search_name):
