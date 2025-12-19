@@ -49,6 +49,20 @@
   - [Dictionaries](#dictionaries)
     - [Creating a Dictionary](#creating-a-dictionary)
     - [Dictionary Management](#dictionary-management)
+    - [Return a Dictionary from a
+      Function](#return-a-dictionary-from-a-function)
+    - [Use a Dictionary to Store
+      Contacts](#use-a-dictionary-to-store-contacts)
+  - [Exercise: The Final Tiny Contacts
+    Refactor](#exercise-the-final-tiny-contacts-refactor)
+  - [Exercise: Music Storage App](#exercise-music-storage-app)
+    - [Storyboarding the Application](#storyboarding-the-application)
+    - [Building the User Interface](#building-the-user-interface)
+    - [Track Management](#track-management)
+    - [Track Search and Display](#track-search-and-display)
+    - [Playlist Management](#playlist-management)
+  - [Exercise: Recipe Storage App](#exercise-recipe-storage-app)
+- [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
 ## Notes
@@ -682,7 +696,7 @@ We have two solutions that we could use,
           AttributeError: 'NoneType' object has no attribute 'address'
           ---------------------------------------------------------------------------
           AttributeError                            Traceback (most recent call last)
-          Cell In[34], line 2
+          Cell In[39], line 2
                 1 x = None #emulate failed find from find_contact
           ----> 2 print(x.address)
 
@@ -976,9 +990,8 @@ flowchart TD
       temp is now Fred name is now Rob
 
 1. *Why does python use immutable data types?*
-    - \*For some procedures, like simple numerical calculations,
-      treating variables as values is often the most desired approach,
-      e.g.
+    - *For some procedures, like simple numerical calculations, treating
+      variables as values is often the most desired approach, e.g.*
 
       ``` python
         pi = 3.1415
@@ -987,7 +1000,7 @@ flowchart TD
       ```
 
     - We don’t want the above to accidently change the value of the
-      constant pi
+      constant `pi`
 
 > [!IMPORTANT]
 >
@@ -1082,7 +1095,7 @@ flowchart TD
 >     AttributeError: 'Contact' object has no attribute 'address'
 >     ---------------------------------------------------------------------------
 >     AttributeError                            Traceback (most recent call last)
->     Cell In[40], line 9
+>     Cell In[45], line 9
 >           6 contact.name = "Hello"
 >           8 # Attempt to access address
 >     ----> 9 print("contact address is", contact.address)
@@ -1458,10 +1471,12 @@ line of the class is an empty line*
   - *Now replicate the code below to see how the new* `__init__` *method
     works*
 
-    ::: {.cell execution_count=15}
-    `{.python .cell-code}   x = InitName("Fred")   print(x.name)`
+    ``` python
+      x = InitName("Fred")
+      print(x.name)
+    ```
 
-    ::: {.cell-output .cell-output-stdout} `Fred` ::: :::
+        Fred
 
   - *When creating an* `InitName` *object we now have to pass the*
     `new_name` *parameter*
@@ -1481,7 +1496,7 @@ line of the class is an empty line*
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[45], line 1
+      Cell In[50], line 1
       ----> 1 y = InitName()
 
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
@@ -1551,7 +1566,8 @@ line of the class is an empty line*
     rob = Contact(name = "Rob Miles", address="18 Pussycat Mews, London, NE1 410S", telephone="+44(1234) 56789")
 ```
 
-- We can integrate this into our Tiny Contacts implementation
+- We can integrate this into [our Tiny Contacts
+  implementation](./Examples/08_TinyContactsWithConstructor/TinyContactsWithConstructor.py)
 
   ``` python
     def new_contact():
@@ -1644,7 +1660,7 @@ line of the class is an empty line*
       KeyError: 'Latte'
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[53], line 1
+      Cell In[58], line 1
       ----> 1 prices["Latte"]
 
       KeyError: 'Latte'
@@ -1721,20 +1737,1217 @@ line of the class is an empty line*
 - We can delete dictionary entries using the `del` keyword, e.g.
 
   ``` python
-    del(access[1111])
-    print(access[1111])
+    del(access_control[1111])
+    print(access_control[1111])
   ```
 
-      NameError: name 'access' is not defined
+      KeyError: 1111
       ---------------------------------------------------------------------------
-      NameError                                 Traceback (most recent call last)
-      Cell In[58], line 1
-      ----> 1 del(access[1111])
-            2 print(access[1111])
+      KeyError                                  Traceback (most recent call last)
+      Cell In[63], line 2
+            1 del(access_control[1111])
+      ----> 2 print(access_control[1111])
 
-      NameError: name 'access' is not defined
+      KeyError: 1111
 
-- The `KeyError` above shows that the code has been eliminated \##
-  Summary
+- The `KeyError` above shows that the key-value has been eliminated
+
+- `del` can also be used to remove elements of a list
+
+- `del` will raise an exception if the object being deleted doesn’t
+  exist
+
+#### Return a Dictionary from a Function
+
+- We’ve seen that programs can use dictionaries as lookup tables
+- Can also return a dictionary from a function
+  - e.g. our Pirates Treasure map from [Chapter
+    8](../../01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.qmd#tuples)
+    could use a `dict` instead
+
+  ``` python
+    # Example 9.10: Pirate Treasure Dictionary
+    #
+    # Implementation of the Pirates Treasure map that uses a
+    # dictionary rather than a tuple to provide contextual
+    # key-value pairs
+
+
+    def get_treasure_location():
+        """
+        Get the location of the treasure
+
+        Returns
+        -------
+        dict[str, str | int]
+            Dictionary containing the location of the treasure
+            dict["start"] : str
+                landmark to start at
+            dict["n"] : int
+                number of paces to walk north relative to the
+                start
+            dict["e"] : int
+                number of paces to walk east relative to the
+                start
+        """
+        return {"start": "The old oak tree", "n": 20, "e": 30}
+
+
+    location = get_treasure_location()
+    print(
+        "Start at",
+        location["start"],
+        "walk",
+        location["n"],
+        "paces north, and",
+        location["e"],
+        "paces east",
+    )
+  ```
+
+      Start at The old oak tree walk 20 paces north, and 30 paces east
+- Dictionaries let us assign contextual meaning to the returned
+  parameters
+- Harder to work with than tuple unpacking though
+
+#### Use a Dictionary to Store Contacts
+
+- We could use dictionaries to store contacts in Tiny Contacts
+  - Rather than use a class we could represent a contact with a
+    dictionary like
+
+    ``` python
+      rob_contact = {"name" : "Rob Miles", "address" : "18 Pussycat Mews", "telephone" : "+44(1234) 56789"}
+    ```
+
+    - But the we lost some of the nice class behaviours
+      - like attributes being accessible via `Contact.name` etc. and we
+        would instead have to use the string literal keys everywhere
+
+  - Another option is storing the contacts themselves in a dictionary
+    rather than a list
+
+    ``` python
+     contact_dictionary = {}
+     rob = Contact(name = "Rob Miles", address = "18 Pussycat Mews", telephone = "+44(1234) 56789")
+     contact_dictionary[rob.name] = rob
+     print(contact_dictionary)
+    ```
+
+        {'Rob Miles': <__main__.Contact object at 0x7870e250a930>}
+
+  - We can then search for a contact by just querying the key
+
+    ``` python
+      contact_dictionary["Rob Miles"]
+    ```
+
+        <__main__.Contact at 0x7870e250a930>
+
+  - However the user would have to type the correct full name
+
+    - Also case sensitive
+    - We could fix the case sensitivity by rather than using the name
+      directly using a normalised key
+      - such as by using `strip().lower()` to strip excess whitespace
+        and convert to lowercase
+
+  - Our current implementation uses `startswith` to provide more
+    flexible matching
+
+  - In general though, dictionaries provide fast queries for finding
+    objects when we can easily use the key as a unique identifier
+
+### Exercise: The Final Tiny Contacts Refactor
+
+*The Tiny contacts program is a useful template for any kind of program
+that stores data and lets a user work with it. You can even add some of
+the sorting and data-processing features from the ice-cream sales
+program to make applications that not only store data but let you do
+interesting things with it.*
+
+*Expand on the Tiny Contacts Program to implement the following,*
+
+1. *The Tiny Contacts program will print all contacts if the
+    `find_contacts` search string is blank, document this for the user*
+2. *Add the sorting features from the ice-cream sales program to print
+    contacts in alphabetical order*
+3. *Identify more common between functions in Tiny Contacts and see
+    what further refactors you can make*
+
+The first step is straightforward. We update the program is two places.
+First we document the behaviour in the responsible function,
+`find_contacts`
+
+``` python
+def find_contacts(search_name):
+    """
+    Finds the contacts with the matching name
+
+    If the empty string is given, all contacts
+    are matched
+
+    Params
+    ------
+    search_name : str
+        Name to search for
+
+    Returns
+    -------
+    list[Contact]
+        list of contacts matching the name, if no
+        matches exist the list is empty
+    """
+    search_name = search_name.strip().lower()
+    results = []
+    for contact in contacts:
+        name = contact.name.strip().lower()
+        if name.startswith(search_name):
+            results.append(contact)
+    return results
+```
+
+This helps anyone who in the future has to edit or maintain our code.
+However it doesn’t provide much help to the user of the program. So we
+also document this in the user facing code (`display_contacts`)
+
+``` python
+def display_contacts():
+    """
+    Prompts the user for a contact name and
+    displays all matching contacts
+
+    Returns
+    -------
+    None
+    """
+    print("Find contact")
+    contacts = find_contacts(
+        BTCInput.read_text("Enter the contact name (Press enter to display all): ")
+    )
+    if len(contacts) > 0:
+        for contact in contacts:
+            display_contact(contact)
+    else:
+        print("This name was not found")
+```
+
+The relevant line being,
+
+``` python
+    BTCInput.read_text("Enter the contact name (Press enter to display all): ")
+```
+
+To add the second we first need to put the sorting code in,
+
+``` python
+def sort_contacts():
+    """
+    sorts the contacts list into alphabetical order
+
+    Returns
+    -------
+    None
+    """
+    print("Sort contacts")
+    for sort_pass in range(0, len(contacts)):
+        done_swap = False
+        for count in range(0, len(contacts) - 1 - sort_pass):
+            if contacts[count].name > contacts[count + 1].name:
+                temp = contacts[count]
+                contacts[count] = contacts[count + 1]
+                contacts[count + 1] = temp
+                done_swap = True
+        if not done_swap:
+            break
+```
+
+This code is basically the same as the sorting code in the ice-cream
+stand example except there might be something that looks odd. namely the
+line
+
+``` python
+contacts[count].name > contacts[count + 1].name
+```
+
+This is because we want to sort the `Contact` objects alphabetical on
+the `name` field. So we have to compare against this field.
+`contacts[count]` *is a reference* to the `Contact` object stored at the
+index `count` so we can access the attributes on the underlying object
+
+We then need to include the sorting option in the display menu
+
+``` python
+menu = """Tiny Contacts
+
+1. New Contact
+2. Find Contact
+3. Edit Contact
+4. Sort Contacts
+5. Exit Program
+
+Enter your command: """
+
+file_name = "contacts.pickle"
+try:
+    load_contacts(file_name)
+except:  # noqa: E722
+    print("Contacts file not found")
+    contacts = []
+
+while True:
+    command = BTCInput.read_int_ranged(prompt=menu, min_value=1, max_value=5)
+    if command == 1:
+        new_contact()
+    elif command == 2:
+        display_contacts()
+    elif command == 3:
+        edit_contacts()
+    elif command == 4:
+        sort_contacts()
+    elif command == 5:
+        try:
+            save_contacts(file_name)
+        except:  # noqa: E722
+            print("Contacts failed to save")
+        break
+    else:
+        raise ValueError("Unexpected command id found: " + str(command))
+```
+
+To answer the final question of what functionality we can pull out we
+can see that both `display_contacts` and `edit_contacts` contain code
+for displaying an individual `Contact`. We can pull this code out into a
+distinct `display_contact` function responsible for displaying a single
+`Contact`. We can then update `display_contacts` and `edit_contacts` to
+defer the display functionality to `display_contact`
+
+``` python
+def display_contact(contact):
+    """
+    Displays the Contact details for the supplied contact
+
+    Params
+    ------
+    contact : Contact
+        contact to display
+
+    Returns
+    -------
+    None
+    """
+    print("Name:", contact.name)
+    print("Address:", contact.address)
+    print("Telephone:", contact.telephone, "\n")
+```
+
+The new `display_contacts` now looks like,
+
+``` python
+def display_contacts():
+    """
+    Prompts the user for a contact name and
+    displays all matching contacts
+
+    Returns
+    -------
+    None
+    """
+    print("Find contact")
+    contacts = find_contacts(
+        BTCInput.read_text("Enter the contact name (Press enter to display all): ")
+    )
+    if len(contacts) > 0:
+        for contact in contacts:
+            display_contact(contact)
+    else:
+        print("This name was not found")
+```
+
+and `edit_contacts` looks similar
+
+### Exercise: Music Storage App
+
+*Write a music track storage program that lets you search for tracks
+based on the length of the track. The program could suggest tracks that
+could be combined to fill an exact amount of time or give the total play
+time of a specific playlist.*
+
+*You will have to create a class that can hold track information, store
+the information in a list and then create some behaviours that would
+search through and process the data*
+
+This is the most complicated application that we have built so far, and
+so it is best to both design and implement in stages. We’ll sketch the
+process and some of the functions out here, but the full program can be
+found [in our
+implementation](./Exercises/03_MusicStorageApp/MusicStorage.py). First
+storyboard out the high level functionality we want.
+
+#### Storyboarding the Application
+
+At the highest level there are two functionalities we need from the
+given brief,
+
+``` text
+1. Enter Tracks and manage tracks in a database
+2. Use these Tracks to build playlists
+```
+
+If we focus in on the first item, this is similar to our Tiny Contacts
+Program. We also have the feature that we want to be able to search for
+tracks based on their length. This leads to the following interface,
+
+``` text
+1. Add a Track
+2. Edit a Track
+3. Remove a Track
+4. Sort Tracks by decreasing length
+5. Sort Tracks by increasing length
+6. Find Tracks by Name
+7. Find Tracks shorter than a given length
+8. Find Tracks longer than a  given length
+
+Enter a command:
+```
+
+Since we want to be able to easily save, load and reconstruct the music
+track objects we’ll use `pickle` to implement saving and loading in the
+same way as for Tiny Contacts (i.e. on program start and exit)
+
+We can then turn to our playlist interface. At some level this will look
+like the interface for adding tracks to the database. With some extra
+such as a convenience function to remove all the tracks in a playlist.
+The two functions we were told that we had to add was to be able to get
+the length of a given playlist and to be able to generate a playlist of
+an exact length given the tracks in the database. It would also be nice
+for the user to be able to save their playlist. We want this to be
+something human readable they could give to a friend, so we’ll simply
+output the track names to a text file.
+
+For simplicity we’ll assume that the user can only work on one playlist
+at a time.
+
+Our interface would look like,
+
+``` text
+1. Add Track to Playlist
+2. Remove Track from Playlist
+3. Clear Playlist
+4. Display Current Playlist
+5. Show Runtime of Current Playlist
+6. Suggest Playlist of Specified Length
+7. Save Current Playlist
+```
+
+#### Building the User Interface
+
+The most immediate problem is that we have a lot of functionality, that
+would probably overwhelm the user. To get around this we will have a
+general main menu (as seen below) and sub-menus for
+
+1. Modifying the track database
+2. Displaying / Searching the Track database
+3. Build Playlists
+
+``` python
+def run_main_menu():
+    main_menu = """Music Storage
+
+1. Track Management
+2. Find and Display Tracks
+3. Playlist Management
+4. Exit Program
+
+Enter your command: """
+    while True:
+        command = BTCInput.read_int_ranged(prompt=main_menu, min_value=1, max_value=4)
+        if command == 1:
+            run_track_menu()
+        elif command == 2:
+            run_display_track_menu()
+        elif command == 3:
+            run_playlist_management_menu()
+        elif command == 4:
+            try:
+                save_tracks(file_name)
+            except:  # noqa: E722
+                print("Tracks failed to save")
+            break
+        else:
+            raise ValueError(
+                "Unexpected command id found: " + str(command) + " in main menu"
+            )
+```
+
+The sub-menu’s look similar (see below). The main menu lets us exit the
+program, while the sub-menu’s exit back to the main menu.
+
+``` python
+def run_display_track_menu():
+    display_track_menu = """Find and Display Tracks
+
+1. Find Tracks by Name
+2. Find Tracks by length (Maximum length)
+3. Find Tracks by length (Minimum length)
+4. Back to Main Menu
+
+Enter your command: """
+    while True:
+        command = BTCInput.read_int_ranged(
+            prompt=display_track_menu, min_value=1, max_value=4
+        )
+        if command == 1:
+            find_tracks_by_name()
+        elif command == 2:
+            find_tracks_shorter_than_length()
+        elif command == 3:
+            find_tracks_greater_than_length()
+        elif command == 4:
+            break
+        else:
+            raise ValueError(
+                "Invalid command id "
+                + str(command)
+                + " found in track display sub-menu"
+            )
+```
+
+#### Track Management
+
+Let’s work through the sections step by step. First we need to define
+our Music Track objects. We use a simple class that stores a name and a
+track length. We use seconds for the length. We name the variables
+`name` and `length_in_seconds` to make them clear.
+
+``` python
+class MusicTrack:
+    """
+    Music Track with a name and a length (in seconds)
+
+    Attributes
+    ----------
+    name : str
+        name of the music track
+    length_in_seconds : int
+        length of the track in seconds (must be positive)
+
+    Raises
+    ------
+    ValueError
+        Raised if length_in_seconds is non-positive
+
+    Examples
+    --------
+    >>> MusicTrack("Merry Christmas Everyone", 220)
+    <MusicTrack ...>
+    """
+
+    def __init__(self, name, length_in_seconds):
+        self.name = name
+        if length_in_seconds <= 0:
+            raise ValueError("Track length must be greater than zero")
+        self.length_in_seconds = length_in_seconds
+```
+
+One immediate caveat is that a music track should not have a length that
+isn’t a positive integer. We enforce this by raising an exception if one
+is passed to the constructor.
+
+We would also ideally like to take care of this at the user input level.
+It would be pretty frustrating to put in a number as a user then have
+the program crash. We would like to enforce that the user can put in any
+positive number, unfortunately `BTCInput` doesn’t provide this. We could
+simply put an upper bound on the track length, instead we roll our own
+input function.
+
+``` python
+def read_min_valued_integer(prompt, min_value):
+    """
+    Displays a prompt and reads in a integer number greater
+    than or equal to min_value.
+    Keyboard interrupts (CTRL+C) are ignored
+    Invalid numbers are rejected
+    returns a number containing the value input by the user
+
+    Params
+    ------
+    prompt : str
+        string to display to the user before the enter the number
+
+    min_value : int
+        minimum value (inclusive) to accept from the user
+
+    Returns
+    -------
+    int
+        integer > 0 entered by the user
+    """
+    while True:
+        result = BTCInput.read_int(prompt)
+        if result >= min_value:
+            return result
+        else:
+            print("That number is invalid")
+            print("Number must be >", min_value)
+```
+
+We make this generic by calling it `read_min_valued_integer` and using a
+parameter to define a `min_value`. There is no bound on the `max_value`.
+We then use `BTCInput.read_int` and wrap it in the bound checkings we
+need.
+
+We can then define a function `new_track` to add tracks to the database,
+
+``` python
+def new_track():
+    """
+    Creates and adds a new track to the track storage program
+
+    Returns
+    -------
+    None
+    """
+    print("Add a new track")
+    name = BTCInput.read_text("Enter the track name: ")
+    length = read_min_valued_integer(
+        "Enter the track length (in seconds): ", min_value=1
+    )
+    tracks.append(MusicTrack(name=name, length_in_seconds=length))
+```
+
+Before we go further we need to implement a search by name
+functionality. We’ll adopt the following convention
+
+1. A `filter_` function takes a search parameter, and a list of of
+    `MusicTrack` objects to search through and returns a list of
+    `MusicTrack` objects that meet the conditions
+    - By adding the list parameter we can reuse these functions for the
+      playlist functionality later
+2. A `find_` function, prompts the user for the search parameter, calls
+    the corresponding `filter_` and displays the list
+
+The first `filter_` we implement is `filter_by_name` which uses the same
+logic as Tiny Contacts (a name is searched using `startswith`). See
+below,
+
+``` python
+def filter_tracks_by_name(search_name, tracks_to_search):
+    """
+    Filters tracks from the list tracks_to_search with a name
+    containing search_name as a prefix
+
+    Params
+    ------
+
+    search_name : str
+        name to search for (search uses prefix matching)
+
+    tracks_to_search : list[MusicTrack]
+        list of music tracks to search through
+
+    Returns
+    -------
+    list[MusicTrack]
+        list of contacts matching the name. If no matches
+        exist the list is empty
+    """
+    search_name = search_name.strip().lower()  # normalise the search name
+    results = []
+    for track in tracks_to_search:
+        name = track.name.strip().lower()  # normalise track word
+        if name.startswith(search_name):
+            results.append(track)
+    return results
+```
+
+We can know implement the edit functionality with `edit_tracks`, using
+the same pattern we discussed before.
+
+- We find all the matches to a named search
+- The user is then prompted if they want to edit each match
+- The user can then edit each entry
+
+``` python
+def edit_tracks():
+    """
+    Reads in a name to search for and then allows the user to edit
+    the details of the Music Track
+
+    If there a no matching Music Tracks the function will indicate
+    that the name was not found. If multiple matches are found, the
+    user will have the option to edit each of them
+
+    Returns
+    -------
+    None
+    """
+    print("Edit Music Tracks")
+    matched_tracks = filter_tracks_by_name(
+        BTCInput.read_text("Enter track name to edit: "), tracks
+    )
+    print("Found", len(matched_tracks), "matches")
+
+    for track in matched_tracks:
+        display_track(track)
+        if BTCInput.read_int_ranged(
+            "Edit this track? (1 - Yes, 0 - No): ", min_value=0, max_value=1
+        ):
+            new_name = BTCInput.read_text("Enter new name or . to leave unchanged: ")
+            if new_name != ".":
+                track.name = new_name
+            new_length_in_seconds = read_min_valued_integer(
+                "Enter new length (in seconds) or 0 to leave unchanged: ", min_value=0
+            )
+            if new_length_in_seconds != 0:
+                track.length_in_seconds = new_length_in_seconds
+```
+
+We have to make one change to the pattern of the Tiny Contacts which is
+to account for the fact that length is a positive number. To do this we
+use `0` rather than `"."` to indicate that the variable should be left
+unchanged
+
+The `remove_track` follows the same pattern, instead of the edit dialog,
+we use the `.remove` method on a `list` to remove the matching track,
+
+``` python
+    for track in matched_tracks:
+        display_track(track)
+        if BTCInput.read_int_ranged("Delete this track? (1 - Yes, 0 - No): ", 0, 1):
+            tracks.remove(track)
+```
+
+The next step is to implement sorting functionality. Based on the
+description we implement these sorts based on the length of the track.
+The ascending order search is then,
+
+``` python
+def sort_low_to_high(tracks_to_sort):
+    """
+    Sorts the music track list given by tracks_to_sort
+    by length from shortest to greatest
+
+    Params
+    ------
+    tracks_to_sort : list[MusicTrack]
+        list of tracks to sort
+    Returns
+    -------
+    None
+    """
+    print("Sort low to high")
+    for sort_pass in range(0, len(tracks)):
+        done_swap = False
+        for count in range(0, len(tracks) - 1 - sort_pass):
+            if (
+                tracks_to_sort[count].length_in_seconds
+                > tracks_to_sort[count + 1].length_in_seconds
+            ):
+                temp = tracks_to_sort[count]
+                tracks_to_sort[count] = tracks_to_sort[count + 1]
+                tracks_to_sort[count + 1] = temp
+                done_swap = True
+        if not done_swap:
+            break
+```
+
+The descending order search follows the same structure.
+
+The only two track database management functions now are `save` and
+`load`, which are done simply via `pickle`.
+
+``` python
+def save_tracks(file_name):
+    """
+    Saves the music tracks to the given file name
+    Music tracksare stored in binary as a pickled file
+    Exceptions will be raised if the save fails
+
+    Params
+    ------
+    file_name : str
+        string giving the path to the file to store the contacts data in
+
+    Returns
+    -------
+    None
+    """
+    print("Save music tracks")
+    with open(file_name, "wb") as out_file:
+        pickle.dump(tracks, out_file)
+
+
+def load_tracks(file_name):
+    """
+    Loads the music tracks from the given file name
+    Music Tracks are stored in binary as a pickled file
+    Exceptions will be raised if the load fails
+
+    Params
+    ------
+    file_name : str
+        string giving the path to the file where the contacts data is stored
+
+    Returns
+    -------
+    None
+        Music Tracks are loaded into the global tracks list
+    """
+    global tracks  # connect to global track list to load into
+    print("Load contacts")
+    with open(file_name, "rb") as input_file:
+        tracks = pickle.load(input_file)
+```
+
+`save_tracks` is called on program exit to write out the track database
+to a hard-coded database file. Similarly, `load_tracks` will attempt to
+read the database file on program start. If it can’t find the database
+file then a new blank database is generated
+
+#### Track Search and Display
+
+With our track database management up and running the next step is to
+look set up how we can display and search for the tracks in the
+database. The three functionalities we have to implement are,
+
+``` text
+1. Find Tracks (by name)
+2. Find Tracks by length (Maximum length)
+3. Find Tracks by length (Minimum length)
+```
+
+The first one simply wraps the `filter_tracks_by_name` in a user prompt
+for a search name and displays the matches. This just leaves us to
+implement the display functionality.
+
+We first define a function `display_track` to display a single track,
+
+``` python
+def display_track(track):
+    """
+    Displays the name and length (in seconds) of the MusicTrack track
+
+    Params
+    ------
+    track : MusicTrack
+        track to display
+
+    Returns
+    -------
+    None
+    """
+    print("Name:", track.name, "(", track.length_in_seconds, "seconds )")
+```
+
+We can then define a higher level function `display_tracks` that
+displays an entire list of tracks,
+
+``` python
+def display_tracks(tracks):
+    """
+    Displays all the tracks in the provided list of tracks
+
+    Params
+    ------
+    list[MusicTrack]
+        List of MusicTrack objcts to display
+
+    Returns
+    -------
+    None
+    """
+    if len(tracks) > 0:
+        for track in tracks:
+            display_track(track)
+    else:
+        print("No tracks found")
+```
+
+Let us consider the problem of now finding tracks by a given length. We
+want two functions. One where we return all tracks with a length less
+than or equal to the provided length, and a second which returns all
+with a length greater than or equal to the provided length. Both have
+the same logic so we’ll only focus on the first case. As with
+`filter_tracks_by_name` we first define a filter function that takes in
+a maximum length as a parameter (and a search list) and returns a list
+of matches. This looks like,
+
+``` python
+def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
+    """
+    Finds and returns a list of all tracks with a length
+    shorter (or equal to) max_length in the provided tracks_to_filter
+
+    Params
+    ------
+    max_length : int
+        maximum (inclusive) length of tracks to include in
+        the filtered result
+
+    tracks_to_filter : list[MusicTrack]
+        list of tracks to filter
+
+    Returns
+    -------
+    list[MusicTrack]
+        List of MusicTracks satisfying
+        `MusicTrack.length_in_seconds <= maximum length`
+        If no MusicTracks are found an empty list is returned
+    """
+    tracks_shorter_than_max_length = []
+    for track in tracks_to_filter:
+        if track.length_in_seconds <= max_length:
+            tracks_shorter_than_max_length.append(track)
+    return tracks_shorter_than_max_length
+```
+
+We can then define the `find_tracks_shorter_than_length` function, we
+prompts the user for the maximum time, passes this time and the tracks
+list through to the filter function and displays the results.
+
+``` python
+def find_tracks_shorter_than_length():
+    """
+    Finds and displays all tracks shorter (or equal to) a user prompted
+    maximum length
+
+    Returns
+    -------
+    None
+    """
+    max_length = read_min_valued_integer(
+        "Enter the maximum track length (in seconds): ", min_value=1
+    )
+    display_tracks(filter_tracks_shorter_than_length(max_length, tracks))
+```
+
+The case where we instead pass a minimum time is identical
+
+#### Playlist Management
+
+For the most part, the playlist management repeats code that has already
+been seen before. We’ll only allow the user to work with one playlist at
+a time, and store the playlist as a list of `MusicTrack` objects. Recall
+that our interface is,
+
+``` text
+1. Add Track to Playlist
+2. Remove Track from Playlist
+3. Clear Playlist
+4. Display Current Playlist
+5. Show Runtime of Current Playlist
+6. Suggest Playlist of Specified Length
+7. Save Current Playlist
+8. Back to Main Menu
+```
+
+Let’s step through each of these and look at what needs new
+functionality
+
+1. `add_track_to_playlist` - Uses existing `filter_track_by_name` to
+    search for a user prompted track name. User is then prompted to
+    optionally add matches to the playlist
+2. `remove_tracks_from_playlist` - Identical to `remove_track` but runs
+    against the current playlist list
+3. `clear_playlist` - We use the list inbuilt method `clear` to clear
+    the playlist
+4. `display_current_playlist` - Achieved by passing the `playlist` list
+    variable to the `display_tracks` function
+5. `calculate_playlist_length` - No functionality yet implemented
+6. `suggest_playlist_of_given_length` - No functionality yet
+    implemented
+7. `save_playlist` - Not yet implemented
+
+So as we can see most of the functionality is already implemented. Let’s
+focus on the three remaining features, `calculate_playlist_length`,
+`suggest_playlist_of_given_length` and `save_playlist`
+
+Implementing `calculate_playlist_length` is pretty straightforward. We
+simply iterate over the tracks in the playlist and sum up their lengths
+
+``` python
+def calculate_playlist_length():
+    """
+    Calculates and displays the total length of the
+    current playlist
+
+    """
+    print("Calculate length of playlist")
+    total_length = 0
+    for track in playlist:
+        total_length = total_length + track.length_in_seconds
+    print("The playlist is", total_length, "seconds long")
+```
+
+Similarly, `save_playlist` can be implemented pretty easily using what
+we’ve seen. We prompt the user for the file that they want to save to,
+then write out the names of all of the tracks (one per line) using the
+standard `try...except` and `with` consruct we’ve seen before
+
+``` python
+def save_playlist():
+    """
+    Saves the current playlist as a human readable list
+    The user is prompted to give a file name to save the playlist in
+
+    Raises exceptions if the save fails
+    """
+    print("Save playlist")
+    if len(playlist) == 0:
+        print("No playlist to save")
+        return
+
+    file_name = BTCInput.read_text("Enter file to save playlist to: ")
+    try:
+        with open(file_name, "w") as output_file:
+            for track in playlist:
+                output_file.write(track.name + "\n")
+    except:  # noqa: E722
+        print("Failed to save playlist")
+```
+
+Observe that the user always has to choose to save the playlist. This is
+because we implement it much more as form of printing out a list of
+songs to give to someone else rather than ensuring that a database is
+maintained. As a result we provide no behaviour for loading a playlist
+
+The last function we want to implement is the ability to suggest a
+playlist of a given length. The original exercise suggests this as being
+to create a playlist of an exact length. Doing this requires us to solve
+what is called the [Subset Sum
+Problem](https://en.wikipedia.org/wiki/Subset_sum_problem) which is in
+general very difficult - we are asked to find a subset of the tracks in
+the database such that the sum of their lengths matches the target.
+Intuitively we should also recognise that given the granularity of song
+lengths for many lengths the user might put in, no exact solution
+exists.
+
+Our solution to this will be to instead ask the user for an upper bound
+on the playlist length. We will then randomly select songs such that the
+total length is less than this length. The user is then shown the
+proposed playlist and can either accept or reject it. If the reject it
+they can then ask the program to generate a new one. Once a playlist is
+accepted it can be edited using the other playlist management functions.
+
+Our implementation for this is below,
+
+``` python
+def calculate_playlist_length():
+    """
+    Calculates and displays the total length of the
+    current playlist
+
+    """
+    print("Calculate length of playlist")
+    total_length = 0
+    for track in playlist:
+        total_length = total_length + track.length_in_seconds
+    print("The playlist is", total_length, "seconds long")
+
+
+def suggest_playlist_of_given_length():
+    """
+    Asks the user for a maximum playlist length, and
+    the suggests a playlist by combining tracks randomly
+    such that the suggested playlist is no greater than
+    the max length
+
+    The user has the option to review the proposed list
+    and either accept, reject or regenerate the list
+    """
+    print("Suggest playlist of given length")
+    global playlist
+
+    target_length = read_min_valued_integer(
+        "Enter maximum playlist length: ", min_value=1
+    )
+
+    while True:
+        suggested_playlist = []
+        playlist_length = 0
+        # find tracks that could fit in the playlist
+        candidate_songs = filter_tracks_shorter_than_length(target_length, tracks)
+
+        if len(candidate_songs) == 0:
+            print("Could not generate a playlist of that length. Try a longer playlist")
+            return
+
+        while len(candidate_songs) > 0:  # stop when no more eligable songs
+            # add a random song and update the playlist length
+            song_choice = random.choice(candidate_songs)
+            suggested_playlist.append(song_choice)
+            playlist_length = playlist_length + song_choice.length_in_seconds
+
+            # filter out songs that no longer fit
+            candidate_songs = filter_tracks_shorter_than_length(
+                target_length - playlist_length, candidate_songs
+            )
+        print("Generated a playlist...")
+        # let the user review the playlist
+        display_tracks(suggested_playlist)
+        if BTCInput.read_int_ranged(
+            "Accept this playlist? (1 - Yes, 0 - No): ", min_value=0, max_value=1
+        ):
+            playlist = suggested_playlist
+            return
+        else:
+            if BTCInput.read_int_ranged(
+                "Generate again? (1 - Yes, 0 - No): ", min_value=0, max_value=1
+            ):
+                continue
+            return
+```
+
+The bulk of the logic however is given by (after getting `target_length`
+from the user),
+
+``` python
+        candidate_songs = filter_tracks_shorter_than_length(target_length, tracks)
+
+        if len(candidate_songs) == 0:
+            print("Could not generate a playlist of that length. Try a longer playlist")
+            return
+
+        while len(candidate_songs) > 0:  # stop when no more eligable songs
+            # add a random song and update the playlist length
+            song_choice = random.choice(candidate_songs)
+            suggested_playlist.append(song_choice)
+            playlist_length = playlist_length + song_choice.length_in_seconds
+
+            # filter out songs that no longer fit
+            candidate_songs = filter_tracks_shorter_than_length(
+                target_length - playlist_length, candidate_songs
+            )
+```
+
+1. We filter the track database to get all the tracks that could fit in
+    the allowed playlist time
+2. We then randomly pick one of the songs using `random.choice`
+    - We add this to our proposed playlist, and add its length to a
+      counter tracking the total length
+3. We then filter the candidate list again but with the amount of time
+    we have yet to use (`target_time - playlist_length`)
+4. We repeat steps 2-3 until there are no more candidate songs, this
+    gives our final playlist which we can then propose to the user
+
+This sums up the description of the music storage app. The provided code
+demonstrates a sample database in
+[tracks.pickle](./Exercises/03_MusicStorageApp/tracks.pickle) and a
+sample playlist in
+[example_playlist.txt](./Exercises/03_MusicStorageApp/example_playlist.txt).
+You are encouraged to play around with the code and make sure you
+understand what is going on. This program is not super complicated but
+it has many components, if you can follow it, you are doing well!
+
+### Exercise: Recipe Storage App
+
+*Make a recipe storage app that stores lists of ingredients and
+preperation details. Remember that one of the items in a class could be
+a list of strings, which could be the steps performed to prepare the
+recipe*
+
+## Summary
+
+- Python lets you define Classes
+  - Classes can have data attributes
+  - data attributes can be defined at construction via a *constructor*
+  - data attributes can be added dynamically at runtime
+  - classes may define a constructor via `__init__` to control how they
+    are created
+- Python variables are references to memory objects
+  - If there are multiple references to one object then changing the
+    object via one reference will be propagated to the other references
+- Some fundamental python types `int`, `str`, `float`, are immutable
+  - Assigning a value to a variable holding an immutable type creates a
+    new memory object with that value
+    - Other references to the original object are untouched
+  - This allows them to be manipulated as simple values
+- `pickle` is a library for serialising python objects as binary data
+- Python provides a dictionary data object that can be used to store a
+  collection of *key-value* pairs
 
 ## Questions and Answers
+
+1. *If an object has* `name`*,* `address` *and* `telephone` *attributes
+    can a program treat it as a* `Contact` *instance?*
+    - Yes, Python uses what is called duck-typing
+      - “If it walks like a duck, quacks like a duck, it is a duck”
+      - Means that if it behaves like a `Contact` it can be used as a
+        `Contact`
+      - If the programmer makes a mistake however, a runtime exception
+        is created
+    - This means we could define a `Customer` with the same fields and
+      treat it as a `Contact`
+    - Python does provide mechanisms for explicit type checking
+      - We’ve seen one for example (`type`)
+    - Other languages have different rules
+    - Java, C# and C++ are “Strongly Typed”
+      - The type of the variable is fixed and we can only work with
+        objects, functions and operators that support that type
+    - “Strongly Typed” languages typically allow you catch mismatched
+      type errors at compile-time before a program is run
+2. *Can an object contain a reference to itself?*
+    - Yes, though this is usually not a good idea
+    - Typically objects are daisy-chained together
+      - Object A references Object B references Object C etc.
+      - The most basic structure is called a *linked list*
+      - More complex structures like trees have more complicated
+        referential structures
+3. *Is an object forced to have a constructor / initialiser?*
+    - No, we saw this with the first `Contact` which was a simple blank
+      class
+    - `__init__` provides greater ability to ensure that objects are
+      created properly though
+4. *Can you stop a program from adding new attributes to an object?*
+    - No
+    - This has the impact of allowing us to create incompatible and
+      distinct instances of the same class where for some reason one has
+      been argumented with an additional attribute
+5. *Can you remove attributes from an object?*
+    - Yes, you can use the `del` operator to delete an attribute
+
+      ``` python
+        del(rob.name)
+        print(rob.address)
+        rob.name
+      ```
+
+          18 Pussycat Mews
+
+          AttributeError: 'Contact' object has no attribute 'name'
+          ---------------------------------------------------------------------------
+          AttributeError                            Traceback (most recent call last)
+          Cell In[68], line 3
+                1 del(rob.name)
+                2 print(rob.address)
+          ----> 3 rob.name
+
+          AttributeError: 'Contact' object has no attribute 'name'
+6. *What is immutable again?*
+    - immutable means an unchangeable object
+    - When we try to change an immutable object python instead creates a
+      copy with the new values
+    - immutability improves data storage especially for primitive types
+    - e.g. We might have a story of one million words
+      - The story string itself consists of words stored as strings
+        which are immutable
+      - A list of words uses references to refer to each word
+      - Certain words are probably referred to multiple times (e.g. the)
+      - Since the words are immutable we can reference *one* instance of
+        the string `"the"` rather than having a distinct memory object
+        for each instance (which we would need if they were mutable)
+7. *How does the operating system know its storing a binary file?*
+    - It doesn’t
+    - Really all files are binary
+    - File system simply responsible for locating and retrieving files
+    - Programs are the ones that impose meaning on a file
+      - file extensions are there to help an operating system or user
+        associate different file formats with their respective programs
+8. *Can two items in a dictionary have the same key?*
+    - Strictly no, if you wish to store multiple objects with the same
+      key you would have to use a dictionary where the value was some
+      form of collection e.g. a list or tuple.
+    - You would then access the list via the dictionary key
+      - Then have to search through the list to get the specific value
+        you were interested in

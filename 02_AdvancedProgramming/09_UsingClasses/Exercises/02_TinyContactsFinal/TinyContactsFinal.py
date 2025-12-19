@@ -53,6 +53,9 @@ def find_contacts(search_name):
     """
     Finds the contacts with the matching name
 
+    If the empty string is given, all contacts
+    are matched
+
     Params
     ------
     search_name : str
