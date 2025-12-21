@@ -1,0 +1,2469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 5: Making Decisions – Beginning to Code with Python: Notes, Examples and Exercises</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fd21d93db373728c2f8fcda4b672d2ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Beginning to Code with Python: Notes, Examples and Exercises</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Programming Fundamentals</a></li><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html">Chapter 5: Making Decisions</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Programming Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Python and Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Python Program Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Working With Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 5: Making Decisions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Repeating Actions with Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Using Functions to Simplify Programs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Storing Collections of Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Advanced Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Use Classes to Store Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extended Exercises for Chapter 9</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Using Classes to Create Active Objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#boolean-data" id="toc-boolean-data" class="nav-link" data-scroll-target="#boolean-data">Boolean Data</a>
+  <ul>
+  <li><a href="#create-boolean-values" id="toc-create-boolean-values" class="nav-link" data-scroll-target="#create-boolean-values">Create Boolean Values</a></li>
+  <li><a href="#example-working-with-boolean-values" id="toc-example-working-with-boolean-values" class="nav-link" data-scroll-target="#example-working-with-boolean-values">Example: Working with Boolean Values</a></li>
+  <li><a href="#boolean-expressions" id="toc-boolean-expressions" class="nav-link" data-scroll-target="#boolean-expressions">Boolean Expressions</a>
+  <ul>
+  <li><a href="#example-one-handed-clock" id="toc-example-one-handed-clock" class="nav-link" data-scroll-target="#example-one-handed-clock">Example: One-Handed Clock</a></li>
+  <li><a href="#exercise-improved-clock" id="toc-exercise-improved-clock" class="nav-link" data-scroll-target="#exercise-improved-clock">Exercise: Improved Clock</a></li>
+  </ul></li>
+  <li><a href="#comparing-values" id="toc-comparing-values" class="nav-link" data-scroll-target="#comparing-values">Comparing Values</a>
+  <ul>
+  <li><a href="#comparison-operators" id="toc-comparison-operators" class="nav-link" data-scroll-target="#comparison-operators">Comparison Operators</a>
+  <ul class="collapse">
+  <li><a href="#example-examining-comparison-operators" id="toc-example-examining-comparison-operators" class="nav-link" data-scroll-target="#example-examining-comparison-operators">Example: Examining Comparison Operators</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#boolean-operations" id="toc-boolean-operations" class="nav-link" data-scroll-target="#boolean-operations">Boolean Operations</a>
+  <ul>
+  <li><a href="#example-examining-boolean-operators" id="toc-example-examining-boolean-operators" class="nav-link" data-scroll-target="#example-examining-boolean-operators">Example: Examining Boolean Operators</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#the-if-construct" id="toc-the-if-construct" class="nav-link" data-scroll-target="#the-if-construct">The <code>if</code> Construct</a>
+  <ul>
+  <li><a href="#example-simple-alarm-clock" id="toc-example-simple-alarm-clock" class="nav-link" data-scroll-target="#example-simple-alarm-clock">Example: Simple Alarm Clock</a></li>
+  <li><a href="#conditions-in-python" id="toc-conditions-in-python" class="nav-link" data-scroll-target="#conditions-in-python">Conditions in Python</a></li>
+  <li><a href="#combine-python-statements-into-a-suite" id="toc-combine-python-statements-into-a-suite" class="nav-link" data-scroll-target="#combine-python-statements-into-a-suite">Combine Python Statements into a Suite</a>
+  <ul>
+  <li><a href="#example-siren-alarm-clock" id="toc-example-siren-alarm-clock" class="nav-link" data-scroll-target="#example-siren-alarm-clock">Example: Siren Alarm Clock</a></li>
+  <li><a href="#example-time-display-alarm-clock" id="toc-example-time-display-alarm-clock" class="nav-link" data-scroll-target="#example-time-display-alarm-clock">Example: Time Display Alarm Clock</a></li>
+  </ul></li>
+  <li><a href="#structure-of-an-if-statement" id="toc-structure-of-an-if-statement" class="nav-link" data-scroll-target="#structure-of-an-if-statement">Structure of an <code>if</code> Statement</a>
+  <ul>
+  <li><a href="#example-layout-of-conditional-statements" id="toc-example-layout-of-conditional-statements" class="nav-link" data-scroll-target="#example-layout-of-conditional-statements">Example: Layout of Conditional Statements</a></li>
+  </ul></li>
+  <li><a href="#add-an-else-to-an-if-construction" id="toc-add-an-else-to-an-if-construction" class="nav-link" data-scroll-target="#add-an-else-to-an-if-construction">Add an <code>else</code> to an <code>if</code> Construction</a>
+  <ul>
+  <li><a href="#example-simple-alarm-clock-with-else" id="toc-example-simple-alarm-clock-with-else" class="nav-link" data-scroll-target="#example-simple-alarm-clock-with-else">Example: Simple Alarm Clock with Else</a></li>
+  <li><a href="#example-if-constructions" id="toc-example-if-constructions" class="nav-link" data-scroll-target="#example-if-constructions">Example: If Constructions</a></li>
+  </ul></li>
+  <li><a href="#compare-strings-in-programs" id="toc-compare-strings-in-programs" class="nav-link" data-scroll-target="#compare-strings-in-programs">Compare Strings in Programs</a>
+  <ul>
+  <li><a href="#example-broken-greeter" id="toc-example-broken-greeter" class="nav-link" data-scroll-target="#example-broken-greeter">Example: Broken Greeter</a></li>
+  <li><a href="#example-methods-and-functions" id="toc-example-methods-and-functions" class="nav-link" data-scroll-target="#example-methods-and-functions">Example: Methods and Functions</a></li>
+  </ul></li>
+  <li><a href="#nesting-if-conditions" id="toc-nesting-if-conditions" class="nav-link" data-scroll-target="#nesting-if-conditions">Nesting <code>if</code> Conditions</a>
+  <ul>
+  <li><a href="#example-protected-greeter" id="toc-example-protected-greeter" class="nav-link" data-scroll-target="#example-protected-greeter">Example: Protected Greeter</a></li>
+  </ul></li>
+  <li><a href="#working-with-logic" id="toc-working-with-logic" class="nav-link" data-scroll-target="#working-with-logic">Working with Logic</a>
+  <ul>
+  <li><a href="#exercise-make-an-advanced-alarm-clock" id="toc-exercise-make-an-advanced-alarm-clock" class="nav-link" data-scroll-target="#exercise-make-an-advanced-alarm-clock">Exercise: Make an Advanced Alarm Clock</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#use-decisions-to-make-an-application" id="toc-use-decisions-to-make-an-application" class="nav-link" data-scroll-target="#use-decisions-to-make-an-application">Use Decisions to make an Application</a>
+  <ul>
+  <li><a href="#design-the-user-interface" id="toc-design-the-user-interface" class="nav-link" data-scroll-target="#design-the-user-interface">Design the User Interface</a></li>
+  <li><a href="#implement-the-user-interface" id="toc-implement-the-user-interface" class="nav-link" data-scroll-target="#implement-the-user-interface">Implement the User Interface</a>
+  <ul>
+  <li><a href="#testing-user-input" id="toc-testing-user-input" class="nav-link" data-scroll-target="#testing-user-input">Testing User Input</a></li>
+  <li><a href="#complete-the-program" id="toc-complete-the-program" class="nav-link" data-scroll-target="#complete-the-program">Complete the Program</a></li>
+  </ul></li>
+  <li><a href="#input-snaps" id="toc-input-snaps" class="nav-link" data-scroll-target="#input-snaps">Input Snaps</a>
+  <ul>
+  <li><a href="#example-theme-park-snaps-display" id="toc-example-theme-park-snaps-display" class="nav-link" data-scroll-target="#example-theme-park-snaps-display">Example: Theme Park Snaps Display</a></li>
+  <li><a href="#exercise-snaps-ride-selector" id="toc-exercise-snaps-ride-selector" class="nav-link" data-scroll-target="#exercise-snaps-ride-selector">Exercise: Snaps Ride Selector</a></li>
+  <li><a href="#exercise-weather-helper" id="toc-exercise-weather-helper" class="nav-link" data-scroll-target="#exercise-weather-helper">Exercise: Weather Helper</a></li>
+  <li><a href="#exercise-fortune-teller" id="toc-exercise-fortune-teller" class="nav-link" data-scroll-target="#exercise-fortune-teller">Exercise: Fortune Teller</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/BeginToCodeWithPython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Programming Fundamentals</a></li><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html">Chapter 5: Making Decisions</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 5: Making Decisions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A number of the code examples in this use the file <em>siren.wav</em>, this can be found in the corresponding chapter in the samples submodule. For space reasons we haven’t uploaded it to the github</p>
+</div>
+</div>
+<section id="boolean-data" class="level3">
+<h3 class="anchored" data-anchor-id="boolean-data">Boolean Data</h3>
+<ul>
+<li>Boolean values are a type that is used to distinguish between values that are <em>True</em> or <em>False</em></li>
+<li>For example, we could use an <code>int</code> to count the number of hairs on a person’s head, but a <code>bool</code> to indicate if they are bald</li>
+</ul>
+<section id="create-boolean-values" class="level4">
+<h4 class="anchored" data-anchor-id="create-boolean-values">Create Boolean Values</h4>
+<ul>
+<li>Simply declare a variable with a value of <code>True</code> or <code>False</code>
+<ul>
+<li>Python will infer the type</li>
+</ul></li>
+<li>For example, to declare a true valued boolean,</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>we can then set the value to <code>false</code>,</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Note that <code>True</code> and <code>False</code> are python keywords, and are case-sensitive, e.g.&nbsp;true and false will not work as expected</li>
+</ul>
+</section>
+<section id="example-working-with-boolean-values" class="level4">
+<h4 class="anchored" data-anchor-id="example-working-with-boolean-values">Example: Working with Boolean Values</h4>
+<p><em>Open up the python interpreter and work through the following questions to understand booleans</em></p>
+<ol type="1">
+<li><p>*What do you think would happen if you printed the contents of a boolean value?</p>
+<div id="3f6422f0" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(it_is_time_to_get_up)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Python will try to print out something meaningful, for a boolean this is either</em> <code>True</code> <em>or</em> <code>False</code></li>
+</ul></li>
+<li><p><em>What do you think would happen if you gave the word</em> <strong>True</strong> to the <code>input</code> function?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">x</span> = input<span class="er">(</span><span class="st">"True or False: "</span><span class="kw">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">True</span> or False: True</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>input</code> returns it’s input as a string, so in this case <code>x</code> will not be a <code>bool</code> but rather a <code>string</code> with the value <code>'True'</code></li>
+</ul></li>
+<li><p><em>Is there a python function called</em> <code>bool</code> <em>that will convert things into Boolean, just like there are</em> <code>int</code> <em>and</em> <code>float</code> <em>functions?</em></p>
+<ul>
+<li><em>Yes there is, consistent behaviour with bool. Consider the following examples</em></li>
+</ul>
+<div id="95d7023b" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">1</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="dv">0</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="fl">0.0</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="fl">0.1</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="st">''</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bool</span>(<span class="st">'Hello'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+False
+False
+True
+False
+True</code></pre>
+</div>
+</div>
+<ul>
+<li><em>We can see that non-zero numbers evaluate</em> <code>True</code> <em>while zero, evaluates as</em> <code>False</code>. <em>Similarly the empty string evaluates</em> <code>False</code> <em>while a non-empty string evaluates as</em> <code>True</code></li>
+</ul></li>
+<li><p><em>What happens if a program combines</em> <code>bool</code> <em>values with other values?</em></p>
+<ul>
+<li><em>We should already expect that if we try to mix incompatible data that an error should be generated</em></li>
+</ul>
+<div id="debb8adf" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'Hello'</span> <span class="op">+</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-fg ansi-yellow-bg">Hello</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">+</span><span class="ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">True</span>
+
+<span class="ansi-red-fg">TypeError</span>: can only concatenate str (not "bool") to str</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><em>We can see that we cannot concatenate a boolean value to a string</em></li>
+<li><em>The behaviour can be a little less intuitive with numbers though</em>,</li>
+</ul>
+<div id="ef55024e" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>2</code></pre>
+</div>
+</div>
+<ul>
+<li><code>True</code> <em>is implicitly converted to the integer value</em> <span class="math inline">\(1\)</span></li>
+</ul>
+<div id="d9d28b90" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>1</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Similarly,</em> <code>False</code> <em>is implicitly converted to the intger value</em> <span class="math inline">\(0\)</span></li>
+<li><em>We can see that numeric operations on bool thus have well-allowed behaviour but we cannot do the same with textual data</em></li>
+</ul></li>
+</ol>
+</section>
+<section id="boolean-expressions" class="level4">
+<h4 class="anchored" data-anchor-id="boolean-expressions">Boolean Expressions</h4>
+<ul>
+<li>Normally we don’t declare a boolean with <code>True</code> or <code>False</code> explicitly but instead as the result of evaluating an expression
+<ul>
+<li>Some expressions evaluate to <code>True</code> or <code>False</code> which naturally suits being stored in a boolean</li>
+</ul></li>
+<li>Consider a simple alarm clock,
+<ul>
+<li><p>We can get the time through the <code>time</code> library we’ve seen <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html#the-time-library">before</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>time.localtime</code> returns an object containing information about the current time.</p>
+<ul>
+<li>This different blocks of information are called <em>attributes</em>, below is a list of the attributes contained in the object returned by <code>localtime</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Attribute</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>tm_year</td>
+<td>Year (for example, 2017)</td>
+</tr>
+<tr class="even">
+<td>tm_mon</td>
+<td>Month (in the range 1 … 12, 1 represents January)</td>
+</tr>
+<tr class="odd">
+<td>tm_mday</td>
+<td>Day in the Month (in the range 1 … month length)</td>
+</tr>
+<tr class="even">
+<td>tm_hour</td>
+<td>Hour in the Day (in the range 0 … 23)</td>
+</tr>
+<tr class="odd">
+<td>tm_min</td>
+<td>Minute in the Hour ( in the range 0 … 59)</td>
+</tr>
+<tr class="even">
+<td>tm_sec</td>
+<td>Seconds in the Minute ( in the range 0 … 59)</td>
+</tr>
+<tr class="odd">
+<td>tm_wday</td>
+<td>Day of the Week (in the range 0 … 6 with Monday as 0)</td>
+</tr>
+<tr class="even">
+<td>tm_yday</td>
+<td>Day in the Year (in the range 0 … 364 or 365 depending on if the year is a leap year)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>An example of a <code>localtime</code> object might look like,</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Attribute</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>tm_year</td>
+<td>2017</td>
+</tr>
+<tr class="even">
+<td>tm_mon</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>tm_mday</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td>tm_hour</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>tm_min</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td>tm_sec</td>
+<td>30</td>
+</tr>
+<tr class="odd">
+<td>tm_wday</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>tm_yday</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<section id="example-one-handed-clock" class="level5">
+<h5 class="anchored" data-anchor-id="example-one-handed-clock">Example: One-Handed Clock</h5>
+<p><em>Lets make a clock that displays only the hour value, using <code>localtime</code>. These</em> <strong>one-handed clocks</strong> <em>are supposed promote a more relaxed attitude. Create a new program (<a href="./Examples/01_OneHandedClock/OneHandedClock.py">OneHandedClock.py</a>) and copy the below text.</em></p>
+<div id="c9cd001c" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.1: One Handed Clock</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses time to display the hour</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The hour is:"</span>, hour)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The hour is: 11</code></pre>
+</div>
+</div>
+<p><em>Run the program, it should print out the current hour</em></p>
+</section>
+<section id="exercise-improved-clock" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-improved-clock">Exercise: Improved Clock</h5>
+<p><em>Improve the previous <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html#example-one-handed-clock">example</a> to produce a more fully featured clock that reports the time, and date when run</em></p>
+<p>We can use the table above to grab the correct attributes. We then simply need to format the attribute as nessecary. The final <a href="./Exercises/01_ImprovedClock/ImprovedClock.py">program</a> is given below</p>
+<div id="5fddf96c" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.1: Improved Clock</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># An improved clock that displays the date and time when run</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>current_datetime <span class="op">=</span> time.localtime()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>day <span class="op">=</span> current_datetime.tm_mday</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> current_datetime.tm_mon</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> current_datetime.tm_year</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The date is"</span>, day, <span class="st">"/"</span>, month, <span class="st">"/"</span>, year)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>seconds <span class="op">=</span> current_datetime.tm_sec</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>minutes <span class="op">=</span> current_datetime.tm_min</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> current_datetime.tm_hour</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The time is"</span>, hours, <span class="st">":"</span>, minutes, <span class="st">":"</span>, seconds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The date is 21 / 12 / 2025
+The time is 11 : 48 : 57</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="comparing-values" class="level4">
+<h4 class="anchored" data-anchor-id="comparing-values">Comparing Values</h4>
+<ul>
+<li>We’ve seen expressions as being made of operators and operands</li>
+<li>One type of operator is a <em>comparison</em> operator
+<ul>
+<li>Returns a value that is <code>True</code> or <code>False</code>, e.g.</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">block-beta
+    columns 3
+    space
+    title["Breakdown of an Example Comparison Expression"]
+    space
+
+    block:Input
+    columns 1
+        operand1["hour"]
+        operand1Word["Operand"]
+        operand1descr["(thing to work on)"]
+    end
+
+    block:Middle
+    columns 1
+        operator["&gt;"]
+        operatorWord["Operator"]
+        operatorDescr["(thing to do)"]
+    end
+
+    block:Output
+    columns 1
+        operand2["6"]
+        operand2Word["Operand"]
+        operand2descr["(thing to work on)"]
+    end
+
+classDef BG stroke:transparent, fill:transparent
+class title BG
+class operand2Word BG
+class operand2descr BG
+class operand1Word BG
+class operand1descr BG
+class operatorWord BG
+class operatorDescr BG
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="comparison-operators" class="level5">
+<h5 class="anchored" data-anchor-id="comparison-operators">Comparison Operators</h5>
+<ul>
+<li>Below is a table of the common comparison operators</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 19%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Operator</strong></th>
+<th><strong>Name</strong></th>
+<th><strong>Effect</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(&gt;\)</span></td>
+<td>Greater than</td>
+<td><code>True</code> if the left argument is greater than the right, else <code>False</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(&lt;\)</span></td>
+<td>Less than</td>
+<td><code>True</code> if the left argument less than the right, else <code>False</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(&gt;=\)</span></td>
+<td>Greater than or Equal</td>
+<td>As for Greater than but also <code>True</code> if the left argument equals the right</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(&lt;=\)</span></td>
+<td>Less than or Equal</td>
+<td>As for Less than but also <code>True</code> if the left argument equals the right</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(==\)</span></td>
+<td>Equals</td>
+<td><code>True</code> if the left argument equals the right argument, else <code>False</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(!=\)</span></td>
+<td>Not Equals</td>
+<td><code>True</code> if the left argument <strong>does not equal</strong> the right argument, else <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A program can use a comparison operator to set a boolean variable, e.g.&nbsp;the below code fragment which sets the boolean variable <code>it_is_time_to_get_up</code> to <code>True</code> if the variable <code>hour</code> is greater than <span class="math inline">\(6\)</span> else sets it to <code>False</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> hour <span class="op">&gt;</span> <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="example-examining-comparison-operators" class="level6">
+<h6 class="anchored" data-anchor-id="example-examining-comparison-operators">Example: Examining Comparison Operators</h6>
+<p><em>Use the python interpreter to work through the following questions in order to understand Comparison Operators</em></p>
+<ol type="1">
+<li><em>How does the equality operator work?</em>
+<ul>
+<li><em>The equality operator evaluates to</em> <code>True</code> <em>if the two operands hold the same value</em></li>
+</ul>
+<div id="3d773f78" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>True</code></pre>
+</div>
+</div>
+<ul>
+<li><em>The equality operator can be used to compare strings and bools</em></li>
+</ul>
+<div id="b938877f" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> <span class="co">'Rob'</span> <span class="op">==</span> <span class="st">'Rob'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="9478d85c" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a> <span class="va">True</span> <span class="op">==</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>True</code></pre>
+</div>
+</div></li>
+<li><em>How do I remember which relational operator to use?</em>
+<ul>
+<li><em>Practice, patience and muscle memory</em></li>
+</ul></li>
+<li><em>Can we apply relational operators between other types of expressions?</em>
+<ul>
+<li><p><em>Yes. For example, the</em> <span class="math inline">\(&gt;\)</span> <em>and</em> <span class="math inline">\(&lt;\)</span> <em>operators when used to compare strings will use an alphabetic ordering</em>, e.g.</p>
+<div id="09665548" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Alice'</span> <span class="op">&lt;</span> <span class="st">'Brian'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>True</code></pre>
+</div>
+</div></li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html#real-numbers-and-floating-point">Chapter 4</a> we noted that floating points only approximate a specific real-value. These approximations can cause issues when using comparison operators, e.g.</p>
+<div id="35d7daec" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">==</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>False</code></pre>
+</div>
+</div>
+<ul>
+<li>The variables <code>x</code> and <code>y</code> should both notionally store <span class="math inline">\(0.3\)</span>, but the equality shows they are unequal. This is because the addition of <span class="math inline">\(0.1\)</span> and <span class="math inline">\(0.2\)</span> actually leads to <code>y</code> storing the slightly inaccurate <span class="math inline">\(0.3000...4\)</span></li>
+<li>If comparing floating-point numbers for equality, the best approach is to check that the values are appropriately close</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>Python provides the <code>type</code> function, <code>type(x)</code> returns the type of the variable <code>x</code>, especially useful for investigating the type of values returned by library functions you’ve never seen before</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="boolean-operations" class="level4">
+<h4 class="anchored" data-anchor-id="boolean-operations">Boolean Operations</h4>
+<ul>
+<li>What if we want to combine boolean expressions to create a new boolean expression</li>
+<li>e.g.&nbsp;An alarm might want to go off when the hour is after <span class="math inline">\(7\)</span> <em>and</em> the minute is after <span class="math inline">\(30\)</span></li>
+<li>Python provides <em>logic</em> operators for combining boolean expressions</li>
+</ul>
+<section id="example-examining-boolean-operators" class="level5">
+<h5 class="anchored" data-anchor-id="example-examining-boolean-operators">Example: Examining Boolean Operators</h5>
+<p><em>Use the python interpreter to answer the following questions and investigate boolean operators</em></p>
+<ol type="1">
+<li><p><em>What does the following expression evaluate too?</em></p>
+<div id="4e853246" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>False</code></pre>
+</div>
+</div>
+<ul>
+<li><code>not</code> <em>inverts the value of a boolean, so</em> <code>True</code> <em>is converted to</em> <code>False</code></li>
+</ul></li>
+<li><p><em>How about this expression?</em></p>
+<div id="0debb892" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>True</code></pre>
+</div>
+</div>
+<ul>
+<li><code>and</code> <em>is</em> <code>True</code> <em>iff both arguments are</em> <code>True</code> <em>as is the case above, so the result is</em> <code>True</code></li>
+</ul></li>
+<li><p><em>How about this expression?</em></p>
+<div id="3537cecf" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>False</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Since one of the arguments is</em> <code>False</code> <code>and</code> <em>will evaluate to</em> <code>False</code></li>
+</ul></li>
+<li><p><em>How about this expression?</em></p>
+<div id="5cdeee78" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">or</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>True</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Since one of the arguments is <code>True</code> <code>or</code> </em>will evaluate to* <code>True</code></li>
+</ul></li>
+<li><p><em>So far, the examples have only used boolean values. What happens if we mix boolean and numeric values?</em></p>
+<div id="9b247ee7" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>1</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Recall that python can convert numeric expressions to boolean ones, this implicitly happens to the</em> <span class="math inline">\(1\)</span> <em>in the above. So we would expect</em> <code>and</code> <em>to return</em> <code>True</code><em>. However ,instead</em> <span class="math inline">\(1\)</span> <em>is returned. This is due to some odd python behaviour</em>
+<ul>
+<li><p><em>Python sees</em> <code>True</code> <em>-&gt; result of</em> <code>and</code> <em>implied by second argument</em></p>
+<ul>
+<li><em>So simply returns the second argument, since the</em> <strong>truthfulness</strong> <em>of</em> <span class="math inline">\(1\)</span><em>, is equivalent to the original expression</em></li>
+</ul></li>
+<li><p><em>If we flip the arguments, we should see this more clearly</em></p>
+<div id="e3095aaf" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">and</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>True</code></pre>
+</div>
+</div>
+<ul>
+<li><em>This time the above expressions should return</em> <code>True</code></li>
+</ul></li>
+<li><p><em>The same behaviour will also occur with</em> <code>or</code></p>
+<div id="f00909bf" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">or</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>1</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Here the</em> <code>or</code> <em>operator short-circuits on</em> <span class="math inline">\(1\)</span>, <em>so returns</em> <span class="math inline">\(1\)</span></li>
+</ul>
+<div id="7de3a6c7" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="kw">or</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>True</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Here the</em> <code>or</code> <em>evaluates the first argument as false, so cannot short-circuit, the second argument is returned, i.e</em> <code>True</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+<ul>
+<li>Let us now use <code>and</code> to try construct an expression that will correctly evaluate when the time is after <span class="math inline">\(7:30\)</span>, naively we might expect,</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> hour <span class="op">&gt;</span> <span class="dv">6</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We can use a truth table to check,</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Hour</strong></th>
+<th><strong>Minute</strong></th>
+<th><strong>Desired</strong></th>
+<th><strong>Output</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6</td>
+<td>0</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>29</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>30</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>0</td>
+<td>True</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>We can see in the last case the result is not what we want!
+<ul>
+<li><code>hour &gt; 7</code> is true, but <code>minute &gt; 29</code> is false, so we need to be more precise,</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We use brackets to make the expression more readable</li>
+<li>Here we use short-circuiting, if the the hour is greater than <span class="math inline">\(7\)</span> we don’t need to check the minutes value</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When working with boolean operations you should always check that the logic matches what you expect!</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="the-if-construct" class="level3">
+<h3 class="anchored" data-anchor-id="the-if-construct">The <code>if</code> Construct</h3>
+<ul>
+<li>Suppose we want a program to tell me if it’s time to get out of bed</li>
+<li>Need the ability to run code <code>if</code> a boolean condition is met
+<ul>
+<li>Can do so using the aptly named <code>if</code> operator</li>
+</ul></li>
+</ul>
+<section id="example-simple-alarm-clock" class="level4">
+<h4 class="anchored" data-anchor-id="example-simple-alarm-clock">Example: Simple Alarm Clock</h4>
+<ul>
+<li><em>Create a new python program (<a href="./Examples/02_SimpleAlarmClock/SimpleAlarmClock.py">SimpleAlarmClock.py</a>) with the following contents</em></li>
+</ul>
+<div id="14122ce5" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.2: Simple Alarm Clock</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrates `if` using a simple alarm clock</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>minute <span class="op">=</span> current_time.tm_sec</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>it_is_time_to_get_up <span class="op">=</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>)</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> it_is_time_to_get_up:</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IT IS TIME TO GET UP</code></pre>
+</div>
+</div>
+<ul>
+<li><p><em>The program should print</em> <code>IT IS TIME TO GET UP</code> <em>only if the time is after</em> <span class="math inline">\(7:30\)</span></p></li>
+<li><p>The <code>if</code> construct starts with the word <code>if</code>, following by a boolean value called the <code>condition</code>, then a <code>:</code></p></li>
+<li><p>Any statements we want to execute <em>if</em> the <code>if</code> is <code>True</code> are then written below the <code>if</code> and <em>indented</em> one level</p></li>
+</ul>
+</section>
+<section id="conditions-in-python" class="level4">
+<h4 class="anchored" data-anchor-id="conditions-in-python">Conditions in Python</h4>
+<ul>
+<li>Condition is a term for the expression that controls which branch of the <code>if</code> is executed</li>
+<li>If the condition evaluates <code>True</code> the indented branch is run</li>
+<li>If the condition evluates <code>False</code> the indented branch is skipped</li>
+<li>We could simply the above code by including the check directly in the <code>if</code> rather than an intermediate variable</li>
+</ul>
+<div id="82042032" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minutes <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IT IS TIME TO GET UP</code></pre>
+</div>
+</div>
+</section>
+<section id="combine-python-statements-into-a-suite" class="level4">
+<h4 class="anchored" data-anchor-id="combine-python-statements-into-a-suite">Combine Python Statements into a Suite</h4>
+<ul>
+<li>What if we want multiple statements to run after an <code>if</code> statement</li>
+<li>We just write them as a sequence of indented statements</li>
+</ul>
+<section id="example-siren-alarm-clock" class="level5">
+<h5 class="anchored" data-anchor-id="example-siren-alarm-clock">Example: Siren Alarm Clock</h5>
+<p><em>Let us improve the previous <a href="#example-simple-alarm-clock">example</a> to also play a sound if it’s time to get up. Create a program (<a href="./Examples/03_SirenAlarmClock/SirenAlarmClock.py">SirenAlarmClock.py</a>) with the contents below</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.3: Siren Alarm Clock</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Improves the Simple Alarm Clock to also play a sound</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>minute <span class="op">=</span> current_time.tm_min</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    snaps.display_message(<span class="st">"TIME TO GET UP"</span>)</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>    snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pause the program to give time for the sound to play</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>This program now runs three statements in the</em> <code>if</code></p>
+<ol type="1">
+<li><em>First a message is displayed</em></li>
+<li><em>Second a sound is played</em></li>
+<li><em>Third the program sleeps so the sound has time to play</em></li>
+</ol>
+<ul>
+<li>If we want something to run regardless of the <code>if</code> condition, we write it either before or after the <code>if</code> statement</li>
+</ul>
+</section>
+<section id="example-time-display-alarm-clock" class="level5">
+<h5 class="anchored" data-anchor-id="example-time-display-alarm-clock">Example: Time Display Alarm Clock</h5>
+<p><em>Add to the simple Alarm Clock, by making it so the program will always print the current time regardless of if the alarm goes off. Create a new program (<a href="./Examples/04_AlarmClockWithTimeDisplay/AlarmClockWithTimeDisplay.py">AlarmClockWithTimeDisplay.py</a>). Enter the following contents,</em></p>
+<div id="602de165" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.4: Alarm Clock with Time Display</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A variant of Alarm Clock to also always display the time</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>minute <span class="op">=</span> current_time.tm_min</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"TIME TO GET UP"</span>)</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"RISE AND SHINE"</span>)</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"THE EARLY BIRD GETS THE WORM"</span>)</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The time is"</span>, hour, <span class="st">":"</span>, minute)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>TIME TO GET UP
+RISE AND SHINE
+THE EARLY BIRD GETS THE WORM
+The time is 11 : 48</code></pre>
+</div>
+</div>
+<ul>
+<li><em>The program above will always print the current time, regardless of if the alarm block is run</em></li>
+</ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Indented Text can cause Big Problems</strong></p>
+<p>As seen above, python uses indentation for control flow, this has the advantage in that it follows normal code style practices, but has some pitfalls</p>
+<ol type="1">
+<li><p>If the indention is wrong the program won’t run</p>
+<ul>
+<li><p>i.e.&nbsp;if one line is indented four spaces, and the next three an error will be thrown</p>
+<div id="49589c54" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>minutes <span class="op">=</span> current_time.tm_min</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"The early bird gets the worm..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[24]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">print("The early bird gets the worm...")</span>
+    ^
+<span class="ansi-red-fg">IndentationError</span><span class="ansi-red-fg">:</span> unexpected indent
+</pre>
+</div>
+</div>
+</div></li>
+</ul></li>
+<li><p>A more insidious error, occurs if one mixes tabs and spaces in the indentation, since the code may appear to be fine until it attempts to run</p>
+<div id="6c99f01d" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> time</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a> current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a> hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a> minutes <span class="op">=</span> current_time.tm_min</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>     <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>     <span class="bu">print</span>(<span class="st">"The early bird gets the worm..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IT IS TIME TO GET UP
+The early bird gets the worm...</code></pre>
+</div>
+</div>
+<ul>
+<li>Most programmers and even text editors will automatically convert one style of indentation to the other (commonly tabs to spaces, but sometimes spaces to tabs) to avoid this issue
+<ul>
+<li>In the above code, my editor converted the second line which was indented with spaces to a tab to match the previous line</li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="structure-of-an-if-statement" class="level4">
+<h4 class="anchored" data-anchor-id="structure-of-an-if-statement">Structure of an <code>if</code> Statement</h4>
+<ul>
+<li>Formally, an <code>if</code> has a structure like</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">block-beta
+    columns 4
+    space
+    title["Breakdown of an if statement"]:2
+    space
+
+    block:Input
+    columns 1
+        if["if"]
+        ifDescr["(start of the if construction)"]
+    end
+
+    block:Condition
+    columns 1
+        condition["condition"]
+        conditionDescr["(value that is true or false)"]
+    end
+
+    block:Colon
+    columns 1
+        colon[":"]
+        colonDescr["colon"]
+    end
+
+    block:Suite
+    columns 1
+        suite["suite"]
+        suiteDescr["statements"]
+    end
+
+classDef BG stroke:transparent, fill:transparent
+class title BG
+class condition BG
+class conditionDescr BG
+class colon BG
+class colonDescr BG
+class suite BG
+class suiteDescr BG
+class if BG
+class ifDescr BG
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>There are two ways to write the <em>suite</em>
+<ol type="1">
+<li><p>A set of indented statements on the lines proceeding the <code>if</code></p></li>
+<li><p>A set of statements on the same line as the <code>if</code> each seperated by a semicolon (<code>;</code>) e.g.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">6</span>): <span class="bu">print</span>(<span class="st">'IT IS TIME TO GET UP'</span>)<span class="op">;</span> <span class="bu">print</span>(<span class="st">'THE EARLY BIRD GETS THE WORM'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can’t combine inline <code>if</code> statements, with indented <code>if</code> statements, e.g.</p>
+<div id="5221ae81" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> time</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    minutes <span class="op">=</span> current_time.tm_min</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>): <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)<span class="op">;</span> <span class="bu">print</span>(<span class="st">"RISE AND SHINE"</span>)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"The early bird gets the worm..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[26]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">print("The early bird gets the worm...")</span>
+    ^
+<span class="ansi-red-fg">IndentationError</span><span class="ansi-red-fg">:</span> unexpected indent
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="example-layout-of-conditional-statements" class="level5">
+<h5 class="anchored" data-anchor-id="example-layout-of-conditional-statements">Example: Layout of Conditional Statements</h5>
+<p><em>Use the python interpreter to answer the following questions to understand conditional statements</em></p>
+<ol type="1">
+<li><em>Can we work with conditional statements using the python shell?</em>
+<ul>
+<li><em>Yes you can, type the following into the shell,</em></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">True</span>:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p><em>The shell may display</em> <code>...</code> <em>instead of</em> <code>&gt;&gt;&gt;</code> <em>or, omit</em> <code>&gt;&gt;&gt;</code> <em>and indent</em></p>
+<ul>
+<li><em>In the first case we can indent ourselves to write the suite</em></li>
+<li><em>In the second we simply write the suite</em></li>
+</ul></li>
+<li><p><em>Once done writing the</em> <code>if</code> <em>suite, simply deindent</em></p></li>
+<li><p><em>Try write the following in the shell, and verify the output</em></p>
+<div id="64bb72a6" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">True</span>:</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">'True'</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">'Still True'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+Still True</code></pre>
+</div>
+</div></li>
+</ul></li>
+<li><em>How many spaces must you indent a suite of Python statements controlled by an</em> <code>if</code> <em>statement?</em>
+<ul>
+<li><em>There is no approved value, but it must be consistent, i.e.&nbsp;if the first indentation is four, then all future indentations must also be four</em>
+<ul>
+<li><em>Common choices are 4, 8 or 2</em></li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="add-an-else-to-an-if-construction" class="level4">
+<h4 class="anchored" data-anchor-id="add-an-else-to-an-if-construction">Add an <code>else</code> to an <code>if</code> Construction</h4>
+<ul>
+<li>Sometimes we want conditional behaviour on both the <code>True</code> and <code>False</code> branches</li>
+<li><code>else</code> is a keyword that lets us add behaviour that executes when an <code>if</code> evaluates as <code>False</code></li>
+</ul>
+<section id="example-simple-alarm-clock-with-else" class="level5">
+<h5 class="anchored" data-anchor-id="example-simple-alarm-clock-with-else">Example: Simple Alarm Clock with Else</h5>
+<p><em>Modify the <a href="#example-simple-alarm-clock">Simple Alarm Clock</a> to now print a message telling us to go back to bed if it before our alarm should go off. Write a new program (<a href="./Examples/05_SimpleAlarmClockWithElse/SimpleAlarmClockWithElse.py">SimpleAlarmClockWithElse.py</a>) with the following contents,</em></p>
+<div id="75c30731" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.5: Simple Alarm Clock</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Variant of the Simple Alarm Clock</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that modifies the output depending on if its time to get up</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>minute <span class="op">=</span> current_time.tm_min</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> <span class="dv">7</span>) <span class="kw">or</span> (hour <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"IT IS TIME TO GET UP"</span>)</span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Go back to bed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IT IS TIME TO GET UP</code></pre>
+</div>
+</div>
+<ul>
+<li><em>Observe that only one line of the paired <code>if-else</code> statements is printed</em></li>
+</ul>
+</section>
+<section id="example-if-constructions" class="level5">
+<h5 class="anchored" data-anchor-id="example-if-constructions">Example: If Constructions</h5>
+<p><em>Work through the following questions to understand <code>if</code> constructions</em></p>
+<ol type="1">
+<li><em>Must an</em> <code>if</code> <em>construction have an</em> <code>else</code> <em>part?</em>
+<ul>
+<li><strong>No</strong><em>,we saw when first working with</em> <code>if</code> <em>that we could exclude the</em> <code>else</code> <em>in that case no additional code runs if the</em> <code>if</code> <em>evaluates</em> <code>False</code></li>
+</ul></li>
+<li><em>What happens if a condition is never</em> <code>True</code><em>?</em>
+<ul>
+<li><em>It simply never executes</em></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="compare-strings-in-programs" class="level4">
+<h4 class="anchored" data-anchor-id="compare-strings-in-programs">Compare Strings in Programs</h4>
+<ul>
+<li>The <code>if</code> statement can be used to compare strings, as seen with the <a href="#comparison-operators">comparison operators</a></li>
+</ul>
+<section id="example-broken-greeter" class="level5">
+<h5 class="anchored" data-anchor-id="example-broken-greeter">Example: Broken Greeter</h5>
+<p><em>The following program uses the equality operator and an <code>if</code> statement to greet a person if their name matches. What is a potential issue with this <a href="./Examples/06_BrokenGreeter/BrokenGreeter.py">program</a>?</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.6: Broken Greeter</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A Greeter program using string matching</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the issues with this program</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter your name: "</span>)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> name <span class="op">==</span> <span class="st">"Rob"</span>:</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello, Oh great one"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>The equality operator checks against the string</em> <code>"Rob"</code> <em>exactly, i.e.&nbsp;it is case sensitive, if we write</em> <code>"ROB"</code><em>, or</em> <code>"rob"</code> <em>or some variation thereof, the statement will not match.</em></p>
+<p><em>We can fix this by using the string method</em> <code>upper</code><em>, this converts all forms of the word</em> <code>"rob"</code> <em>to</em> <code>"ROB"</code> <em>which we can reliably check against. The new <a href="./Examples/07_UppercaseGreeter/UppercaseGreeter.py">program</a> looks like</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.7: Uppercase Greeter</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A Greeter program using string matching</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixes the issues with Example 5.6 by using</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># str.upper()</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter your name: "</span>)</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> name.upper() <span class="op">==</span> <span class="st">"ROB"</span>:</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello, Oh great one"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><em>We could also use the string method <code>lower</code> to compare against an all lowercase word</em></li>
+</ul>
+</section>
+<section id="example-methods-and-functions" class="level5">
+<h5 class="anchored" data-anchor-id="example-methods-and-functions">Example: Methods and Functions</h5>
+<p><em>Consider the following questions to learn about methods and functions</em></p>
+<ol type="1">
+<li><em>How do <code>lower()</code> and <code>upper()</code> work?</em>
+<ul>
+<li><em>Python types are objects that provide</em> <strong>methods</strong>.</li>
+<li><em>Methods are called like functions</em></li>
+</ul></li>
+<li><em>Why do we have to write <code>lower()</code> and not <code>lower</code>?</em>
+<ul>
+<li><p><em>Leave the parentheses off, and see what happens</em></p>
+<div id="03880847" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  name <span class="op">=</span> <span class="st">'Rob'</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  name.upper</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>&lt;function str.upper()&gt;</code></pre>
+</div>
+</div></li>
+<li><p><em>We are instead returned a description of the method itself</em></p></li>
+</ul></li>
+<li><em>What’s the difference between functions and methods?</em>
+<ul>
+<li><em>They are used the same way, but they differ in where they are created</em></li>
+<li><em>Functions are not associated any specific object</em></li>
+<li><em>Methods are bound as attributes of objects</em></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="nesting-if-conditions" class="level4">
+<h4 class="anchored" data-anchor-id="nesting-if-conditions">Nesting <code>if</code> Conditions</h4>
+<ul>
+<li>You can nest conditions, e.g.&nbsp;if you want to perform sequential checks</li>
+</ul>
+<section id="example-protected-greeter" class="level5">
+<h5 class="anchored" data-anchor-id="example-protected-greeter">Example: Protected Greeter</h5>
+<p><em>Let us demonstrate nested <code>if</code> through a greeter which requires a follow on code word to confirm the identity of the user. Create a program (<a href="./Examples/08_CodedGreeter/CodedGreeter.py">CodedGreeter.py</a>) with the following contents</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.8: Coded Greeter</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Asks the user for a follow on code to confirm their ID</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co"># before the program greets them</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter your name: "</span>)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> name.upper() <span class="op">==</span> <span class="st">"ROB"</span>:</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter the codeword: "</span>)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> code <span class="op">==</span> <span class="st">"secret"</span>:</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Hello, Oh great one"</span>)</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Begone. Imposter"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><em>Play around with the above code to see what happens for various input combinations. You should see if the first input is not a variant of <code>"rob"</code> the second prompt never occurs and the program ends. Adjust the above by writing a new program (<a href="./Examples/09_CodedGreeterWithOuterElse/CodedGreeterWithOuterElse.py">CodedGreeterWithOuterElse.py</a>)</em></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.9: Coded Greeter with Outer Else</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Asks the user for a follow on code to confirm their ID</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># before the program greets them</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Has an additional outer else clause for the case that the nested</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if does not run</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter your name: "</span>)</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> name.upper() <span class="op">==</span> <span class="st">"ROB"</span>:</span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter the codeword: "</span>)</span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> code <span class="op">==</span> <span class="st">"secret"</span>:</span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Hello, Oh great one"</span>)</span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Begone. Imposter"</span>)</span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You are not Rob. Shame."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>The above code uses a second</em> <code>else</code> <em>clause, attached to the</em> <strong>first</strong> <em>outer,</em> <code>if</code> <em>condition. This means that it will run whenever the original name is not some variant of <code>"ROB"</code></em></p>
+</section>
+</section>
+<section id="working-with-logic" class="level4">
+<h4 class="anchored" data-anchor-id="working-with-logic">Working with Logic</h4>
+<section id="exercise-make-an-advanced-alarm-clock" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-make-an-advanced-alarm-clock">Exercise: Make an Advanced Alarm Clock</h5>
+<p><em>Improve the <a href="#example-time-display-alarm-clock">Alarm Clock</a>. Make the alarm display the date as well as the time, and let the user sleep in on the weekends.</em></p>
+<p>Our implementation is given below,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 4.2: Advanced Alarm Clock</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co"># An Advanced Alarm Combining the Behaviour</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of most increments of the alarm clock</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="co"># and allowing you to sleep in on weekends</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>current_time <span class="op">=</span> time.localtime()</span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>hour <span class="op">=</span> current_time.tm_hour</span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>minute <span class="op">=</span> current_time.tm_min</span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>day <span class="op">=</span> current_time.tm_mday</span>
+<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> current_time.tm_mon</span>
+<span id="cb70-14"><a href="#cb70-14" aria-hidden="true" tabindex="-1"></a>is_weekend <span class="op">=</span> current_time.tm_wday <span class="op">&gt;=</span> <span class="dv">5</span></span>
+<span id="cb70-15"><a href="#cb70-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-16"><a href="#cb70-16" aria-hidden="true" tabindex="-1"></a>date_message <span class="op">=</span> <span class="st">"The date is "</span> <span class="op">+</span> <span class="bu">str</span>(day) <span class="op">+</span> <span class="st">"/"</span> <span class="op">+</span> <span class="bu">str</span>(month)</span>
+<span id="cb70-17"><a href="#cb70-17" aria-hidden="true" tabindex="-1"></a>time_message <span class="op">=</span> <span class="st">"The time is "</span> <span class="op">+</span> <span class="bu">str</span>(hour) <span class="op">+</span> <span class="st">":"</span> <span class="op">+</span> <span class="bu">str</span>(minute)</span>
+<span id="cb70-18"><a href="#cb70-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-19"><a href="#cb70-19" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb70-20"><a href="#cb70-20" aria-hidden="true" tabindex="-1"></a>up_hour <span class="op">=</span> <span class="dv">7</span> <span class="op">+</span> is_weekend  <span class="co"># get to sleep in an extra hour on weekends</span></span>
+<span id="cb70-21"><a href="#cb70-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-22"><a href="#cb70-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hour <span class="op">&gt;</span> up_hour) <span class="kw">or</span> (hour <span class="op">==</span> up_hour <span class="kw">and</span> minute <span class="op">&gt;</span> <span class="dv">29</span>):</span>
+<span id="cb70-23"><a href="#cb70-23" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"TIME TO GET UP"</span></span>
+<span id="cb70-24"><a href="#cb70-24" aria-hidden="true" tabindex="-1"></a>    snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb70-25"><a href="#cb70-25" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb70-26"><a href="#cb70-26" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"Go back to bed!"</span></span>
+<span id="cb70-27"><a href="#cb70-27" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> date_message <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> time_message</span>
+<span id="cb70-28"><a href="#cb70-28" aria-hidden="true" tabindex="-1"></a>snaps.display_message(msg, size<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb70-29"><a href="#cb70-29" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">10</span>)  <span class="co"># leave time for the sound and to read</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Most of the text simply exists to correctly create the final message we will display on the screen. The most important parts are, <code>is_weekend = current_time.tm_wday &gt;= 5</code> which uses the fact that Saturday and Sunday have the value <span class="math inline">\(5\)</span> and <span class="math inline">\(6\)</span> in the <code>current_time.tm_wday</code> attribute (A number representing the day in the week) to set a boolean flag. We then use the fact that <code>True</code> acts numerically as one, and <code>False</code> acts numerically as zero to let us sleep in an hour on the weekend using <code>up_hour = 7 + is_weekend</code> which is <span class="math inline">\(8\)</span> on weekends and <span class="math inline">\(7\)</span> on weekdays.</p>
+<p>We then run through the code as we have for most of the alarm clock cases, using an <code>else</code> clause to ensure we always have a message for the user, and appending the date and time message to this output.</p>
+<p>Lastly we pass the method to <code>snaps</code> for display</p>
+</section>
+</section>
+</section>
+<section id="use-decisions-to-make-an-application" class="level3">
+<h3 class="anchored" data-anchor-id="use-decisions-to-make-an-application">Use Decisions to make an Application</h3>
+<ul>
+<li>In this next section we’ll write our first semi-sophisticated program</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Scenario:</strong></p>
+<p>A local theme park wants you to write a program that will let users check if they meet the age requirements to go on a ride. They provide the following table covering the current rides</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Ride</strong></th>
+<th><strong>Restrictions</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Scenic River Cruise</td>
+<td>None</td>
+</tr>
+<tr class="even">
+<td>Carnival Carousel</td>
+<td>At least 3 years old</td>
+</tr>
+<tr class="odd">
+<td>Jungle Adventure Water Splash</td>
+<td>At least 6 years old</td>
+</tr>
+<tr class="even">
+<td>Downhill Mountain Run</td>
+<td>At least 12 years old</td>
+</tr>
+<tr class="odd">
+<td>The Regurgitator</td>
+<td>At least 12 years old and less than 70</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<section id="design-the-user-interface" class="level4">
+<h4 class="anchored" data-anchor-id="design-the-user-interface">Design the User Interface</h4>
+<ul>
+<li>We will use a simple text interface</li>
+</ul>
+<pre class="text"><code>Welcome to our Theme Park
+
+These are the available rides
+
+1. Scenic River Cruise
+2. Carnival Carousel
+3. Jungle Adventure Water Splash
+4. Downhill Mountain Run
+5. The Regurgitator
+
+Please enter the ride you want: 1
+You have selected the Scenic River Cruise
+There are no age limits for this ride</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Design the User Interface with the Customer</strong></p>
+<p>The UI can be the most important and most difficult part of design because it can be very subjective. Ultimately the Customer is the one paying and so they should be involved in the UI design throughout!</p>
+</div>
+</div>
+</section>
+<section id="implement-the-user-interface" class="level4">
+<h4 class="anchored" data-anchor-id="implement-the-user-interface">Implement the User Interface</h4>
+<ul>
+<li>We have a UI design, now we need to implement it</li>
+<li>Our code starts as below,</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.10: Ride Selector Start</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The basic shell of the Ride Selector UI</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""Welcome to our Theme Park</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="st">      """</span>)</span>
+<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Please enter the ride number you want: "</span>)</span>
+<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a>ride_number <span class="op">=</span> <span class="bu">int</span>(ride_number_text)</span>
+<span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-17"><a href="#cb72-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb72-18"><a href="#cb72-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You have selected Scenic River Cruise"</span>)</span>
+<span id="cb72-19"><a href="#cb72-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"There are no age limits for this ride"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We first print out our Menu, using a triple-delimited string so we can multiline it</li>
+<li>Then we implement the menu using a series of <code>if</code> statements.
+<ul>
+<li>For the first case (Scenci River Cruise) we don’t need the user’s age so we can output the result immediately</li>
+</ul></li>
+<li>For other rides the user needs to supply their age, so we continue,</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:  <span class="co"># need to get the age of the user</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    age_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Please enter your age: "</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> <span class="bu">int</span>(age_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We have to get the age using another input pair</li>
+<li>This should already be familiar to you</li>
+</ul>
+<section id="testing-user-input" class="level5">
+<h5 class="anchored" data-anchor-id="testing-user-input">Testing User Input</h5>
+<ul>
+<li>Once we have the age, we need to compare against the restrictions for the selected ride</li>
+<li>We can do this with a nested series of <code>if</code> statements which
+<ol type="1">
+<li>First selects the appropriate ride</li>
+<li>Checks the age against the ride’s age requirements</li>
+</ol></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected the Carnival Carousel"</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected Jungle Adventure Water Splash"</span>)</span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">6</span>:</span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Downhill Mountain Splash (ride number 4) can be implemented exactly as above</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may have noticed that the above statement appears to have a bunch of duplicated code. The rough structure is,</p>
+<pre class="text"><code>select ride
+if age of user is greater than or equal to the rides min age
+    Inform the user they can go on the ride
+else:
+    Inform the user they cannot go on the ride</code></pre>
+<p>Programmers typically don’t like to repeat themselves as it increases the number of ways a program can go wrong. So ideally we would like a way were we could write something like the above <em>once</em> and have the appropriate checks be carried out, and the message printed without having to write it out for every case. We’ll look at some ways to do this later in the book.</p>
+</div>
+</div>
+</section>
+<section id="complete-the-program" class="level5">
+<h5 class="anchored" data-anchor-id="complete-the-program">Complete the Program</h5>
+<ul>
+<li>The last ride introduces an additional check, we have a minimum and a <em>maximum</em> age.
+<ul>
+<li>Need to introduce another layer nested conditional to differentiate between the <strong>too old</strong> and <strong>too young</strong> case</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You have selected The Regurgitator"</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>            <span class="co"># first check age not too low</span></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> age <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Age is too old</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"Sorry, you are too old"</span>)</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>                <span class="co"># In the valid range</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"You can go on the ride"</span>)</span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Age is too young</span></span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Sorry, you are too young"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>You can see the final Program (<a href="./Examples/10_RideSelector/RideSelector.py">Ride Selector</a>)</li>
+</ul>
+</section>
+</section>
+<section id="input-snaps" class="level4">
+<h4 class="anchored" data-anchor-id="input-snaps">Input Snaps</h4>
+<ul>
+<li>We can add some extra quality to our implementation using <code>snaps</code></li>
+<li>snaps <code>get_string</code> method</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.11: Snaps get_string function</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> snaps.get_string(<span class="st">"Enter your name: "</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>snaps.display_message(<span class="st">"Hello "</span> <span class="op">+</span> name)</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>) <span class="co">#so there is time to read the message</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As written, the snaps <code>get_string</code> method on my machine, did not work when running <em>Pygame 2</em>. I had to modify the method to the following,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_string(prompt, size<span class="op">=</span><span class="dv">50</span>, margin<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span>(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>), horiz<span class="op">=</span><span class="st">'left'</span>, vert<span class="op">=</span><span class="st">'center'</span>,</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>               max_line_length<span class="op">=</span><span class="dv">20</span>):</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Reads a string from the user</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>    setup()</span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>    cursor_char <span class="op">=</span> <span class="st">'*'</span></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>    cursor <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> redraw():</span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>        clear_display()</span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a>        render_message(prompt<span class="op">+</span>result, margin<span class="op">=</span>margin, size<span class="op">=</span>size,</span>
+<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a>                       horiz<span class="op">=</span>horiz, vert<span class="op">=</span>vert, color<span class="op">=</span>color, cursor<span class="op">=</span>cursor)</span>
+<span id="cb78-19"><a href="#cb78-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-20"><a href="#cb78-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cursor_flip():</span>
+<span id="cb78-21"><a href="#cb78-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nonlocal</span> cursor</span>
+<span id="cb78-22"><a href="#cb78-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-23"><a href="#cb78-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a timer for the cursor</span></span>
+<span id="cb78-24"><a href="#cb78-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-25"><a href="#cb78-25" aria-hidden="true" tabindex="-1"></a>    cursor_event <span class="op">=</span> pygame.USEREVENT<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb78-26"><a href="#cb78-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-27"><a href="#cb78-27" aria-hidden="true" tabindex="-1"></a>    pygame.time.set_timer(cursor_event,<span class="dv">500</span>)</span>
+<span id="cb78-28"><a href="#cb78-28" aria-hidden="true" tabindex="-1"></a>    pygame.key.start_text_input()</span>
+<span id="cb78-29"><a href="#cb78-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-30"><a href="#cb78-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb78-31"><a href="#cb78-31" aria-hidden="true" tabindex="-1"></a>        event <span class="op">=</span> pygame.event.wait()</span>
+<span id="cb78-32"><a href="#cb78-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-33"><a href="#cb78-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.<span class="bu">type</span> <span class="op">==</span> cursor_event:</span>
+<span id="cb78-34"><a href="#cb78-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> cursor:</span>
+<span id="cb78-35"><a href="#cb78-35" aria-hidden="true" tabindex="-1"></a>                cursor <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb78-36"><a href="#cb78-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb78-37"><a href="#cb78-37" aria-hidden="true" tabindex="-1"></a>                cursor <span class="op">=</span> cursor_char</span>
+<span id="cb78-38"><a href="#cb78-38" aria-hidden="true" tabindex="-1"></a>            redraw()</span>
+<span id="cb78-39"><a href="#cb78-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb78-40"><a href="#cb78-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> event.key <span class="op">==</span> pygame.K_RETURN:</span>
+<span id="cb78-41"><a href="#cb78-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb78-42"><a href="#cb78-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> event.key <span class="op">==</span> pygame.K_BACKSPACE:</span>
+<span id="cb78-43"><a href="#cb78-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">len</span>(result) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb78-44"><a href="#cb78-44" aria-hidden="true" tabindex="-1"></a>                    result <span class="op">=</span> result[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb78-45"><a href="#cb78-45" aria-hidden="true" tabindex="-1"></a>                    redraw()</span>
+<span id="cb78-46"><a href="#cb78-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> event.<span class="bu">type</span> <span class="op">==</span> pygame.TEXTINPUT:</span>
+<span id="cb78-47"><a href="#cb78-47" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(result) <span class="op">&lt;</span> max_line_length:</span>
+<span id="cb78-48"><a href="#cb78-48" aria-hidden="true" tabindex="-1"></a>                result <span class="op">+=</span> event.text</span>
+<span id="cb78-49"><a href="#cb78-49" aria-hidden="true" tabindex="-1"></a>                redraw()</span>
+<span id="cb78-50"><a href="#cb78-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-51"><a href="#cb78-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># disable the timer for the cursor</span></span>
+<span id="cb78-52"><a href="#cb78-52" aria-hidden="true" tabindex="-1"></a>    pygame.time.set_timer(cursor_event,<span class="dv">0</span>)</span>
+<span id="cb78-53"><a href="#cb78-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>I won’t go into detail on explaining the changes since it’s above the level we’ve currently been discussing but if you have issues with the running any of the snaps <code>get_string</code> programs in this book, I would recommend trying the above replacement to the function</p>
+</div>
+</div>
+<ul>
+<li>Using the above and some optional arguments to play around with text placement we can create the start of a GUI implementation of the <a href="#implement-the-user-interface">Ride Selector Program</a></li>
+</ul>
+<section id="example-theme-park-snaps-display" class="level5">
+<h5 class="anchored" data-anchor-id="example-theme-park-snaps-display">Example: Theme Park Snaps Display</h5>
+<p><em>The below program is the outline for an implementation of the Ride Selector Program using <code>snaps</code> to provide a GUI</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5.12: Theme Park Snaps Display</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reimplments the shell of the Ride Selector Menu using Snaps</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>snaps.display_image(<span class="st">"themepark.png"</span>)</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""Welcome to our Theme Park</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
+<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
+<span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a><span class="st">      Select your ride: """</span></span>
+<span id="cb79-20"><a href="#cb79-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-21"><a href="#cb79-21" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> snaps.get_string(prompt, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb79-22"><a href="#cb79-22" aria-hidden="true" tabindex="-1"></a>confirm <span class="op">=</span> <span class="st">"Ride "</span> <span class="op">+</span> ride_number_text</span>
+<span id="cb79-23"><a href="#cb79-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-24"><a href="#cb79-24" aria-hidden="true" tabindex="-1"></a>snaps.display_message(confirm)</span>
+<span id="cb79-25"><a href="#cb79-25" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>) <span class="co">#gives user time to read the output</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exercise-snaps-ride-selector" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-snaps-ride-selector">Exercise: Snaps Ride Selector</h5>
+<p><em>Using the previous <a href="#example-theme-park-snaps-display">example</a>, complete the ride selector program. Extending its features where reasonable</em></p>
+<p>We’ll reimplement all the features of the original text-based interface, but add in the siren sound effect if the user is unable to ride the ride. Otherwise this proceeds as with most of our conversions to snaps. We replace <code>print</code> with <code>snaps.display_message</code> and introduce some work to build the string that we want to send to <code>snaps.display_message</code>. In this case we create a string that is nicely formatted to output</p>
+<ol type="1">
+<li>The ride number the user selected</li>
+<li>The name of the ride</li>
+<li>A message letting them know if they are allowed to ride</li>
+</ol>
+<p>Our final implementation can be found in the file <a href="./Exercises/03_SnapsRideSelector/ThemeParkSnapsDisplay.py">ThemeParkSnapsDisplay.py</a>, or read from down below, observe the usual use of the <code>time.sleep</code> function to prevent the window from immediately closing</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.3: Snaps Ride Selector</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reimplments the entirety of the Theme Park Ride Selector using</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a snaps interface, and adds some audio ques to warn the user</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># when they are ineligable for ride</span></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>snaps.display_image(<span class="st">"themepark.png"</span>)</span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"""Welcome to our Theme Park</span></span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a><span class="st">      These are the available ride:</span></span>
+<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a><span class="st">      1. Scenic River Cruise</span></span>
+<span id="cb80-16"><a href="#cb80-16" aria-hidden="true" tabindex="-1"></a><span class="st">      2. Carnival Carousel</span></span>
+<span id="cb80-17"><a href="#cb80-17" aria-hidden="true" tabindex="-1"></a><span class="st">      3. Jungle Adventure Water Splash</span></span>
+<span id="cb80-18"><a href="#cb80-18" aria-hidden="true" tabindex="-1"></a><span class="st">      4. Downhill Mountain Run</span></span>
+<span id="cb80-19"><a href="#cb80-19" aria-hidden="true" tabindex="-1"></a><span class="st">      5. The Regurgitator</span></span>
+<span id="cb80-20"><a href="#cb80-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-21"><a href="#cb80-21" aria-hidden="true" tabindex="-1"></a><span class="st">      Select your ride: """</span></span>
+<span id="cb80-22"><a href="#cb80-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-23"><a href="#cb80-23" aria-hidden="true" tabindex="-1"></a>ride_number_text <span class="op">=</span> snaps.get_string(prompt, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb80-24"><a href="#cb80-24" aria-hidden="true" tabindex="-1"></a>confirm <span class="op">=</span> <span class="st">"Ride "</span> <span class="op">+</span> ride_number_text</span>
+<span id="cb80-25"><a href="#cb80-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-26"><a href="#cb80-26" aria-hidden="true" tabindex="-1"></a>snaps.display_message(confirm)</span>
+<span id="cb80-27"><a href="#cb80-27" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">2</span>)  <span class="co"># gives user time to read the output</span></span>
+<span id="cb80-28"><a href="#cb80-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-29"><a href="#cb80-29" aria-hidden="true" tabindex="-1"></a>ride_number <span class="op">=</span> <span class="bu">int</span>(ride_number_text)</span>
+<span id="cb80-30"><a href="#cb80-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-31"><a href="#cb80-31" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb80-32"><a href="#cb80-32" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Scenic River Cruise</span><span class="ch">\n\n</span><span class="st">There are no age limits for this ride"</span></span>
+<span id="cb80-33"><a href="#cb80-33" aria-hidden="true" tabindex="-1"></a>    snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-34"><a href="#cb80-34" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:  <span class="co"># need to get the age of the user</span></span>
+<span id="cb80-35"><a href="#cb80-35" aria-hidden="true" tabindex="-1"></a>    age_text <span class="op">=</span> snaps.get_string(</span>
+<span id="cb80-36"><a href="#cb80-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Please enter your age: "</span>, vert<span class="op">=</span><span class="st">"bottom"</span>, max_line_length<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb80-37"><a href="#cb80-37" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb80-38"><a href="#cb80-38" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> <span class="bu">int</span>(age_text)</span>
+<span id="cb80-39"><a href="#cb80-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-40"><a href="#cb80-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb80-41"><a href="#cb80-41" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Carnival Cruise"</span></span>
+<span id="cb80-42"><a href="#cb80-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">3</span>:</span>
+<span id="cb80-43"><a href="#cb80-43" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-44"><a href="#cb80-44" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-45"><a href="#cb80-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-46"><a href="#cb80-46" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-47"><a href="#cb80-47" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-48"><a href="#cb80-48" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-49"><a href="#cb80-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="cb80-50"><a href="#cb80-50" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Jungle Adventure Water Splash"</span></span>
+<span id="cb80-51"><a href="#cb80-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">6</span>:</span>
+<span id="cb80-52"><a href="#cb80-52" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-53"><a href="#cb80-53" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-54"><a href="#cb80-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-55"><a href="#cb80-55" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-56"><a href="#cb80-56" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-57"><a href="#cb80-57" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-58"><a href="#cb80-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">4</span>:</span>
+<span id="cb80-59"><a href="#cb80-59" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Downhill Mountain Run"</span></span>
+<span id="cb80-60"><a href="#cb80-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
+<span id="cb80-61"><a href="#cb80-61" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-62"><a href="#cb80-62" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-63"><a href="#cb80-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-64"><a href="#cb80-64" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-65"><a href="#cb80-65" aria-hidden="true" tabindex="-1"></a>            snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-66"><a href="#cb80-66" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-67"><a href="#cb80-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ride_number <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb80-68"><a href="#cb80-68" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> confirm <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">The Regurgitator"</span></span>
+<span id="cb80-69"><a href="#cb80-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> age <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
+<span id="cb80-70"><a href="#cb80-70" aria-hidden="true" tabindex="-1"></a>            <span class="co"># first check age not too lowe</span></span>
+<span id="cb80-71"><a href="#cb80-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> age <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb80-72"><a href="#cb80-72" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Age is too old</span></span>
+<span id="cb80-73"><a href="#cb80-73" aria-hidden="true" tabindex="-1"></a>                msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too old"</span></span>
+<span id="cb80-74"><a href="#cb80-74" aria-hidden="true" tabindex="-1"></a>                snaps.play_sound(<span class="st">"siren.wav"</span>)</span>
+<span id="cb80-75"><a href="#cb80-75" aria-hidden="true" tabindex="-1"></a>                snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-76"><a href="#cb80-76" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb80-77"><a href="#cb80-77" aria-hidden="true" tabindex="-1"></a>                msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">You can go on the ride"</span></span>
+<span id="cb80-78"><a href="#cb80-78" aria-hidden="true" tabindex="-1"></a>                snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-79"><a href="#cb80-79" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb80-80"><a href="#cb80-80" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Sorry, you are too young"</span></span>
+<span id="cb80-81"><a href="#cb80-81" aria-hidden="true" tabindex="-1"></a>            snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb80-82"><a href="#cb80-82" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exercise-weather-helper" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-weather-helper">Exercise: Weather Helper</h5>
+<p><em>Using snaps and the weather functions it includes, write a simple program to remind the user to wrap up warm, wear sunscreen etc.</em></p>
+<p>We’ll use the basic outline of the solution in the book,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#EG5-14 Weather Helper</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The temperature is:"</span>, temp)</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> temp <span class="op">&lt;</span> <span class="dv">40</span>:</span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Wear a coat - it is cold out there"</span>)</span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> temp <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Remember to wear sunscreen"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first step is to convert the <code>print</code> statements to instead use the <code>snaps</code>, <code>display_message</code> function. This requires us to do the usual work of building the string before we display it. Next we also want to display an image, either a sun or a snowflake depending on if the weather is hot or cold. Since we’re grabbing some new images, we run into an issue that <code>snaps</code> doesn’t work to rescale the images out of the box. We can fix this by adding the line <code>image = image.convert_alpha()</code> before the <code>image = pygame.transform.smoothscale(image, window_size)</code> line in <code>display_image</code> in <code>snaps</code>. Our final program (<a href="./Exercises/04_WeatherHelper/WeatherHelper.py">Weather Helper</a>) looks like,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.4 Weather Helper</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple Weather Program that reminds the user about</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the weather conditions, with helpful text and</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pictures</span></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> snaps.get_weather_desciption(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> temp <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> conditions <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="st">"Could not retrieve Weather..."</span></span>
+<span id="cb82-14"><a href="#cb82-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="st">"The temperature is: "</span> <span class="op">+</span> <span class="bu">str</span>(temp)</span>
+<span id="cb82-16"><a href="#cb82-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> temp <span class="op">&lt;</span> <span class="dv">40</span>:</span>
+<span id="cb82-17"><a href="#cb82-17" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Wear a coat - it is cold out there"</span></span>
+<span id="cb82-18"><a href="#cb82-18" aria-hidden="true" tabindex="-1"></a>        snaps.display_image(<span class="st">"snowflake.png"</span>)</span>
+<span id="cb82-19"><a href="#cb82-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> temp <span class="op">&gt;</span> <span class="dv">70</span>:</span>
+<span id="cb82-20"><a href="#cb82-20" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">Remember to wear sunscreen"</span></span>
+<span id="cb82-21"><a href="#cb82-21" aria-hidden="true" tabindex="-1"></a>        snaps.display_image(<span class="st">"sun.png"</span>)</span>
+<span id="cb82-22"><a href="#cb82-22" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> msg <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">The weather is "</span> <span class="op">+</span> conditions</span>
+<span id="cb82-23"><a href="#cb82-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-24"><a href="#cb82-24" aria-hidden="true" tabindex="-1"></a>snaps.display_message(msg, size<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb82-25"><a href="#cb82-25" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ignore the line <code>if temp is None or conditions is None</code>, this is some error handling code we’ll look at in a latter chapter. Notice that since no matter which path we go through the <code>if, elif</code> chain we’ll post a message at the end. So we use the branch code in order to set up the appropriate message, while the call to <code>display_message</code> sits outside the loop, so we don’t have to call it on every path.</p>
+</section>
+<section id="exercise-fortune-teller" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-fortune-teller">Exercise: Fortune Teller</h5>
+<p><em>Using <code>randint</code> and <code>if</code> statements write a fortune teller program that gives random fortunes to the user</em></p>
+<p>We’ll expand on the prototype given by providing two additional statements, one relating to the future and the other relating to the wealth. We’ll follow the structure of using <code>random.randint(1, 6)</code> to simulate rolling a six-sided die, but spice it up by using <code>if-elif-else</code> clauses to play with the relative weighting of different statements.</p>
+<div id="a0a156f4" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 5.5</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fortune Teller Program</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A simple program that uses random numbers to generate a sequence of</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fortunes for the user</span></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Meeting someone</span></span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>) <span class="op">&lt;</span> <span class="dv">4</span>:</span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You will meet a tall, dark stranger"</span>)</span>
+<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Nobody unexpected will enter your life"</span>)</span>
+<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Money</span></span>
+<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> result <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb83-18"><a href="#cb83-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"I see untold riches in your future"</span>)</span>
+<span id="cb83-19"><a href="#cb83-19" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;=</span> <span class="dv">3</span>:</span>
+<span id="cb83-20"><a href="#cb83-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"A life of comfort is coming"</span>)</span>
+<span id="cb83-21"><a href="#cb83-21" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;</span> <span class="dv">6</span>:</span>
+<span id="cb83-22"><a href="#cb83-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You would do well to husband your wealth"</span>)</span>
+<span id="cb83-23"><a href="#cb83-23" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb83-24"><a href="#cb83-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"I see a future lived on the streets..."</span>)</span>
+<span id="cb83-25"><a href="#cb83-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-26"><a href="#cb83-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Advice</span></span>
+<span id="cb83-27"><a href="#cb83-27" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb83-28"><a href="#cb83-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> result <span class="op">&lt;=</span> <span class="dv">2</span>:</span>
+<span id="cb83-29"><a href="#cb83-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sometimes the answers to our future, come from the past"</span>)</span>
+<span id="cb83-30"><a href="#cb83-30" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> result <span class="op">&lt;</span> <span class="dv">6</span>:</span>
+<span id="cb83-31"><a href="#cb83-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"To define your future, avoid getting hung up on the past"</span>)</span>
+<span id="cb83-32"><a href="#cb83-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb83-33"><a href="#cb83-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"You will soon face a decision that will redefine everything"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nobody unexpected will enter your life
+A life of comfort is coming
+To define your future, avoid getting hung up on the past</code></pre>
+</div>
+</div>
+<p>We use a mix of <code>==</code>, <code>&lt;=</code> and <code>&lt;</code> operators to emphasise the clarity of the branching. This implementation is quite simple (because the exercise does not personally interest me that much) Feel free to expand on my <a href="./Exercises/05_FortuneTeller/FortuneTeller.py">solution</a></p>
+</section>
+</section>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>Python can work with boolean values
+<ul>
+<li>Bool values are either <code>True</code> or <code>False</code></li>
+</ul></li>
+<li>Comparison operators compare expressions to generate boolean values</li>
+<li><code>if</code> is used to control program execution in response to boolean expressions
+<ul>
+<li><code>if</code> executes code <em>if</em> a <em>condition</em> is <code>True</code></li>
+</ul></li>
+<li>Logic operators <code>and</code>, <code>or</code> and <code>not</code> are used to create new boolean expressions from existing ones
+<ul>
+<li><code>and</code> is <code>True</code> if both expressions are <code>True</code> else <code>False</code></li>
+<li><code>or</code> is <code>True</code> if either expression is <code>True</code> else <code>False</code></li>
+<li><code>not</code> flips the truth of a boolean expression
+<ul>
+<li>e.g.&nbsp;<code>True</code> <span class="math inline">\(\rightarrow\)</span> <code>False</code></li>
+<li><code>False</code> <span class="math inline">\(\rightarrow\)</span> <code>True</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="questions-and-answers" class="level2">
+<h2 class="anchored" data-anchor-id="questions-and-answers">Questions and Answers</h2>
+<ol type="1">
+<li><em>Does the use of Boolean values mean a program will always do the same thing given the same data inputs?</em>
+<ul>
+<li>It is very important that given the same inputs (including any inputs from a source of randomness) a program behaves the same way</li>
+</ul></li>
+<li><em>Will the computer always do the right thing when we write programs that make decisions?</em>
+<ul>
+<li>A computer running a program is only as correct as the program that was written. Formally verifing anything but the most trivial program as being correct is very difficult (and the problem in general is not-computable (see <a href="https://en.wikipedia.org/wiki/Halting_problem">The Halting Problem</a>))</li>
+<li>It is typically the responsibility of the programmer to to ensure a program behaves correctly (in conjuction with the customer.) Even in cases where a user inputs <em>wrong</em> data, the customer would probably expect the programmer to build into the program the appropriate checks to deal with these wrong data inputs</li>
+</ul></li>
+<li><em>Is there a limit to how many <code>if</code> conditions you can nest inside each other?</em>
+<ul>
+<li>No, the python interpreter should be able to handle many many layers of nested <code>if</code> statements. Most people will emphasise that if you’re finding that you’re needing to write heavily nested code (the exact number of what constitutes <em>heavy</em> is debated but <span class="math inline">\(3\)</span> is a rough guide) you should look at if there’s a better way to write</li>
+</ul></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
