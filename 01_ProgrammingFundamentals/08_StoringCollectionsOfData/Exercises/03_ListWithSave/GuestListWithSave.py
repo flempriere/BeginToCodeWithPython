@@ -30,9 +30,7 @@ def sort_alphabetical():
 
 def save(file_path):
     """
-    Saves the guest list to a user-specified file given by file path
-
-    Informs the user if an error occurs
+    Saves the guest list to a file
 
     Parameters
     ----------
@@ -43,6 +41,11 @@ def save(file_path):
     Returns
     -------
     None
+
+    Raises
+    ------
+    FileException
+        Raised if the save fails
     """
     print("Save the guest list in:", file_path)
     try:

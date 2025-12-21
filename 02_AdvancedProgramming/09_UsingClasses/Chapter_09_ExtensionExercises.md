@@ -1,6 +1,5 @@
 # Extended Exercises for Chapter 9
 
-
 - [Exercise: Music Storage App](#exercise-music-storage-app)
   - [Storyboarding the Application](#storyboarding-the-application)
   - [Building the User Interface](#building-the-user-interface)
@@ -93,8 +92,8 @@ like the interface for adding tracks to the database. With some extra
 featues such as a convenience function to remove all the tracks in a
 playlist. The two functions we were told that we had to add was
 
-1.  To be able to get the length of a given playlist, and,
-2.  To be able to generate a playlist of an exact length given the
+1. To be able to get the length of a given playlist, and,
+2. To be able to generate a playlist of an exact length given the
     tracks in the database.
 
 It would also be nice for the user to be able to save their playlist. We
@@ -122,9 +121,9 @@ The most immediate problem is that we have a lot of functionality, that
 would probably overwhelm the user. To get around this we will have a
 general main menu (as seen below) and sub-menus for
 
-1.  Modifying the track database
-2.  Displaying / Searching the Track database
-3.  Build Playlists
+1. Modifying the track database
+2. Displaying / Searching the Track database
+3. Build Playlists
 
 ``` python
 def run_main_menu():
@@ -319,12 +318,12 @@ print(tracks[0].length_in_seconds)
 Before we go further we need to implement a search by name
 functionality. We’ll adopt the following convention
 
-1.  A `filter_` function takes a search parameter, and a list of of
+1. A `filter_` function takes a search parameter, and a list of of
     `MusicTrack` objects to search through and returns a list of
     `MusicTrack` objects that meet the conditions
     - By adding the list parameter we can reuse these functions for the
       playlist functionality later
-2.  A `find_` function, prompts the user for the search parameter, calls
+2. A `find_` function, prompts the user for the search parameter, calls
     the corresponding `filter_` and displays the list
 
 The first `filter_` we implement is `filter_by_name` which uses the same
@@ -761,19 +760,19 @@ that our interface is,
 Let’s step through each of these and look at what needs new
 functionality
 
-1.  `add_track_to_playlist` - Uses existing `filter_track_by_name` to
+1. `add_track_to_playlist` - Uses existing `filter_track_by_name` to
     search for a user prompted track name. User is then prompted to
     optionally add matches to the playlist
-2.  `remove_tracks_from_playlist` - Identical to `remove_track` but runs
+2. `remove_tracks_from_playlist` - Identical to `remove_track` but runs
     against the current playlist list
-3.  `clear_playlist` - We use the list inbuilt method `clear` to clear
+3. `clear_playlist` - We use the list inbuilt method `clear` to clear
     the playlist
-4.  `display_current_playlist` - Achieved by passing the `playlist` list
+4. `display_current_playlist` - Achieved by passing the `playlist` list
     variable to the `display_tracks` function
-5.  `calculate_playlist_length` - No functionality yet implemented
-6.  `suggest_playlist_of_given_length` - No functionality yet
+5. `calculate_playlist_length` - No functionality yet implemented
+6. `suggest_playlist_of_given_length` - No functionality yet
     implemented
-7.  `save_playlist` - Not yet implemented
+7. `save_playlist` - Not yet implemented
 
 So as we can see most of the functionality is already implemented. Let’s
 focus on the three remaining features, `calculate_playlist_length`,
@@ -941,14 +940,14 @@ from the user),
             )
 ```
 
-1.  We filter the track database to get all the tracks that could fit in
+1. We filter the track database to get all the tracks that could fit in
     the allowed playlist time
-2.  We then randomly pick one of the songs using `random.choice`
+2. We then randomly pick one of the songs using `random.choice`
     - We add this to our proposed playlist, and add its length to a
       counter tracking the total length
-3.  We then filter the candidate list again but with the amount of time
+3. We then filter the candidate list again but with the amount of time
     we have yet to use (`target_time - playlist_length`)
-4.  We repeat steps 2-3 until there are no more candidate songs, this
+4. We repeat steps 2-3 until there are no more candidate songs, this
     gives our final playlist which we can then propose to the user
 
 This sums up the description of the music storage app. The provided code
@@ -975,18 +974,18 @@ worth also working through this exercise.
 
 Let us start by setting out some design specifications,
 
-1.  The user should be able to add recipes
-2.  The user should be able to search for recipes
+1. The user should be able to add recipes
+2. The user should be able to search for recipes
     - Search for a recipe by name
     - Search for recipes with a given ingredient
-3.  The user should be able to view a list of ingredients in a recipe
-4.  The user should be able to view a recipe’s steps
+3. The user should be able to view a list of ingredients in a recipe
+4. The user should be able to view a recipe’s steps
     - All steps displayed at once
     - Displayed step by step
-5.  The user should be able to edit a given recipe
+5. The user should be able to edit a given recipe
     - Edit ingredients (including remove them)
     - Edit steps including remove them
-6.  The user should be able to delete a recipe
+6. The user should be able to delete a recipe
 
 ### Designing the Recipe Class
 
@@ -1193,31 +1192,31 @@ def get_ingredients():
 
 This code can be broken down as follows,
 
-1.  Ask the user for the name of the next ingredient
+1. Ask the user for the name of the next ingredient
     - This next bit is a bit tricky, but we check if the ingredient
       already exists in the dictionary, if it does the user can,
-      1.  Overwrite it
+      1. Overwrite it
           - Say if they accidently misentered the previous ingredient
             they can use this to correct it
           - We use the `del` keyword to delete the key and the list
             associated with the key `ingredient`
-      2.  Append it
+      2. Append it
           - This allows the inclusion of multiple ingredient
             descriptions per ingredient
-      3.  Forget it
+      3. Forget it
           - Perhaps the user simply accidently entered an ingredient
             twice, this gives them to option to simply forget this entry
             and move on
-2.  Ask the user for a description of the ingredient like the quantity
+2. Ask the user for a description of the ingredient like the quantity
     or how to prepare it
-3.  To add the ingredient and description we then have to check,
+3. To add the ingredient and description we then have to check,
     - If the ingredient doesn’t exist yet, we have to create a new list
       containing the description, this is then assigned to the key
       `ingredient`
     - If the ingredient exists we can simply append to the existing list
-4.  This repeats until the user provides the `"."` as input, indicating
+4. This repeats until the user provides the `"."` as input, indicating
     they wish to stop
-5.  The created dictionary is returned
+5. The created dictionary is returned
 
 `add_steps` follows the same process, except the processed steps are
 simply stored in an ordered list which is returned
@@ -1474,12 +1473,12 @@ them. As mentioned in printing out a recipe, they may have too much
 information to simply print them out. We have three specifications to
 implement
 
-1.  Display a recipe’s ingredients
+1. Display a recipe’s ingredients
     - This might be useful if we are simply trying to write a shopping
       list
-2.  Display a recipe’s steps
+2. Display a recipe’s steps
     - This might useful if we want to read through an entire recipe
-3.  Display recipe step by step
+3. Display recipe step by step
     - This would be useful when working through a recipe, the user would
       then be able to step through each recipe as they completed it
 
@@ -1538,16 +1537,16 @@ parameter.
 
 To implement each of these features, lets work through them step by step
 
-1.  List ingredients
+1. List ingredients
     - We could simply output the dictionary, but that won’t format
       nicely
     - Instead loop over the dictionary and print each ingredient then
       the list of descriptions with each ingredient getting its own line
-2.  List Steps
+2. List Steps
     - Again simply printing the list would not format nicely
     - We print the steps as a bullet-pointed list using by printing each
       list entry on a new line prepended by `-`
-3.  List Step by Step
+3. List Step by Step
     - For this we can follow the same procedure as above, **but**
     - Before the next iteration of the loop over the step list, we
       prompt the user to continue
@@ -1748,13 +1747,13 @@ completed. However as it stands now, I’m pretty happy with it as a
 something thats gone through an initial design and a refactor. if you’re
 interested you might like to try improve the following features
 
-1.  Improve the ingredient search to be more forgiving in how it matches
-2.  Improve the edit functionality
+1. Improve the ingredient search to be more forgiving in how it matches
+2. Improve the edit functionality
     - Allow the ingredient dictionary to be edited such that,
-      1.  An individual key can be edited
-      2.  An individual key can be removed
-      3.  An individual key can be added, (including as a duplicate)
+      1. An individual key can be edited
+      2. An individual key can be removed
+      3. An individual key can be added, (including as a duplicate)
     - Allow the steps list to be edited such that,
-      1.  An individual step can be edited
-      2.  An individual step can be removed
-      3.  An individual step can be added
+      1. An individual step can be edited
+      2. An individual step can be removed
+      3. An individual step can be added
