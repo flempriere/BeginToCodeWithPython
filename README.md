@@ -6,25 +6,9 @@ This repository contains code fragments, notes and exercises from the book Begin
 
 I started this repository to work through an easy and basic book before working on some more intermediate level python projects and books.
 
-## Structure
-
-This repository is structured as follows,
-
-1. [`samples`](./samples/)
-    - A github submodule linking to the original code provided by the book's author Rob Miles
-    - We mostly use this for the `snaps.py` "library" used in several cases
-2. *Part* - A Folder Collecting Chapters with similar themes
-    1. *Chapter* - A Folder collecting a specific Chapter
-        1. `Chapter_XX.md` - A markdown file containing notes, and descriptions of examples and exercises. Structured as follows,
-            1. *Notes* - More detailed notes summarising the Chapter contents and contextualising examples and exercises
-            2. *Summary* - End of Chapter summary of key take aways
-            3. *Questions and Answers* - Frequently asked or important discussion questions posed by the book at the end of each Chapter
-        2. `Examples` - A folder containing any examples from the book
-        3. `Exercises` - A folder containing exercise code, often modified from the examples
-
 ## Contents
 
-### [Programming Fundamentals](./01_ProgrammingFundamentals/)
+### Part 1. Programming Fundamentals
 
 - [Chapter 2: Python and Programming](./01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.md)
 - [Chapter 3: Python Program Structure](./01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.md)
@@ -34,11 +18,28 @@ This repository is structured as follows,
 - [Chapter 7: Using Functions to Simplify Programs](./01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.md)
 - [Chapter 8: Storing Collections of Data](./01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.md)
 
+### Part 2. Advanced Programming
+
+- [Chapter 9: Using Classes to Store Data](./02_AdvancedProgramming/09_UsingClasses/Chapter_09.md)
+  - [Extension Exercises for Chapter 9](./02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.md)
+
 ### Useful Python
 
 >[!NOTE]
->Chapter 1 only provides basic information on installing *python* and assumes a Windows environment. So we have ignored it.
+> Chapter 1 only provides basic information on installing *python* and assumes a Windows environment so is not covered in these notes
+>
 
-## Python Version
+## Python Version and Writing Style
 
-The original book was written with *python 2.X* and *python 3.6* in mind. Currently we've written for *python 3.12* but may change this if compatibility issues arise.
+- The original book was written with *python 2.X* and *python 3.6* in mind.
+- Currently we've written the code using *python 3.12.*
+- Small changes have been made to the supplied code to resolve the following issues:
+  1. `snaps` `get_string` function not allowing the user to actually supply input
+  2. `snaps` `display_image` modified to deal with issues where `.png` files might not display
+- In general the code style of the solutions is restricted to elements of the python language introduced up until that point
+  - For some of the extension exercises we have gone beyond that by still restricting ourselves to concepts that have been
+  introduced, e.g
+    1. We use `random.choice` to select random items from a list, **after** having been exposed to both the `random` and `list`
+    libraries
+    2. We use the string method `find` after having been introdued to the concept of string methods and substring searching with
+    `startswith`
