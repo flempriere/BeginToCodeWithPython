@@ -570,7 +570,7 @@ time.sleep(10) # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  9
+    The first number is:  4
     Will the next be higher or lower?
     The second number is:  4
 
