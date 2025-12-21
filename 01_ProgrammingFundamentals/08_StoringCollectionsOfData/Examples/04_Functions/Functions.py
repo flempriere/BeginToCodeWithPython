@@ -31,6 +31,10 @@ def print_sales():
     """
     Prints the sales figures on the screen with a heading. Each figure is
     numbered in sequence
+
+    Returns
+    -------
+    None
     """
     print("Sales Figures")
     count = 1
