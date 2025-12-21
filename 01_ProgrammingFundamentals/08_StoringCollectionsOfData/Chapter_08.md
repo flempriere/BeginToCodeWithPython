@@ -268,7 +268,7 @@ about* `list`
       IndexError: list index out of range
       ---------------------------------------------------------------------------
       IndexError                                Traceback (most recent call last)
-      Cell In[32], line 1
+      Cell In[7], line 1
       ----> 1 sales[2]
 
       IndexError: list index out of range
@@ -804,7 +804,7 @@ following questions to understand what’s going on*
         IndexError: list index out of range
         ---------------------------------------------------------------------------
         IndexError                                Traceback (most recent call last)
-        Cell In[34], line 3
+        Cell In[9], line 3
               1 a_list = [1,2]
               2 for count in range(0, len(a_list)):
         ----> 3     if a_list[count] < a_list[count + 1]:
@@ -2360,7 +2360,7 @@ week_sales[8][7]
     IndexError: list index out of range
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
-    Cell In[45], line 1
+    Cell In[20], line 1
     ----> 1 week_sales[8][7]
 
     IndexError: list index out of range
@@ -2374,7 +2374,7 @@ week_sales[7][10]
     IndexError: list index out of range
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
-    Cell In[46], line 1
+    Cell In[21], line 1
     ----> 1 week_sales[7][10]
 
     IndexError: list index out of range
@@ -2618,7 +2618,7 @@ to make sure you understand how it works*
         TypeError: 'tuple' object does not support item assignment
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[50], line 27
+        Cell In[25], line 27
              23 print("Today is", day_name)
              25 print("Attempting to change the lookup table...")
         ---> 27 day_names[day_number] = "Splatterday"  # type: ignore
