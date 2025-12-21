@@ -1924,7 +1924,25 @@ def edit_tracks():
                 track.length_in_seconds = new_length_in_seconds
 ```
 
-We have to make one change to the pattern of the Tiny Contacts which is to account for the fact that length is a positive number. To do this we use `0` rather than `"."` to indicate that the variable should be left unchanged
+We have to make one change to the pattern of the Tiny Contacts which is to account for the fact that length is a positive number. To do this we use `0` rather than `"."` to indicate that the variable should be left unchanged. An example use might look like,
+
+```{python}
+#| echo: False
+tracks[0].length_in_seconds = 210
+```
+
+```{python}
+print("Edit Music Tracks")
+print("Enter track name to edit: \033[31mMerry Christmas Everyone\033[0m")
+print("Found 1 matches")
+print("Merry Christmas Everyone (220 seconds)")
+print("Edit this track? (1 - Yes, 0 - No): \033[31m1\033[0m")
+print("Enter new name or . to leave unchanged: \033[31m.\033[0m")
+print("Enter new name or 0 to leave unchanged: \033[31m210\033[0m")
+
+print(tracks[0].name)
+print(tracks[0].length_in_seconds)
+```
 
 The `remove_track` follows the same pattern, instead of the edit dialog, we use the `.remove` method on a `list` to remove the matching track,
 
@@ -1937,7 +1955,7 @@ The `remove_track` follows the same pattern, instead of the edit dialog, we use 
 
 The next step is to implement sorting functionality. Based on the description we implement these sorts based on the length of the track. The ascending order search is then,
 
-```python
+```{python}
 def sort_low_to_high(tracks_to_sort):
     """
     Sorts the music track list given by tracks_to_sort
@@ -1965,6 +1983,23 @@ def sort_low_to_high(tracks_to_sort):
                 done_swap = True
         if not done_swap:
             break
+```
+
+Let's add another track `Rockin Little Christmas, 157 seconds`,
+
+```{python}
+tracks.append(MusicTrack("Rockin Little Christmas", 157))
+
+print("tracks[0]:", tracks[0].name, tracks[0].length_in_seconds)
+print("tracks[1]:", tracks[1].name, tracks[1].length_in_seconds)
+```
+
+Then if we run the sort,
+
+```{python}
+sort_low_to_high(tracks)
+print("tracks[0]:", tracks[0].name, tracks[0].length_in_seconds)
+print("tracks[1]:", tracks[1].name, tracks[1].length_in_seconds)
 ```
 
 The descending order search follows the same structure.
@@ -2031,7 +2066,7 @@ The first one simply wraps the `filter_tracks_by_name` in a user prompt for a se
 
 We first define a function `display_track` to display a single track,
 
-```python
+```{python}
 def display_track(track):
     """
     Displays the name and length (in seconds) of the MusicTrack track
@@ -2048,9 +2083,15 @@ def display_track(track):
     print("Name:", track.name, "(", track.length_in_seconds, "seconds )")
 ```
 
+We can see how it used below,
+
+```{python}
+display_track(tracks[0])
+```
+
 We can then define a higher level function `display_tracks` that displays an entire list of tracks,
 
-```python
+```{python}
 def display_tracks(tracks):
     """
     Displays all the tracks in the provided list of tracks
@@ -2071,9 +2112,15 @@ def display_tracks(tracks):
         print("No tracks found")
 ```
 
+For example, running on our small little example track list,
+
+```{python}
+display_tracks(tracks)
+```
+
 Let us consider the problem of now finding tracks by a given length. We want two functions. One where we return all tracks with a length less than or equal to the provided length, and a second which returns all with a length greater than or equal to the provided length. Both have the same logic so we'll only focus on the first case. As with `filter_tracks_by_name` we first define a filter function that takes in a maximum length as a parameter (and a search list) and returns a list of matches. This looks like,
 
-```python
+```{python}
 def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
     """
     Finds and returns a list of all tracks with a length
@@ -2100,6 +2147,17 @@ def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
         if track.length_in_seconds <= max_length:
             tracks_shorter_than_max_length.append(track)
     return tracks_shorter_than_max_length
+```
+
+To see how this function works, lets run it on our test list, with three values, `220` which should catch everything, `200` which should catch one track, and `100` which should catch nothing.
+
+```{python}
+print("Filter all the tracks...")
+display_tracks(filter_tracks_shorter_than_length(220, tracks))
+print("Filter some of the tracks...")
+display_tracks(filter_tracks_shorter_than_length(200, tracks))
+print("Filter none of the tracks")
+display_tracks(filter_tracks_shorter_than_length(100, tracks))
 ```
 
 We can then define the `find_tracks_shorter_than_length` function, we prompts the user for the maximum time, passes this time and the tracks list through to the filter function and displays the results.
@@ -2151,7 +2209,7 @@ So as we can see most of the functionality is already implemented. Let's focus o
 
 Implementing `calculate_playlist_length` is pretty straightforward. We simply iterate over the tracks in the playlist and sum up their lengths
 
-```python
+```{python}
 def calculate_playlist_length():
     """
     Calculates and displays the total length of the
@@ -2163,6 +2221,13 @@ def calculate_playlist_length():
     for track in playlist:
         total_length = total_length + track.length_in_seconds
     print("The playlist is", total_length, "seconds long")
+```
+
+For example, if we use a little bit of magic to change our tracks list to the playlist, we can demonstrate the above function,
+
+```{python}
+playlist = tracks
+calculate_playlist_length()
 ```
 
 Similarly, `save_playlist` can be implemented pretty easily using what we've seen. We prompt the user for the file that they want to save to, then write out the names of all of the tracks (one per line) using the standard `try...except` and `with` consruct we've seen before
@@ -2296,6 +2361,23 @@ This sums up the description of the music storage app. The provided code demonst
 ### Exercise: Recipe Storage App
 
 *Make a recipe storage app that stores lists of ingredients and preperation details. Remember that one of the items in a class could be a list of strings, which could be the steps performed to prepare the recipe*
+
+This program will be less complicated than our music storage. Let us start by setting out some design specifications,
+
+1. The user should be able to add recipes
+2. The user should be able to search for recipes
+    - Search for a recipe by name
+    - Search for recipes with a given ingredient
+3. The user should be able to view a list of ingredients in a recipe
+4. The user should be able to view a recipe's steps
+    - All steps displayed at once
+    - Displayed step by step
+5. The user should be able to edit a given recipe
+    - Edit ingredients (including remove them)
+    - Edit steps including remove them
+6. The user should be able to delete a recipe
+
+From this let's design our recipe specification. A recipe at it's most basic is a list of ingredients and a list of steps.
 
 ## Summary
 

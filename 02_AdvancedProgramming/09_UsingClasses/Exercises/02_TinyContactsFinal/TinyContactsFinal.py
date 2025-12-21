@@ -56,8 +56,8 @@ def find_contacts(search_name):
     If the empty string is given, all contacts
     are matched
 
-    Params
-    ------
+    Parameters
+    ----------
     search_name : str
         Name to search for
 
@@ -80,8 +80,8 @@ def display_contact(contact):
     """
     Displays the Contact details for the supplied contact
 
-    Params
-    ------
+    Parameters
+    ----------
     contact : Contact
         contact to display
 
@@ -116,11 +116,11 @@ def display_contacts():
 
 def edit_contacts():
     """
-    Reads in a name to search for and then allows the user to
-    edit the details of the contact.
+    Allows user to edit contacts matching a provided name
 
-    If there are no matching contacts the function will indicate
-    that the name was not found
+    Reads in a name to search for and then allows the user to
+    edit the details of the contact. If there are no matching contacts
+    the function will indicate that the name was not found
 
     Returns
     -------
@@ -162,17 +162,21 @@ def edit_contacts():
 def save_contacts(file_name):
     """
     Saves the contacts to the given file name
-    Contacts are stored in binary as a pickled file
-    Exceptions will be raised if the save fails
 
-    Params
-    ------
+    Contacts are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
         string giving the path to the file to store the contacts data in
 
     Returns
     -------
     None
+
+    Raises
+    ------
+    Exceptions if contacts could not be saved
     """
     print("Save contacts")
     with open(file_name, "wb") as out_file:
@@ -181,12 +185,12 @@ def save_contacts(file_name):
 
 def load_contacts(file_name):
     """
-    Loads the contacts from the given file name
-    Contacts are stored in binary as a pickled file
-    Exceptions will be raised if the load fails
+    Loads the contacts from the given file
 
-    Params
-    ------
+    Contacts are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
         string giving the path to the file where the contacts data is stored
 
@@ -194,6 +198,11 @@ def load_contacts(file_name):
     -------
     None
         Contact detail is loaded into the global contacts value
+
+    Raises
+    ------
+    Exceptions if contacts failed to load
+
     """
     global contacts
     print("Load contacts")
@@ -203,7 +212,7 @@ def load_contacts(file_name):
 
 def sort_contacts():
     """
-    sorts the contacts list into alphabetical order
+    Sorts the contacts list into alphabetical order
 
     Returns
     -------

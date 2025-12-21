@@ -14,12 +14,13 @@ def read_min_valued_integer(prompt, min_value):
     """
     Displays a prompt and reads in a integer number greater
     than or equal to min_value.
+
     Keyboard interrupts (CTRL+C) are ignored
     Invalid numbers are rejected
     returns a number containing the value input by the user
 
-    Params
-    ------
+    Parameters
+    ----------
     prompt : str
         string to display to the user before the enter the number
 
@@ -54,7 +55,7 @@ class MusicTrack:
     Raises
     ------
     ValueError
-        Raised if length_in_seconds is non-positive
+        Raised if `length_in_seconds` is non-positive
 
     Examples
     --------
@@ -87,12 +88,13 @@ def new_track():
 
 def filter_tracks_by_name(search_name, tracks_to_search):
     """
-    Filters tracks from the list tracks_to_search with a name
-    containing search_name as a prefix
+    Finds tracks matching a search name
 
-    Params
-    ------
+    Filters tracks from the list `tracks_to_search` with a name
+    containing `search_name` as a prefix
 
+    Parameters
+    ----------
     search_name : str
         name to search for (search uses prefix matching)
 
@@ -116,6 +118,8 @@ def filter_tracks_by_name(search_name, tracks_to_search):
 
 def edit_tracks():
     """
+    Edits a user selected track
+
     Reads in a name to search for and then allows the user to edit
     the details of the Music Track
 
@@ -150,6 +154,8 @@ def edit_tracks():
 
 def remove_tracks():
     """
+    Removes a user selected track
+
     Reads in a name to search for and then allows the user to delete
     the details of the Music Track
 
@@ -175,18 +181,22 @@ def remove_tracks():
 
 def save_tracks(file_name):
     """
-    Saves the music tracks to the given file name
-    Music tracksare stored in binary as a pickled file
-    Exceptions will be raised if the save fails
+    Saves the music tracks to the given file
 
-    Params
-    ------
+    Music tracks are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
-        string giving the path to the file to store the contacts data in
+        string giving the path to the file to store the track data in
 
     Returns
     -------
     None
+
+    Raises
+    ------
+    An Exception is raised if the file could not be saved
     """
     print("Save music tracks")
     with open(file_name, "wb") as out_file:
@@ -195,19 +205,23 @@ def save_tracks(file_name):
 
 def load_tracks(file_name):
     """
-    Loads the music tracks from the given file name
-    Music Tracks are stored in binary as a pickled file
-    Exceptions will be raised if the load fails
+    Loads the music tracks from the given file
 
-    Params
-    ------
+    Music Tracks are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
-        string giving the path to the file where the contacts data is stored
+        string giving the path to the file where the recipes data is stored
 
     Returns
     -------
     None
         Music Tracks are loaded into the global tracks list
+
+    Raises
+    ------
+    An Exception is raised if the file could not be loaded
     """
     global tracks  # connect to global track list to load into
     print("Load contacts")
@@ -217,11 +231,13 @@ def load_tracks(file_name):
 
 def sort_low_to_high(tracks_to_sort):
     """
-    Sorts the music track list given by tracks_to_sort
+    Sorts tracks by increasing track length
+
+    Sorts the music track list given by `tracks_to_sort`
     by length from shortest to greatest
 
-    Params
-    ------
+    Parameters
+    ----------
     tracks_to_sort : list[MusicTrack]
         list of tracks to sort
     Returns
@@ -246,7 +262,9 @@ def sort_low_to_high(tracks_to_sort):
 
 def sort_high_to_low(tracks_to_sort):
     """
-    Sorts the music track list given by tracks_to_sort
+    Sorts tracks by decreasing track length
+
+    Sorts the music track list given by `tracks_to_sort`
     by length from greatest to shortest
 
     Params
@@ -275,7 +293,7 @@ def sort_high_to_low(tracks_to_sort):
 
 def display_track(track):
     """
-    Displays the name and length (in seconds) of the MusicTrack track
+    Displays the name and length (in seconds) of a track
 
     Params
     ------
@@ -311,6 +329,8 @@ def display_tracks(tracks):
 
 def find_tracks_by_name():
     """
+    Displays all tracks matching a user-prompted name
+
     Finds and displays a list of tracks matching a
     user provided track name. If the user provides
     an empty string all tracks are displayed
@@ -327,11 +347,13 @@ def find_tracks_by_name():
 
 def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
     """
-    Finds and returns a list of all tracks with a length
-    shorter (or equal to) max_length in the provided tracks_to_filter
+    Filter a list of tracks to those shorter than a target length
 
-    Params
-    ------
+    Finds and returns a list of all tracks with a length
+    shorter (or equal to) `max_length` in the provided `tracks_to_filter`
+
+    Parameters
+    ----------
     max_length : int
         maximum (inclusive) length of tracks to include in
         the filtered result
@@ -355,8 +377,10 @@ def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
 
 def filter_tracks_greater_than_length(min_length, tracks_to_filter):
     """
+    Filter a list of tracks to those greater than a target length
+
     Finds and returns a list of all tracks with a length
-    greater (or equal to) min_length in the provided tracks_to_filter
+    greater (or equal to) `min_length` in the provided `tracks_to_filter`
 
     Params
     ------
@@ -413,6 +437,8 @@ def find_tracks_greater_than_length():
 
 def add_track_to_playlist():
     """
+    Adds a track from the track database to the current playlist
+
     Prompts the user for a the start of a track name, then
     finds all tracks that have a name starting with the
     provided substring. For each match, the user is then
@@ -438,6 +464,8 @@ def add_track_to_playlist():
 
 def remove_tracks_from_playlist():
     """
+    Removes a track from the currrent playlist
+
     Prompts the user for a the start of a track name, then
     finds all tracks that have a name starting with the
     provided substring in the current playlist. For each
@@ -447,7 +475,6 @@ def remove_tracks_from_playlist():
     Returns
     -------
     None
-        Removed tracks are deleted from the global playlist
     """
     print("Remove tracks from playlist")
     matched_tracks = filter_tracks_by_name(
@@ -476,8 +503,11 @@ def clear_playlist():
 def calculate_playlist_length():
     """
     Calculates and displays the total length of the
-    current playlist
+    current playlist in seconds
 
+    Returns
+    -------
+    None
     """
     print("Calculate length of playlist")
     total_length = 0
@@ -488,13 +518,20 @@ def calculate_playlist_length():
 
 def suggest_playlist_of_given_length():
     """
+    Suggests a playlist of length less than or equal to
+    a user prompted length
+
     Asks the user for a maximum playlist length, and
-    the suggests a playlist by combining tracks randomly
+    then suggests a playlist by combining tracks randomly
     such that the suggested playlist is no greater than
-    the max length
+    the length
 
     The user has the option to review the proposed list
     and either accept, reject or regenerate the list
+
+    Returns
+    -------
+    None
     """
     print("Suggest playlist of given length")
     global playlist
@@ -542,9 +579,16 @@ def suggest_playlist_of_given_length():
 def save_playlist():
     """
     Saves the current playlist as a human readable list
+
     The user is prompted to give a file name to save the playlist in
 
-    Raises exceptions if the save fails
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    Exceptions are raised if the save fails
     """
     print("Save playlist")
     if len(playlist) == 0:
@@ -561,6 +605,27 @@ def save_playlist():
 
 
 def run_track_menu():
+    """
+    Provides a looping track management menu to the user
+
+    The user has the option to
+    1. Add a Track
+    2. Edit a Track
+    3. Remove a Track
+    4. Sort the Track List in Order of Decreasing Length
+    5. Sort the Track list in ORder of Increasing Length
+    6. Return to the Main Menu
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    ValueError
+        An invalid number is encountered in menu selection, should not
+        occur in live code, please raise a bug report if encountered
+    """
     track_menu = """Track Management
 
 1. Add Track
@@ -594,6 +659,25 @@ Enter your command: """
 
 
 def run_display_track_menu():
+    """
+    Provides the user with a looping menu to display tracks
+
+    The user has the option to
+    1. Display tracks matching a name
+    2. Display tracks less than (or equal to) a given max length
+    3. Display tracks greater than (or equal to) a given min length
+    4. Return to the Main Menu
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    ValueError
+        An invalid number is encountered in menu selection, should not
+        occur in live code, please raise a bug report if encountered
+    """
     display_track_menu = """Find and Display Tracks
 
 1. Find Tracks by Name
@@ -623,6 +707,29 @@ Enter your command: """
 
 
 def run_playlist_management_menu():
+    """
+    Provides the user with a looping playlist menu
+
+    The user has to the option to
+    1. Add a track to the playlist
+    2. Remove a track from the playlist
+    3. Clear the playlist
+    4. Display the playlist
+    5. Show the runtime of the playlist
+    6. Get a suggested playlist of a target length
+    7. Save the current playlist
+    8. Return to the main menu
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    ValueError
+        An invalid number is encountered in menu selection, should not
+        occur in live code, please raise a bug report if encountered
+    """
     playlist_management_menu = """Playlist Management
 
 1. Add Track to Playlist
@@ -664,6 +771,25 @@ Enter your command: """
 
 
 def run_main_menu():
+    """Provides the user with a looping main menu
+
+    The user has the option to,
+    1. Manage Tracks
+    2. Find and Display Tracks
+    3. Manage a Playlist
+    4. Exit the program
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    ValueError
+        An invalid number is encountered in menu selection, should not
+        occur in live code, please raise a bug report if encountered
+
+    """
     main_menu = """Music Storage
 
 1. Track Management

@@ -38,15 +38,15 @@ def find_contacts(search_name):
     """
     Finds the contacts with the matching name
 
-    Params
-    ------
+    Parameters
+    ----------
     search_name : str
         Name to search for
 
     Returns
     -------
     list[Contact]
-        list of contacts matching the name, if no
+        list of contacts matching `search_name`, if no
         matches exist the list is empty
     """
     search_name = search_name.strip().lower()
@@ -80,6 +80,8 @@ def display_contacts():
 
 def edit_contacts():
     """
+    Allows user to edit contacts matching a provided name
+
     Reads in a name to search for and then allows the user to
     edit the details of the contact.
 

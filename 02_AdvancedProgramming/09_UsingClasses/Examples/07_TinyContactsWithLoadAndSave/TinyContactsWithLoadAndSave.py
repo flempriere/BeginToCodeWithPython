@@ -35,15 +35,15 @@ def find_contacts(search_name):
     """
     Finds the contacts with the matching name
 
-    Params
-    ------
+    Parameters
+    ----------
     search_name : str
         Name to search for
 
     Returns
     -------
     list[Contact]
-        list of contacts matching the name, if no
+        list of contacts matching `search_name`, if no
         matches exist the list is empty
     """
     search_name = search_name.strip().lower()
@@ -77,6 +77,8 @@ def display_contacts():
 
 def edit_contacts():
     """
+    Allows user to edit contacts matching a provided name
+
     Reads in a name to search for and then allows the user to
     edit the details of the contact.
 
@@ -122,18 +124,22 @@ def edit_contacts():
 
 def save_contacts(file_name):
     """
-    Saves the contacts to the given file name
-    Contacts are stored in binary as a pickled file
-    Exceptions will be raised if the save fails
+    Saves the contacts to the given file
 
-    Params
-    ------
+    Contacts are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
         string giving the path to the file to store the contacts data in
 
     Returns
     -------
     None
+
+    Raises
+    ------
+    Exceptions will be raised if the save fails
     """
     print("save contacts")
     with open(file_name, "wb") as out_file:
@@ -142,12 +148,12 @@ def save_contacts(file_name):
 
 def load_contacts(file_name):
     """
-    Loads the contacts from the given file name
-    Contacts are stored in binary as a pickled file
-    Exceptions will be raised if the load fails
+    Loads the contacts from the given file
 
-    Params
-    ------
+    Contacts are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
         string giving the path to the file where the contacts data is stored
 
@@ -155,6 +161,10 @@ def load_contacts(file_name):
     -------
     None
         Contact detail is loaded into the global contacts value
+
+    Raises
+    ------
+    Exceptions will be raised if the load fails
     """
     global contacts
     print("Load contacts")

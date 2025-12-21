@@ -696,7 +696,7 @@ We have two solutions that we could use,
           AttributeError: 'NoneType' object has no attribute 'address'
           ---------------------------------------------------------------------------
           AttributeError                            Traceback (most recent call last)
-          Cell In[39], line 2
+          Cell In[46], line 2
                 1 x = None #emulate failed find from find_contact
           ----> 2 print(x.address)
 
@@ -1095,7 +1095,7 @@ flowchart TD
 >     AttributeError: 'Contact' object has no attribute 'address'
 >     ---------------------------------------------------------------------------
 >     AttributeError                            Traceback (most recent call last)
->     Cell In[45], line 9
+>     Cell In[52], line 9
 >           6 contact.name = "Hello"
 >           8 # Attempt to access address
 >     ----> 9 print("contact address is", contact.address)
@@ -1190,7 +1190,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
 > Pickle files are not designed to be human-readable. While most text
 > editors will happily let you edit and save a pickle file this is very
 > likely to end up in you breaking the binary format and the file no
-> longer loaded properly
+> longer loading properly
 
 - `save_contacts` below saves the `contacts` list into a given file
   (passed as a path name)
@@ -1272,14 +1272,14 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
 >
 > Pickle is a tool called a *serialiser* because it converts a data
 > structure is a *serial stream* (i.e. ordered sequence of data) that
-> can be sent to another or stored in a file.
+> can be sent to another program and/or stored in a file.
 >
-> Note that this introduces the need for *version control.* If the
-> design of a class e.g. `Contact` (say we added an email attribute)
-> then all previously pickled data may no longer load since the class
-> definition is mismatched. To resolve this you need to version control
-> both the version of the class and the pickled files so that data can
-> be migrated (or converted) between versions
+> This introduces the need for *version control.* If the design of a
+> class e.g. `Contact` (say we added an email attribute) then all
+> previously pickled data may no longer load since the class definition
+> is mismatched. To resolve this you need to version control both the
+> version of the class and the pickled files so that data can be
+> migrated (or converted) between versions
 
 #### Add `save` and `load` to Tiny Contacts
 
@@ -1496,7 +1496,7 @@ line of the class is an empty line*
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[50], line 1
+      Cell In[57], line 1
       ----> 1 y = InitName()
 
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
@@ -1660,7 +1660,7 @@ line of the class is an empty line*
       KeyError: 'Latte'
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[58], line 1
+      Cell In[65], line 1
       ----> 1 prices["Latte"]
 
       KeyError: 'Latte'
@@ -1744,7 +1744,7 @@ line of the class is an empty line*
       KeyError: 1111
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[63], line 2
+      Cell In[70], line 2
             1 del(access_control[1111])
       ----> 2 print(access_control[1111])
 
@@ -1834,7 +1834,7 @@ line of the class is an empty line*
      print(contact_dictionary)
     ```
 
-        {'Rob Miles': <__main__.Contact object at 0x7870e250a930>}
+        {'Rob Miles': <__main__.Contact object at 0x7179f97a7aa0>}
 
   - We can then search for a contact by just querying the key
 
@@ -1842,7 +1842,7 @@ line of the class is an empty line*
       contact_dictionary["Rob Miles"]
     ```
 
-        <__main__.Contact at 0x7870e250a930>
+        <__main__.Contact at 0x7179f97a7aa0>
 
   - However the user would have to type the correct full name
 
@@ -1938,7 +1938,8 @@ The relevant line being,
     BTCInput.read_text("Enter the contact name (Press enter to display all): ")
 ```
 
-To add the second we first need to put the sorting code in,
+To add the sorting functionality we first need to put the sorting code
+in,
 
 ``` python
 def sort_contacts():
@@ -2117,13 +2118,16 @@ same way as for Tiny Contacts (i.e. on program start and exit)
 
 We can then turn to our playlist interface. At some level this will look
 like the interface for adding tracks to the database. With some extra
-such as a convenience function to remove all the tracks in a playlist.
-The two functions we were told that we had to add was to be able to get
-the length of a given playlist and to be able to generate a playlist of
-an exact length given the tracks in the database. It would also be nice
-for the user to be able to save their playlist. We want this to be
-something human readable they could give to a friend, so we’ll simply
-output the track names to a text file.
+featues such as a convenience function to remove all the tracks in a
+playlist. The two functions we were told that we had to add was
+
+1. To be able to get the length of a given playlist, and,
+2. To be able to generate a playlist of an exact length given the
+    tracks in the database.
+
+It would also be nice for the user to be able to save their playlist. We
+want this to be something human readable they could give to a friend, so
+we’ll simply output the track names to a text file.
 
 For simplicity we’ll assume that the user can only work on one playlist
 at a time.
@@ -2316,6 +2320,23 @@ def new_track():
     tracks.append(MusicTrack(name=name, length_in_seconds=length))
 ```
 
+- Running the above with the input, (represented by red text), generates
+  output like,
+
+``` python
+print("Enter the track name: \033[31mMerry Christmas Everyone\033[0m")
+print("Enter the track length (in seconds): \033[31m220\033[0m")
+print(tracks)
+print(tracks[0].name)
+print(tracks[0].length_in_seconds)
+```
+
+    Enter the track name: Merry Christmas Everyone
+    Enter the track length (in seconds): 220
+    [<__main__.MusicTrack object at 0x7179f97a5220>]
+    Merry Christmas Everyone
+    220
+
 Before we go further we need to implement a search by name
 functionality. We’ll adopt the following convention
 
@@ -2361,7 +2382,26 @@ def filter_tracks_by_name(search_name, tracks_to_search):
     return results
 ```
 
-We can know implement the edit functionality with `edit_tracks`, using
+Running this for the track we just added,
+
+``` python
+# looking for a match that exists
+results = filter_tracks_by_name("Merry Christmas", tracks)
+
+print(results)
+print(results[0].name)
+print(results[0].length_in_seconds)
+
+# looking for non existent match
+print(filter_tracks_by_name("Missing Track", tracks))
+```
+
+    [<__main__.MusicTrack object at 0x7179f97a5220>]
+    Merry Christmas Everyone
+    220
+    []
+
+We can now implement the edit functionality with `edit_tracks`, using
 the same pattern we discussed before.
 
 - We find all the matches to a named search
@@ -2406,7 +2446,28 @@ def edit_tracks():
 We have to make one change to the pattern of the Tiny Contacts which is
 to account for the fact that length is a positive number. To do this we
 use `0` rather than `"."` to indicate that the variable should be left
-unchanged
+unchanged. An example use might look like,
+
+``` python
+print("Edit Music Tracks")
+print("Enter track name to edit: \033[31mMerry Christmas Everyone\033[0m")
+print("Found 1 matches")
+print("Edit this track? (1 - Yes, 0 - No): \033[31m1\033[0m")
+print("Enter new name or . to leave unchanged: \033[31m.\033[0m")
+print("Enter new name or 0 to leave unchanged: \033[31m210\033[0m")
+
+print(tracks[0].name)
+print(tracks[0].length_in_seconds)
+```
+
+    Edit Music Tracks
+    Enter track name to edit: Merry Christmas Everyone
+    Found 1 matches
+    Edit this track? (1 - Yes, 0 - No): 1
+    Enter new name or . to leave unchanged: .
+    Enter new name or 0 to leave unchanged: 210
+    Merry Christmas Everyone
+    210
 
 The `remove_track` follows the same pattern, instead of the edit dialog,
 we use the `.remove` method on a `list` to remove the matching track,
@@ -2918,7 +2979,7 @@ recipe*
           AttributeError: 'Contact' object has no attribute 'name'
           ---------------------------------------------------------------------------
           AttributeError                            Traceback (most recent call last)
-          Cell In[68], line 3
+          Cell In[82], line 3
                 1 del(rob.name)
                 2 print(rob.address)
           ----> 3 rob.name

@@ -26,6 +26,8 @@ def new_contact():
 
 def find_contact():
     """
+    Displays the contact matching a user-specified name
+
     Prompts the user for a name, and searches the contacts list.
     If the contact is found in the list, their full contact details
     are displayed
