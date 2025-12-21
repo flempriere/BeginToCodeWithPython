@@ -183,6 +183,34 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Advanced Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./02_AdvancedProgramming/09_UsingClasses/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Use Classes to Store Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extended Exercises for Chapter 9</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -196,9 +224,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#contents" id="toc-contents" class="nav-link active" data-scroll-target="#contents">Contents</a>
   <ul>
   <li><a href="#part-1.-programming-fundamentals" id="toc-part-1.-programming-fundamentals" class="nav-link" data-scroll-target="#part-1.-programming-fundamentals">Part 1. Programming Fundamentals</a></li>
+  <li><a href="#part-2.-advanced-programming" id="toc-part-2.-advanced-programming" class="nav-link" data-scroll-target="#part-2.-advanced-programming">Part 2. Advanced Programming</a></li>
   <li><a href="#useful-python" id="toc-useful-python" class="nav-link" data-scroll-target="#useful-python">Useful Python</a></li>
   </ul></li>
-  <li><a href="#python-version" id="toc-python-version" class="nav-link" data-scroll-target="#python-version">Python Version</a></li>
+  <li><a href="#python-version-and-writing-style" id="toc-python-version-and-writing-style" class="nav-link" data-scroll-target="#python-version-and-writing-style">Python Version and Writing Style</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/BeginToCodeWithPython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></nav>
     </div>
@@ -240,6 +269,15 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="./01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.html">Chapter 8: Storing Collections of Data</a></li>
 </ul>
 </section>
+<section id="part-2.-advanced-programming" class="level3">
+<h3 class="anchored" data-anchor-id="part-2.-advanced-programming">Part 2. Advanced Programming</h3>
+<ul>
+<li><a href="./02_AdvancedProgramming/09_UsingClasses/Chapter_09.html">Chapter 9: Using Classes to Store Data</a>
+<ul>
+<li><a href="./02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.html">Extension Exercises for Chapter 9</a></li>
+</ul></li>
+</ul>
+</section>
 <section id="useful-python" class="level3">
 <h3 class="anchored" data-anchor-id="useful-python">Useful Python</h3>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -257,9 +295,25 @@ Important
 </div>
 </section>
 </section>
-<section id="python-version" class="level2">
-<h2 class="anchored" data-anchor-id="python-version">Python Version</h2>
-<p>The original book was written with <em>python 2.X</em> and <em>python 3.6</em> in mind. Currently we’ve written for <em>python 3.12</em> but may change this if compatibility issues arise.</p>
+<section id="python-version-and-writing-style" class="level2">
+<h2 class="anchored" data-anchor-id="python-version-and-writing-style">Python Version and Writing Style</h2>
+<ul>
+<li>The original book was written with <em>python 2.X</em> and <em>python 3.6</em> in mind.</li>
+<li>Currently we’ve written the code using <em>python 3.12.</em></li>
+<li>Small changes have been made to the supplied code to resolve the following issues:
+<ol type="1">
+<li><code>snaps</code> <code>get_string</code> function not allowing the user to actually supply input</li>
+<li><code>snaps</code> <code>display_image</code> modified to deal with issues where <code>.png</code> files might not display</li>
+</ol></li>
+<li>In general the code style of the solutions is restricted to elements of the python language introduced up until that point
+<ul>
+<li>For some of the extension exercises we have gone beyond that by still restricting ourselves to concepts that have been introduced, e.g
+<ol type="1">
+<li>We use <code>random.choice</code> to select random items from a list, <strong>after</strong> having been exposed to both the <code>random</code> and <code>list</code> libraries</li>
+<li>We use the string method <code>find</code> after having been introdued to the concept of string methods and substring searching with <code>startswith</code></li>
+</ol></li>
+</ul></li>
+</ul>
 
 
 </section>
