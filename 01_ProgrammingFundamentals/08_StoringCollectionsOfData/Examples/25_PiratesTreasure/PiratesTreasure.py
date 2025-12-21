@@ -10,7 +10,7 @@ def get_treasure_location():
 
     Returns
     -------
-    tuple(str, int, int)
+    tuple[str, int, int]
 
     [0] is a string naming the landmark to start
     [1] is the number of paces north

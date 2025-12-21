@@ -7,7 +7,7 @@ sales = []
 
 def load_sales(file_path):
     """
-    loads the contents of the file given by file_path into the sales list
+    loads the contents of a file into the sales list
 
     Parameters
     ----------
@@ -15,14 +15,14 @@ def load_sales(file_path):
     file_path : str
         string giving the file path to load from
 
+    Returns
+    -------
+    None
+
     Raises
     ------
     FileException
         Raised if the load fails
-
-    Returns
-    -------
-    None
     """
     print("Load the sales in:", file_path)
     sales.clear()

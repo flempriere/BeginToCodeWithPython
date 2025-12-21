@@ -8,10 +8,15 @@ def read_text(prompt="Please enter some text: "):
     Displays a prompt and reads in a string of text.
     Keyboard Interrupts are ignored
 
-    prompt: str prompt the user sees before entering text
+    Parameters
+    ----------
+    prompt: str
+        Prompt the user sees before entering text
 
-    return: str
-    returns a string containing the string input by the user
+    Returns
+    -------
+    str
+        String containing the string input by the user
     """
     while True:
         try:
@@ -31,13 +36,19 @@ print("Your name is", name)
 def read_float(prompt):
     """
     Displays a prompt and reads in a number
+
     Keyboard interrupts are ignored
     Invalid numbers are rejected
 
-    prompt: str prompt the user sees before giving input
+    Parameters
+    ----------
+    prompt: str
+        Prompt the user sees before giving input
 
-    return: str
-    returns a float containing the input value
+    Returns
+    -------
+    float
+        The input value
     """
     while True:
         try:
@@ -63,14 +74,22 @@ def read_float_ranged(prompt, min_value, max_value):
     Keyboard interrupts are ignored
     Invalid numbers or out of range numbers are rejected
 
-    min_value: float minimum value (inclusive)
-    max_value: float maximum value (inclusive)
+    Parameters
+    ----------
+    min_value: float
+        minimum value (inclusive)
+    max_value: float
+        maximum value (inclusive)
 
-    Exceptions:
-    raises Exception if min_value > max_value
+    Returns
+    -------
+    float
+        value input by user in the range [min_value, max_value]
 
-    return: float
-    value input by user in the range [min_value, max_value]
+    Raises
+    ------
+    Exception
+        If min_value > max_value
     """
     if min_value > max_value:
         raise Exception("Min value is greater than max value")
