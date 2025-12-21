@@ -26,7 +26,9 @@ website:
           - 01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.qmd
       - section: "Advanced Programming"
         contents:
-          - 02_AdvancedProgramming/09_UsingClasses/Chapter_09.qmd
+          - section: 02_AdvancedProgramming/09_UsingClasses/Chapter_09.qmd
+            contents:
+              - 02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.qmd
 format:
   html:
     code-fold: false

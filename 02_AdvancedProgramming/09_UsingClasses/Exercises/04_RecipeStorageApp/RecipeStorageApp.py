@@ -75,7 +75,7 @@ def get_ingredients():
             elif duplicate_choice == 1:
                 pass  # for append behave normally
             elif duplicate_choice == 2:
-                ingredients[ingredient].clear()  # remove existing entries
+                del ingredients[ingredient]  # remove existing ingredients
             else:
                 raise ValueError(
                     "Invalid value "
