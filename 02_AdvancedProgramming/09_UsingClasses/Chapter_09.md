@@ -692,7 +692,7 @@ We have two solutions that we could use,
           AttributeError: 'NoneType' object has no attribute 'address'
           ---------------------------------------------------------------------------
           AttributeError                            Traceback (most recent call last)
-          Cell In[5], line 2
+          Cell In[39], line 2
                 1 x = None #emulate failed find from find_contact
           ----> 2 print(x.address)
 
@@ -1091,7 +1091,7 @@ flowchart TD
 >     AttributeError: 'Contact' object has no attribute 'address'
 >     ---------------------------------------------------------------------------
 >     AttributeError                            Traceback (most recent call last)
->     Cell In[11], line 9
+>     Cell In[45], line 9
 >           6 contact.name = "Hello"
 >           8 # Attempt to access address
 >     ----> 9 print("contact address is", contact.address)
@@ -1492,7 +1492,7 @@ line of the class is an empty line*
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[16], line 1
+      Cell In[50], line 1
       ----> 1 y = InitName()
 
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
@@ -1656,7 +1656,7 @@ line of the class is an empty line*
       KeyError: 'Latte'
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[24], line 1
+      Cell In[58], line 1
       ----> 1 prices["Latte"]
 
       KeyError: 'Latte'
@@ -1740,7 +1740,7 @@ line of the class is an empty line*
       KeyError: 1111
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[29], line 2
+      Cell In[63], line 2
             1 del(access_control[1111])
       ----> 2 print(access_control[1111])
 
@@ -1830,7 +1830,7 @@ line of the class is an empty line*
      print(contact_dictionary)
     ```
 
-        {'Rob Miles': <__main__.Contact object at 0x7f6ef854c5f0>}
+        {'Rob Miles': <__main__.Contact object at 0x72b5c17c69c0>}
 
   - We can then search for a contact by just querying the key
 
@@ -1838,7 +1838,7 @@ line of the class is an empty line*
       contact_dictionary["Rob Miles"]
     ```
 
-        <__main__.Contact at 0x7f6ef854c5f0>
+        <__main__.Contact at 0x72b5c17c69c0>
 
   - However the user would have to type the correct full name
 
@@ -2168,7 +2168,7 @@ You are encouraged to work through or examine these exercises
           AttributeError: 'Contact' object has no attribute 'name'
           ---------------------------------------------------------------------------
           AttributeError                            Traceback (most recent call last)
-          Cell In[34], line 3
+          Cell In[68], line 3
                 1 del(rob.name)
                 2 print(rob.address)
           ----> 3 rob.name
