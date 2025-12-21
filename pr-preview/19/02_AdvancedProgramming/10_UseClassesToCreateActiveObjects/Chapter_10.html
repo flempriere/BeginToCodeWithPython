@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -227,7 +262,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#create-a-time-tracker" id="toc-create-a-time-tracker" class="nav-link" data-scroll-target="#create-a-time-tracker">Create a Time Tracker</a>
+  <ul>
+  <li><a href="#add-a-data-attribute-to-a-class" id="toc-add-a-data-attribute-to-a-class" class="nav-link" data-scroll-target="#add-a-data-attribute-to-a-class">Add a Data Attribute to a Class</a>
+  <ul>
+  <li><a href="#create-a-cohesive-object" id="toc-create-a-cohesive-object" class="nav-link" data-scroll-target="#create-a-cohesive-object">Create a Cohesive Object</a></li>
+  </ul></li>
+  <li><a href="#create-method-attributes-for-a-class" id="toc-create-method-attributes-for-a-class" class="nav-link" data-scroll-target="#create-method-attributes-for-a-class">Create Method Attributes for a Class</a>
+  <ul>
+  <li><a href="#example-the-get_hours_worked-method" id="toc-example-the-get_hours_worked-method" class="nav-link" data-scroll-target="#example-the-get_hours_worked-method">Example: The <code>get_hours_worked</code> Method</a></li>
+  </ul></li>
+  <li><a href="#add-validation-to-methods" id="toc-add-validation-to-methods" class="nav-link" data-scroll-target="#add-validation-to-methods">Add Validation to Methods</a>
+  <ul>
+  <li><a href="#create-class-variables" id="toc-create-class-variables" class="nav-link" data-scroll-target="#create-class-variables">Create Class Variables</a>
+  <ul class="collapse">
+  <li><a href="#example-using-class-variables" id="toc-example-using-class-variables" class="nav-link" data-scroll-target="#example-using-class-variables">Example: Using class variables</a></li>
+  </ul></li>
+  <li><a href="#create-a-static-method-to-validate-values" id="toc-create-a-static-method-to-validate-values" class="nav-link" data-scroll-target="#create-a-static-method-to-validate-values">Create a Static Method to Validate Values</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
   </ul>
@@ -257,6 +313,424 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="create-a-time-tracker" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-time-tracker">Create a Time Tracker</h3>
+<ul>
+<li>Program’s tend to evolve in scope over time
+<ul>
+<li>Sometimes due to scope underestimation</li>
+<li>Also because customers tend to request new features</li>
+</ul></li>
+<li>Consider the <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html#make-a-tiny-contacts-app">Tiny Contacts</a>
+<ul>
+<li>Client now wants to functionality to track the time spent with a client</li>
+</ul></li>
+<li>As usual start with the interface,</li>
+</ul>
+<pre class="text"><code>Time Tracker
+
+1. New Contact
+2. Find Contact
+3. Edit Contact
+4. Add Session
+5. Exit Program
+
+Enter your command:</code></pre>
+<p>We want to now storyboard out the new <code>Add Session</code> option</p>
+<pre class="text"><code>Enter your command: 4
+Add Hours
+Enter the Contact Name: Rob
+Name: Rob Miles
+Previous Hours worked: 0
+Session Length: 3
+Updated hours worked: 3.0</code></pre>
+<p>We also want to update the <code>Find Contact</code> option to include the hours,</p>
+<pre class="text"><code>Find Contact
+Enter the Contact Name: Rob
+Name: Rob Miles
+Address: 18 Pussycat Mews, London, NE1 410S
+Telephone: 1234 56789
+Hours worked: 3.0</code></pre>
+<section id="add-a-data-attribute-to-a-class" class="level4">
+<h4 class="anchored" data-anchor-id="add-a-data-attribute-to-a-class">Add a Data Attribute to a Class</h4>
+<ul>
+<li>We need to store the hours worked</li>
+<li>Simplest approach is to redefine the <code>Contact</code> class
+<ul>
+<li>Add an <code>hours_worked</code> field</li>
+</ul></li>
+</ul>
+<div id="ade76d11" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>Defaulted to <code>0</code> as part of the constructor</p>
+<ul>
+<li>We might discuss this with the client, it’s possible a contact might have some initial consult hours</li>
+</ul></li>
+<li><p>From here we can add a new <code>add_session</code> function (see the <a href="./Examples/01_TimeTracker/TimeTracker.py">complete updated code</a>, in our version which supports duplicate names in the search)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Reads in a name to search for and then allows</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">  the user to add a session spent working that</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">  contract</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"add session"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  search_name <span class="op">=</span> read_text(<span class="st">"Enter the contact name: "</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  contact <span class="op">=</span> find_contact(search_name)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> contact <span class="op">!=</span> <span class="va">None</span>:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="co">#found a contact</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Name: "</span>, contact.name)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Previous hours worked:"</span>, contact.hours_worked)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      session_length <span class="op">=</span> BTCInput.read_float_ranged(prompt<span class="op">=</span><span class="st">"Session length: "</span>, min_value<span class="op">=</span><span class="fl">0.5</span>, max_value<span class="op">=</span><span class="fl">3.5</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      contact.hours_worked <span class="op">=</span> contact.hours_worked <span class="op">+</span> session_length</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Updated hours worked:"</span>, contact.hours_worked)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"This name was not found"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Don’t forget we also have to update how we display contacts for the <code>Find Contact</code> functionality (or in our case the <code>display_contact</code>) function.</p>
+<div id="9d8281bf" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> display_contact(contact):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Displays the Contact details for the supplied contact</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">      contact : Contact</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">          contact to display</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Name:"</span>, contact.name)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Address:"</span>, contact.address)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Telephone:"</span>, contact.telephone)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Hours worked for this Contact:"</span>, contact.hours_worked, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><p>If we create a new <code>Contact</code> object then we can see how this looks,</p>
+<div id="1bd79c0e" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  contact <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Alice"</span>, address<span class="op">=</span><span class="st">"Bob St"</span>, telephone<span class="op">=</span><span class="st">"555"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  contact.hours_worked <span class="op">=</span> <span class="fl">5.0</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Name: Alice
+Address: Bob St
+Telephone: 555
+Hours worked for this Contact: 0 
+
+Name: Alice
+Address: Bob St
+Telephone: 555
+Hours worked for this Contact: 5.0 
+</code></pre>
+</div>
+</div></li>
+</ul>
+<section id="create-a-cohesive-object" class="level5">
+<h5 class="anchored" data-anchor-id="create-a-cohesive-object">Create a Cohesive Object</h5>
+<ul>
+<li>When extending a program you should always look at its design</li>
+<li>Code <em>rots</em> as it gets older
+<ul>
+<li>Gets harder to maintain and understand</li>
+</ul></li>
+<li>Want to make the design as clear and simple as possible</li>
+<li>Like a builder we want to make houses out of walls, walls out of bricks and bricks out of clay
+<ul>
+<li>i.e.&nbsp;clear progression in scale and responsibility</li>
+</ul></li>
+<li>A technique for this is called <em>object-oriented design</em>
+<ul>
+<li>Objects are designed to be <em>cohesive</em></li>
+<li>A cohesive object should contain all the attributes and methods to work with its domain</li>
+</ul></li>
+<li>For the <code>Contact</code> object we want it to be responsible for all contact information
+<ul>
+<li>Currently not very cohesive</li>
+<li>Time Tracker works directly on <code>Contact</code> object attributes</li>
+</ul></li>
+<li>Business logic that applies to a <code>Contact</code> is outside the function
+<ul>
+<li>e.g.&nbsp;in the <code>add_session</code> function, we have hardcoded a minimum session time of half an hour and a maximum session time of three and half hours</li>
+<li>This is problematic
+<ol type="1">
+<li>Because the numbers are just written there as opposed to being defined as constants with meaning (they are <em>magic constants</em>)</li>
+<li>This data validation is external to the data storage object itself, the <code>Contact</code></li>
+</ol></li>
+<li>We also perform the act of updating the <code>Contact</code>’s hours worked, outside the <code>Contact</code> object</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  session_length <span class="op">=</span> BTCInput.read_float_ranged(prompt<span class="op">=</span><span class="st">"Session length: "</span>, min_value<span class="op">=</span><span class="fl">0.5</span>, max_value<span class="op">=</span><span class="fl">3.5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  contact.hours_worked <span class="op">=</span> contact.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li>The magic constant problem is one issue,
+<ul>
+<li>If we were to use the <code>Contact</code> as a libary object in another application, (like a graphical version) then we would have to maintain the validation code in two seperate places</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Keep Business Rules in Business Objects</strong></p>
+<p>The issue here is we have defined <em>business rules</em> (things our customer asks the system to do) outside of the <em>business objects</em> (things created to implement the customer’s system).</p>
+</div>
+</div>
+<ul>
+<li>A solution is to make the <code>Contact</code> object responsible for validating the session length
+<ul>
+<li>Any application that uses the <code>Contact</code> object will naturally use its internal validation</li>
+<li>Only one location to change now</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="create-method-attributes-for-a-class" class="level4">
+<h4 class="anchored" data-anchor-id="create-method-attributes-for-a-class">Create Method Attributes for a Class</h4>
+<ul>
+<li><p>Any python code can access <code>hours_worked</code> in a <code>Contact</code></p>
+<ul>
+<li>Really only need <code>hours_worked</code> to be accessed to,
+<ol type="1">
+<li>Display time spent with a contact</li>
+<li>Add the length of a session to <code>hours_worked</code></li>
+</ol></li>
+</ul></li>
+<li><p>Python objects can hold method attributes</p>
+<ul>
+<li>Functions bound to the object</li>
+</ul></li>
+<li><p>Let us ask an object to do something</p></li>
+<li><p>E.g. the <code>string</code> object has the method <code>upper</code> (seen in <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html#compare-strings-in-programs">Chapter 5</a>)</p></li>
+<li><p>Let us define two method attributes for <code>Contact</code></p>
+<ul>
+<li>Removes the need to directly access the attribute</li>
+</ul></li>
+</ul>
+<div id="e828ed70" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Get the hours worked for this contact</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.hours_worked</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="example-the-get_hours_worked-method" class="level5">
+<h5 class="anchored" data-anchor-id="example-the-get_hours_worked-method">Example: The <code>get_hours_worked</code> Method</h5>
+<p><em>Consider the following questions regarding the</em> <code>get_hours_worked</code> <em>function</em></p>
+<ol type="1">
+<li><em>What is the parameter</em> <code>self</code> <em>used to accomplish?</em>
+<ul>
+<li><p><em>A method is part of an object</em></p></li>
+<li><p><code>self</code> <em>tells the method which object it is a part of</em></p></li>
+<li><p><em>The code sample below shows how the method doesn’t need an additional reference to the</em> <code>Contact</code> <em>it refers to</em></p>
+<div id="edf84648" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set up</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"1"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  rob.hours_worked <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  jim <span class="op">=</span> Contact(<span class="st">"Jim"</span>, <span class="st">"B St"</span>, <span class="st">"555"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  jim.hours_worked <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># demonstration</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  rob_work <span class="op">=</span> rob.get_hours_worked()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  jim_work <span class="op">=</span> jim.get_hours_worked()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> rob_work <span class="op">&gt;</span> jim_work:</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"More work for rob"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"More work for jim"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>More work for jim</code></pre>
+</div>
+</div></li>
+</ul></li>
+<li><em>Is the</em> <code>get_hours_worked</code> <em>method stored when we save contact information in a file</em>
+<ul>
+<li><em>No, if we use</em> <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html#save-contacts-in-a-file-using-pickle"><code>pickle</code></a> <em>to store a contact list, the method attributes are not stored. Pickle only stores the data attributes</em></li>
+</ul></li>
+<li><em>Can a program still access the</em> <code>hours_worked</code> <em>attribute of a</em> <code>Contact</code> <em>class</em>
+<ul>
+<li><em>Yes, it can. Using method attributes to get data doesn’t stop a program accessing the data directly</em></li>
+<li><em>We simply remove the desire to</em></li>
+<li><em>Later chapters look at techniques for enforcing this more robustly</em></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>We can create a second method to handle adding a session to a <code>Contact</code></p>
+<div id="d33e535d" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># existing class definition</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">          Get the hours worked for this contact</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds the value of the parameter</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">          onto the hours worked for this contract</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><p>Takes two parameters</p>
+<ol type="1">
+<li><code>self</code> - the object the method is attached to
+<ul>
+<li>Here the <code>Contact</code> being updated</li>
+</ul></li>
+<li><code>session_length</code>
+<ul>
+<li>The length of the session to be added</li>
+</ul></li>
+</ol></li>
+</ul>
+<p>You can see the above implementation integrated into <a href="./Examples/02_TimeTrackerWithMethods/TimeTrackerWithMethods.py">our TimeTracker implementation</a>. Aside from defining these new functions we have to update the file scope <code>add_session</code> function (distinct from the class scope <code>add_session</code> method) and the <code>display_contact</code> functions to use the new methods</p>
+</section>
+</section>
+<section id="add-validation-to-methods" class="level4">
+<h4 class="anchored" data-anchor-id="add-validation-to-methods">Add Validation to Methods</h4>
+<ul>
+<li><p>Currently <code>add_session</code> would allow function calls like,</p>
+<div id="5910884a" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"555"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  rob.add_session(<span class="op">-</span><span class="dv">10</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(rob.get_hours_worked())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-10</code></pre>
+</div>
+</div></li>
+<li><p>Legal call</p>
+<ul>
+<li>Makes no logical sense</li>
+<li>Can’t work negative hours</li>
+</ul></li>
+<li><p>At the moment the validation is performed in the global <code>add_session</code> function</p>
+<ul>
+<li>Suppose this was maintained by another team</li>
+<li>They could change it, and break your code</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Think Carefully about Valid Input</strong></p>
+<p>You should think carefully about what is valid input for any function, especially when you restrict it. As observed here, a negative number of hours doesn’t make sense on the surface. However, it might make sense in the case of,</p>
+<ol type="1">
+<li>Correcting an overestimated number of hours</li>
+<li>The Client wants to give a client a discounted number of hours</li>
+</ol>
+</div>
+</div>
+<ul>
+<li>We want to move the validation inside the <code>Contact</code> object
+<ul>
+<li>Want <code>add_session</code> to reject hours that are less than half-an-hour or greater than three and a half</li>
+</ul></li>
+<li>We could add these as variables for each instance of a <code>Contact</code>
+<ul>
+<li>But they’re the same for every instance</li>
+<li>Would be nice to have a way to define it once for the class</li>
+</ul></li>
+</ul>
+<section id="create-class-variables" class="level5">
+<h5 class="anchored" data-anchor-id="create-class-variables">Create Class Variables</h5>
+<ul>
+<li>A class variable is data not attached to a specific object instance</li>
+<li>Can define the min and max hours as a class variable
+<ul>
+<li>No longer magic constants</li>
+<li>Accessible by all <code>Contact</code> instances</li>
+</ul>
+<div id="3c0a2cd3" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>      min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">          Get the hours worked for this contact</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds the value of the parameter</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">          onto the hours worked for this contract</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> session_length <span class="op">&lt;</span> Contact.min_session_length <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.max_session_length:</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><code>add_session</code> now silently rejects invalid <code>session_length</code> values</li>
+<li>The idiom of first checking for invalid input and performing a <code>return</code> if encountered is called an <em>early return</em> and is a common technique
+<ul>
+<li>Reduces the need for indentation on the happy path - the error free path</li>
+</ul></li>
+<li>Observe we have to prefix the class variables with the class name as a namespace</li>
+</ul>
+<section id="example-using-class-variables" class="level6">
+<h6 class="anchored" data-anchor-id="example-using-class-variables">Example: Using class variables</h6>
+<p><em>Build your understanding of class variables by answering the following questions about their use-cases</em></p>
+<ol type="1">
+<li><em>Should I use a class variable to hold the age of a contact?</em>
+<ul>
+<li><em>No.&nbsp;Each contact will have an age, so the age must be a data attribute unique to each object instance</em></li>
+</ul></li>
+<li><em>Should I use a class variable to hold the maximum age of a contact?</em>
+<ul>
+<li><em>Yes, we don’t need to store a copy of this value for every</em> <code>Contact</code> <em>instance, so it can be a class variable</em></li>
+</ul></li>
+<li><em>Should I use a class variable to hold the price per hour that the lawyer will charge?</em>
+<ul>
+<li><em>It depends, if the lawyer charges the same for every client then it may be reasonable</em></li>
+<li><em>If the lawyer wishes to charge different contacts different rates, then we would have to store it as a data attribute</em>
+<ul>
+<li><em>In that case we might store the minimum and maximum hourly rate as class variables</em></li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="create-a-static-method-to-validate-values" class="level5">
+<h5 class="anchored" data-anchor-id="create-a-static-method-to-validate-values">Create a Static Method to Validate Values</h5>
+</section>
+</section>
+</section>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
