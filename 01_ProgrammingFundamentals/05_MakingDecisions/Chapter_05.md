@@ -254,7 +254,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 12
+    The hour is: 14
 
 *Run the program, it should print out the current hour*
 
@@ -288,7 +288,7 @@ print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
     The date is 21 / 12 / 2025
-    The time is 12 : 28 : 54
+    The time is 14 : 3 : 53
 
 #### Comparing Values
 
@@ -688,7 +688,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 12 : 28
+    The time is 14 : 3
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*

@@ -2,12 +2,437 @@
 
 - [Notes](#notes)
   - [Create a Time Tracker](#create-a-time-tracker)
+    - [Add a Data Attribute to a
+      Class](#add-a-data-attribute-to-a-class)
+      - [Create a Cohesive Object](#create-a-cohesive-object)
+    - [Create Method Attributes for a
+      Class](#create-method-attributes-for-a-class)
+      - [Example: The `get_hours_worked`
+        Method](#example-the-get_hours_worked-method)
+    - [Add Validation to Methods](#add-validation-to-methods)
+      - [Create Class Variables](#create-class-variables)
+        - [Example: Using class
+          variables](#example-using-class-variables)
+      - [Create a Static Method to Validate
+        Values](#create-a-static-method-to-validate-values)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
 ## Notes
 
 ### Create a Time Tracker
+
+- Program’s tend to evolve in scope over time
+  - Sometimes due to scope underestimation
+  - Also because customers tend to request new features
+- Consider the [Tiny
+  Contacts](../09_UsingClasses/Chapter_09.qmd#make-a-tiny-contacts-app)
+  - Client now wants to functionality to track the time spent with a
+    client
+- As usual start with the interface,
+
+``` text
+Time Tracker
+
+1. New Contact
+2. Find Contact
+3. Edit Contact
+4. Add Session
+5. Exit Program
+
+Enter your command:
+```
+
+We want to now storyboard out the new `Add Session` option
+
+``` text
+Enter your command: 4
+Add Hours
+Enter the Contact Name: Rob
+Name: Rob Miles
+Previous Hours worked: 0
+Session Length: 3
+Updated hours worked: 3.0
+```
+
+We also want to update the `Find Contact` option to include the hours,
+
+``` text
+Find Contact
+Enter the Contact Name: Rob
+Name: Rob Miles
+Address: 18 Pussycat Mews, London, NE1 410S
+Telephone: 1234 56789
+Hours worked: 3.0
+```
+
+#### Add a Data Attribute to a Class
+
+- We need to store the hours worked
+- Simplest approach is to redefine the `Contact` class
+  - Add an `hours_worked` field
+
+``` python
+class Contact:
+    def __init__(self, name, address, telephone):
+        self.name = name
+        self.address = address
+        self.telephone = telephone
+        self.hours_worked = 0
+```
+
+- Defaulted to `0` as part of the constructor
+
+  - We might discuss this with the client, it’s possible a contact might
+    have some initial consult hours
+
+- From here we can add a new `add_session` function (see the [complete
+  updated code](./Examples/01_TimeTracker/TimeTracker.py), in our
+  version which supports duplicate names in the search)
+
+  ``` python
+    """
+    Reads in a name to search for and then allows
+    the user to add a session spent working that
+    contract
+    """
+    print("add session")
+    search_name = read_text("Enter the contact name: ")
+    contact = find_contact(search_name)
+    if contact != None:
+        #found a contact
+        print("Name: ", contact.name)
+        print("Previous hours worked:", contact.hours_worked)
+        session_length = BTCInput.read_float_ranged(prompt="Session length: ", min_value=0.5, max_value=3.5)
+        contact.hours_worked = contact.hours_worked + session_length
+        print("Updated hours worked:", contact.hours_worked)
+    else:
+        print("This name was not found")
+  ```
+
+- Don’t forget we also have to update how we display contacts for the
+  `Find Contact` functionality (or in our case the `display_contact`)
+  function.
+
+  ``` python
+    def display_contact(contact):
+        """
+        Displays the Contact details for the supplied contact
+
+        Parameters
+        ----------
+        contact : Contact
+            contact to display
+
+        Returns
+        -------
+        None
+        """
+        print("Name:", contact.name)
+        print("Address:", contact.address)
+        print("Telephone:", contact.telephone)
+        print("Hours worked for this Contact:", contact.hours_worked, "\n")
+  ```
+
+- If we create a new `Contact` object then we can see how this looks,
+
+  ``` python
+    contact = Contact(name="Alice", address="Bob St", telephone="555")
+    display_contact(contact)
+    contact.hours_worked = 5.0
+    display_contact(contact)
+  ```
+
+      Name: Alice
+      Address: Bob St
+      Telephone: 555
+      Hours worked for this Contact: 0
+
+      Name: Alice
+      Address: Bob St
+      Telephone: 555
+      Hours worked for this Contact: 5.0
+
+##### Create a Cohesive Object
+
+- When extending a program you should always look at its design
+- Code *rots* as it gets older
+  - Gets harder to maintain and understand
+- Want to make the design as clear and simple as possible
+- Like a builder we want to make houses out of walls, walls out of
+  bricks and bricks out of clay
+  - i.e. clear progression in scale and responsibility
+- A technique for this is called *object-oriented design*
+  - Objects are designed to be *cohesive*
+  - A cohesive object should contain all the attributes and methods to
+    work with its domain
+- For the `Contact` object we want it to be responsible for all contact
+  information
+  - Currently not very cohesive
+  - Time Tracker works directly on `Contact` object attributes
+- Business logic that applies to a `Contact` is outside the function
+  - e.g. in the `add_session` function, we have hardcoded a minimum
+    session time of half an hour and a maximum session time of three and
+    half hours
+  - This is problematic
+    1. Because the numbers are just written there as opposed to being
+        defined as constants with meaning (they are *magic constants*)
+    2. This data validation is external to the data storage object
+        itself, the `Contact`
+  - We also perform the act of updating the `Contact`’s hours worked,
+    outside the `Contact` object
+
+  ``` python
+    session_length = BTCInput.read_float_ranged(prompt="Session length: ", min_value=0.5, max_value=3.5)
+    contact.hours_worked = contact.hours_worked + session_length
+  ```
+
+- The magic constant problem is one issue,
+  - If we were to use the `Contact` as a libary object in another
+    application, (like a graphical version) then we would have to
+    maintain the validation code in two seperate places
+
+> [!TIP]
+>
+> **Keep Business Rules in Business Objects**
+>
+> The issue here is we have defined *business rules* (things our
+> customer asks the system to do) outside of the *business objects*
+> (things created to implement the customer’s system).
+
+- A solution is to make the `Contact` object responsible for validating
+  the session length
+  - Any application that uses the `Contact` object will naturally use
+    its internal validation
+  - Only one location to change now
+
+#### Create Method Attributes for a Class
+
+- Any python code can access `hours_worked` in a `Contact`
+
+  - Really only need `hours_worked` to be accessed to,
+    1. Display time spent with a contact
+    2. Add the length of a session to `hours_worked`
+
+- Python objects can hold method attributes
+
+  - Functions bound to the object
+
+- Let us ask an object to do something
+
+- E.g. the `string` object has the method `upper` (seen in [Chapter
+  5](../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.qmd#compare-strings-in-programs))
+
+- Let us define two method attributes for `Contact`
+
+  - Removes the need to directly access the attribute
+
+``` python
+class Contact:
+    def __init__(self, name, address, telephone):
+        self.name = name
+        self.address = address
+        self.telephone = telephone
+        self.hours_worked = 0
+    def get_hours_worked(self):
+        """
+        Get the hours worked for this contact
+        """
+        return self.hours_worked
+```
+
+##### Example: The `get_hours_worked` Method
+
+*Consider the following questions regarding the* `get_hours_worked`
+*function*
+
+1. *What is the parameter* `self` *used to accomplish?*
+    - *A method is part of an object*
+
+    - `self` *tells the method which object it is a part of*
+
+    - *The code sample below shows how the method doesn’t need an
+      additional reference to the* `Contact` *it refers to*
+
+      ``` python
+        # set up
+        rob = Contact("Rob", "A St", "1")
+        rob.hours_worked = 1
+        jim = Contact("Jim", "B St", "555")
+        jim.hours_worked = 2
+
+        # demonstration
+        rob_work = rob.get_hours_worked()
+        jim_work = jim.get_hours_worked()
+        if rob_work > jim_work:
+            print("More work for rob")
+        else:
+            print("More work for jim")
+      ```
+
+          More work for jim
+2. *Is the* `get_hours_worked` *method stored when we save contact
+    information in a file*
+    - *No, if we use*
+      [`pickle`](../09_UsingClasses/Chapter_09.qmd#save-contacts-in-a-file-using-pickle)
+      *to store a contact list, the method attributes are not stored.
+      Pickle only stores the data attributes*
+3. *Can a program still access the* `hours_worked` *attribute of a*
+    `Contact` *class*
+    - *Yes, it can. Using method attributes to get data doesn’t stop a
+      program accessing the data directly*
+    - *We simply remove the desire to*
+    - *Later chapters look at techniques for enforcing this more
+      robustly*
+
+- We can create a second method to handle adding a session to a
+  `Contact`
+
+  ``` python
+    # existing class definition
+    class Contact:
+        def __init__(self, name, address, telephone):
+            self.name = name
+            self.address = address
+            self.telephone = telephone
+            self.hours_worked = 0
+        def get_hours_worked(self):
+            """
+            Get the hours worked for this contact
+            """
+            return self.hours_worked
+
+        # new method
+        def add_session(self, session_length):
+            """
+            Adds the value of the parameter
+            onto the hours worked for this contract
+            """
+            self.hours_worked = self.hours_worked + session_length
+  ```
+
+- Takes two parameters
+
+  1. `self` - the object the method is attached to
+      - Here the `Contact` being updated
+  2. `session_length`
+      - The length of the session to be added
+
+You can see the above implementation integrated into [our TimeTracker
+implementation](./Examples/02_TimeTrackerWithMethods/TimeTrackerWithMethods.py).
+Aside from defining these new functions we have to update the file scope
+`add_session` function (distinct from the class scope `add_session`
+method) and the `display_contact` functions to use the new methods
+
+#### Add Validation to Methods
+
+- Currently `add_session` would allow function calls like,
+
+  ``` python
+    rob = Contact("Rob", "A St", "555")
+    rob.add_session(-10)
+    print(rob.get_hours_worked())
+  ```
+
+      -10
+
+- Legal call
+
+  - Makes no logical sense
+  - Can’t work negative hours
+
+- At the moment the validation is performed in the global `add_session`
+  function
+
+  - Suppose this was maintained by another team
+  - They could change it, and break your code
+
+> [!NOTE]
+>
+> **Think Carefully about Valid Input**
+>
+> You should think carefully about what is valid input for any function,
+> especially when you restrict it. As observed here, a negative number
+> of hours doesn’t make sense on the surface. However, it might make
+> sense in the case of,
+>
+> 1. Correcting an overestimated number of hours
+> 2. The Client wants to give a client a discounted number of hours
+
+- We want to move the validation inside the `Contact` object
+  - Want `add_session` to reject hours that are less than half-an-hour
+    or greater than three and a half
+- We could add these as variables for each instance of a `Contact`
+  - But they’re the same for every instance
+  - Would be nice to have a way to define it once for the class
+
+##### Create Class Variables
+
+- A class variable is data not attached to a specific object instance
+- Can define the min and max hours as a class variable
+  - No longer magic constants
+  - Accessible by all `Contact` instances
+
+  ``` python
+    class Contact:
+
+        min_session_length = 0.5
+        max_session_length = 3.5
+
+        def __init__(self, name, address, telephone):
+            self.name = name
+            self.address = address
+            self.telephone = telephone
+            self.hours_worked = 0
+
+        def get_hours_worked(self):
+            """
+            Get the hours worked for this contact
+            """
+            return self.hours_worked
+
+        # new method
+        def add_session(self, session_length):
+            """
+            Adds the value of the parameter
+            onto the hours worked for this contract
+            """
+            if session_length < Contact.min_session_length or session_length > Contact.max_session_length:
+                return
+            self.hours_worked = self.hours_worked + session_length
+  ```
+
+- `add_session` now silently rejects invalid `session_length` values
+- The idiom of first checking for invalid input and performing a
+  `return` if encountered is called an *early return* and is a common
+  technique
+  - Reduces the need for indentation on the happy path - the error free
+    path
+- Observe we have to prefix the class variables with the class name as a
+  namespace
+
+###### Example: Using class variables
+
+*Build your understanding of class variables by answering the following
+questions about their use-cases*
+
+1. *Should I use a class variable to hold the age of a contact?*
+    - *No. Each contact will have an age, so the age must be a data
+      attribute unique to each object instance*
+2. *Should I use a class variable to hold the maximum age of a
+    contact?*
+    - *Yes, we don’t need to store a copy of this value for every*
+      `Contact` *instance, so it can be a class variable*
+3. *Should I use a class variable to hold the price per hour that the
+    lawyer will charge?*
+    - *It depends, if the lawyer charges the same for every client then
+      it may be reasonable*
+    - *If the lawyer wishes to charge different contacts different
+      rates, then we would have to store it as a data attribute*
+      - *In that case we might store the minimum and maximum hourly rate
+        as class variables*
+
+##### Create a Static Method to Validate Values
 
 ## Summary
 
