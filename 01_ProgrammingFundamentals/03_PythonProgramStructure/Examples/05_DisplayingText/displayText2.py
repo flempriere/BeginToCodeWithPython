@@ -1,5 +1,11 @@
-import snaps
+# Example 3.5.2 Displaying Text via Snaps
+#
+# Extends the previous example by demonstrating
+# adding color, size, text position
+
 import time
+
+import snaps
 
 snaps.display_message(
     "This is smaller text in green on the top left",

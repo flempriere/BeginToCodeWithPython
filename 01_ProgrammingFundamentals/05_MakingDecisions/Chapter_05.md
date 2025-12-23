@@ -156,7 +156,7 @@ to understand booleans*
         TypeError: can only concatenate str (not "bool") to str
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[3], line 1
+        Cell In[693], line 1
         ----> 1 'Hello' + True
 
         TypeError: can only concatenate str (not "bool") to str
@@ -254,7 +254,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 4
+    The hour is: 20
 
 *Run the program, it should print out the current hour*
 
@@ -288,7 +288,7 @@ print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
     The date is 23 / 12 / 2025
-    The time is 4 : 25 : 28
+    The time is 20 : 51 : 28
 
 #### Comparing Values
 
@@ -594,6 +594,8 @@ if it_is_time_to_get_up:
     print("IT IS TIME TO GET UP")
 ```
 
+    IT IS TIME TO GET UP
+
 - *The program should print* `IT IS TIME TO GET UP` *only if the time is
   after* $7:30$
 
@@ -616,6 +618,8 @@ if it_is_time_to_get_up:
 if (hour > 7) or (hour == 7 and minutes > 29):
     print("IT IS TIME TO GET UP")
 ```
+
+    IT IS TIME TO GET UP
 
 #### Combine Python Statements into a Suite
 
@@ -681,7 +685,10 @@ if (hour > 7) or (hour == 7 and minute > 29):
 print("The time is", hour, ":", minute)
 ```
 
-    The time is 4 : 25
+    TIME TO GET UP
+    RISE AND SHINE
+    THE EARLY BIRD GETS THE WORM
+    The time is 20 : 51
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*
@@ -711,7 +718,7 @@ print("The time is", hour, ":", minute)
 >       ```
 >
 >           IndentationError: unexpected indent (1845908205.py, line 8)
->             Cell In[24], line 8
+>             Cell In[714], line 8
 >               print("The early bird gets the worm...")
 >               ^
 >           IndentationError: unexpected indent
@@ -730,6 +737,9 @@ print("The time is", hour, ":", minute)
 >          print("IT IS TIME TO GET UP")
 >          print("The early bird gets the worm...")
 >     ```
+>
+>         IT IS TIME TO GET UP
+>         The early bird gets the worm...
 >
 >     - Most programmers and even text editors will automatically
 >       convert one style of indentation to the other (commonly tabs to
@@ -810,7 +820,7 @@ class ifDescr BG
 > ```
 >
 >     IndentationError: unexpected indent (1682748311.py, line 7)
->       Cell In[26], line 7
+>       Cell In[716], line 7
 >         print("The early bird gets the worm...")
 >         ^
 >     IndentationError: unexpected indent
@@ -884,7 +894,7 @@ else:
     print("Go back to bed")
 ```
 
-    Go back to bed
+    IT IS TIME TO GET UP
 
 - *Observe that only one line of the paired `if-else` statements is
   printed*

@@ -1,4 +1,5 @@
 # Example 5.10: Ride Selector Start
+#
 # The basic shell of the Ride Selector UI
 
 print("""Welcome to our Theme Park

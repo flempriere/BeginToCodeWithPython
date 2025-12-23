@@ -3,33 +3,34 @@
 - [Notes](#notes)
   - [Write Your First Python Program](#write-your-first-python-program)
     - [Running a Python Program](#running-a-python-program)
-      - [Example: Run a Python Program](#example-run-a-python-program)
+      - [**Make Something Happen**: Run a Python
+        Program](#make-something-happen-run-a-python-program)
     - [Get Program output using the `print`
       function](#get-program-output-using-the-print-function)
-      - [Example: Work with `print` in a
-        program](#example-work-with-print-in-a-program)
+      - [**Make Something Happen**: Work with `print` in a
+        program](#make-something-happen-work-with-print-in-a-program)
   - [Use Python Libraries](#use-python-libraries)
     - [The `random` library](#the-random-library)
-      - [Example: Investigate the `random`
-        Library](#example-investigate-the-random-library)
+      - [**Make Something Happen**: Investigate the `random`
+        Library](#make-something-happen-investigate-the-random-library)
     - [The `time` library](#the-time-library)
       - [Using `sleep`](#using-sleep)
-        - [Exercise: Egg Timer](#exercise-egg-timer)
+        - [**Make Something Happen**: Make an Egg
+          Timer](#make-something-happen-make-an-egg-timer)
   - [Python Comments](#python-comments)
   - [Delay the End of a Program](#delay-the-end-of-a-program)
   - [Adding some `Snaps`](#adding-some-snaps)
     - [Adding the `pygame` library](#adding-the-pygame-library)
     - [Snaps function](#snaps-function)
       - [Display Text](#display-text)
-        - [Example: Displaying Text](#example-displaying-text)
       - [Display Images](#display-images)
-        - [Example: Displaying Images](#example-displaying-images)
       - [Making Sounds](#making-sounds)
-        - [Playing Sound](#playing-sound)
     - [Using `snaps` in your program](#using-snaps-in-your-program)
-      - [Exercise: Improved Egg Timer](#exercise-improved-egg-timer)
-      - [Exercise: High-Low](#exercise-high-low)
-      - [Exercise: Nerves of Steel](#exercise-nerves-of-steel)
+      - [Improved Egg Timer](#improved-egg-timer)
+      - [**Make Something Happen**:
+        High-Low](#make-something-happen-high-low)
+      - [**Make Something Happen**: Nerves of
+        Steel](#make-something-happen-nerves-of-steel)
 - [Summary](#summary)
 - [Question and Answers](#question-and-answers)
 
@@ -48,7 +49,7 @@
 - To run a program, you first need to write it. Any text editor should
   do.
 
-##### Example: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
+##### **Make Something Happen**: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
 
 *Open a text editor and enter the following into the file*,
 
@@ -60,13 +61,13 @@
 Then run the program, if you have* `IDLE` *you can run it through that.
 I personally use the command line as*
 
-``` bash
+``` shell
 python path-to-file
 ```
 
 *You may need to use `python3` or `python3.X` depending on how your
 environment is setup where `X` is the python subversion. The code should
-execute but produce no output.*
+execute but produce no output*
 
 #### Get Program output using the `print` function
 
@@ -100,7 +101,7 @@ user <--> computer
   output, and request input
   - The first such function we need is `print`
 
-##### Example: Work with `print` in a program
+##### **Make Something Happen**: Work with `print` in a program
 
 *Write a python file
 ([`using_print.py`](./Examples/02_UsingPrint/using_print.py)) with the
@@ -117,7 +118,7 @@ print(2+2)
 $4$ *as expected*
 
 ``` bash
-uv run using_print.py
+python using_print.py
 4
 ```
 
@@ -161,7 +162,7 @@ elements*
 > ```
 >
 >     SyntaxError: closing parenthesis '}' does not match opening parenthesis '(' (816620756.py, line 1)
->       Cell In[4], line 1
+>       Cell In[14], line 1
 >         print('The answer is: '}
 >                                ^
 >     SyntaxError: closing parenthesis '}' does not match opening parenthesis '('
@@ -176,7 +177,7 @@ elements*
 >     NameError: name 'Print' is not defined
 >     ---------------------------------------------------------------------------
 >     NameError                                 Traceback (most recent call last)
->     Cell In[5], line 1
+>     Cell In[15], line 1
 >     ----> 1 Print(2 + 2)
 >
 >     NameError: name 'Print' is not defined
@@ -203,7 +204,7 @@ elements*
   - e.g. for `random` we can use `randint` as `random.randint(1,6)` to
     generate a random number from $1$ to $6$
 
-##### Example: [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
+##### **Make Something Happen**: [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
 
 *Write and run a python program containing the following lines*
 
@@ -212,7 +213,7 @@ import random
 print('You have rolled:', random.randint(1,6))
 ```
 
-    You have rolled: 4
+    You have rolled: 5
 
 *Try running this program multiple times and see what the output is*
 
@@ -225,10 +226,10 @@ print('You have rolled:', random.randint(1,6))
 > If we get the name of the module wrong, e.g. `import Random`, then we
 > should get a `ModuleNotFoundError`
 
-- *The python shell and most modern text editors can access
-  documentation about pythons functions to help you with using them,
-  typically by hovering over the function name. Try this in your setup,
-  in mine I get the documentation:*
+- The python shell and most modern text editors can access documentation
+  about pythons functions to help you with using them
+- Typically this is obtained by hovering over the function name. Try
+  this in your setup, in mine I get the documentation:
 
 ``` python
 def randint(a : int, b : int) -> int
@@ -245,7 +246,7 @@ Return random integer in range [a,b], including both end points
 
 ##### [Using `sleep`](./Examples/04_Sleep/sleep.py)
 
-*Write an execute the following program*
+*Write and execute the following program*
 
 ``` python
 import time
@@ -258,10 +259,10 @@ print('The answer is: 42')
     The answer is: 42
 
 *You should see the program print the first line, pause for about* $5$
-*seconds, then print the second line. The above shell should show the
+*seconds, then print the second line. The above cell should show the
 code after all lines have run*
 
-###### Exercise: [Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
+###### **Make Something Happen**: [Make an Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
 
 *Make an egg timer program. The program should allow the user to time a
 5-minute boiled egg. You can do this by modifying the [example sleep
@@ -305,11 +306,16 @@ print('Egg cooked, remove now.')
 - A comment is marked with a `#` and extends to the end of the line
 
 ``` python
-#Egg Timer program 1.0 by Rob Miles
+# Exercise 3.1 Egg Timer Program
+
 import time
-print('Put the egg in boiling water now!')
+
+print("Make sure the water is boiling!!!")
+print("Drop the egg in...")
+time.sleep(270)
+print("Nearly cooked, get your spoon ready")
 time.sleep(300)
-print('Take the egg out now')
+print("Egg cooked, remove now.")
 ```
 
 - Comments can be added at the end of statements, e.g.
@@ -377,43 +383,54 @@ python -m pip install pygame --user #Mac or Linux
 - snaps contains a `display_message` function that takes a string of
   text and displays it on the screen
 
-###### Example: Displaying Text
-
-- *The [first example](./Examples/05_DisplayingText/displayText.py) uses
-  the most basic form of `display_message`*
+- The [first example](./Examples/05_DisplayingText/displayText.py) uses
+  the most basic form of `display_message`
 
 ``` python
-# Displaying Text via Snaps
+# Example 3.5.1 Displaying Text via Snaps
+
+import time
 
 from snaps import *
-import time
 
-display_message('hello world')
-time.sleep(5)
+display_message("hello world")
+time.sleep(5)  # add a sleep so the window doesn't autoclose
 ```
 
-- *The above creates a window with red text saying ‘Hello World’.*
-  - *We’ve added the `sleep` so the window doesn’t automatically close -
+- The above creates a window with red text saying ‘Hello World’.
+  - We’ve added the `sleep` so the window doesn’t automatically close -
     see discussion about [Delaying the end of a
-    program](#delay-the-end-of-a-program)*
-- *The `from snaps import *` is an alternate import structure*
-  - *It says’s from the module `snaps` import everything (`*`)*
-  - *This means we don’t need to use the `snaps` prefix*
-  - *Generally avoid doing this as it can mean that different packages
-    with the same function names will cause naming clashes*
-- *Python functions support optional arguments*
-  - *These are arguments that have some default supplied value*
-  - *We can customise these to change function behaviour*
-- *The [second example](./Examples/05_DisplayingText/displayText2.py)
+    program](#delay-the-end-of-a-program)
+- The `from snaps import *` is an alternate import structure
+  - It tells us from the module `snaps` import everything (`*`)
+  - This means we don’t need to use the `snaps` prefix
+  - Generally avoid doing this as it can mean that different packages
+    with the same function names will cause naming clashes
+- Python functions support optional arguments
+  - These are arguments that have some default supplied value
+  - We can customise these to change function behaviour
+- The [second example](./Examples/05_DisplayingText/displayText2.py)
   uses these optional arguments to change the size, colour and alignment
-  of the text*
+  of the text
 
 ``` python
-import snaps
+# Example 3.5.2 Displaying Text via Snaps
+#
+# Extends the previous example by demonstrating
+# adding color, size, text position
+
 import time
 
-snaps.display_message('This is smaller text in green on the top left', color=(0, 255, 0), size=50, horiz='left', vert='top')
-time.sleep(5) #so window doesn't immediately close
+import snaps
+
+snaps.display_message(
+    "This is smaller text in green on the top left",
+    color=(0, 255, 0),
+    size=50,
+    horiz="left",
+    vert="top",
+)
+time.sleep(5)  # add a sleep for 5 seconds so the window doesn't autoclose
 ```
 
 ##### Display Images
@@ -423,82 +440,91 @@ time.sleep(5) #so window doesn't immediately close
 - Function takes the path to the image and can be an png or jpeg
 - Text can be overlayed on an image by calling `display_message` *after*
   \`display_image\*
-
-###### Example: [Displaying Images](./Examples/06_DisplayingImages/displayImage.py)
-
-- *Here we use `display_image` to render a jpeg, with some overlayed
-  text*
+- for example: [Displaying
+  Images](./Examples/06_DisplayingImages/displayImage.py)
+- Here we use `display_image` to render a jpeg, with some overlayed text
 
 ``` python
-#display an image using snaps library
+# Example 3.6 Display Image
+#
+# display an image using snaps library
 
-import snaps
 import time
 
-snaps.display_image('Housemartins.jpg')
-snaps.display_message('Hull Rocks', color=(255, 255, 255), vert='top')
+import snaps
+
+snaps.display_image("Housemartins.jpg")
+snaps.display_message("Hull Rocks", color=(255, 255, 255), vert="top")
 
 time.sleep(5)
 ```
 
-- *Again note, that `sleep` is used to prevent the window from closing*
-- *The order of the display messages matters, try changing the order and
-  seeing the result*
+- Again note, that `sleep` is used to prevent the window from closing
+- The order of the display messages matters, try changing the order and
+  seeing the result
 
 ##### Making Sounds
 
 - We have text and images, the last we need is *sound*, `snaps` has the
   `play_sound` function for this purpose
-
-###### [Playing Sound](./Examples/07_PlaySound/playSound.py)
-
-- *Here we use `play_sound` to play a `.wav` audio file*
+- See the example in [Playing
+  Sounds](./Examples/07_PlaySound/playSound.py)
+- Here we use `play_sound` to play a `.wav` audio file
 
 ``` python
-#play an audio file using snaps
+# Example 3.7 Play Sound
+#
+# play an audio file using snaps
 
-import snaps
 import time
 
-snaps.play_sound('ding.wav')
+import snaps
+
+snaps.play_sound("ding.wav")
 time.sleep(5)
 ```
 
-- *Again, note we need to use `sleep` to prevent the program immediately
-  ending, which will make it seem like the sound doesn’t play!*
-- *If you want to work with audio files, a commonly used program is
-  [Audacity](https://www.audacityteam.org/)*
+- Again, note we need to use `sleep` to prevent the program immediately
+  ending, which will make it seem like the sound doesn’t play!
+- If you want to work with audio files, a commonly used program is
+  [Audacity](https://www.audacityteam.org/)
 
 #### Using `snaps` in your program
 
 - You can use the `snaps` program to add visuals and sound to some of
   the previous examples
 
-##### Exercise: [Improved Egg Timer](./Exercises/02_GUIEggTimer/eggTimer.py)
+##### [Improved Egg Timer](./Exercises/02_GUIEggTimer/eggTimer.py)
 
-*Use the `snaps` program to make an egg-timer*
+Lets use the `snaps` program to make a GUI version of our [egg timer
+program](#make-something-happen-make-an-egg-timer)
 
-Our implementation is a modification of [Exercise
-3.1](#exercise-egg-timer), essentially replacing the `print` with
-`snaps` `display_message`
+Our implementation essentially replaces the `print` with `snaps`
+`display_message`
 
 ``` python
-# reimplements the Egg Timer Exercise using the snaps library
+# Exercise 3.2 Improved Egg Timer
+#
+# Reimplements the Egg Timer Exercise using the snaps library
 # to add a visual and audio component
 
-import snaps
 import time
 
-snaps.display_image('egg_timer_background.png')
-snaps.display_message('Drop the egg in boiling water',
-                      color=(255, 0, 0), vert='top', size=100)
+import snaps
+
+snaps.display_image("egg_timer_background.png")
+snaps.display_message(
+    "Drop the egg in boiling water", color=(255, 0, 0), vert="top", size=100
+)
 time.sleep(270)
-snaps.display_message('Nearly cooked, get your spoon ready!',
-                      color=(0, 0, 255), size=100)
+snaps.display_message(
+    "Nearly cooked, get your spoon ready!", color=(0, 0, 255), size=100
+)
 time.sleep(30)
-snaps.play_sound('ding.wav')
-snaps.display_message('Egg cooked, remove now.',
-                      color=(0, 255, 0), vert='bottom', size=100)
+snaps.play_sound("ding.wav")
+snaps.display_message(
+    "Egg cooked, remove now.", color=(0, 255, 0), vert="bottom", size=100
+)
 time.sleep(30)
 ```
 
@@ -519,7 +545,7 @@ time.sleep(30)
 - We then sleep for $30$ seconds so the user has time to notice and hear
   the sound
 
-##### Exercise: [High-Low](./Exercises/03_HighLow/highLow.py)
+##### **Make Something Happen**: [High-Low](./Exercises/03_HighLow/highLow.py)
 
 *Use the random number generator and sleep to make a high-low party
 game. The game works like this,*
@@ -537,30 +563,32 @@ game. The game works like this,*
 For fun we use `snaps` for our implementation to make this visual
 
 ``` python
-# High-Low
+# Exercise 3.3 High-Low
+#
 # Implements the High-Low Party game
 # Generates a random number in the interval [1, 10]
 # Sleeps for a period of time
 # Shows another number
 # Players are asked to guess if this second number will be higher or lower
 
-import snaps
 import random
 import time
 
-snaps.display_message('The first number is...')
-time.sleep(5) #sleep so people can read the first message
+import snaps
+
+snaps.display_message("The first number is...")
+time.sleep(5)  # sleep so people can read the first message
 snaps.display_message(random.randint(1, 10))
-time.sleep(3) # leave time to read the number
-snaps.display_message('Will the next be higher or lower?')
+time.sleep(3)  # leave time to read the number
+snaps.display_message("Will the next be higher or lower?")
 
 # sleep for 20 seconds total, with a message to raise the tension with 5s left
 time.sleep(15)
-snaps.display_message('The second number is...')
+snaps.display_message("The second number is...")
 time.sleep(5)
 
 snaps.display_message(random.randint(1, 10))
-time.sleep(10) # leave time for the players to read
+time.sleep(10)  # leave time for the players to read
 ```
 
 - Observe that we have to wrap the `display_message` calls with calls to
@@ -570,11 +598,11 @@ time.sleep(10) # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  10
+    The first number is:  3
     Will the next be higher or lower?
-    The second number is:  2
+    The second number is:  9
 
-##### Exercise: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
+##### **Make Something Happen**: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
 *Use the random number generator and `sleep` to make a Nerves of Steel
 game. This game works like this*
@@ -587,26 +615,27 @@ game. This game works like this*
     standing are eliminated, and the winner is the last person to sit
     down*
 
-- Again for fun we’ll use `snaps` to make a basic window.
+Again for fun we’ll use `snaps` to make a basic window.
 
 ``` python
-# Nerves of Steel
+# Exercise 3.4 Nerves of Steel
+#
 # Implements the Nerves of Steel Party Game
 # Players stand
 # Generates a random time interval
 # All players standing after the time interval expires lose
 # Last to sit down before the interval expires wins
 
-import snaps
-
 import random
 import time
 
-snaps.display_message('Players Stand')
-time.sleep(random.randint(5, 20))
-snaps.display_message('Last to sit down wins', color=(0, 255, 0))
+import snaps
 
-time.sleep(5) #so program doesn't immediately end
+snaps.display_message("Players Stand")
+time.sleep(random.randint(5, 20))
+snaps.display_message("Last to sit down wins", color=(0, 255, 0))
+
+time.sleep(5)  # so program doesn't immediately end
 ```
 
 - We add a sleep at the end so the players have time to read the text.

@@ -1,4 +1,5 @@
 # Example 5.4: Alarm Clock with Time Display
+#
 # A variant of Alarm Clock to also always display the time
 
 import time
