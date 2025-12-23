@@ -10,7 +10,7 @@ def increment_function(input_value):
     Parameters
     ----------
     input_value : int | float
-        starting value to increment
+        value to increment
 
     Returns
     -------

@@ -12,15 +12,15 @@ class Recipe:
     """
     Represent a cooking recipe.
 
-    Attributes
+    Parameters
     ----------
     name : str
         Name of the Recipe
 
     ingredients : dict[str, list[str]]
         Ingredients required for the recipe. Ingredients are stored
-        as a dictionary in the format `ingredients[ingredient] = "description"`
-        e.g. `ingredients["Brown Onion"] = "1 Medium, diced"`
+        as a dictionary in the format `ingredients[ingredient] = ["description", ...]`
+        e.g. `ingredients["Brown Onion"] = ["1 Medium, diced"]`
     steps : list[str]
         Ordered list of instructions/steps to prepare the recipe.
 
@@ -121,6 +121,10 @@ def new_recipe():
     Returns
     -------
     None
+
+    See Also
+    --------
+    Recipe : Class responsible for storing recipe information
     """
     print("Add New Recipe")
     name = BTCInput.read_text("Enter the recipe name: ")
@@ -150,7 +154,11 @@ def save_recipes(file_name):
 
     Raises
     ------
-    An Exception is raised if the file could not be saved
+        An Exception is raised if the file could not be saved
+
+    See Also
+    --------
+    load_recipes : load recipes from a pickled file
     """
     print("Save Recipes")
     with open(file_name, "wb") as out_file:
@@ -176,6 +184,10 @@ def load_recipes(file_name):
     Raises
     ------
     An Exception is raised if the file could not be loaded
+
+    See Also
+    --------
+    save_recipes : save recipes as a pickled file
     """
     print("Load Recipes")
     global recipes
@@ -234,6 +246,11 @@ def find_recipe_by_name():
     -------
     None
         Matches are printed to standard output
+
+    See Also
+    --------
+    filter_recipe_by_name : returns a list containing recipes which match a name
+    find_recipe_by_ingredient : find recipes containing a user-prompted ingredient
     """
     print("Find Recipe by Name")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe name: "))
@@ -289,6 +306,7 @@ def find_recipe_by_ingredient():
     --------
     `filter_recipe_by_ingredient` : returns a list of all recipes matching
     a search ingredient
+    `find_recipe_by_name` : finds recipes matching a name rather than ingredient
     """
     print("Find Recipe by Ingredient")
     results = filter_recipe_by_ingredient(
@@ -418,7 +436,7 @@ def view_recipes():
 
     See Also
     --------
-    `run_view_recipe_menu` - function to view a recipe
+    `run_view_recipe_menu` - provides options for viewing a specific recipe
     """
     print("View Recipe")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe to view: "))
@@ -452,6 +470,10 @@ def edit_recipe():
     --------
 
     Edits are performed in-place and live, they cannot be rolled back
+
+    See Also
+    --------
+    filter_recipe_by_name : gives a list of recipes matching a name
     """
     print("Edit Recipe")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe to edit: "))
@@ -492,6 +514,10 @@ def remove_recipe():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_recipe_by_name : gives a list of recipes matching a name
     """
     print("Remove Recipe")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe to remove: "))

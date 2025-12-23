@@ -1,8 +1,7 @@
-# Example 10.1 Time Tracker
+# Example 10.3 Time Tracker with Class Variables
 #
-# An application which adds time tracking to the Tiny Contacts
-# application. This implementation is based on the final
-# refactored version in 02_AdvancedProgramming/09_UsingClasses/Examples/02_TinyContactsFinal
+# Improves the Time Tracker application by using class variables to store
+# the constants defining a minium and maximum session length
 #
 # Provides additional support over the original example code for duplicates in
 # the name search
@@ -31,17 +30,58 @@ class Contact:
     hours_worked : int | float
         Hours worked with a Contact, initialised to 0
 
+    min_session_length : Final[int | float]
+        minimum length of a billable session
+
+    max_session_length : Final[int | float]
+        maximum length of a billable session
+
+
     Examples
     --------
     >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
     <Contact ...>
     """
 
+    min_session_length = 0.5
+    max_session_length = 3.5
+
     def __init__(self, name, address, telephone):
         self.name = name
         self.address = address
         self.telephone = telephone
         self.hours_worked = 0
+
+    def get_hours_worked(self):
+        """
+        Gets the hours worked for this contact
+
+        Returns
+        -------
+        int | float
+            hours worked for this contact
+        """
+        return self.hours_worked
+
+    def add_session(self, session_length):
+        """
+        Adds a session (in hours) to the Contacts hours
+
+        Parameters
+        ----------
+        session_length : int | float
+            time spent on session in hours
+
+        Returns
+        -------
+        None
+        """
+        if (
+            session_length < Contact.min_session_length
+            or session_length > Contact.max_session_length
+        ):
+            return
+        self.hours_worked = self.hours_worked + session_length
 
 
 def new_contact():
@@ -110,7 +150,7 @@ def display_contact(contact):
     print("Name:", contact.name)
     print("Address:", contact.address)
     print("Telephone:", contact.telephone)
-    print("Hours worked for this Contact:", contact.hours_worked, "\n")
+    print("Hours worked for this Contact:", contact.get_hours_worked(), "\n")
 
 
 def display_contacts():
@@ -254,6 +294,7 @@ def add_session():
 
     See Also
     --------
+    Contact.add_session : add a session to a Contact instance
     find_contacts : returns contacts matching a search name
     """
     print("Add Hours")
@@ -269,10 +310,9 @@ def add_session():
                 "Add Session? (1 - Yes, 0 - No): ", min_value=0, max_value=1
             ):
                 print("Previous hours worked: ", contact.hours_worked)
-                session_length = BTCInput.read_float_ranged(
-                    prompt="Session length: ", min_value=0.5, max_value=3.5
+                contact.add_session(
+                    BTCInput.read_float("Enter session length (in hours): ")
                 )
-                contact.hours_worked = contact.hours_worked + session_length
                 print("Updated hours worked: ", contact.hours_worked)
     else:
         print("This name was not found")

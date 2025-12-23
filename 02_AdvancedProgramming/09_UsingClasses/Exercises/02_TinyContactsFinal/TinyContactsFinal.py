@@ -13,7 +13,7 @@ class Contact:
     """
     Contact with a name, address and telephone number.
 
-    Attributes
+    Parameters
     ----------
     name : str
         Contact Name
@@ -41,6 +41,10 @@ def new_contact():
     Returns
     -------
     None
+
+    See Also
+    --------
+    Contact : class for storing contact information
     """
     print("Create the new contact")
     name = BTCInput.read_text("Enter the contact name: ")
@@ -59,12 +63,12 @@ def find_contacts(search_name):
     Parameters
     ----------
     search_name : str
-        Name to search for
+        Name to search for (uses prefix matching)
 
     Returns
     -------
     list[Contact]
-        list of contacts matching the name, if no
+        list of contacts matching `search_name`, if no
         matches exist the list is empty
     """
     search_name = search_name.strip().lower()
@@ -88,6 +92,10 @@ def display_contact(contact):
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_contacts : Displays all contacts matching a search name
     """
     print("Name:", contact.name)
     print("Address:", contact.address)
@@ -102,6 +110,10 @@ def display_contacts():
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_contact : displays a single contact
     """
     print("Find contact")
     contacts = find_contacts(
@@ -125,6 +137,10 @@ def edit_contacts():
     Returns
     -------
     None
+
+    See Also
+    --------
+    find_contacts : returns contacts matching a search name
     """
     print("Edit Contact")
     contacts = find_contacts(
@@ -176,7 +192,11 @@ def save_contacts(file_name):
 
     Raises
     ------
-    Exceptions if contacts could not be saved
+        Exceptions are raised if contacts could not be saved
+
+    See Also
+    --------
+    load_contacts : loads contacts from a pickled file
     """
     print("Save contacts")
     with open(file_name, "wb") as out_file:
@@ -201,8 +221,11 @@ def load_contacts(file_name):
 
     Raises
     ------
-    Exceptions if contacts failed to load
+        Exceptions if contacts failed to load
 
+    See Also
+    --------
+    save_contacts : saves contacts to a pickled file
     """
     global contacts
     print("Load contacts")

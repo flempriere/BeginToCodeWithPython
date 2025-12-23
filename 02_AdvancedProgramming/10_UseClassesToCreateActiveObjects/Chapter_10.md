@@ -434,6 +434,103 @@ questions about their use-cases*
 
 ##### Create a Static Method to Validate Values
 
+- Cohesion generally means objects shouldn’t expose attributes for
+  external clients
+
+- Ideally clients interact with a `Contact` via method calls
+
+  - e.g. `get_hours_worked` and `add_session`
+  - Eliminates direct dependency on `hours_worked` data attribute
+
+- In the same vein, we don’t want users to directly interact with class
+  variables
+
+  - e.g. `max_session_length` and `min_session_length` are used for
+    internal validation
+  - External client should have no reason to directly modify them
+
+- Could create a method, `validate_session_length`
+
+  - Receive a `session_length` argument
+  - Return `True` if valid, else `False`
+
+- Validation information (`max_session_length` and `min_session_length`)
+  is held at the class level
+
+  - Would be nice to also have this validation method at the class level
+    too
+
+- We can create class level methods through a *Static Method*
+
+  - Static methods can be considered as methods defined on a class
+    rather than an object instance
+
+- We can define one as below,
+
+  ``` python
+    class Contact:
+
+        min_session_length = 0.5
+        max_session_length = 3.5
+
+        @staticmethod
+        def valid_session_length(session_length):
+            """
+            Validates a session length and returns
+            True if the length is valid or False if
+            invalid
+            """
+            if session_length < Contact.min_session_length or session_length > Contact.max_session_length:
+                return False
+            return True
+
+
+        def __init__(self, name, address, telephone):
+            self.name = name
+            self.address = address
+            self.telephone = telephone
+            self.hours_worked = 0
+
+        def get_hours_worked(self):
+            """
+            Get the hours worked for this contact
+            """
+            return self.hours_worked
+
+        # new method
+        def add_session(self, session_length):
+            """
+            Adds the value of the parameter
+            onto the hours worked for this contract
+            """
+            if not Contact.valid_session_length(session_length):
+                return
+            self.hours_worked = self.hours_worked + session_length
+  ```
+
+- The `@staticmethod` tag above the definition of `valid_session_length`
+  is called a *decorator*
+
+- A decorator *wraps* a function to modify how it works
+
+- Decorators are added by writing `@` followed by the decorator name
+  above the function to be wrapped
+
+  - You can wrap a function with multiple decorators
+
+- The `@staticmethod` decorator is a python language built-in
+
+  - Converts a method into a static method
+  - Static methods can exist even without an instance of the given class
+
+- Static methods can be called directly from the class e.g.
+
+  ``` python
+    print(Contact.valid_session_length(5))
+  ```
+
+      False
+
 ## Summary
 
 ## Questions and Answers

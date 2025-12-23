@@ -51,6 +51,10 @@ def sort_high_to_low():
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_low_to_high : sorts from lowest to highest
     """
     for sort_pass in range(0, len(sales)):
         done_swap = False
@@ -71,6 +75,10 @@ def sort_low_to_high():
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_high_to_low : sorts from highest to lowest
     """
     for sort_pass in range(0, len(sales)):
         done_swap = False

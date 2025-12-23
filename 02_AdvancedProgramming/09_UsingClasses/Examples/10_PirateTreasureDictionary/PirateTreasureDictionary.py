@@ -11,14 +11,21 @@ def get_treasure_location():
 
     Returns
     -------
-    dict[str, str | int]
-        Dictionary containing the location of the treasure
-        dict["start"] : str
+    dict
+        Dictionary containing the location of the treasure, containing
+        the following keys
+
+        `"start"` : str
+
             landmark to start at
-        dict["n"] : int
+
+        `"n"` : int
+
             number of paces to walk north relative to the
             start
-        dict["e"] : int
+
+        `"e"` : int
+
             number of paces to walk east relative to the
             start
     """
