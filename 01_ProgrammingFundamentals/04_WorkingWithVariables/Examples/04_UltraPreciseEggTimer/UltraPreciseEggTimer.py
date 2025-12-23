@@ -1,5 +1,4 @@
-# Example 4.4
-# Ultra-Precise Egg Timer
+# Example 4.4 Ultra-Precise Egg Timer
 #
 # A version of the Configurable Egg Timer using floating point for the input time
 

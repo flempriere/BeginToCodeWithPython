@@ -1,4 +1,5 @@
 # Exercise 6.2: Countdown
+#
 # Performs a 10-second countdown
 
 import time

@@ -1,9 +1,11 @@
 # Exercise 4.2: Advanced Alarm Clock
+#
 # An Advanced Alarm Combining the Behaviour
 # of most increments of the alarm clock
 # and allowing you to sleep in on weekends
 
 import time
+
 import snaps
 
 current_time = time.localtime()

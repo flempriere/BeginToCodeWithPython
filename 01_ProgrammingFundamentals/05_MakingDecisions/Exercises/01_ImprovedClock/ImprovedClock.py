@@ -1,4 +1,5 @@
 # Exercise 5.1: Improved Clock
+#
 # An improved clock that displays the date and time when run
 
 import time

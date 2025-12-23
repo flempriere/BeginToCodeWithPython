@@ -1,4 +1,5 @@
 # Example 5.2: Simple Alarm Clock
+#
 # Demonstrates `if` using a simple alarm clock
 
 import time

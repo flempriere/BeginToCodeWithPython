@@ -1,4 +1,5 @@
 # Exercise 4.2: Fahrenheit to Celcius
+#
 # Converts Fahrenheit to Celcius
 
 temperature_fahrenheit = float(

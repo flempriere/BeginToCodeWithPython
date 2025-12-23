@@ -8,7 +8,7 @@ sales = [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
 
 def sort_low_to_high():
     """
-    Print out a sales list from highest to lowest
+    Print out a sales list from lowest to highest
 
     Returns
     -------

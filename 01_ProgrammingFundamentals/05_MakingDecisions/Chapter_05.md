@@ -156,7 +156,7 @@ to understand booleans*
         TypeError: can only concatenate str (not "bool") to str
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[3], line 1
+        Cell In[693], line 1
         ----> 1 'Hello' + True
 
         TypeError: can only concatenate str (not "bool") to str
@@ -254,7 +254,7 @@ hour = current_time.tm_hour
 print("The hour is:", hour)
 ```
 
-    The hour is: 11
+    The hour is: 20
 
 *Run the program, it should print out the current hour*
 
@@ -287,8 +287,8 @@ hours = current_datetime.tm_hour
 print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 21 / 12 / 2025
-    The time is 11 : 4 : 32
+    The date is 23 / 12 / 2025
+    The time is 20 : 51 : 28
 
 #### Comparing Values
 
@@ -688,7 +688,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 11 : 4
+    The time is 20 : 51
 
 - *The program above will always print the current time, regardless of
   if the alarm block is run*
@@ -718,7 +718,7 @@ print("The time is", hour, ":", minute)
 >       ```
 >
 >           IndentationError: unexpected indent (1845908205.py, line 8)
->             Cell In[24], line 8
+>             Cell In[714], line 8
 >               print("The early bird gets the worm...")
 >               ^
 >           IndentationError: unexpected indent
@@ -820,7 +820,7 @@ class ifDescr BG
 > ```
 >
 >     IndentationError: unexpected indent (1682748311.py, line 7)
->       Cell In[26], line 7
+>       Cell In[716], line 7
 >         print("The early bird gets the worm...")
 >         ^
 >     IndentationError: unexpected indent
@@ -1597,8 +1597,8 @@ else:
 ```
 
     Nobody unexpected will enter your life
-    I see untold riches in your future
-    You will soon face a decision that will redefine everything
+    A life of comfort is coming
+    To define your future, avoid getting hung up on the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise

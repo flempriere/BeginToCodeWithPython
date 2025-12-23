@@ -1,4 +1,5 @@
-# Example 4.5: Pizza Order Calculator
+# Exercise 4.1.1: Pizza Order Calculator
+#
 # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
 
 students_int = int(

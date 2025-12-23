@@ -1,4 +1,5 @@
 # Example 4.7: Seattle Weather
+#
 # Uses snaps to get a description of the weather in Seattle
 
 import snaps

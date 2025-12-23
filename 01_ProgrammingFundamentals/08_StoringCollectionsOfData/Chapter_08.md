@@ -2518,7 +2518,7 @@ to make sure you understand how it works*
     print(day_name)
   ```
 
-      Sunday
+      Tuesday
 
 - This works, but is fragile, a cleaner way to do this is to use a
   *lookup table*
@@ -2552,7 +2552,7 @@ to make sure you understand how it works*
     print("Today is", day_name)
   ```
 
-      Today is Sunday
+      Today is Tuesday
 
 - Lookup tables are powerful for shrinking written code
 
@@ -2612,7 +2612,7 @@ to make sure you understand how it works*
       print("Today is", day_names[day_number])
     ```
 
-        Today is Sunday
+        Today is Tuesday
         Attempting to change the lookup table...
 
         TypeError: 'tuple' object does not support item assignment

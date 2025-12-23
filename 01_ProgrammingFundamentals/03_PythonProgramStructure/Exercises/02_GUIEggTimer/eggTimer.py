@@ -1,9 +1,11 @@
-# reimplements the Egg Timer Exercise using the snaps library
+# Exercise 3.2 Improved Egg Timer
+#
+# Reimplements the Egg Timer Exercise using the snaps library
 # to add a visual and audio component
-# By Felix Lempriere
+
+import time
 
 import snaps
-import time
 
 snaps.display_image("egg_timer_background.png")
 snaps.display_message(

@@ -1,4 +1,5 @@
 # Example 4.3: Configurable Egg Timer
+#
 # Reads in a user specified time to set the timer for
 
 import time

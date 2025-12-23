@@ -1,9 +1,11 @@
 # Exercise 5.4 Weather Helper
+#
 # Simple Weather Program that reminds the user about
 # the weather conditions, with helpful text and
 # pictures
 
 import time
+
 import snaps
 
 temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)

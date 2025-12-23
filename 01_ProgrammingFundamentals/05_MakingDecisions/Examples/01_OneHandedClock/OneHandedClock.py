@@ -1,4 +1,5 @@
 # Example 5.1: One Handed Clock
+#
 # Uses time to display the hour
 
 import time

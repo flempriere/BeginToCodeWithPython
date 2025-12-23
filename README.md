@@ -23,6 +23,7 @@ I started this repository to work through an easy and basic book before working 
 
 - [Chapter 9: Using Classes to Store Data](./02_AdvancedProgramming/09_UsingClasses/Chapter_09.md)
   - [Extension Exercises for Chapter 9](./02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.md)
+- [Chapter 10: Use Classes to Create Active Objects](./02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.md)
 
 ### Useful Python
 

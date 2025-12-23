@@ -10,11 +10,12 @@ def get_treasure_location():
 
     Returns
     -------
-    tuple[str, int, int]
-
-    [0] is a string naming the landmark to start
-    [1] is the number of paces north
-    [2] is the number of paces east
+    str
+        Name of a landmark to start at
+    int
+        Number of paces north
+    int
+        Number of paces east
     """
 
     return ("The old oak tree", 20, 30)

@@ -1,5 +1,4 @@
-# Exercise 5.5
-# Fortune Teller Program
+# Exercise 5.5 Fortune Teller Program
 #
 # A simple program that uses random numbers to generate a sequence of
 # fortunes for the user

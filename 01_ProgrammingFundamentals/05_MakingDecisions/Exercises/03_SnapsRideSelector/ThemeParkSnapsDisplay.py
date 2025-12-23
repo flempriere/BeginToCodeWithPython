@@ -1,11 +1,12 @@
 # Exercise 5.3: Snaps Ride Selector
+#
 # Reimplments the entirety of the Theme Park Ride Selector using
 # a snaps interface, and adds some audio ques to warn the user
 # when they are ineligable for ride
 
 import time
-import snaps
 
+import snaps
 
 snaps.display_image("themepark.png")
 

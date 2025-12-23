@@ -1,4 +1,5 @@
 # Example 5.7: Uppercase Greeter
+#
 # A Greeter program using string matching
 # Fixes the issues with Example 5.6 by using
 # str.upper()

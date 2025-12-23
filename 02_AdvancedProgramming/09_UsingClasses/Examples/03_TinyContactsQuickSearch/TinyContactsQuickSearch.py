@@ -35,6 +35,10 @@ def find_contact():
     Returns
     -------
     None
+
+    Notes
+    -----
+    Matches any name prefixed by the search name
     """
     print("Find contact")
     search_name = BTCInput.read_text("Enter the contact name: ")

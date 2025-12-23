@@ -45,7 +45,7 @@ class MusicTrack:
     """
     Music Track with a name and a length (in seconds)
 
-    Attributes
+    Parameters
     ----------
     name : str
         name of the music track
@@ -77,6 +77,10 @@ def new_track():
     Returns
     -------
     None
+
+    See Also
+    --------
+    MusicTrack : class for storing music track information
     """
     print("Add a new track")
     name = BTCInput.read_text("Enter the track name: ")
@@ -106,6 +110,7 @@ def filter_tracks_by_name(search_name, tracks_to_search):
     list[MusicTrack]
         list of contacts matching the name. If no matches
         exist the list is empty
+
     """
     search_name = search_name.strip().lower()  # normalise the search name
     results = []
@@ -130,6 +135,10 @@ def edit_tracks():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_tracks_by_name : filters a list of tracks by a search name
     """
     print("Edit Music Tracks")
     matched_tracks = filter_tracks_by_name(
@@ -197,6 +206,10 @@ def save_tracks(file_name):
     Raises
     ------
     An Exception is raised if the file could not be saved
+
+    See Also
+    --------
+    load_tracks : load music tracks from a pickled file
     """
     print("Save music tracks")
     with open(file_name, "wb") as out_file:
@@ -222,6 +235,10 @@ def load_tracks(file_name):
     Raises
     ------
     An Exception is raised if the file could not be loaded
+
+    See Also
+    --------
+    save_tracks : save tracks as a pickled file
     """
     global tracks  # connect to global track list to load into
     print("Load contacts")
@@ -243,6 +260,10 @@ def sort_low_to_high(tracks_to_sort):
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_high_to_low : sort tracks by decreasing track length
     """
     print("Sort low to high")
     for sort_pass in range(0, len(tracks)):
@@ -274,6 +295,10 @@ def sort_high_to_low(tracks_to_sort):
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_low_to_high : sort tracks by increasing track length
     """
     print("Sort high to low")
     for sort_pass in range(0, len(tracks)):
@@ -303,6 +328,10 @@ def display_track(track):
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_tracks : display all tracks in a list
     """
     print("Name:", track.name, "(", track.length_in_seconds, "seconds )")
 
@@ -319,6 +348,10 @@ def display_tracks(tracks):
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_track : display a single track
     """
     if len(tracks) > 0:
         for track in tracks:
@@ -338,6 +371,10 @@ def find_tracks_by_name():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_tracks_by_name : filters a list of tracks by a search name
     """
     print("Find Tracks by Name")
     search_name = BTCInput.read_text("Enter track name (Press enter to display all): ")
@@ -365,8 +402,12 @@ def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
     -------
     list[MusicTrack]
         List of MusicTracks satisfying
-        `MusicTrack.length_in_seconds <= maximum length`
+        `MusicTrack.length_in_seconds <= maximum length`.
         If no MusicTracks are found an empty list is returned
+
+    See Also
+    --------
+    filter_tracks_greater_than_length : filters out tracks shorter than a given length
     """
     tracks_shorter_than_max_length = []
     for track in tracks_to_filter:
@@ -395,8 +436,12 @@ def filter_tracks_greater_than_length(min_length, tracks_to_filter):
     -------
     list[MusicTrack]
         List of MusicTracks satisfying
-        `MusicTrack.length_in_seconds <= maximum length`
+        `MusicTrack.length_in_seconds <= maximum length`.
         If no MusicTracks are found an empty list is returned
+
+    See Also
+    --------
+    filter_tracks_shorter_than_length : filters out tracks greater than a given length
     """
     tracks_greater_than_min_length = []
     for track in tracks_to_filter:
@@ -413,6 +458,10 @@ def find_tracks_shorter_than_length():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_tracks_shorter_than_length : filters out tracks greater than a given length
     """
     max_length = read_min_valued_integer(
         "Enter the maximum track length (in seconds): ", min_value=1
@@ -428,6 +477,10 @@ def find_tracks_greater_than_length():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_tracks_greater_than_length : filters out tracks shorter than a given length
     """
     min_length = read_min_valued_integer(
         "Enter the minimum track length (in seconds): ", min_value=1
@@ -449,6 +502,10 @@ def add_track_to_playlist():
     -------
     None
         Accepted tracks are added to the global playlist
+
+    See Also
+    --------
+    filter_tracks_by_name : filters a list of tracks by a search name
     """
     print("Add track to playlist")
     matched_tracks = filter_tracks_by_name(
@@ -475,6 +532,10 @@ def remove_tracks_from_playlist():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_tracks_by_name : filters a list of tracks by a search name
     """
     print("Remove tracks from playlist")
     matched_tracks = filter_tracks_by_name(
