@@ -360,7 +360,7 @@ Hours worked: 3.0</code></pre>
 <li>Add an <code>hours_worked</code> field</li>
 </ul></li>
 </ul>
-<div id="ade76d11" class="cell" data-execution_count="1">
+<div id="ff063517" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -392,7 +392,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"This name was not found"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Don’t forget we also have to update how we display contacts for the <code>Find Contact</code> functionality (or in our case the <code>display_contact</code>) function.</p>
-<div id="9d8281bf" class="cell" data-execution_count="2">
+<div id="a2f239cb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> display_contact(contact):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Displays the Contact details for the supplied contact</span></span>
@@ -412,7 +412,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Hours worked for this Contact:"</span>, contact.hours_worked, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>If we create a new <code>Contact</code> object then we can see how this looks,</p>
-<div id="1bd79c0e" class="cell" data-execution_count="3">
+<div id="4a6aacae" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  contact <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Alice"</span>, address<span class="op">=</span><span class="st">"Bob St"</span>, telephone<span class="op">=</span><span class="st">"555"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  contact.hours_worked <span class="op">=</span> <span class="fl">5.0</span></span>
@@ -516,7 +516,7 @@ Tip
 <li>Removes the need to directly access the attribute</li>
 </ul></li>
 </ul>
-<div id="e828ed70" class="cell" data-execution_count="4">
+<div id="8c30055d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -538,7 +538,7 @@ Tip
 <li><p><em>A method is part of an object</em></p></li>
 <li><p><code>self</code> <em>tells the method which object it is a part of</em></p></li>
 <li><p><em>The code sample below shows how the method doesn’t need an additional reference to the</em> <code>Contact</code> <em>it refers to</em></p>
-<div id="edf84648" class="cell" data-execution_count="5">
+<div id="9bd5094c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set up</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"1"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  rob.hours_worked <span class="op">=</span> <span class="dv">1</span></span>
@@ -570,7 +570,7 @@ Tip
 </ol>
 <ul>
 <li><p>We can create a second method to handle adding a session to a <code>Contact</code></p>
-<div id="d33e535d" class="cell" data-execution_count="6">
+<div id="036e4fee" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># existing class definition</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
@@ -611,7 +611,7 @@ Tip
 <h4 class="anchored" data-anchor-id="add-validation-to-methods">Add Validation to Methods</h4>
 <ul>
 <li><p>Currently <code>add_session</code> would allow function calls like,</p>
-<div id="5910884a" class="cell" data-execution_count="7">
+<div id="3d715a34" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"555"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  rob.add_session(<span class="op">-</span><span class="dv">10</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(rob.get_hours_worked())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -668,7 +668,7 @@ Note
 <li>No longer magic constants</li>
 <li>Accessible by all <code>Contact</code> instances</li>
 </ul>
-<div id="3c0a2cd3" class="cell" data-execution_count="8">
+<div id="3523d846" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>      min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
@@ -728,6 +728,91 @@ Note
 </section>
 <section id="create-a-static-method-to-validate-values" class="level5">
 <h5 class="anchored" data-anchor-id="create-a-static-method-to-validate-values">Create a Static Method to Validate Values</h5>
+<ul>
+<li><p>Cohesion generally means objects shouldn’t expose attributes for external clients</p></li>
+<li><p>Ideally clients interact with a <code>Contact</code> via method calls</p>
+<ul>
+<li>e.g.&nbsp;<code>get_hours_worked</code> and <code>add_session</code></li>
+<li>Eliminates direct dependency on <code>hours_worked</code> data attribute</li>
+</ul></li>
+<li><p>In the same vein, we don’t want users to directly interact with class variables</p>
+<ul>
+<li>e.g.&nbsp;<code>max_session_length</code> and <code>min_session_length</code> are used for internal validation</li>
+<li>External client should have no reason to directly modify them</li>
+</ul></li>
+<li><p>Could create a method, <code>validate_session_length</code></p>
+<ul>
+<li>Receive a <code>session_length</code> argument</li>
+<li>Return <code>True</code> if valid, else <code>False</code></li>
+</ul></li>
+<li><p>Validation information (<code>max_session_length</code> and <code>min_session_length</code>) is held at the class level</p>
+<ul>
+<li>Would be nice to also have this validation method at the class level too</li>
+</ul></li>
+<li><p>We can create class level methods through a <em>Static Method</em></p>
+<ul>
+<li>Static methods can be considered as methods defined on a class rather than an object instance</li>
+</ul></li>
+<li><p>We can define one as below,</p>
+<div id="06875b6c" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>      min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">@staticmethod</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> valid_session_length(session_length):</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">          Validates a session length and returns</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">          True if the length is valid or False if</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">          invalid</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> session_length <span class="op">&lt;</span> Contact.min_session_length <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.max_session_length:</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">          Get the hours worked for this contact</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds the value of the parameter</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co">          onto the hours worked for this contract</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="kw">not</span> Contact.valid_session_length(session_length):</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><p>The <code>@staticmethod</code> tag above the definition of <code>valid_session_length</code> is called a <em>decorator</em></p></li>
+<li><p>A decorator <em>wraps</em> a function to modify how it works</p></li>
+<li><p>Decorators are added by writing <code>@</code> followed by the decorator name above the function to be wrapped</p>
+<ul>
+<li>You can wrap a function with multiple decorators</li>
+</ul></li>
+<li><p>The <code>@staticmethod</code> decorator is a python language built-in</p>
+<ul>
+<li>Converts a method into a static method</li>
+<li>Static methods can exist even without an instance of the given class</li>
+</ul></li>
+<li><p>Static methods can be called directly from the class e.g.</p>
+<div id="c90132c8" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(Contact.valid_session_length(<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False</code></pre>
+</div>
+</div></li>
+</ul>
 </section>
 </section>
 </section>

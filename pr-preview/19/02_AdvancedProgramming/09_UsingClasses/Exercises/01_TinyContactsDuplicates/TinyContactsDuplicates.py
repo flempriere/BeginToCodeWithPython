@@ -9,6 +9,15 @@ import BTCInput
 class Contact:
     """
     Stores Contact Information
+
+    Attributes
+    ----------
+    name : str
+        Contact Name
+    address : str
+        Contact's postal or street address.
+    telephone : str
+        Contact phone number (stored as a string).
     """
 
     pass
@@ -24,6 +33,10 @@ def new_contact():
     Returns
     -------
     None
+
+    See Also
+    --------
+    Contact : class for storing contact information
     """
     print("Create the new contact")
     new_contact = Contact()
@@ -35,6 +48,8 @@ def new_contact():
 
 def find_contact():
     """
+    Displays the contact matching a user-specified name
+
     Prompts the user for a name, and searches the contacts list.
     If the contact is found in the list, their full contact details
     are displayed
