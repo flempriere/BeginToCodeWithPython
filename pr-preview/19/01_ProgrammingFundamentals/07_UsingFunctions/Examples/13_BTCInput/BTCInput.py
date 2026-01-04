@@ -1,3 +1,8 @@
+# Example 7.13 BTCInput
+# A collection of functions for reading validated input
+# from the user
+
+
 def read_text(prompt="Please enter some text: "):
     """
     Displays a prompt and reads in a string of text.

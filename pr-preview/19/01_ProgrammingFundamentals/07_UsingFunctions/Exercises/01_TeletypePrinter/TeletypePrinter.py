@@ -4,8 +4,8 @@
 # by using a for loop and time to slowly loop over
 # an input string
 
-import time
 import random
+import time
 
 
 def teletype_printer(text, delay=0.5):

@@ -1,4 +1,5 @@
 # Example 5.3: Siren Alarm Clock
+#
 # Improves the Simple Alarm Clock to also play a sound
 
 import time

@@ -3,6 +3,7 @@
 # Uses a combination of loops and snaps to create a digital clock
 
 import time
+
 import snaps
 
 while True:

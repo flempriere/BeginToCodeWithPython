@@ -29,8 +29,9 @@ def read_sales(number_of_sales):
 
 def print_sales():
     """
-    Prints the sales figures on the screen with a heading. Each figure is
-    numbered in sequence
+    Prints the sales figures on the screen with a heading.
+
+    Each figure is numbered in sequence
 
     Returns
     -------

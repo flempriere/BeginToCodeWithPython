@@ -1,4 +1,4 @@
-# Exercise 8.2 File Output
+# Exercise 8.15 File Output
 #
 # A simple program to demonstrate opening and writing to a file
 

@@ -1,4 +1,5 @@
 # Example 5.5: Simple Alarm Clock
+#
 # Variant of the Simple Alarm Clock
 # that modifies the output depending on if its time to get up
 

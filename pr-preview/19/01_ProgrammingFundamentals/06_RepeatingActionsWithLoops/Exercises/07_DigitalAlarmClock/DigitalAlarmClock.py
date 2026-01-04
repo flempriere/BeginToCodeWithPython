@@ -4,6 +4,7 @@
 # Chapter 5, with the Digital Clock Display of Chapter 6
 
 import time
+
 import snaps
 
 while True:
@@ -56,4 +57,5 @@ while True:
 
     # display the message and then sleep
     snaps.display_message(message, size=100)
+    time.sleep(1)
     time.sleep(1)

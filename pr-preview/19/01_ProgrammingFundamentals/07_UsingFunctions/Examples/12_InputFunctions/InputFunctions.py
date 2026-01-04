@@ -1,4 +1,4 @@
-# Input Functions
+# Example 7.12 Input Functions
 # A collection of functions for reading validated input
 # from the user
 
