@@ -174,7 +174,7 @@ print('The answer is: 42')
 
 ###### **Make Something Happen**: [Make an Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
 
-*Make an egg timer program. The program should allow the user to time a 5-minute boiled egg. You can do this by modifying the [example sleep program](#using-sleep) which paused for* $5$ *seconds. For extra style points, you could make the program print, "Nearly cooked, get your spoon ready,"* $30$ *seconds before the* $5$*-minute deadline. You could even expand this into an interactive recipe program that describes the steps to be performed at each point in the recipe and then pauses until the next step is performed*
+*Make an egg timer program. The program should allow the user to time a 5-minute boiled egg. You can do this by modifying the [example sleep program](#example-using-sleep) which paused for* $5$ *seconds. For extra style points, you could make the program print, "Nearly cooked, get your spoon ready,"* $30$ *seconds before the* $5$*-minute deadline. You could even expand this into an interactive recipe program that describes the steps to be performed at each point in the recipe and then pauses until the next step is performed*
 
 Currently we haven't been show a way to get input from the user so we can't add that final step of interactivity. But the first two are fairly simple. There are $300$ seconds in $5$ minutes. So we want to tell the user to put the egg in, then sleep for $270$ seconds, then print our message to get ready, sleep for another $30$ seconds then tell the user to remove the egg.
 

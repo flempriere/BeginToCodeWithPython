@@ -24,7 +24,8 @@
   - [Working with Numbers](#working-with-numbers)
     - [Convert Strings into Integer
       Values](#convert-strings-into-integer-values)
-      - [Configurable Egg Timer](#configurable-egg-timer)
+      - [Example: Configurable Egg
+        Timer](#example-configurable-egg-timer)
       - [**Code Analysis**: Reading
         Numbers](#code-analysis-reading-numbers)
     - [Whole Numbers and Real Numbers](#whole-numbers-and-real-numbers)
@@ -38,7 +39,8 @@
         Variables](#code-analysis-working-with-floating-point-variables)
     - [Converting `string` into `float`
       values](#converting-string-into-float-values)
-      - [Ultra-Precise Egg Timer](#ultra-precise-egg-timer)
+      - [Example: Ultra-Precise Egg
+        Timer](#example-ultra-precise-egg-timer)
     - [Perform Calculations](#perform-calculations)
       - [**Code Analysis**: Work out the
         Results](#code-analysis-work-out-the-results)
@@ -49,8 +51,8 @@
       - [**Make Something Happen**: Converting Between Fahrenheit and
         Centigrade](#make-something-happen-converting-between-fahrenheit-and-centigrade)
   - [Weather Snaps](#weather-snaps)
-    - [Seattle Temperature](#seattle-temperature)
-    - [Seattle Weather](#seattle-weather)
+    - [Example: Seattle Temperature](#example-seattle-temperature)
+    - [Example: Seattle Weather](#example-seattle-weather)
     - [**Make Something Happen**: Weather Display
       Program](#make-something-happen-weather-display-program)
 - [Summary](#summary)
@@ -240,6 +242,8 @@ been defined*
 
     > [!NOTE]
     >
+    > **Identifying Errors**
+    >
     > Other languages with more strict type systems and variable
     > declarations, may be able to identify logic errors like the one
     > above.
@@ -277,7 +281,7 @@ been defined*
         NameError: name 'Total' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[52], line 2
+        Cell In[9], line 2
               1 total = 0
         ----> 2 total = Total + 10
 
@@ -393,7 +397,7 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[56], line 1
+    Cell In[13], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -452,7 +456,7 @@ print('It's a trap')
 ```
 
     SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
-      Cell In[59], line 1
+      Cell In[16], line 1
         print('It's a trap')
                           ^
     SyntaxError: unterminated string literal (detected at line 1)
@@ -501,7 +505,7 @@ Sit down just before you think the time will end. ''')
 > ```
 >
 >     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
->       Cell In[62], line 1
+>       Cell In[19], line 1
 >         print('hello")
 >               ^
 >     SyntaxError: unterminated string literal (detected at line 1)
@@ -691,7 +695,7 @@ time_text = input('Enter the cooking time in seconds: ') #receive time in second
 time_int = int(time_next) #perform conversion to number
 ```
 
-##### [Configurable Egg Timer](./Examples/03_ConfigurableEggTimer/ConfigurableEggTimer.py)
+##### Example: [Configurable Egg Timer](./Examples/03_ConfigurableEggTimer/ConfigurableEggTimer.py)
 
 - The complete program would then look like,
 
@@ -718,8 +722,8 @@ time_int = int(time_next) #perform conversion to number
 
 ##### **Code Analysis**: Reading Numbers
 
-*Consider the previous [example](#configurable-egg-timer), and answer
-the following questions*
+*Consider the previous [example](#example-configurable-egg-timer), and
+answer the following questions*
 
 1. *How many variables are used in the program above?*
 
@@ -750,7 +754,7 @@ the following questions*
         ValueError: invalid literal for int() with base 10: 'kaboom'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[68], line 1
+        Cell In[25], line 1
         ----> 1 x = int('kaboom')
 
         ValueError: invalid literal for int() with base 10: 'kaboom'
@@ -1034,7 +1038,7 @@ time_text = input('Enter the cooking time in seconds: ')
 time_float = float(time_text)
 ```
 
-##### [Ultra-Precise Egg Timer](./Examples/04_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
+##### Example: [Ultra-Precise Egg Timer](./Examples/04_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
 
 - The complete program would then look like
 
@@ -1151,7 +1155,7 @@ print('c: ', c)
 >     ZeroDivisionError: division by zero
 >     ---------------------------------------------------------------------------
 >     ZeroDivisionError                         Traceback (most recent call last)
->     Cell In[81], line 1
+>     Cell In[38], line 1
 >     ----> 1 1/0
 >
 >     ZeroDivisionError: division by zero
@@ -1241,7 +1245,7 @@ integer.*
     `int` then adding* $1$*. Explain how this changes the behaviour*
 
     ``` python
-     # Example 4.1.2: Pizza Order Calculator
+     # Exercise 4.1.2: Pizza Order Calculator
      #
      # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
      # Converts the rseult to an integer using int on pizza_count then adding one
@@ -1315,7 +1319,7 @@ A sample output may look like,
   - Data is scraped from the US National Weather Service website
   - Function takes the latitude and longitude as an argument
 
-#### [Seattle Temperature](./Examples/06_SeattleTemperature/SeattleTemperature.py)
+#### Example: [Seattle Temperature](./Examples/06_SeattleTemperature/SeattleTemperature.py)
 
 - The following program can be used to get the current temperature
   reading from Seattle using `snaps`
@@ -1332,9 +1336,14 @@ A sample output may look like,
     print("The temperature in Seattle is:", temp)
   ```
 
-      The temperature in Seattle is: 37
+      /home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+        from pkg_resources import resource_stream, resource_exists
 
-#### [Seattle Weather](./Examples/07_SeattleWeather/SeattleWeather.py)
+      pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
+      Hello from the pygame community. https://www.pygame.org/contribute.html
+      The temperature in Seattle is: 35
+
+#### Example: [Seattle Weather](./Examples/07_SeattleWeather/SeattleWeather.py)
 
 - We can also use `snaps` to get a short description of the current
   weather
@@ -1350,7 +1359,7 @@ A sample output may look like,
     print("The conditions are:", desc)
   ```
 
-      The conditions are: Clear
+      The conditions are: Partly Cloudy
 
 #### **Make Something Happen**: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
 
@@ -1381,10 +1390,11 @@ input("Press enter to continue...")
 ```
 
 As we can see most the actual getting of the temperature and weather
-data is the same as for the Seattle [Temperature](#seattle-temperature)
-and [Weather](#seattle-weather) programs. The rest of the work is done
-to construct the appropriate strings and merge them together so they can
-be passed to the `display_message` function for output
+data is the same as for the Seattle
+[Temperature](#example-seattle-temperature) and
+[Weather](#example-seattle-weather) programs. The rest of the work is
+done to construct the appropriate strings and merge them together so
+they can be passed to the `display_message` function for output
 
 ## Summary
 

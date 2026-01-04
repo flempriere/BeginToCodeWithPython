@@ -194,7 +194,7 @@ Observe that first we wrap all of the code in a `while` loop, and introduce a bo
 
 #### **Make Something Happen**: Create a Looping Countdown Program
 
-*One of the examples [in the above question set](#example-investigating-the-while-construction) involved a count***up** *to* $5$*. Implement a program that counts down from* $10$ *to* $0$ *over* $10$ *seconds*
+*One of the examples [in the above question set](#code-analysis-investigating-the-while-construction) involved a count***up** *to* $5$*. Implement a program that counts down from* $10$ *to* $0$ *over* $10$ *seconds*
 
 ```python
 # Exercise 6.2: Countdown
@@ -825,7 +825,8 @@ class in BG
 # Example 6.10 Name Printer
 #
 # Prints a collection of names
-names = ('Rob', 'Mary', 'David', 'Jenny', 'Chris', 'Imogen')
+
+names = ("Rob", "Mary", "David", "Jenny", "Chris", "Imogen")
 for name in names:
     print(name)
 ```
@@ -1009,6 +1010,7 @@ Remember we have to display the image first so that we can overlay the text on t
 # Chapter 5, with the Digital Clock Display of Chapter 6
 
 import time
+
 import snaps
 
 while True:

@@ -502,7 +502,7 @@ time_int = int(time_next) #perform conversion to number
 
 ##### **Code Analysis**: Reading Numbers
 
-*Consider the previous [example](#configurable-egg-timer), and answer the following questions*
+*Consider the previous [example](#example-configurable-egg-timer), and answer the following questions*
 
 1. *How many variables are used in the program above?*
 
@@ -864,7 +864,7 @@ Note, that I've modified the code to directly pass the input to `int` and then t
 2. *Modify the [program](./Exercises/01_PizzaOrderCalculator/PizzaOrderCalculatorIntOnResultPlusOne.py) to return an `int` by calling `int` to convert the division to an `int` then adding* $1$*. Explain how this changes the behaviour*
 
    ```python
-    # Example 4.1.2: Pizza Order Calculator
+    # Exercise 4.1.2: Pizza Order Calculator
     #
     # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
     # Converts the rseult to an integer using int on pizza_count then adding one
@@ -985,7 +985,7 @@ snaps.display_message(weather_string, size=100)
 input("Press enter to continue...")
 ```
 
-As we can see most the actual getting of the temperature and weather data is the same as for the Seattle [Temperature](#seattle-temperature) and [Weather](#seattle-weather) programs.
+As we can see most the actual getting of the temperature and weather data is the same as for the Seattle [Temperature](#example-seattle-temperature) and [Weather](#example-seattle-weather) programs.
 The rest of the work is done to construct the appropriate strings and merge them together so they can be passed to the `display_message` function for output
 
 ## Summary
