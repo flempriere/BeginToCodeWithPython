@@ -14,7 +14,7 @@
       - [**Make Something Happen**: Investigate the `random`
         Library](#make-something-happen-investigate-the-random-library)
     - [The `time` library](#the-time-library)
-      - [Using `sleep`](#using-sleep)
+      - [Example: Using `sleep`](#example-using-sleep)
         - [**Make Something Happen**: Make an Egg
           Timer](#make-something-happen-make-an-egg-timer)
   - [Python Comments](#python-comments)
@@ -26,7 +26,7 @@
       - [Display Images](#display-images)
       - [Making Sounds](#making-sounds)
     - [Using `snaps` in your program](#using-snaps-in-your-program)
-      - [Improved Egg Timer](#improved-egg-timer)
+      - [Exercise: Improved Egg Timer](#exercise-improved-egg-timer)
       - [**Make Something Happen**:
         High-Low](#make-something-happen-high-low)
       - [**Make Something Happen**: Nerves of
@@ -162,7 +162,7 @@ elements*
 > ```
 >
 >     SyntaxError: closing parenthesis '}' does not match opening parenthesis '(' (816620756.py, line 1)
->       Cell In[14], line 1
+>       Cell In[4], line 1
 >         print('The answer is: '}
 >                                ^
 >     SyntaxError: closing parenthesis '}' does not match opening parenthesis '('
@@ -177,7 +177,7 @@ elements*
 >     NameError: name 'Print' is not defined
 >     ---------------------------------------------------------------------------
 >     NameError                                 Traceback (most recent call last)
->     Cell In[15], line 1
+>     Cell In[5], line 1
 >     ----> 1 Print(2 + 2)
 >
 >     NameError: name 'Print' is not defined
@@ -213,11 +213,13 @@ import random
 print('You have rolled:', random.randint(1,6))
 ```
 
-    You have rolled: 5
+    You have rolled: 6
 
 *Try running this program multiple times and see what the output is*
 
 > [!CAUTION]
+>
+> **Modules and the Interpreter**
 >
 > If we try calling `random.randint` without importing `random` we will
 > get a `NameError` since neither `random` or `randint` will be
@@ -244,7 +246,7 @@ Return random integer in range [a,b], including both end points
     set time period
   - Other programs continue running as normal
 
-##### [Using `sleep`](./Examples/04_Sleep/sleep.py)
+##### Example: [Using `sleep`](./Examples/04_Sleep/sleep.py)
 
 *Write and execute the following program*
 
@@ -266,12 +268,12 @@ code after all lines have run*
 
 *Make an egg timer program. The program should allow the user to time a
 5-minute boiled egg. You can do this by modifying the [example sleep
-program](#using-sleep) which paused for* $5$ *seconds. For extra style
-points, you could make the program print, “Nearly cooked, get your spoon
-ready,”* $30$ *seconds before the* $5$*-minute deadline. You could even
-expand this into an interactive recipe program that describes the steps
-to be performed at each point in the recipe and then pauses until the
-next step is performed*
+program](#example-using-sleep) which paused for* $5$ *seconds. For extra
+style points, you could make the program print, “Nearly cooked, get your
+spoon ready,”* $30$ *seconds before the* $5$*-minute deadline. You could
+even expand this into an interactive recipe program that describes the
+steps to be performed at each point in the recipe and then pauses until
+the next step is performed*
 
 Currently we haven’t been show a way to get input from the user so we
 can’t add that final step of interactivity. But the first two are fairly
@@ -359,6 +361,8 @@ python -m pip install pygame --user #Mac or Linux
 
 > [!TIP]
 >
+> **Installing and Managing Packages**
+>
 > Installing python packages and python package management is a whole
 > issue. In general one should prefer virtual environments, user
 > installations to isolate packages to the specific project. A program
@@ -439,8 +443,8 @@ time.sleep(5)  # add a sleep for 5 seconds so the window doesn't autoclose
   used to display an image file.
 - Function takes the path to the image and can be an png or jpeg
 - Text can be overlayed on an image by calling `display_message` *after*
-  \`display_image\*
-- for example: [Displaying
+  `display_image`
+- For example: [Displaying
   Images](./Examples/06_DisplayingImages/displayImage.py)
 - Here we use `display_image` to render a jpeg, with some overlayed text
 
@@ -494,7 +498,7 @@ time.sleep(5)
 - You can use the `snaps` program to add visuals and sound to some of
   the previous examples
 
-##### [Improved Egg Timer](./Exercises/02_GUIEggTimer/eggTimer.py)
+##### Exercise: [Improved Egg Timer](./Exercises/02_GUIEggTimer/eggTimer.py)
 
 Lets use the `snaps` program to make a GUI version of our [egg timer
 program](#make-something-happen-make-an-egg-timer)
@@ -598,9 +602,9 @@ time.sleep(10)  # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  3
+    The first number is:  1
     Will the next be higher or lower?
-    The second number is:  9
+    The second number is:  7
 
 ##### **Make Something Happen**: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 

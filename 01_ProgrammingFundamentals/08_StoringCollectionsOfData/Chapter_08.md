@@ -5,18 +5,19 @@
     - [Limitations of Individual
       Variables](#limitations-of-individual-variables)
     - [Lists in Python](#lists-in-python)
-      - [Example: Creating a List](#example-creating-a-list)
+      - [**Make Something Happen**: Creating a
+        List](#make-something-happen-creating-a-list)
     - [Read in a List](#read-in-a-list)
-      - [Example: Investigate a List Reading
-        Loop](#example-investigate-a-list-reading-loop)
+      - [**Code Analysis**: Investigate a List Reading
+        Loop](#code-analysis-investigate-a-list-reading-loop)
     - [Display a `list` using a `for`
       Loop](#display-a-list-using-a-for-loop)
-      - [Exercise: Read the Names of Guests for a
-        Party](#exercise-read-the-names-of-guests-for-a-party)
+      - [**Make Something Happen**: Read the Names of Guests for a
+        Party](#make-something-happen-read-the-names-of-guests-for-a-party)
   - [Refactor Programs into
     Functions](#refactor-programs-into-functions)
-    - [Example: Functions in the Sales Analysis
-      Program](#example-functions-in-the-sales-analysis-program)
+    - [**Code Analysis**: Functions in the Sales Analysis
+      Program](#code-analysis-functions-in-the-sales-analysis-program)
     - [Create Placeholder Functions](#create-placeholder-functions)
     - [Create a User Menu](#create-a-user-menu)
       - [Use the `elif` keyword to simplify
@@ -25,39 +26,42 @@
     - [Initialise a list with Test
       Data](#initialise-a-list-with-test-data)
     - [Sort a List from High to Low](#sort-a-list-from-high-to-low)
-      - [Example: Work through a List using a
-        Loop](#example-work-through-a-list-using-a-loop)
-      - [Example: Improving Performance](#example-improving-performance)
-      - [Exercise: Sort Alphabetically](#exercise-sort-alphabetically)
+      - [**Code Analysis**: Work through a List using a
+        Loop](#code-analysis-work-through-a-list-using-a-loop)
+      - [**Code Analysis**: Improving
+        Performance](#code-analysis-improving-performance)
+      - [**Make Something Happen**: Sort
+        Alphabetically](#make-something-happen-sort-alphabetically)
     - [Sort a List from Low to High](#sort-a-list-from-low-to-high)
     - [Find the Highest and Lowest Sales
       Values](#find-the-highest-and-lowest-sales-values)
-    - [Evaluates Total and Average
-      Sales](#evaluates-total-and-average-sales)
+    - [Evaluate Total and Average
+      Sales](#evaluate-total-and-average-sales)
     - [Complete the Program](#complete-the-program)
   - [Store Data in a File](#store-data-in-a-file)
     - [Write into a File](#write-into-a-file)
-      - [Example: File Writing](#example-file-writing)
+      - [**Code Analysis**: File Writing](#code-analysis-file-writing)
       - [Write the Sales Figures](#write-the-sales-figures)
-      - [Example: The `save_sales`
-        Function](#example-the-save_sales-function)
+      - [**Code Analysis**: The `save_sales`
+        Function](#code-analysis-the-save_sales-function)
     - [Read from a File](#read-from-a-file)
-      - [Example: Reading from Files](#example-reading-from-files)
+      - [**Code Analysis**: Reading from
+        Files](#code-analysis-reading-from-files)
       - [Read the Sales Figures](#read-the-sales-figures)
-        - [Example: The `load_sales`
-          Function](#example-the-load_sales-function)
+        - [**Code Analysis**: The `load_sales`
+          Function](#code-analysis-the-load_sales-function)
     - [Deal with File Errors](#deal-with-file-errors)
-      - [Example: Dealing with File Handling
-        Exceptions](#example-dealing-with-file-handling-exceptions)
+      - [**Code Analysis**: Dealing with File Handling
+        Exceptions](#code-analysis-dealing-with-file-handling-exceptions)
     - [Use the `with` Construction to Tidy up File
       Access](#use-the-with-construction-to-tidy-up-file-access)
-    - [Exercise: Record a List with a `save`
-      Function](#exercise-record-a-list-with-a-save-function)
+    - [**Make Something Happen**: Record a List with a `save`
+      Function](#make-something-happen-record-a-list-with-a-save-function)
   - [Store Tables of Data](#store-tables-of-data)
-    - [Example: Inadequate Index
-      Values](#example-inadequate-index-values)
+    - [**Code Analysis**: Inadequate Index
+      Values](#code-analysis-inadequate-index-values)
     - [Use Loops to Work with Tables](#use-loops-to-work-with-tables)
-      - [Example: Loop Counting](#example-loop-counting)
+      - [**Code Analysis**: Loop Counting](#code-analysis-loop-counting)
     - [More than Two Dimensions](#more-than-two-dimensions)
   - [Use Lists as Lookup Tables](#use-lists-as-lookup-tables)
   - [Tuples](#tuples)
@@ -186,7 +190,7 @@
 - The most common form of collection is the `list`
   - What it sounds like, a list of items
 
-##### Example: Creating a List
+##### **Make Something Happen**: Creating a List
 
 *Open a python interpreter and work through the following steps to learn
 about* `list`
@@ -197,7 +201,7 @@ about* `list`
      sales = []
     ```
 
-    - *The above defines* `sales` *as an empty list*
+    - The above defines `sales` as an empty list
 
 2. *Items can be appended to a* `list` *using the* `append` *function*
 
@@ -208,7 +212,7 @@ about* `list`
 
         [99]
 
-    - *As we can see from above* `sales` *now contains the value* `99`
+    - As we can see from above `sales` now contains the value `99`
 
 3. *Calling append again, adds the new item to the end of the list*
 
@@ -222,7 +226,7 @@ about* `list`
 4. *Observe from above you can see the contents of a list, by simply
     typing the variable name in the interpreter*
 
-    - *In scripts we can also use the explicit* `print` *call*
+    - In scripts we can also use the explicit `print` call
 
       ``` python
         print(sales)
@@ -239,10 +243,10 @@ about* `list`
 
         99
 
-    - *Syntax is* `list_name[index]` *where* `index` *is an integer
-      giving the index of the item*
-    - *Python lists are zero-indexed. i.e. the first value is stored at
-      index* $0$
+    - Syntax is `list_name[index]` where `index` is an integer giving
+      the index of the item
+    - Python lists are zero-indexed. i.e. the first value is stored at
+      index $0$
 
 6. *The indexing operator can be used to change the value of an item at
     a given index*
@@ -254,29 +258,36 @@ about* `list`
 
         [99, 101]
 
-    - *The above changes the value of the second item in* `sales` *to*
-      $101$
+    - The above changes the value of the second item in `sales` to $101$
 
-- **Note:** *Whenever we use the indexing operator the index must exist!
-  For example if we tried to view the (non-existent) third item, we
-  would get an error*
+    > [!WARNING]
+    >
+    > **Indexed elements must exist**
+    >
+    > Whenever we use the indexing operator the index must exist! For
+    > example if we tried to view the (non-existent) third item, we
+    > would get an error, e.g.
+    >
+    > ``` python
+    >  example_list = [1, 2]
+    >  print(example_list[2])
+    > ```
+    >
+    >     IndexError: list index out of range
+    >     ---------------------------------------------------------------------------
+    >     IndexError                                Traceback (most recent call last)
+    >     Cell In[7], line 2
+    >           1 example_list = [1, 2]
+    >     ----> 2 print(example_list[2])
+    >
+    >     IndexError: list index out of range
+    >
+    > The above illustrates the common *off-by-one* error where we
+    > access the last index past the list rather than the last element
+    > of the list. Here the type of exception thrown is called an
+    > `IndexError`
 
-  ``` python
-    sales[2]
-  ```
-
-      IndexError: list index out of range
-      ---------------------------------------------------------------------------
-      IndexError                                Traceback (most recent call last)
-      Cell In[32], line 1
-      ----> 1 sales[2]
-
-      IndexError: list index out of range
-
-  - *Observe the error type is an* `IndexError`
-  - *Thus something we can catch and handle*
-
-1. *A single list can store values of different types, and can replace
+7. *A single list can store values of different types, and can replace
     items with new items of a different type*
 
     ``` python
@@ -287,18 +298,18 @@ about* `list`
 
         ['Python', 101, 'Rob']
 
-    - *The above appends a new string* `"Rob"`*, converts* `sales[0]`
-      *from an int to the string* `"Python"` *and leaves the number*
-      $101$ *in* `sales[1]` *untouched*
-    - *Overall list thus mixes string and integer types*
+    - The above appends a new string `"Rob"`, converts `sales[0]` from
+      an int to the string `"Python"` and leaves the number $101$ in
+      `sales[1]` untouched
+    - Overall list thus mixes string and integer types\*
 
 > [!WARNING]
 >
 > **Avoid Mixing Types in Lists**
 >
-> *Just because you **can** mix types in lists, doesn’t mean you
-> **should.** Typically lists and list processing is much easier when a
-> list stores all items of the same type*
+> *ust because you*can\* mix types in lists, doesn’t mean you *should.*
+> Typically lists and list processing is much easier when a list stores
+> all items of the same type\*
 
 #### Read in a List
 
@@ -322,31 +333,37 @@ about* `list`
     print(sales)
   ```
 
-##### Example: Investigate a List Reading Loop
+##### **Code Analysis**: Investigate a List Reading Loop
 
 *Examine the code given above and consider the following questions to
 understand how the list is processed*
 
 1. *What is the purpose of the* `count` *variable?*
-    - `count` *tracks the value of the current index in the loop. This
-      is used to print the id for the sales stand we are collecting the
-      data from*
+
+    - `count` tracks the value of the current index in the loop. This is
+      used to print the id for the sales stand we are collecting the
+      data from
+
 2. *Why does the range of* `count` *go from* $1$ *to* $11$*?*
-    - *The* `range` *function returns a collection with the start
-      included but the stop excluded. Since we have stores* $1$
-      *through* $10$*, we want the range to go from* $1$ *to* $11$ *so
-      the generated numbers are* $1$ *through to* $10$
+
+    - The `range` function returns a collection with the start included
+      but the stop excluded. Since we have stores $1$ through $10$, we
+      want the range to go from $1$ to $11$ so the generated numbers are
+      $1$ through to $10$
+
 3. *Which item in the list would hold the sales for stand number*
     $1$*?*
-    - *The first item in the list, or the zeroth indexed, i.e.*
-      `sales[0]`
+
+    - The first item in the list, or the zeroth indexed, i.e. `sales[0]`
+
 4. *What part of the code would have to be changed if we instead had*
     $100$ *stands?*
-    - *We simply change* `range(1,11)` *through to* `range(1,101)`
 
-    - *The program below
+    - We simply change `range(1,11)` through to `range(1,101)`
+
+    - The program below
       ([ReadAndDisplay2.py](./Examples/02_ReadAndDisplay/ReadAndDisplay2.py))
-      is a variant in which the user specifies the number of stands*
+      is a variant in which the user specifies the number of stands
 
       ``` python
         # Example 8.2.2 Read and Display 2
@@ -367,14 +384,16 @@ understand how the list is processed*
         print(sales)
       ```
 
-    - *The above is more flexible, but as a result it is more
+    - The above is more flexible, but as a result it is more
       complicated, the trade off between flexibility and ease of use is
-      one that should be considered with the input of the users*
+      one that should be considered with the input of the users
+
 5. *If I got one sales value wrong, would it be possible to edit the
     list to put in a corrected version?*
-    - *This is not implemented in the current program, but we have
+
+    - This is not implemented in the current program, but we have
       already seen that you can reassign the value of list at a given
-      index, so we could implement this in a more complete program*
+      index, so we could implement this in a more complete program
 
 #### Display a `list` using a `for` Loop
 
@@ -403,7 +422,7 @@ understand how the list is processed*
         count = count + 1
   ```
 
-##### Exercise: Read the Names of Guests for a Party
+##### **Make Something Happen**: Read the Names of Guests for a Party
 
 *Lists can hold any type of data that you need to store, including
 strings. You can change the ice-cream sales program to read and store
@@ -453,12 +472,16 @@ then displays them. Make your program handle between* $5$ *and* $15$
 
 - The previous examples build up our program as one long chain of events
 
+- However, if we think about our program this isn’t strictly the
+  cleanest
+
   - There are two distinct responsibilities occuring
     1. First we *read* in the data
     2. Second we *display* the data
   - These are natural candidates to be converted into functions
 
-- The program locks us into one way of processing data
+- By pairing these behaviours the program locks us into one way of
+  processing data
 
   - What happens if we want to read in a second set of data?
   - What if we want to print the data multiple times?
@@ -509,8 +532,13 @@ then displays them. Make your program handle between* $5$ *and* $15$
 
     def print_sales():
         """
-        Prints the sales figures on the screen with a heading. Each figure is
-        numbered in sequence
+        Prints the sales figures on the screen with a heading.
+
+        Each figure is numbered in sequence
+
+        Returns
+        -------
+        None
         """
         print("Sales Figures")
         count = 1
@@ -523,36 +551,44 @@ then displays them. Make your program handle between* $5$ *and* $15$
     print_sales()
   ```
 
-#### Example: Functions in the Sales Analysis Program
+#### **Code Analysis**: Functions in the Sales Analysis Program
 
 *Our sales analysis program now consists of two functions,* `read_sales`
 *and* `print_sales`
 
 1. *What does the parameter for the* `read_sales` *function do?*
-    - *We hinted at in the previous section that we might want to
-      account for the potential for the number of stands to change in a
-      future implementation. To support this behaviour* `read_sales`
-      *reads in the number of sales value that it should reads*
+
+    - We hinted at in the previous section that we might want to account
+      for the potential for the number of stands to change in a future
+      implementation. To support this behaviour `read_sales` reads in
+      the number of sales value that it should reads
+
 2. *What does* `clear` *do?*
-    - *We want to start with a fresh list every time we read the sales
-      values.* `clear` *is a method on* `list` *that clears its
-      contents*
+
+    - We want to start with a fresh list every time we read the sales
+      values
+    - `clear` is a method on `list` objects that clears its contents
+
 3. *Why don’t we need to tell the* `print_sales` *function how many
     sales figures to print?*
-    - *The* `for` *loop goes through the contents of the* `sales` *list.
-      Which tracks its own size. In some languages like C, containers do
-      not naturally track their sizes and we would need to specify them*
+
+    - The `for` loop goes through the contents of the `sales` list
+    - A list tracks its own size
+    - In some languages like C, containers do not naturally track their
+      sizes and we would need to specify them
+
 4. *Why didn’t we have to write* `global sales` *in the* `read_sales`
     *function?*
-    - *Python variable names are references to memory*
-    - *These are distinct from the **objects** that live in that memory*
-    - *Assignments change what object a reference (variable) refers to*
+
+    - Python variable names are references to memory
+    - These are distinct from the *objects* that live in that memory
+    - Assignments change what object a reference (variable) refers to
       - e.g. `sales=[]`
-    - *However, calling methods on a variable, is not changing the
-      reference e.g.* `sales.append(99)` *(They change the object
-      contents)*
-      - *So we don’t need to use global because by calling methods its
-        clear what reference we’re using*
+    - However, calling methods on a variable, is not changing the
+      reference e.g. `sales.append(99)` (They change the object
+      contents)
+      - So we don’t need to use global because by calling methods its
+        clear what reference we’re using
 
 #### Create Placeholder Functions
 
@@ -566,12 +602,29 @@ then displays them. Make your program handle between* $5$ *and* $15$
 def sort_high_to_low():
     """
     Print out a sales list from highest to lowest
+
+    Returns
+    -------
+    None
+
+    See Also
+    --------
+    sort_low_to_high : sorts from lowest to highest
     """
     pass
+
 
 def sort_low_to_high():
     """
     Print out a sales list from lowest to highest
+
+    Returns
+    -------
+    None
+
+    See Also
+    --------
+    sort_high_to_low : sorts from highest to lowest
     """
     pass
 ```
@@ -625,12 +678,33 @@ def sort_low_to_high():
   ```
 
 - We use stub functions for the unimplemented behaviour
-- **Note** The `else` condition should never trip, because of the
-  behaviour in `read_int_ranged`
-  - However we add it as the `else` clause so that if for some reason
-    someone accidently edits the code, or if `read_int_ranged` was some
-    upstream dependency we can’t control and the behaviour breaks we can
-    catch any unexpected input
+
+> [!TIP]
+>
+> **Using `Else` Clauses to Guard Against Modification**
+>
+> In the [example above](#create-a-user-menu) the final `else` clause
+> should never trip because we expect the result of
+> `BTCInput.read_int_ranged(menu, 1, 7)` to be between $1$ and $7$
+> (inclusive) which is captured by the `if..elif` chain
+>
+> Why then do we include the `else` clause? The reason is to protect
+> against modification. This could include,
+>
+> 1. The author of `BTCInput` introduces a bug in `read_int_ranged`
+>     that allows invalid input to leak through
+> 2. Someone editing the sales program changes the allowed range of
+>     input for `read_int_ranged` (perhaps to introduce new functions)
+>     but forgets to include them in the `elif` chain
+>
+> In either case, the `else` clause trips, and rather than a silent
+> error which may have occured if we expected the `else` to catch a $7$,
+> or if there was no `else` an exception is raised, which immediately
+> notifies us that there’s a problem in the code
+>
+> This technique of guarding against potential modifications is a simple
+> technique for catching sources of errors and making sure you’re
+> confirming your assumptions
 
 ##### Use the `elif` keyword to simplify conditions
 
@@ -724,7 +798,7 @@ block-beta
 
 > [!IMPORTANT]
 >
-> **Swap two values in a variable**
+> **Swap Two Values in a Variable**
 >
 > The following code to swap two variables is broken,
 >
@@ -768,29 +842,36 @@ for count in range(0, len(sales) - 1):
         sales[count + 1] = temp
 ```
 
-##### Example: Work through a List using a Loop
+##### **Code Analysis**: Work through a List using a Loop
 
 *The above code uses some new python features. Work through the
 following questions to understand what’s going on*
 
 1. *Why have you used a* `for` *loop, rather than a* `while` *loop?*
-    - *We could use either, the* `for` *loop is slightly smaller since
-      we don’t have to manually increment* `count`*. Additionally*
-      `range` *technically returns what is called a **generator**, this
-      is more memory efficient, as rather than creating a full list of
-      numbers in memory, it just returns the next number each time the*
-      `for` *loop requests it*
+
+    - We could use either, the `for` loop is slightly smaller since we
+      don’t have to manually increment `count`
+    - Additionally `range` technically returns what is called a
+      *generator*,
+    - This is more memory efficient
+      - Rather than creating a full list of numbers in memory, it just
+        returns the next number each time the `for` loop requests it
+
 2. *What does the* `len` *function do on line* $1$*?*
-    - `len` *returns the length of a collection, i.e. the number of
-      items in the collection. This lets you write code that is
-      insensitive to the size of the collection being worked with. This
-      means our sorting code could work on any length list*
+
+    - `len` returns the length of a collection, i.e. the number of items
+      in the collection
+    - This lets you write code that is insensitive to the size of the
+      collection being worked with
+    - Means our sorting code could work on any length list
+
 3. *Why is the limit of* `count` *the length of the list minus 1?*
-    - *This is because bubble sort compares the current item to the item
-      to its right, i.e. at the **next** index. If the range goes to the
-      last index, then program will try an access an element one past
-      the end of the list which doesn’t exist. This will cause an error.
-      e.g.*
+
+    - This is because bubble sort compares the current item to the item
+      to its right, i.e. at the **next** index
+    - If the range goes to the last index, then program will try an
+      access an element one past the end of the list which doesn’t exist
+      - This will cause an error. e.g.
 
     ``` python
      a_list = [1,2]
@@ -804,7 +885,7 @@ following questions to understand what’s going on*
         IndexError: list index out of range
         ---------------------------------------------------------------------------
         IndexError                                Traceback (most recent call last)
-        Cell In[34], line 3
+        Cell In[9], line 3
               1 a_list = [1,2]
               2 for count in range(0, len(a_list)):
         ----> 3     if a_list[count] < a_list[count + 1]:
@@ -941,7 +1022,7 @@ print("Output list:", sales)
     Input list: [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
     Output list: [100, 89, 75, 54, 54, 50, 45, 33, 29, 22]
 
-##### Example: Improving Performance
+##### **Code Analysis**: Improving Performance
 
 *As seen above, the sorting program now works correctly. Once you have a
 working implementation its worth investigating if there are changes you
@@ -949,16 +1030,17 @@ can make to improve the efficiency. Work through the following questions
 to get the idea*
 
 1. *Is the program making more comparisons than necessary?*
-    - *Yes, as we mentioned before, after one pass the smallest item
-      will always be at the end of the collection*
 
-    - *This means we don’t need to check any swaps against it any more
-      for the inner loop*
+    - Yes, as we mentioned before, after one pass the smallest item will
+      always be at the end of the collection
 
-    - *After each pass the size of this sorted section increases by at
-      least one*
+    - This means we don’t need to check any swaps against it any more
+      for the inner loop
 
-    - *An implementation taking this into account is,*
+    - After each pass the size of this sorted section increases by at
+      least one
+
+    - An implementation taking this into account is,
 
       ``` python
         for sort_pass in range(0, len(sales)):
@@ -971,14 +1053,15 @@ to get the idea*
 
 2. *Is the program performing more passes through the list than
     nessecary?*
-    - *Probably, unless the largest value is at the end of the list all
-      values should be **bubbled** to their correct spot by then*
 
-    - *We can stop doing additional passes if we work out the list is
-      already sorted*
-
-    - *How?* we use a flag to track if any swaps occur in a pass. If
-      none do then the list is already sorted and we can stop\*
+    - Probably, unless the largest value is at the end of the list all
+      values should be *bubbled* to their correct spot in less than
+      `len(sales)` passes
+    - We can stop doing additional passes if we work out the list is
+      already sorted
+    - How?
+      - We use a flag to track if any swaps occur in a pass
+      - If none do then the list is already sorted and we can stop
 
       ``` python
         # Example 8.8 Efficient Bubble Sort
@@ -1019,14 +1102,14 @@ to get the idea*
           Input list: [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
           Output list: [100, 89, 75, 54, 54, 50, 45, 33, 29, 22]
 
-##### Exercise: Sort Alphabetically
+##### **Make Something Happen**: Sort Alphabetically
 
 *Bubble sort works for strings as well as integers. We saw that in
 [Chapter 5](../05_MakingDecisions/Chapter_05.qmd#comparison-operators)
 the python relational operators also work for strings. See if you can
 modify the [Party Guest
-Program](#exercise-read-the-names-of-guests-for-a-party) to display the
-names in alphabetical order*
+Program](#make-something-happen-read-the-names-of-guests-for-a-party) to
+display the names in alphabetical order*
 
 We can basically just reuse our sort code, but renamed for the guest
 program.
@@ -1066,16 +1149,16 @@ guests[count] > guests[count + 1]
 ```
 
 This is because as written the program tries to put the *smallest*
-strings last, but for strings where the relational operator is
+strings last, but for strings; where the relational operator is
 alphabetically ordered this puts strings starting with *a* for example,
 after those starting with *z* etc. So we need to swap the sign so that
 the list is printed *a, b, … , z* etc.
 
 Why don’t we have to make more modifications? Well the code as written
-only requires that the items being sorted are stored in a collection,
-and that the items in the list can be compared with a relational
-operator. Both of these properties are satisfied by a collection of
-strings so the code effectively works out of the box
+only requires that the items being sorted are stored in a list, and that
+the items in the list can be compared with a relational operator. Both
+of these properties are satisfied by a collection of strings so the code
+effectively works out of the box
 
 The complete code, including the integration with reading and printing
 the guest list is given in
@@ -1202,7 +1285,7 @@ the guest list is given in
   - The code above is given in
     [HighestAndLowest.py](./Examples/10_FindHighestAndLowest/HighestAndLowest.py)
 
-#### Evaluates Total and Average Sales
+#### Evaluate Total and Average Sales
 
 - To evaluate the total we have to sum the contents of a list, simple
   using the `for` loops we’ve looked at, (implementation in
@@ -1251,9 +1334,9 @@ the guest list is given in
     sales = [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
 
 
-    def total_sales():
+    def average_sales():
         """
-        Print out the total sales of a sales list
+        Print out the average sales of a sales list
 
         Returns
         -------
@@ -1268,7 +1351,7 @@ the guest list is given in
 
     print("Input list:", sales)
 
-    total_sales()
+    average_sales()
   ```
 
       Input list: [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
@@ -1340,6 +1423,10 @@ def sort_high_to_low():
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_low_to_high : sorts from lowest to highest
     """
     for sort_pass in range(0, len(sales)):
         done_swap = False
@@ -1360,6 +1447,10 @@ def sort_low_to_high():
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_high_to_low : sorts from highest to lowest
     """
     for sort_pass in range(0, len(sales)):
         done_swap = False
@@ -1464,6 +1555,8 @@ while True:
 
 > [!WARNING]
 >
+> **Keeping Information Synchronised when Sorting**
+>
 > Playing around with the program you might notice one thing. The stands
 > are numbered in the order that they are printed. This works great for
 > printing the original list out, but once we start sorting these
@@ -1491,7 +1584,7 @@ while True:
   ``` python
     def save_sales(file_path):
         """
-        Saves the contents of the sales list in the file given by file_path
+        Saves the contents of the sales list to a file
 
         Parameters
         ----------
@@ -1499,21 +1592,25 @@ while True:
         file_path : str
             string giving the file path to save to
 
+        Returns
+        -------
+        None
+
         Raises
         ------
         FileException
             Raised if the save fails
 
-        Returns
-        -------
-        None
+        See Also
+        --------
+        load_sales : load sales from a sales list file
         """
         print("Save the sales in:", file_path)
 
 
     def load_sales(file_path):
         """
-        loads the contents of the file given by file_path into the sales list
+        loads the contents of a file into the sales list
 
         Parameters
         ----------
@@ -1521,20 +1618,27 @@ while True:
         file_path : str
             string giving the file path to load from
 
+        Returns
+        -------
+        None
+
         Raises
         ------
         FileException
             Raised if the load fails
 
-        Returns
-        -------
-        None
+        See Also
+        --------
+        save_sales : save the sales list into a file
         """
         print("Load the sales in:", file_path)
   ```
 
 - We also add a basic integration to the user menu, where we use
   `BTCInput.read_text` to get a file name, then call the function
+
+- Observe that by adding the complete docstring’s we’re also starting to
+  document the requirements for these functions in-code
 
   ``` python
       elif command == 7:
@@ -1607,7 +1711,7 @@ while True:
   program](./Examples/15_FileOutput/FileOutput.py) is,
 
   ``` python
-    # Exercise 8.2 File Output
+    # Exercise 8.15 File Output
     #
     # A simple program to demonstrate opening and writing to a file
 
@@ -1617,43 +1721,67 @@ while True:
     output_file.close()
   ```
 
-##### Example: File Writing
+##### **Code Analysis**: File Writing
 
 *Consider the following questions about file writing*
 
 1. *Why have you called the* `write` *function a method? Isn’t it a
     function?*
-    - *As discussed earlier, methods are functions associated with a
-      specific object. Typically when we say functionw we refer to a
-      function that is defined outside of an object.* `write` *is a
-      method on the file object. It is impossible to use* `write`
-      *without there being a file object to use. Methods allow us to
-      work with multiple file objects without having to worry about
-      making sure we pass the correct one to the function*
+
+    - As discussed earlier, methods are functions associated with a
+      specific object
+    - Typically when we say functionw we refer to a function that is
+      defined outside of an object
+    - `write` is a method on the file object
+      - It is impossible to use `write` without there being a file
+        object to use
+      - Methods allow us to work with multiple file objects without
+        having to worry about making sure we pass the correct one to the
+        function
+
 2. *What does the* `\n` *mean at the end of the strings?*
-    - *It’s the new line symbol* `write` *doesn’t automatically end the
-      line after we call it, so we have to manually pass the new line*
+
+    - It’s the new line symbol `write` doesn’t automatically end the
+      line after we call it
+    - We have to manually pass the new line
+
 3. *Where is the file* `text.txt` *actually created?*
-    - *The file_path is relative to the current running python program.
-      So the file is written to the same directory. E.g. if we had a
-      folder called “My Programs” with a python program “MakeFiles.py”,
-      when we run “MakeFiles.py” the files it makes are stored in “My
-      Programs”. You can use more complicated file_paths*
-      1. `path = "./data/test.txt"` *would look for test.txt in the
-          data subdirectory of the current python program (relative
-          path)*
-      2. `path = "c:/data/test.txt"` *would look for test.txt in the
-          data subdirectory of the c drive (absolute path)*
-    - **Note**: On Windows the `\` is used to seperate directories, but
-      in python you always use `/`
+
+    - The file_path is relative to the current running python program
+
+    - Hence the file is written to the same directory
+
+      - E.g. if we had a folder called “My Programs” with a python
+        program “MakeFiles.py”, when we run “MakeFiles.py” the files it
+        makes are stored in “My Programs”
+
+    - You can use more complicated file_paths
+
+      1. `path = "./data/test.txt"` would look for test.txt in the data
+          subdirectory of the current python program (relative path)
+      2. `path = "c:/data/test.txt"` would look for test.txt in the
+          data subdirectory of the c drive (absolute path)
+
+      > [!NOTE]
+      >
+      > **Denoting a Directory Seperator**
+      >
+      > On Windows `\` is used to seperate directories, but in python
+      > you always use `/`
+
 4. *Can any program use a file written from a Python program?*
-    - *Yes, python uses the underlying operating systems file handling
-      services, so any other program on the operating system can access
-      it.*
+
+    - Yes, python uses the underlying operating systems file handling
+      services
+    - Any other program on the operating system can access files created
+      or modified by python
+
 5. *Can I add lines at the end of a python file?*
-    - *Yes, rather than open the file in write* `w`*, you open the file
-      in append* `a`*. Any writes will then be appended to the end of
-      the file. A non-existent file will be created*
+
+    - Yes, rather than open the file in write `w`, you open the file in
+      append (`a`).
+    - Any writes will then be appended to the end of the file.
+    - A non-existent file will be created the same way as for write mode
 
 ##### Write the Sales Figures
 
@@ -1670,7 +1798,7 @@ while True:
 
     def save_sales(file_path):
         """
-        Saves the contents of the sales list in the file given by file_path
+        Saves the contents of the sales list to a file
 
         Parameters
         ----------
@@ -1678,14 +1806,14 @@ while True:
         file_path : str
             string giving the file path to save to
 
+        Returns
+        -------
+        None
+
         Raises
         ------
         FileException
             Raised if the save fails
-
-        Returns
-        -------
-        None
         """
         print("Save the sales in: ", file_path)
         output_file = open(file_path, "w")
@@ -1697,7 +1825,7 @@ while True:
     save_sales("test_output.txt")
   ```
 
-##### Example: The `save_sales` Function
+##### **Code Analysis**: The `save_sales` Function
 
 *The* `save_sales` *function combines several behaviours and is worth
 examining in detail. What is the purpose of the function? To take a list
@@ -1706,15 +1834,19 @@ format that is easy for a human to read and to load back into the
 program.) Consider the following questions*
 
 1. *What does the* `str` *function do? Why are we using it?*
-    - *The* `str` *function converts the sales number to a string*
-    - *While* `print` *can handle non-string inputs,* `write` *can only
-      take a string*
+
+    - The `str` function converts the sales number to a string
+    - While `print` can handle non-string inputs, `write` can only take
+      a string
+
 2. *Why can’t we just write out the sales list as one object?*
-    - *A* `list` *does not provide any built-in methods for writing an
-      object out to a file*
-    - *We could try and print out it’s string representation (i.e. call*
-      `str` *and output that, but that doesn’t give us great ability to
-      control the way the data is output)*
+
+    - A `list` does not provide any built-in methods for writing an
+      object out to a file
+    - We could try and print out it’s string representation (i.e. call
+      `str` and output that)
+    - Doesn’t give us great ability to control the way the data is
+      output
 
 #### Read from a File
 
@@ -1751,7 +1883,7 @@ program.) Consider the following questions*
     input_file.close()
   ```
 
-##### Example: Reading from Files
+##### **Code Analysis**: Reading from Files
 
 *Work through the following questions to understand how reading from
 files works*
@@ -1765,64 +1897,69 @@ files works*
      line 2
     ```
 
-    - *Every time we read a line from a file, we read the terminating
-      new line. This is included in the string stored in* `line` *so
-      when we call print we get that new line **and** the new line added
-      by* `print`
+    - Every time we read a line from a file, we read the terminating new
+      line
 
-    - *We could fix this by modifying our* `print` *call, to remove the
-      new line*
+    - This is included in the string stored in `line` so when we call
+      print we get that new line *and* the new line added by `print`
+
+    - We could fix this by modifying our `print` call, to remove the new
+      line
 
       ``` python
         print(line, end='')
       ```
 
-    - *A more natural way to fix this is to remove the newline when we
-      first read in the string. The* `strip` *method when called without
-      arguments returns a copy of the string with all leading and
-      trailing whitespace removed from the string*
+    - A more natural way to fix this is to remove the newline when we
+      first read in the string
 
-      ``` python
-        line = line.strip()
-      ```
+    - The `strip` method when called without arguments returns a copy of
+      the string with all leading and trailing whitespace removed from
+      the string
 
-    - *This is an example of conditioning input. Which is the process of
-      making sure that an input does not contain any unexpected values.
-      For example we might also want to use* `strip` *to remove
-      non-printable characters*
+    ``` python
+      line = line.strip()
+    ```
 
-      - `lstrip` *and* `rstrip` *are variants of* `strip` *that only
-        work on the lead or end of the string respectively*
+    - This is an example of *conditioning input*
+    - Process of making sure that an input does not contain any
+      unexpected values
+    - E.g. we might also want to use `strip` to remove non-printable
+      characters
+      - `lstrip` and `rstrip` are variants of `strip` that only work on
+        the lead or end of the string respectively
 
 2. *Why do we have to close the file we’re reading?*
 
-    - *For reading a file forgetting to close it won’t cause issues with
-      other programs or processes that also try to read from the file*
-    - *However, lets other programs now write to that file*
-    - *Releases the memory associated with holding the connection*
-    - *Your computer might not let you shut down if it thinks there are
-      still unclosed files*
+    - For reading a file forgetting to close it won’t cause issues with
+      other programs or processes that also try to read from the file
+    - However, lets other programs now write to that file
+    - Releases the memory associated with holding the connection
+    - Your computer might not let you shut down if it thinks there are
+      still unclosed files
 
 3. *What would happen if you tried to write to a file that had been
     opened for reading?*
 
-    - *An exception will be raised*
-    - `r+` *is a mode that lets you read and write to a file*
-    - *You typically don’t want to read and write to a file at the same
-      time*
-      - *Hard to ensure the integrity of the data and avoid corrupting
-        it, (Such as by writing a line longer than the one previously
-        written - this may corrupt the next line)*
-    - *A better pattern is to load data, update the data then write that
-      back into the file*
+    - An exception will be raised
+    - `r+` is a mode that lets you read and write to a file
+    - You typically don’t want to read and write to a file at the same
+      time
+      - Hard to ensure the integrity of the data and avoid corrupting it
+      - Such as by writing a line longer than the one previously written
+        - this may corrupt the next line
+    - A better pattern is to load data, update the data then write that
+      back into the file
+      - A temporary file (often abreviated as a *tmp* file) can be used
+        if we need an intermediate file to write to
 
 4. *Can a program read an entire file at once?*
 
-    - *Yes, the* `read` *method by default will try to read an entire
-      file*
-    - *line endings are preserved*
-    - *Be careful with large files, as this may overwhelm your computers
-      memory…*
+    - Yes, the\* `read` method by default will try to read an entire
+      file
+    - line endings are preserved
+    - Be careful with large files, as this may overwhelm your computers
+      memory…
 
     ``` python
      # Example 8.18 File Read
@@ -1850,7 +1987,7 @@ files works*
 
     def load_sales(file_path):
         """
-        loads the contents of the file given by file_path into the sales list
+        loads the contents of a file into the sales list
 
         Parameters
         ----------
@@ -1858,14 +1995,14 @@ files works*
         file_path : str
             string giving the file path to load from
 
+        Returns
+        -------
+        None
+
         Raises
         ------
         FileException
             Raised if the load fails
-
-        Returns
-        -------
-        None
         """
         print("Load the sales in:", file_path)
         sales.clear()
@@ -1876,7 +2013,7 @@ files works*
         input_file.close()
   ```
 
-###### Example: The `load_sales` Function
+###### **Code Analysis**: The `load_sales` Function
 
 `load_sales` *works as the opposite of* `save_sales` *instead of taking
 a sales list and putting it into a text file, we pull the figures from a
@@ -1884,12 +2021,15 @@ file and load them into the sales list. Consider the following
 questions*
 
 1. *What does the* `int` *function do?*
-    - *The numbers pulled out of the file are initially stored as a
-      string*
-    - *We need to convert them to a number, so we call* `int`
+
+    - The numbers pulled out of the file are initially stored as a
+      string
+    - We need to convert them to a number, so we call `int`
+
 2. *What happens if the input file was empty?*
-    - *The function works as one would hope, the loop doesn’t iterate
-      and we get an empty sales list*
+
+    - The function works as one would hope
+    - The loop doesn’t iterate and we get an empty sales list
 
 #### Deal with File Errors
 
@@ -1915,7 +2055,7 @@ questions*
         print("Something went wrong with the file")
   ```
 
-##### Example: Dealing with File Handling Exceptions
+##### **Code Analysis**: Dealing with File Handling Exceptions
 
 *The code performing the file write is wrapped in a* `try...except`
 *block. If* `write`, `open` *or* `close` *causes an exception it will be
@@ -1925,24 +2065,29 @@ closed and the user is informed*
 
 1. *In what circumstances will the code in the* `except` *part be
     executed?*
-    - *If any of the file functions,* `write`*,* `open`*, or* `close`
-      *raise an exception, the code in the* `except` *part will be
-      executed. An error is thus only printed when an error occurs*
+
+    - If any of the file functions, `write`, `open`, or `close` raise an
+      exception, the code in the `except` part will be executed
+    - An error message is thus only printed when an error occurs
+
 2. *In what circumstances will the “File written successfully?” message
     be printed?*
-    - *This is only printed if every step in the file writing process is
-      completed successfully*
+
+    - This is only printed if every step in the file writing process is
+      completed successfully
+
 3. *An error message is always printed if an error is thrown, but will
     the file always be closed?*
-    - *No, this is a problem, as we said that all files needed to be
-      closed even when an error occurs!*
-    - *We could put the* `close` *statement in the exception handling
+
+    - No, this is a problem, as we said that all files needed to be
+      closed even when an error occurs!
+    - We could put the `close` statement in the exception handling
       section to, but a more general solution to this problem is to use
-      a* `finally` *block*
-      - *A* `finally` *block contains code that is always executed after
-        all of the* `try` *and/or* `except` *code has executed*
-      - *Could for code that we naturally want to run after the block no
-        matter if the process succeeds or fail (such as clean-up)*
+      a `finally` block
+      - A `finally` block contains code that is always executed after
+        all of the `try` and/or `except` code has executed
+      - Good for code that we naturally want to run after the block no
+        matter if the process succeeds or fail (such as clean-up)
 
     ``` python
      try:
@@ -2076,7 +2221,7 @@ block-beta
 
     def save_sales(file_path):
         """
-        Saves the contents of the sales list in the file given by file_path
+        Saves the contents of the sales list to a file
 
         Parameters
         ----------
@@ -2084,14 +2229,18 @@ block-beta
         file_path : str
             string giving the file path to save to
 
+        Returns
+        -------
+        None
+
         Raises
         ------
         FileException
             Raised if the save fails
 
-        Returns
-        -------
-        None
+        See Also
+        --------
+        load_sales : load sales from a given file
         """
         print("Save the sales in:", file_path)
         try:
@@ -2104,7 +2253,7 @@ block-beta
 
     def load_sales(file_path):
         """
-        loads the contents of the file given by file_path into the sales list
+        loads the contents of a file into the sales list
 
         Parameters
         ----------
@@ -2112,14 +2261,18 @@ block-beta
         file_path : str
             string giving the file path to load from
 
+        Returns
+        -------
+        None
+
         Raises
         ------
         FileException
             Raised if the load fails
 
-        Returns
-        -------
-        None
+        See Also
+        --------
+        save_sales : save sales to a file
         """
         print("Load the sales in:", file_path)
         sales.clear()
@@ -2162,23 +2315,21 @@ block-beta
             # do something regardless of success or fail without releasing resource
   ```
 
-#### Exercise: Record a List with a `save` Function
+#### **Make Something Happen**: Record a List with a `save` Function
 
 *Add a* `save` *function to your party guest program so that you can
 record a list of people who attended your party*
 
 We build off our version that generates a [sorted
-list](#exercise-sort-alphabetically). We can basically copy the
-`save_sales` function making changes to the refer to the `guests` list
-instead of `sales` and giving a more appropriate name to the loop
+list](#make-something-happen-sort-alphabetically). We can basically copy
+the `save_sales` function making changes to the refer to the `guests`
+list instead of `sales` and giving a more appropriate name to the loop
 variable.
 
 ``` python
 def save(file_path):
     """
-    Saves the guest list to a user-specified file given by file path
-
-    Informs the user if an error occurs
+    Saves the guest list to a file
 
     Parameters
     ----------
@@ -2189,6 +2340,11 @@ def save(file_path):
     Returns
     -------
     None
+
+    Raises
+    ------
+    FileException
+        Raised if the save fails
     """
     print("Save the guest list in:", file_path)
     try:
@@ -2260,7 +2416,7 @@ block-beta
     50
     80
     10
-    Blank1[" "]
+    Blank1["..."]
 
     class Stand1 BG
 
@@ -2268,7 +2424,7 @@ block-beta
     54
     98
     7
-    Blank2[" "]
+    Blank2["..."]
 
     class Stand2 BG
 
@@ -2276,7 +2432,7 @@ block-beta
     29
     40
     80_2["80"]
-    Blank3[" "]
+    Blank3["..."]
 
     class Stand3 BG
 
@@ -2324,7 +2480,7 @@ block-beta
 
         80
 
-#### Example: Inadequate Index Values
+#### **Code Analysis**: Inadequate Index Values
 
 *It can be difficult to get the hang of working with multiple indices.
 Which of the following indices would fail when the program runs?*
@@ -2335,11 +2491,13 @@ Statement 2: week_sales[8][7] = 88
 Statement 3: week_sales[7][10] = 100
 ```
 
-1. *Statement 1 is valid*
-2. *Statement 2 is invalid because the first index* $8$ *corresponds to
-    the day of the week. The valid indices here are* $0$ *to* $6$
-3. *Statement 3 is also invalid for the same reason; even though there
-    are seven days of the week, the list is zero indexed*
+1. Statement 1 is **valid**
+2. Statement 2 is **invalid** because the first index $8$ corresponds
+    to the day of the week
+    - The valid indices here are $0$ to $6$
+3. Statement 3 is also **invalid** for the same reason
+    - Even though there are seven days of the week
+    - The list is zero indexed
 
 *Let’s see this in action*
 
@@ -2360,7 +2518,7 @@ week_sales[8][7]
     IndexError: list index out of range
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
-    Cell In[45], line 1
+    Cell In[20], line 1
     ----> 1 week_sales[8][7]
 
     IndexError: list index out of range
@@ -2374,7 +2532,7 @@ week_sales[7][10]
     IndexError: list index out of range
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
-    Cell In[46], line 1
+    Cell In[21], line 1
     ----> 1 week_sales[7][10]
 
     IndexError: list index out of range
@@ -2417,28 +2575,36 @@ week_sales[7][10]
   - `sales_value` is then each value in the current list referenced by
     `day_sales`
 
-##### Example: Loop Counting
+##### **Code Analysis**: Loop Counting
 
 *Consider the code for summing the sales data in [the previous
 example](#use-loops-to-work-with-tables). Answer the following questions
 to make sure you understand how it works*
 
 1. *How many times will the statements inside the two loops be obeyed?*
-    - *In total they will be run* $70$ *times. The outer loop runs seven
-      times (once for each day of the week) and the inner loop runs ten
-      times (one for each stand) for each iteration of the outer loop*
+
+    - In total they will be run $70$ times
+    - The outer loop runs seven times (once for each day of the week)
+    - The inner loop runs ten times (one for each stand)
+      - *for* each iteration of the outer loop
+
 2. *How would you change this program so that it could handle more than
     one week’s worth of sales?*
-    - *We can add more days to the list. Rather than have them
-      correspond to Monday - Friday it might be Week 1 Day 1 etc.*
-    - *These would be additional rows in the list of lists*
+
+    - We can add more days to the list
+    - Rather than have them correspond to Monday - Friday it might be
+      Week 1 Day 1 etc.
+    - These would be additional rows in the list of lists
+
 3. *How would we add a day’s worth of sales to the list?*
-    - *We have to read in a new list of values, we can then append it to
-      the list of lists*
+
+    - We have to read in a new list of values
+
+    - Can then append it to the list of lists
 
       ``` python
         read_sales(10) # read ten values into sales list
-        week_sales.append(sales) # append the values to the   weekly sales list
+        week_sales.append(sales) # append the values to the weekly sales list
       ```
 
 #### More than Two Dimensions
@@ -2469,7 +2635,7 @@ to make sure you understand how it works*
 >
 > The computer itself is perfectly happy working in higher dimensions.
 > The real difficulty is that you probably aren’t and it can be hard to
-> reason about high dimensional data
+> reason about high dimension data
 
 ### Use Lists as Lookup Tables
 
@@ -2484,8 +2650,8 @@ to make sure you understand how it works*
 
 - Here we need to have a variable to control what day is printed
 
-  - Most simple implementation is an integer to track the day,
-    implemented in [DayNameIf.py](./Examples/22_DayNameIf/DayNameIf.py)
+  - Simplest implementation is an integer to track the day, implemented
+    in [DayNameIf.py](./Examples/22_DayNameIf/DayNameIf.py)
 
   ``` python
     # Example 8.22 Day Name If
@@ -2525,7 +2691,7 @@ to make sure you understand how it works*
 
   - i.e. we use `day_number` to index a list that stores the correct day
 
-- We `import time` for fun so the program prints the current day
+- We use the`time` library for fun so the program prints the current day
 
   ``` python
     # Example 8.23 Day Name List
@@ -2576,10 +2742,12 @@ to make sure you understand how it works*
 
 - A tuple is like a list, but the contents cannot be changed
   - A tuple is said to be *immutable*
-
   - If we attempt to change the tuple we get an error, (demonstrated in
     the implementation
     [DayNameList.py](./Examples/24_DayNameTuple/DayNameTuple.py))
+    - Specifically a `TypeError`
+    - Because the action we are trying to take (change the value at an
+      index) is not supported by the object type (tuple)
 
     ``` python
       # Example 8.24 Day Name Tuple
@@ -2618,7 +2786,7 @@ to make sure you understand how it works*
         TypeError: 'tuple' object does not support item assignment
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[50], line 27
+        Cell In[25], line 27
              23 print("Today is", day_name)
              25 print("Attempting to change the lookup table...")
         ---> 27 day_names[day_number] = "Splatterday"  # type: ignore
@@ -2629,9 +2797,11 @@ to make sure you understand how it works*
   rather than `[]`
 - Tuples are good for working with complicated values
   - e.g. composite types
-- Example: Consider a pirates treasure map, the treasure’s location is
-  given by a reference landmark, then a number of steps north and a
-  number of steps east
+- For Example, consider a pirates treasure map
+  - Treasure’s location is given by
+    1. A reference landmark
+    2. Number of steps north
+    3. Number of steps east
 - A function can strictly speaking `return` *one* value
   - We can return multiple values as a `tuple`
 
@@ -2667,11 +2837,12 @@ to make sure you understand how it works*
 >
 >     Returns
 >     -------
->     tuple(str, int, int)
->
->     [0] is a string naming the landmark to start
->     [1] is the number of paces north
->     [2] is the number of paces east
+>     str
+>         Name of a landmark to start at
+>     int
+>         Number of paces north
+>     int
+>         Number of paces east
 >     """
 >
 >     return ("The old oak tree", 20, 30)

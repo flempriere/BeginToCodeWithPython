@@ -2,41 +2,46 @@
 
 - [Notes](#notes)
   - [The `while` construction](#the-while-construction)
-    - [Example: Investigating the `while`
-      construction](#example-investigating-the-while-construction)
-    - [Exercise: Create a Looping Selection
-      Program](#exercise-create-a-looping-selection-program)
-    - [Exercise: Create a Looping Countdown
-      Program](#exercise-create-a-looping-countdown-program)
+    - [**Code Analysis**: Investigating the `while`
+      construction](#code-analysis-investigating-the-while-construction)
+    - [**Create a Looping Selection Program**: Create a Looping
+      Selection
+      Program](#create-a-looping-selection-program-create-a-looping-selection-program)
+    - [**Make Something Happen**: Create a Looping Countdown
+      Program](#make-something-happen-create-a-looping-countdown-program)
     - [Handling Invalid User Entry](#handling-invalid-user-entry)
       - [Make a Loop to Validate Input](#make-a-loop-to-validate-input)
-        - [Exercise: Add Ride Number Validation to the Theme Park Ride
-          Selector](#exercise-add-ride-number-validation-to-the-theme-park-ride-selector)
-        - [Example: When good loops go
-          bad](#example-when-good-loops-go-bad)
-        - [Exercise: Add Validation to the Theme Park Age
-          Input](#exercise-add-validation-to-the-theme-park-age-input)
+        - [**Make Something Happen**: Add Ride Number Validation to the
+          Theme Park Ride
+          Selector](#make-something-happen-add-ride-number-validation-to-the-theme-park-ride-selector)
+        - [**Code Analysis**: When good loops go
+          bad](#code-analysis-when-good-loops-go-bad)
+        - [**Make Something Happen**: Add Validation to the Theme Park
+          Age
+          Input](#make-something-happen-add-validation-to-the-theme-park-age-input)
   - [Detect Invalid Number Entry using
     Exceptions](#detect-invalid-number-entry-using-exceptions)
     - [Exceptions and Number Reading](#exceptions-and-number-reading)
-      - [Example: Handling Exceptions in
-        Loops](#example-handling-exceptions-in-loops)
+      - [**Code Analysis**: Handling Exceptions in
+        Loops](#code-analysis-handling-exceptions-in-loops)
     - [Handling Multiple Exceptions](#handling-multiple-exceptions)
   - [`break` out of Loops](#break-out-of-loops)
   - [Return to the top of a loop with
     `continue`](#return-to-the-top-of-a-loop-with-continue)
   - [Count a Repeating Loop](#count-a-repeating-loop)
-    - [Example: CounterIntelligence](#example-counterintelligence)
-    - [Exercise: Allow the User to Select the Times
-      Value](#exercise-allow-the-user-to-select-the-times-value)
+    - [**Code Analysis**:
+      CounterIntelligence](#code-analysis-counterintelligence)
+    - [**Make Something Happen**: Allow the User to Select the Times
+      Value](#make-something-happen-allow-the-user-to-select-the-times-value)
   - [The `for` Loop Construction](#the-for-loop-construction)
-    - [Example: Loops, `break` and
-      `continue`](#example-loops-break-and-continue)
-    - [Exercise: Make a Times Table
-      Quiz](#exercise-make-a-times-table-quiz)
+    - [**Code Analysis**: Loops, `break` and
+      `continue`](#code-analysis-loops-break-and-continue)
+    - [**Make Something Happen**: Make a Times Table
+      Quiz](#make-something-happen-make-a-times-table-quiz)
   - [Make a Digital Clock using
     Snaps](#make-a-digital-clock-using-snaps)
-    - [Exercise: Digital Alarm Clock](#exercise-digital-alarm-clock)
+    - [**Make Something Happen**: Digital Alarm
+      Clock](#make-something-happen-digital-alarm-clock)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -95,15 +100,15 @@ class suiteDescr BG
     `while` loop
   - If the condition is *still* `True` then the loop runs again
 
-#### Example: Investigating the `while` construction
+#### **Code Analysis**: Investigating the `while` construction
 
 *Use the python interpreter to run the following to understand the*
 `while` *loop*
 
 1. *Can we use a boolean value to control a* `while` *construction?*
 
-    - *Yes, for example the block of statements in the* `while` *here
-      shouldn’t run*
+    - Yes, for example the block of statements in the `while` here
+      shouldn’t run
 
     ``` python
      while False:
@@ -115,8 +120,8 @@ class suiteDescr BG
 
 2. *Can a loop go on forever?*
 
-    - *Yes, an control expression for a* `while` *that always evaluates*
-      `True` *will cause the loop to run infinitely*
+    - Yes, an control expression for a `while` that always evaluates
+      `True` will cause the loop to run infinitely
 
     ``` python
      while True:
@@ -124,10 +129,10 @@ class suiteDescr BG
      print("Outside the Loop")
     ```
 
-    - *The above should only print* `"Loop"` *when executed*
-    - *If you accidently do this you may need to use `CTRL+C`, `CRTL+Z`
+    - The above should only print `"Loop"` when executed
+    - If you accidently do this you may need to use `CTRL+C`, `CRTL+Z`
       or an interrupt execution feature of your live environment to stop
-      the execution*
+      the execution
 
 3. *Will the following program ever print out the message,*
     `"Outside loop"`*?*
@@ -138,7 +143,7 @@ class suiteDescr BG
      print("Outside Loop")
     ```
 
-    - *No, the above is a quintessential infinite loop*
+    - No, the above is a quintessential infinite loop
 
 4. *Will the following program ever print out the message,*
     `"Inside Loop"`*? How about* `"Outside loop"`*?*
@@ -151,12 +156,16 @@ class suiteDescr BG
 
         Outside Loop
 
-    - *The* `while` *never executes the statements inside so*
-      `"Inside Loop"` *is never printed, but* `"Outside Loop"` *is.*
+    - The `while` never executes the statements inside so
+      `"Inside Loop"` is never printed, but `"Outside Loop"` is.
 
 5. *What will the following program print?*
 
     ``` python
+     # Example 6.1 Loop with Flag
+     #
+     # Demonstrates control of a loop with a boolean flag
+
      flag = True
      while flag:
          print("Inside Loop")
@@ -167,13 +176,14 @@ class suiteDescr BG
         Inside Loop
         Outside Loop
 
-    - *When we first enter the loop* `flag` *is* `True` *so the loop
-      executes and* `"Inside Loop"` *is printed*, `flag` *is then set*
-      `False` *so on the next iteration of the loop, the loop doesn’t
-      execute. We move to the next statement outside of the loop and
-      print out* `"Outside Loop"`
-    - *The pattern of using a control variable that is updated in the
-      loop body in a* `while` *loop is very common*
+    - When we first enter the loop `flag` is `True` so the loop executes
+      and\*`"Inside Loop"` is printed
+    - `flag` is then set `False` so on the next iteration of the loop,
+      the loop doesn’t execute.
+    - We move to the next statement outside of the loop and print out
+      `"Outside Loop"`
+    - The pattern of using a control variable that is updated in the
+      loop body in a `while` loop is very common
 
 6. *What will the following program print?*
 
@@ -185,14 +195,20 @@ class suiteDescr BG
      print("Outside Loop")
     ```
 
-    - *This looks similar to the previous, but note the typo, we refer
-      to* `Flag` **not** `flag` *inside the loop, which defines a*
-      **new** *variable, instead of modifying the loop control. We thus
-      get an infinite series of* `"Inside Loop"` *being printed.*
+    - This looks similar to the previous, but note the typo, we refer to
+      `Flag` *not* `flag` inside the loop
+    - This which defines a *new* variable, instead of modifying the loop
+      control.
+    - We thus get an infinite series of `"Inside Loop"` being printed.
 
 7. *What will the following program print?*
 
     ``` python
+     # Example 6.2 Loop with Counter
+     #
+     # Demonstrates use control of a while loop
+     # using a conditional expression
+
      count = 0
      while count < 5:
          print("Inside Loop")
@@ -207,13 +223,14 @@ class suiteDescr BG
         Inside Loop
         Outside Loop
 
-    - `count` *is initially set to* $0$*, at each iteration we print*
-      `"Inside Loop"` *and increase the value of* `count` *by* $1$*. The
-      loop stops once* `count` *reaches* $5$ *This means that*
-      `"Inside Loop"` *should be printed* $5$ *times, followed by*
-      `"Outside Loop"`
+    - `count` is initially set to $0$
+    - At each iteration we print `"Inside Loop"` \* and increase the
+      value of `count` by $1$
+    - The loop stops once `count` reaches $5$
+    - This means that `"Inside Loop"` should be printed $5$ times,
+      followed by `"Outside Loop"`
 
-#### Exercise: Create a Looping Selection Program
+#### **Create a Looping Selection Program**: Create a Looping Selection Program
 
 *Use a* `while` *loop, to make a theme park selector that runs
 continously. All you need to do is put all of the statements that
@@ -226,6 +243,11 @@ Selector](../05_MakingDecisions/Chapter_05.qmd#use-decisions-to-make-an-applicat
 are then,
 
 ``` python
+# Exercise 6.1 Looping Ride Selector
+#
+# Wraps the Ride Selector Program in a while
+# loop to allow the user to look at multiple rides
+
 run_program = True
 
 while run_program:
@@ -258,15 +280,16 @@ not, we set the program to quit on the next loop iteration by setting
 ride_number is valid. (The full code is in
 [LoopingRideSelector.py](./Exercises/01_LoopingRideSelector/LoopingRideSelector.py))
 
-#### Exercise: Create a Looping Countdown Program
+#### **Make Something Happen**: Create a Looping Countdown Program
 
 *One of the examples [in the above question
-set](#example-investigating-the-while-construction) involved a
+set](#code-analysis-investigating-the-while-construction) involved a
 count***up** *to* $5$*. Implement a program that counts down from* $10$
 *to* $0$ *over* $10$ *seconds*
 
 ``` python
 # Exercise 6.2: Countdown
+#
 # Performs a 10-second countdown
 
 import time
@@ -359,7 +382,7 @@ of the loop won’t run.
       test *after* executing the loop body for the first time
       - Would allow us to write the above as one construct
 
-###### Exercise: Add Ride Number Validation to the Theme Park Ride Selector
+###### **Make Something Happen**: Add Ride Number Validation to the Theme Park Ride Selector
 
 *Add ride number validation to the Looping Ride Selector implementation.
 Remember that the* `while` *construction must be added after the*
@@ -371,6 +394,12 @@ the code to now use $0$ as the explicit value for quitting rather than
 inferring any non-ride-number as a quit value. The main changes are,
 
 ``` python
+# Exercise 6.3 Ride Selector with Ride Number Validation
+#
+# Adds Ride Number validation to the Ride Selector
+# The program will query the user until a valid ride number or
+# the quit number is given
+
 while run_program:
     print("""Welcome to our Theme Park
         These are the available ride:
@@ -398,7 +427,7 @@ while run_program:
 The complete code is given in
 [RideNumberValidation.py](./Exercises/03_RideNumberValidation/RideNumberValidation.py)
 
-###### Example: When good loops go bad
+###### **Code Analysis**: When good loops go bad
 
 *When creating composite conditions for loops, making sure the logic is
 correct is incredibly important. Examine the following program to
@@ -417,16 +446,17 @@ print("Thank you for entering your age")
 ```
 
 1. *What is the fault in this program?*
-    - *The condition* `age < 1 and age > 95` *requires* `age` *to be
-      both* **less than** $1$ **and** **greater than** $95$*, this is
-      impossible, so the loop never runs*
+    - The condition `age < 1 and age > 95` requires `age` to be both
+      *less than* $1$ **and** *greater than* $95$, this is impossible,
+      so the loop never runs
 2. *What will the fault cause the program to do?*
-    - *Since the loop body can never run, every entered age will be
-      considered valid*
+    - Since the loop body can never run, every entered age will be
+      considered valid
 3. *How do you fix this?*
-    - *The desired logic is that* `age` *should be between* $1$ and $95$
-      *inclusive. This logic is captured by the* `or` *operator. The
-      corrected expression is*
+    - The desired logic is that `age` should be between $1$ and $95$
+      inclusive. This logic is captured by the `or` operator.
+
+    - The corrected expression is\*
 
       ``` python
         while age < 1 or age > 95
@@ -451,7 +481,7 @@ print("Thank you for entering your age")
 > $5$, $6$. i.e. we test either side of the boundary, and on the
 > boundary
 
-###### Exercise: Add Validation to the Theme Park Age Input
+###### **Make Something Happen**: Add Validation to the Theme Park Age Input
 
 *Add age validation to the Ride Selection Program. The theme park owner
 has told you that the minimum age for anyone going on a ride at the
@@ -500,7 +530,7 @@ The full code is given in
       ValueError: invalid literal for int() with base 10: 'three'
       ---------------------------------------------------------------------------
       ValueError                                Traceback (most recent call last)
-      Cell In[21], line 2
+      Cell In[6], line 2
             1 ride_number_text = "three"
       ----> 2 ride_number = int(ride_number_text)
 
@@ -669,7 +699,7 @@ class exceptTwoStatementsDescr BG
 - We’ve seen how to use exceptions to handle invalid types
 - Now let’s put that together to write a loop to handle exceptions
 
-##### Example: Handling Exceptions in Loops
+##### **Code Analysis**: Handling Exceptions in Loops
 
 *We want to make a program that will perform a* `while` *construction as
 long as the user keeps typing in text that cannot be converted into a
@@ -836,6 +866,12 @@ print("Outside loop")
   given below
 
 ``` python
+# Example 6.8: Ignore Ride
+#
+# Demonstrates the use of continue to move
+# to the next loop iteration, skipping remaining
+# loop logic
+
 while True:
     ride_number_text = input("Please enter the ride number you want: ")
     ride_number = int(ride_number_text)
@@ -889,38 +925,38 @@ while count < 13:
   that after $12$ loop iterations the loop condition evaluates `False`
   and the loop ends
 
-#### Example: CounterIntelligence
+#### **Code Analysis**: CounterIntelligence
 
 - *Consider the previous [example](#count-a-repeating-loop) and answer
   the following questions*
 
 1. *What statement would you change if you wanted to generate the times
     table for three instead of two?*
-    - *We would change* `times_value`
+    - We would change `times_value`
 2. *Which statement would you change if you wanted to generate up to
     the* $24$ *times table?*
     - We would change the loop condition to `count < 25`
 3. *What would happen to the program if we changed the line*
     `count = count + 1` *to* `count = count - 1`
-    - *The loop would produce negative times tables, and never stop
-      since* `count` *will be decreased every iteration and thus is
-      always less than* $13$
+    - The loop would produce negative times tables, and never stop since
+      `count` will be decreased every iteration and thus is always less
+      than $13$
 
-#### Exercise: Allow the User to Select the Times Value
+#### **Make Something Happen**: Allow the User to Select the Times Value
 
 *Write a version of the [previous example](#count-a-repeating-loop) that
 asks the user for the value of the times table they want. Add validation
 so that the user must enter a number between* $2$ *and* $12$ *inclusive*
 
-- Our solution (given in
-  [UserSelectedTimesTableTutor.py](./Exercises/05_UserSelectedTimesTableTutor.py/UserSelectedTimesTableTutor.py))
-  prompts the user to enter a number between $2$ - $12$ inclusive, and
-  then validates that the input is in the range. A `try`, `except` block
-  is used to catch any invalid input type, and the whole thing is
-  wrapped in a `while True` block that only ends once a valid integer in
-  the range $2$ - $12$ is received through the use of a `break`
-  statement.
-- The actual times tables code is then identical
+Our solution (given in
+[UserSelectedTimesTableTutor.py](./Exercises/05_UserSelectedTimesTableTutor.py/UserSelectedTimesTableTutor.py))
+prompts the user to enter a number between $2$ - $12$ inclusive, and
+then validates that the input is in the range.
+
+A `try`, `except` block is used to catch any invalid input type, and the
+whole thing is wrapped in a `while True` block that only ends once a
+valid integer in the range $2$ - $12$ is received through the use of a
+`break` statement. - The actual times tables code is then identical
 
 ``` python
 # Exercise 6.5 User SelectedTimes Tables Tutor
@@ -1026,7 +1062,8 @@ class in BG
 # Example 6.10 Name Printer
 #
 # Prints a collection of names
-names = ('Rob', 'Mary', 'David', 'Jenny', 'Chris', 'Imogen')
+
+names = ("Rob", "Mary", "David", "Jenny", "Chris", "Imogen")
 for name in names:
     print(name)
 ```
@@ -1073,7 +1110,7 @@ for count in range(1, 13):
   - `continue` causes the loop to proceed to the next item in the
     collection
 
-#### Example: Loops, `break` and `continue`
+#### **Code Analysis**: Loops, `break` and `continue`
 
 *Look at the following simple programs, and answer the corresponding
 questions about* `break` *and* `continue`
@@ -1094,9 +1131,9 @@ questions about* `break` *and* `continue`
         4
         Finished
 
-    - *It would print* `1`, `2`, `3`, `4` *then* `"finished"` *since
-      when* `count` *is* $5$ *the loop breaks* **before** *the print
-      statement and then the print outside the loop is called*
+    - It would print `1`, `2`, `3`, `4` then `"finished"`
+    - Since when `count` is $5$ the loop breaks **before** the print
+      statement and then the print outside the loop is called
 
 2. *What would the following code print?*
 
@@ -1121,11 +1158,11 @@ questions about* `break` *and* `continue`
         12
         Finished
 
-    - *This program is similar to the above, except it would print* `1`
-      *through to* `12` *but skip* `5`*, before printing* `"Finished"`*.
-      This is because the* `continue` *causes the loop iteration for*
-      `count = 5` *to skip the print statement in the loop and go to the
-      next loop iteration*
+    - This program is similar to the above, except it would print `1`
+      through to `12` but skip `5`, before printing `"Finished"`.
+    - This is because the `continue` causes the loop iteration for
+      `count = 5` to skip the print statement in the loop and go to the
+      next loop iteration
 
 3. *What would the following code print?*
 
@@ -1150,12 +1187,12 @@ questions about* `break` *and* `continue`
         13
         Finished
 
-    - *This will print* $13$ *twelve times, because each time* `count`
-      *starts a loop iteration it is set to the next value in the*
+    - This will print $13$ twelve times, because each time `count`
+      starts a loop iteration it is set to the next value in the
       `range(1, 13)`
-      - *Then inside the loop* `count` *is set to* `13` *and that value
-        is printed*
-    - *Of course* `"Finished"` *is printed after the loop is down*
+      - Then inside the loop `count` is set to `13` and that value is
+        printed
+    - Of course `"Finished"` is printed after the loop is down
 
 4. *Would the following program run forever?*
 
@@ -1167,7 +1204,7 @@ questions about* `break` *and* `continue`
 
         Finished
 
-    - *No, it will immediately end because* `break` *exits the loop*
+    - No, it will immediately end because `break` exits the loop
 
 5. *Would the following program print the message “Looping”?*
 
@@ -1177,9 +1214,9 @@ questions about* `break` *and* `continue`
          print('Looping')
     ```
 
-    - *No, the loop will hit the* `continue` *keyword and the go back to
-      the start*
-    - *This happens forever*
+    - No, the loop will hit the `continue` keyword and the go back to
+      the start
+    - This happens forever
 
 6. *What would the following program do? Is it legal?*
 
@@ -1200,11 +1237,11 @@ questions about* `break` *and* `continue`
         l
         d
 
-    - *Strings are collections of letters*
-    - *The above program works, it loops over and prints each letter in
-      the string*
+    - Strings are collections of letters
+    - The above program works, it loops over and prints each letter in
+      the string
 
-#### Exercise: Make a Times Table Quiz
+#### **Make Something Happen**: Make a Times Table Quiz
 
 *Reverse the behaviour of the times-table program so that rather than
 printing out the times-table your program insteads asks questions like,*
@@ -1256,7 +1293,7 @@ for question in range(0, NumberOfQuestions):
             print("Please enter an integer")
     if answer == correct_answer:
         score = score + 1
-        print("Corect!")
+        print("Correct!")
     else:
         print("Sorry that's wrong!")
         print("The correct answer is", correct_answer, "you gave", answer)
@@ -1289,7 +1326,7 @@ while True:
     time.sleep(1)
 ```
 
-#### Exercise: Digital Alarm Clock
+#### **Make Something Happen**: Digital Alarm Clock
 
 *Combine the digital clock display from [the previous
 example](#make-a-digital-clock-using-snaps) with the alarm clock from
@@ -1319,6 +1356,7 @@ text on top.
 # Chapter 5, with the Digital Clock Display of Chapter 6
 
 import time
+
 import snaps
 
 while True:

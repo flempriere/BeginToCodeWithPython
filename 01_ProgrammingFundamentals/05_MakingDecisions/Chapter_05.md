@@ -3,20 +3,21 @@
 - [Notes](#notes)
   - [Boolean Data](#boolean-data)
     - [Create Boolean Values](#create-boolean-values)
-    - [Example: Working with Boolean
-      Values](#example-working-with-boolean-values)
+    - [**Code Analysis**: Working with Boolean
+      Values](#code-analysis-working-with-boolean-values)
     - [Boolean Expressions](#boolean-expressions)
-      - [Example: One-Handed Clock](#example-one-handed-clock)
-      - [Exercise: Improved Clock](#exercise-improved-clock)
+      - [**Make Something Happen**: One-Handed
+        Clock](#make-something-happen-one-handed-clock)
+      - [**Exercise**: Improved Clock](#exercise-improved-clock)
     - [Comparing Values](#comparing-values)
       - [Comparison Operators](#comparison-operators)
-        - [Example: Examining Comparison
-          Operators](#example-examining-comparison-operators)
+        - [**Code Analysis**: Examining Comparison
+          Operators](#code-analysis-examining-comparison-operators)
     - [Boolean Operations](#boolean-operations)
-      - [Example: Examining Boolean
-        Operators](#example-examining-boolean-operators)
+      - [**Code Analysis**: Examining Boolean
+        Operators](#code-analysis-examining-boolean-operators)
   - [The `if` Construct](#the-if-construct)
-    - [Example: Simple Alarm Clock](#example-simple-alarm-clock)
+    - [**Example**: Simple Alarm Clock](#example-simple-alarm-clock)
     - [Conditions in Python](#conditions-in-python)
     - [Combine Python Statements into a
       Suite](#combine-python-statements-into-a-suite)
@@ -24,21 +25,23 @@
       - [Example: Time Display Alarm
         Clock](#example-time-display-alarm-clock)
     - [Structure of an `if` Statement](#structure-of-an-if-statement)
-      - [Example: Layout of Conditional
-        Statements](#example-layout-of-conditional-statements)
+      - [**Code Analysis**: Layout of Conditional
+        Statements](#code-analysis-layout-of-conditional-statements)
     - [Add an `else` to an `if`
       Construction](#add-an-else-to-an-if-construction)
       - [Example: Simple Alarm Clock with
         Else](#example-simple-alarm-clock-with-else)
-      - [Example: If Constructions](#example-if-constructions)
+      - [**Code Analysis**: If
+        Constructions](#code-analysis-if-constructions)
     - [Compare Strings in Programs](#compare-strings-in-programs)
       - [Example: Broken Greeter](#example-broken-greeter)
-      - [Example: Methods and Functions](#example-methods-and-functions)
+      - [**Code Analysis**: Methods and
+        Functions](#code-analysis-methods-and-functions)
     - [Nesting `if` Conditions](#nesting-if-conditions)
       - [Example: Protected Greeter](#example-protected-greeter)
     - [Working with Logic](#working-with-logic)
-      - [Exercise: Make an Advanced Alarm
-        Clock](#exercise-make-an-advanced-alarm-clock)
+      - [**Make Something Happen**: Make an Advanced Alarm
+        Clock](#make-something-happen-make-an-advanced-alarm-clock)
   - [Use Decisions to make an
     Application](#use-decisions-to-make-an-application)
     - [Design the User Interface](#design-the-user-interface)
@@ -48,9 +51,12 @@
     - [Input Snaps](#input-snaps)
       - [Example: Theme Park Snaps
         Display](#example-theme-park-snaps-display)
-      - [Exercise: Snaps Ride Selector](#exercise-snaps-ride-selector)
-      - [Exercise: Weather Helper](#exercise-weather-helper)
-      - [Exercise: Fortune Teller](#exercise-fortune-teller)
+      - [**Make Something Happen**: Snaps Ride
+        Selector](#make-something-happen-snaps-ride-selector)
+      - [**Make Something Happen**: Weather
+        Helper](#make-something-happen-weather-helper)
+      - [**Make Something Happen**: Fortune
+        Teller](#make-something-happen-fortune-teller)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -88,13 +94,13 @@ it_is_time_to_get_up = False
 - Note that `True` and `False` are python keywords, and are
   case-sensitive, e.g. true and false will not work as expected
 
-#### Example: Working with Boolean Values
+#### **Code Analysis**: Working with Boolean Values
 
 *Open up the python interpreter and work through the following questions
 to understand booleans*
 
-1. \*What do you think would happen if you printed the contents of a
-    boolean value?
+1. *What do you think would happen if you printed the contents of a
+    boolean value?*
 
     ``` python
     it_is_time_to_get_up = True
@@ -103,25 +109,25 @@ to understand booleans*
 
         True
 
-    - *Python will try to print out something meaningful, for a boolean
-      this is either* `True` *or* `False`
+    - Python will try to print out something meaningful, for a boolean
+      this is either `True` or `False`
 
-2. *What do you think would happen if you gave the word* **True** to
-    the `input` function?
+2. *What do you think would happen if you gave the word **True** to
+    the* `input` *function?*
 
-    ``` bash
+    ``` text
     x = input("True or False: ")
     True or False: True
     ```
 
     - `input` returns it’s input as a string, so in this case `x` will
-      not be a `bool` but rather a `string` with the value `'True'`
+      not be a `bool` but rather a `string` with the value `"True"`
 
 3. *Is there a python function called* `bool` *that will convert things
     into Boolean, just like there are* `int` *and* `float` *functions?*
 
-    - *Yes there is, consistent behaviour with bool. Consider the
-      following examples*
+    - Yes there is, consistent behaviour with bool. Consider the
+      following examples
 
     ``` python
     print(bool(1))
@@ -139,15 +145,15 @@ to understand booleans*
         False
         True
 
-    - *We can see that non-zero numbers evaluate* `True` *while zero,
-      evaluates as* `False`. *Similarly the empty string evaluates*
-      `False` *while a non-empty string evaluates as* `True`
+    - We can see that non-zero numbers evaluate `True` while zero,
+      evaluates as `False` Similarly the empty string evaluates `False`
+      while a non-empty string evaluates as `True`
 
 4. *What happens if a program combines* `bool` *values with other
     values?*
 
-    - *We should already expect that if we try to mix incompatible data
-      that an error should be generated*
+    - We should already expect that if we try to mix incompatible data
+      that an error should be generated
 
     ``` python
      'Hello' + True
@@ -156,15 +162,13 @@ to understand booleans*
         TypeError: can only concatenate str (not "bool") to str
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[693], line 1
+        Cell In[3], line 1
         ----> 1 'Hello' + True
 
         TypeError: can only concatenate str (not "bool") to str
 
-    - *We can see that we cannot concatenate a boolean value to a
-      string*
-    - *The behaviour can be a little less intuitive with numbers
-      though*,
+    - We can see that we cannot concatenate a boolean value to a string
+    - The behaviour can be a little less intuitive with numbers though,
 
     ``` python
     1 + True
@@ -172,7 +176,7 @@ to understand booleans*
 
         2
 
-    - `True` *is implicitly converted to the integer value* $1$
+    - `True` is implicitly converted to the integer value $1$
 
     ``` python
     1 + False
@@ -180,10 +184,11 @@ to understand booleans*
 
         1
 
-    - *Similarly,* `False` *is implicitly converted to the intger value*
+    - Similarly, `False` is implicitly converted to the integer value
       $0$
-    - *We can see that numeric operations on bool thus have well-allowed
-      behaviour but we cannot do the same with textual data*
+    - We can see that numeric operations on bool thus have well-allowed
+      behaviour
+    - String operations (i.e. textual data) are not compatible
 
 #### Boolean Expressions
 
@@ -196,11 +201,11 @@ to understand booleans*
     [before](../03_PythonProgramStructure/Chapter_03.qmd#the-time-library)
 
     ``` python
-    import time
+      import time
 
-    current_time = time.localtime()
+      current_time = time.localtime()
 
-    hour = current_time.tm_hour
+      hour = current_time.tm_hour
     ```
 
   - `time.localtime` returns an object containing information about the
@@ -234,7 +239,7 @@ to understand booleans*
 | tm_wday       | 2         |
 | tm_yday       | 200       |
 
-##### Example: One-Handed Clock
+##### **Make Something Happen**: One-Handed Clock
 
 *Lets make a clock that displays only the hour value, using `localtime`.
 These* **one-handed clocks** *are supposed promote a more relaxed
@@ -243,22 +248,23 @@ attitude. Create a new program
 and copy the below text.*
 
 ``` python
-# Example 5.1: One Handed Clock
-# Uses time to display the hour
+    # Example 5.1: One Handed Clock
+    #
+    # Uses time to display the hour
 
-import time
+    import time
 
-current_time = time.localtime()
-hour = current_time.tm_hour
+    current_time = time.localtime()
+    hour = current_time.tm_hour
 
-print("The hour is:", hour)
+    print("The hour is", hour)
 ```
 
-    The hour is: 20
+    The hour is 11
 
-*Run the program, it should print out the current hour*
+Run the program, it should print out the current hour
 
-##### Exercise: Improved Clock
+##### **Exercise**: Improved Clock
 
 *Improve the previous
 [example](./Chapter_05.qmd#example-one-handed-clock) to produce a more
@@ -269,26 +275,27 @@ simply need to format the attribute as nessecary. The final
 [program](./Exercises/01_ImprovedClock/ImprovedClock.py) is given below
 
 ``` python
-# Exercise 5.1: Improved Clock
-# An improved clock that displays the date and time when run
+    # Exercise 5.1: Improved Clock
+    #
+    # An improved clock that displays the date and time when run
 
-import time
+    import time
 
-current_datetime = time.localtime()
+    current_datetime = time.localtime()
 
-day = current_datetime.tm_mday
-month = current_datetime.tm_mon
-year = current_datetime.tm_year
-print("The date is", day, "/", month, "/", year)
+    day = current_datetime.tm_mday
+    month = current_datetime.tm_mon
+    year = current_datetime.tm_year
+    print("The date is", day, "/", month, "/", year)
 
-seconds = current_datetime.tm_sec
-minutes = current_datetime.tm_min
-hours = current_datetime.tm_hour
-print("The time is", hours, ":", minutes, ":", seconds)
+    seconds = current_datetime.tm_sec
+    minutes = current_datetime.tm_min
+    hours = current_datetime.tm_hour
+    print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 23 / 12 / 2025
-    The time is 20 : 51 : 28
+    The date is 4 / 1 / 2026
+    The time is 11 : 26 : 13
 
 #### Comparing Values
 
@@ -353,17 +360,18 @@ class operatorDescr BG
   than $6$ else sets it to `False`
 
 ``` python
-it_is_time_to_get_up = hour > 6
+    it_is_time_to_get_up = hour > 6
 ```
 
-###### Example: Examining Comparison Operators
+###### **Code Analysis**: Examining Comparison Operators
 
 *Use the python interpreter to work through the following questions in
 order to understand Comparison Operators*
 
 1. *How does the equality operator work?*
-    - *The equality operator evaluates to* `True` *if the two operands
-      hold the same value*
+
+    - The equality operator evaluates to `True` if the two operands hold
+      the same value
 
     ``` python
     1 == 1
@@ -371,7 +379,7 @@ order to understand Comparison Operators*
 
         True
 
-    - *The equality operator can be used to compare strings and bools*
+    - The equality operator can be used to compare strings and bools
 
     ``` python
      'Rob' == 'Rob'
@@ -384,12 +392,16 @@ order to understand Comparison Operators*
     ```
 
         True
+
 2. *How do I remember which relational operator to use?*
-    - *Practice, patience and muscle memory*
-3. *Can we apply relational operators between other types of
-    expressions?*
-    - *Yes. For example, the* $>$ *and* $<$ *operators when used to
-      compare strings will use an alphabetic ordering*, e.g.
+
+    - Practice, patience and muscle memory
+
+3. Can we apply relational operators between other types of
+    expressions?
+
+    - Yes. For example, the $>$ and $<$ operators when used to compare
+      strings will use an alphabetic ordering, e.g.
 
       ``` python
       'Alice' < 'Brian'
@@ -398,6 +410,8 @@ order to understand Comparison Operators*
           True
 
 > [!WARNING]
+>
+> **Equality and Floating-point Values**
 >
 > In [Chapter
 > 4](../04_WorkingWithVariables/Chapter_04.qmd#real-numbers-and-floating-point)
@@ -432,7 +446,7 @@ order to understand Comparison Operators*
   the minute is after $30$
 - Python provides *logic* operators for combining boolean expressions
 
-##### Example: Examining Boolean Operators
+##### **Code Analysis**: Examining Boolean Operators
 
 *Use the python interpreter to answer the following questions and
 investigate boolean operators*
@@ -445,8 +459,8 @@ investigate boolean operators*
 
         False
 
-    - `not` *inverts the value of a boolean, so* `True` *is converted
-      to* `False`
+    - `not` inverts the value of a boolean, so `True` is converted to
+      `False`
 
 2. *How about this expression?*
 
@@ -456,8 +470,8 @@ investigate boolean operators*
 
         True
 
-    - `and` *is* `True` *iff both arguments are* `True` *as is the case
-      above, so the result is* `True`
+    - `and` is `True` iff both arguments are `True` as is the case
+      above, so the result is `True`
 
 3. *How about this expression?*
 
@@ -467,7 +481,7 @@ investigate boolean operators*
 
         False
 
-    - *Since one of the arguments is* `False` `and` *will evaluate to*
+    - Since one of the arguments is `False` `and` will evaluate to
       `False`
 
 4. *How about this expression?*
@@ -478,66 +492,63 @@ investigate boolean operators*
 
         True
 
-    - *Since one of the arguments is `True` `or`*will evaluate to\*
-      `True`
+    - Since one of the arguments is `True` `or` will evaluate to `True`
 
 5. *So far, the examples have only used boolean values. What happens if
     we mix boolean and numeric values?*
 
     ``` python
-    True and 1
+     True and 1
     ```
 
         1
 
-    - *Recall that python can convert numeric expressions to boolean
-      ones, this implicitly happens to the* $1$ *in the above. So we
-      would expect* `and` *to return* `True`*. However ,instead* $1$ *is
-      returned. This is due to some odd python behaviour*
-      - *Python sees* `True` *-\> result of* `and` *implied by second
-        argument*
+    - Recall that python can convert numeric expressions to boolean
+      ones, this implicitly happens to the $1$ in the above. So we would
+      expect `and` to return `True`. However ,instead $1$ is returned.
+      This is due to some odd python behaviour
+      - Python sees `True` $\rightarrow$ result of `and` implied by
+        second argument
 
-        - *So simply returns the second argument, since the*
-          **truthfulness** *of* $1$*, is equivalent to the original
-          expression*
+        - So simply returns the second argument, since the
+          *truthfulness* of $1$, is equivalent to the original
+          expression
 
-      - *If we flip the arguments, we should see this more clearly*
+      - If we flip the arguments, we should see this more clearly
 
         ``` python
-        1 and True
+          1 and True
         ```
 
             True
 
-        - *This time the above expressions should return* `True`
+        - This time the above expressions should return `True`
 
-      - *The same behaviour will also occur with* `or`
+      - The same behaviour will also occur with `or`
 
         ``` python
-        1 or False
+          1 or False
         ```
 
             1
 
-        - *Here the* `or` *operator short-circuits on* $1$, *so returns*
-          $1$
+        - Here the `or` operator short-circuits on $1$, so returns $1$
 
         ``` python
-        0 or True
+          0 or True
         ```
 
             True
 
-        - *Here the* `or` *evaluates the first argument as false, so
-          cannot short-circuit, the second argument is returned, i.e*
-          `True`
+        - Here the `or` evaluates the first argument as false, so cannot
+          short-circuit, the second argument is returned, i.e `True`
 
 - Let us now use `and` to try construct an expression that will
   correctly evaluate when the time is after $7:30$, naively we might
   expect,
 
 ``` python
-it_is_time_to_get_up = hour > 6 and minute > 29
+    it_is_time_to_get_up = hour > 6 and minute > 29
 ```
 
 - We can use a truth table to check,
@@ -554,7 +565,7 @@ it_is_time_to_get_up = hour > 6 and minute > 29
     more precise,
 
 ``` python
-it_is_time_to_get_up = (hour > 7) or (hour == 7 and minute > 29)
+    it_is_time_to_get_up = (hour > 7) or (hour == 7 and minute > 29)
 ```
 
 - We use brackets to make the expression more readable
@@ -562,6 +573,8 @@ it_is_time_to_get_up = (hour > 7) or (hour == 7 and minute > 29)
   don’t need to check the minutes value
 
 > [!WARNING]
+>
+> **Be Careful with Logic Operations**
 >
 > When working with boolean operations you should always check that the
 > logic matches what you expect!
@@ -572,7 +585,7 @@ it_is_time_to_get_up = (hour > 7) or (hour == 7 and minute > 29)
 - Need the ability to run code `if` a boolean condition is met
   - Can do so using the aptly named `if` operator
 
-#### Example: Simple Alarm Clock
+#### **Example**: Simple Alarm Clock
 
 - *Create a new python program
   ([SimpleAlarmClock.py](./Examples/02_SimpleAlarmClock/SimpleAlarmClock.py))
@@ -580,6 +593,7 @@ it_is_time_to_get_up = (hour > 7) or (hour == 7 and minute > 29)
 
 ``` python
 # Example 5.2: Simple Alarm Clock
+#
 # Demonstrates `if` using a simple alarm clock
 
 import time
@@ -596,12 +610,10 @@ if it_is_time_to_get_up:
 
     IT IS TIME TO GET UP
 
-- *The program should print* `IT IS TIME TO GET UP` *only if the time is
-  after* $7:30$
-
+- The program should print `IT IS TIME TO GET UP` only if the time is
+  after $7:30$
 - The `if` construct starts with the word `if`, following by a boolean
   value called the `condition`, then a `:`
-
 - Any statements we want to execute *if* the `if` is `True` are then
   written below the `if` and *indented* one level
 
@@ -635,7 +647,9 @@ with the contents below*
 
 ``` python
 # Example 5.3: Siren Alarm Clock
+#
 # Improves the Simple Alarm Clock to also play a sound
+
 import time
 
 import snaps
@@ -651,11 +665,11 @@ if (hour > 7) or (hour == 7 and minute > 29):
     time.sleep(10)
 ```
 
-*This program now runs three statements in the* `if`
+This program now runs three statements in the `if`
 
-1. *First a message is displayed*
-2. *Second a sound is played*
-3. *Third the program sleeps so the sound has time to play*
+1. First a message is displayed
+2. Second a sound is played
+3. Third the program sleeps so the sound has time to play
 
 - If we want something to run regardless of the `if` condition, we write
   it either before or after the `if` statement
@@ -670,6 +684,7 @@ Enter the following contents,*
 
 ``` python
 # Example 5.4: Alarm Clock with Time Display
+#
 # A variant of Alarm Clock to also always display the time
 
 import time
@@ -688,10 +703,10 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 20 : 51
+    The time is 11 : 26
 
-- *The program above will always print the current time, regardless of
-  if the alarm block is run*
+- The program above will always print the current time, regardless of if
+  the alarm block is run
 
 > [!CAUTION]
 >
@@ -718,7 +733,7 @@ print("The time is", hour, ":", minute)
 >       ```
 >
 >           IndentationError: unexpected indent (1845908205.py, line 8)
->             Cell In[714], line 8
+>             Cell In[24], line 8
 >               print("The early bird gets the worm...")
 >               ^
 >           IndentationError: unexpected indent
@@ -820,32 +835,33 @@ class ifDescr BG
 > ```
 >
 >     IndentationError: unexpected indent (1682748311.py, line 7)
->       Cell In[716], line 7
+>       Cell In[26], line 7
 >         print("The early bird gets the worm...")
 >         ^
 >     IndentationError: unexpected indent
 
-##### Example: Layout of Conditional Statements
+##### **Code Analysis**: Layout of Conditional Statements
 
 *Use the python interpreter to answer the following questions to
 understand conditional statements*
 
 1. *Can we work with conditional statements using the python shell?*
-    - *Yes you can, type the following into the shell,*
+
+    - Yes you can, type the following into the shell,
 
     ``` python
     if True:
     ```
 
-    - *The shell may display* `...` *instead of* `>>>` *or, omit* `>>>`
-      *and indent*
+    - The shell may display `...` instead of `>>>` or, omit `>>>` and
+      indent
 
-      - *In the first case we can indent ourselves to write the suite*
-      - *In the second we simply write the suite*
+      - In the first case we can indent ourselves to write the suite
+      - In the second we simply write the suite
 
-    - *Once done writing the* `if` *suite, simply deindent*
+    - Once done writing the `if` statement, simply deindent
 
-    - *Try write the following in the shell, and verify the output*
+    - Try write the following in the shell, and verify the output
 
       ``` python
         if True:
@@ -855,12 +871,14 @@ understand conditional statements*
 
           True
           Still True
-2. *How many spaces must you indent a suite of Python statements
-    controlled by an* `if` *statement?*
-    - *There is no approved value, but it must be consistent, i.e. if
-      the first indentation is four, then all future indentations must
-      also be four*
-      - *Common choices are 4, 8 or 2*
+
+2. How many spaces must you indent a suite of Python statements
+    controlled by an `if` statement?
+
+    - There is no approved value, but it must be consistent
+    - i.e. if the first indentation is four, then all future
+      indentations must also be four
+      - Common choices are 4, 8 or 2
 
 #### Add an `else` to an `if` Construction
 
@@ -879,6 +897,7 @@ with the following contents,*
 
 ``` python
 # Example 5.5: Simple Alarm Clock
+#
 # Variant of the Simple Alarm Clock
 # that modifies the output depending on if its time to get up
 
@@ -896,19 +915,22 @@ else:
 
     IT IS TIME TO GET UP
 
-- *Observe that only one line of the paired `if-else` statements is
-  printed*
+- Observe that only one line of the paired `if-else` statements is
+  printed
 
-##### Example: If Constructions
+##### **Code Analysis**: If Constructions
 
 *Work through the following questions to understand `if` constructions*
 
 1. *Must an* `if` *construction have an* `else` *part?*
-    - **No***,we saw when first working with* `if` *that we could
-      exclude the* `else` *in that case no additional code runs if the*
-      `if` *evaluates* `False`
+
+    - *No*, we saw when first working with `if` that we could exclude
+      the `else` in that case no additional code runs if the `if`
+      evaluates `False`
+
 2. *What happens if a condition is never* `True`*?*
-    - *It simply never executes*
+
+    - It simply never executes
 
 #### Compare Strings in Programs
 
@@ -923,6 +945,7 @@ this [program](./Examples/06_BrokenGreeter/BrokenGreeter.py)?*
 
 ``` python
 # Example 5.6: Broken Greeter
+#
 # A Greeter program using string matching
 # Identify the issues with this program
 
@@ -932,18 +955,18 @@ if name == "Rob":
     print("Hello, Oh great one")
 ```
 
-*The equality operator checks against the string* `"Rob"` *exactly,
-i.e. it is case sensitive, if we write* `"ROB"`*, or* `"rob"` *or some
-variation thereof, the statement will not match.*
+- The equality operator checks against the string `"Rob"` *exactly*
+- i.e. it is case sensitive, if we write `"ROB"`, or `"rob"` or some
+  variation thereof, the statement will not match.
 
-*We can fix this by using the string method* `upper`*, this converts all
-forms of the word* `"rob"` *to* `"ROB"` *which we can reliably check
+We can fix this by using the string method `upper`, this converts all
+forms of the word `"rob"` to `"ROB"` which we can reliably check
 against. The new
-[program](./Examples/07_UppercaseGreeter/UppercaseGreeter.py) looks
-like*
+[program](./Examples/07_UppercaseGreeter/UppercaseGreeter.py) looks like
 
 ``` python
 # Example 5.7: Uppercase Greeter
+#
 # A Greeter program using string matching
 # Fixes the issues with Example 5.6 by using
 # str.upper()
@@ -954,18 +977,21 @@ if name.upper() == "ROB":
     print("Hello, Oh great one")
 ```
 
-- *We could also use the string method `lower` to compare against an all
-  lowercase word*
+- We could also use the string method `lower` to compare against an all
+  lowercase word
 
-##### Example: Methods and Functions
+##### **Code Analysis**: Methods and Functions
 
 *Consider the following questions to learn about methods and functions*
 
 1. *How do `lower()` and `upper()` work?*
-    - *Python types are objects that provide* **methods**.
-    - *Methods are called like functions*
+
+    - Python types are objects that provide **methods**.
+    - Methods are called like functions
+
 2. *Why do we have to write `lower()` and not `lower`?*
-    - *Leave the parentheses off, and see what happens*
+
+    - Leave the parentheses off, and see what happens
 
       ``` python
         name = 'Rob'
@@ -974,12 +1000,14 @@ if name.upper() == "ROB":
 
           <function str.upper()>
 
-    - *We are instead returned a description of the method itself*
+    - We are instead returned a description of the method itself
+
 3. *What’s the difference between functions and methods?*
-    - *They are used the same way, but they differ in where they are
-      created*
-    - *Functions are not associated any specific object*
-    - *Methods are bound as attributes of objects*
+
+    - They are used the same way, but they differ in where they are
+      created
+    - Functions are not associated any specific object
+    - Methods are bound as attributes of objects
 
 #### Nesting `if` Conditions
 
@@ -994,6 +1022,7 @@ with the following contents*
 
 ``` python
 # Example 5.8: Coded Greeter
+#
 # Asks the user for a follow on code to confirm their ID
 # before the program greets them
 
@@ -1007,14 +1036,16 @@ if name.upper() == "ROB":
         print("Begone. Imposter")
 ```
 
-- *Play around with the above code to see what happens for various input
-  combinations. You should see if the first input is not a variant of
-  `"rob"` the second prompt never occurs and the program ends. Adjust
-  the above by writing a new program
-  ([CodedGreeterWithOuterElse.py](./Examples/09_CodedGreeterWithOuterElse/CodedGreeterWithOuterElse.py))*
+- Play around with the above code to see what happens for various input
+  combinations.
+- You should see if the first input is not a variant of `"rob"` the
+  second prompt never occurs and the program ends.
+- Adjust the above by writing a new program
+  ([CodedGreeterWithOuterElse.py](./Examples/09_CodedGreeterWithOuterElse/CodedGreeterWithOuterElse.py))\*
 
 ``` python
 # Example 5.9: Coded Greeter with Outer Else
+#
 # Asks the user for a follow on code to confirm their ID
 # before the program greets them
 # Has an additional outer else clause for the case that the nested
@@ -1032,13 +1063,14 @@ else:
     print("You are not Rob. Shame.")
 ```
 
-*The above code uses a second* `else` *clause, attached to the*
-**first** *outer,* `if` *condition. This means that it will run whenever
-the original name is not some variant of `"ROB"`*
+- The above code uses a second `else` clause, attached to the *first*
+  outer, `if` condition
+- This means that it will run whenever the original name is not some
+  variant of `"ROB"`
 
 #### Working with Logic
 
-##### Exercise: Make an Advanced Alarm Clock
+##### **Make Something Happen**: Make an Advanced Alarm Clock
 
 *Improve the [Alarm Clock](#example-time-display-alarm-clock). Make the
 alarm display the date as well as the time, and let the user sleep in on
@@ -1048,11 +1080,13 @@ Our implementation is given below,
 
 ``` python
 # Exercise 4.2: Advanced Alarm Clock
+#
 # An Advanced Alarm Combining the Behaviour
 # of most increments of the alarm clock
 # and allowing you to sleep in on weekends
 
 import time
+
 import snaps
 
 current_time = time.localtime()
@@ -1147,6 +1181,7 @@ There are no age limits for this ride
 
 ``` python
 # Example 5.10: Ride Selector Start
+#
 # The basic shell of the Ride Selector UI
 
 print("""Welcome to our Theme Park
@@ -1211,6 +1246,8 @@ else:  # need to get the age of the user
 
 > [!TIP]
 >
+> **Reduce duplicated Code**
+>
 > You may have noticed that the above statement appears to have a bunch
 > of duplicated code. The rough structure is,
 >
@@ -1262,13 +1299,19 @@ else:  # need to get the age of the user
 
 ``` python
 # Example 5.11: Snaps get_string function
+#
+# Demonstrates using the get_string function
+# in snaps to get user input via a graphical
+# interface
 
 import time
+
 import snaps
 
 name = snaps.get_string("Enter your name: ")
 snaps.display_message("Hello " + name)
-time.sleep(5) #so there is time to read the message
+
+time.sleep(5)
 ```
 
 > [!IMPORTANT]
@@ -1348,6 +1391,7 @@ Selector Program using `snaps` to provide a GUI*
 
 ``` python
 # Example 5.12: Theme Park Snaps Display
+#
 # Reimplments the shell of the Ride Selector Menu using Snaps
 
 import time
@@ -1374,7 +1418,7 @@ snaps.display_message(confirm)
 time.sleep(5) #gives user time to read the output
 ```
 
-##### Exercise: Snaps Ride Selector
+##### **Make Something Happen**: Snaps Ride Selector
 
 *Using the previous [example](#example-theme-park-snaps-display),
 complete the ride selector program. Extending its features where
@@ -1398,6 +1442,7 @@ function to prevent the window from immediately closing
 
 ``` python
 # Exercise 5.3: Snaps Ride Selector
+#
 # Reimplments the entirety of the Theme Park Ride Selector using
 # a snaps interface, and adds some audio ques to warn the user
 # when they are ineligable for ride
@@ -1481,7 +1526,7 @@ else:  # need to get the age of the user
 time.sleep(5)
 ```
 
-##### Exercise: Weather Helper
+##### **Make Something Happen**: Weather Helper
 
 *Using snaps and the weather functions it includes, write a simple
 program to remind the user to wrap up warm, wear sunscreen etc.*
@@ -1515,6 +1560,7 @@ Helper](./Exercises/04_WeatherHelper/WeatherHelper.py)) looks like,
 
 ``` python
 # Exercise 5.4 Weather Helper
+#
 # Simple Weather Program that reminds the user about
 # the weather conditions, with helpful text and
 # pictures
@@ -1548,7 +1594,7 @@ message at the end. So we use the branch code in order to set up the
 appropriate message, while the call to `display_message` sits outside
 the loop, so we don’t have to call it on every path.
 
-##### Exercise: Fortune Teller
+##### **Make Something Happen**: Fortune Teller
 
 *Using `randint` and `if` statements write a fortune teller program that
 gives random fortunes to the user*
@@ -1561,8 +1607,7 @@ simulate rolling a six-sided die, but spice it up by using
 statements.
 
 ``` python
-# Exercise 5.5
-# Fortune Teller Program
+# Exercise 5.5 Fortune Teller Program
 #
 # A simple program that uses random numbers to generate a sequence of
 # fortunes for the user
@@ -1596,7 +1641,7 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    Nobody unexpected will enter your life
+    You will meet a tall, dark stranger
     A life of comfort is coming
     To define your future, avoid getting hung up on the past
 

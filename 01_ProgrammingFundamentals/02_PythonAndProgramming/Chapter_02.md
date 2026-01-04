@@ -227,7 +227,7 @@ computer-->output
           NameError: name 'hello' is not defined
           ---------------------------------------------------------------------------
           NameError                                 Traceback (most recent call last)
-          Cell In[29], line 1
+          Cell In[1], line 1
           ----> 1 hello
 
           NameError: name 'hello' is not defined
@@ -311,7 +311,7 @@ class operatorDescr BG
 > ```
 >
 >     SyntaxError: invalid syntax (4209523232.py, line 1)
->       Cell In[32], line 1
+>       Cell In[4], line 1
 >         2+
 >           ^
 >     SyntaxError: invalid syntax
@@ -370,7 +370,7 @@ class operatorDescr BG
     ```
 
         SyntaxError: incomplete input (3168310686.py, line 1)
-          Cell In[36], line 1
+          Cell In[8], line 1
             (2 + 3 * 4
                       ^
         SyntaxError: incomplete input
@@ -388,7 +388,7 @@ class operatorDescr BG
     ```
 
         SyntaxError: unmatched ')' (2651741774.py, line 1)
-          Cell In[37], line 1
+          Cell In[9], line 1
             )2+3*4
             ^
         SyntaxError: unmatched ')'
@@ -465,7 +465,7 @@ class operatorDescr BG
       ```
 
           SyntaxError: unterminated string literal (detected at line 1) (3801843517.py, line 1)
-            Cell In[40], line 1
+            Cell In[12], line 1
               'hello
               ^
           SyntaxError: unterminated string literal (detected at line 1)
@@ -493,7 +493,7 @@ class operatorDescr BG
           TypeError: unsupported operand type(s) for -: 'str' and 'str'
           ---------------------------------------------------------------------------
           TypeError                                 Traceback (most recent call last)
-          Cell In[41], line 1
+          Cell In[13], line 1
           ----> 1 'hello' - ' world'
 
           TypeError: unsupported operand type(s) for -: 'str' and 'str'
@@ -520,7 +520,7 @@ class operatorDescr BG
         TypeError: can only concatenate str (not "int") to str
         ---------------------------------------------------------------------------
         TypeError                                 Traceback (most recent call last)
-        Cell In[42], line 1
+        Cell In[14], line 1
         ----> 1 'hello' + 2
 
         TypeError: can only concatenate str (not "int") to str
@@ -604,7 +604,7 @@ class operatorDescr BG
         NameError: name 'W' is not defined
         ---------------------------------------------------------------------------
         NameError                                 Traceback (most recent call last)
-        Cell In[46], line 1
+        Cell In[18], line 1
         ----> 1 ord(W)
 
         NameError: name 'W' is not defined
