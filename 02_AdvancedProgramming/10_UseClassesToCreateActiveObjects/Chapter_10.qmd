@@ -57,6 +57,29 @@ Hours worked: 3.0
 
 ```{python}
 class Contact:
+    """
+    Contact with a name, address and telephone number.
+    Tracks the hours worked with a client
+
+    Parameters
+    ----------
+    name : str
+        Contact Name
+    address : str
+        Contact's postal or street address.
+    telephone : str
+        Contact phone number (stored as a string).
+
+    Attributes
+    ----------
+    hours_worked : int | float
+        Hours worked with a Contact, initialised to 0
+
+    Examples
+    --------
+    >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
+    <Contact ...>
+    """
     def __init__(self, name, address, telephone):
         self.name = name
         self.address = address
@@ -70,23 +93,30 @@ class Contact:
 - From here we can add a new `add_session` function (see the [complete updated code](./Examples/01_TimeTracker/TimeTracker.py), in our version which supports duplicate names in the search)
 
   ```python
-    """
-    Reads in a name to search for and then allows
-    the user to add a session spent working that
-    contract
-    """
-    print("add session")
-    search_name = read_text("Enter the contact name: ")
-    contact = find_contact(search_name)
-    if contact != None:
-        #found a contact
-        print("Name: ", contact.name)
-        print("Previous hours worked:", contact.hours_worked)
-        session_length = BTCInput.read_float_ranged(prompt="Session length: ", min_value=0.5, max_value=3.5)
-        contact.hours_worked = contact.hours_worked + session_length
-        print("Updated hours worked:", contact.hours_worked)
-    else:
-        print("This name was not found")
+    def add_session():
+        """
+        Prompts the user to add hours worked to contacts matching a search
+
+        Returns
+        -------
+        None
+
+        See Also
+        --------
+        find_contacts : returns contacts matching a search name
+        """
+        print("add session")
+        search_name = read_text("Enter the contact name: ")
+        contact = find_contact(search_name)
+        if contact != None:
+            #found a contact
+            print("Name: ", contact.name)
+            print("Previous hours worked:", contact.hours_worked)
+            session_length = BTCInput.read_float_ranged(prompt="Session length: ", min_value=0.5, max_value=3.5)
+            contact.hours_worked = contact.hours_worked + session_length
+            print("Updated hours worked:", contact.hours_worked)
+        else:
+            print("This name was not found")
   ```
 
 - Don't forget we also have to update how we display contacts for the
@@ -105,6 +135,10 @@ class Contact:
         Returns
         -------
         None
+
+        See Also
+        --------
+        display_contacts : Displays all contacts matching a search name
         """
         print("Name:", contact.name)
         print("Address:", contact.address)
@@ -173,14 +207,40 @@ The issue here is we have defined *business rules* (things our customer asks the
 
 - Let us define two method attributes for `Contact`
     - Removes the need to directly access the attribute
+- Start by defining a method to access the hours worked
 
 ```{python}
 class Contact:
+    """
+    Contact with a name, address and telephone number.
+    Tracks the hours worked with a client
+
+    Parameters
+    ----------
+    name : str
+        Contact Name
+    address : str
+        Contact's postal or street address
+    telephone : str
+        Contact phone number (stored as a string)
+
+    Attributes
+    ----------
+    hours_worked : int | float
+        Hours worked with a Contact, initialised to 0
+
+    Examples
+    --------
+    >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
+    <Contact ...>
+    """
+
     def __init__(self, name, address, telephone):
         self.name = name
         self.address = address
         self.telephone = telephone
         self.hours_worked = 0
+
     def get_hours_worked(self):
         """
         Get the hours worked for this contact
@@ -188,14 +248,15 @@ class Contact:
         return self.hours_worked
 ```
 
-##### Example: The `get_hours_worked` Method
+##### **Code Analysis**: The `get_hours_worked` Method
 
 *Consider the following questions regarding the* `get_hours_worked` *function*
 
 1. *What is the parameter* `self` *used to accomplish?*
-    - *A method is part of an object*
-    - `self` *tells the method which object it is a part of*
-    - *The code sample below shows how the method doesn't need an additional reference to the* `Contact` *it refers to*
+
+    - A method is part of an object
+    - `self` tells the method which object it is a part of
+    - The code sample below shows how the method doesn't need an additional reference to the `Contact` it refers to
 
       ```{python}
         # set up
@@ -214,11 +275,14 @@ class Contact:
       ```
 
 2. *Is the* `get_hours_worked` *method stored when we save contact information in a file*
-    - *No, if we use* [`pickle`](../09_UsingClasses/Chapter_09.qmd#save-contacts-in-a-file-using-pickle) *to store a contact list, the method attributes are not stored. Pickle only stores the data attributes*
+
+    - No, if we use [`pickle`](../09_UsingClasses/Chapter_09.qmd#save-contacts-in-a-file-using-pickle) to store a contact list, the method attributes are not stored. Pickle only stores the data attributes
+
 3. *Can a program still access the* `hours_worked` *attribute of a* `Contact` *class*
-    - *Yes, it can. Using method attributes to get data doesn't stop a program accessing the data directly*
-    - *We simply remove the desire to*
-    - *Later chapters look at techniques for enforcing this more robustly*
+
+    - Yes, it can. Using method attributes to get data doesn't stop a program accessing the data directly
+    - We simply remove the desire to
+    - Later chapters look at techniques for enforcing this more robustly
 
 - We can create a second method to handle adding a session to a `Contact`
 
@@ -232,20 +296,34 @@ class Contact:
             self.hours_worked = 0
         def get_hours_worked(self):
             """
-            Get the hours worked for this contact
+            Gets the hours worked for this contact
+
+            Returns
+            -------
+            int | float
+                hours worked for this contact
             """
             return self.hours_worked
 
         # new method
         def add_session(self, session_length):
             """
-            Adds the value of the parameter
-            onto the hours worked for this contract
+            Adds a session (in hours) to the Contacts hours
+
+            Parameters
+            ----------
+            session_length : int | float
+                time spent on session in hours
+
+            Returns
+            -------
+            None
             """
             self.hours_worked = self.hours_worked + session_length
   ```
 
 - Takes two parameters
+
     1. `self` - the object the method is attached to
         - Here the `Contact` being updated
     2. `session_length`
@@ -296,6 +374,36 @@ You should think carefully about what is valid input for any function, especiall
 
   ```{python}
     class Contact:
+        """
+        Contact with a name, address and telephone number.
+        Tracks the hours worked with a client
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+
+        Attributes
+        ----------
+        hours_worked : int | float
+            Hours worked with a Contact, initialised to 0
+
+        min_session_length : Final[int | float]
+            minimum length of a billable session
+
+        max_session_length : Final[int | float]
+            maximum length of a billable session
+
+
+        Examples
+        --------
+        >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
+        <Contact ...>
+        """
 
         min_session_length = 0.5
         max_session_length = 3.5
@@ -308,15 +416,28 @@ You should think carefully about what is valid input for any function, especiall
 
         def get_hours_worked(self):
             """
-            Get the hours worked for this contact
+            Gets the hours worked for this contact
+
+            Returns
+            -------
+            int | float
+                hours worked for this contact
             """
             return self.hours_worked
 
         # new method
         def add_session(self, session_length):
             """
-            Adds the value of the parameter
-            onto the hours worked for this contract
+            Adds a session (in hours) to the Contacts hours
+
+            Parameters
+            ----------
+            session_length : int | float
+                time spent on session in hours
+
+            Returns
+            -------
+            None
             """
             if session_length < Contact.min_session_length or session_length > Contact.max_session_length:
                 return
@@ -327,19 +448,26 @@ You should think carefully about what is valid input for any function, especiall
 - The idiom of first checking for invalid input and performing a `return` if encountered is called an *early return* and is a common technique
     - Reduces the need for indentation on the happy path - the error free path
 - Observe we have to prefix the class variables with the class name as a namespace
+- The `Final` label in the docstring indicates that the session length variables are expected to be constant and should not be modified by a consuming
+program
 
-###### Example: Using class variables
+###### **Code Analysis**: Using class variables
 
 *Build your understanding of class variables by answering the following questions about their use-cases*
 
 1. *Should I use a class variable to hold the age of a contact?*
-    - *No. Each contact will have an age, so the age must be a data attribute unique to each object instance*
+
+    - No. Each contact will have an age, so the age must be a data attribute unique to each object instance
+
 2. *Should I use a class variable to hold the maximum age of a contact?*
-    - *Yes, we don't need to store a copy of this value for every* `Contact` *instance, so it can be a class variable*
+
+    - Yes, we don't need to store a copy of this value for every `Contact` instance, so it can be a class variable
+
 3. *Should I use a class variable to hold the price per hour that the lawyer will charge?*
-    - *It depends, if the lawyer charges the same for every client then it may be reasonable*
-    - *If the lawyer wishes to charge different contacts different rates, then we would have to store it as a data attribute*
-        - *In that case we might store the minimum and maximum hourly rate as class variables*
+
+    - It depends, if the lawyer charges the same for every client then it may be reasonable
+    - If the lawyer wishes to charge different contacts different rates, then we would have to store it as a data attribute
+        - In that case we might store the minimum and maximum hourly rate as class variables
 
 ##### Create a Static Method to Validate Values
 
@@ -361,16 +489,53 @@ You should think carefully about what is valid input for any function, especiall
 
   ```{python}
     class Contact:
+        """
+        Contact with a name, address and telephone number.
+        Tracks the hours worked with a client
 
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+
+        Attributes
+        ----------
+        hours_worked : int | float
+            Hours worked with a Contact, initialised to 0
+
+        min_session_length : Final[int | float]
+            minimum length of a billable session
+
+        max_session_length : Final[int | float]
+            maximum length of a billable session
+
+
+        Examples
+        --------
+        >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
+        <Contact ...>
+        """
         min_session_length = 0.5
         max_session_length = 3.5
 
         @staticmethod
         def valid_session_length(session_length):
             """
-            Validates a session length and returns
-            True if the length is valid or False if
-            invalid
+            Check a session length is valid
+
+            Parameters
+            ----------
+            session_length : int | float
+                length of a consult session in hours
+
+            Returns
+            -------
+            bool
+                `True` if the session length is valid else `False`
             """
             if session_length < Contact.min_session_length or session_length > Contact.max_session_length:
                 return False
@@ -385,15 +550,32 @@ You should think carefully about what is valid input for any function, especiall
 
         def get_hours_worked(self):
             """
-            Get the hours worked for this contact
+            Gets the hours worked for this contact
+
+            Returns
+            -------
+            int | float
+                hours worked for this contact
             """
             return self.hours_worked
 
         # new method
         def add_session(self, session_length):
             """
-            Adds the value of the parameter
-            onto the hours worked for this contract
+            Adds a session (in hours) to the Contacts hours
+
+            Parameters
+            ----------
+            session_length : int | float
+                time spent on session in hours
+
+            Returns
+            -------
+            None
+
+            See Also
+            --------
+            Contact.valid_session_length : checks a session length is valid
             """
             if not Contact.valid_session_length(session_length):
                 return
@@ -413,7 +595,258 @@ You should think carefully about what is valid input for any function, especiall
     print(Contact.valid_session_length(5))
   ```
 
+###### **Code Analysis**:  Creating Static Validation Methods
 
+*Input validation is a very common use-case for static methods. Consider the following questions to understand static validation methods*
+
+1. *Why does the* `valid_session_length` *method not have a* `self` *parameter?*
+    - `self` refers to a particular object instance
+    - static methods are not associated with an instance
+        - Associated with the class
+        - Thus no `self` to refer to
+
+2. *Why does the* `valid_session_length` *method not print a message to the user communicating that the session length is invalid?*
+
+    - `valid_session_length` only has responsibility for checking if a session length is valid
+    - How to handle an *invalid* session length is the responsibility of the caller
+        - e.g. a text-based vs graphical interface may want to handle this differently
+            - e.g. display text vs a window
+    - This concept of making a function responsible for one thing is called either
+        - The *single responsibility principle*,
+        - or more generally *seperation of concerns*
+    - Here a `Contact` object performs behaviours that modify or capture a the state of a clients interactions with a client
+        - How the user responds to those states is not its responsibility
+
+3. *What does a decorator do?*
+
+    - A decorator is a function that *wraps* another function
+    - They can do some work, call a function then do some clean-up
+
+4. *Can I create my own decorators?*
+
+    - Yes
+    - They are beyond the scope of this book though
+
+5. *How do I know when to create a static method in a class?*
+
+    - You want to create behaviour associated with a class, *but*
+        - Independent of specific instance of a class
+
+##### Return Status Messages from a Validation Method
+
+- `add_session` prevents invalid session lengths being added to a `Contact`
+- Currently user has no way of knowing if a session was added
+    - Mistakes might be missed
+    - Records then lost
+- Need to indicate if `add_session` succeeded
+- Can do so by returning a *status flag* from `add_session` rather than `None`
+    - `True` indicates session added
+    - `False` indicates session failed
+
+  ```python
+    def add_session(self, session_length):
+    """
+    Adds a session (in hours) to the Contacts hours
+
+    Parameters
+    ----------
+    session_length : int | float
+        time spent on session in hours
+
+    Returns
+    -------
+    bool
+        `True` if session successfully added, else `False`
+
+    See Also
+    --------
+    Contact.valid_session_length : checks a session length is valid
+    """
+    if not Contact.valid_session_length(session_length):
+        return False
+    self.hours_worked = self.hours_worked + session_length
+    return True
+  ```
+
+- The calling program can then check the status
+    - Behave as appropriate on error
+
+  ```python
+    session_length = BTCInput.read_float(prompt="Session Length: ")
+    if contact.add_session(session_length):
+        print("Updated hours succeeded", contact.get_hours_worked())
+    else:
+        print("Add hours failed")
+  ```
+
+- The above uses the status
+    - On success the new hours are reported
+    - On failure, the user is notified of the error
+- The full implementation is given in [TimeTrackerWithStatusReporting.py](./Examples/05_TimeTrackerWithStatusReporting/TimeTrackerWithStatusReporting.py)
+- The problem with status messages is that the user can ignore them, e.g. the below variation of the previous example, ignores the return value
+
+
+ ```python
+    contact.add_session(BTCInput.read_float(prompt="Session Length: "))
+    print("Updated hours:", contact.get_hours_worked())
+ ```
+
+- Thus no guarantee that failure will be handled
+
+##### Raise an Exception to indicate an Error
+
+- Exceptions force  the caller to deal with them
+    - Unhandled exceptions crash the program
+- Exceptions are designed for when an error occurs where continuing makes no sense
+    - e.g. converting strings to numbers
+    - meaningless to continue with an unconverted number
+    - *Unless* the caller specifies what to do in that case
+    - So this causes an exception
+
+      ```{python}
+        x = int("Rob")
+      ```
+
+- We can make our on code throw exceptions
+    - We use the `raise` keyword
+
+  ```{python}
+    def add_session(self, session_length):
+        """
+        Adds a session (in hours) to the Contacts hours
+
+        Parameters
+        ----------
+        session_length : int | float
+            time spent on session in hours
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            Raised if invalid session length passed
+
+        See Also
+        --------
+        Contact.valid_session_length : checks a session length is valid
+        """
+        if not Contact.valid_session_length(session_length):
+            raise Exception("Invalid Session Length")
+        self.hours_worked = self.hours_worked + session_length
+  ```
+
+- `Contact`'s `add_session` now raises an `Exception` if the session length is invalid
+- Exception somewhat like a message
+    - Tells the program what went wrong
+- `Exception` class provides behaviours for exceptions
+    - Takes a string as an initialiser argument
+    - string should describe the error
+- Once raised, the exception is either,
+    1. handled by an `Except` handler inside a `try` block
+    2. Stops the program with an error
+
+- The complete integration of the above is given byy [TimeTrackerWithException.py](./Examples/06_TimeTrackerWithException/TimeTrackerWithException.py)
+
+##### **Make Something Happen**: Raising Exceptions from Code
+
+*Investigate how exceptions are raised using the sample program [Time Tracker with Exception](./Examples/06_TimeTrackerWithException/TimeTrackerWithException.py)*
+
+Start a python interpreter and run the example program above, select option $1$ on the menu, and enter the following,
+
+```{python}
+# | echo: false
+print("""Time Tracker
+
+1. New Contact
+2. Find Contact
+3. Edit Contact
+4. Add Session
+5. Exit Program
+
+Enter your command: \033[31m1\033[0m
+Create new contact
+Enter the contact name: \033[31m Rob Miles\033[0m
+Enter the contact address: \033[31m 18 Pussycat Mews, London, NE1 410S\033[0m
+Enter the contact phone: \033[31m 1234 56789 \033[0m""")
+```
+
+Now add a session lasting 2 hours to the contact using option 4:
+
+```{python}
+#| echo: false
+
+    print("""Enter your command: \033[31m 4\033[0m
+    add session
+    Enter the contact name: \033[31m Rob Miles\033[0m
+    Name: Rob Miles
+    Previous hours worked: 0
+    Session Length: \033[31m 2\033[0m
+    Updated hours worked: 2.0""")
+```
+
+This should work because $2$ is a valid session length, now repeat but
+attempt to add a session length of $4$, which should be invalid,
+
+```{python}
+#| echo : false
+
+    print("""Enter your command: \033[31m 4\033[0m
+    add session
+    Enter the contact name: \033[31m Rob Miles\033[0m
+    Name: Rob Miles
+    Previous hours worked: 2.0
+    Session Length: \033[31m 4\033[0m""")
+```
+
+```{python}
+#| echo: false
+
+    rob = Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "1234 56789")
+    add_session(rob, 2)
+    add_session(rob, 4)
+```
+
+:::{.callout-note}
+Our implementation will look slightly different to the above (which is the book code) because it has additional logic for handling duplicates. But follow the steps and the prompts and you should get roughly the same process
+:::
+
+##### Extract an Exception Error Message
+
+- Now that we can raise exceptions, how do we handle them?
+- We've seen that we control jumps to an appropriate `except` but what if we
+want to access the message in the exception?
+    - We can use the `as` keyword to assign the exception a variable label
+    - We modify the user call to the `Contact` object, `add_session` as, (see the full implementation as [TimeTrackerWithExceptionHandler.py](./Examples/07_TimeTrackerWithExceptionHandler/TimeTrackerWithExceptionHandler.py))
+
+  ```python
+    hours_worked = BTCInput.read_float(prompt="Enter hours spent: ")
+    try:
+        contact.add_session(hours_worked)
+        print("Updated hours succeeded:", contact.get_hours_worked())
+    except Exception as e:
+        print("Add failed:", e)
+  ```
+
+- The main change is rather than just going `except Exception:` we add a `as e`
+    - Defines a variable `e` that stores the exception
+    - `e` exists for the scope of the `except` block
+- Passing an exception to `print` prints our the message associated with the exception
+- A representative use might look like,
+
+```{python}
+#| echo : false
+
+    print("""Enter your command: \033[31m 4\033[0m
+    add session
+    Enter the contact name: \033[31m Rob Miles\033[0m
+    Name: Rob Miles
+    Previous hours worked: 2.0
+    Session Length: \033[31m -1\033[0m
+    Add failed: Invalid Session Length""")
+```
 
 ## Summary
 

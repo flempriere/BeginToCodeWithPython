@@ -427,7 +427,7 @@ Both this static definition and pythons dynamic definitions have it's advantages
     - `None` in python is used to refer to a value that does not exist
     - Semantically here it is used to indicate that no match was found
 
-##### Exercise: Duplicate Names
+##### **Exercise**: Duplicate Names
 
 *This program has a fault in that if multiple contacts have the same name as an existing one only the first one will be returned. Modify the program to correct this problem*
 
@@ -1530,7 +1530,7 @@ class InitPrint:
     - Our current implementation uses `startswith` to provide more flexible matching
     - In general though, dictionaries provide fast queries for finding objects when we can easily use the key as a unique identifier
 
-### Exercise: The Final Tiny Contacts Refactor
+### **Exercise**: The Final Tiny Contacts Refactor
 
 *The Tiny contacts program is a useful template for any kind of program that stores data and lets a user work with it. You can even add some of the sorting and data-processing features from the ice-cream sales program to make applications that not only store data but let you do interesting things with it.*
 
