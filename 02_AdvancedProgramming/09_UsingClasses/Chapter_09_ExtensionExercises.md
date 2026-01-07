@@ -1,6 +1,7 @@
 # Extended Exercises for Chapter 9
 
-- [Exercise: Music Storage App](#exercise-music-storage-app)
+- [**Make Something Happen**: Music Storage
+  App](#make-something-happen-music-storage-app)
   - [Storyboarding the Application](#storyboarding-the-application)
   - [Building the User Interface](#building-the-user-interface)
   - [Track Management](#track-management)
@@ -20,7 +21,8 @@
       Playlist](#calculating-the-length-of-a-playlist)
     - [Saving a Playlist](#saving-a-playlist)
     - [Suggesting a Playlist](#suggesting-a-playlist)
-- [Exercise: Recipe Storage App](#exercise-recipe-storage-app)
+- [**Make Something Happen**: Recipe Storage
+  App](#make-something-happen-recipe-storage-app)
   - [Storyboarding out the design](#storyboarding-out-the-design)
   - [Designing the Recipe Class](#designing-the-recipe-class)
     - [Creating a Recipe from User
@@ -38,7 +40,7 @@
   - [Improving the Recipe
     Application](#improving-the-recipe-application)
 
-## Exercise: Music Storage App
+## **Make Something Happen**: Music Storage App
 
 *Write a music track storage program that lets you search for tracks
 based on the length of the track. The program could suggest tracks that
@@ -127,6 +129,25 @@ general main menu (as seen below) and sub-menus for
 
 ``` python
 def run_main_menu():
+    """Provides the user with a looping main menu
+
+    The user has the option to,
+    1. Manage Tracks
+    2. Find and Display Tracks
+    3. Manage a Playlist
+    4. Exit the program
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    ValueError
+        An invalid number is encountered in menu selection, should not
+        occur in live code, please raise a bug report if encountered
+
+    """
     main_menu = """Music Storage
 
 1. Track Management
@@ -160,6 +181,26 @@ program, while the sub-menu’s exit back to the main menu.
 
 ``` python
 def run_display_track_menu():
+    """
+    Provides the user with a looping menu to display tracks
+
+    The user has the option to
+    1. Display tracks matching a name
+    2. Display tracks less than (or equal to) a given max length
+    3. Display tracks greater than (or equal to) a given min length
+    4. Return to the Main Menu
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    ValueError
+        An invalid number is encountered in menu selection, should not
+        occur in live code, please raise a bug report if encountered
+    """
+
     display_track_menu = """Find and Display Tracks
 
 1. Find Tracks by Name
@@ -203,7 +244,7 @@ class MusicTrack:
     """
     Music Track with a name and a length (in seconds)
 
-    Attributes
+    Parameters
     ----------
     name : str
         name of the music track
@@ -213,7 +254,7 @@ class MusicTrack:
     Raises
     ------
     ValueError
-        Raised if length_in_seconds is non-positive
+        Raised if `length_in_seconds` is non-positive
 
     Examples
     --------
@@ -244,12 +285,13 @@ def read_min_valued_integer(prompt, min_value):
     """
     Displays a prompt and reads in a integer number greater
     than or equal to min_value.
+
     Keyboard interrupts (CTRL+C) are ignored
     Invalid numbers are rejected
     returns a number containing the value input by the user
 
-    Params
-    ------
+    Parameters
+    ----------
     prompt : str
         string to display to the user before the enter the number
 
@@ -287,6 +329,10 @@ def new_track():
     Returns
     -------
     None
+
+    See Also
+    --------
+    MusicTrack : class for storing music track information
     """
     print("Add a new track")
     name = BTCInput.read_text("Enter the track name: ")
@@ -309,7 +355,7 @@ print(tracks[0].length_in_seconds)
 
     Enter the track name: Merry Christmas Everyone
     Enter the track length (in seconds): 220
-    [<__main__.MusicTrack object at 0x7f41d442cbc0>]
+    [<__main__.MusicTrack object at 0x70dbccc6a9f0>]
     Merry Christmas Everyone
     220
 
@@ -333,12 +379,13 @@ below,
 ``` python
 def filter_tracks_by_name(search_name, tracks_to_search):
     """
-    Filters tracks from the list tracks_to_search with a name
-    containing search_name as a prefix
+    Finds tracks matching a search name
 
-    Params
-    ------
+    Filters tracks from the list `tracks_to_search` with a name
+    containing `search_name` as a prefix
 
+    Parameters
+    ----------
     search_name : str
         name to search for (search uses prefix matching)
 
@@ -350,6 +397,7 @@ def filter_tracks_by_name(search_name, tracks_to_search):
     list[MusicTrack]
         list of contacts matching the name. If no matches
         exist the list is empty
+
     """
     search_name = search_name.strip().lower()  # normalise the search name
     results = []
@@ -374,7 +422,7 @@ print(results[0].length_in_seconds)
 print(filter_tracks_by_name("Missing Track", tracks))
 ```
 
-    [<__main__.MusicTrack object at 0x7f41d442cbc0>]
+    [<__main__.MusicTrack object at 0x70dbccc6a9f0>]
     Merry Christmas Everyone
     220
     []
@@ -391,6 +439,8 @@ the same pattern we discussed before.
 ``` python
 def edit_tracks():
     """
+    Edits a user selected track
+
     Reads in a name to search for and then allows the user to edit
     the details of the Music Track
 
@@ -401,6 +451,10 @@ def edit_tracks():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_tracks_by_name : filters a list of tracks by a search name
     """
     print("Edit Music Tracks")
     matched_tracks = filter_tracks_by_name(
@@ -472,16 +526,22 @@ The ascending order search is then,
 ``` python
 def sort_low_to_high(tracks_to_sort):
     """
-    Sorts the music track list given by tracks_to_sort
+    Sorts tracks by increasing track length
+
+    Sorts the music track list given by `tracks_to_sort`
     by length from shortest to greatest
 
-    Params
-    ------
+    Parameters
+    ----------
     tracks_to_sort : list[MusicTrack]
         list of tracks to sort
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_high_to_low : sort tracks by decreasing track length
     """
     print("Sort low to high")
     for sort_pass in range(0, len(tracks)):
@@ -533,18 +593,26 @@ The only two track database management functions now are `save` and
 ``` python
 def save_tracks(file_name):
     """
-    Saves the music tracks to the given file name
-    Music tracksare stored in binary as a pickled file
-    Exceptions will be raised if the save fails
+    Saves the music tracks to the given file
 
-    Params
-    ------
+    Music tracks are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
-        string giving the path to the file to store the contacts data in
+        string giving the path to the file to store the track data in
 
     Returns
     -------
     None
+
+    Raises
+    ------
+    An Exception is raised if the file could not be saved
+
+    See Also
+    --------
+    load_tracks : load music tracks from a pickled file
     """
     print("Save music tracks")
     with open(file_name, "wb") as out_file:
@@ -553,19 +621,27 @@ def save_tracks(file_name):
 
 def load_tracks(file_name):
     """
-    Loads the music tracks from the given file name
-    Music Tracks are stored in binary as a pickled file
-    Exceptions will be raised if the load fails
+    Loads the music tracks from the given file
 
-    Params
-    ------
+    Music Tracks are stored in binary as a pickled file
+
+    Parameters
+    ----------
     file_name : str
-        string giving the path to the file where the contacts data is stored
+        string giving the path to the file where the recipes data is stored
 
     Returns
     -------
     None
         Music Tracks are loaded into the global tracks list
+
+    Raises
+    ------
+    An Exception is raised if the file could not be loaded
+
+    See Also
+    --------
+    save_tracks : save tracks as a pickled file
     """
     global tracks  # connect to global track list to load into
     print("Load contacts")
@@ -601,7 +677,7 @@ We first define a function `display_track` to display a single track,
 ``` python
 def display_track(track):
     """
-    Displays the name and length (in seconds) of the MusicTrack track
+    Displays the name and length (in seconds) of a track
 
     Params
     ------
@@ -611,6 +687,10 @@ def display_track(track):
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_tracks : display all tracks in a list
     """
     print("Name:", track.name, "(", track.length_in_seconds, "seconds )")
 ```
@@ -639,6 +719,10 @@ def display_tracks(tracks):
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_track : display a single track
     """
     if len(tracks) > 0:
         for track in tracks:
@@ -670,11 +754,13 @@ of matches. This looks like,
 ``` python
 def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
     """
-    Finds and returns a list of all tracks with a length
-    shorter (or equal to) max_length in the provided tracks_to_filter
+    Filter a list of tracks to those shorter than a target length
 
-    Params
-    ------
+    Finds and returns a list of all tracks with a length
+    shorter (or equal to) `max_length` in the provided `tracks_to_filter`
+
+    Parameters
+    ----------
     max_length : int
         maximum (inclusive) length of tracks to include in
         the filtered result
@@ -686,8 +772,12 @@ def filter_tracks_shorter_than_length(max_length, tracks_to_filter):
     -------
     list[MusicTrack]
         List of MusicTracks satisfying
-        `MusicTrack.length_in_seconds <= maximum length`
+        `MusicTrack.length_in_seconds <= maximum length`.
         If no MusicTracks are found an empty list is returned
+
+    See Also
+    --------
+    filter_tracks_greater_than_length : filters out tracks shorter than a given length
     """
     tracks_shorter_than_max_length = []
     for track in tracks_to_filter:
@@ -730,6 +820,10 @@ def find_tracks_shorter_than_length():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_tracks_shorter_than_length : filters out tracks greater than a given length
     """
     max_length = read_min_valued_integer(
         "Enter the maximum track length (in seconds): ", min_value=1
@@ -787,8 +881,11 @@ simply iterate over the tracks in the playlist and sum up their lengths
 def calculate_playlist_length():
     """
     Calculates and displays the total length of the
-    current playlist
+    current playlist in seconds
 
+    Returns
+    -------
+    None
     """
     print("Calculate length of playlist")
     total_length = 0
@@ -819,9 +916,16 @@ standard `try...except` and `with` consruct we’ve seen before
 def save_playlist():
     """
     Saves the current playlist as a human readable list
+
     The user is prompted to give a file name to save the playlist in
 
-    Raises exceptions if the save fails
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    Exceptions are raised if the save fails
     """
     print("Save playlist")
     if len(playlist) == 0:
@@ -867,13 +971,20 @@ Our implementation for this is below,
 ``` python
 def suggest_playlist_of_given_length():
     """
+    Suggests a playlist of length less than or equal to
+    a user prompted length
+
     Asks the user for a maximum playlist length, and
-    the suggests a playlist by combining tracks randomly
+    then suggests a playlist by combining tracks randomly
     such that the suggested playlist is no greater than
-    the max length
+    the length
 
     The user has the option to review the proposed list
     and either accept, reject or regenerate the list
+
+    Returns
+    -------
+    None
     """
     print("Suggest playlist of given length")
     global playlist
@@ -959,7 +1070,7 @@ You are encouraged to play around with the code and make sure you
 understand what is going on. This program is not super complicated but
 it has many components, if you can follow it, you are doing well!
 
-## Exercise: Recipe Storage App
+## **Make Something Happen**: Recipe Storage App
 
 *Make a recipe storage app that stores lists of ingredients and
 preperation details. Remember that one of the items in a class could be
@@ -1075,15 +1186,15 @@ class Recipe:
     """
     Represent a cooking recipe.
 
-    Attributes
+    Parameters
     ----------
     name : str
         Name of the Recipe
 
     ingredients : dict[str, list[str]]
         Ingredients required for the recipe. Ingredients are stored
-        as a dictionary in the format `ingredients[ingredient] = "description"`
-        e.g. `ingredients["Brown Onion"] = "1 Medium, diced"`
+        as a dictionary in the format `ingredients[ingredient] = ["description", ...]`
+        e.g. `ingredients["Brown Onion"] = ["1 Medium, diced"]`
     steps : list[str]
         Ordered list of instructions/steps to prepare the recipe.
 
@@ -1114,6 +1225,10 @@ def new_recipe():
     Returns
     -------
     None
+
+    See Also
+    --------
+    Recipe : Class responsible for storing recipe information
     """
     print("Add New Recipe")
     name = BTCInput.read_text("Enter the recipe name: ")
@@ -1382,6 +1497,11 @@ def find_recipe_by_name():
     -------
     None
         Matches are printed to standard output
+
+    See Also
+    --------
+    filter_recipe_by_name : returns a list containing recipes which match a name
+    find_recipe_by_ingredient : find recipes containing a user-prompted ingredient
     """
     print("Find Recipe by Name")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe name: "))
@@ -1512,7 +1632,7 @@ def view_recipes():
 
     See Also
     --------
-    `run_view_recipe_menu` - function to view a recipe
+    `run_view_recipe_menu` - provides options for viewing a specific recipe
     """
     print("View Recipe")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe to view: "))
@@ -1664,6 +1784,10 @@ def remove_recipe():
     Returns
     -------
     None
+
+    See Also
+    --------
+    filter_recipe_by_name : gives a list of recipes matching a name
     """
     print("Remove Recipe")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe to remove: "))
@@ -1706,6 +1830,10 @@ def edit_recipe():
     --------
 
     Edits are performed in-place and live, they cannot be rolled back
+
+    See Also
+    --------
+    filter_recipe_by_name : gives a list of recipes matching a name
     """
     print("Edit Recipe")
     results = filter_recipe_by_name(BTCInput.read_text("Enter recipe to edit: "))
