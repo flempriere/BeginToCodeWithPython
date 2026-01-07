@@ -518,14 +518,14 @@ Important
 <p><em>Open a python interpreter and work through the following steps to learn about</em> <code>list</code></p>
 <ol type="1">
 <li><p><em>A list is created using brackets around the contents</em> <code>[]</code><em>, e.g.</em></p>
-<div id="49379cff" class="cell" data-execution_count="1">
+<div id="8a745605" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> sales <span class="op">=</span> []</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>The above defines <code>sales</code> as an empty list</li>
 </ul></li>
 <li><p><em>Items can be appended to a</em> <code>list</code> <em>using the</em> <code>append</code> <em>function</em></p>
-<div id="d8d967c7" class="cell" data-execution_count="2">
+<div id="b82ee658" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> sales.append(<span class="dv">99</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> sales</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -536,7 +536,7 @@ Important
 <li>As we can see from above <code>sales</code> now contains the value <code>99</code></li>
 </ul></li>
 <li><p><em>Calling append again, adds the new item to the end of the list</em></p>
-<div id="226e135d" class="cell" data-execution_count="3">
+<div id="83db530e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> sales.append(<span class="dv">100</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> sales</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -546,7 +546,7 @@ Important
 <li><p><em>Observe from above you can see the contents of a list, by simply typing the variable name in the interpreter</em></p>
 <ul>
 <li><p>In scripts we can also use the explicit <code>print</code> call</p>
-<div id="ae7fd73d" class="cell" data-execution_count="4">
+<div id="9fa6f378" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(sales)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[99, 100]</code></pre>
@@ -554,7 +554,7 @@ Important
 </div></li>
 </ul></li>
 <li><p><em>You can access individual items of the list, using the <strong>indexing</strong> operator</em> <code>[]</code></p>
-<div id="b67aeabd" class="cell" data-execution_count="5">
+<div id="c93a812d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> sales[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>99</code></pre>
@@ -565,7 +565,7 @@ Important
 <li>Python lists are zero-indexed. i.e.&nbsp;the first value is stored at index <span class="math inline">\(0\)</span></li>
 </ul></li>
 <li><p><em>The indexing operator can be used to change the value of an item at a given index</em></p>
-<div id="d9cf4d26" class="cell" data-execution_count="6">
+<div id="137728ca" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a> sales[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">101</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> sales</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -587,7 +587,7 @@ Warning
 <div class="callout-body-container callout-body">
 <p><strong>Indexed elements must exist</strong></p>
 <p>Whenever we use the indexing operator the index must exist! For example if we tried to view the (non-existent) third item, we would get an error, e.g.</p>
-<div id="bfe25c38" class="cell" data-execution_count="7">
+<div id="aa94ff4d" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a> example_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(example_list[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -606,7 +606,7 @@ Warning
 </div>
 </div></li>
 <li><p><em>A single list can store values of different types, and can replace items with new items of a different type</em></p>
-<div id="877cb2de" class="cell" data-execution_count="8">
+<div id="eb4ac48a" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a> sales.append(<span class="st">"Rob"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> sales[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"Python"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a> sales</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1158,7 +1158,7 @@ Important
 <li>This will cause an error. e.g.</li>
 </ul></li>
 </ul>
-<div id="986d341d" class="cell" data-execution_count="9">
+<div id="697ec5ac" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> a_list <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>]</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(a_list)):</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span> a_list[count] <span class="op">&lt;</span> a_list[count <span class="op">+</span> <span class="dv">1</span>]:</span>
@@ -1184,7 +1184,7 @@ Important
 <ul>
 <li>The <a href="./Examples/06_BubbleSortFirstPass/BubbleSortFirstPass.py">complete implementation</a> of the above discussion below performs <em>one</em> pass through the list</li>
 </ul>
-<div id="d3e5cec0" class="cell" data-execution_count="10">
+<div id="a51f65ff" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 8.6 Bubble Sort First Pass</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Implements the first pass of bubble sort and shows the impact on the list</span></span>
@@ -1281,7 +1281,7 @@ Output list: [54, 50, 33, 29, 100, 45, 54, 89, 75, 22]</code></pre>
 </ul></li>
 <li>The working bubble sort implemention is then,</li>
 </ul>
-<div id="7d559779" class="cell" data-execution_count="11">
+<div id="105dd3ce" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 8.7 Bubble Sort Multiple Pass</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Implements a complete working version of bubble sort</span></span>
@@ -1343,7 +1343,7 @@ Output list: [100, 89, 75, 54, 54, 50, 45, 33, 29, 22]</code></pre>
 <li>We use a flag to track if any swaps occur in a pass</li>
 <li>If none do then the list is already sorted and we can stop</li>
 </ul>
-<div id="e11f9194" class="cell" data-execution_count="12">
+<div id="bc263836" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.8 Efficient Bubble Sort</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A bubble sort implementation incorporating efficiency savings to the number</span></span>
@@ -1422,7 +1422,7 @@ Output list: [100, 89, 75, 54, 54, 50, 45, 33, 29, 22]</code></pre>
 <li>To flip the direction of the sort, we just need the condition that determines what is out of order or not
 <ul>
 <li><p>We do this by changing <span class="math inline">\(&lt;\)</span> to <span class="math inline">\(&gt;\)</span>, i.e.</p>
-<div id="94a21868" class="cell" data-execution_count="13">
+<div id="820b2581" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.9 Bubble Sort Low to High</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Implementation of Bubble Sort that sorts from low to high</span></span>
@@ -1484,7 +1484,7 @@ Output list: [22, 29, 33, 45, 50, 54, 54, 75, 89, 100]</code></pre>
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> sales_value <span class="op">&lt;</span> lowest:</span>
 <span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>          lowest <span class="op">=</span> sales_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>If we want to find both at the same time, then we can combine the code above, which means we only have to do one pass through the collection</p>
-<div id="fbddb1fc" class="cell" data-execution_count="14">
+<div id="983e03ba" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.10 Highest and Lowest</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Function that finds the highest and lowest value in a collection</span></span>
@@ -1535,7 +1535,7 @@ The lowest is 22</code></pre>
 <h4 class="anchored" data-anchor-id="evaluate-total-and-average-sales">Evaluate Total and Average Sales</h4>
 <ul>
 <li><p>To evaluate the total we have to sum the contents of a list, simple using the <code>for</code> loops we’ve looked at, (implementation in <a href="./Examples/11_TotalSales/TotalSales.py">TotalSales.py</a>)</p>
-<div id="f62fab3f" class="cell" data-execution_count="15">
+<div id="aeacffdd" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.11 Total Sales</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the Total Sales</span></span>
@@ -1567,7 +1567,7 @@ Total sales are: 551</code></pre>
 </div>
 </div></li>
 <li><p>It is a simple extra step to them calculate the average, (divide the total by the number of elements in the collection)</p>
-<div id="3faa419a" class="cell" data-execution_count="16">
+<div id="83a6ad7a" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.12 Average Sales</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the Average Sales</span></span>
@@ -2605,7 +2605,7 @@ Warning
 <li>Effectively repeats the problem we had before of a distinct named variable for each item</li>
 </ul></li>
 <li><p>We want a <em>list of lists</em></p>
-<div id="4c2ca022" class="cell" data-execution_count="17">
+<div id="ee622064" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>  mon_sales <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">54</span>, <span class="dv">29</span>, <span class="dv">33</span>,  <span class="dv">22</span>, <span class="dv">100</span>, <span class="dv">45</span>, <span class="dv">54</span>, <span class="dv">89</span>, <span class="dv">75</span>]</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  tue_sales <span class="op">=</span> [<span class="dv">80</span>, <span class="dv">98</span>, <span class="dv">40</span>, <span class="dv">43</span>, <span class="dv">43</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">79</span>, <span class="dv">30</span>]</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  wed_sales <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">80</span>, <span class="dv">43</span>, <span class="dv">48</span>, <span class="dv">82</span>, <span class="dv">33</span>, <span class="dv">55</span>, <span class="dv">83</span>, <span class="dv">80</span>]</span>
@@ -2620,7 +2620,7 @@ Warning
 <ul>
 <li><p>We first specify the row we want say <code>tue_sales</code></p></li>
 <li><p>Then the column, say Stand 1</p>
-<div id="c1d522f6" class="cell" data-execution_count="18">
+<div id="a5fb46d1" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(week_sales[<span class="dv">1</span>][<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>80</code></pre>
@@ -2650,7 +2650,7 @@ Statement 3: week_sales[7][10] = 100</code></pre>
 <ul>
 <li>Statement 1:</li>
 </ul>
-<div id="bae10da8" class="cell" data-execution_count="19">
+<div id="b2d4ff51" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>week_sales[<span class="dv">0</span>][<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>50</code></pre>
@@ -2659,7 +2659,7 @@ Statement 3: week_sales[7][10] = 100</code></pre>
 <ul>
 <li>Statement 2:</li>
 </ul>
-<div id="7423660f" class="cell" data-execution_count="20">
+<div id="fd16b650" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>week_sales[<span class="dv">8</span>][<span class="dv">7</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -2675,7 +2675,7 @@ Statement 3: week_sales[7][10] = 100</code></pre>
 <ul>
 <li>Statement 3:</li>
 </ul>
-<div id="406e9642" class="cell" data-execution_count="21">
+<div id="24fa3c34" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>week_sales[<span class="dv">7</span>][<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -2710,7 +2710,7 @@ Tip
 <ul>
 <li><p>We can use nested <code>for</code> loops to work through individual values in a list of lists</p></li>
 <li><p>E.g. if we want to calculate the total sales over a week, (full code given in <a href="./Examples/21_TablesOfSalesData/TablesOfSaleData.py">TablesOfSaleData.py</a>)</p>
-<div id="da01220a" class="cell" data-execution_count="22">
+<div id="721ca6f2" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>  total_sales <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> day_sales <span class="kw">in</span> week_sales:</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> sales_value <span class="kw">in</span> day_sales:</span>
@@ -2794,7 +2794,7 @@ Tip
 <ul>
 <li>Simplest implementation is an integer to track the day, implemented in <a href="./Examples/22_DayNameIf/DayNameIf.py">DayNameIf.py</a></li>
 </ul>
-<div id="d02408be" class="cell" data-execution_count="23">
+<div id="23e98858" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.22 Day Name If</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Uses a if, elif, else construction to convert an integer</span></span>
@@ -2824,7 +2824,7 @@ Tip
 <span id="cb85-27"><a href="#cb85-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb85-28"><a href="#cb85-28" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(day_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sunday</code></pre>
+<pre><code>Wednesday</code></pre>
 </div>
 </div></li>
 <li><p>This works, but is fragile, a cleaner way to do this is to use a <em>lookup table</em></p>
@@ -2832,7 +2832,7 @@ Tip
 <li>i.e.&nbsp;we use <code>day_number</code> to index a list that stores the correct day</li>
 </ul></li>
 <li><p>We use the<code>time</code> library for fun so the program prints the current day</p>
-<div id="fde4097f" class="cell" data-execution_count="24">
+<div id="d19fccaf" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.23 Day Name List</span></span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Uses a lookup table to correctly print the day</span></span>
@@ -2856,7 +2856,7 @@ Tip
 <span id="cb87-21"><a href="#cb87-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-22"><a href="#cb87-22" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Today is"</span>, day_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Today is Sunday</code></pre>
+<pre><code>Today is Wednesday</code></pre>
 </div>
 </div></li>
 <li><p>Lookup tables are powerful for shrinking written code</p></li>
@@ -2886,7 +2886,7 @@ Tip
 <li>Specifically a <code>TypeError</code></li>
 <li>Because the action we are trying to take (change the value at an index) is not supported by the object type (tuple)</li>
 </ul>
-<div id="9c3f7765" class="cell" data-execution_count="25">
+<div id="359f3c1c" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 8.24 Day Name Tuple</span></span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Reimplements the Day Name lookup table with a tuple</span></span>
@@ -2916,7 +2916,7 @@ Tip
 <span id="cb90-27"><a href="#cb90-27" aria-hidden="true" tabindex="-1"></a>  day_names[day_number] <span class="op">=</span> <span class="st">"Splatterday"</span>  <span class="co"># type: ignore</span></span>
 <span id="cb90-28"><a href="#cb90-28" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Today is"</span>, day_names[day_number])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Today is Sunday
+<pre><code>Today is Wednesday
 Attempting to change the lookup table...</code></pre>
 </div>
 <div class="cell-output cell-output-error">

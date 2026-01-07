@@ -391,7 +391,7 @@ window.Quarto = {
 </ul></li>
 <li>Variables in python are created by defining a name, and providing a value, e.g.&nbsp;the below defines a variable <code>total</code> and assigns it the value <span class="math inline">\(0\)</span></li>
 </ul>
-<div id="2b67a4a7" class="cell" data-execution_count="1">
+<div id="cc96d72a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="default">
@@ -449,14 +449,14 @@ class zeroDescr BG
 <p><em>Start up a python interpreter, then run the following commands in sequence</em></p>
 <ol type="1">
 <li><p><code>total = 0</code></p>
-<div id="1ce73741" class="cell" data-execution_count="2">
+<div id="8b3547a0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>No output is generated, the assignment is performed silently</li>
 </ul></li>
 <li><p><code>total</code></p>
-<div id="d95f5220" class="cell" data-execution_count="3">
+<div id="ad9594cf" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>0</code></pre>
@@ -467,7 +467,7 @@ class zeroDescr BG
 <li><code>total</code> has been assigned <code>0</code>, putting the variable name into the terminal returns the value associated with this value</li>
 </ul></li>
 <li><p><code>total = total + 10</code></p>
-<div id="a33a2328" class="cell" data-execution_count="4">
+<div id="03193612" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> total <span class="op">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
@@ -476,7 +476,7 @@ class zeroDescr BG
 <li>Here we assign <code>total</code> the value given by the <em>current</em> value of <code>total</code> plus <span class="math inline">\(10\)</span></li>
 </ul></li>
 <li><p><code>total</code></p>
-<div id="d03d4f85" class="cell" data-execution_count="5">
+<div id="59cb55a6" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>10</code></pre>
@@ -545,11 +545,11 @@ Tip
 <p><em>You’ve already seen that python can generate errors when it is unable to interpret an input. Answer the following questions to investigate how errors can arise in using variables. Assume that <code>total</code> has already been defined</em></p>
 <ol type="1">
 <li><p><em>Can you identify an error in the statement below, which is supposed to add</em> <span class="math inline">\(10\)</span> <em>to the variable</em> <code>total</code><em>?</em></p>
-<div id="6b337ec6" class="cell" data-execution_count="6">
+<div id="148828a5" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># clearing saved variables in the notebook</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="op">%</span>reset</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="196a2d72" class="cell" data-execution_count="7">
+<div id="2f164b82" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> Total <span class="op">=</span> total <span class="op">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -594,11 +594,11 @@ Note
 <li>Typically tests should be written as the program is created or if using <em>test-driven development</em> the tests are written <em>before</em> the program itself is written</li>
 </ul></li>
 <li><p><em>The statement below also contains a misspelling of the variable</em> <code>total</code><em>. However, this time the name on the right-hand side of the equals is mispelled. What will happen when this program runs?</em></p>
-<div id="4348d53f" class="cell" data-execution_count="8">
+<div id="1ca363d7" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Again clear the notebook variables</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="op">%</span>reset</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="0019209d" class="cell" data-execution_count="9">
+<div id="c5833ab3" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> Total <span class="op">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -651,7 +651,7 @@ Note
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Stay standing for"</span>, stand_time, <span class="st">"seconds."</span>)  <span class="co"># display standing time</span></span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>time.sleep(stand_time)  <span class="co"># sleep for the standing time</span></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"****TIMES UP, LAST TO SIT WINS!****"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="bbd35bf3" class="cell" data-execution_count="10">
+<div id="6605d21f" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>Welcome to Self Timer
 
@@ -660,7 +660,7 @@ Stay standing until you think the time has ended
 Then sit down
 Anyone still standing when the time expires loses
 The last person to sit down before the time ended will win
-Stay standing for 9 seconds.
+Stay standing for 6 seconds.
 ****TIMES UP, LAST TO SIT WINS!****</code></pre>
 </div>
 </div>
@@ -673,7 +673,7 @@ Stay standing for 9 seconds.
 <li>Variables can also hold text, e.g.&nbsp;<code>customer_name = 'fred'</code> assigns the string <code>'fred'</code> to <code>customer_name</code></li>
 <li>Can use a string variable anywhere we would use a string literal, e.g.&nbsp;<code>message = 'the name is ' + customer_name</code> performs the string concatenation of <code>'the name is'</code> and the value of <code>customer_name</code> and assigns the result to <code>message</code>, which we can confirm below,</li>
 </ul>
-<div id="075b465f" class="cell" data-execution_count="11">
+<div id="2bd931d5" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  customer_name <span class="op">=</span> <span class="st">"fred"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  message <span class="op">=</span> <span class="st">"the name is "</span> <span class="op">+</span> customer_name</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(message)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -684,12 +684,12 @@ Stay standing for 9 seconds.
 <section id="make-something-happen-text-and-numeric-variables" class="level4">
 <h4 class="anchored" data-anchor-id="make-something-happen-text-and-numeric-variables"><strong>Make Something Happen</strong>: Text and Numeric Variables</h4>
 <p><em>Python tracks the contents of each variable and only allows operations that make sense. Using the python interpreter experiment with the following combinations of string and number variables.</em></p>
-<div id="7a9e5115" class="cell" data-execution_count="12">
+<div id="00e6660f" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>customer_age_in_years <span class="op">=</span> <span class="dv">25</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>customer_name <span class="op">=</span> <span class="st">'fred'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>After entering the above two lines in the interpreter, run the following line</em></p>
-<div id="5f999bc3" class="cell" data-execution_count="13">
+<div id="b1fc6587" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>customer_age_in_years <span class="op">+</span> customer_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -704,7 +704,7 @@ Stay standing for 9 seconds.
 </div>
 <p>Here we are trying to add a number and a string, which we saw previously shouldn’t work. The terminal should provide some error output like the below</p>
 <p><em>Now try the below line</em></p>
-<div id="d61740ff" class="cell" data-execution_count="14">
+<div id="c4ca169f" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>customer_age_in_years <span class="op">=</span> <span class="st">'Fred'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>One might expect the above to generate an error, after all we assign text to a variable that was just storing a number. Instead python simply discards the old numeric value of the variable, and now stores text in <code>customer_age_in_years</code>. You should generally avoid doing this, being able to reason about the type of a variable is typically an important part of safe and effective programming, and the weak typing of python is typically disliked outside of quick prototyping</p>
@@ -733,7 +733,7 @@ Note
 </ul></li>
 <li>For example, compare the two quote snippets,</li>
 </ul>
-<div id="021a0667" class="cell" data-execution_count="15">
+<div id="86065d2c" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"It's a trap"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>It's a trap</code></pre>
@@ -742,7 +742,7 @@ Note
 <ul>
 <li>Whereas if we tried to just use single quotes,</li>
 </ul>
-<div id="be962a89" class="cell" data-execution_count="16">
+<div id="d3aa59f2" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'It'</span>s a trap<span class="st">')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -761,7 +761,7 @@ Note
 <li>We use triple quotes, a series of three single or double quotes in a row, see the example below</li>
 </ul></li>
 </ul>
-<div id="247876df" class="cell" data-execution_count="17">
+<div id="52563f57" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'''...and then Luke said "It's a trap"'''</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>...and then Luke said "It's a trap"</code></pre>
@@ -770,7 +770,7 @@ Note
 <ul>
 <li>Triple quoted strings have the added advantage of capturing newlines. To see this, we could rewrite the intro string in <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html#make-something-happen-nerves-of-steel">Nerves of Steel</a> as</li>
 </ul>
-<div id="ab23bb26" class="cell" data-execution_count="18">
+<div id="934b3b09" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'''Welcome to Nerves of Steel</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody stand up</span></span>
@@ -796,7 +796,7 @@ Caution
 <div class="callout-body-container callout-body">
 <p><strong>String Delimiters must Match</strong></p>
 <p>You must using matching delimiters, if we try to mix them we’ll get an error</p>
-<div id="90d0433d" class="cell" data-execution_count="19">
+<div id="58b2fd90" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'hello")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -909,7 +909,7 @@ Important
 <ul>
 <li>We would expect this print <code>hello</code> on one line, then <code>world</code> on the next</li>
 </ul>
-<div id="363ab375" class="cell" data-execution_count="20">
+<div id="3fff9a28" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-stdout">
 <pre><code>hello
 world</code></pre>
@@ -920,7 +920,7 @@ world</code></pre>
 <ul>
 <li>We can see this prints a series of tab seperated lines. So this is essentially a tab seperated table (a similar format to the more familiar <em>comma</em>-seperated table)</li>
 </ul>
-<div id="10c493e2" class="cell" data-execution_count="21">
+<div id="2f606922" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-stdout">
 <pre><code>Item Sales
 car  50
@@ -937,7 +937,7 @@ boat 10</code></pre>
 <ul>
 <li>We saw how to do this with triple-delimited strings before. Instead we just have to remember to instead use a single-delimiter string and then escape the quotes that actually form the string contents. See,</li>
 </ul>
-<div id="56a127dc" class="cell" data-execution_count="22">
+<div id="6c79baa9" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">'and then Luke said "It</span><span class="ch">\'</span><span class="st">s a trap"'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>and then Luke said "It's a trap"</code></pre>
@@ -965,7 +965,7 @@ boat 10</code></pre>
 <ul>
 <li>The above should output something like the below when run</li>
 </ul>
-<div id="5efb9661" class="cell" data-execution_count="23">
+<div id="b9a9b7b6" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-stdout">
 <pre><code>Enter your name please: </code></pre>
 </div>
@@ -984,7 +984,7 @@ boat 10</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">'Enter your name please: '</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hello'</span>, name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Save the program and execute it to see the output. For me the proram would output,</em></p>
-<div id="e822ef9c" class="cell" data-execution_count="24">
+<div id="cf7cba2d" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your name please: <span class="ansi-red-fg">Felix
@@ -1066,7 +1066,7 @@ Tip
 <ul>
 <li>Let us find out,</li>
 </ul>
-<div id="707a9f53" class="cell" data-execution_count="25">
+<div id="d4331c19" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a> x <span class="op">=</span> <span class="bu">int</span>(<span class="st">'kaboom'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1175,7 +1175,7 @@ Important
 <p><em>Conduct the following experiments in the python shell to learn about floating points</em></p>
 <ol type="1">
 <li><p><em>What happens if we try to store a value that can’t be held accurately as a floating-point value?</em></p>
-<div id="d7c1cb76" class="cell" data-execution_count="26">
+<div id="543595eb" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>0.1</code></pre>
@@ -1185,7 +1185,7 @@ Important
 <li>Above we said that <span class="math inline">\(0.1\)</span> couldn’t be exactly represented, but that doesn’t match with what we just saw. The answer is because the error in the representation is very small, and <code>print</code> rounds off the answer</li>
 </ul></li>
 <li><p><em>Does the rounding really happen? Run the following and comment on the result</em></p>
-<div id="11bd7dab" class="cell" data-execution_count="27">
+<div id="58c08e45" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>0.30000000000000004</code></pre>
@@ -1236,7 +1236,7 @@ Warning
 <ul>
 <li>You can create a floating point variable by assigning a floating point number e.g.&nbsp;the below creates a variable* <code>x</code> *and assigns it the floating point value <span class="math inline">\(1.5\)</span></li>
 </ul>
-<div id="3d8bcafd" class="cell" data-execution_count="28">
+<div id="8564df19" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a> x <span class="op">=</span> <span class="fl">1.5</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -1248,7 +1248,7 @@ Warning
 <li>The below assigns the integer value <span class="math inline">\(1.0\)</span> to a variable <code>y</code></li>
 <li>If we print the value back we can see it keeps the decimal, indicating it is a floating point value</li>
 </ul>
-<div id="5f2ea05b" class="cell" data-execution_count="29">
+<div id="711c1673" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a> y <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -1262,13 +1262,13 @@ Warning
 <ul>
 <li>If we compare the two additions below, we can see that when we add floating points, the addition stays a floating point even if the result is integral</li>
 </ul>
-<div id="32aaede4" class="cell" data-execution_count="30">
+<div id="a9e9e82a" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>4</code></pre>
 </div>
 </div>
-<div id="0b9ad7dd" class="cell" data-execution_count="31">
+<div id="ba738444" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a> <span class="fl">2.0</span> <span class="op">+</span> <span class="fl">2.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>4.0</code></pre>
@@ -1277,7 +1277,7 @@ Warning
 <ul>
 <li>If we mix a floating point and integer type we can also see that the result is returned as a floating point (even when the final result is integral)</li>
 </ul>
-<div id="7157f6d1" class="cell" data-execution_count="32">
+<div id="eff3911f" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> <span class="op">+</span> <span class="fl">2.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>4.0</code></pre>
@@ -1287,7 +1287,7 @@ Warning
 <li>Lastly what happens if we divide two coprime integers?</li>
 <li>We see that the result gives the appropriate floating point fraction</li>
 </ul>
-<div id="9abee840" class="cell" data-execution_count="33">
+<div id="7ab2b62d" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>0.5</code></pre>
@@ -1338,7 +1338,7 @@ Warning
 </tbody>
 </table>
 <p>Python lets you perform integer division using floored division behaviour with the <code>//</code> operator e.g.</p>
-<div id="b0fbce84" class="cell" data-execution_count="34">
+<div id="42637dca" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">1</span><span class="op">//</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>-1</code></pre>
@@ -1437,7 +1437,7 @@ Warning
 <span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> c <span class="op">*</span> (a <span class="op">+</span> b)</span>
 <span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> a <span class="op">+</span> b <span class="op">+</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first three lines give <code>a</code> = <span class="math inline">\(1\)</span>, <code>b</code> = <span class="math inline">\(2\)</span> and <code>c</code> = <span class="math inline">\(3\)</span>. Substituting those into the second evaluation for <code>c</code>,</p>
-<div id="0cf086bb" class="cell" data-execution_count="35">
+<div id="605aff97" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> b</span>
@@ -1448,11 +1448,11 @@ Warning
 </div>
 </div>
 <p>So <code>c</code> is assigned <span class="math inline">\(9\)</span>. We then repeat for the second assignment to <code>b</code> to get,</p>
-<div id="edc6e32f" class="cell" data-execution_count="36">
+<div id="0f1088ca" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>So the final values are, <code>a</code> = <span class="math inline">\(1\)</span>, <code>b</code> = <span class="math inline">\(12\)</span>, <code>c</code> = <span class="math inline">\(9\)</span>. If we execute the original cell we can confirm this</p>
-<div id="368c5d84" class="cell" data-execution_count="37">
+<div id="b8c2ee88" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> b</span>
@@ -1481,7 +1481,7 @@ Caution
 <div class="callout-body-container callout-body">
 <p><strong>Dumb Calculations</strong></p>
 <p>Python won’t try and stop you if you do something that mathematically makes no sense like dividing a number by zero, instead an error is raised, but this won’t occur until your program runs! Therefore when using division you should always take care to make sure you either handling division by zero cases appropriately or preventing them from occuring</p>
-<div id="d82e389a" class="cell" data-execution_count="38">
+<div id="973d4358" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">/</span><span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1507,7 +1507,7 @@ Caution
 <li>It can also be used to convert an integer value to a floating point value, e.g.</li>
 </ul></li>
 </ul>
-<div id="3d237c6f" class="cell" data-execution_count="39">
+<div id="8835f5b1" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="bu">float</span>(<span class="dv">1</span>)</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
@@ -1520,7 +1520,7 @@ Caution
 <li>The number is rounded towards zero, i.e.&nbsp;fractional components are truncated (see the callout-box above about integer division)</li>
 </ul></li>
 </ul>
-<div id="ca972687" class="cell" data-execution_count="40">
+<div id="c4322666" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="bu">int</span>(<span class="fl">2.9</span>)</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>i</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
@@ -1608,7 +1608,7 @@ Important
 <span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>    temperature_centrigrade <span class="op">=</span> (temperature_fahrenheit <span class="op">-</span> <span class="dv">32</span>) <span class="op">/</span> <span class="fl">1.8</span></span>
 <span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The temperature is"</span>, temperature_centrigrade, <span class="st">"degrees Celcius"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A sample output may look like,</p>
-<div id="99b46239" class="cell" data-execution_count="41">
+<div id="ded374c3" class="cell" data-execution_count="41">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter a temperature in Fahrenheit: <span class="ansi-red-fg">0
@@ -1637,7 +1637,7 @@ Important
 <h4 class="anchored" data-anchor-id="example-seattle-temperature">Example: <a href="./Examples/06_SeattleTemperature/SeattleTemperature.py">Seattle Temperature</a></h4>
 <ul>
 <li><p>The following program can be used to get the current temperature reading from Seattle using <code>snaps</code></p>
-<div id="ae72ff3c" class="cell" data-execution_count="42">
+<div id="ba7979d7" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 4.6: Seattle Temperature</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the current temperature in Seattle</span></span>
@@ -1656,7 +1656,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html</code></
   from pkg_resources import resource_stream, resource_exists</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The temperature in Seattle is: 46</code></pre>
+<pre><code>The temperature in Seattle is: 41</code></pre>
 </div>
 </div></li>
 </ul>
@@ -1665,7 +1665,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html</code></
 <h4 class="anchored" data-anchor-id="example-seattle-weather">Example: <a href="./Examples/07_SeattleWeather/SeattleWeather.py">Seattle Weather</a></h4>
 <ul>
 <li><p>We can also use <code>snaps</code> to get a short description of the current weather</p>
-<div id="12c34892" class="cell" data-execution_count="43">
+<div id="1226902b" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 4.7: Seattle Weather</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Uses snaps to get a description of the weather in Seattle</span></span>
@@ -1675,7 +1675,7 @@ Hello from the pygame community. https://www.pygame.org/contribute.html</code></
 <span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>  desc <span class="op">=</span> snaps.get_weather_desciption(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
 <span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"The conditions are:"</span>, desc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The conditions are: Mostly Cloudy</code></pre>
+<pre><code>The conditions are: Clear</code></pre>
 </div>
 </div></li>
 </ul>
