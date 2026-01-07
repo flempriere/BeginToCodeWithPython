@@ -3,47 +3,48 @@
 - [Notes](#notes)
   - [Make a Tiny Contacts App](#make-a-tiny-contacts-app)
     - [Make a Prototype](#make-a-prototype)
-      - [Example: The Contacts Application
-        Prototype](#example-the-contacts-application-prototype)
+      - [**Code Analysis**: The Contacts Application
+        Prototype](#code-analysis-the-contacts-application-prototype)
     - [Store Contact Details in Seperate
       Lists](#store-contact-details-in-seperate-lists)
-      - [Example: The `find_contact`
-        Function](#example-the-find_contact-function)
+      - [**Code Analysis**: The `find_contact`
+        Function](#code-analysis-the-find_contact-function)
     - [Use a Class to Store Contact
       Details](#use-a-class-to-store-contact-details)
-      - [Example: Creating a Class](#example-creating-a-class)
+      - [**Make Something Happen**: Creating a
+        Class](#make-something-happen-creating-a-class)
     - [Use the `Contact` class in the Tiny Contacts
       Program](#use-the-contact-class-in-the-tiny-contacts-program)
-      - [Example: The class-based `find_contact`
-        function](#example-the-class-based-find_contact-function)
+      - [**Code Analysis**: The class-based `find_contact`
+        function](#code-analysis-the-class-based-find_contact-function)
       - [Exercise: Duplicate Names](#exercise-duplicate-names)
     - [Edit Contacts](#edit-contacts)
       - [Refactor the Tiny Contacts
         Program](#refactor-the-tiny-contacts-program)
-        - [Example: The refactored `find_contact`
-          function](#example-the-refactored-find_contact-function)
+        - [**Code Analysis**: The refactored `find_contact`
+          function](#code-analysis-the-refactored-find_contact-function)
       - [Contact Objects and
         References](#contact-objects-and-references)
-        - [Example: Understanding Lists and
-          References](#example-understanding-lists-and-references)
+        - [**Code Analysis**: Understanding Lists and
+          References](#code-analysis-understanding-lists-and-references)
         - [Immutability](#immutability)
       - [Edit a Contact](#edit-a-contact)
     - [Save Contacts in a File using
       `pickle`](#save-contacts-in-a-file-using-pickle)
     - [Load Contacts from a file using
       `pickle`](#load-contacts-from-a-file-using-pickle)
-      - [Example: Loading Data using
-        `pickle`](#example-loading-data-using-pickle)
+      - [**Code Analysis**: Loading Data using
+        `pickle`](#code-analysis-loading-data-using-pickle)
     - [Add `save` and `load` to Tiny
       Contacts](#add-save-and-load-to-tiny-contacts)
-      - [Example: Saving and Loading
-        Contacts](#example-saving-and-loading-contacts)
+      - [**Code Analysis**: Saving and Loading
+        Contacts](#code-analysis-saving-and-loading-contacts)
     - [Setup Class Instances](#setup-class-instances)
       - [The Python Initialiser Method](#the-python-initialiser-method)
-        - [Exercise: Create an
-          Initialiser](#exercise-create-an-initialiser)
-        - [Example: Parameters and the `__init__`
-          method](#example-parameters-and-the-__init__-method)
+        - [**Make Something Happen**: Create an
+          Initialiser](#make-something-happen-create-an-initialiser)
+        - [**Code Analysis**: Parameters and the `__init__`
+          method](#code-analysis-parameters-and-the-__init__-method)
       - [Use Default Arguments in a
         Constructor](#use-default-arguments-in-a-constructor)
   - [Dictionaries](#dictionaries)
@@ -147,6 +148,8 @@
 
     def find_contact():
         """
+        Displays the contact matching a user-specified name
+
         Prompts the user for a name, and searches the contacts list.
         If the contact is found in the list, their full contact details
         are displayed
@@ -185,44 +188,52 @@
             raise ValueError("Unexpected command id found: " + str(command))
   ```
 
-##### Example: The Contacts Application Prototype
+##### **Code Analysis**: The Contacts Application Prototype
 
 *The code above doesn’t introduce any new concepts, but it’s worth
 examining in detail to make sure you understand how all the parts work.
 Work through the following questions.*
 
 1. *Is this code familiar?*
-    - *It should be!, It is very similar to the
+
+    - It should be!, It is very similar to the
       [ride-selector](../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.qmd#use-decisions-to-make-an-application)
       and [Ice Cream
       Sales](../../01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.qmd#lists-and-tracking-sales)
-      programs*
-    - *This menu structure is very common for imperative programs*
+      programs
+    - This menu structure is very common for imperative programs
+
 2. *The value returned by the* `read_text` *functions are ignored by
     the program. Is this legal?*
-    - *Yes, it is perfectly legal.*
-    - `read_text` *is from the
+
+    - Yes, it is perfectly legal.
+    - `read_text` is from the
       [BTCInput](../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.qmd#build-reusable-functions)
-      library, it returns a user-provided string*
-      - *We have yet to decide how we store this, so we simply discard
-        it*
-      - *We emulate the behaviour of getting a contact, but not the
-        process of storing it yet*
+      library, it returns a user-provided string
+      - We have yet to decide how we store this, so we simply discard it
+      - We emulate the behaviour of getting a contact, but not the
+        process of storing it yet
+
 3. *How does the program stop?*
-    - *The main loop contains a special option that is used for exiting
-      the program. This is achieved by calling* `break` *to get out of
-      the loop, after which the program will finish*
+
+    - The main loop contains a special option that is used for exiting
+      the program. This is achieved by calling `break` to get out of the
+      loop, after which the program will finish
+
 4. *Isn’t the prototype a bit basic? Why don’t you make it store data?*
-    - *The prototype is not designed to be functional*
-      - *We minimise the initial work so that if the customer backs out
-        we haven’t wasted too much time*
-      - *We want to make it clear that the program is a prototype, so
-        that the customer won’t immediately want to use it*
+
+    - The prototype is not designed to be functional
+      - We minimise the initial work so that if the customer backs out
+        we haven’t wasted too much time
+      - We want to make it clear that the program is a prototype, so
+        that the customer won’t immediately want to use it
+
 5. *How is the telephone number stored?*
-    - *Our plan is store the number as a string*
-    - *While referred to as a number, telephone numbers typically have
+
+    - Our plan is store the number as a string
+    - While referred to as a number, telephone numbers typically have
       additional characters that make them much more like strings
-      (e.g. +)*
+      (e.g. +)
 
 #### Store Contact Details in Seperate Lists
 
@@ -260,6 +271,8 @@ Work through the following questions.*
   ``` python
     def find_contact():
         """
+        Displays the contact matching a user-specified name
+
         Prompts the user for a name, and searches the contacts list.
         If the contact is found in the list, their full contact details
         are displayed
@@ -291,46 +304,57 @@ Work through the following questions.*
 - You can view the complete program all put together in
   [TinyContactsParallelLists.py](./Examples/02_TinyContactsParallelLists/TinyContactsParallelLists.py)
 
-##### Example: The `find_contact` Function
+##### **Code Analysis**: The `find_contact` Function
 
 *The* `find_contact` *function is probably one of the more sophisticated
 pieces of code we’ve written. Work through the following questions to
 make sure you understand what is going on.*
 
 1. *How does this code work?*
-    - *We look through the* `names` *list until we find a match, once
-      we’ve found it we can immediately stop looking keeping track of
-      the index that we’ve been looking at*
+
+    - We look through the `names` list until we find a match
+    - Once we’ve found it we can immediately stop looking
+      - Keeping track of the index that we’ve been looking at
+
 2. *What is the* `name_index` *variable used for?*
-    - *The* `name_position` *variable is used to track which index of
-      the* `names` *list matches the name we’re trying to find*
-    - *We use this to then grab the address and phone from the*
-      `addresses` *and* `telephones` *arrays*
-    - *This technique is called **parallel lists***
+
+    - The `name_position` variable is used to track which index of the
+      `names` list matches the name we’re trying to find
+    - We use this to then grab the address and phone from the
+      `addresses` and `telephones` arrays
+    - This technique is called *parallel lists*
+
 3. *How does the function know if a name has been found?*
-    - *If we reach the end of the list without finding a match, then*
-      `name_index` *ends the loop as one past the actual last valid
-      index of the loop. We can check this with* `len`
-    - *We use an* `if` *condition to check this*
+
+    - If we reach the end of the list without finding a match, then
+      `name_index` ends the loop as one past the actual last valid index
+      of the loop
+      - We can check this with `len`
+      - We use an `if` condition to check this
+
 4. *What do the calls of* `strip` *and* `lower` *do?*
-    - *These functions normalise the input, so that any extra whitespace
-      or variations in upper and lower case are removed*
+
+    - These functions normalise the input, so that any extra whitespace
+      or variations in upper and lower case are removed
+
 5. *Can we save the user from having to type in all the names when they
     search?*
-    - *Yes, we can. We could use* `startswith` *to find a name that
-      starts with whatever the user inputs. This means they might only
-      need to put in the first name*
 
-    - *There are more sophisticated search techniques that we could use,
-      but they are outside the scope of this discussion*
+    - Yes, we can. We could use `startswith` to find a name that starts
+      with whatever the user inputs
+
+    - This means they might only need to put in the first name
+
+    - There are more sophisticated search techniques that we could use,
+      but they are outside the scope of this discussion
 
       ``` python
         if name.startswith(search_name):
             break
       ```
 
-      - *The above is integrated into the complete program in
-        [TinyContactsQuickSearch.py](./Examples/03_TinyContactsQuickSearch/TinyContactsQuickSearch.py)*
+      - The above is integrated into the complete program in
+        [TinyContactsQuickSearch.py](./Examples/03_TinyContactsQuickSearch/TinyContactsQuickSearch.py)
 
 #### Use a Class to Store Contact Details
 
@@ -348,7 +372,7 @@ make sure you understand what is going on.*
   construct *objects*
   - A class is a type, an object is the instance
 
-##### Example: Creating a Class
+##### **Make Something Happen**: Creating a Class
 
 *Open the python interpreter and work through the following steps and
 questions to understand classes*
@@ -357,6 +381,19 @@ questions to understand classes*
 
 ``` python
 class Contact:
+    """
+    Stores Contact Information
+
+    Attributes
+    ----------
+    name : str
+        Contact Name
+    address : str
+        Contact's postal or street address.
+    telephone : str
+        Contact phone number (stored as a string).
+    """
+
     pass
 ```
 
@@ -365,14 +402,18 @@ contents is given as an indented block* - *We use* `pass` *To make an
 empty placeholder class*
 
 1. *Why does the name* `Contact` *begin with a capital letter?*
-    - *It’s convention, in python*
-      - *Variables and functions start with lowercase letters*
-      - *Classes start with uppercase letters*
+
+    - It’s convention, in python
+      - Variables and functions start with lowercase letters
+      - Classes start with uppercase letters
+
 2. *Why does the* `Contact` *class contain a Python* `pass`
     *statement?*
-    - *The class definition expects an indented block. We haven’t yet
-      decided the contents of the class so we use* `pass` *to give an
-      placeholder statement*
+
+    - The class definition expects an indented block
+
+    - We haven’t yet decided the contents of the class so we use `pass`
+      to give an placeholder statement
 
     - *We can create an instance of a* `Contact` *with*
 
@@ -381,30 +422,34 @@ empty placeholder class*
       ```
 
 3. *This looks like a function call. Are we calling a function here?*
-    - *Technically this is a call to a function called a constructor.
-      Which is responsible for creating an intance of a* `Contact`
-    - *By using capital letters it’s clear that this is an object
-      instantiation*
+
+    - Technically this is a call to a function called a constructor
+    - Which is responsible for creating an intance of a `Contact`
+    - By using capital letters it’s clear that this is an object
+      instantiation
+
 4. *What’s an instance?*
-    - *An instance is the **realisation** of a class*
 
-    - *Class is the design, object is the actual thing*
+    - An instance is the **realisation** of a class
 
-    - *You can add data attributes to an instance*
+    - Class is the design, object is the actual thing
+
+    - You can add data attributes to an instance
 
       ``` python
         x.name = "Rob Miles"
       ```
 
 5. *What’s a data attribute?*
-    - *Provide information about a specific instance*
 
-    - *For a contact we would want it to have* `name`*,* `address`*,
-      and* `phone`
+    - Provide information about a specific instance
 
-    - *methods can also be thought of as attributes*
+    - For a contact we would want it to have `name`, `address`, and
+      `phone`
 
-    - *You can use and manipulate data attributes*
+    - methods can also be thought of as attributes
+
+    - You can use and manipulate data attributes
 
       ``` python
         print(x.name)
@@ -447,6 +492,10 @@ empty placeholder class*
         Returns
         -------
         None
+
+        See Also
+        --------
+        Contact : class for storing contact information
         """
         print("Create the new contact")
         new_contact = Contact()
@@ -458,6 +507,8 @@ empty placeholder class*
 
     def find_contact():
         """
+        Displays the contact matching a user-specified name
+
         Prompts the user for a name, and searches the contacts list.
         If the contact is found in the list, their full contact details
         are displayed
@@ -465,6 +516,10 @@ empty placeholder class*
         Returns
         -------
         None
+
+        Notes
+        -----
+        Matches any name prefixed by the search name
         """
         print("Find contact")
         search_name = BTCInput.read_text("Enter the contact name: ")
@@ -480,20 +535,23 @@ empty placeholder class*
                 break
   ```
 
-##### Example: The class-based `find_contact` function
+##### **Code Analysis**: The class-based `find_contact` function
 
 *Answer the following questions about the new* `find_contact`
 *implementation*
 
 1. *How does this code work?*
-    - *This functions like the previous search, we look for a contact
-      that has a match to the search name.*
-    - *Rather than use the index of the match, we set a reference to the
-      object itself iin the variable* `result`
-    - *We use* `None` *to indicate no match was found*
+
+    - This functions like the previous search, we look for a contact
+      that has a match to the search name
+    - Rather than use the index of the match, we set a reference to the
+      object itself iin the variable\* `result`
+    - We use `None` to indicate no match was found
+
 2. *What does the value* `None` *mean?*
-    - `None` *in python is used to refer to a value that does not exist*
-    - *Semantically here it is used to indicate that no match was found*
+
+    - `None` in python is used to refer to a value that does not exist
+    - Semantically here it is used to indicate that no match was found
 
 ##### Exercise: Duplicate Names
 
@@ -519,6 +577,8 @@ We have two solutions that we could use,
       ``` python
         def find_contact():
             """
+            Displays the contact matching a user-specified name
+
             Prompts the user for a name, and searches the contacts list.
             If the contact is found in the list, their full contact details
             are displayed
@@ -646,16 +706,16 @@ We have two solutions that we could use,
         """
         Finds the contacts with the matching name
 
-        Params
-        ------
+        Parameters
+        ----------
         search_name : str
-            Name to search for
+            Name to search for (uses prefix matching)
 
         Returns
         -------
-        Contact | None
-            Returns the first matching contact if it exists, else
-            None
+        list[Contact]
+            list of contacts matching the `search_name`, if no
+            matches exist the list is empty
         """
         search_name = search_name.strip().lower()
         result = None
@@ -666,23 +726,26 @@ We have two solutions that we could use,
         return None
   ```
 
-###### Example: The refactored `find_contact` function
+###### **Code Analysis**: The refactored `find_contact` function
 
 *Answer the following questions, about this new version of*
 `find_contact`
 
 1. *Why does the function contain two* `return` *statements?*
-    - *Only one return will actually be executed*
-    - *If a match is found then the match is returned*
-    - *If not then the program will exit the* `for` *loop at which point
-      it encounters the second return and returns* `None`
+
+    - Only one return will actually be executed
+    - If a match is found then the match is returned
+    - If not then the program will exit the `for` loop at which point it
+      encounters the second return and returns `None`
+
 2. *What would happen if another program tried to use the return value
     of the* `find_contact` *function, and the* `find_contact` *function
     had returned* `None`
-    - *Depends on what the function tries to do*
 
-    - *If the function tried to something with that value, then an
-      exception is thrown*
+    - Depends on what the function tries to do
+
+    - If the function tried to something with that value, then an
+      exception is thrown
 
       ``` python
         x = None #emulate failed find from find_contact
@@ -692,15 +755,15 @@ We have two solutions that we could use,
           AttributeError: 'NoneType' object has no attribute 'address'
           ---------------------------------------------------------------------------
           AttributeError                            Traceback (most recent call last)
-          Cell In[39], line 2
+          Cell In[5], line 2
                 1 x = None #emulate failed find from find_contact
           ----> 2 print(x.address)
 
           AttributeError: 'NoneType' object has no attribute 'address'
 
-    - *Since* `find_contact` *documents that it can return* `None` *it
-      is the responsibility of the consumer of the function to ensure
-      they don’t misuse the* `None`
+    - Since `find_contact` documents that it can return `None` it is the
+      responsibility of the consumer of the function to ensure they
+      don’t misuse the `None`
 
 ##### Contact Objects and References
 
@@ -775,7 +838,7 @@ flowchart TD
   are propagated between all the references
   - There is only one memory object
 
-###### Example: Understanding Lists and References
+###### **Code Analysis**: Understanding Lists and References
 
 *The figure below illustrates how lists and references work. It shows a
 Tiny Contacts data store with three contacts registered. Each of the
@@ -824,9 +887,9 @@ flowchart:
 1. *The diagram contains four references. How many data objects does it
     contain?*
 
-    - *There are three data objects, the* `Contact` *items themselves.
-      One (Rob Miles) is referenced by the list index* $2$ *and the
-      variable* `rob`
+    - There are three data objects, the `Contact` items themselves
+    - One (Rob Miles) is referenced by the list index $2$ *and* the
+      variable `rob`
 
 2. *What would happen if the program performed the following
     statement?*
@@ -835,8 +898,8 @@ flowchart:
      contacts[0] = contacts[1]
     ```
 
-    - *The* $0$ *index in the list now references the same memory object
-      as that in the* $1$ *index, the state now looks like,*
+    - The $0$ index in the list now references the same memory object as
+      that in the $1$ index, the state now looks like,
 
 ``` mermaid
 flowchart TD
@@ -868,12 +931,12 @@ flowchart TD
     D-->C1
 ```
 
-- *Looping through the list would thus refer to the Joe Bloggs Contact
-  twice*
-- *Note that we have now lost the reference to Fred Smith, **we can
-  never get it back!***
-  - *Unreferenced memory objects will be removed by python in a process
-    called **garbage collection***
+- Looping through the list would thus refer to the Joe Bloggs Contact
+  twice
+- Note that we have now lost the reference to Fred Smith, *we can never
+  get it back!*
+  - Unreferenced memory objects will be removed by python in a process
+    called *garbage collection*
 - References make it easy to work with large data objects
   - Avoid the need to create expensive copies
 
@@ -1091,7 +1154,7 @@ flowchart TD
 >     AttributeError: 'Contact' object has no attribute 'address'
 >     ---------------------------------------------------------------------------
 >     AttributeError                            Traceback (most recent call last)
->     Cell In[45], line 9
+>     Cell In[11], line 9
 >           6 contact.name = "Hello"
 >           8 # Attempt to access address
 >     ----> 9 print("contact address is", contact.address)
@@ -1198,8 +1261,25 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
   def save_contacts(file_name):
     """
     Saves the contacts to the given file name
+
     Contacts are stored in binary as a pickled file
-    Exceptions will be raised if the save fails
+
+    Parameters
+    ----------
+    file_name : str
+        string giving the path to the file to store the contacts data in
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+        Exceptions are raised if contacts could not be saved
+
+    See Also
+    --------
+    load_contacts : loads contacts from a pickled file
     """
     print("save contacts")
     with open(file_name, "wb") as out_file:
@@ -1225,9 +1305,27 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
   ``` python
     def load_contacts(file_name):
         """
-        Loads the contacts from the given file name
-        Contacts are stored in binary as pickled file
-        Exceptions will be raised if the load fails
+        Loads the contacts from the given file
+
+        Contacts are stored in binary as a pickled file
+
+        Parameters
+        ----------
+        file_name : str
+            string giving the path to the file where the contacts data is stored
+
+        Returns
+        -------
+        None
+            Contact detail is loaded into the global contacts value
+
+        Raises
+        ------
+            Exceptions if contacts failed to load
+
+        See Also
+        --------
+        save_contacts : saves contacts to a pickled file
         """
         global contacts #connect to the global contacts variable
         print("load contacts")
@@ -1235,32 +1333,33 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
             contacts=pickle.load(input_file)
   ```
 
-##### Example: Loading Data using `pickle`
+##### **Code Analysis**: Loading Data using `pickle`
 
 *Work through the following questions to make sure you understand how*
 `load_contacts` *works*
 
 1. *What does the* `global contacts` *statement do? Why do we need it
     only in the* `load` *function and not the* `save` *function?*
-    - *The* `load_contacts` *function is used to modify the values of
-      the* `contacts` *variable*
-    - *The* `contacts` *holds all the current contacts, held in the
-      program*
-    - `save_contacts` *needs the reference to find the list*
-      - *Does not modify the list itself*
-    - `load_contacts` *does modify the* `contacts` *list*
-      - *Need to explicitly link to the global variable to write to it*
+
+    - The `load_contacts` function is used to modify the values of the
+      `contacts` variable
+    - The `contacts` holds all the current contacts, held in the program
+    - `save_contacts` needs the reference to find the list
+      - Does not modify the list itself
+    - `load_contacts` does modify the `contacts` list
+      - Need to explicitly link to the global variable to write to it
+
 2. *How does the pickle* `load` *function know what kind of data to
     make when loading?*
-    - *The information is encoded in the pickle file*
-    - *In a pickle file you should be able to identify the data
-      attributes (*`name` *etc.) and their values*
-    - *Also contains the class name*
-    - `load` *looks for matching classes in the program loading the
-      data*
-      - *Constructs object instances based on those classes*
-      - *Means the class* `Contact` *must be defined before pickle is
-        used to load any contact data*
+
+    - The information is encoded in the pickle file
+    - In a pickle file you should be able to identify the data
+      attributes (`name` etc.) and their values
+    - Also contains the class name
+    - `load` looks for matching classes in the program loading the data
+      - Constructs object instances based on those classes
+      - Means the class `Contact` must be defined before pickle is used
+        to load any contact data
 
 > [!TIP]
 >
@@ -1328,33 +1427,38 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
             raise ValueError("Unexpected value encountered")
   ```
 
-##### Example: Saving and Loading Contacts
+##### **Code Analysis**: Saving and Loading Contacts
 
 *Consider the following questions about the code above*
 
 1. *What happens if the* `load_contacts` *function raises an
     exception?*
-    - `load_contacts` *raises an exception if the contacts file can’t be
-      found, or if the* `load` *function in* `pickle` *fails*
-    - *In this case the exception is caught, an error message is printed
-      and an empty contacts list is created*
+
+    - `load_contacts` raises an exception if the contacts file can’t be
+      found, or if the `load` function in `pickle` fails
+    - In this case the exception is caught, an error message is printed
+      and an empty contacts list is created
+
 2. *Why does the program not catch the exceptions raised by*
     `save_contacts`*?*
-    - *You could add this if you wanted*
-    - *If the program crashes, the user should probably expect the save
-      failed*
-    - *Since they were trying to quit anyway they probably don’t care*
+
+    - You could add this if you wanted
+    - If the program crashes, the user should probably expect the save
+      failed
+    - Since they were trying to quit anyway they probably don’t care
     - My implementation adds `try...except` block that prints an error
       message if the save fails (as the book suggests you consider)
+
 3. *Why does the program use a variable for the file name of the
     pickled file?*
-    - *The contacts are held in a file called* `contacts.pickle`
-    - *This file is used in two places* `load_contacts` *and*
+
+    - The contacts are held in a file called\* `contacts.pickle`
+    - This file is used in two places\* `load_contacts` and
       `save_contacts`
-      - *We could put the string literal in both places*
-      - *Instead use a variable*
-      - *Means we can change the file name in one place and the program
-        works*
+      - We could put the string literal in both places
+      - Instead use a variable
+      - Means we can change the file name in one place and the program
+        works
 
 > [!TIP]
 >
@@ -1407,7 +1511,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
   - python uses “dunder methods” marked `__function_name__` to mark
     special functions defined by the language
 
-###### Exercise: Create an Initialiser
+###### **Make Something Happen**: Create an Initialiser
 
 *Open the python interpreter and work through the following steps to
 create an understand an initialiser, answering the questions*
@@ -1426,6 +1530,7 @@ after the* `init` *are required, as is the parameter* `self`*. The last
 line of the class is an empty line*
 
 1. *The initialiser looks remarkably like a function why is that?*
+
     - An initialiser is a function that is called when a class instance
       is created.
 
@@ -1438,7 +1543,9 @@ line of the class is an empty line*
       ```
 
           you made an InitPrint instance
+
 2. *How is the* `__init__` *function made to run?*
+
     - It is handled by the python interpreter and how objects are
       constructed
     - It will run each time an instance of the `InitPrint` class is
@@ -1452,20 +1559,20 @@ line of the class is an empty line*
             self.name = new_name
   ```
 
-  - *The initialiser can take arguments like any other function, here it
-    takes* `new_name`
+  - The initialiser can take arguments like any other function, here it
+    takes `new_name`
 
-  - *Initialiser no longer prints a message but rather sets a* `name`
-    *attribute on the variable* `self`
+  - Initialiser no longer prints a message but rather sets a `name`
+    attribute on the variable `self`
 
-  - `self` *is a reference to the object running the method*
+  - `self` is a reference to the object running the method
 
-    - *In the initialiser this is the object being created*
-    - `self` *is always the first parameter of a method, and must be
-      included*
+    - In the initialiser this is the object being created
+    - `self` is always the first parameter of a method, and must be
+      included
 
-  - *Now replicate the code below to see how the new* `__init__` *method
-    works*
+  - Now replicate the code below to see how the new `__init__` method
+    works
 
     ``` python
       x = InitName("Fred")
@@ -1474,15 +1581,15 @@ line of the class is an empty line*
 
         Fred
 
-  - *When creating an* `InitName` *object we now have to pass the*
-    `new_name` *parameter*
+  - When creating an `InitName` object we now have to pass the
+    `new_name` parameter
 
-  - *Observe we don’t explicitly pass* `self`
+  - Observe we don’t explicitly pass `self`
 
-- *Once an initialiser is defined, it is the only way to create an
-  instance*
+- Once an initialiser is defined, it is the only way to create an
+  instance
 
-  - *Attempting otherwise leads to an error, e.g. if we exclude the*
+  - Attempting otherwise leads to an error, e.g. if we exclude the
     `new_name`
 
   ``` python
@@ -1492,13 +1599,13 @@ line of the class is an empty line*
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[50], line 1
+      Cell In[16], line 1
       ----> 1 y = InitName()
 
       TypeError: InitName.__init__() missing 1 required positional argument: 'new_name'
 
-- *This is a way of enforcing that an object is created with a full set
-  of attributes*
+- This is a way of enforcing that an object is created with a full set
+  of attributes
 
 - Our `Contact` class, should accept three parameters
 
@@ -1510,51 +1617,51 @@ line of the class is an empty line*
             self.telephone = telephone
   ```
 
-###### Example: Parameters and the `__init__` method
+###### **Code Analysis**: Parameters and the `__init__` method
 
 *Work through the following questions to ensure you understand the*
 `__init__` *method*
 
 1. *It looks like you’ve written the assignments in the initialiser so
     that a value is assigned to itself. What’s going on?*
-    - *Consider a statement*
+
+    - Consider a statement
 
       ``` python
         self.telephone = telephone
       ```
 
-    - *This looks like assigning* `telephone` *to* `telephone`*it, does
-      not*
+    - This looks like assigning `telephone` to `telephone` it, does not
 
-    - *The left is the* `telephone` *atrribute* on the `self` *object*
+    - The left is the `telephone` atrribute on the `self` object
 
-    - *The right is the* `telephone` *parameter passed to the
-      initialiser*
+    - The right is the `telephone` parameter passed to the initialiser
 
-    - *Python variable names are* **namespaced**
+    - Python variable names are *namespaced*
 
-      - *namespaces are regions in which names are uniquely identified*
+      - namespaces are regions in which names are uniquely identified
 
-    - *One namespace is the local namespace of the* `__init__` *method*
+    - One namespace is the local namespace of the `__init__` method
 
-    - *The other namespace is the attribute namespace of the* `self`
-      *object*
+    - The other namespace is the attribute namespace of the `self`
+      object
 
-    - *namespaces allow different contexts to use the same variable name
-      distinct from each other*
+    - namespaces allow different contexts to use the same variable name
+      distinct from each other
 
-    - *Generally it is convention to give initialiser parameters the
-      same name as their associated object attributes*
+    - Generally it is convention to give initialiser parameters the same
+      name as their associated object attributes
+
 2. *What happens if the user of the constructor supplies silly
     arguments to it?*
-    - *Currently the constructor doesn’t validate the input*
-    - *e.g. we could pass* `name` *a number, empty string or even*
-      `None`
-      - *Still generates a* `Contact`
-    - *You can add error handling code to the constructor and raise
-      exceptions if the provided values are invalid*
-      - *For a more robust application this might be required*
-      - *For a small toy program we can generally expect valid input*
+
+    - Currently the constructor doesn’t validate the input
+    - e.g. we could pass `name` a number, empty string or even `None`
+      - Still generates a `Contact`
+    - You can add error handling code to the constructor and raise
+      exceptions if the provided values are invalid
+      - For a more robust application this might be required
+      - For a small toy program we can generally expect valid input
 
 - If we want to create a new `Contact` now we can just call,
 
@@ -1568,7 +1675,15 @@ line of the class is an empty line*
   ``` python
     def new_contact():
         """
-        Reads in a new contact and stores it
+        Creates and adds a new contact to the contact book
+
+        Returns
+        -------
+        None
+
+        See Also
+        --------
+        Contact : class for storing contact information
         """
         print("Create new contact")
         name = BTCInput.read_text("Enter the contact name: ")
@@ -1656,7 +1771,7 @@ line of the class is an empty line*
       KeyError: 'Latte'
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[58], line 1
+      Cell In[24], line 1
       ----> 1 prices["Latte"]
 
       KeyError: 'Latte'
@@ -1740,7 +1855,7 @@ line of the class is an empty line*
       KeyError: 1111
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[63], line 2
+      Cell In[29], line 2
             1 del(access_control[1111])
       ----> 2 print(access_control[1111])
 
@@ -1775,14 +1890,21 @@ line of the class is an empty line*
 
         Returns
         -------
-        dict[str, str | int]
-            Dictionary containing the location of the treasure
-            dict["start"] : str
+        dict
+            Dictionary containing the location of the treasure, containing
+            the following keys
+
+            `"start"` : str
+
                 landmark to start at
-            dict["n"] : int
+
+            `"n"` : int
+
                 number of paces to walk north relative to the
                 start
-            dict["e"] : int
+
+            `"e"` : int
+
                 number of paces to walk east relative to the
                 start
         """
@@ -1830,28 +1952,28 @@ line of the class is an empty line*
      print(contact_dictionary)
     ```
 
-        {'Rob Miles': <__main__.Contact object at 0x72b5c17c69c0>}
+        {'Rob Miles': <__main__.Contact object at 0x7f0230c32060>}
 
-- We can then search for a contact by just querying the key
+  - We can then search for a contact by just querying the key
 
     ``` python
       contact_dictionary["Rob Miles"]
     ```
 
-        <__main__.Contact at 0x72b5c17c69c0>
+        <__main__.Contact at 0x7f0230c32060>
 
-- However the user would have to type the correct full name
+  - However the user would have to type the correct full name
 
-  - Also case sensitive
-  - We could fix the case sensitivity by rather than using the name
+    - Also case sensitive
+    - We could fix the case sensitivity by rather than using the name
       directly using a normalised key
-    - such as by using `strip().lower()` to strip excess whitespace
+      - such as by using `strip().lower()` to strip excess whitespace
         and convert to lowercase
 
-- Our current implementation uses `startswith` to provide more
+  - Our current implementation uses `startswith` to provide more
     flexible matching
 
-- In general though, dictionaries provide fast queries for finding
+  - In general though, dictionaries provide fast queries for finding
     objects when we can easily use the key as a unique identifier
 
 ### Exercise: The Final Tiny Contacts Refactor
@@ -1883,15 +2005,15 @@ def find_contacts(search_name):
     If the empty string is given, all contacts
     are matched
 
-    Params
-    ------
+    Parameters
+    ----------
     search_name : str
-        Name to search for
+        Name to search for (uses prefix matching)
 
     Returns
     -------
     list[Contact]
-        list of contacts matching the name, if no
+        list of contacts matching `search_name`, if no
         matches exist the list is empty
     """
     search_name = search_name.strip().lower()
@@ -1916,6 +2038,10 @@ def display_contacts():
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_contact : displays a single contact
     """
     print("Find contact")
     contacts = find_contacts(
@@ -2024,14 +2150,18 @@ def display_contact(contact):
     """
     Displays the Contact details for the supplied contact
 
-    Params
-    ------
+    Parameters
+    ----------
     contact : Contact
         contact to display
 
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_contacts : Displays all contacts matching a search name
     """
     print("Name:", contact.name)
     print("Address:", contact.address)
@@ -2049,6 +2179,10 @@ def display_contacts():
     Returns
     -------
     None
+
+    See Also
+    --------
+    display_contact : displays a single contact
     """
     print("Find contact")
     contacts = find_contacts(
@@ -2072,7 +2206,7 @@ tiny contacts.
 Due to the size of the discussion required for each exercise they are
 linked on [a seperate page](./Chapter_09_ExtensionExercises.qmd)
 
-#### [Music Tracks](./Chapter_09_ExtensionExercises.qmd#exercise-music-storage-app)
+#### [Music Tracks](./Chapter_09_ExtensionExercises.qmd#make-something-happen-music-storage-app)
 
 Focuses on demonstrating adding additional functionality to a basic
 storage application for data interrogation
@@ -2083,7 +2217,7 @@ storage application for data interrogation
 - Playlists can be interrogated for their total length
 - The program can suggest playlists that match the user’s target runtime
 
-#### [Recipe Register](./Chapter_09_ExtensionExercises.qmd#exercise-recipe-storage-app)
+#### [Recipe Register](./Chapter_09_ExtensionExercises.qmd#make-something-happen-recipe-storage-app)
 
 Demonstrates working with larger more complicated objects in data
 storage
@@ -2168,7 +2302,7 @@ You are encouraged to work through or examine these exercises
           AttributeError: 'Contact' object has no attribute 'name'
           ---------------------------------------------------------------------------
           AttributeError                            Traceback (most recent call last)
-          Cell In[68], line 3
+          Cell In[34], line 3
                 1 del(rob.name)
                 2 print(rob.address)
           ----> 3 rob.name
