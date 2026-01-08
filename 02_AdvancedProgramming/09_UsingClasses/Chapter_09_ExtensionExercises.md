@@ -1,6 +1,6 @@
 # Extended Exercises for Chapter 9
 
-- [**Make Something Happen**: Music Storage
+- [Make Something Happen: Music Storage
   App](#make-something-happen-music-storage-app)
   - [Storyboarding the Application](#storyboarding-the-application)
   - [Building the User Interface](#building-the-user-interface)
@@ -21,7 +21,7 @@
       Playlist](#calculating-the-length-of-a-playlist)
     - [Saving a Playlist](#saving-a-playlist)
     - [Suggesting a Playlist](#suggesting-a-playlist)
-- [**Make Something Happen**: Recipe Storage
+- [Make Something Happen: Recipe Storage
   App](#make-something-happen-recipe-storage-app)
   - [Storyboarding out the design](#storyboarding-out-the-design)
   - [Designing the Recipe Class](#designing-the-recipe-class)
@@ -40,7 +40,7 @@
   - [Improving the Recipe
     Application](#improving-the-recipe-application)
 
-## **Make Something Happen**: Music Storage App
+## Make Something Happen: Music Storage App
 
 *Write a music track storage program that lets you search for tracks
 based on the length of the track. The program could suggest tracks that
@@ -355,7 +355,7 @@ print(tracks[0].length_in_seconds)
 
     Enter the track name: Merry Christmas Everyone
     Enter the track length (in seconds): 220
-    [<__main__.MusicTrack object at 0x7f58c0cbffe0>]
+    [<__main__.MusicTrack object at 0x7fa9747f4680>]
     Merry Christmas Everyone
     220
 
@@ -422,7 +422,7 @@ print(results[0].length_in_seconds)
 print(filter_tracks_by_name("Missing Track", tracks))
 ```
 
-    [<__main__.MusicTrack object at 0x7f58c0cbffe0>]
+    [<__main__.MusicTrack object at 0x7fa9747f4680>]
     Merry Christmas Everyone
     220
     []
@@ -1070,7 +1070,7 @@ You are encouraged to play around with the code and make sure you
 understand what is going on. This program is not super complicated but
 it has many components, if you can follow it, you are doing well!
 
-## **Make Something Happen**: Recipe Storage App
+## Make Something Happen: Recipe Storage App
 
 *Make a recipe storage app that stores lists of ingredients and
 preperation details. Remember that one of the items in a class could be

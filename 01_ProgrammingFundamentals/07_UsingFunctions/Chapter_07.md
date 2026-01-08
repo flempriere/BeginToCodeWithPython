@@ -2,31 +2,31 @@
 
 - [Notes](#notes)
   - [What makes a Function?](#what-makes-a-function)
-    - [**Make Something Happen**: Investigating
+    - [Make Something Happen: Investigating
       Functions](#make-something-happen-investigating-functions)
-    - [**Code Analysis**: Program
+    - [Code Analysis: Program
       Pathfinder](#code-analysis-program-pathfinder)
     - [Structure of a Function
       Definition](#structure-of-a-function-definition)
     - [Give Information to Functions using
       Parameters](#give-information-to-functions-using-parameters)
       - [Arguments and Parameters](#arguments-and-parameters)
-        - [**Code Analysis**: Argument and
+        - [Code Analysis: Argument and
           Parameters](#code-analysis-argument-and-parameters)
       - [Multiple Parameters in a
         Function](#multiple-parameters-in-a-function)
       - [Positional and Keyword
         Arguments](#positional-and-keyword-arguments)
       - [Default Parameter Values](#default-parameter-values)
-      - [**Code Analysis**: Parameters as
+      - [Code Analysis: Parameters as
         Values](#code-analysis-parameters-as-values)
-      - [**Make Something Happen**: Creating a Teletype
+      - [Make Something Happen: Creating a Teletype
         Printer](#make-something-happen-creating-a-teletype-printer)
-      - [**Make Something Happen**: Teletype Fortune
+      - [Make Something Happen: Teletype Fortune
         Teller](#make-something-happen-teletype-fortune-teller)
     - [Return Values from Function
       Calls](#return-values-from-function-calls)
-      - [**Code Analysis**: Functions and
+      - [Code Analysis: Functions and
         `return`](#code-analysis-functions-and-return)
     - [Local Variables in Python
       Functions](#local-variables-in-python-functions)
@@ -34,20 +34,20 @@
       Programs](#global-variables-in-python-programs)
   - [Build Reusable Functions](#build-reusable-functions)
     - [Create a Text Input Function](#create-a-text-input-function)
-      - [**Code Analysis**: Investigate the `read_text`
+      - [Code Analysis: Investigate the `read_text`
         function](#code-analysis-investigate-the-read_text-function)
     - [Add Help Information to
       Functions](#add-help-information-to-functions)
       - [Use Pydoc](#use-pydoc)
     - [Create a Number Input Function](#create-a-number-input-function)
-    - [**Code Analysis**: Investigating the `read_float_ranged`
+    - [Code Analysis: Investigating the `read_float_ranged`
       Function](#code-analysis-investigating-the-read_float_ranged-function)
     - [Convert our Functions into a Python
       Module](#convert-our-functions-into-a-python-module)
-      - [**Make Something Happen**: Add `BTCInput` to your Existing
+      - [Make Something Happen: Add `BTCInput` to your Existing
         Programs](#make-something-happen-add-btcinput-to-your-existing-programs)
   - [Using a Debugger](#using-a-debugger)
-    - [**Make Something Happen**: Investigate Programmers with a
+    - [Make Something Happen: Investigate Programmers with a
       Debugger](#make-something-happen-investigate-programmers-with-a-debugger)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
@@ -77,7 +77,7 @@
 
   - functions must be defined *before* they can be called
 
-#### **Make Something Happen**: Investigating Functions
+#### Make Something Happen: Investigating Functions
 
 *Use a python interpreter to work through the following questions to
 understand python functions*
@@ -129,7 +129,7 @@ to other *labels/variables* in this case `x` is set to the value of
 The ability to treat functions as variables is a powerful feature we
 will explore more in Chapter 12
 
-#### **Code Analysis**: Program Pathfinder
+#### Code Analysis: Program Pathfinder
 
 *Examine the following code block and and answer the following questions
 to understand how functions work. (You can run the code at
@@ -345,7 +345,7 @@ block-beta
   - functions *do* things, i.e. the are naturally associated with verbs
     - Unlike variables with *are* things i.e. nouns
   - e.g. `display_menu` names a function which takes the *action* to
-    *display* **a** menu
+    *display* a menu
 - Then parameters in a parenthese-enclosed, comma-delimited list
   - No space between name and left parenthesis
   - Parameters feed extra information for the function to work on
@@ -412,7 +412,7 @@ block-beta
 - Consider it as the phrase “we call the function passing the arguments
   to the parameters”
 
-###### **Code Analysis**: Argument and Parameters
+###### Code Analysis: Argument and Parameters
 
 *Find out more about arguments and parameters by answering the following
 questions*
@@ -688,7 +688,7 @@ questions*
 > intent. Reduce the possibility of getting arguments confused or mixed
 > up. Makes it easy to define “standard” behaviour for a function
 
-##### **Code Analysis**: Parameters as Values
+##### Code Analysis: Parameters as Values
 
 *What does it mean when we pass the value of an argument to a function
 parameter? Consider the following program*
@@ -730,7 +730,7 @@ then print the value of* `test` *after the function call*
       to the function *not* `test` itself
       - `test` is unchanged outside the function
 
-##### **Make Something Happen**: Creating a Teletype Printer
+##### Make Something Happen: Creating a Teletype Printer
 
 *Write a function* `teletype_print` *that slowly writes out an input
 string. Use a* `for` *loop to loop over the contents of the string and
@@ -799,7 +799,7 @@ teletype_printer("hello")
 
     hello
 
-##### **Make Something Happen**: Teletype Fortune Teller
+##### Make Something Happen: Teletype Fortune Teller
 
 *Use the function you wrote for a teletype output to add some style to
 the [Fortune Teller
@@ -896,7 +896,7 @@ return_one()
 
     1
 
-##### **Code Analysis**: Functions and `return`
+##### Code Analysis: Functions and `return`
 
 *Take a look look at the* `return` *in the following function and the
 attached program to answer the following questions*
@@ -1183,7 +1183,7 @@ def read_text(prompt="Please enter some text: "):
     return result
 ```
 
-##### **Code Analysis**: Investigate the `read_text` function
+##### Code Analysis: Investigate the `read_text` function
 
 *Use the [`read_text`](./Chapter_07.qmd#create-a-text-input-function)
 function to answer the following questions*
@@ -1412,7 +1412,7 @@ def read_float_ranged(prompt, min_value, max_value):
   - We can do this because we cleanly define the responsibilities of
     each function
 
-#### **Code Analysis**: Investigating the `read_float_ranged` Function
+#### Code Analysis: Investigating the `read_float_ranged` Function
 
 *Let’s examine the final function* `read_float_ranged` *in more detail
 to capture all the things we’ve built up. Answer the following
@@ -1501,7 +1501,7 @@ from BTCInput import *
 age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 ```
 
-##### **Make Something Happen**: Add `BTCInput` to your Existing Programs
+##### Make Something Happen: Add `BTCInput` to your Existing Programs
 
 *Rewrite the following programs to use* `BTCInput` *for input*
 
@@ -1692,7 +1692,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 > - A *breakpoint* is used to pause the execution of a program at a
 >   specific point when it is being debugged
 
-#### **Make Something Happen**: Investigate Programmers with a Debugger
+#### Make Something Happen: Investigate Programmers with a Debugger
 
 *Use the following example, found in*
 [InvestigateTheDebugger.py](./Examples/14_InvestigateTheDebugger/InvestigateTheDebugger.py)

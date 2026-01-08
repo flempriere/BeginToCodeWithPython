@@ -5,18 +5,18 @@
     - [Limitations of Individual
       Variables](#limitations-of-individual-variables)
     - [Lists in Python](#lists-in-python)
-      - [**Make Something Happen**: Creating a
+      - [Make Something Happen: Creating a
         List](#make-something-happen-creating-a-list)
     - [Read in a List](#read-in-a-list)
-      - [**Code Analysis**: Investigate a List Reading
+      - [Code Analysis: Investigate a List Reading
         Loop](#code-analysis-investigate-a-list-reading-loop)
     - [Display a `list` using a `for`
       Loop](#display-a-list-using-a-for-loop)
-      - [**Make Something Happen**: Read the Names of Guests for a
+      - [Make Something Happen: Read the Names of Guests for a
         Party](#make-something-happen-read-the-names-of-guests-for-a-party)
   - [Refactor Programs into
     Functions](#refactor-programs-into-functions)
-    - [**Code Analysis**: Functions in the Sales Analysis
+    - [Code Analysis: Functions in the Sales Analysis
       Program](#code-analysis-functions-in-the-sales-analysis-program)
     - [Create Placeholder Functions](#create-placeholder-functions)
     - [Create a User Menu](#create-a-user-menu)
@@ -26,11 +26,11 @@
     - [Initialise a list with Test
       Data](#initialise-a-list-with-test-data)
     - [Sort a List from High to Low](#sort-a-list-from-high-to-low)
-      - [**Code Analysis**: Work through a List using a
+      - [Code Analysis: Work through a List using a
         Loop](#code-analysis-work-through-a-list-using-a-loop)
-      - [**Code Analysis**: Improving
+      - [Code Analysis: Improving
         Performance](#code-analysis-improving-performance)
-      - [**Make Something Happen**: Sort
+      - [Make Something Happen: Sort
         Alphabetically](#make-something-happen-sort-alphabetically)
     - [Sort a List from Low to High](#sort-a-list-from-low-to-high)
     - [Find the Highest and Lowest Sales
@@ -40,28 +40,28 @@
     - [Complete the Program](#complete-the-program)
   - [Store Data in a File](#store-data-in-a-file)
     - [Write into a File](#write-into-a-file)
-      - [**Code Analysis**: File Writing](#code-analysis-file-writing)
+      - [Code Analysis: File Writing](#code-analysis-file-writing)
       - [Write the Sales Figures](#write-the-sales-figures)
-      - [**Code Analysis**: The `save_sales`
+      - [Code Analysis: The `save_sales`
         Function](#code-analysis-the-save_sales-function)
     - [Read from a File](#read-from-a-file)
-      - [**Code Analysis**: Reading from
+      - [Code Analysis: Reading from
         Files](#code-analysis-reading-from-files)
       - [Read the Sales Figures](#read-the-sales-figures)
-        - [**Code Analysis**: The `load_sales`
+        - [Code Analysis: The `load_sales`
           Function](#code-analysis-the-load_sales-function)
     - [Deal with File Errors](#deal-with-file-errors)
-      - [**Code Analysis**: Dealing with File Handling
+      - [Code Analysis: Dealing with File Handling
         Exceptions](#code-analysis-dealing-with-file-handling-exceptions)
     - [Use the `with` Construction to Tidy up File
       Access](#use-the-with-construction-to-tidy-up-file-access)
-    - [**Make Something Happen**: Record a List with a `save`
+    - [Make Something Happen: Record a List with a `save`
       Function](#make-something-happen-record-a-list-with-a-save-function)
   - [Store Tables of Data](#store-tables-of-data)
-    - [**Code Analysis**: Inadequate Index
+    - [Code Analysis: Inadequate Index
       Values](#code-analysis-inadequate-index-values)
     - [Use Loops to Work with Tables](#use-loops-to-work-with-tables)
-      - [**Code Analysis**: Loop Counting](#code-analysis-loop-counting)
+      - [Code Analysis: Loop Counting](#code-analysis-loop-counting)
     - [More than Two Dimensions](#more-than-two-dimensions)
   - [Use Lists as Lookup Tables](#use-lists-as-lookup-tables)
   - [Tuples](#tuples)
@@ -190,7 +190,7 @@
 - The most common form of collection is the `list`
   - What it sounds like, a list of items
 
-##### **Make Something Happen**: Creating a List
+##### Make Something Happen: Creating a List
 
 *Open a python interpreter and work through the following steps to learn
 about* `list`
@@ -333,7 +333,7 @@ about* `list`
     print(sales)
   ```
 
-##### **Code Analysis**: Investigate a List Reading Loop
+##### Code Analysis: Investigate a List Reading Loop
 
 *Examine the code given above and consider the following questions to
 understand how the list is processed*
@@ -422,7 +422,7 @@ understand how the list is processed*
         count = count + 1
   ```
 
-##### **Make Something Happen**: Read the Names of Guests for a Party
+##### Make Something Happen: Read the Names of Guests for a Party
 
 *Lists can hold any type of data that you need to store, including
 strings. You can change the ice-cream sales program to read and store
@@ -551,7 +551,7 @@ then displays them. Make your program handle between* $5$ *and* $15$
     print_sales()
   ```
 
-#### **Code Analysis**: Functions in the Sales Analysis Program
+#### Code Analysis: Functions in the Sales Analysis Program
 
 *Our sales analysis program now consists of two functions,* `read_sales`
 *and* `print_sales`
@@ -842,7 +842,7 @@ for count in range(0, len(sales) - 1):
         sales[count + 1] = temp
 ```
 
-##### **Code Analysis**: Work through a List using a Loop
+##### Code Analysis: Work through a List using a Loop
 
 *The above code uses some new python features. Work through the
 following questions to understand what’s going on*
@@ -1022,7 +1022,7 @@ print("Output list:", sales)
     Input list: [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
     Output list: [100, 89, 75, 54, 54, 50, 45, 33, 29, 22]
 
-##### **Code Analysis**: Improving Performance
+##### Code Analysis: Improving Performance
 
 *As seen above, the sorting program now works correctly. Once you have a
 working implementation its worth investigating if there are changes you
@@ -1102,7 +1102,7 @@ to get the idea*
           Input list: [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
           Output list: [100, 89, 75, 54, 54, 50, 45, 33, 29, 22]
 
-##### **Make Something Happen**: Sort Alphabetically
+##### Make Something Happen: Sort Alphabetically
 
 *Bubble sort works for strings as well as integers. We saw that in
 [Chapter 5](../05_MakingDecisions/Chapter_05.qmd#comparison-operators)
@@ -1721,7 +1721,7 @@ while True:
     output_file.close()
   ```
 
-##### **Code Analysis**: File Writing
+##### Code Analysis: File Writing
 
 *Consider the following questions about file writing*
 
@@ -1825,7 +1825,7 @@ while True:
     save_sales("test_output.txt")
   ```
 
-##### **Code Analysis**: The `save_sales` Function
+##### Code Analysis: The `save_sales` Function
 
 *The* `save_sales` *function combines several behaviours and is worth
 examining in detail. What is the purpose of the function? To take a list
@@ -1883,7 +1883,7 @@ program.) Consider the following questions*
     input_file.close()
   ```
 
-##### **Code Analysis**: Reading from Files
+##### Code Analysis: Reading from Files
 
 *Work through the following questions to understand how reading from
 files works*
@@ -2013,7 +2013,7 @@ files works*
         input_file.close()
   ```
 
-###### **Code Analysis**: The `load_sales` Function
+###### Code Analysis: The `load_sales` Function
 
 `load_sales` *works as the opposite of* `save_sales` *instead of taking
 a sales list and putting it into a text file, we pull the figures from a
@@ -2055,7 +2055,7 @@ questions*
         print("Something went wrong with the file")
   ```
 
-##### **Code Analysis**: Dealing with File Handling Exceptions
+##### Code Analysis: Dealing with File Handling Exceptions
 
 *The code performing the file write is wrapped in a* `try...except`
 *block. If* `write`, `open` *or* `close` *causes an exception it will be
@@ -2315,7 +2315,7 @@ block-beta
             # do something regardless of success or fail without releasing resource
   ```
 
-#### **Make Something Happen**: Record a List with a `save` Function
+#### Make Something Happen: Record a List with a `save` Function
 
 *Add a* `save` *function to your party guest program so that you can
 record a list of people who attended your party*
@@ -2480,7 +2480,7 @@ block-beta
 
         80
 
-#### **Code Analysis**: Inadequate Index Values
+#### Code Analysis: Inadequate Index Values
 
 *It can be difficult to get the hang of working with multiple indices.
 Which of the following indices would fail when the program runs?*
@@ -2575,7 +2575,7 @@ week_sales[7][10]
   - `sales_value` is then each value in the current list referenced by
     `day_sales`
 
-##### **Code Analysis**: Loop Counting
+##### Code Analysis: Loop Counting
 
 *Consider the code for summing the sales data in [the previous
 example](#use-loops-to-work-with-tables). Answer the following questions
@@ -2684,7 +2684,7 @@ to make sure you understand how it works*
     print(day_name)
   ```
 
-      Wednesday
+      Thursday
 
 - This works, but is fragile, a cleaner way to do this is to use a
   *lookup table*
@@ -2718,7 +2718,7 @@ to make sure you understand how it works*
     print("Today is", day_name)
   ```
 
-      Today is Wednesday
+      Today is Thursday
 
 - Lookup tables are powerful for shrinking written code
 
@@ -2780,7 +2780,7 @@ to make sure you understand how it works*
       print("Today is", day_names[day_number])
     ```
 
-        Today is Wednesday
+        Today is Thursday
         Attempting to change the lookup table...
 
         TypeError: 'tuple' object does not support item assignment

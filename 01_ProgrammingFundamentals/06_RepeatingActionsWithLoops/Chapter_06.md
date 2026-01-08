@@ -2,45 +2,43 @@
 
 - [Notes](#notes)
   - [The `while` construction](#the-while-construction)
-    - [**Code Analysis**: Investigating the `while`
+    - [Code Analysis: Investigating the `while`
       construction](#code-analysis-investigating-the-while-construction)
-    - [**Create a Looping Selection Program**: Create a Looping
-      Selection
-      Program](#create-a-looping-selection-program-create-a-looping-selection-program)
-    - [**Make Something Happen**: Create a Looping Countdown
+    - [Make Something Happen: Create a Looping Selection
+      Program](#make-something-happen-create-a-looping-selection-program)
+    - [Make Something Happen: Create a Looping Countdown
       Program](#make-something-happen-create-a-looping-countdown-program)
     - [Handling Invalid User Entry](#handling-invalid-user-entry)
       - [Make a Loop to Validate Input](#make-a-loop-to-validate-input)
-        - [**Make Something Happen**: Add Ride Number Validation to the
+        - [Make Something Happen: Add Ride Number Validation to the
           Theme Park Ride
           Selector](#make-something-happen-add-ride-number-validation-to-the-theme-park-ride-selector)
-        - [**Code Analysis**: When good loops go
+        - [Code Analysis: When good loops go
           bad](#code-analysis-when-good-loops-go-bad)
-        - [**Make Something Happen**: Add Validation to the Theme Park
-          Age
+        - [Make Something Happen: Add Validation to the Theme Park Age
           Input](#make-something-happen-add-validation-to-the-theme-park-age-input)
   - [Detect Invalid Number Entry using
     Exceptions](#detect-invalid-number-entry-using-exceptions)
     - [Exceptions and Number Reading](#exceptions-and-number-reading)
-      - [**Code Analysis**: Handling Exceptions in
+      - [Code Analysis: Handling Exceptions in
         Loops](#code-analysis-handling-exceptions-in-loops)
     - [Handling Multiple Exceptions](#handling-multiple-exceptions)
   - [`break` out of Loops](#break-out-of-loops)
   - [Return to the top of a loop with
     `continue`](#return-to-the-top-of-a-loop-with-continue)
   - [Count a Repeating Loop](#count-a-repeating-loop)
-    - [**Code Analysis**:
+    - [Code Analysis:
       CounterIntelligence](#code-analysis-counterintelligence)
-    - [**Make Something Happen**: Allow the User to Select the Times
+    - [Make Something Happen: Allow the User to Select the Times
       Value](#make-something-happen-allow-the-user-to-select-the-times-value)
   - [The `for` Loop Construction](#the-for-loop-construction)
-    - [**Code Analysis**: Loops, `break` and
+    - [Code Analysis: Loops, `break` and
       `continue`](#code-analysis-loops-break-and-continue)
-    - [**Make Something Happen**: Make a Times Table
+    - [Make Something Happen: Make a Times Table
       Quiz](#make-something-happen-make-a-times-table-quiz)
   - [Make a Digital Clock using
     Snaps](#make-a-digital-clock-using-snaps)
-    - [**Make Something Happen**: Digital Alarm
+    - [Make Something Happen: Digital Alarm
       Clock](#make-something-happen-digital-alarm-clock)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
@@ -100,7 +98,7 @@ class suiteDescr BG
     `while` loop
   - If the condition is *still* `True` then the loop runs again
 
-#### **Code Analysis**: Investigating the `while` construction
+#### Code Analysis: Investigating the `while` construction
 
 *Use the python interpreter to run the following to understand the*
 `while` *loop*
@@ -230,7 +228,7 @@ class suiteDescr BG
     - This means that `"Inside Loop"` should be printed $5$ times,
       followed by `"Outside Loop"`
 
-#### **Create a Looping Selection Program**: Create a Looping Selection Program
+#### Make Something Happen: Create a Looping Selection Program
 
 *Use a* `while` *loop, to make a theme park selector that runs
 continously. All you need to do is put all of the statements that
@@ -280,7 +278,7 @@ not, we set the program to quit on the next loop iteration by setting
 ride_number is valid. (The full code is in
 [LoopingRideSelector.py](./Exercises/01_LoopingRideSelector/LoopingRideSelector.py))
 
-#### **Make Something Happen**: Create a Looping Countdown Program
+#### Make Something Happen: Create a Looping Countdown Program
 
 *One of the examples [in the above question
 set](#code-analysis-investigating-the-while-construction) involved a
@@ -382,7 +380,7 @@ of the loop won’t run.
       test *after* executing the loop body for the first time
       - Would allow us to write the above as one construct
 
-###### **Make Something Happen**: Add Ride Number Validation to the Theme Park Ride Selector
+###### Make Something Happen: Add Ride Number Validation to the Theme Park Ride Selector
 
 *Add ride number validation to the Looping Ride Selector implementation.
 Remember that the* `while` *construction must be added after the*
@@ -427,7 +425,7 @@ while run_program:
 The complete code is given in
 [RideNumberValidation.py](./Exercises/03_RideNumberValidation/RideNumberValidation.py)
 
-###### **Code Analysis**: When good loops go bad
+###### Code Analysis: When good loops go bad
 
 *When creating composite conditions for loops, making sure the logic is
 correct is incredibly important. Examine the following program to
@@ -481,7 +479,7 @@ print("Thank you for entering your age")
 > $5$, $6$. i.e. we test either side of the boundary, and on the
 > boundary
 
-###### **Make Something Happen**: Add Validation to the Theme Park Age Input
+###### Make Something Happen: Add Validation to the Theme Park Age Input
 
 *Add age validation to the Ride Selection Program. The theme park owner
 has told you that the minimum age for anyone going on a ride at the
@@ -699,7 +697,7 @@ class exceptTwoStatementsDescr BG
 - We’ve seen how to use exceptions to handle invalid types
 - Now let’s put that together to write a loop to handle exceptions
 
-##### **Code Analysis**: Handling Exceptions in Loops
+##### Code Analysis: Handling Exceptions in Loops
 
 *We want to make a program that will perform a* `while` *construction as
 long as the user keeps typing in text that cannot be converted into a
@@ -925,7 +923,7 @@ while count < 13:
   that after $12$ loop iterations the loop condition evaluates `False`
   and the loop ends
 
-#### **Code Analysis**: CounterIntelligence
+#### Code Analysis: CounterIntelligence
 
 - *Consider the previous [example](#count-a-repeating-loop) and answer
   the following questions*
@@ -942,7 +940,7 @@ while count < 13:
       `count` will be decreased every iteration and thus is always less
       than $13$
 
-#### **Make Something Happen**: Allow the User to Select the Times Value
+#### Make Something Happen: Allow the User to Select the Times Value
 
 *Write a version of the [previous example](#count-a-repeating-loop) that
 asks the user for the value of the times table they want. Add validation
@@ -1110,7 +1108,7 @@ for count in range(1, 13):
   - `continue` causes the loop to proceed to the next item in the
     collection
 
-#### **Code Analysis**: Loops, `break` and `continue`
+#### Code Analysis: Loops, `break` and `continue`
 
 *Look at the following simple programs, and answer the corresponding
 questions about* `break` *and* `continue`
@@ -1241,7 +1239,7 @@ questions about* `break` *and* `continue`
     - The above program works, it loops over and prints each letter in
       the string
 
-#### **Make Something Happen**: Make a Times Table Quiz
+#### Make Something Happen: Make a Times Table Quiz
 
 *Reverse the behaviour of the times-table program so that rather than
 printing out the times-table your program insteads asks questions like,*
@@ -1326,7 +1324,7 @@ while True:
     time.sleep(1)
 ```
 
-#### **Make Something Happen**: Digital Alarm Clock
+#### Make Something Happen: Digital Alarm Clock
 
 *Combine the digital clock display from [the previous
 example](#make-a-digital-clock-using-snaps) with the alarm clock from

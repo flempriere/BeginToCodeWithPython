@@ -8,31 +8,30 @@
     - [Machines, Computers and Us](#machines-computers-and-us)
     - [Programs as Data Processors](#programs-as-data-processors)
     - [Python as a Data Processor](#python-as-a-data-processor)
-      - [**Make Something Happen**: Have a Conversation with
+      - [Make Something Happen: Have a Conversation with
         Python](#make-something-happen-have-a-conversation-with-python)
-      - [**Code Analysis**: Python
+      - [Code Analysis: Python
         Expressions](#code-analysis-python-expressions)
     - [Python as a Scripting Language](#python-as-a-scripting-language)
   - [Data and Information](#data-and-information)
     - [Data Processing in Python](#data-processing-in-python)
-      - [**Make Something Happen**: Work with Text in
+      - [Make Something Happen: Work with Text in
         Python](#make-something-happen-work-with-text-in-python)
-      - [**Code Analysis**: Break the rules with
+      - [Code Analysis: Break the rules with
         Python](#code-analysis-break-the-rules-with-python)
     - [Text and Numbers as Data Types](#text-and-numbers-as-data-types)
   - [Working with Python Functions](#working-with-python-functions)
     - [The `ord` function](#the-ord-function)
-      - [**Make Something Happen**: Investigate Text Representation
-        using
+      - [Make Something Happen: Investigate Text Representation using
         `ord`](#make-something-happen-investigate-text-representation-using-ord)
     - [The `chr` function](#the-chr-function)
-      - [**Make Something Happen**: Convert Numbers to text using
+      - [Make Something Happen: Convert Numbers to text using
         `chr`](#make-something-happen-convert-numbers-to-text-using-chr)
     - [Investigate data storage using
       `bin`](#investigate-data-storage-using-bin)
-      - [**Make Something Happen**: Discover Binary
+      - [Make Something Happen: Discover Binary
         Representation](#make-something-happen-discover-binary-representation)
-      - [**Code Analysis**: Building Binary
+      - [Code Analysis: Building Binary
         Numbers](#code-analysis-building-binary-numbers)
 - [Summary](#summary)
 - [Question and Answers](#question-and-answers)
@@ -214,7 +213,7 @@ computer-->output
   `python command shell` (*the computer*) and turned into results
   (*output*)
 
-##### **Make Something Happen**: Have a Conversation with Python
+##### Make Something Happen: Have a Conversation with Python
 
 - *Start up a python interpreter and run the following*
 
@@ -316,7 +315,7 @@ class operatorDescr BG
 >           ^
 >     SyntaxError: invalid syntax
 
-##### **Code Analysis**: Python Expressions
+##### Code Analysis: Python Expressions
 
 1. *What do you think would happen if you tried to evaluate `2+3*4`?*
 
@@ -423,7 +422,7 @@ class operatorDescr BG
 - Python scripts thus can be considered data processors
   - The script is interpreted and converted to output
 
-##### **Make Something Happen**: Work with Text in Python
+##### Make Something Happen: Work with Text in Python
 
 *Start up the python interpreter and run the following*
 
@@ -451,7 +450,7 @@ class operatorDescr BG
     - A cool observation is that `+` changes it’s behaviour in response
       to what it’s arguments are
 
-##### **Code Analysis**: Break the rules with Python
+##### Code Analysis: Break the rules with Python
 
 1. *What do you think would happen if missed the closing quote of a
     string you were typing?*
@@ -581,7 +580,7 @@ class operatorDescr BG
 
         87
 
-##### **Make Something Happen**: Investigate Text Representation using `ord`
+##### Make Something Happen: Investigate Text Representation using `ord`
 
 *Start up a python interpreter, and run the following,*
 
@@ -677,7 +676,7 @@ class rightPname BG
 
       'W'
 
-##### **Make Something Happen**: Convert Numbers to text using `chr`
+##### Make Something Happen: Convert Numbers to text using `chr`
 
 *Start up a python interpreter, and run the following,*
 
@@ -716,7 +715,7 @@ class rightPname BG
 - `bin` converts a number to a string containing it’s binary
   representation
 
-##### **Make Something Happen**: Discover Binary Representation
+##### Make Something Happen: Discover Binary Representation
 
 *Use the* `bin` *function to investigate how data is stored in a
 computer, start by running,*
@@ -732,7 +731,7 @@ bin(87)
 - The prefix `0b` indicates that the remaining suffix is the binary
   representation of a number
 
-##### **Code Analysis**: Building Binary Numbers
+##### Code Analysis: Building Binary Numbers
 
 *Answer the following questions about binary representations*
 

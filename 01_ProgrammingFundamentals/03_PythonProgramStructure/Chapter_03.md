@@ -3,19 +3,19 @@
 - [Notes](#notes)
   - [Write Your First Python Program](#write-your-first-python-program)
     - [Running a Python Program](#running-a-python-program)
-      - [**Make Something Happen**: Run a Python
+      - [Make Something Happen: Run a Python
         Program](#make-something-happen-run-a-python-program)
     - [Get Program output using the `print`
       function](#get-program-output-using-the-print-function)
-      - [**Make Something Happen**: Work with `print` in a
+      - [Make Something Happen: Work with `print` in a
         program](#make-something-happen-work-with-print-in-a-program)
   - [Use Python Libraries](#use-python-libraries)
     - [The `random` library](#the-random-library)
-      - [**Make Something Happen**: Investigate the `random`
+      - [Make Something Happen: Investigate the `random`
         Library](#make-something-happen-investigate-the-random-library)
     - [The `time` library](#the-time-library)
       - [Example: Using `sleep`](#example-using-sleep)
-        - [**Make Something Happen**: Make an Egg
+        - [Make Something Happen: Make an Egg
           Timer](#make-something-happen-make-an-egg-timer)
   - [Python Comments](#python-comments)
   - [Delay the End of a Program](#delay-the-end-of-a-program)
@@ -27,9 +27,9 @@
       - [Making Sounds](#making-sounds)
     - [Using `snaps` in your program](#using-snaps-in-your-program)
       - [Exercise: Improved Egg Timer](#exercise-improved-egg-timer)
-      - [**Make Something Happen**:
+      - [Make Something Happen:
         High-Low](#make-something-happen-high-low)
-      - [**Make Something Happen**: Nerves of
+      - [Make Something Happen: Nerves of
         Steel](#make-something-happen-nerves-of-steel)
 - [Summary](#summary)
 - [Question and Answers](#question-and-answers)
@@ -49,7 +49,7 @@
 - To run a program, you first need to write it. Any text editor should
   do.
 
-##### **Make Something Happen**: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
+##### Make Something Happen: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
 
 *Open a text editor and enter the following into the file*,
 
@@ -101,7 +101,7 @@ user <--> computer
   output, and request input
   - The first such function we need is `print`
 
-##### **Make Something Happen**: Work with `print` in a program
+##### Make Something Happen: Work with `print` in a program
 
 *Write a python file
 ([`using_print.py`](./Examples/02_UsingPrint/using_print.py)) with the
@@ -204,7 +204,7 @@ elements*
   - e.g. for `random` we can use `randint` as `random.randint(1,6)` to
     generate a random number from $1$ to $6$
 
-##### **Make Something Happen**: [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
+##### Make Something Happen: [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
 
 *Write and run a python program containing the following lines*
 
@@ -213,7 +213,7 @@ import random
 print('You have rolled:', random.randint(1,6))
 ```
 
-    You have rolled: 5
+    You have rolled: 6
 
 *Try running this program multiple times and see what the output is*
 
@@ -264,7 +264,7 @@ print('The answer is: 42')
 *seconds, then print the second line. The above cell should show the
 code after all lines have run*
 
-###### **Make Something Happen**: [Make an Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
+###### Make Something Happen: [Make an Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
 
 *Make an egg timer program. The program should allow the user to time a
 5-minute boiled egg. You can do this by modifying the [example sleep
@@ -549,7 +549,7 @@ time.sleep(30)
 - We then sleep for $30$ seconds so the user has time to notice and hear
   the sound
 
-##### **Make Something Happen**: [High-Low](./Exercises/03_HighLow/highLow.py)
+##### Make Something Happen: [High-Low](./Exercises/03_HighLow/highLow.py)
 
 *Use the random number generator and sleep to make a high-low party
 game. The game works like this,*
@@ -602,11 +602,11 @@ time.sleep(10)  # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  4
+    The first number is:  9
     Will the next be higher or lower?
-    The second number is:  7
+    The second number is:  4
 
-##### **Make Something Happen**: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
+##### Make Something Happen: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
 *Use the random number generator and `sleep` to make a Nerves of Steel
 game. This game works like this*

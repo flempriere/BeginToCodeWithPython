@@ -3,29 +3,29 @@
 - [Notes](#notes)
   - [Make a Tiny Contacts App](#make-a-tiny-contacts-app)
     - [Make a Prototype](#make-a-prototype)
-      - [**Code Analysis**: The Contacts Application
+      - [Code Analysis: The Contacts Application
         Prototype](#code-analysis-the-contacts-application-prototype)
     - [Store Contact Details in Seperate
       Lists](#store-contact-details-in-seperate-lists)
-      - [**Code Analysis**: The `find_contact`
+      - [Code Analysis: The `find_contact`
         Function](#code-analysis-the-find_contact-function)
     - [Use a Class to Store Contact
       Details](#use-a-class-to-store-contact-details)
-      - [**Make Something Happen**: Creating a
+      - [Make Something Happen: Creating a
         Class](#make-something-happen-creating-a-class)
     - [Use the `Contact` class in the Tiny Contacts
       Program](#use-the-contact-class-in-the-tiny-contacts-program)
-      - [**Code Analysis**: The class-based `find_contact`
+      - [Code Analysis: The class-based `find_contact`
         function](#code-analysis-the-class-based-find_contact-function)
       - [Exercise: Duplicate Names](#exercise-duplicate-names)
     - [Edit Contacts](#edit-contacts)
       - [Refactor the Tiny Contacts
         Program](#refactor-the-tiny-contacts-program)
-        - [**Code Analysis**: The refactored `find_contact`
+        - [Code Analysis: The refactored `find_contact`
           function](#code-analysis-the-refactored-find_contact-function)
       - [Contact Objects and
         References](#contact-objects-and-references)
-        - [**Code Analysis**: Understanding Lists and
+        - [Code Analysis: Understanding Lists and
           References](#code-analysis-understanding-lists-and-references)
         - [Immutability](#immutability)
       - [Edit a Contact](#edit-a-contact)
@@ -33,17 +33,17 @@
       `pickle`](#save-contacts-in-a-file-using-pickle)
     - [Load Contacts from a file using
       `pickle`](#load-contacts-from-a-file-using-pickle)
-      - [**Code Analysis**: Loading Data using
+      - [Code Analysis: Loading Data using
         `pickle`](#code-analysis-loading-data-using-pickle)
     - [Add `save` and `load` to Tiny
       Contacts](#add-save-and-load-to-tiny-contacts)
-      - [**Code Analysis**: Saving and Loading
+      - [Code Analysis: Saving and Loading
         Contacts](#code-analysis-saving-and-loading-contacts)
     - [Setup Class Instances](#setup-class-instances)
       - [The Python Initialiser Method](#the-python-initialiser-method)
-        - [**Make Something Happen**: Create an
+        - [Make Something Happen: Create an
           Initialiser](#make-something-happen-create-an-initialiser)
-        - [**Code Analysis**: Parameters and the `__init__`
+        - [Code Analysis: Parameters and the `__init__`
           method](#code-analysis-parameters-and-the-__init__-method)
       - [Use Default Arguments in a
         Constructor](#use-default-arguments-in-a-constructor)
@@ -188,7 +188,7 @@
             raise ValueError("Unexpected command id found: " + str(command))
   ```
 
-##### **Code Analysis**: The Contacts Application Prototype
+##### Code Analysis: The Contacts Application Prototype
 
 *The code above doesn’t introduce any new concepts, but it’s worth
 examining in detail to make sure you understand how all the parts work.
@@ -304,7 +304,7 @@ Work through the following questions.*
 - You can view the complete program all put together in
   [TinyContactsParallelLists.py](./Examples/02_TinyContactsParallelLists/TinyContactsParallelLists.py)
 
-##### **Code Analysis**: The `find_contact` Function
+##### Code Analysis: The `find_contact` Function
 
 *The* `find_contact` *function is probably one of the more sophisticated
 pieces of code we’ve written. Work through the following questions to
@@ -372,7 +372,7 @@ make sure you understand what is going on.*
   construct *objects*
   - A class is a type, an object is the instance
 
-##### **Make Something Happen**: Creating a Class
+##### Make Something Happen: Creating a Class
 
 *Open the python interpreter and work through the following steps and
 questions to understand classes*
@@ -535,7 +535,7 @@ empty placeholder class*
                 break
   ```
 
-##### **Code Analysis**: The class-based `find_contact` function
+##### Code Analysis: The class-based `find_contact` function
 
 *Answer the following questions about the new* `find_contact`
 *implementation*
@@ -726,7 +726,7 @@ We have two solutions that we could use,
         return None
   ```
 
-###### **Code Analysis**: The refactored `find_contact` function
+###### Code Analysis: The refactored `find_contact` function
 
 *Answer the following questions, about this new version of*
 `find_contact`
@@ -838,7 +838,7 @@ flowchart TD
   are propagated between all the references
   - There is only one memory object
 
-###### **Code Analysis**: Understanding Lists and References
+###### Code Analysis: Understanding Lists and References
 
 *The figure below illustrates how lists and references work. It shows a
 Tiny Contacts data store with three contacts registered. Each of the
@@ -1333,7 +1333,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
             contacts=pickle.load(input_file)
   ```
 
-##### **Code Analysis**: Loading Data using `pickle`
+##### Code Analysis: Loading Data using `pickle`
 
 *Work through the following questions to make sure you understand how*
 `load_contacts` *works*
@@ -1427,7 +1427,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
             raise ValueError("Unexpected value encountered")
   ```
 
-##### **Code Analysis**: Saving and Loading Contacts
+##### Code Analysis: Saving and Loading Contacts
 
 *Consider the following questions about the code above*
 
@@ -1511,7 +1511,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
   - python uses “dunder methods” marked `__function_name__` to mark
     special functions defined by the language
 
-###### **Make Something Happen**: Create an Initialiser
+###### Make Something Happen: Create an Initialiser
 
 *Open the python interpreter and work through the following steps to
 create an understand an initialiser, answering the questions*
@@ -1617,7 +1617,7 @@ line of the class is an empty line*
             self.telephone = telephone
   ```
 
-###### **Code Analysis**: Parameters and the `__init__` method
+###### Code Analysis: Parameters and the `__init__` method
 
 *Work through the following questions to ensure you understand the*
 `__init__` *method*
@@ -1952,7 +1952,7 @@ line of the class is an empty line*
      print(contact_dictionary)
     ```
 
-        {'Rob Miles': <__main__.Contact object at 0x7f0230c32060>}
+        {'Rob Miles': <__main__.Contact object at 0x7f0da4ac4f50>}
 
   - We can then search for a contact by just querying the key
 
@@ -1960,7 +1960,7 @@ line of the class is an empty line*
       contact_dictionary["Rob Miles"]
     ```
 
-        <__main__.Contact at 0x7f0230c32060>
+        <__main__.Contact at 0x7f0da4ac4f50>
 
   - However the user would have to type the correct full name
 

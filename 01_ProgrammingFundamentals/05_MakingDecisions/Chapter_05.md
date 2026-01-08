@@ -3,21 +3,21 @@
 - [Notes](#notes)
   - [Boolean Data](#boolean-data)
     - [Create Boolean Values](#create-boolean-values)
-    - [**Code Analysis**: Working with Boolean
+    - [Code Analysis: Working with Boolean
       Values](#code-analysis-working-with-boolean-values)
     - [Boolean Expressions](#boolean-expressions)
-      - [**Make Something Happen**: One-Handed
+      - [Make Something Happen: One-Handed
         Clock](#make-something-happen-one-handed-clock)
-      - [**Exercise**: Improved Clock](#exercise-improved-clock)
+      - [Exercise: Improved Clock](#exercise-improved-clock)
     - [Comparing Values](#comparing-values)
       - [Comparison Operators](#comparison-operators)
-        - [**Code Analysis**: Examining Comparison
+        - [Code Analysis: Examining Comparison
           Operators](#code-analysis-examining-comparison-operators)
     - [Boolean Operations](#boolean-operations)
-      - [**Code Analysis**: Examining Boolean
+      - [Code Analysis: Examining Boolean
         Operators](#code-analysis-examining-boolean-operators)
   - [The `if` Construct](#the-if-construct)
-    - [**Example**: Simple Alarm Clock](#example-simple-alarm-clock)
+    - [Example: Simple Alarm Clock](#example-simple-alarm-clock)
     - [Conditions in Python](#conditions-in-python)
     - [Combine Python Statements into a
       Suite](#combine-python-statements-into-a-suite)
@@ -25,22 +25,22 @@
       - [Example: Time Display Alarm
         Clock](#example-time-display-alarm-clock)
     - [Structure of an `if` Statement](#structure-of-an-if-statement)
-      - [**Code Analysis**: Layout of Conditional
+      - [Code Analysis: Layout of Conditional
         Statements](#code-analysis-layout-of-conditional-statements)
     - [Add an `else` to an `if`
       Construction](#add-an-else-to-an-if-construction)
       - [Example: Simple Alarm Clock with
         Else](#example-simple-alarm-clock-with-else)
-      - [**Code Analysis**: If
+      - [Code Analysis: If
         Constructions](#code-analysis-if-constructions)
     - [Compare Strings in Programs](#compare-strings-in-programs)
       - [Example: Broken Greeter](#example-broken-greeter)
-      - [**Code Analysis**: Methods and
+      - [Code Analysis: Methods and
         Functions](#code-analysis-methods-and-functions)
     - [Nesting `if` Conditions](#nesting-if-conditions)
       - [Example: Protected Greeter](#example-protected-greeter)
     - [Working with Logic](#working-with-logic)
-      - [**Make Something Happen**: Make an Advanced Alarm
+      - [Make Something Happen: Make an Advanced Alarm
         Clock](#make-something-happen-make-an-advanced-alarm-clock)
   - [Use Decisions to make an
     Application](#use-decisions-to-make-an-application)
@@ -51,11 +51,11 @@
     - [Input Snaps](#input-snaps)
       - [Example: Theme Park Snaps
         Display](#example-theme-park-snaps-display)
-      - [**Make Something Happen**: Snaps Ride
+      - [Make Something Happen: Snaps Ride
         Selector](#make-something-happen-snaps-ride-selector)
-      - [**Make Something Happen**: Weather
+      - [Make Something Happen: Weather
         Helper](#make-something-happen-weather-helper)
-      - [**Make Something Happen**: Fortune
+      - [Make Something Happen: Fortune
         Teller](#make-something-happen-fortune-teller)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
@@ -94,7 +94,7 @@ it_is_time_to_get_up = False
 - Note that `True` and `False` are python keywords, and are
   case-sensitive, e.g. true and false will not work as expected
 
-#### **Code Analysis**: Working with Boolean Values
+#### Code Analysis: Working with Boolean Values
 
 *Open up the python interpreter and work through the following questions
 to understand booleans*
@@ -239,7 +239,7 @@ to understand booleans*
 | tm_wday       | 2         |
 | tm_yday       | 200       |
 
-##### **Make Something Happen**: One-Handed Clock
+##### Make Something Happen: One-Handed Clock
 
 *Lets make a clock that displays only the hour value, using `localtime`.
 These* **one-handed clocks** *are supposed promote a more relaxed
@@ -260,11 +260,11 @@ and copy the below text.*
     print("The hour is", hour)
 ```
 
-    The hour is 10
+    The hour is 13
 
 Run the program, it should print out the current hour
 
-##### **Exercise**: Improved Clock
+##### Exercise: Improved Clock
 
 *Improve the previous
 [example](./Chapter_05.qmd#example-one-handed-clock) to produce a more
@@ -294,8 +294,8 @@ simply need to format the attribute as nessecary. The final
     print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 7 / 1 / 2026
-    The time is 10 : 45 : 53
+    The date is 8 / 1 / 2026
+    The time is 13 : 36 : 49
 
 #### Comparing Values
 
@@ -363,7 +363,7 @@ class operatorDescr BG
     it_is_time_to_get_up = hour > 6
 ```
 
-###### **Code Analysis**: Examining Comparison Operators
+###### Code Analysis: Examining Comparison Operators
 
 *Use the python interpreter to work through the following questions in
 order to understand Comparison Operators*
@@ -446,7 +446,7 @@ order to understand Comparison Operators*
   the minute is after $30$
 - Python provides *logic* operators for combining boolean expressions
 
-##### **Code Analysis**: Examining Boolean Operators
+##### Code Analysis: Examining Boolean Operators
 
 *Use the python interpreter to answer the following questions and
 investigate boolean operators*
@@ -585,7 +585,7 @@ investigate boolean operators*
 - Need the ability to run code `if` a boolean condition is met
   - Can do so using the aptly named `if` operator
 
-#### **Example**: Simple Alarm Clock
+#### Example: Simple Alarm Clock
 
 - *Create a new python program
   ([SimpleAlarmClock.py](./Examples/02_SimpleAlarmClock/SimpleAlarmClock.py))
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 10 : 45
+    The time is 13 : 36
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -840,7 +840,7 @@ class ifDescr BG
 >         ^
 >     IndentationError: unexpected indent
 
-##### **Code Analysis**: Layout of Conditional Statements
+##### Code Analysis: Layout of Conditional Statements
 
 *Use the python interpreter to answer the following questions to
 understand conditional statements*
@@ -918,7 +918,7 @@ else:
 - Observe that only one line of the paired `if-else` statements is
   printed
 
-##### **Code Analysis**: If Constructions
+##### Code Analysis: If Constructions
 
 *Work through the following questions to understand `if` constructions*
 
@@ -980,7 +980,7 @@ if name.upper() == "ROB":
 - We could also use the string method `lower` to compare against an all
   lowercase word
 
-##### **Code Analysis**: Methods and Functions
+##### Code Analysis: Methods and Functions
 
 *Consider the following questions to learn about methods and functions*
 
@@ -1070,7 +1070,7 @@ else:
 
 #### Working with Logic
 
-##### **Make Something Happen**: Make an Advanced Alarm Clock
+##### Make Something Happen: Make an Advanced Alarm Clock
 
 *Improve the [Alarm Clock](#example-time-display-alarm-clock). Make the
 alarm display the date as well as the time, and let the user sleep in on
@@ -1418,7 +1418,7 @@ snaps.display_message(confirm)
 time.sleep(5) #gives user time to read the output
 ```
 
-##### **Make Something Happen**: Snaps Ride Selector
+##### Make Something Happen: Snaps Ride Selector
 
 *Using the previous [example](#example-theme-park-snaps-display),
 complete the ride selector program. Extending its features where
@@ -1526,7 +1526,7 @@ else:  # need to get the age of the user
 time.sleep(5)
 ```
 
-##### **Make Something Happen**: Weather Helper
+##### Make Something Happen: Weather Helper
 
 *Using snaps and the weather functions it includes, write a simple
 program to remind the user to wrap up warm, wear sunscreen etc.*
@@ -1594,7 +1594,7 @@ message at the end. So we use the branch code in order to set up the
 appropriate message, while the call to `display_message` sits outside
 the loop, so we don’t have to call it on every path.
 
-##### **Make Something Happen**: Fortune Teller
+##### Make Something Happen: Fortune Teller
 
 *Using `randint` and `if` statements write a fortune teller program that
 gives random fortunes to the user*
@@ -1641,9 +1641,9 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    You will meet a tall, dark stranger
-    I see a future lived on the streets...
-    You will soon face a decision that will redefine everything
+    Nobody unexpected will enter your life
+    You would do well to husband your wealth
+    To define your future, avoid getting hung up on the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise

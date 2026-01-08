@@ -2,58 +2,57 @@
 
 - [Notes](#notes)
   - [Variables in Python](#variables-in-python)
-    - [**Make Something Happen**: Working with
+    - [Make Something Happen: Working with
       Variables](#make-something-happen-working-with-variables)
     - [Python Names](#python-names)
-    - [**Code Analysis**: Typing Errors and
+    - [Code Analysis: Typing Errors and
       Testing](#code-analysis-typing-errors-and-testing)
-    - [**Make Something Happen**: Self-Timer Party
+    - [Make Something Happen: Self-Timer Party
       Game](#make-something-happen-self-timer-party-game)
   - [Working with Text](#working-with-text)
-    - [**Make Something Happen**: Text and Numeric
+    - [Make Something Happen: Text and Numeric
       Variables](#make-something-happen-text-and-numeric-variables)
     - [Marking the Start and End of
       Strings](#marking-the-start-and-end-of-strings)
     - [Escape Characters in Text](#escape-characters-in-text)
-      - [**Code Analysis**: Investigating Escape
+      - [Code Analysis: Investigating Escape
         Sequences](#code-analysis-investigating-escape-sequences)
     - [Read in Text using the `input`
       Function](#read-in-text-using-the-input-function)
-      - [**Make Something Happen**: Use `input` to make a “greeter”
+      - [Make Something Happen: Use `input` to make a “greeter”
         Program](#make-something-happen-use-input-to-make-a-greeter-program)
   - [Working with Numbers](#working-with-numbers)
     - [Convert Strings into Integer
       Values](#convert-strings-into-integer-values)
       - [Example: Configurable Egg
         Timer](#example-configurable-egg-timer)
-      - [**Code Analysis**: Reading
-        Numbers](#code-analysis-reading-numbers)
+      - [Code Analysis: Reading Numbers](#code-analysis-reading-numbers)
     - [Whole Numbers and Real Numbers](#whole-numbers-and-real-numbers)
-      - [**Code Analysis**: Whole Numbers vs Real
+      - [Code Analysis: Whole Numbers vs Real
         Numbers](#code-analysis-whole-numbers-vs-real-numbers)
     - [Real Numbers and Floating
       Point](#real-numbers-and-floating-point)
-      - [**Code Analysis**: Floating Point Variables and
+      - [Code Analysis: Floating Point Variables and
         Errors](#code-analysis-floating-point-variables-and-errors)
-      - [**Code Analysis**: Working with Floating Point
+      - [Code Analysis: Working with Floating Point
         Variables](#code-analysis-working-with-floating-point-variables)
     - [Converting `string` into `float`
       values](#converting-string-into-float-values)
       - [Example: Ultra-Precise Egg
         Timer](#example-ultra-precise-egg-timer)
     - [Perform Calculations](#perform-calculations)
-      - [**Code Analysis**: Work out the
+      - [Code Analysis: Work out the
         Results](#code-analysis-work-out-the-results)
     - [Convert Between `float` and
       `int`](#convert-between-float-and-int)
-      - [**Make Something Happen**: Calculating a Pizza
+      - [Make Something Happen: Calculating a Pizza
         Order](#make-something-happen-calculating-a-pizza-order)
-      - [**Make Something Happen**: Converting Between Fahrenheit and
+      - [Make Something Happen: Converting Between Fahrenheit and
         Centigrade](#make-something-happen-converting-between-fahrenheit-and-centigrade)
   - [Weather Snaps](#weather-snaps)
     - [Example: Seattle Temperature](#example-seattle-temperature)
     - [Example: Seattle Weather](#example-seattle-weather)
-    - [**Make Something Happen**: Weather Display
+    - [Make Something Happen: Weather Display
       Program](#make-something-happen-weather-display-program)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
@@ -118,7 +117,7 @@ class zeroDescr BG
   variable `total` to be equal to the sum of the variables `us_sales`
   and `world_wide_sales`
 
-#### **Make Something Happen**: Working with Variables
+#### Make Something Happen: Working with Variables
 
 *Start up a python interpreter, then run the following commands in
 sequence*
@@ -207,7 +206,7 @@ sequence*
   - Longer names can be hard to read
   - Names should be no longer than they need to convey clear meaning
 
-#### **Code Analysis**: Typing Errors and Testing
+#### Code Analysis: Typing Errors and Testing
 
 *You’ve already seen that python can generate errors when it is unable
 to interpret an input. Answer the following questions to investigate how
@@ -292,7 +291,7 @@ been defined*
       error. Since the error is that `Total` doesn’t exist, we see a
       `NameError`.
 
-#### **Make Something Happen**: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
+#### Make Something Happen: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
 
 *Consider the [Nerves of
 Steel](../03_PythonProgramStructure/Chapter_03.qmd#make-something-happen-nerves-of-steel)
@@ -347,7 +346,7 @@ print("****TIMES UP, LAST TO SIT WINS!****")
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 16 seconds.
+    Stay standing for 12 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 Most of the code is just text, but the key takeaway is the line
@@ -376,7 +375,7 @@ will be
 
     the name is fred
 
-#### **Make Something Happen**: Text and Numeric Variables
+#### Make Something Happen: Text and Numeric Variables
 
 *Python tracks the contents of each variable and only allows operations
 that make sense. Using the python interpreter experiment with the
@@ -563,7 +562,7 @@ Sit down just before you think the time will end. ''')
 > automatically and we can just use `\n` regardless of the operating
 > system we are actually running on
 
-##### **Code Analysis**: Investigating Escape Sequences
+##### Code Analysis: Investigating Escape Sequences
 
 *Start a python interpreter and answer the following questions*
 
@@ -657,7 +656,7 @@ Sit down just before you think the time will end. ''')
 input('Press enter to continue...')
 ```
 
-##### **Make Something Happen**: Use `input` to make a “greeter” Program
+##### Make Something Happen: Use `input` to make a “greeter” Program
 
 *Use python to create a simple program that will issue a personalised
 greeting. Create a new program
@@ -720,7 +719,7 @@ time_int = int(time_next) #perform conversion to number
 - This basic pattern works just as well for an alarm as it does for a
   configurable timer
 
-##### **Code Analysis**: Reading Numbers
+##### Code Analysis: Reading Numbers
 
 *Consider the previous [example](#example-configurable-egg-timer), and
 answer the following questions*
@@ -774,7 +773,7 @@ answer the following questions*
     - Must be truncated to be stored in memory, so cannot always be
       stored accurately
 
-##### **Code Analysis**: Whole Numbers vs Real Numbers
+##### Code Analysis: Whole Numbers vs Real Numbers
 
 *Learn about the differences between whole numbers and real numbers
 through the following questions*
@@ -857,7 +856,7 @@ through the following questions*
 - A quirk of floating point is that some apparently simple numbers like
   $0.1$ can’t be stored exactly
 
-##### **Code Analysis**: Floating Point Variables and Errors
+##### Code Analysis: Floating Point Variables and Errors
 
 *Conduct the following experiments in the python shell to learn about
 floating points*
@@ -924,7 +923,7 @@ age = 25
   - One `name` is a `string` type
   - The other `age` is an `int` or integer type
 
-##### **Code Analysis**: Working with Floating Point Variables
+##### Code Analysis: Working with Floating Point Variables
 
 *Work through the following following questions to understand how
 floating-point variables work?*
@@ -1083,7 +1082,7 @@ print("Take the egg out now")
 
 - Basic operators and their precedence
 
-##### **Code Analysis**: Work out the Results
+##### Code Analysis: Work out the Results
 
 *See if you can work out the values of* `a`*,* `b` *and* `c` *when the
 following statements are evaluated,*
@@ -1188,7 +1187,7 @@ i
 
     2
 
-##### **Make Something Happen**: Calculating a Pizza Order
+##### Make Something Happen: Calculating a Pizza Order
 
 *Consider the following
 [program](./Examples/05_PizzaOrderCalculator/PizzaOrderCalculator.py)
@@ -1275,7 +1274,7 @@ integer.*
 >
 > Never assume you know what the program should do, ask the client
 
-##### **Make Something Happen**: Converting Between Fahrenheit and Centigrade
+##### Make Something Happen: Converting Between Fahrenheit and Centigrade
 
 *Write a program to convert from Fahrenheit to Centigrade. The formula
 for this is*
@@ -1338,7 +1337,7 @@ A sample output may look like,
 
       pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
       Hello from the pygame community. https://www.pygame.org/contribute.html
-      The temperature in Seattle is: 41
+      The temperature in Seattle is: 37
 
       /home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
         from pkg_resources import resource_stream, resource_exists
@@ -1359,9 +1358,9 @@ A sample output may look like,
     print("The conditions are:", desc)
   ```
 
-      The conditions are: Clear
+      The conditions are: Mostly Cloudy
 
-#### **Make Something Happen**: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
+#### Make Something Happen: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
 
 *Write a program that displays the current weather conditions. If you
 use the* `display_text` *function from snaps, your program can display

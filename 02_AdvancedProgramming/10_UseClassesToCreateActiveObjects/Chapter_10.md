@@ -7,24 +7,39 @@
       - [Create a Cohesive Object](#create-a-cohesive-object)
     - [Create Method Attributes for a
       Class](#create-method-attributes-for-a-class)
-      - [**Code Analysis**: The `get_hours_worked`
+      - [Code Analysis: The `get_hours_worked`
         Method](#code-analysis-the-get_hours_worked-method)
     - [Add Validation to Methods](#add-validation-to-methods)
       - [Create Class Variables](#create-class-variables)
-        - [**Code Analysis**: Using class
+        - [Code Analysis: Using class
           variables](#code-analysis-using-class-variables)
       - [Create a Static Method to Validate
         Values](#create-a-static-method-to-validate-values)
-        - [**Code Analysis**: Creating Static Validation
+        - [Code Analysis: Creating Static Validation
           Methods](#code-analysis-creating-static-validation-methods)
       - [Return Status Messages from a Validation
         Method](#return-status-messages-from-a-validation-method)
       - [Raise an Exception to indicate an
         Error](#raise-an-exception-to-indicate-an-error)
-      - [**Make Something Happen**: Raising Exceptions from
+      - [Make Something Happen: Raising Exceptions from
         Code](#make-something-happen-raising-exceptions-from-code)
       - [Extract an Exception Error
         Message](#extract-an-exception-error-message)
+      - [Make Something Happen: Catching
+        Exceptions](#make-something-happen-catching-exceptions)
+      - [Code Analysis: Raising and Dealing with
+        Exceptions](#code-analysis-raising-and-dealing-with-exceptions)
+    - [Protect a Data Attribute against
+      Damage](#protect-a-data-attribute-against-damage)
+      - [Make Something Happen: Protecting Data Attributes in a
+        Class](#make-something-happen-protecting-data-attributes-in-a-class)
+    - [Protected Methods](#protected-methods)
+  - [Create Class Properties](#create-class-properties)
+    - [Code Analysis: Properties in
+      Classes](#code-analysis-properties-in-classes)
+    - [Make Something Happen: Investigating
+      Properties](#make-something-happen-investigating-properties)
+  - [Evolve Class Design](#evolve-class-design)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -312,7 +327,7 @@ class Contact:
         return self.hours_worked
 ```
 
-##### **Code Analysis**: The `get_hours_worked` Method
+##### Code Analysis: The `get_hours_worked` Method
 
 *Consider the following questions regarding the* `get_hours_worked`
 *function*
@@ -545,7 +560,7 @@ method) and the `display_contact` functions to use the new methods
   variables are expected to be constant and should not be modified by a
   consuming program
 
-###### **Code Analysis**: Using class variables
+###### Code Analysis: Using class variables
 
 *Build your understanding of class variables by answering the following
 questions about their use-cases*
@@ -724,7 +739,7 @@ questions about their use-cases*
 
       False
 
-###### **Code Analysis**: Creating Static Validation Methods
+###### Code Analysis: Creating Static Validation Methods
 
 *Input validation is a very common use-case for static methods. Consider
 the following questions to understand static validation methods*
@@ -856,7 +871,7 @@ the following questions to understand static validation methods*
         ValueError: invalid literal for int() with base 10: 'Rob'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[28], line 1
+        Cell In[11], line 1
         ----> 1 x = int("Rob")
 
         ValueError: invalid literal for int() with base 10: 'Rob'
@@ -904,7 +919,7 @@ the following questions to understand static validation methods*
 - The complete integration of the above is given byy
   [TimeTrackerWithException.py](./Examples/06_TimeTrackerWithException/TimeTrackerWithException.py)
 
-##### **Make Something Happen**: Raising Exceptions from Code
+##### Make Something Happen: Raising Exceptions from Code
 
 *Investigate how exceptions are raised using the sample program [Time
 Tracker with
@@ -950,12 +965,12 @@ attempt to add a session length of $4$, which should be invalid,
     Exception: Invalid Session Length
     ---------------------------------------------------------------------------
     Exception                                 Traceback (most recent call last)
-    Cell In[33], line 3
+    Cell In[16], line 3
           1 rob = Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "1234 56789")
           2 add_session(rob, 2)
     ----> 3 add_session(rob, 4)
 
-    Cell In[29], line 24, in add_session(self, session_length)
+    Cell In[12], line 24, in add_session(self, session_length)
           2 """
           3 Adds a session (in hours) to the Contacts hours
           4
@@ -1010,6 +1025,725 @@ attempt to add a session length of $4$, which should be invalid,
     Previous hours worked: 2.0
     Session Length:  -1
     Add failed: Invalid Session Length
+
+##### Make Something Happen: Catching Exceptions
+
+*Repeat the steps in the [previous
+example](#make-something-happen-raising-exceptions-from-code) but this
+time use the new code in [Time Tracker with Exceptionn
+Handler](./Examples/07_TimeTrackerWithExceptionHandler/TimeTrackerWithExceptionHandler.py).
+You should find the program runs and the errors are captured without
+causing a crash*
+
+##### Code Analysis: Raising and Dealing with Exceptions
+
+*Consider the following questions about dealing with exceptions*
+
+1. *Why does this version of the program not check the result returned
+    by* `add_session`*?*
+
+    - This implementation of `add_session` returns `None`
+    - Instead an exception is raised to indicate a failure state
+    - There is therefore nothing to check
+
+2. *Isn’t raising an exception and stopping the program when something
+    goes wrong a bit harsh?*
+
+    - Depends on your philosophy
+    - Generally you want to avoid *silent errors*
+    - i.e. errors that are undetected by the user
+    - Exceptions force the user to handle the error rather than silently
+      ignore it
+    - If the user wants to avoid exception handling, they can explicitly
+      use `validate_session_length`
+
+3. *Can a method be resumed once it has raised an exception?*
+
+    - No
+    - Exceptions immediately terminate the normal control flow
+    - The user can always call the function again
+
+4. *Why would you want to create your own types of exceptions?*
+
+    - Allows any errors returned to be descriptive to your specific code
+    - e.g. if your program relies on a specific file being loaded you
+      might want a more descriptive error message than the standard
+      `FileException` provides
+    - Error management and reporting should be decided early in a
+      program
+
+5. *Should I always use exceptions to indicate something has gone
+    wrong?*
+
+    - Depends
+      - You may not care about handling all types of errors
+    - Exceptions ensure errors are dealt with
+      - User can customise the error handling in response to exception
+      - e.g. for a text-based vs GUI interface
+
+6. *Why have we made* `add_session` *work like this? The program worked
+    before we made this change*
+
+    - Technically correct
+      - Old code used the error status to validate code
+    - Arguably cleaner with the new error handling
+      - Knowledge about the `Contact` class has been centralised in the
+        `Contact` class itself
+      - No need to have external variables storing information about
+        valid session length or doing the validation
+    - Typically a good idea to put all knowledge about a classes
+      behaviour in the class itself
+
+#### Protect a Data Attribute against Damage
+
+- Client no longer needs to directly interact with `hours_worked`
+- However, client can still modify `hours_worked`
+  - Programmer could accidently change the value
+  - Could also intentionally change it to break the code
+- Ideally we want to prevent it being directly modified
+
+> [!WARNING]
+>
+> **Python protects against mistakes, not attacks**
+>
+> Python provides features to help protect data attributes against
+> accidental modifications. However, they don’t stop a programmer who
+> intentionally (and perhaps maliciously) decides they want to modify
+> the data attributes.
+>
+> There is no mechanism in the python language to prevent another
+> progrmmer adding code that changes `hours_worked` in the `Contact`
+> object
+
+- By convention, python dictates that an attribute name starting with
+  `_` should not be used outside the class
+  - Also referred to as being *internal* to the class
+
+  - e.g. `_hours_worked` means that the variable should not be touched
+
+    ``` python
+      def get_hours_worked(self):
+          """
+          Gets the hours worked for this contact
+
+          Returns
+          -------
+          int | float
+              hours worked for this contact
+          """
+          return self._hours_worked
+    ```
+
+- Above we provide a `get_hours_worked` method to get the value of
+  `_hours_worked`
+  - `_` indicates not to modify `hours_worked` itself
+- No actual protection for `_hours_worked`
+  - Could still be ignored by a programmer
+- Can get greater security through, *name-mangling*
+  - starting a varible name with double underscores `__`
+- *name-mangling* makes it harder to access and modify the variable
+
+##### Make Something Happen: Protecting Data Attributes in a Class
+
+*Follow the following steps to examine how to make a python class
+secure. Open a python interpreter and enter the statements below*
+
+``` python
+    class Secret:
+        def __init__(self):
+            self._secret = 99
+            self.__top_secret = 100
+```
+
+The above creates a class `Secret` which has two attributes, `_secret`
+and `__top_secret`
+
+*Create an instance of the* `Secret` *class*
+
+``` python
+    x = Secret()
+```
+
+The above creates a new instance of a `Secret` class and stores it with
+the variable `x`.
+
+*Try to access the* `_secret` *attribute on* `x`
+
+``` python
+    x._secret
+```
+
+    99
+
+Even though we said that `_` indicates we should not access the data
+attribute, we can see that nothing stops us from doing so
+
+*Now try to access the* `__top_secret` *attribute*
+
+``` python
+    x.__top_secret
+```
+
+    AttributeError: 'Secret' object has no attribute '__top_secret'
+    ---------------------------------------------------------------------------
+    AttributeError                            Traceback (most recent call last)
+    Cell In[21], line 1
+    ----> 1 x.__top_secret
+
+    AttributeError: 'Secret' object has no attribute '__top_secret'
+
+This time we get an `AttributeError` which suggests that there is no
+`__top_secret` attribute associated with the `Secret` class
+
+*However, Python has performed some “name-mangling” to the name*
+`__top_secret`*. Inside the* `Secret` *class we can refer to*
+`__top_secret`*. Outside the class, the variable name is prepended with
+the class name (and an underscore). So we can still access it, as the
+below proves*
+
+``` python
+    x._Secret__top_secret
+```
+
+    100
+
+Name-mangling thus secures us against accidental attribute use, however
+any one who knows the name mangling scheme and our attributes can still
+modify the data attribute if they want to
+
+There are programs that check against this kind of bad code behaviour.
+One example is [pylint](https://www.pylint.org/)
+
+#### Protected Methods
+
+- Our current methods for the `Contact` class are all intended to be
+  used by clients
+  - Referred to as *public* methods
+- We might also want to protect methods in a class
+- Can use `_` prefix to indicate that it should not be used
+- Or `__` prefix to name mangle
+
+> [!TIP]
+>
+> **Writing secure code is all about workflow**
+>
+> Making a secure program is all about establishing a workflow to
+> generate quality code. For example, using prototypes to make sure that
+> a customer agrees with the direction of a program early in the
+> development
+>
+> The next step is to sensible design and tools like pylint to make sure
+> we’re writing good quality code.
+
+### Create Class Properties
+
+- We’ve talked about protecting `hours_spent` for our `Contact`
+- We should add more business logic to ensure that name, address and
+  telephone items are sensible
+  - As a purely toy example, lets say they must each be $4$ characters
+    long
+- Realistically they would be discussed and confirmed with the customer
+
+``` python
+class Contact:
+
+    __min_text_length = 4
+
+    @staticmethod
+    def valid_text(text):
+        """
+        Validates text to be stored in the contact storage
+
+        Parameters
+        ----------
+        text : str
+            text string to store
+
+        Returns
+        -------
+        bool
+            True if the text is valid, else False
+        """
+
+        if len(text) < Contact.__min_text_length:
+            return False
+        else:
+            return True
+```
+
+- Above mirrors `valid_session_length`
+- Called to validate text to be stored in a `Contact`
+- We could then name mangle `name`, `address`, `telephone`
+- Supply methods to get and set these attributes
+  - e.g. `set_name` and `get_name` for example
+- Python has a built-in way for providing read and write access to
+  protected data
+- This is called a *Property*
+  - Properties preserve simple access, while allowing us to implement
+    validation
+
+#### Code Analysis: Properties in Classes
+
+``` python
+class Contact:
+    __min_text_length = 4
+
+    @staticmethod
+    def valid_text(text):
+        """
+        Validates text to be stored in the contact storage
+
+        Valid input must be have a length greater than or
+        equal to Contact.__min_text_length
+
+        Parameters
+        ----------
+        text : str
+            text string to store
+
+        Returns
+        -------
+        bool
+            True if the text is valid, else False
+        """
+        if len(text) < Contact.__min_text_length:
+            return False
+        else:
+            return True
+
+    @property  # decorator makes name a property
+    def name(self):  # name of property function to get the name
+        """
+        Gets the Contact Name
+
+        Returns
+        -------
+        str
+           contact name
+        """
+        return self.__name  # return private attribute containing the name
+
+    @name.setter  # decorator to identify the setter for name
+    def name(self, name):
+        """
+        Set the Contact Name
+
+        Parameters
+        ----------
+        name : str
+            Contact name, must be a valid length
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            raised if name is invalid
+
+        See Also
+        --------
+        Contact.valid_text : validates text input
+        """
+        if not Contact.validate_text(name):
+            raise Exception("Invalid name")
+        self.__name = name
+```
+
+*The code above shows how to implement a property for* `name` *in the*
+`Contact` *class. The property implements validation and rejects invalid
+names. Work through the following questions to understand properties*
+
+1. *How does the value being set in the property get into the*
+    `setter`*?*
+
+    - `setter` is called with two parameters
+    - `self` refers to the object on which the `setter` is being called
+    - The second is the proposed value to set the property to
+      - Here it is setting the `name` attribute
+
+2. *How does the program know which* `setter` *method to call for a
+    particular property?*
+
+    - The `setter` decorator has the format `property.setter`
+      - Associates a `setter` to a property
+
+3. *Must the* `setter` *method raise an exception if the value is being
+    set is not valid?*
+
+    - No
+    - `setter` could ignore invalid values, or assign a default
+    - Exceptions allow us to inform the user that the set has failed
+      - And also forces the user to deal with the error
+
+4. *Do we need to perform the same validation for all properties in a
+    class?*
+
+    - No
+    - We could test that telephone is purely numeric (for example)
+      - This is not a good idea for real telephone numbers
+    - We could ensure address matches a certain structure for a valid
+      address
+
+5. *Must a property have a* `setter`*?*
+
+    - No
+    - Properties without a `setter` are *read-only*
+    - They cannot be modified
+    - We could use this to remove the `get_hours_worked` method
+      - Use a property instead
+
+#### Make Something Happen: Investigating Properties
+
+*Investigate how properties work. Open up the python interpreter and
+enter the statements below*
+
+``` python
+class Prop:
+    @property
+    def x(self):
+        print("got property x")
+        return self.__x
+    @x.setter
+    def x(self, x):
+        print("set property x:", x)
+        self.__x = x
+```
+
+This creates a new class `Prop` with a property `x` that has a `setter`
+
+*Now create an instance of this class as below*
+
+``` python
+    test = Prop()
+```
+
+*Put a value for* `x` *into the* `test` *instance*
+
+``` python
+    test.x = 99
+```
+
+    set property x: 99
+
+When python executes the above, it runs the setter method for the
+property. As we can see from the output above.
+
+*Now try to read the property*
+
+``` python
+    print(test.x)
+```
+
+    got property x
+    99
+
+When reading the property, python runs the property method, as indicated
+above
+
+*We can combine getting and setting in complex expressions, execute the
+following*
+
+``` python
+    test.x = test.x + 1
+```
+
+    got property x
+    set property x: 100
+
+We can see that first the getter is called to get the current value of
+`x`, then the setter is called to update it to the expression on the
+right
+
+To convert the `Contact` class to use properties for `name`, `telephone`
+and `address` we have to add properties and then setters
+
+- The relevant changes to the `Contact` class are then,
+
+``` python
+class Contact:
+    """
+    Contact with a name, address and telephone number.
+    Tracks the hours worked with a client
+
+    Parameters
+    ----------
+    name : str
+        Contact Name
+    address : str
+        Contact's postal or street address.
+    telephone : str
+        Contact phone number (stored as a string).
+
+    Attributes
+    ----------
+    __hours_worked : int | float
+        Hours worked with a Contact, initialised to 0
+
+    __min_session_length : Final[int | float]
+        minimum length of a billable session
+
+    __max_session_length : Final[int | float]
+        maximum length of a billable session
+
+    __min_text_length : Final[int | float]
+        minimum length of all text fields (name, address, telephone)
+
+
+    Examples
+    --------
+    >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
+    <Contact ...>
+    """
+
+    __min_session_length = 0.5
+    __max_session_length = 3.5
+
+    @staticmethod
+    def valid_session_length(session_length):
+        """
+        Check a session length is valid
+
+        Parameters
+        ----------
+        session_length : int | float
+            length of a consult session in hours
+
+        Returns
+        -------
+        bool
+            `True` if the session length is valid else `False`
+        """
+        if (
+            session_length < Contact.__min_session_length
+            or session_length > Contact.__max_session_length
+        ):
+            return False
+        return True
+
+    __min_text_length = 4
+
+    @staticmethod
+    def valid_text(text):
+        """
+        Validates text to be stored in the contact storage
+
+        Valid input must be have a length greater than or
+        equal to Contact.__min_text_length
+
+        Parameters
+        ----------
+        text : str
+            text string to store
+
+        Returns
+        -------
+        bool
+            True if the text is valid, else False
+        """
+        if len(text) < Contact.__min_text_length:
+            return False
+        else:
+            return True
+
+    @property
+    def name(self):
+        """
+        Gets the Contact Name
+
+        Returns
+        -------
+        str
+           contact name
+        """
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        """
+        Set the Contact Name
+
+        Parameters
+        ----------
+        name : str
+            Contact name, must be a valid length
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            raised if name is invalid
+
+        See Also
+        --------
+        Contact.valid_text : validates text input
+        """
+        if not Contact.valid_text(name):
+            raise Exception("Invalid name")
+        self.__name = name
+
+    @property
+    def address(self):
+        """
+        Gets the Contact Address
+
+        Returns
+        -------
+        str
+           contact address
+        """
+        return self.__address
+
+    @address.setter
+    def address(self, address):
+        """
+        Set the Contact Address
+
+        Parameters
+        ----------
+        address : str
+            Contact address, must be a valid length
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            raised if address is invalid
+
+        See Also
+        --------
+        Contact.valid_text : validates text input
+        """
+        if not Contact.valid_text(address):
+            raise Exception("Invalid address")
+        self.__address = address
+
+    @property
+    def telephone(self):
+        """
+        Gets the Contact Telephone
+
+        Returns
+        -------
+        str
+           contact telephone
+        """
+        return self.__telephone
+
+    @telephone.setter
+    def telephone(self, telephone):
+        """
+        Set the Contact Telephone
+
+        Parameters
+        ----------
+        telephone : str
+            Contact telephone, must be a valid length
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            raised if telephone is invalid
+
+        See Also
+        --------
+        Contact.valid_text : validates text input
+        """
+        if not Contact.valid_text(telephone):
+            raise Exception("Invalid telephone")
+        self.__telephone = telephone
+
+    def __init__(self, name, address, telephone):
+        self.name = name
+        self.address = address
+        self.telephone = telephone
+        self.__hours_worked = 0
+```
+
+- The great thing about properties is they can be effectively drop in
+  for traditional attributes
+  - We make the attributes themselves name mangled
+  - Define properties to mask the original names
+- No need to update the downstream calling code
+  - property syntax matches the traditional access pattern
+- The complete integration is seen in
+  [TimeTrackerWithPropertie.py](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py)
+
+> [!CAUTION]
+>
+> **Failures in property code can be confusing**
+>
+> The [example
+> program](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py)
+> implements the name, address and telephone number elements of a
+> contact as properties. Setting a property to an invalid value will
+> cause an exception. The initialiser looks like,
+>
+> ``` python
+>     def __init__(self, name, address, telephone):
+>         self.name = name
+>         self.address = address
+>         self.telephone = telephone
+>         self.__hours_worked = 0
+> ```
+>
+> These statements look like normal variable assignments, nothing here
+> indicates that these steps can fail. However, the following statement
+> fails,
+>
+> ``` python
+>     rob = Contact(name="Rob", address="18 Pussycat Mews, London NE1 410S", telephone="1234 56789")
+> ```
+>
+>     Exception: Invalid name
+>     ---------------------------------------------------------------------------
+>     Exception                                 Traceback (most recent call last)
+>     Cell In[31], line 1
+>     ----> 1 rob = Contact(name="Rob", address="18 Pussycat Mews, London NE1 410S", telephone="1234 56789")
+>
+>     Cell In[30], line 204, in Contact.__init__(self, name, address, telephone)
+>         203 def __init__(self, name, address, telephone):
+>     --> 204     self.name = name
+>         205     self.address = address
+>         206     self.telephone = telephone
+>
+>     Cell In[30], line 122, in Contact.name(self, name)
+>         100 """
+>         101 Set the Contact Name
+>         102
+>        (...)    119 Contact.valid_text : validates text input
+>         120 """
+>         121 if not Contact.valid_text(name):
+>     --> 122     raise Exception("Invalid name")
+>         123 self.__name = name
+>
+>     Exception: Invalid name
+>
+> The above raises an exception because the value `Rob` passed for the
+> `name` property is too short. `__init__` attempts to set `name` which
+> calls the setter, and the property code raises an exception.
+>
+> Programmers may expect methods or functions to cause exceptions but
+> they typically do not expect statements that look like variable
+> assignments. When implementing properties you need to be clear about
+> how they work and how to handle failure.
+>
+> We could extend our previous [error handling
+> code](#make-something-happen-catching-exceptions) to add additional
+> exception handlers to handle invalid assignments
+
+### Evolve Class Design
 
 ## Summary
 
