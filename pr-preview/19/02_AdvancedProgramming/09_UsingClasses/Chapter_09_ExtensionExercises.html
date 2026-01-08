@@ -262,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#make-something-happen-music-storage-app" id="toc-make-something-happen-music-storage-app" class="nav-link active" data-scroll-target="#make-something-happen-music-storage-app"><strong>Make Something Happen</strong>: Music Storage App</a>
+  <li><a href="#make-something-happen-music-storage-app" id="toc-make-something-happen-music-storage-app" class="nav-link active" data-scroll-target="#make-something-happen-music-storage-app">Make Something Happen: Music Storage App</a>
   <ul>
   <li><a href="#storyboarding-the-application" id="toc-storyboarding-the-application" class="nav-link" data-scroll-target="#storyboarding-the-application">Storyboarding the Application</a></li>
   <li><a href="#building-the-user-interface" id="toc-building-the-user-interface" class="nav-link" data-scroll-target="#building-the-user-interface">Building the User Interface</a></li>
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#suggesting-a-playlist" id="toc-suggesting-a-playlist" class="nav-link" data-scroll-target="#suggesting-a-playlist">Suggesting a Playlist</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#make-something-happen-recipe-storage-app" id="toc-make-something-happen-recipe-storage-app" class="nav-link" data-scroll-target="#make-something-happen-recipe-storage-app"><strong>Make Something Happen</strong>: Recipe Storage App</a>
+  <li><a href="#make-something-happen-recipe-storage-app" id="toc-make-something-happen-recipe-storage-app" class="nav-link" data-scroll-target="#make-something-happen-recipe-storage-app">Make Something Happen: Recipe Storage App</a>
   <ul>
   <li><a href="#storyboarding-out-the-design" id="toc-storyboarding-out-the-design" class="nav-link" data-scroll-target="#storyboarding-out-the-design">Storyboarding out the design</a></li>
   <li><a href="#designing-the-recipe-class" id="toc-designing-the-recipe-class" class="nav-link" data-scroll-target="#designing-the-recipe-class">Designing the Recipe Class</a>
@@ -339,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="make-something-happen-music-storage-app" class="level2">
-<h2 class="anchored" data-anchor-id="make-something-happen-music-storage-app"><strong>Make Something Happen</strong>: Music Storage App</h2>
+<h2 class="anchored" data-anchor-id="make-something-happen-music-storage-app">Make Something Happen: Music Storage App</h2>
 <p><em>Write a music track storage program that lets you search for tracks based on the length of the track. The program could suggest tracks that could be combined to fill an exact amount of time or give the total play time of a specific playlist.</em></p>
 <p><em>You will have to create a class that can hold track information, store the information in a list and then create some behaviours that would search through and process the data</em></p>
 <p>This is the most complicated application that we have built so far, and so it is best to both design and implement in stages. We’ll sketch the process and some of the functions out here, but the full program can be found <a href="./Exercises/03_MusicStorageApp/MusicStorage.py">in our implementation</a>. First storyboard out the high level functionality we want.</p>
@@ -485,7 +485,7 @@ Enter a command:</code></pre>
 <section id="the-musictrack-class" class="level4">
 <h4 class="anchored" data-anchor-id="the-musictrack-class">The <code>MusicTrack</code> Class</h4>
 <p>First we need to define our Music Track objects. We use a simple class that stores a name and a track length. We use seconds for the length. We name the variables <code>name</code> and <code>length_in_seconds</code> to make them clear.</p>
-<div id="e9185285" class="cell" data-execution_count="1">
+<div id="268a2b26" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MusicTrack:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Music Track with a name and a length (in seconds)</span></span>
@@ -571,7 +571,7 @@ Enter a command:</code></pre>
 <ul>
 <li>Running the above with the input, (represented by red text), generates output like,</li>
 </ul>
-<div id="a0821c25" class="cell" data-execution_count="3">
+<div id="d94b2965" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Enter the track name: </span><span class="ch">\033</span><span class="st">[31mMerry Christmas Everyone</span><span class="ch">\033</span><span class="st">[0m"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Enter the track length (in seconds): </span><span class="ch">\033</span><span class="st">[31m220</span><span class="ch">\033</span><span class="st">[0m"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tracks)</span>
@@ -583,7 +583,7 @@ Enter a command:</code></pre>
 
 Enter the track length (in seconds): <span class="ansi-red-fg">220</span>
 
-[&lt;__main__.MusicTrack object at 0x7fdce027c470&gt;]
+[&lt;__main__.MusicTrack object at 0x7ffa809b00b0&gt;]
 
 Merry Christmas Everyone
 
@@ -604,7 +604,7 @@ Merry Christmas Everyone
 <li>A <code>find_</code> function, prompts the user for the search parameter, calls the corresponding <code>filter_</code> and displays the list</li>
 </ol>
 <p>The first <code>filter_</code> we implement is <code>filter_by_name</code> which uses the same logic as Tiny Contacts (a name is searched using <code>startswith</code>). See below,</p>
-<div id="5aa09e6e" class="cell" data-execution_count="4">
+<div id="ecadd474" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_tracks_by_name(search_name, tracks_to_search):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Finds tracks matching a search name</span></span>
@@ -636,7 +636,7 @@ Merry Christmas Everyone
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Running this for the track we just added,</p>
-<div id="6511ce1d" class="cell" data-execution_count="5">
+<div id="de5a8df5" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># looking for a match that exists</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> filter_tracks_by_name(<span class="st">"Merry Christmas"</span>, tracks)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -647,7 +647,7 @@ Merry Christmas Everyone
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># looking for non existent match</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(filter_tracks_by_name(<span class="st">"Missing Track"</span>, tracks))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[&lt;__main__.MusicTrack object at 0x7fdce027c470&gt;]
+<pre><code>[&lt;__main__.MusicTrack object at 0x7ffa809b00b0&gt;]
 Merry Christmas Everyone
 220
 []</code></pre>
@@ -701,7 +701,7 @@ Merry Christmas Everyone
 <span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> new_length_in_seconds <span class="op">!=</span> <span class="dv">0</span>:</span>
 <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>                track.length_in_seconds <span class="op">=</span> new_length_in_seconds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We have to make one change to the pattern of the Tiny Contacts which is to account for the fact that length is a positive number. To do this we use <code>0</code> rather than <code>"."</code> to indicate that the variable should be left unchanged. An example use might look like,</p>
-<div id="31b63601" class="cell" data-execution_count="7">
+<div id="38218b1a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Edit Music Tracks"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Enter track name to edit: </span><span class="ch">\033</span><span class="st">[31mMerry Christmas Everyone</span><span class="ch">\033</span><span class="st">[0m"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Found 1 matches"</span>)</span>
@@ -747,7 +747,7 @@ Merry Christmas Everyone
 <section id="adding-sorting-functionality" class="level4">
 <h4 class="anchored" data-anchor-id="adding-sorting-functionality">Adding Sorting Functionality</h4>
 <p>The next step is to implement sorting functionality. Based on the description we implement these sorts based on the length of the track. The ascending order search is then,</p>
-<div id="243c20e6" class="cell" data-execution_count="8">
+<div id="5798cb89" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sort_low_to_high(tracks_to_sort):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Sorts tracks by increasing track length</span></span>
@@ -783,7 +783,7 @@ Merry Christmas Everyone
 <span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s add another track <code>Rockin Little Christmas, 157 seconds</code>,</p>
-<div id="fdb4730d" class="cell" data-execution_count="9">
+<div id="d741aa0a" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tracks.append(MusicTrack(<span class="st">"Rockin Little Christmas"</span>, <span class="dv">157</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tracks[0]:"</span>, tracks[<span class="dv">0</span>].name, tracks[<span class="dv">0</span>].length_in_seconds)</span>
@@ -794,7 +794,7 @@ tracks[1]: Rockin Little Christmas 157</code></pre>
 </div>
 </div>
 <p>Then if we run the sort,</p>
-<div id="ff566406" class="cell" data-execution_count="10">
+<div id="bd550875" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sort_low_to_high(tracks)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tracks[0]:"</span>, tracks[<span class="dv">0</span>].name, tracks[<span class="dv">0</span>].length_in_seconds)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"tracks[1]:"</span>, tracks[<span class="dv">1</span>].name, tracks[<span class="dv">1</span>].length_in_seconds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -878,7 +878,7 @@ tracks[1]: Merry Christmas Everyone 210</code></pre>
 <section id="display-tracks" class="level4">
 <h4 class="anchored" data-anchor-id="display-tracks">Display Tracks</h4>
 <p>We first define a function <code>display_track</code> to display a single track,</p>
-<div id="a7a07929" class="cell" data-execution_count="11">
+<div id="30bb4a83" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_track(track):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Displays the name and length (in seconds) of a track</span></span>
@@ -899,14 +899,14 @@ tracks[1]: Merry Christmas Everyone 210</code></pre>
 <span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Name:"</span>, track.name, <span class="st">"("</span>, track.length_in_seconds, <span class="st">"seconds )"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can see how it used below,</p>
-<div id="2bf0a345" class="cell" data-execution_count="12">
+<div id="9bcf1d84" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>display_track(tracks[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rockin Little Christmas ( 157 seconds )</code></pre>
 </div>
 </div>
 <p>We can then define a higher level function <code>display_tracks</code> that displays an entire list of tracks,</p>
-<div id="44953ee7" class="cell" data-execution_count="13">
+<div id="33784078" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_tracks(tracks):</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Displays all the tracks in the provided list of tracks</span></span>
@@ -931,7 +931,7 @@ tracks[1]: Merry Christmas Everyone 210</code></pre>
 <span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"No tracks found"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For example, running on our small little example track list,</p>
-<div id="d387400f" class="cell" data-execution_count="14">
+<div id="b84bb5dc" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>display_tracks(tracks)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rockin Little Christmas ( 157 seconds )
@@ -942,7 +942,7 @@ Name: Merry Christmas Everyone ( 210 seconds )</code></pre>
 <section id="find-tracks-by-length" class="level4">
 <h4 class="anchored" data-anchor-id="find-tracks-by-length">Find Tracks by Length</h4>
 <p>Let us consider the problem of now finding tracks by a given length. We want two functions. One where we return all tracks with a length less than or equal to the provided length, and a second which returns all with a length greater than or equal to the provided length. Both have the same logic so we’ll only focus on the first case. As with <code>filter_tracks_by_name</code> we first define a filter function that takes in a maximum length as a parameter (and a search list) and returns a list of matches. This looks like,</p>
-<div id="6769bd95" class="cell" data-execution_count="15">
+<div id="3f3aa000" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_tracks_shorter_than_length(max_length, tracks_to_filter):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Filter a list of tracks to those shorter than a target length</span></span>
@@ -977,7 +977,7 @@ Name: Merry Christmas Everyone ( 210 seconds )</code></pre>
 <span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tracks_shorter_than_max_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To see how this function works, lets run it on our test list, with three values, <code>220</code> which should catch everything, <code>200</code> which should catch one track, and <code>100</code> which should catch nothing.</p>
-<div id="e0773e89" class="cell" data-execution_count="16">
+<div id="b8d788a8" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Filter all the tracks..."</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>display_tracks(filter_tracks_shorter_than_length(<span class="dv">220</span>, tracks))</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Filter some of the tracks..."</span>)</span>
@@ -1040,7 +1040,7 @@ No tracks found</code></pre>
 <section id="calculating-the-length-of-a-playlist" class="level4">
 <h4 class="anchored" data-anchor-id="calculating-the-length-of-a-playlist">Calculating the Length of a Playlist</h4>
 <p>Implementing <code>calculate_playlist_length</code> is pretty straightforward. We simply iterate over the tracks in the playlist and sum up their lengths</p>
-<div id="04a909b1" class="cell" data-execution_count="17">
+<div id="637ea7be" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_playlist_length():</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calculates and displays the total length of the</span></span>
@@ -1057,7 +1057,7 @@ No tracks found</code></pre>
 <span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The playlist is"</span>, total_length, <span class="st">"seconds long"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For example, if we use a little bit of magic to change our tracks list to the playlist, we can demonstrate the above function,</p>
-<div id="2fbf4d56" class="cell" data-execution_count="18">
+<div id="be8ce31f" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>playlist <span class="op">=</span> tracks</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>calculate_playlist_length()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1191,7 +1191,7 @@ The playlist is 367 seconds long</code></pre>
 </section>
 </section>
 <section id="make-something-happen-recipe-storage-app" class="level2">
-<h2 class="anchored" data-anchor-id="make-something-happen-recipe-storage-app"><strong>Make Something Happen</strong>: Recipe Storage App</h2>
+<h2 class="anchored" data-anchor-id="make-something-happen-recipe-storage-app">Make Something Happen: Recipe Storage App</h2>
 <p><em>Make a recipe storage app that stores lists of ingredients and preperation details. Remember that one of the items in a class could be a list of strings, which could be the steps performed to prepare the recipe</em></p>
 <p>This program will have less individual features than our music storage program, however the object we’re working on will be complex so it’s worth also working through this exercise.</p>
 <section id="storyboarding-out-the-design" class="level3">
@@ -1225,13 +1225,13 @@ The playlist is 367 seconds long</code></pre>
 <p>2 spring onions (scallions), finely sliced</p>
 </blockquote>
 <p>We would like to store this extra information. A natural way to do it would then be to use a dictionary, storing the ingredients as keys, and the description as the value, i.e.</p>
-<div id="fda7aefe" class="cell" data-execution_count="19">
+<div id="a57a7310" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ingredients <span class="op">=</span> {<span class="st">"spring onions"</span> : <span class="st">"2, finely sliced"</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This also means that the user could quickly get a list of ingredients for a recipe just by printing the dictionary. We can also easily search for recipes with a given ingredient by using,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ingredient <span class="kw">in</span> ingredients</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>However</strong>, this comes with the downside that the user would need to specify the exact ingredient to search, i.e.&nbsp;we would have, for the previous example,</p>
-<div id="69ceb655" class="cell" data-execution_count="20">
+<div id="974a3537" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"spring onions"</span> <span class="kw">in</span> ingredients)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Spring Onions"</span> <span class="kw">in</span> ingredients)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"scallions"</span> <span class="kw">in</span> ingredients)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1258,7 +1258,7 @@ False</code></pre>
 <p>The resulting dictionary entry would look like,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ingredients <span class="op">=</span> {<span class="st">"black pepper"</span> : [<span class="st">"to serve"</span>, <span class="st">"1/4 teaspoon ground"</span>]}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The next part of the recipe is the steps themselves. This can simply be treated as an ordered list of strings, so we just store them in a list. Finally a recipe should have a name. This leaves our <code>Recipe</code> object looking like,</p>
-<div id="df088f5b" class="cell" data-execution_count="21">
+<div id="867da762" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Recipe:</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represent a cooking recipe.</span></span>
@@ -1406,7 +1406,7 @@ False</code></pre>
 <section id="listing-recipes" class="level4">
 <h4 class="anchored" data-anchor-id="listing-recipes">Listing Recipes</h4>
 <p>First we need a way to display the recipes returned by a search. Since recipes can have many steps and ingredients we don’t want to follow the Tiny Contacts and Music Storage Track approach of printing out all the contents of the objects, instead we’ll simply print the names of the recipes.</p>
-<div id="aa7efa7c" class="cell" data-execution_count="22">
+<div id="3df633c0" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> list_recipes(recipes):</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Prints the recipe names in a given list</span></span>
@@ -1428,7 +1428,7 @@ False</code></pre>
 <span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"-"</span>, recipe.name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can see this in action if we use the toy demonstration,</p>
-<div id="d3e891b7" class="cell" data-execution_count="23">
+<div id="6f547620" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>bacon_and_eggs <span class="op">=</span> Recipe(</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Bacon and Eggs"</span>,</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    ingredients<span class="op">=</span>{<span class="st">"Bacon"</span>: [<span class="st">"2 rashs"</span>], <span class="st">"Eggs"</span>: [<span class="st">"1 large"</span>]},</span>
@@ -1454,7 +1454,7 @@ False</code></pre>
 <section id="find-recipes-by-name" class="level4">
 <h4 class="anchored" data-anchor-id="find-recipes-by-name">Find Recipes by Name</h4>
 <p>The by name search is similar to what we have already implemented in our <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html#use-the-contact-class-in-the-tiny-contacts-program">Tiny Contacts</a> and <a href="#track-search-and-display">Music Storage</a> programs. However, instead of using <code>startswith</code> we’ll use the <code>find</code> string method, the documentation for <code>find</code> reads,</p>
-<div id="2273f936" class="cell" data-execution_count="24">
+<div id="356fa5f3" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> pydoc</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    pydoc.<span class="bu">help</span>(<span class="st">"a string"</span>.find)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1473,7 +1473,7 @@ find(...) method of builtins.str instance
 </div>
 <p>We can see that <code>find</code> searchs a string for matching substring anywhere in the string (like <code>startswith</code> searchs a string for matching substring at the start)</p>
 <p>Importantly, it also returns <code>-1</code> if there no match. This means that we can use <code>find</code> to see if a recipe name contains the user provided search string. So we define our filter function as,</p>
-<div id="3e9245d7" class="cell" data-execution_count="25">
+<div id="ada051c5" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_recipe_by_name(search_name):</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Finds and returns recipes whose name contains a search name</span></span>
@@ -1510,7 +1510,7 @@ Note
 </div>
 </div>
 <p>We can see the outcome of running, <code>filter_by_name</code> for a couple of inputs on our <code>recipes</code> list,</p>
-<div id="ebefda4f" class="cell" data-execution_count="26">
+<div id="d3d4cf80" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Looking for toast..."</span>)</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>list_recipes(filter_recipe_by_name(<span class="st">"toast"</span>))</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Looking for eggs"</span>)</span>
@@ -1552,7 +1552,7 @@ No recipes found</code></pre>
 <section id="finding-by-ingredients" class="level4">
 <h4 class="anchored" data-anchor-id="finding-by-ingredients">Finding by Ingredients</h4>
 <p>Matching for ingredients looks very similar to the search method proposed for the dictionary based <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html#use-a-dictionary-to-store-contacts">Tiny Contacts</a>, combined with our filter and find technique. The filter function,</p>
-<div id="96b7d093" class="cell" data-execution_count="27">
+<div id="423430a8" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> filter_recipe_by_ingredient(search_ingredient):</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Find and return a list of all recipes which contain a given ingredient</span></span>
@@ -1585,7 +1585,7 @@ No recipes found</code></pre>
 <span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Which we can see would have the following results,</p>
-<div id="b13993df" class="cell" data-execution_count="28">
+<div id="2261b30c" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Searching by ingredient: Eggs"</span>)</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>list_recipes(filter_recipe_by_ingredient(<span class="st">"Eggs"</span>))</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Searching by ingredient: eggs"</span>)</span>
@@ -1756,7 +1756,7 @@ View Recipe
 <span id="cb64-63"><a href="#cb64-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> command <span class="op">==</span> <span class="dv">4</span>:</span>
 <span id="cb64-64"><a href="#cb64-64" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A sample pipeline for above might look like,</p>
-<div id="c76816f8" class="cell" data-execution_count="29">
+<div id="3b8fc339" class="cell" data-execution_count="29">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>View Recipe
