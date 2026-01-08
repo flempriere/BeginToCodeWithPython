@@ -14,7 +14,7 @@ title: "Chapter 3: Python Program Structure"
 
 - To run a program, you first need to write it. Any text editor should do.
 
-##### **Make Something Happen**: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
+##### Make Something Happen: [Run a Python Program](./Examples/01_FirstProgram/first_program.py)
 
 *Open a text editor and enter the following into the file*,
 
@@ -59,7 +59,7 @@ user <--> computer
 - We want the program to be able to interact with the user to provide output, and request input
   - The first such function we need is `print`
 
-##### **Make Something Happen**: Work with `print` in a program
+##### Make Something Happen: Work with `print` in a program
 
 *Write a python file ([`using_print.py`](./Examples/02_UsingPrint/using_print.py)) with the following contents*
 
@@ -122,7 +122,7 @@ leads to a `NameError` because function names are case sensitive, and we have pu
 - We can then use functions from the library with the format, `module_name.function_name(arguments)`
   - e.g. for `random` we can use `randint` as `random.randint(1,6)` to generate a random number from $1$ to $6$
 
-##### **Make Something Happen**: [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
+##### Make Something Happen: [Investigate the `random` Library](./Examples/03_InvestigateRandom/throw_die.py)
 
 *Write and run a python program containing the following lines*
 
@@ -172,7 +172,7 @@ print('The answer is: 42')
 *You should see the program print the first line, pause for about* $5$ *seconds, then print the second line. The above cell should show the code after all lines have run*
 
 
-###### **Make Something Happen**: [Make an Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
+###### Make Something Happen: [Make an Egg Timer](./Exercises/01_EggTimer/egg_timer.py)
 
 *Make an egg timer program. The program should allow the user to time a 5-minute boiled egg. You can do this by modifying the [example sleep program](#example-using-sleep) which paused for* $5$ *seconds. For extra style points, you could make the program print, "Nearly cooked, get your spoon ready,"* $30$ *seconds before the* $5$*-minute deadline. You could even expand this into an interactive recipe program that describes the steps to be performed at each point in the recipe and then pauses until the next step is performed*
 
@@ -412,7 +412,7 @@ time.sleep(30)
   - This time at the bottom and in red
 - We then sleep for $30$ seconds so the user has time to notice and hear the sound
 
-##### **Make Something Happen**: [High-Low](./Exercises/03_HighLow/highLow.py)
+##### Make Something Happen: [High-Low](./Exercises/03_HighLow/highLow.py)
 
 *Use the random number generator and sleep to make a high-low party game. The game works like this,*
 
@@ -464,7 +464,7 @@ print("The second number is: ", random.randint(1, 10))
 ```
 
 
-##### **Make Something Happen**: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
+##### Make Something Happen: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
 *Use the random number generator and `sleep` to make a Nerves of Steel game. This game works like this*
 

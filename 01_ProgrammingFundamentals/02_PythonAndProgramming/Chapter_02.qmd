@@ -169,7 +169,7 @@ computer-->output
 
 - Commands are the *input* which are processed by the `python command shell` (*the computer*) and turned into results (*output*)
 
-##### **Make Something Happen**: Have a Conversation with Python
+##### Make Something Happen: Have a Conversation with Python
 
 - *Start up a python interpreter and run the following*
 
@@ -251,7 +251,7 @@ As seen in the previous example, when invalid code is entered into the shell, an
 
 
 
-##### **Code Analysis**: Python Expressions
+##### Code Analysis: Python Expressions
 
 1. *What do you think would happen if you tried to evaluate `2+3*4`?*
 
@@ -322,7 +322,7 @@ Not all languages are scripting languages. Some are converted to low-level hardw
 - Python scripts thus can be considered data processors
   - The script is interpreted and converted to output
 
-##### **Make Something Happen**: Work with Text in Python
+##### Make Something Happen: Work with Text in Python
 
 *Start up the python interpreter and run the following*
 
@@ -344,7 +344,7 @@ Not all languages are scripting languages. Some are converted to low-level hardw
     - Observe we explicitly have to include the space character in one of the strings
     - A cool observation is that `+` changes it's behaviour in response to what it's arguments are
 
-##### **Code Analysis**: Break the rules with Python
+##### Code Analysis: Break the rules with Python
 
 1. *What do you think would happen if missed the closing quote of a string you were typing?*
 
@@ -425,7 +425,7 @@ Learning a new language often involves learning the functions it natively suppor
     ```
 
 
-##### **Make Something Happen**: Investigate Text Representation using `ord`
+##### Make Something Happen: Investigate Text Representation using `ord`
 
 *Start up a python interpreter, and run the following,*
 
@@ -507,7 +507,7 @@ class rightPname BG
     chr(87)
   ```
 
-##### **Make Something Happen**: Convert Numbers to text using `chr`
+##### Make Something Happen: Convert Numbers to text using `chr`
 
 *Start up a python interpreter, and run the following,*
 
@@ -538,7 +538,7 @@ class rightPname BG
 - Bytes can be grouped together to represent larger blocks of data
 - `bin` converts a number to a string containing it's binary representation
 
-##### **Make Something Happen**: Discover Binary Representation
+##### Make Something Happen: Discover Binary Representation
 
 *Use the* `bin` *function to investigate how data is stored in a computer, start by running,*
 ```{python}
@@ -549,7 +549,7 @@ bin(87)
   - i.e. a string of `1`'s and `0`'s
 - The prefix `0b` indicates that the remaining suffix is the binary representation of a number
 
-##### **Code Analysis**: Building Binary Numbers
+##### Code Analysis: Building Binary Numbers
 
 *Answer the following questions about binary representations*
 

@@ -55,7 +55,7 @@ class zeroDescr BG
 - The above diagramatically breaks down variable assignment. On the left we have the variable, then `=`  which means *assignment*, followed by the expression to assign
 - The assignment expression does not need to be made of simple primitives, e.g. `total = us_sales + world_wide_sales` defines the variable `total` to be equal to the sum of the variables `us_sales` and `world_wide_sales`
 
-#### **Make Something Happen**: Working with Variables
+#### Make Something Happen: Working with Variables
 
 *Start up a python interpreter, then run the following commands in sequence*
 
@@ -124,7 +124,7 @@ Some languages recommend using *camel case* for variable naming. In this format 
   - Longer names can be hard to read
   - Names should be no longer than they need to convey clear meaning
 
-#### **Code Analysis**: Typing Errors and Testing
+#### Code Analysis: Typing Errors and Testing
 
 *You've already seen that python can generate errors when it is unable to interpret an input. Answer the following questions to investigate how errors can arise in using variables. Assume that `total` has already been defined*
 
@@ -177,7 +177,7 @@ Some languages recommend using *camel case* for variable naming. In this format 
 
     - In this case, `Total` is not defined as a variable, so there is no meaningful way to interpret a value. Hence we would expect an error. Since the error is that `Total` doesn't exist, we see a `NameError`.
 
-#### **Make Something Happen**: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
+#### Make Something Happen: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
 
 *Consider the [Nerves of Steel](../03_PythonProgramStructure/Chapter_03.qmd#make-something-happen-nerves-of-steel) exercise from [Chapter 3](../03_PythonProgramStructure/Chapter_03.qmd). In the game, players must remain standing right up to the moment before they think a random timer will expire*
 
@@ -252,7 +252,7 @@ Most of the code is just text, but the key takeaway is the line `stand_time = ra
   print(message)
 ```
 
-#### **Make Something Happen**: Text and Numeric Variables
+#### Make Something Happen: Text and Numeric Variables
 
 *Python tracks the contents of each variable and only allows operations that make sense. Using the python interpreter experiment with the following combinations of string and number variables.*
 
@@ -365,7 +365,7 @@ The most common escape characters are newline `\n` and escaping quotes
 Python uses `\n` as the newline character. Technically this is known as a line feed and means "go to the next line". In Linux and similar operating systems this is equivalent to starting a new line, but in windows going to the start of a new line is achieved via `\r\n`, i.e. return to the start of the line, and then feed to the next. Luckily python handles the conversion between the conventions automatically and we can just use `\n` regardless of the operating system we are actually running on
 :::
 
-##### **Code Analysis**: Investigating Escape Sequences
+##### Code Analysis: Investigating Escape Sequences
 
 *Start a python interpreter and answer the following questions*
 
@@ -441,7 +441,7 @@ print('Enter your name please: ')
 input('Press enter to continue...')
 ```
 
-##### **Make Something Happen**: Use `input` to make a "greeter" Program
+##### Make Something Happen: Use `input` to make a "greeter" Program
 
 *Use python to create a simple program that will issue a personalised greeting. Create a new program ([greeter.py](./Examples/02_Greeter/greeter.py)) with the following contents*
 
@@ -500,7 +500,7 @@ time_int = int(time_next) #perform conversion to number
 
 - This basic pattern works just as well for an alarm as it does for a configurable timer
 
-##### **Code Analysis**: Reading Numbers
+##### Code Analysis: Reading Numbers
 
 *Consider the previous [example](#example-configurable-egg-timer), and answer the following questions*
 
@@ -538,7 +538,7 @@ time_int = int(time_next) #perform conversion to number
     - Contain a fractional component
     - Must be truncated to be stored in memory, so cannot always be stored accurately
 
-##### **Code Analysis**: Whole Numbers vs Real Numbers
+##### Code Analysis: Whole Numbers vs Real Numbers
 
 *Learn about the differences between whole numbers and real numbers through the following questions*
 
@@ -587,7 +587,7 @@ look at alternative representations
   - In Python floats have $15-16$ digits of precision and can range from $10^{308}$ and $10^{-324}$
 - A quirk of floating point is that some apparently simple numbers like $0.1$ can't be stored exactly
 
-##### **Code Analysis**: Floating Point Variables and Errors
+##### Code Analysis: Floating Point Variables and Errors
 
 *Conduct the following experiments in the python shell to learn about floating points*
 
@@ -630,7 +630,7 @@ age = 25
   - One `name` is a `string` type
   - The other `age` is an `int` or integer type
 
-##### **Code Analysis**: Working with Floating Point Variables
+##### Code Analysis: Working with Floating Point Variables
 
 *Work through the following following questions to understand how floating-point variables work?*
 
@@ -749,7 +749,7 @@ print("Take the egg out now")
 
 - Basic operators and their precedence
 
-##### **Code Analysis**: Work out the Results
+##### Code Analysis: Work out the Results
 
 *See if you can work out the values of* `a`*,* `b` *and* `c` *when the following statements are evaluated,*
 
@@ -823,7 +823,7 @@ i = int(2.9)
 i
 ```
 
-##### **Make Something Happen**: Calculating a Pizza Order
+##### Make Something Happen: Calculating a Pizza Order
 
 *Consider the following [program](./Examples/05_PizzaOrderCalculator/PizzaOrderCalculator.py) which is designed to calculate the number of pizzas needed for a hackathon with* $x$ *number of particpants using the heuristic that* $1$ *pizza can satisfy* $1.5$ *people*
 
@@ -888,7 +888,7 @@ When faced with a choice like the above for the [pizza order calculator](#make-s
 Never assume you know what the program should do, ask the client
 :::
 
-##### **Make Something Happen**: Converting Between Fahrenheit and Centigrade
+##### Make Something Happen: Converting Between Fahrenheit and Centigrade
 
 *Write a program to convert from Fahrenheit to Centigrade. The formula for this is*
 
@@ -959,7 +959,7 @@ print("\033[0mThe temperature is", -32 / 1.8, "degrees Celcius")
     print("The conditions are:", desc)
   ```
 
-#### **Make Something Happen**: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
+#### Make Something Happen: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
 
 *Write a program that displays the current weather conditions. If you use the* `display_text` *function from snaps, your program can display the current weather and description*
 

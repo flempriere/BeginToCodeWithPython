@@ -24,7 +24,7 @@ title: "Chapter 7: Using Functions to Simplify Programs"
 
   - functions must be defined *before* they can be called
 
-#### **Make Something Happen**: Investigating Functions
+#### Make Something Happen: Investigating Functions
 
 *Use a python interpreter to work through the following questions to understand python functions*
 
@@ -60,7 +60,7 @@ Observe that we can treat functions like variables. We can assign them to other 
 
 The ability to treat functions as variables is a powerful feature we will explore more in Chapter 12
 
-#### **Code Analysis**: Program Pathfinder
+#### Code Analysis: Program Pathfinder
 
 *Examine the following code block and and answer the following questions to understand how functions work. (You can run the code at [Pathfinder.py](./Examples/01_Pathfinder/Pathfinder.py))*
 
@@ -229,7 +229,7 @@ block-beta
     - Same naming rules as for variables
     - functions *do* things, i.e. the are naturally associated with verbs
         - Unlike variables with *are* things i.e. nouns
-    - e.g. `display_menu` names a function which takes the *action* to *display* **a** menu
+    - e.g. `display_menu` names a function which takes the *action* to *display* a menu
 - Then parameters in a parenthese-enclosed, comma-delimited list
     - No space between name and left parenthesis
     - Parameters feed extra information for the function to work on
@@ -268,7 +268,7 @@ block-beta
     - But a specific *argument* is $5$ or $99$
 - Consider it as the phrase "we call the function passing the arguments to the parameters"
 
-###### **Code Analysis**: Argument and Parameters
+###### Code Analysis: Argument and Parameters
 
 *Find out more about arguments and parameters by answering the following questions*
 
@@ -433,7 +433,7 @@ Beware that *positional* arguments **must** preceed all *keyword* arguments
 Named arguments and default parameters help make functions clearer in intent. Reduce the possibility of getting arguments confused or mixed up. Makes it easy to define "standard" behaviour for a function
 :::
 
-##### **Code Analysis**: Parameters as Values
+##### Code Analysis: Parameters as Values
 
 *What does it mean when we pass the value of an argument to a function parameter? Consider the following program*
 
@@ -468,7 +468,7 @@ print("The value of test is", test)
     - The main observation here is that the *value* of `test` is passed to the function *not* `test` itself
         - `test` is unchanged outside the function
 
-##### **Make Something Happen**: Creating a Teletype Printer
+##### Make Something Happen: Creating a Teletype Printer
 
 *Write a function* `teletype_print` *that slowly writes out an input string. Use a* `for` *loop to loop over the contents of the string and the `time` library to delay the output. Use a default argument with a value of* $0.1$ *to control the print speed. Use the random library to add a random amount of noise to the specified delay*
 
@@ -529,7 +529,7 @@ def teletype_printer(text):
 teletype_printer("hello")
 ```
 
-##### **Make Something Happen**: Teletype Fortune Teller
+##### Make Something Happen: Teletype Fortune Teller
 
 *Use the function you wrote for a teletype output to add some style to the [Fortune Teller Program](../05_MakingDecisions/Chapter_05.qmd#make-something-happen-fortune-teller)*
 
@@ -614,7 +614,7 @@ def return_one():
 return_one()
 ```
 
-##### **Code Analysis**: Functions and `return`
+##### Code Analysis: Functions and `return`
 
 *Take a look look at the* `return` *in the following function and the attached program to answer the following questions*
 
@@ -854,7 +854,7 @@ def read_text(prompt="Please enter some text: "):
     return result
 ```
 
-##### **Code Analysis**: Investigate the `read_text` function
+##### Code Analysis: Investigate the `read_text` function
 
 *Use the [`read_text`](./Chapter_07.qmd#create-a-text-input-function) function to answer the following questions*
 
@@ -1040,7 +1040,7 @@ def read_float_ranged(prompt, min_value, max_value):
 - Observe how we have used each function as a reusable component in the *next* **more** specific function
     - We can do this because we cleanly define the responsibilities of each function
 
-#### **Code Analysis**: Investigating the `read_float_ranged` Function
+#### Code Analysis: Investigating the `read_float_ranged` Function
 
 *Let's examine the final function* `read_float_ranged` *in more detail to capture all the things we've built up. Answer the following questions*
 
@@ -1102,7 +1102,7 @@ from BTCInput import *
 age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 ```
 
-##### **Make Something Happen**: Add `BTCInput` to your Existing Programs
+##### Make Something Happen: Add `BTCInput` to your Existing Programs
 
 *Rewrite the following programs to use* `BTCInput` *for input*
 
@@ -1252,7 +1252,7 @@ A *breakpoint* is different to the `break` keyword
 - A *breakpoint* is used to pause the execution of a program at a specific point when it is being debugged
 :::
 
-#### **Make Something Happen**: Investigate Programmers with a Debugger
+#### Make Something Happen: Investigate Programmers with a Debugger
 
 *Use the following example, found in* [InvestigateTheDebugger.py](./Examples/14_InvestigateTheDebugger/InvestigateTheDebugger.py) *as the basis to learn the debugger*
 

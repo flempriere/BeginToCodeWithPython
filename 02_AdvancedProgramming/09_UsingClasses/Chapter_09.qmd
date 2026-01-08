@@ -127,7 +127,7 @@ title: "Chapter 9: Use Classes to Store Data"
 
   ```
 
-##### **Code Analysis**: The Contacts Application Prototype
+##### Code Analysis: The Contacts Application Prototype
 
 *The code above doesn't introduce any new concepts, but it's worth examining in detail to make sure you understand how all the parts work. Work through the following questions.*
 
@@ -220,7 +220,7 @@ title: "Chapter 9: Use Classes to Store Data"
 
 - You can view the complete program all put together in [TinyContactsParallelLists.py](./Examples/02_TinyContactsParallelLists/TinyContactsParallelLists.py)
 
-##### **Code Analysis**: The `find_contact` Function
+##### Code Analysis: The `find_contact` Function
 
 *The* `find_contact` *function is probably one of the more sophisticated pieces of code we've written. Work through the following questions to make sure you understand what is going on.*
 
@@ -270,7 +270,7 @@ title: "Chapter 9: Use Classes to Store Data"
 - In object-oriented programming we use *classes* to define and construct *objects*
     - A class is a type, an object is the instance
 
-##### **Make Something Happen**: Creating a Class
+##### Make Something Happen: Creating a Class
 
 *Open the python interpreter and work through the following steps and questions to understand classes*
 
@@ -412,7 +412,7 @@ Both this static definition and pythons dynamic definitions have it's advantages
                 break
   ```
 
-##### **Code Analysis**: The class-based `find_contact` function
+##### Code Analysis: The class-based `find_contact` function
 
 *Answer the following questions about the new* `find_contact` *implementation*
 
@@ -427,7 +427,7 @@ Both this static definition and pythons dynamic definitions have it's advantages
     - `None` in python is used to refer to a value that does not exist
     - Semantically here it is used to indicate that no match was found
 
-##### **Exercise**: Duplicate Names
+##### Exercise: Duplicate Names
 
 *This program has a fault in that if multiple contacts have the same name as an existing one only the first one will be returned. Modify the program to correct this problem*
 
@@ -561,7 +561,7 @@ When you discuss a specification there's no guarantee ambiguities like how to de
         return None
   ```
 
-###### **Code Analysis**: The refactored `find_contact` function
+###### Code Analysis: The refactored `find_contact` function
 
 *Answer the following questions, about this new version of* `find_contact`
 
@@ -651,7 +651,7 @@ flowchart TD
 - This behaviour is sometimes referred to as shallow copying since we have multiple copies of the object, but they are not distinct, changes are propagated between all the references
     - There is only one memory object
 
-###### **Code Analysis**: Understanding Lists and References
+###### Code Analysis: Understanding Lists and References
 
 *The figure below illustrates how lists and references work. It shows a Tiny Contacts data store with three contacts registered. Each of the tags in the contacts list refers to a different Contact instance in the memory. Work through the following questions to develop your understanding of references*
 
@@ -1048,7 +1048,7 @@ Pickle files are not designed to be human-readable. While most text editors will
             contacts=pickle.load(input_file)
   ```
 
-##### **Code Analysis**: Loading Data using `pickle`
+##### Code Analysis: Loading Data using `pickle`
 
 *Work through the following questions to make sure you understand how* `load_contacts` *works*
 
@@ -1120,7 +1120,7 @@ then all previously pickled data may no longer load since the class definition i
             raise ValueError("Unexpected value encountered")
   ```
 
-##### **Code Analysis**: Saving and Loading Contacts
+##### Code Analysis: Saving and Loading Contacts
 
 *Consider the following questions about the code above*
 
@@ -1182,7 +1182,7 @@ we can clearly explain *what* the constant means
 - Named `__init__`
     - python uses "dunder methods" marked `__function_name__` to mark special functions defined by the language
 
-###### **Make Something Happen**: Create an Initialiser
+###### Make Something Happen: Create an Initialiser
 
 *Open the python interpreter and work through the following steps to create an understand an initialiser, answering the questions*
 
@@ -1253,7 +1253,7 @@ class InitPrint:
             self.telephone = telephone
   ```
 
-###### **Code Analysis**: Parameters and the `__init__` method
+###### Code Analysis: Parameters and the `__init__` method
 
 *Work through the following questions to ensure you understand the* `__init__` *method*
 
@@ -1530,7 +1530,7 @@ class InitPrint:
     - Our current implementation uses `startswith` to provide more flexible matching
     - In general though, dictionaries provide fast queries for finding objects when we can easily use the key as a unique identifier
 
-### **Exercise**: The Final Tiny Contacts Refactor
+### Exercise: The Final Tiny Contacts Refactor
 
 *The Tiny contacts program is a useful template for any kind of program that stores data and lets a user work with it. You can even add some of the sorting and data-processing features from the ice-cream sales program to make applications that not only store data but let you do interesting things with it.*
 

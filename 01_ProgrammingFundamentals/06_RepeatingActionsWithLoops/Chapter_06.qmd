@@ -56,7 +56,7 @@ class suiteDescr BG
     - After the statements are run, control returns to the start of the `while` loop
     - If the condition is *still* `True` then the loop runs again
 
-#### **Code Analysis**: Investigating the `while` construction
+#### Code Analysis: Investigating the `while` construction
 
 *Use the python interpreter to run the following to understand the* `while` *loop*
 
@@ -155,7 +155,7 @@ class suiteDescr BG
     - The loop stops once `count` reaches $5$
     - This means that `"Inside Loop"` should be printed $5$ times, followed by `"Outside Loop"`
 
-#### **Create a Looping Selection Program**: Create a Looping Selection Program
+#### Make Something Happen: Create a Looping Selection Program
 
 *Use a* `while` *loop, to make a theme park selector that runs continously. All you need to do is put all of the statements that implement the theme park behaviour into a* `while True` *construction*
 
@@ -192,7 +192,7 @@ while run_program:
 Observe that first we wrap all of the code in a `while` loop, and introduce a boolean flag `run_program` initially set to `True` to flag if the program continues to run at each loop iteration. When a user enters a number we first check if it corresponds to a ride number and if not, we set the program to quit on the next loop iteration by setting `run_program` to `False`. We now change the original `if ride_number == 1` to and `elif` so it is only checked if we know the ride_number is valid. (The full code is in [LoopingRideSelector.py](./Exercises/01_LoopingRideSelector/LoopingRideSelector.py))
 
 
-#### **Make Something Happen**: Create a Looping Countdown Program
+#### Make Something Happen: Create a Looping Countdown Program
 
 *One of the examples [in the above question set](#code-analysis-investigating-the-while-construction) involved a count***up** *to* $5$*. Implement a program that counts down from* $10$ *to* $0$ *over* $10$ *seconds*
 
@@ -267,7 +267,7 @@ Data validation does have the downside in that it can make programs significantl
         - Some languages have a `do ... while` statement which performs its test *after* executing the loop body for the first time
             - Would allow us to write the above as one construct
 
-###### **Make Something Happen**: Add Ride Number Validation to the Theme Park Ride Selector
+###### Make Something Happen: Add Ride Number Validation to the Theme Park Ride Selector
 
 *Add ride number validation to the Looping Ride Selector implementation. Remember that the* `while` *construction must be added after the* `ride_number` *value has been read by the program*
 
@@ -306,7 +306,7 @@ while run_program:
 
 The complete code is given in [RideNumberValidation.py](./Exercises/03_RideNumberValidation/RideNumberValidation.py)
 
-###### **Code Analysis**: When good loops go bad
+###### Code Analysis: When good loops go bad
 
 *When creating composite conditions for loops, making sure the logic is correct is incredibly important. Examine the following program to understand more complicated loop control*
 
@@ -347,7 +347,7 @@ A good programmer proactively looks for potential points of failure, writes code
 A good heuristic for starting to do this with simple programs is called boundary-value testing. Boundaries are the points between different expected behaviours. For example with the ride selector, we expect different behaviour for numbers $< 1$ or $> 5$ to those in the range $1$ to $5$. So a good set of tests might be $0$, $1$, $2$, $4$, $5$, $6$. i.e. we test either side of the boundary, and on the boundary
 :::
 
-###### **Make Something Happen**: Add Validation to the Theme Park Age Input
+###### Make Something Happen: Add Validation to the Theme Park Age Input
 
 *Add age validation to the Ride Selection Program. The theme park owner has told you that the minimum age for anyone going on a ride at the theme park is* $1$ *year, and the maximum age is* $95$*. Use these values in your program*
 
@@ -526,7 +526,7 @@ class exceptTwoStatementsDescr BG
 - We've seen how to use exceptions to handle invalid types
 - Now let's put that together to write a loop to handle exceptions
 
-##### **Code Analysis**: Handling Exceptions in Loops
+##### Code Analysis: Handling Exceptions in Loops
 
 *We want to make a program that will perform a* `while` *construction as long as the user keeps typing in text that cannot be converted into a number. Look at the example code below, (see [HandlingInvalidText.py](./Examples/04_HandlingInvalidText/HandlingInvalidText.py)) and answer the questions*
 
@@ -700,7 +700,7 @@ while count < 13:
 
 - The combination of `while count < 13` and `count = count + 1` means that after $12$ loop iterations the loop condition evaluates `False` and the loop ends
 
-#### **Code Analysis**: CounterIntelligence
+#### Code Analysis: CounterIntelligence
 
 - *Consider the previous [example](#count-a-repeating-loop) and answer the following questions*
 
@@ -713,7 +713,7 @@ while count < 13:
 3. *What would happen to the program if we changed the line* `count = count + 1` *to* `count = count - 1`
     - The loop would produce negative times tables, and never stop since `count` will be decreased every iteration and thus is always less than $13$
 
-#### **Make Something Happen**: Allow the User to Select the Times Value
+#### Make Something Happen: Allow the User to Select the Times Value
 
 *Write a version of the [previous example](#count-a-repeating-loop) that asks the user for the value of the times table they want. Add validation so that the user must enter a number between* $2$ *and* $12$ *inclusive*
 
@@ -851,7 +851,7 @@ for count in range(1, 13):
 - `break` and `continue` also work with `for` loops
     - `continue` causes the loop to proceed to the next item in the collection
 
-#### **Code Analysis**: Loops, `break` and `continue`
+#### Code Analysis: Loops, `break` and `continue`
 
 *Look at the following simple programs, and answer the corresponding questions about* `break` *and* `continue`
 
@@ -925,7 +925,7 @@ for count in range(1, 13):
     - Strings are collections of letters
     - The above program works, it loops over and prints each letter in the string
 
-#### **Make Something Happen**: Make a Times Table Quiz
+#### Make Something Happen: Make a Times Table Quiz
 
 *Reverse the behaviour of the times-table program so that rather than printing out the times-table your program insteads asks questions like,* "What is $6$ times $4$?" *The user could enter their answer, and the program could compare it with the correct answer and keep score of how many correct answers are given. You could use a loop to make the program produce* $12$ *"times-table" questions, and you could use random numbers so that the quiz is different every time*
 
@@ -990,7 +990,7 @@ while True:
     time.sleep(1)
 ```
 
-#### **Make Something Happen**: Digital Alarm Clock
+#### Make Something Happen: Digital Alarm Clock
 
 *Combine the digital clock display from [the previous example](#make-a-digital-clock-using-snaps) with the alarm clock from [Chapter 5](../05_MakingDecisions/Chapter_05.qmd#exercise-make-an-advanced-alarm-clock). Make the background image depend on the time of day*
 
