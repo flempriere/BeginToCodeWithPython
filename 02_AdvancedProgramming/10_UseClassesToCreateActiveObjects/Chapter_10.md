@@ -43,6 +43,13 @@
     - [Code Analysis: Managing the Billing
       Amount](#code-analysis-managing-the-billing-amount)
     - [Manage Class Versions](#manage-class-versions)
+      - [Add a version attribute to a
+        class](#add-a-version-attribute-to-a-class)
+      - [Check Version Numbers](#check-version-numbers)
+      - [Upgrade a Class](#upgrade-a-class)
+      - [Make Something Happen: Explore Version
+        Management](#make-something-happen-explore-version-management)
+    - [The `__str__` Method in a Class](#the-__str__-method-in-a-class)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -918,7 +925,7 @@ the following questions to understand static validation methods*
         ValueError: invalid literal for int() with base 10: 'Rob'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[43], line 1
+        Cell In[11], line 1
         ----> 1 x = int("Rob")
 
         ValueError: invalid literal for int() with base 10: 'Rob'
@@ -1012,12 +1019,12 @@ attempt to add a session length of $4$, which should be invalid,
     Exception: Invalid Session Length
     ---------------------------------------------------------------------------
     Exception                                 Traceback (most recent call last)
-    Cell In[48], line 3
+    Cell In[16], line 3
           1 rob = Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "1234 56789")
           2 add_session(rob, 2)
     ----> 3 add_session(rob, 4)
 
-    Cell In[44], line 24, in add_session(self, session_length)
+    Cell In[12], line 24, in add_session(self, session_length)
           2 """
           3 Adds a session (in hours) to the Contacts hours
           4
@@ -1234,7 +1241,7 @@ attribute, we can see that nothing stops us from doing so
     AttributeError: 'Secret' object has no attribute '__top_secret'
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
-    Cell In[53], line 1
+    Cell In[21], line 1
     ----> 1 x.__top_secret
 
     AttributeError: 'Secret' object has no attribute '__top_secret'
@@ -1690,10 +1697,10 @@ class Contact:
 >     Exception: Invalid name
 >     ---------------------------------------------------------------------------
 >     Exception                                 Traceback (most recent call last)
->     Cell In[63], line 1
+>     Cell In[31], line 1
 >     ----> 1 rob = Contact(name="Rob", address="18 Pussycat Mews, London NE1 410S", telephone="1234 56789")
 >
->     Cell In[62], line 154, in Contact.__init__(self, name, address, telephone)
+>     Cell In[30], line 154, in Contact.__init__(self, name, address, telephone)
 >         141 def __init__(self, name, address, telephone):
 >         142     """
 >         143     Create a new Contact instance
@@ -1704,7 +1711,7 @@ class Contact:
 >         155     self.address = address
 >         156     self.telephone = telephone
 >
->     Cell In[62], line 92, in Contact.name(self, name)
+>     Cell In[30], line 92, in Contact.name(self, name)
 >          89 @name.setter
 >          90 def name(self, name):
 >          91     if not Contact.valid_text(name):
@@ -1926,19 +1933,231 @@ def display_contact(contact):
 
   - But whe we try to display or add a session we’ll get an error, like
 
-    ``` python
-      #| echo: False
-      raise AttributeError("'Contact' object has no attribute '_Contact__billing_amount'")
-    ```
-
         AttributeError: 'Contact' object has no attribute '_Contact__billing_amount'
         ---------------------------------------------------------------------------
         AttributeError                            Traceback (most recent call last)
-        Cell In[64], line 2
-              1 #| echo: False
-        ----> 2 raise AttributeError("'Contact' object has no attribute '_Contact__billing_amount'")
+        Cell In[32], line 1
+        ----> 1 raise AttributeError("'Contact' object has no attribute '_Contact__billing_amount'")
 
         AttributeError: 'Contact' object has no attribute '_Contact__billing_amount'
+- This occurs because the program attempts to access the
+  `__billing_access` attribute
+- Old versions of the `Contact` class didn’t have this
+  - So error occurs
+- Same might occur if we make more modifications in the future
+
+##### Add a version attribute to a class
+
+- We can solve this by *versioning* a class
+- Add a version attribute to each class
+  - Simply a numeric attribute
+
+  ``` python
+    def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
+        self.name = name
+        self.address = address
+        self.telephone = telephone
+        self.__hours_worked = 0
+        self.__billing_amount = 0
+        self.__version = 1
+  ```
+
+- version is set as a private variable
+
+##### Check Version Numbers
+
+- Then create a method to check the version of a `Contact`
+
+  - Let’s us check that a `Contact` object matches the current version
+
+  ``` python
+    def check_version(self):
+        """
+        Check the version of a Contact instance
+
+        Upgrades the instance to the most recent version
+        if required
+        """
+        pass
+  ```
+
+- Leave it as a stub for now
+
+- We want to use it when we load contacts to check versions
+
+- Updated `load_contacts` is below
+
+  ``` python
+    def load_contacts(file_name):
+    """
+    Loads the contacts from the given file
+
+    Contacts are stored in binary as a pickled file
+
+    Parameters
+    ----------
+    file_name : str
+        string giving the path to the file where the contacts data is stored
+
+    Returns
+    -------
+    None
+        Contact detail is loaded into the global contacts value
+
+    Raises
+    ------
+        Exceptions if contacts failed to load
+
+    See Also
+    --------
+    save_contacts : saves contacts to a pickled file
+    """
+    global contacts
+    print("Load contacts")
+    with open(file_name, "rb") as input_file:
+        contacts = pickle.load(input_file)
+    # Update version of loaded contacts if required
+    for contact in contacts:
+        contact.check_version()
+  ```
+
+##### Upgrade a Class
+
+- Now we want to write code to upgrade a `Contact`
+
+- For our version $1$, we want to upgrade any class that *does not* have
+  a `__billing_amount` attribute
+
+- In future we might define a version $2$, then we would redefine the
+  `check_version` method to upgrade any class that isn’t version $2$
+
+  ``` python
+    def check_version(self):
+    """
+    Check the version of a Contact instance
+
+    Upgrades the instance to the most recent version
+    if required
+    """
+    try:
+        if not self.__version == 1:
+            self.__billing_amount = 0
+            self.__version = 1
+    except AttributeError:
+        self.__billing_amount = 0
+        self.__version = 1
+  ```
+
+- We first attempt to check the version number
+
+- If it’s not the current version ($1$) we upgrade the class
+
+  - Add a `.__billing_amount` attribute defaulted to zero
+  - Upgrade the version number
+
+- Use a `try...except` block to catch the `AttributeError` if the
+  version doesn’t exist (i.e. for old instances pre-versioning)
+
+  - Perform the upgrade
+
+##### Make Something Happen: Explore Version Management
+
+*To get a better understanding of versioning, work through the following
+steps*
+
+*Start by running the program
+[TimeTrackerWithPropertiesAndExceptionHandling.py](./Examples/10_TimeTrackerWithPropertiesAndExceptionHandling/TimeTrackerWithPropertiesAndExceptionHandling.py).
+Create a new contact as below*
+
+    Enter your command: 1
+    Create new contact
+    Enter the contact name: Rob Miles
+    Enter the contact address: 18 Pussycat Mews, London, NE1 410S
+    Enter the contact phone: 1234 56789
+
+This creates a new contact, which looks like, (use Find Contact)
+
+    Name: Rob Miles
+    Address: 18 Pussycat Mews, London, NE1 410S
+    Telephone: 1234 56789
+    Hours on the case: 0
+
+As we can see this version is missing the billable hours information
+
+*Exit the program so the contact is saved. Now load this pickle file
+with
+[TimeTrackerWithVersion.py](./Examples/12_TimeTrackerWithVersion/TimeTrackerWithVersion.py)*
+
+This should load the contact (which is unversioned), and upgrade it to
+the versioned variant with a billing amount
+
+*Attempt to display this contact, you should see something like*
+
+    Name: Rob Miles
+    Address: 18 Pussycat Mews, London, NE1 410S
+    Telephone: 1234 56789
+    Hours on the case: 0
+    Amount to bill: 0
+
+As we can see, the amount to bill is now correctly displayed
+
+> [!IMPORTANT]
+>
+> **Add version management when you design data storage**
+>
+> When starting a project you should consider which items are being
+> stored and if they need version management. For example in the Time
+> Tracker program we expect that the client will request changes to the
+> features, so we should consider versioning it from the start
+>
+> Everytime a new version of a program is installed, we then have to go
+> through the process of updating the underlying data to the new version
+>
+> When writing a program for a customer, you should consider how long it
+> will take to write code that deal with data updates (or migrations).
+> This can make trivial programs significantly more complex
+
+#### The `__str__` Method in a Class
+
+- Each time we add a new attribute to the `Contact` class we have to
+  modify `display_contact`
+
+- Would be nice just to be able to print a `Contact` directly
+
+- However, doing so, we find the output is pretty useless (using the
+  mock below)
+
+  ``` python
+    class Contact:
+        def __init__(self, name, address, telephone):
+            self.name = name
+            self.address = address
+            self.telephone = telephone
+
+    contact = Contact("Rob Miles", "Pussycat Mews", "1234")
+
+    def display_contact(contact):
+        print(contact)
+
+    display_contact(contact)
+  ```
+
+      <__main__.Contact object at 0x7f3a44fe09e0>
+
+- default for objects is the class name following by the memory address
+  of the object
 
 ## Summary
 
