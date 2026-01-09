@@ -244,12 +244,12 @@ class MusicTrack:
     """
     Music Track with a name and a length (in seconds)
 
-    Parameters
+    Attributes
     ----------
     name : str
         name of the music track
     length_in_seconds : int
-        length of the track in seconds (must be positive)
+        length of the track in seconds
 
     Raises
     ------
@@ -263,6 +263,21 @@ class MusicTrack:
     """
 
     def __init__(self, name, length_in_seconds):
+        """
+        Create a new MusicTrack instance
+
+        Parameters
+        ----------
+        name : str
+            name of the music track
+        length_in_seconds : int
+            length of the track in seconds (must be positive)
+
+        Raises
+        ------
+        ValueError
+                Raised if length_in_seconds is invalid
+        """
         self.name = name
         if length_in_seconds <= 0:
             raise ValueError("Track length must be greater than zero")
@@ -355,7 +370,7 @@ print(tracks[0].length_in_seconds)
 
     Enter the track name: Merry Christmas Everyone
     Enter the track length (in seconds): 220
-    [<__main__.MusicTrack object at 0x7bb17bf77e30>]
+    [<__main__.MusicTrack object at 0x7fd7946e6000>]
     Merry Christmas Everyone
     220
 
@@ -422,7 +437,7 @@ print(results[0].length_in_seconds)
 print(filter_tracks_by_name("Missing Track", tracks))
 ```
 
-    [<__main__.MusicTrack object at 0x7bb17bf77e30>]
+    [<__main__.MusicTrack object at 0x7fd7946e6000>]
     Merry Christmas Everyone
     220
     []
@@ -1186,16 +1201,16 @@ class Recipe:
     """
     Represent a cooking recipe.
 
-    Parameters
+    Attributes
     ----------
     name : str
-        Name of the Recipe
+        Recipe name
 
     ingredients : dict[str, list[str]]
         Ingredients required for the recipe. Ingredients are stored
         as a dictionary in the format `ingredients[ingredient] = ["description", ...]`
-        e.g. `ingredients["Brown Onion"] = ["1 Medium, diced"]`
-    steps : list[str]
+
+    steps: list[str]
         Ordered list of instructions/steps to prepare the recipe.
 
     Example
@@ -1204,6 +1219,20 @@ class Recipe:
     """
 
     def __init__(self, name, ingredients, steps):
+        """
+        Create a new Recipe instance
+
+        Parameters
+        ----------
+        name : str
+            Name of the Recipe
+        ingredients : dict[str, list[str]]
+            Ingredients required for the recipe. Ingredients are stored
+            as a dictionary in the format `ingredients[ingredient] = ["description", ...]`
+            e.g. `ingredients["Brown Onion"] = ["1 Medium, diced"]`
+        steps : list[str]
+            Ordered list of instructions/steps to prepare the recipe.
+        """
         self.name = name
         self.ingredients = ingredients
         self.steps = steps

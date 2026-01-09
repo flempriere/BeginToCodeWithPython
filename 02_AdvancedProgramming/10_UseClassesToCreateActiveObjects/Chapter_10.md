@@ -106,7 +106,7 @@ class Contact:
     Contact with a name, address and telephone number.
     Tracks the hours worked with a client
 
-    Parameters
+    Attributes
     ----------
     name : str
         Contact Name
@@ -114,9 +114,6 @@ class Contact:
         Contact's postal or street address.
     telephone : str
         Contact phone number (stored as a string).
-
-    Attributes
-    ----------
     hours_worked : int | float
         Hours worked with a Contact, initialised to 0
 
@@ -125,7 +122,20 @@ class Contact:
     >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
     <Contact ...>
     """
+
     def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
         self.name = name
         self.address = address
         self.telephone = telephone
@@ -297,17 +307,14 @@ class Contact:
     Contact with a name, address and telephone number.
     Tracks the hours worked with a client
 
-    Parameters
+    Attributes
     ----------
     name : str
         Contact Name
     address : str
-        Contact's postal or street address
+        Contact's postal or street address.
     telephone : str
-        Contact phone number (stored as a string)
-
-    Attributes
-    ----------
+        Contact phone number (stored as a string).
     hours_worked : int | float
         Hours worked with a Contact, initialised to 0
 
@@ -318,6 +325,18 @@ class Contact:
     """
 
     def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
         self.name = name
         self.address = address
         self.telephone = telephone
@@ -389,6 +408,7 @@ class Contact:
             self.address = address
             self.telephone = telephone
             self.hours_worked = 0
+
         def get_hours_worked(self):
             """
             Gets the hours worked for this contact
@@ -485,7 +505,7 @@ method) and the `display_contact` functions to use the new methods
         Contact with a name, address and telephone number.
         Tracks the hours worked with a client
 
-        Parameters
+        Attributes
         ----------
         name : str
             Contact Name
@@ -493,12 +513,11 @@ method) and the `display_contact` functions to use the new methods
             Contact's postal or street address.
         telephone : str
             Contact phone number (stored as a string).
-
-        Attributes
-        ----------
         hours_worked : int | float
             Hours worked with a Contact, initialised to 0
 
+        Class Attributes
+        ----------------
         min_session_length : Final[int | float]
             minimum length of a billable session
 
@@ -516,39 +535,51 @@ method) and the `display_contact` functions to use the new methods
         max_session_length = 3.5
 
         def __init__(self, name, address, telephone):
+            """
+            Create a new Contact instance
+
+            Parameters
+            ----------
+            name : str
+                Contact Name
+            address : str
+                Contact's postal or street address.
+            telephone : str
+                Contact phone number (stored as a string).
+            """
             self.name = name
             self.address = address
             self.telephone = telephone
             self.hours_worked = 0
 
-        def get_hours_worked(self):
-            """
-            Gets the hours worked for this contact
+            def get_hours_worked(self):
+                """
+                Gets the hours worked for this contact
 
-            Returns
-            -------
-            int | float
-                hours worked for this contact
-            """
-            return self.hours_worked
+                Returns
+                -------
+                int | float
+                    hours worked for this contact
+                """
+                return self.hours_worked
 
-        # new method
-        def add_session(self, session_length):
-            """
-            Adds a session (in hours) to the Contacts hours
+            # new method
+            def add_session(self, session_length):
+                """
+                Adds a session (in hours) to the Contacts hours
 
-            Parameters
-            ----------
-            session_length : int | float
-                time spent on session in hours
+                Parameters
+                ----------
+                session_length : int | float
+                    time spent on session in hours
 
-            Returns
-            -------
-            None
-            """
-            if session_length < Contact.min_session_length or session_length > Contact.max_session_length:
-                return
-            self.hours_worked = self.hours_worked + session_length
+                Returns
+                -------
+                None
+                """
+                if session_length < Contact.min_session_length or session_length > Contact.max_session_length:
+                    return
+                self.hours_worked = self.hours_worked + session_length
   ```
 
 - `add_session` now silently rejects invalid `session_length` values
@@ -630,7 +661,7 @@ questions about their use-cases*
         Contact with a name, address and telephone number.
         Tracks the hours worked with a client
 
-        Parameters
+        Attributes
         ----------
         name : str
             Contact Name
@@ -638,24 +669,23 @@ questions about their use-cases*
             Contact's postal or street address.
         telephone : str
             Contact phone number (stored as a string).
-
-        Attributes
-        ----------
         hours_worked : int | float
             Hours worked with a Contact, initialised to 0
 
+        Class Attributes
+        ----------------
         min_session_length : Final[int | float]
             minimum length of a billable session
 
         max_session_length : Final[int | float]
             maximum length of a billable session
 
-
         Examples
         --------
         >>> Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")
         <Contact ...>
         """
+
         min_session_length = 0.5
         max_session_length = 3.5
 
@@ -674,12 +704,26 @@ questions about their use-cases*
             bool
                 `True` if the session length is valid else `False`
             """
-            if session_length < Contact.min_session_length or session_length > Contact.max_session_length:
+            if (
+                session_length < Contact.min_session_length
+                or session_length > Contact.max_session_length
+            ):
                 return False
             return True
 
-
         def __init__(self, name, address, telephone):
+            """
+            Create a new Contact instance
+
+            Parameters
+            ----------
+            name : str
+                Contact Name
+            address : str
+                Contact's postal or street address.
+            telephone : str
+                Contact phone number (stored as a string).
+            """
             self.name = name
             self.address = address
             self.telephone = telephone
@@ -874,7 +918,7 @@ the following questions to understand static validation methods*
         ValueError: invalid literal for int() with base 10: 'Rob'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[290], line 1
+        Cell In[11], line 1
         ----> 1 x = int("Rob")
 
         ValueError: invalid literal for int() with base 10: 'Rob'
@@ -968,12 +1012,12 @@ attempt to add a session length of $4$, which should be invalid,
     Exception: Invalid Session Length
     ---------------------------------------------------------------------------
     Exception                                 Traceback (most recent call last)
-    Cell In[295], line 3
+    Cell In[16], line 3
           1 rob = Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "1234 56789")
           2 add_session(rob, 2)
     ----> 3 add_session(rob, 4)
 
-    Cell In[291], line 24, in add_session(self, session_length)
+    Cell In[12], line 24, in add_session(self, session_length)
           2 """
           3 Adds a session (in hours) to the Contacts hours
           4
@@ -1190,7 +1234,7 @@ attribute, we can see that nothing stops us from doing so
     AttributeError: 'Secret' object has no attribute '__top_secret'
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
-    Cell In[300], line 1
+    Cell In[21], line 1
     ----> 1 x.__top_secret
 
     AttributeError: 'Secret' object has no attribute '__top_secret'
@@ -1265,7 +1309,7 @@ class Contact:
         Returns
         -------
         bool
-            True if the text is valid, else False
+            `True` if the text is valid, else `False`
         """
 
         if len(text) < Contact.__min_text_length:
@@ -1307,7 +1351,7 @@ class Contact:
         Returns
         -------
         bool
-            True if the text is valid, else False
+            `True` if the text is valid, else `False`
         """
         if len(text) < Contact.__min_text_length:
             return False
@@ -1317,38 +1361,22 @@ class Contact:
     @property  # decorator makes name a property
     def name(self):  # name of property function to get the name
         """
-        Gets the Contact Name
-
-        Returns
-        -------
-        str
-           contact name
-        """
-        return self.__name  # return private attribute containing the name
-
-    @name.setter  # decorator to identify the setter for name
-    def name(self, name):
-        """
-        Set the Contact Name
-
-        Parameters
-        ----------
         name : str
-            Contact name, must be a valid length
-
-        Returns
-        -------
-        None
+            Contact Name
 
         Raises
         ------
         Exception
-            raised if name is invalid
+            raised if new name is invalid
 
         See Also
         --------
         Contact.valid_text : validates text input
         """
+        return self.__name  # return private attribute containing the name
+
+    @name.setter  # decorator to identify the setter for name
+    def name(self, name):
         if not Contact.validate_text(name):
             raise Exception("Invalid name")
         self.__name = name
@@ -1470,7 +1498,7 @@ class Contact:
     Contact with a name, address and telephone number.
     Tracks the hours worked with a client
 
-    Parameters
+    Attributes
     ----------
     name : str
         Contact Name
@@ -1478,20 +1506,6 @@ class Contact:
         Contact's postal or street address.
     telephone : str
         Contact phone number (stored as a string).
-
-    Attributes
-    ----------
-    __hours_worked : int | float
-        Hours worked with a Contact, initialised to 0
-
-    __min_session_length : Final[int | float]
-        minimum length of a billable session
-
-    __max_session_length : Final[int | float]
-        maximum length of a billable session
-
-    __min_text_length : Final[int | float]
-        minimum length of all text fields (name, address, telephone)
 
 
     Examples
@@ -1543,7 +1557,7 @@ class Contact:
         Returns
         -------
         bool
-            True if the text is valid, else False
+            `True` if the text is valid, else `False`
         """
         if len(text) < Contact.__min_text_length:
             return False
@@ -1553,38 +1567,22 @@ class Contact:
     @property
     def name(self):
         """
-        Gets the Contact Name
-
-        Returns
-        -------
-        str
-           contact name
-        """
-        return self.__name
-
-    @name.setter
-    def name(self, name):
-        """
-        Set the Contact Name
-
-        Parameters
-        ----------
         name : str
-            Contact name, must be a valid length
-
-        Returns
-        -------
-        None
+            Contact Name
 
         Raises
         ------
         Exception
-            raised if name is invalid
+            raised if new name is invalid
 
         See Also
         --------
         Contact.valid_text : validates text input
         """
+        return self.__name
+
+    @name.setter
+    def name(self, name):
         if not Contact.valid_text(name):
             raise Exception("Invalid name")
         self.__name = name
@@ -1592,38 +1590,22 @@ class Contact:
     @property
     def address(self):
         """
-        Gets the Contact Address
-
-        Returns
-        -------
-        str
-           contact address
-        """
-        return self.__address
-
-    @address.setter
-    def address(self, address):
-        """
-        Set the Contact Address
-
-        Parameters
-        ----------
         address : str
-            Contact address, must be a valid length
-
-        Returns
-        -------
-        None
+            Contact Address
 
         Raises
         ------
         Exception
-            raised if address is invalid
+            raised if new address is invalid
 
         See Also
         --------
         Contact.valid_text : validates text input
         """
+        return self.__address
+
+    @address.setter
+    def address(self, address):
         if not Contact.valid_text(address):
             raise Exception("Invalid address")
         self.__address = address
@@ -1631,43 +1613,39 @@ class Contact:
     @property
     def telephone(self):
         """
-        Gets the Contact Telephone
-
-        Returns
-        -------
-        str
-           contact telephone
-        """
-        return self.__telephone
-
-    @telephone.setter
-    def telephone(self, telephone):
-        """
-        Set the Contact Telephone
-
-        Parameters
-        ----------
         telephone : str
-            Contact telephone, must be a valid length
-
-        Returns
-        -------
-        None
+            Contact Telephone
 
         Raises
         ------
         Exception
-            raised if telephone is invalid
+            raised if new telephone is invalid
 
         See Also
         --------
         Contact.valid_text : validates text input
         """
+        return self.__telephone
+
+    @telephone.setter
+    def telephone(self, telephone):
         if not Contact.valid_text(telephone):
             raise Exception("Invalid telephone")
         self.__telephone = telephone
 
     def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
         self.name = name
         self.address = address
         self.telephone = telephone
@@ -1712,24 +1690,26 @@ class Contact:
 >     Exception: Invalid name
 >     ---------------------------------------------------------------------------
 >     Exception                                 Traceback (most recent call last)
->     Cell In[310], line 1
+>     Cell In[31], line 1
 >     ----> 1 rob = Contact(name="Rob", address="18 Pussycat Mews, London NE1 410S", telephone="1234 56789")
 >
->     Cell In[309], line 204, in Contact.__init__(self, name, address, telephone)
->         203 def __init__(self, name, address, telephone):
->     --> 204     self.name = name
->         205     self.address = address
->         206     self.telephone = telephone
+>     Cell In[30], line 154, in Contact.__init__(self, name, address, telephone)
+>         141 def __init__(self, name, address, telephone):
+>         142     """
+>         143     Create a new Contact instance
+>         144
+>        (...)    152         Contact phone number (stored as a string).
+>         153     """
+>     --> 154     self.name = name
+>         155     self.address = address
+>         156     self.telephone = telephone
 >
->     Cell In[309], line 122, in Contact.name(self, name)
->         100 """
->         101 Set the Contact Name
->         102
->        (...)    119 Contact.valid_text : validates text input
->         120 """
->         121 if not Contact.valid_text(name):
->     --> 122     raise Exception("Invalid name")
->         123 self.__name = name
+>     Cell In[30], line 92, in Contact.name(self, name)
+>          89 @name.setter
+>          90 def name(self, name):
+>          91     if not Contact.valid_text(name):
+>     ---> 92         raise Exception("Invalid name")
+>          93     self.__name = name
 >
 >     Exception: Invalid name
 >
