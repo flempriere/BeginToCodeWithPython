@@ -1,7 +1,7 @@
-# Example 10.11 Time Tracker with Billing Amount
+# Example 10.10 Time Tracker with Properties and Exception Handling
 #
-# Extends the Time Tracker app by adding functionality to track
-# the amount to be billed to a client
+# Improves the Time Tracker application by adding exception handling for the
+# added properties and converting hours_worked to a read only property
 #
 # Provides additional support over the original example code for duplicates in
 # the name search
@@ -34,9 +34,6 @@ class Contact:
 
     __min_session_length = 0.5
     __max_session_length = 3.5
-
-    __open_fee = 30
-    __hourly_fee = 50
 
     @staticmethod
     def valid_session_length(session_length):
@@ -162,14 +159,6 @@ class Contact:
         """
         return self.__hours_worked
 
-    @property
-    def billing_amount(self):
-        """
-        billing_amount : int | float
-            The amount (in dollars) to bill a Contact
-        """
-        return self.__billing_amount
-
     def __init__(self, name, address, telephone):
         """
         Create a new Contact instance
@@ -187,7 +176,6 @@ class Contact:
         self.address = address
         self.telephone = telephone
         self.__hours_worked = 0
-        self.__billing_amount = 0
 
     def add_session(self, session_length):
         """
@@ -214,8 +202,6 @@ class Contact:
         if not Contact.valid_session_length(session_length):
             raise Exception("Invalid Session Length")
         self.__hours_worked = self.__hours_worked + session_length
-        amount_to_bill = Contact.__open_fee + (Contact.__hourly_fee * session_length)
-        self.__billing_amount = self.__billing_amount + amount_to_bill
 
 
 def new_contact():
@@ -289,8 +275,7 @@ def display_contact(contact):
     print("Name:", contact.name)
     print("Address:", contact.address)
     print("Telephone:", contact.telephone)
-    print("Hours worked for this Contact:", contact.hours_worked)
-    print("Amount to bill:", contact.billing_amount, "\n")
+    print("Hours worked for this Contact:", contact.hours_worked, "\n")
 
 
 def display_contacts():
