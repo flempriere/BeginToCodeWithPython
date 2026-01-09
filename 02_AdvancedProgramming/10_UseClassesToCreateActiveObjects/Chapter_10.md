@@ -40,6 +40,9 @@
     - [Make Something Happen: Investigating
       Properties](#make-something-happen-investigating-properties)
   - [Evolve Class Design](#evolve-class-design)
+    - [Code Analysis: Managing the Billing
+      Amount](#code-analysis-managing-the-billing-amount)
+    - [Manage Class Versions](#manage-class-versions)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -871,7 +874,7 @@ the following questions to understand static validation methods*
         ValueError: invalid literal for int() with base 10: 'Rob'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[11], line 1
+        Cell In[290], line 1
         ----> 1 x = int("Rob")
 
         ValueError: invalid literal for int() with base 10: 'Rob'
@@ -965,12 +968,12 @@ attempt to add a session length of $4$, which should be invalid,
     Exception: Invalid Session Length
     ---------------------------------------------------------------------------
     Exception                                 Traceback (most recent call last)
-    Cell In[16], line 3
+    Cell In[295], line 3
           1 rob = Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "1234 56789")
           2 add_session(rob, 2)
     ----> 3 add_session(rob, 4)
 
-    Cell In[12], line 24, in add_session(self, session_length)
+    Cell In[291], line 24, in add_session(self, session_length)
           2 """
           3 Adds a session (in hours) to the Contacts hours
           4
@@ -1187,7 +1190,7 @@ attribute, we can see that nothing stops us from doing so
     AttributeError: 'Secret' object has no attribute '__top_secret'
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
-    Cell In[21], line 1
+    Cell In[300], line 1
     ----> 1 x.__top_secret
 
     AttributeError: 'Secret' object has no attribute '__top_secret'
@@ -1709,16 +1712,16 @@ class Contact:
 >     Exception: Invalid name
 >     ---------------------------------------------------------------------------
 >     Exception                                 Traceback (most recent call last)
->     Cell In[31], line 1
+>     Cell In[310], line 1
 >     ----> 1 rob = Contact(name="Rob", address="18 Pussycat Mews, London NE1 410S", telephone="1234 56789")
 >
->     Cell In[30], line 204, in Contact.__init__(self, name, address, telephone)
+>     Cell In[309], line 204, in Contact.__init__(self, name, address, telephone)
 >         203 def __init__(self, name, address, telephone):
 >     --> 204     self.name = name
 >         205     self.address = address
 >         206     self.telephone = telephone
 >
->     Cell In[30], line 122, in Contact.name(self, name)
+>     Cell In[309], line 122, in Contact.name(self, name)
 >         100 """
 >         101 Set the Contact Name
 >         102
@@ -1744,6 +1747,198 @@ class Contact:
 > exception handlers to handle invalid assignments
 
 ### Evolve Class Design
+
+> Scenario
+>
+> The lawyer likes your program but would now like to use it for
+> billing. The program should track both the hours worked for a client
+> and the the billing amount owed by each contact
+>
+> Prices are calculated as follows, for every session worked there is -
+> A \$30 flat case fee - A \$50 hourly fee
+>
+> For example a one hour session would cost \$80
+>
+> The client wants the billing amount to be automatically updated each
+> time they add a session. Displaying a contact should then also display
+> the billing amount
+>
+> ``` text
+> Name: Rob Miles
+> Address: 18 Pussycat Mews, London, NE1 410S
+> Telephone: 1234 56789
+> Hours on the case: 2.0
+> Billing amount: 130.0
+> ```
+
+#### Code Analysis: Managing the Billing Amount
+
+*Work through the following questions to understand how we design
+managing the billing amount*
+
+1. *How would we store the billing amount for a contact?*
+
+    - Store as a data attribute on a `Contact` object
+    - Manage like `__hours_worked` with validators
+    - Let’s call it `__billing_amount`
+
+2. *Why does* `__billing_amount` *have two leading underscores in the
+    name?*
+
+    - Indicates the variable is private to the class
+
+    - Provides name-mangling to reduce chance for accidental use
+
+    - Provide access via a read-only property
+
+      ``` python
+        @property
+        def billing_amount(self):
+            return self.__billing_amount
+      ```
+
+    - We omit a setter, the property cannot be directly modified
+
+    - Can then access the property as we would expect
+
+      ``` python
+        print("Rob owes:", rob.billing_amount)
+      ```
+
+    - Same output might look like,
+
+      ``` python
+        #| echo: false
+        print("Rob owes:", 130.0)
+      ```
+
+3. *What would the statement calculating the billable amount for a
+    session look like?*
+
+    - At it’s most basic the statement might look like,
+
+      ``` python
+        amount_to_bill = 30 + (50 * session_length)
+      ```
+
+    - `session_lengtth` value is multipled by the hourly rate ($50$)
+
+    - flat fee $30$ is added to the total
+
+    - Can then add this to the billing amount
+
+      ``` python
+        self.__billing_amount = self.billing_amount + amount_to_bill
+      ```
+
+    - Observe that this approach means that each session incurs the same
+      $30$ case opening fee
+
+    - It’s possible multiple sessions might be spent on the same case
+
+      - Might not incur the $30$ fee each time
+      - This would be something to confirm with the client
+
+4. *Is it sensible to just use the values* $30$ *and* $50$ *in this
+    code?*
+
+    - No
+
+    - They are magic constants
+
+    - Better to make them internal class variables of the `Contact`
+      class
+
+      ``` python
+        class Contact
+            __open_fee = 30
+            __hourly_fee = 50
+      ```
+
+    - Observe that we flag them as private, they are internals for the
+      class
+
+    - The new amount to bill statement is then,
+
+      ``` python
+        amount_to_bill = Contact.__open_fee + (Contact.__hourly_fee * session_length)
+      ```
+
+5. *Where should the above statement go?*
+
+    - Adjusting the billing is something that occurs when we add a
+      session
+
+    - Makes sense to go in the `add_session` code of the `Contact` class
+
+      ``` python
+        def add_session(self, session_length):
+            """
+            Adds a session (in hours) to the Contacts hours
+
+            Updates the Contact's session hours and calculates
+            the billable amount owed
+
+            Parameters
+            ----------
+            session_length : int | float
+                time spent on session in hours
+
+            Returns
+            -------
+            None
+
+            Raises
+            ------
+            Exception
+                Raised if invalid session length passed
+
+            See Also
+            --------
+            Contact.valid_session_length : checks a session length is valid
+            """
+            if not Contact.validate_session_length(session_length):
+                raise Exception("Invalid session length")
+            self.__hours_worked = self.__hours_worked + session_length
+            amount_to_bill = Contact.__open_fee + (Contact.__hourly_fee * session_length)
+            self.__billing_amount = self.__billing_amount + amount_to_bill
+            return
+      ```
+
+    - Billing amount is updated *after* we have validated and updated
+      the hours worked
+
+- We change the `display_contact` method to add the billing amount
+
+``` python
+def display_contact(contact):
+    """
+    Displays the Contact details for the supplied contact
+
+    Parameters
+    ----------
+    contact : Contact
+        contact to display
+
+    Returns
+    -------
+    None
+
+    See Also
+    --------
+    display_contacts : Displays all contacts matching a search name
+    """
+    print("Name:", contact.name)
+    print("Address:", contact.address)
+    print("Telephone:", contact.telephone)
+    print("Hours worked for this Contact:", contact.get_hours_worked(), "\n")
+    print("Amount to bill:", contact.billing_amount)
+```
+
+- The complete program can be found in [Time Tracker with Billing
+  Amount](./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithPropertiesAndExceptionHandling.py)
+
+#### Manage Class Versions
 
 ## Summary
 

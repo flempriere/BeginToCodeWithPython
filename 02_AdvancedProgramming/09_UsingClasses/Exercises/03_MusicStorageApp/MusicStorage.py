@@ -45,12 +45,12 @@ class MusicTrack:
     """
     Music Track with a name and a length (in seconds)
 
-    Parameters
+    Attributes
     ----------
     name : str
         name of the music track
     length_in_seconds : int
-        length of the track in seconds (must be positive)
+        length of the track in seconds
 
     Raises
     ------
@@ -64,6 +64,21 @@ class MusicTrack:
     """
 
     def __init__(self, name, length_in_seconds):
+        """
+        Create a new MusicTrack instance
+
+        Parameters
+        ----------
+        name : str
+            name of the music track
+        length_in_seconds : int
+            length of the track in seconds (must be positive)
+
+        Raises
+        ------
+        ValueError
+                Raised if length_in_seconds is invalid
+        """
         self.name = name
         if length_in_seconds <= 0:
             raise ValueError("Track length must be greater than zero")

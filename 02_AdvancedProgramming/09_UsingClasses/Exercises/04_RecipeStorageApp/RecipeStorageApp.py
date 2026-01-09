@@ -12,16 +12,16 @@ class Recipe:
     """
     Represent a cooking recipe.
 
-    Parameters
+    Attributes
     ----------
     name : str
-        Name of the Recipe
+        Recipe name
 
     ingredients : dict[str, list[str]]
         Ingredients required for the recipe. Ingredients are stored
         as a dictionary in the format `ingredients[ingredient] = ["description", ...]`
-        e.g. `ingredients["Brown Onion"] = ["1 Medium, diced"]`
-    steps : list[str]
+
+    steps: list[str]
         Ordered list of instructions/steps to prepare the recipe.
 
     Example
@@ -30,6 +30,20 @@ class Recipe:
     """
 
     def __init__(self, name, ingredients, steps):
+        """
+        Create a new Recipe instance
+
+        Parameters
+        ----------
+        name : str
+            Name of the Recipe
+        ingredients : dict[str, list[str]]
+            Ingredients required for the recipe. Ingredients are stored
+            as a dictionary in the format `ingredients[ingredient] = ["description", ...]`
+            e.g. `ingredients["Brown Onion"] = ["1 Medium, diced"]`
+        steps : list[str]
+            Ordered list of instructions/steps to prepare the recipe.
+        """
         self.name = name
         self.ingredients = ingredients
         self.steps = steps

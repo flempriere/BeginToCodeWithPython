@@ -1,8 +1,7 @@
-# Example 10.7 Time Tracker with Exception Handling
+# Example 10.10 Time Tracker with Properties and Exception Handling
 #
-# Improves the Time Tracker application by adding exception handling to the
-# client side add_session to handle errors thrown by the Contact add_session
-# function
+# Improves the Time Tracker application by adding exception handling for the
+# added properties and converting hours_worked to a read only property
 #
 # Provides additional support over the original example code for duplicates in
 # the name search
@@ -25,16 +24,7 @@ class Contact:
         Contact's postal or street address.
     telephone : str
         Contact phone number (stored as a string).
-    hours_worked : int | float
-        Hours worked with a Contact, initialised to 0
 
-    Class Attributes
-    ----------------
-    min_session_length : Final[int | float]
-        minimum length of a billable session
-
-    max_session_length : Final[int | float]
-        maximum length of a billable session
 
     Examples
     --------
@@ -42,8 +32,8 @@ class Contact:
     <Contact ...>
     """
 
-    min_session_length = 0.5
-    max_session_length = 3.5
+    __min_session_length = 0.5
+    __max_session_length = 3.5
 
     @staticmethod
     def valid_session_length(session_length):
@@ -61,11 +51,113 @@ class Contact:
             `True` if the session length is valid else `False`
         """
         if (
-            session_length < Contact.min_session_length
-            or session_length > Contact.max_session_length
+            session_length < Contact.__min_session_length
+            or session_length > Contact.__max_session_length
         ):
             return False
         return True
+
+    __min_text_length = 4
+
+    @staticmethod
+    def valid_text(text):
+        """
+        Validates text to be stored in the contact storage
+
+        Valid input must be have a length greater than or
+        equal to Contact.__min_text_length
+
+        Parameters
+        ----------
+        text : str
+            text string to store
+
+        Returns
+        -------
+        bool
+            `True` if the text is valid, else `False`
+        """
+        if len(text) < Contact.__min_text_length:
+            return False
+        else:
+            return True
+
+    @property
+    def name(self):
+        """
+        name : str
+            Contact Name
+
+        Raises
+        ------
+        Exception
+            raised if new name is invalid
+
+        See Also
+        --------
+        Contact.valid_text : validates text input
+        """
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        if not Contact.valid_text(name):
+            raise Exception("Invalid name")
+        self.__name = name
+
+    @property
+    def address(self):
+        """
+        address : str
+            Contact Address
+
+        Raises
+        ------
+        Exception
+            raised if new address is invalid
+
+        See Also
+        --------
+        Contact.valid_text : validates text input
+        """
+        return self.__address
+
+    @address.setter
+    def address(self, address):
+        if not Contact.valid_text(address):
+            raise Exception("Invalid address")
+        self.__address = address
+
+    @property
+    def telephone(self):
+        """
+        telephone : str
+            Contact Telephone
+
+        Raises
+        ------
+        Exception
+            raised if new telephone is invalid
+
+        See Also
+        --------
+        Contact.valid_text : validates text input
+        """
+        return self.__telephone
+
+    @telephone.setter
+    def telephone(self, telephone):
+        if not Contact.valid_text(telephone):
+            raise Exception("Invalid telephone")
+        self.__telephone = telephone
+
+    @property
+    def hours_worked(self):
+        """
+        hours_worked : int | float
+            The hours worked on behalf of this Contact
+        """
+        return self.__hours_worked
 
     def __init__(self, name, address, telephone):
         """
@@ -83,18 +175,7 @@ class Contact:
         self.name = name
         self.address = address
         self.telephone = telephone
-        self.hours_worked = 0
-
-    def get_hours_worked(self):
-        """
-        Gets the hours worked for this contact
-
-        Returns
-        -------
-        int | float
-            hours worked for this contact
-        """
-        return self.hours_worked
+        self.__hours_worked = 0
 
     def add_session(self, session_length):
         """
@@ -120,7 +201,7 @@ class Contact:
         """
         if not Contact.valid_session_length(session_length):
             raise Exception("Invalid Session Length")
-        self.hours_worked = self.hours_worked + session_length
+        self.__hours_worked = self.__hours_worked + session_length
 
 
 def new_contact():
@@ -139,7 +220,12 @@ def new_contact():
     name = BTCInput.read_text("Enter the contact name: ")
     address = BTCInput.read_text("Enter the contact address: ")
     telephone = BTCInput.read_text("Enter the contact phone: ")
-    contacts.append(Contact(name=name, address=address, telephone=telephone))
+
+    try:
+        contacts.append(Contact(name=name, address=address, telephone=telephone))
+    except Exception as e:
+        print("Invalid contact:", e)
+        return
 
 
 def find_contacts(search_name):
@@ -189,7 +275,7 @@ def display_contact(contact):
     print("Name:", contact.name)
     print("Address:", contact.address)
     print("Telephone:", contact.telephone)
-    print("Hours worked for this Contact:", contact.get_hours_worked(), "\n")
+    print("Hours worked for this Contact:", contact.hours_worked, "\n")
 
 
 def display_contacts():
@@ -245,7 +331,9 @@ def edit_contacts():
             edit = BTCInput.read_int_ranged(
                 "Edit this contact? (1 - Yes, 0 - No): ", min_value=0, max_value=1
             )
-            if edit:
+            if not edit:
+                continue
+            try:
                 new_name = BTCInput.read_text(
                     "Enter new name or . to leave unchanged: "
                 )
@@ -261,6 +349,8 @@ def edit_contacts():
                 )
                 if new_phone != ".":
                     contact.telephone = new_phone
+            except Exception as e:
+                print("Edit failed:", e)
     else:
         print("This name was not found")
 
@@ -360,7 +450,7 @@ def add_session():
                     contact.add_session(
                         BTCInput.read_float("Enter session length (in hours): ")
                     )
-                    print("Updated hours succeeded:", contact.get_hours_worked())
+                    print("Updated hours succeeded:", contact.hours_worked)
                 except Exception as e:
                     print("Add failed:", e)
 

@@ -1,4 +1,4 @@
-# Example 10.5 Time Tracker with Protected Attributes
+# Example 10.8 Time Tracker with Protected Attributes
 #
 # Improves the Time Tracker application by adding name-mangling to the Contact
 # class to prevent an consumer changing them directly
@@ -16,7 +16,7 @@ class Contact:
     Contact with a name, address and telephone number.
     Tracks the hours worked with a client
 
-    Parameters
+    Attributes
     ----------
     name : str
         Contact Name
@@ -24,17 +24,6 @@ class Contact:
         Contact's postal or street address.
     telephone : str
         Contact phone number (stored as a string).
-
-    Attributes
-    ----------
-    __hours_worked : int | float
-        Hours worked with a Contact, initialised to 0
-
-    __min_session_length : Final[int | float]
-        minimum length of a billable session
-
-    __max_session_length : Final[int | float]
-        maximum length of a billable session
 
 
     Examples
@@ -69,6 +58,18 @@ class Contact:
         return True
 
     def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
         self.name = name
         self.address = address
         self.telephone = telephone

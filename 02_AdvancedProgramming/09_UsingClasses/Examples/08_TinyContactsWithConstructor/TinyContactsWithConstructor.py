@@ -11,14 +11,14 @@ class Contact:
     """
     Contact with a name, address and telephone number.
 
-    Parameters
+    Attributes
     ----------
     name : str
         Contact Name
     address : str
-        Contact's postal or street address.
+        Contact's postal or street address
     telephone : str
-        Contact phone number (stored as a string).
+        Contact phone number (stored as a string)
 
     Examples
     --------
@@ -27,6 +27,18 @@ class Contact:
     """
 
     def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address
+        telephone : str
+            Contact phone number (stored as a string)
+        """
         self.name = name
         self.address = address
         self.telephone = telephone
