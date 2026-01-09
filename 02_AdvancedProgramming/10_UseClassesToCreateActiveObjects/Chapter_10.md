@@ -918,7 +918,7 @@ the following questions to understand static validation methods*
         ValueError: invalid literal for int() with base 10: 'Rob'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[11], line 1
+        Cell In[43], line 1
         ----> 1 x = int("Rob")
 
         ValueError: invalid literal for int() with base 10: 'Rob'
@@ -1012,12 +1012,12 @@ attempt to add a session length of $4$, which should be invalid,
     Exception: Invalid Session Length
     ---------------------------------------------------------------------------
     Exception                                 Traceback (most recent call last)
-    Cell In[16], line 3
+    Cell In[48], line 3
           1 rob = Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "1234 56789")
           2 add_session(rob, 2)
     ----> 3 add_session(rob, 4)
 
-    Cell In[12], line 24, in add_session(self, session_length)
+    Cell In[44], line 24, in add_session(self, session_length)
           2 """
           3 Adds a session (in hours) to the Contacts hours
           4
@@ -1234,7 +1234,7 @@ attribute, we can see that nothing stops us from doing so
     AttributeError: 'Secret' object has no attribute '__top_secret'
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
-    Cell In[21], line 1
+    Cell In[53], line 1
     ----> 1 x.__top_secret
 
     AttributeError: 'Secret' object has no attribute '__top_secret'
@@ -1690,10 +1690,10 @@ class Contact:
 >     Exception: Invalid name
 >     ---------------------------------------------------------------------------
 >     Exception                                 Traceback (most recent call last)
->     Cell In[31], line 1
+>     Cell In[63], line 1
 >     ----> 1 rob = Contact(name="Rob", address="18 Pussycat Mews, London NE1 410S", telephone="1234 56789")
 >
->     Cell In[30], line 154, in Contact.__init__(self, name, address, telephone)
+>     Cell In[62], line 154, in Contact.__init__(self, name, address, telephone)
 >         141 def __init__(self, name, address, telephone):
 >         142     """
 >         143     Create a new Contact instance
@@ -1704,7 +1704,7 @@ class Contact:
 >         155     self.address = address
 >         156     self.telephone = telephone
 >
->     Cell In[30], line 92, in Contact.name(self, name)
+>     Cell In[62], line 92, in Contact.name(self, name)
 >          89 @name.setter
 >          90 def name(self, name):
 >          91     if not Contact.valid_text(name):
@@ -1919,6 +1919,26 @@ def display_contact(contact):
   Amount](./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithPropertiesAndExceptionHandling.py)
 
 #### Manage Class Versions
+
+- The new program works, but it has a problem
+- Contacts saved under the old system, won’t work
+  - They will load
+
+  - But whe we try to display or add a session we’ll get an error, like
+
+    ``` python
+      #| echo: False
+      raise AttributeError("'Contact' object has no attribute '_Contact__billing_amount'")
+    ```
+
+        AttributeError: 'Contact' object has no attribute '_Contact__billing_amount'
+        ---------------------------------------------------------------------------
+        AttributeError                            Traceback (most recent call last)
+        Cell In[64], line 2
+              1 #| echo: False
+        ----> 2 raise AttributeError("'Contact' object has no attribute '_Contact__billing_amount'")
+
+        AttributeError: 'Contact' object has no attribute '_Contact__billing_amount'
 
 ## Summary
 

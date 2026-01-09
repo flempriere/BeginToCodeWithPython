@@ -1597,6 +1597,215 @@ def display_contact(contact):
 
 #### Manage Class Versions
 
+- The new program works, but it has a problem
+- Contacts saved under the old system, won't work
+    - They will load
+    - But whe we try to display or add a session we'll get an error, like
+
+      ```{python}
+      #| echo : false
+        raise AttributeError("'Contact' object has no attribute '_Contact__billing_amount'")
+      ```
+
+- This occurs because the program attempts to access the `__billing_access` attribute
+- Old versions of the `Contact` class didn't have this
+    - So error occurs
+- Same might occur if we make more modifications in the future
+
+##### Add a version attribute to a class
+
+- We can solve this by *versioning* a class
+- Add a version attribute to each class
+    - Simply a numeric attribute
+
+  ```python
+    def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
+        self.name = name
+        self.address = address
+        self.telephone = telephone
+        self.__hours_worked = 0
+        self.__billing_amount = 0
+        self.__version = 1
+  ```
+
+- version is set as a private variable
+
+##### Check Version Numbers
+
+- Then create a method to check the version of a `Contact`
+    - Let's us check that a `Contact` object matches the current version
+
+  ```python
+    def check_version(self):
+        """
+        Check the version of a Contact instance
+
+        Upgrades the instance to the most recent version
+        if required
+        """
+        pass
+  ```
+
+- Leave it as a stub for now
+- We want to use it when we load contacts to check versions
+- Updated `load_contacts` is below
+
+  ```python
+    def load_contacts(file_name):
+    """
+    Loads the contacts from the given file
+
+    Contacts are stored in binary as a pickled file
+
+    Parameters
+    ----------
+    file_name : str
+        string giving the path to the file where the contacts data is stored
+
+    Returns
+    -------
+    None
+        Contact detail is loaded into the global contacts value
+
+    Raises
+    ------
+        Exceptions if contacts failed to load
+
+    See Also
+    --------
+    save_contacts : saves contacts to a pickled file
+    """
+    global contacts
+    print("Load contacts")
+    with open(file_name, "rb") as input_file:
+        contacts = pickle.load(input_file)
+    # Update version of loaded contacts if required
+    for contact in contacts:
+        contact.check_version()
+  ```
+
+##### Upgrade a Class
+
+- Now we want to write code to upgrade a `Contact`
+- For our version $1$, we want to upgrade any class that *does not* have a `__billing_amount` attribute
+- In future we might define a version $2$, then we would redefine the `check_version` method to upgrade any class that isn't version $2$
+
+  ```python
+    def check_version(self):
+    """
+    Check the version of a Contact instance
+
+    Upgrades the instance to the most recent version
+    if required
+    """
+    try:
+        if not self.__version == 1:
+            self.__billing_amount = 0
+            self.__version = 1
+    except AttributeError:
+        self.__billing_amount = 0
+        self.__version = 1
+  ```
+
+- We first attempt to check the version number
+- If it's not the current version ($1$) we upgrade the class
+    - Add a `.__billing_amount` attribute defaulted to zero
+    - Upgrade the version number
+- Use a `try...except` block to catch the `AttributeError` if the version doesn't exist (i.e. for old instances pre-versioning)
+    - Perform the upgrade
+
+##### Make Something Happen: Explore Version Management
+
+*To get a better understanding of versioning, work through the following steps*
+
+*Start by running the program [TimeTrackerWithPropertiesAndExceptionHandling.py](./Examples/10_TimeTrackerWithPropertiesAndExceptionHandling/TimeTrackerWithPropertiesAndExceptionHandling.py). Create a new contact as below*
+
+```{python}
+#| echo : false
+
+print("Enter your command: \033[31m1\033[0m")
+print("Create new contact")
+print("Enter the contact name: \033[31mRob Miles\033[0m")
+print("Enter the contact address: \033[31m18 Pussycat Mews, London, NE1 410S\033[0m")
+print("Enter the contact phone: \033[31m1234 56789\033[0m")
+```
+
+This creates a new contact, which looks like, (use Find Contact)
+
+```{python}
+#| echo : false
+print("Name: Rob Miles")
+print("Address: 18 Pussycat Mews, London, NE1 410S")
+print("Telephone: 1234 56789")
+print("Hours on the case: 0")
+```
+
+As we can see this version is missing the billable hours information
+
+*Exit the program so the contact is saved. Now load this pickle file with [TimeTrackerWithVersion.py](./Examples/12_TimeTrackerWithVersion/TimeTrackerWithVersion.py)*
+
+This should load the contact (which is unversioned), and upgrade it to the versioned variant with a billing amount
+
+*Attempt to display this contact, you should see something like*
+
+```{python}
+# | echo : false
+
+print("Name: Rob Miles")
+print("Address: 18 Pussycat Mews, London, NE1 410S")
+print("Telephone: 1234 56789")
+print("Hours on the case: 0")
+print("Amount to bill: 0")
+```
+
+As we can see, the amount to bill is now correctly displayed
+
+:::{.callout-important}
+**Add version management when you design data storage**
+
+When starting a project you should consider which items are being stored and if they need version management. For example in the Time Tracker program we expect that the client will request changes to the features, so we should consider versioning it from the start
+
+Everytime a new version of a program is installed, we then have to go through the process of updating the underlying data to the new version
+
+When writing a program for a customer, you should consider how long it will take to write code that deal with data updates (or migrations). This can make trivial programs significantly more complex
+:::
+
+#### The `__str__` Method in a Class
+
+- Each time we add a new attribute to the `Contact` class we have to modify `display_contact`
+- Would be nice just to be able to print a `Contact` directly
+- However, doing so, we find the output is pretty useless (using the mock below)
+
+  ```{python}
+    class Contact:
+        def __init__(self, name, address, telephone):
+            self.name = name
+            self.address = address
+            self.telephone = telephone
+
+    contact = Contact("Rob Miles", "Pussycat Mews", "1234")
+
+    def display_contact(contact):
+        print(contact)
+
+    display_contact(contact)
+  ```
+
+- default for objects is the class name following by the memory address of the object
+
+
 ## Summary
 
 ## Questions and Answers
