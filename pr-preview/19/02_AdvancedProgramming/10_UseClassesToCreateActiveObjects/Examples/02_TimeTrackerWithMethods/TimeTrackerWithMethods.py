@@ -16,7 +16,7 @@ class Contact:
     Contact with a name, address and telephone number.
     Tracks the hours worked with a client
 
-    Parameters
+    Attributes
     ----------
     name : str
         Contact Name
@@ -24,9 +24,6 @@ class Contact:
         Contact's postal or street address
     telephone : str
         Contact phone number (stored as a string)
-
-    Attributes
-    ----------
     hours_worked : int | float
         Hours worked with a Contact, initialised to 0
 
@@ -37,6 +34,18 @@ class Contact:
     """
 
     def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
         self.name = name
         self.address = address
         self.telephone = telephone

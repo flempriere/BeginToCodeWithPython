@@ -1,4 +1,4 @@
-# Example 10.5 Time Tracker with Properties
+# Example 10.9 Time Tracker with Properties
 #
 # Improves the Time Tracker application by using properties to provide input
 # validation for name, telephone and address fields
@@ -16,7 +16,7 @@ class Contact:
     Contact with a name, address and telephone number.
     Tracks the hours worked with a client
 
-    Parameters
+    Attributes
     ----------
     name : str
         Contact Name
@@ -24,20 +24,6 @@ class Contact:
         Contact's postal or street address.
     telephone : str
         Contact phone number (stored as a string).
-
-    Attributes
-    ----------
-    __hours_worked : int | float
-        Hours worked with a Contact, initialised to 0
-
-    __min_session_length : Final[int | float]
-        minimum length of a billable session
-
-    __max_session_length : Final[int | float]
-        maximum length of a billable session
-
-    __min_text_length : Final[int | float]
-        minimum length of all text fields (name, address, telephone)
 
 
     Examples
@@ -89,7 +75,7 @@ class Contact:
         Returns
         -------
         bool
-            True if the text is valid, else False
+            `True` if the text is valid, else `False`
         """
         if len(text) < Contact.__min_text_length:
             return False
@@ -99,38 +85,22 @@ class Contact:
     @property
     def name(self):
         """
-        Gets the Contact Name
-
-        Returns
-        -------
-        str
-           contact name
-        """
-        return self.__name
-
-    @name.setter
-    def name(self, name):
-        """
-        Set the Contact Name
-
-        Parameters
-        ----------
         name : str
-            Contact name, must be a valid length
-
-        Returns
-        -------
-        None
+            Contact Name
 
         Raises
         ------
         Exception
-            raised if name is invalid
+            raised if new name is invalid
 
         See Also
         --------
         Contact.valid_text : validates text input
         """
+        return self.__name
+
+    @name.setter
+    def name(self, name):
         if not Contact.valid_text(name):
             raise Exception("Invalid name")
         self.__name = name
@@ -138,38 +108,22 @@ class Contact:
     @property
     def address(self):
         """
-        Gets the Contact Address
-
-        Returns
-        -------
-        str
-           contact address
-        """
-        return self.__address
-
-    @address.setter
-    def address(self, address):
-        """
-        Set the Contact Address
-
-        Parameters
-        ----------
         address : str
-            Contact address, must be a valid length
-
-        Returns
-        -------
-        None
+            Contact Address
 
         Raises
         ------
         Exception
-            raised if address is invalid
+            raised if new address is invalid
 
         See Also
         --------
         Contact.valid_text : validates text input
         """
+        return self.__address
+
+    @address.setter
+    def address(self, address):
         if not Contact.valid_text(address):
             raise Exception("Invalid address")
         self.__address = address
@@ -177,43 +131,39 @@ class Contact:
     @property
     def telephone(self):
         """
-        Gets the Contact Telephone
-
-        Returns
-        -------
-        str
-           contact telephone
-        """
-        return self.__telephone
-
-    @telephone.setter
-    def telephone(self, telephone):
-        """
-        Set the Contact Telephone
-
-        Parameters
-        ----------
         telephone : str
-            Contact telephone, must be a valid length
-
-        Returns
-        -------
-        None
+            Contact Telephone
 
         Raises
         ------
         Exception
-            raised if telephone is invalid
+            raised if new telephone is invalid
 
         See Also
         --------
         Contact.valid_text : validates text input
         """
+        return self.__telephone
+
+    @telephone.setter
+    def telephone(self, telephone):
         if not Contact.valid_text(telephone):
             raise Exception("Invalid telephone")
         self.__telephone = telephone
 
     def __init__(self, name, address, telephone):
+        """
+        Create a new Contact instance
+
+        Parameters
+        ----------
+        name : str
+            Contact Name
+        address : str
+            Contact's postal or street address.
+        telephone : str
+            Contact phone number (stored as a string).
+        """
         self.name = name
         self.address = address
         self.telephone = telephone

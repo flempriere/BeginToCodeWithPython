@@ -331,7 +331,11 @@ window.Quarto = {
   <li><a href="#code-analysis-properties-in-classes" id="toc-code-analysis-properties-in-classes" class="nav-link" data-scroll-target="#code-analysis-properties-in-classes">Code Analysis: Properties in Classes</a></li>
   <li><a href="#make-something-happen-investigating-properties" id="toc-make-something-happen-investigating-properties" class="nav-link" data-scroll-target="#make-something-happen-investigating-properties">Make Something Happen: Investigating Properties</a></li>
   </ul></li>
-  <li><a href="#evolve-class-design" id="toc-evolve-class-design" class="nav-link" data-scroll-target="#evolve-class-design">Evolve Class Design</a></li>
+  <li><a href="#evolve-class-design" id="toc-evolve-class-design" class="nav-link" data-scroll-target="#evolve-class-design">Evolve Class Design</a>
+  <ul>
+  <li><a href="#code-analysis-managing-the-billing-amount" id="toc-code-analysis-managing-the-billing-amount" class="nav-link" data-scroll-target="#code-analysis-managing-the-billing-amount">Code Analysis: Managing the Billing Amount</a></li>
+  <li><a href="#manage-class-versions" id="toc-manage-class-versions" class="nav-link" data-scroll-target="#manage-class-versions">Manage Class Versions</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
@@ -409,13 +413,13 @@ Hours worked: 3.0</code></pre>
 <li>Add an <code>hours_worked</code> field</li>
 </ul></li>
 </ul>
-<div id="5da13bf7" class="cell" data-execution_count="1">
+<div id="87d12221" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Tracks the hours worked with a client</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    name : str</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact Name</span></span>
@@ -423,22 +427,32 @@ Hours worked: 3.0</code></pre>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact's postal or street address.</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    telephone : str</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact phone number (stored as a string).</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    hours_worked : int | float</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Hours worked with a Contact, initialised to 0</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">    Examples</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">    &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">    &lt;Contact ...&gt;</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    hours_worked : int | float</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Hours worked with a Contact, initialised to 0</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Examples</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">    &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">    &lt;Contact ...&gt;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new Contact instance</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact Name</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">        address : str</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact's postal or street address.</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">        telephone : str</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact phone number (stored as a string).</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><p>Defaulted to <code>0</code> as part of the constructor</p>
@@ -471,7 +485,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="st">"This name was not found"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Don’t forget we also have to update how we display contacts for the <code>Find Contact</code> functionality (or in our case the <code>display_contact</code>) function.</p>
-<div id="bfedb40f" class="cell" data-execution_count="2">
+<div id="5b1290fb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> display_contact(contact):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Displays the Contact details for the supplied contact</span></span>
@@ -495,7 +509,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Hours worked for this Contact:"</span>, contact.hours_worked, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>If we create a new <code>Contact</code> object then we can see how this looks,</p>
-<div id="2494c96e" class="cell" data-execution_count="3">
+<div id="981355a7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  contact <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Alice"</span>, address<span class="op">=</span><span class="st">"Bob St"</span>, telephone<span class="op">=</span><span class="st">"555"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  contact.hours_worked <span class="op">=</span> <span class="fl">5.0</span></span>
@@ -600,43 +614,52 @@ Tip
 </ul></li>
 <li><p>Start by defining a method to access the hours worked</p></li>
 </ul>
-<div id="11e69b0d" class="cell" data-execution_count="4">
+<div id="018224de" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Tracks the hours worked with a client</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    name : str</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact Name</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    address : str</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact's postal or street address</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact's postal or street address.</span></span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">    telephone : str</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact phone number (stored as a string)</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    hours_worked : int | float</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Hours worked with a Contact, initialised to 0</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">    Examples</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">    &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">    &lt;Contact ...&gt;</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">        Get the hours worked for this contact</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact phone number (stored as a string).</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">    hours_worked : int | float</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Hours worked with a Contact, initialised to 0</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Examples</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">    &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">    &lt;Contact ...&gt;</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new Contact instance</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact Name</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">        address : str</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact's postal or street address.</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">        telephone : str</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact phone number (stored as a string).</span></span>
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.hours_worked</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co">        Get the hours worked for this contact</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.hours_worked</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="code-analysis-the-get_hours_worked-method" class="level5">
 <h5 class="anchored" data-anchor-id="code-analysis-the-get_hours_worked-method">Code Analysis: The <code>get_hours_worked</code> Method</h5>
@@ -647,7 +670,7 @@ Tip
 <li><p>A method is part of an object</p></li>
 <li><p><code>self</code> tells the method which object it is a part of</p></li>
 <li><p>The code sample below shows how the method doesn’t need an additional reference to the <code>Contact</code> it refers to</p>
-<div id="0963b205" class="cell" data-execution_count="5">
+<div id="530f1a62" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set up</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"1"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  rob.hours_worked <span class="op">=</span> <span class="dv">1</span></span>
@@ -679,7 +702,7 @@ Tip
 </ol>
 <ul>
 <li><p>We can create a second method to handle adding a session to a <code>Contact</code></p>
-<div id="a60be8f7" class="cell" data-execution_count="6">
+<div id="79c8c31b" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># existing class definition</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
@@ -687,32 +710,33 @@ Tip
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">          Gets the hours worked for this contact</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">          int | float</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">              hours worked for this contact</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds a session (in hours) to the Contacts hours</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">          session_length : int | float</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">              time spent on session in hours</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">          Gets the hours worked for this contact</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">          int | float</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">              hours worked for this contact</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds a session (in hours) to the Contacts hours</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">          session_length : int | float</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">              time spent on session in hours</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>Takes two parameters</p>
 <ol type="1">
@@ -733,7 +757,7 @@ Tip
 <h4 class="anchored" data-anchor-id="add-validation-to-methods">Add Validation to Methods</h4>
 <ul>
 <li><p>Currently <code>add_session</code> would allow function calls like,</p>
-<div id="70e73a26" class="cell" data-execution_count="7">
+<div id="860c1bc5" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"555"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  rob.add_session(<span class="op">-</span><span class="dv">10</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(rob.get_hours_worked())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -790,13 +814,13 @@ Note
 <li>No longer magic constants</li>
 <li>Accessible by all <code>Contact</code> instances</li>
 </ul>
-<div id="aa45a4d6" class="cell" data-execution_count="8">
+<div id="ba596321" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact with a name, address and telephone number.</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">      Tracks the hours worked with a client</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">      Attributes</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">      name : str</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact Name</span></span>
@@ -804,62 +828,73 @@ Note
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact's postal or street address.</span></span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">      telephone : str</span></span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact phone number (stored as a string).</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">      Attributes</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">      hours_worked : int | float</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">          Hours worked with a Contact, initialised to 0</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">      min_session_length : Final[int | float]</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">          minimum length of a billable session</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">      max_session_length : Final[int | float]</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">          maximum length of a billable session</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">      hours_worked : int | float</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">          Hours worked with a Contact, initialised to 0</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">      Class Attributes</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------------</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">      min_session_length : Final[int | float]</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">          minimum length of a billable session</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">      max_session_length : Final[int | float]</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">          maximum length of a billable session</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">      Examples</span></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">      --------</span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">      &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">      &lt;Contact ...&gt;</span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>      min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>      max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">          Gets the hours worked for this contact</span></span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="co">          int | float</span></span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="co">              hours worked for this contact</span></span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">      Examples</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">      --------</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">      &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">      &lt;Contact ...&gt;</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>      min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>      max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new Contact instance</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">          name : str</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co">              Contact Name</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">          address : str</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">              Contact's postal or street address.</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="co">          telephone : str</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co">              Contact phone number (stored as a string).</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds a session (in hours) to the Contacts hours</span></span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="co">          session_length : int | float</span></span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a><span class="co">              time spent on session in hours</span></span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
-<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
-<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
-<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> session_length <span class="op">&lt;</span> Contact.min_session_length <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.max_session_length:</span>
-<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span></span>
-<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>          <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>              <span class="co">"""</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="co">              Gets the hours worked for this contact</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="co">              Returns</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="co">              -------</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="co">              int | float</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="co">                  hours worked for this contact</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a><span class="co">              """</span></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>          <span class="co"># new method</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>          <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>              <span class="co">"""</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a><span class="co">              Adds a session (in hours) to the Contacts hours</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="co">              Parameters</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="co">              ----------</span></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a><span class="co">              session_length : int | float</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a><span class="co">                  time spent on session in hours</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a><span class="co">              Returns</span></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="co">              -------</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="co">              None</span></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a><span class="co">              """</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>              <span class="cf">if</span> session_length <span class="op">&lt;</span> Contact.min_session_length <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.max_session_length:</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">return</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><code>add_session</code> now silently rejects invalid <code>session_length</code> values</li>
 <li>The idiom of first checking for invalid input and performing a <code>return</code> if encountered is called an <em>early return</em> and is a common technique
@@ -920,13 +955,13 @@ Note
 <li>Static methods can be considered as methods defined on a class rather than an object instance</li>
 </ul></li>
 <li><p>We can define one as below,</p>
-<div id="4136e6a9" class="cell" data-execution_count="9">
+<div id="34bc8d0e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact with a name, address and telephone number.</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">      Tracks the hours worked with a client</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">      Attributes</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">      name : str</span></span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact Name</span></span>
@@ -934,85 +969,98 @@ Note
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact's postal or street address.</span></span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">      telephone : str</span></span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact phone number (stored as a string).</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">      Attributes</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">      hours_worked : int | float</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">          Hours worked with a Contact, initialised to 0</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">      min_session_length : Final[int | float]</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">          minimum length of a billable session</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">      max_session_length : Final[int | float]</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">          maximum length of a billable session</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">      Examples</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">      --------</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">      &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">      &lt;Contact ...&gt;</span></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>      min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>      max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">@staticmethod</span></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> valid_session_length(session_length):</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co">          Check a session length is valid</span></span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">          session_length : int | float</span></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">              length of a consult session in hours</span></span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co">          bool</span></span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co">              `True` if the session length is valid else `False`</span></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> session_length <span class="op">&lt;</span> Contact.min_session_length <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.max_session_length:</span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a><span class="co">          Gets the hours worked for this contact</span></span>
-<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="co">          int | float</span></span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="co">              hours worked for this contact</span></span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds a session (in hours) to the Contacts hours</span></span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="co">          session_length : int | float</span></span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="co">              time spent on session in hours</span></span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
-<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="co">          See Also</span></span>
-<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="co">          --------</span></span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact.valid_session_length : checks a session length is valid</span></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
-<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="kw">not</span> Contact.valid_session_length(session_length):</span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span></span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">      hours_worked : int | float</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">          Hours worked with a Contact, initialised to 0</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">      Class Attributes</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------------</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">      min_session_length : Final[int | float]</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">          minimum length of a billable session</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">      max_session_length : Final[int | float]</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">          maximum length of a billable session</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">      Examples</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">      --------</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">      &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">      &lt;Contact ...&gt;</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>      min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>      max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">@staticmethod</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> valid_session_length(session_length):</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="co">          Check a session length is valid</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">          session_length : int | float</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">              length of a consult session in hours</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co">          bool</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co">              `True` if the session length is valid else `False`</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>              session_length <span class="op">&lt;</span> Contact.min_session_length</span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>              <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.max_session_length</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>          ):</span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new Contact instance</span></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="co">          name : str</span></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a><span class="co">              Contact Name</span></span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a><span class="co">          address : str</span></span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="co">              Contact's postal or street address.</span></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="co">          telephone : str</span></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="co">              Contact phone number (stored as a string).</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_hours_worked(<span class="va">self</span>):</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="co">          Gets the hours worked for this contact</span></span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="co">          int | float</span></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a><span class="co">              hours worked for this contact</span></span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>.hours_worked</span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a>      <span class="co"># new method</span></span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="co">          Adds a session (in hours) to the Contacts hours</span></span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a><span class="co">          session_length : int | float</span></span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a><span class="co">              time spent on session in hours</span></span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="co">          See Also</span></span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a><span class="co">          --------</span></span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a><span class="co">          Contact.valid_session_length : checks a session length is valid</span></span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="kw">not</span> Contact.valid_session_length(session_length):</span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span></span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.hours_worked <span class="op">=</span> <span class="va">self</span>.hours_worked <span class="op">+</span> session_length</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>The <code>@staticmethod</code> tag above the definition of <code>valid_session_length</code> is called a <em>decorator</em></p></li>
 <li><p>A decorator <em>wraps</em> a function to modify how it works</p></li>
@@ -1026,7 +1074,7 @@ Note
 <li>Static methods can exist even without an instance of the given class</li>
 </ul></li>
 <li><p>Static methods can be called directly from the class e.g.</p>
-<div id="9407ed24" class="cell" data-execution_count="10">
+<div id="40e85434" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(Contact.valid_session_length(<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>False</code></pre>
@@ -1159,7 +1207,7 @@ Note
 <li><p>meaningless to continue with an unconverted number</p></li>
 <li><p><em>Unless</em> the caller specifies what to do in that case</p></li>
 <li><p>So this causes an exception</p>
-<div id="fdab0365" class="cell" data-execution_count="11">
+<div id="599ed27e" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="bu">int</span>(<span class="st">"Rob"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1177,7 +1225,7 @@ Note
 <ul>
 <li>We use the <code>raise</code> keyword</li>
 </ul>
-<div id="52112cd4" class="cell" data-execution_count="12">
+<div id="15a5778c" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Adds a session (in hours) to the Contacts hours</span></span>
@@ -1226,7 +1274,7 @@ Note
 <h5 class="anchored" data-anchor-id="make-something-happen-raising-exceptions-from-code">Make Something Happen: Raising Exceptions from Code</h5>
 <p><em>Investigate how exceptions are raised using the sample program <a href="./Examples/06_TimeTrackerWithException/TimeTrackerWithException.py">Time Tracker with Exception</a></em></p>
 <p>Start a python interpreter and run the example program above, select option <span class="math inline">\(1\)</span> on the menu, and enter the following,</p>
-<div id="ecbe7167" class="cell" data-execution_count="13">
+<div id="0714605b" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Time Tracker
@@ -1259,7 +1307,7 @@ Enter the contact phone: <span class="ansi-red-fg"> 1234 56789 </span>
 </div>
 </div>
 <p>Now add a session lasting 2 hours to the contact using option 4:</p>
-<div id="a8396c65" class="cell" data-execution_count="14">
+<div id="89894834" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1280,7 +1328,7 @@ Updated hours worked: 2.0
 </div>
 </div>
 <p>This should work because <span class="math inline">\(2\)</span> is a valid session length, now repeat but attempt to add a session length of <span class="math inline">\(4\)</span>, which should be invalid,</p>
-<div id="42f3f005" class="cell" data-execution_count="15">
+<div id="635db68c" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1298,7 +1346,7 @@ Session Length: <span class="ansi-red-fg"> 4</span>
 </div>
 </div>
 </div>
-<div id="11a282c4" class="cell" data-execution_count="16">
+<div id="14eb63e4" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -1359,7 +1407,7 @@ Note
 <li>Passing an exception to <code>print</code> prints our the message associated with the exception</li>
 <li>A representative use might look like,</li>
 </ul>
-<div id="bbdff396" class="cell" data-execution_count="17">
+<div id="c13762c1" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1501,7 +1549,7 @@ Warning
 <section id="make-something-happen-protecting-data-attributes-in-a-class" class="level5">
 <h5 class="anchored" data-anchor-id="make-something-happen-protecting-data-attributes-in-a-class">Make Something Happen: Protecting Data Attributes in a Class</h5>
 <p><em>Follow the following steps to examine how to make a python class secure. Open a python interpreter and enter the statements below</em></p>
-<div id="d36fb690" class="cell" data-execution_count="18">
+<div id="c8b0625e" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Secret:</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._secret <span class="op">=</span> <span class="dv">99</span></span>
@@ -1509,12 +1557,12 @@ Warning
 </div>
 <p>The above creates a class <code>Secret</code> which has two attributes, <code>_secret</code> and <code>__top_secret</code></p>
 <p><em>Create an instance of the</em> <code>Secret</code> <em>class</em></p>
-<div id="5a63209e" class="cell" data-execution_count="19">
+<div id="9c579af3" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Secret()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above creates a new instance of a <code>Secret</code> class and stores it with the variable <code>x</code>.</p>
 <p><em>Try to access the</em> <code>_secret</code> <em>attribute on</em> <code>x</code></p>
-<div id="6e7d1310" class="cell" data-execution_count="20">
+<div id="38b0bbbc" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>    x._secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>99</code></pre>
@@ -1522,7 +1570,7 @@ Warning
 </div>
 <p>Even though we said that <code>_</code> indicates we should not access the data attribute, we can see that nothing stops us from doing so</p>
 <p><em>Now try to access the</em> <code>__top_secret</code> <em>attribute</em></p>
-<div id="87eb4770" class="cell" data-execution_count="21">
+<div id="55a1b227" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>    x.__top_secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1537,7 +1585,7 @@ Warning
 </div>
 <p>This time we get an <code>AttributeError</code> which suggests that there is no <code>__top_secret</code> attribute associated with the <code>Secret</code> class</p>
 <p><em>However, Python has performed some “name-mangling” to the name</em> <code>__top_secret</code><em>. Inside the</em> <code>Secret</code> <em>class we can refer to</em> <code>__top_secret</code><em>. Outside the class, the variable name is prepended with the class name (and an underscore). So we can still access it, as the below proves</em></p>
-<div id="099daa58" class="cell" data-execution_count="22">
+<div id="1e4d4697" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    x._Secret__top_secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>100</code></pre>
@@ -1585,7 +1633,7 @@ Tip
 </ul></li>
 <li>Realistically they would be discussed and confirmed with the customer</li>
 </ul>
-<div id="c83cdfa4" class="cell" data-execution_count="23">
+<div id="9ded4cd8" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
@@ -1603,7 +1651,7 @@ Tip
 <span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
 <span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
 <span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">        bool</span></span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">            True if the text is valid, else False</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">            `True` if the text is valid, else `False`</span></span>
 <span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
 <span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(text) <span class="op">&lt;</span> Contact.__min_text_length:</span>
@@ -1627,7 +1675,7 @@ Tip
 </ul>
 <section id="code-analysis-properties-in-classes" class="level4">
 <h4 class="anchored" data-anchor-id="code-analysis-properties-in-classes">Code Analysis: Properties in Classes</h4>
-<div id="cca4955f" class="cell" data-execution_count="24">
+<div id="33c4c758" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1647,7 +1695,7 @@ Tip
 <span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
 <span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
 <span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="co">        bool</span></span>
-<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="co">            True if the text is valid, else False</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="co">            `True` if the text is valid, else `False`</span></span>
 <span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
 <span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(text) <span class="op">&lt;</span> Contact.__min_text_length:</span>
 <span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
@@ -1657,41 +1705,25 @@ Tip
 <span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span>  <span class="co"># decorator makes name a property</span></span>
 <span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>):  <span class="co"># name of property function to get the name</span></span>
 <span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="co">        Gets the Contact Name</span></span>
-<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a><span class="co">        str</span></span>
-<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="co">           contact name</span></span>
-<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__name  <span class="co"># return private attribute containing the name</span></span>
-<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">@name.setter</span>  <span class="co"># decorator to identify the setter for name</span></span>
-<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>, name):</span>
-<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a><span class="co">        Set the Contact Name</span></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact Name</span></span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if new name is invalid</span></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__name  <span class="co"># return private attribute containing the name</span></span>
 <span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
-<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact name, must be a valid length</span></span>
-<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
-<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
-<span id="cb35-54"><a href="#cb35-54" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
-<span id="cb35-55"><a href="#cb35-55" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
-<span id="cb35-56"><a href="#cb35-56" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if name is invalid</span></span>
-<span id="cb35-57"><a href="#cb35-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-58"><a href="#cb35-58" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
-<span id="cb35-59"><a href="#cb35-59" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
-<span id="cb35-60"><a href="#cb35-60" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
-<span id="cb35-61"><a href="#cb35-61" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb35-62"><a href="#cb35-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.validate_text(name):</span>
-<span id="cb35-63"><a href="#cb35-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid name"</span>)</span>
-<span id="cb35-64"><a href="#cb35-64" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__name <span class="op">=</span> name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">@name.setter</span>  <span class="co"># decorator to identify the setter for name</span></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>, name):</span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.validate_text(name):</span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid name"</span>)</span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__name <span class="op">=</span> name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>The code above shows how to implement a property for</em> <code>name</code> <em>in the</em> <code>Contact</code> <em>class. The property implements validation and rejects invalid names. Work through the following questions to understand properties</em></p>
 <ol type="1">
@@ -1744,7 +1776,7 @@ Tip
 <section id="make-something-happen-investigating-properties" class="level4">
 <h4 class="anchored" data-anchor-id="make-something-happen-investigating-properties">Make Something Happen: Investigating Properties</h4>
 <p><em>Investigate how properties work. Open up the python interpreter and enter the statements below</em></p>
-<div id="e14c6dda" class="cell" data-execution_count="25">
+<div id="0a09f535" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Prop:</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> x(<span class="va">self</span>):</span>
@@ -1757,11 +1789,11 @@ Tip
 </div>
 <p>This creates a new class <code>Prop</code> with a property <code>x</code> that has a <code>setter</code></p>
 <p><em>Now create an instance of this class as below</em></p>
-<div id="2d09992e" class="cell" data-execution_count="26">
+<div id="1c43451c" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>    test <span class="op">=</span> Prop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>Put a value for</em> <code>x</code> <em>into the</em> <code>test</code> <em>instance</em></p>
-<div id="324e9615" class="cell" data-execution_count="27">
+<div id="15d24f89" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>    test.x <span class="op">=</span> <span class="dv">99</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>set property x: 99</code></pre>
@@ -1769,7 +1801,7 @@ Tip
 </div>
 <p>When python executes the above, it runs the setter method for the property. As we can see from the output above.</p>
 <p><em>Now try to read the property</em></p>
-<div id="ce90bf19" class="cell" data-execution_count="28">
+<div id="c35343b0" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(test.x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>got property x
@@ -1778,7 +1810,7 @@ Tip
 </div>
 <p>When reading the property, python runs the property method, as indicated above</p>
 <p><em>We can combine getting and setting in complex expressions, execute the following</em></p>
-<div id="5c8509d7" class="cell" data-execution_count="29">
+<div id="52f2aa97" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>    test.x <span class="op">=</span> test.x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>got property x
@@ -1790,13 +1822,13 @@ set property x: 100</code></pre>
 <ul>
 <li>The relevant changes to the <code>Contact</code> class are then,</li>
 </ul>
-<div id="36da3d1a" class="cell" data-execution_count="30">
+<div id="0f3869d2" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Tracks the hours worked with a client</span></span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
 <span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
 <span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">    name : str</span></span>
 <span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact Name</span></span>
@@ -1805,199 +1837,149 @@ set property x: 100</code></pre>
 <span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">    telephone : str</span></span>
 <span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact phone number (stored as a string).</span></span>
 <span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co">    __hours_worked : int | float</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Hours worked with a Contact, initialised to 0</span></span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="co">    __min_session_length : Final[int | float]</span></span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co">        minimum length of a billable session</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="co">    __max_session_length : Final[int | float]</span></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a><span class="co">        maximum length of a billable session</span></span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a><span class="co">    __min_text_length : Final[int | float]</span></span>
-<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="co">        minimum length of all text fields (name, address, telephone)</span></span>
-<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Examples</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co">    &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co">    &lt;Contact ...&gt;</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>    __min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>    __max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> valid_session_length(session_length):</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a><span class="co">        Check a session length is valid</span></span>
 <span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a><span class="co">    Examples</span></span>
-<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
-<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a><span class="co">    &gt;&gt;&gt; Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "+44(1234) 56789")</span></span>
-<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a><span class="co">    &lt;Contact ...&gt;</span></span>
-<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a>    __min_session_length <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a>    __max_session_length <span class="op">=</span> <span class="fl">3.5</span></span>
-<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> valid_session_length(session_length):</span>
-<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a><span class="co">        Check a session length is valid</span></span>
-<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a><span class="co">        session_length : int | float</span></span>
-<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a><span class="co">            length of a consult session in hours</span></span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a><span class="co">        session_length : int | float</span></span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a><span class="co">            length of a consult session in hours</span></span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a><span class="co">        bool</span></span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a><span class="co">            `True` if the session length is valid else `False`</span></span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (</span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a>            session_length <span class="op">&lt;</span> Contact.__min_session_length</span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a>            <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.__max_session_length</span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a>        ):</span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a><span class="co">        bool</span></span>
-<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a><span class="co">            `True` if the session length is valid else `False`</span></span>
-<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (</span>
-<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a>            session_length <span class="op">&lt;</span> Contact.__min_session_length</span>
-<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a>            <span class="kw">or</span> session_length <span class="op">&gt;</span> Contact.__max_session_length</span>
-<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a>        ):</span>
-<span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb44-59"><a href="#cb44-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb44-60"><a href="#cb44-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-61"><a href="#cb44-61" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb44-62"><a href="#cb44-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-63"><a href="#cb44-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb44-64"><a href="#cb44-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> valid_text(text):</span>
-<span id="cb44-65"><a href="#cb44-65" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-66"><a href="#cb44-66" aria-hidden="true" tabindex="-1"></a><span class="co">        Validates text to be stored in the contact storage</span></span>
-<span id="cb44-67"><a href="#cb44-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-68"><a href="#cb44-68" aria-hidden="true" tabindex="-1"></a><span class="co">        Valid input must be have a length greater than or</span></span>
-<span id="cb44-69"><a href="#cb44-69" aria-hidden="true" tabindex="-1"></a><span class="co">        equal to Contact.__min_text_length</span></span>
-<span id="cb44-70"><a href="#cb44-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-71"><a href="#cb44-71" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb44-72"><a href="#cb44-72" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb44-73"><a href="#cb44-73" aria-hidden="true" tabindex="-1"></a><span class="co">        text : str</span></span>
-<span id="cb44-74"><a href="#cb44-74" aria-hidden="true" tabindex="-1"></a><span class="co">            text string to store</span></span>
-<span id="cb44-75"><a href="#cb44-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-76"><a href="#cb44-76" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-77"><a href="#cb44-77" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-78"><a href="#cb44-78" aria-hidden="true" tabindex="-1"></a><span class="co">        bool</span></span>
-<span id="cb44-79"><a href="#cb44-79" aria-hidden="true" tabindex="-1"></a><span class="co">            True if the text is valid, else False</span></span>
-<span id="cb44-80"><a href="#cb44-80" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-81"><a href="#cb44-81" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(text) <span class="op">&lt;</span> Contact.__min_text_length:</span>
-<span id="cb44-82"><a href="#cb44-82" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb44-83"><a href="#cb44-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb44-84"><a href="#cb44-84" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb44-85"><a href="#cb44-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-86"><a href="#cb44-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
-<span id="cb44-87"><a href="#cb44-87" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>):</span>
-<span id="cb44-88"><a href="#cb44-88" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-89"><a href="#cb44-89" aria-hidden="true" tabindex="-1"></a><span class="co">        Gets the Contact Name</span></span>
-<span id="cb44-90"><a href="#cb44-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-91"><a href="#cb44-91" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-92"><a href="#cb44-92" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-93"><a href="#cb44-93" aria-hidden="true" tabindex="-1"></a><span class="co">        str</span></span>
-<span id="cb44-94"><a href="#cb44-94" aria-hidden="true" tabindex="-1"></a><span class="co">           contact name</span></span>
-<span id="cb44-95"><a href="#cb44-95" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-96"><a href="#cb44-96" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__name</span>
-<span id="cb44-97"><a href="#cb44-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-98"><a href="#cb44-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">@name.setter</span></span>
-<span id="cb44-99"><a href="#cb44-99" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>, name):</span>
-<span id="cb44-100"><a href="#cb44-100" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-101"><a href="#cb44-101" aria-hidden="true" tabindex="-1"></a><span class="co">        Set the Contact Name</span></span>
-<span id="cb44-102"><a href="#cb44-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-103"><a href="#cb44-103" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb44-104"><a href="#cb44-104" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb44-105"><a href="#cb44-105" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
-<span id="cb44-106"><a href="#cb44-106" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact name, must be a valid length</span></span>
-<span id="cb44-107"><a href="#cb44-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-108"><a href="#cb44-108" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-109"><a href="#cb44-109" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-110"><a href="#cb44-110" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
+<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> valid_text(text):</span>
+<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a><span class="co">        Validates text to be stored in the contact storage</span></span>
+<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a><span class="co">        Valid input must be have a length greater than or</span></span>
+<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a><span class="co">        equal to Contact.__min_text_length</span></span>
+<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb44-59"><a href="#cb44-59" aria-hidden="true" tabindex="-1"></a><span class="co">        text : str</span></span>
+<span id="cb44-60"><a href="#cb44-60" aria-hidden="true" tabindex="-1"></a><span class="co">            text string to store</span></span>
+<span id="cb44-61"><a href="#cb44-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-62"><a href="#cb44-62" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb44-63"><a href="#cb44-63" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb44-64"><a href="#cb44-64" aria-hidden="true" tabindex="-1"></a><span class="co">        bool</span></span>
+<span id="cb44-65"><a href="#cb44-65" aria-hidden="true" tabindex="-1"></a><span class="co">            `True` if the text is valid, else `False`</span></span>
+<span id="cb44-66"><a href="#cb44-66" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb44-67"><a href="#cb44-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(text) <span class="op">&lt;</span> Contact.__min_text_length:</span>
+<span id="cb44-68"><a href="#cb44-68" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb44-69"><a href="#cb44-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb44-70"><a href="#cb44-70" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb44-71"><a href="#cb44-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-72"><a href="#cb44-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb44-73"><a href="#cb44-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>):</span>
+<span id="cb44-74"><a href="#cb44-74" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb44-75"><a href="#cb44-75" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
+<span id="cb44-76"><a href="#cb44-76" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact Name</span></span>
+<span id="cb44-77"><a href="#cb44-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-78"><a href="#cb44-78" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
+<span id="cb44-79"><a href="#cb44-79" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
+<span id="cb44-80"><a href="#cb44-80" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
+<span id="cb44-81"><a href="#cb44-81" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if new name is invalid</span></span>
+<span id="cb44-82"><a href="#cb44-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-83"><a href="#cb44-83" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb44-84"><a href="#cb44-84" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb44-85"><a href="#cb44-85" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
+<span id="cb44-86"><a href="#cb44-86" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb44-87"><a href="#cb44-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__name</span>
+<span id="cb44-88"><a href="#cb44-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-89"><a href="#cb44-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">@name.setter</span></span>
+<span id="cb44-90"><a href="#cb44-90" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> name(<span class="va">self</span>, name):</span>
+<span id="cb44-91"><a href="#cb44-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.valid_text(name):</span>
+<span id="cb44-92"><a href="#cb44-92" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid name"</span>)</span>
+<span id="cb44-93"><a href="#cb44-93" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__name <span class="op">=</span> name</span>
+<span id="cb44-94"><a href="#cb44-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-95"><a href="#cb44-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb44-96"><a href="#cb44-96" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> address(<span class="va">self</span>):</span>
+<span id="cb44-97"><a href="#cb44-97" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb44-98"><a href="#cb44-98" aria-hidden="true" tabindex="-1"></a><span class="co">        address : str</span></span>
+<span id="cb44-99"><a href="#cb44-99" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact Address</span></span>
+<span id="cb44-100"><a href="#cb44-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-101"><a href="#cb44-101" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
+<span id="cb44-102"><a href="#cb44-102" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
+<span id="cb44-103"><a href="#cb44-103" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
+<span id="cb44-104"><a href="#cb44-104" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if new address is invalid</span></span>
+<span id="cb44-105"><a href="#cb44-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-106"><a href="#cb44-106" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb44-107"><a href="#cb44-107" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb44-108"><a href="#cb44-108" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
+<span id="cb44-109"><a href="#cb44-109" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb44-110"><a href="#cb44-110" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__address</span>
 <span id="cb44-111"><a href="#cb44-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-112"><a href="#cb44-112" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
-<span id="cb44-113"><a href="#cb44-113" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
-<span id="cb44-114"><a href="#cb44-114" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
-<span id="cb44-115"><a href="#cb44-115" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if name is invalid</span></span>
-<span id="cb44-116"><a href="#cb44-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-117"><a href="#cb44-117" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
-<span id="cb44-118"><a href="#cb44-118" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
-<span id="cb44-119"><a href="#cb44-119" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
-<span id="cb44-120"><a href="#cb44-120" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-121"><a href="#cb44-121" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.valid_text(name):</span>
-<span id="cb44-122"><a href="#cb44-122" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid name"</span>)</span>
-<span id="cb44-123"><a href="#cb44-123" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__name <span class="op">=</span> name</span>
-<span id="cb44-124"><a href="#cb44-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-125"><a href="#cb44-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
-<span id="cb44-126"><a href="#cb44-126" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> address(<span class="va">self</span>):</span>
-<span id="cb44-127"><a href="#cb44-127" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-128"><a href="#cb44-128" aria-hidden="true" tabindex="-1"></a><span class="co">        Gets the Contact Address</span></span>
-<span id="cb44-129"><a href="#cb44-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-130"><a href="#cb44-130" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-131"><a href="#cb44-131" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-132"><a href="#cb44-132" aria-hidden="true" tabindex="-1"></a><span class="co">        str</span></span>
-<span id="cb44-133"><a href="#cb44-133" aria-hidden="true" tabindex="-1"></a><span class="co">           contact address</span></span>
-<span id="cb44-134"><a href="#cb44-134" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-135"><a href="#cb44-135" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__address</span>
-<span id="cb44-136"><a href="#cb44-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-137"><a href="#cb44-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">@address.setter</span></span>
-<span id="cb44-138"><a href="#cb44-138" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> address(<span class="va">self</span>, address):</span>
-<span id="cb44-139"><a href="#cb44-139" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-140"><a href="#cb44-140" aria-hidden="true" tabindex="-1"></a><span class="co">        Set the Contact Address</span></span>
-<span id="cb44-141"><a href="#cb44-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-142"><a href="#cb44-142" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb44-143"><a href="#cb44-143" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb44-144"><a href="#cb44-144" aria-hidden="true" tabindex="-1"></a><span class="co">        address : str</span></span>
-<span id="cb44-145"><a href="#cb44-145" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact address, must be a valid length</span></span>
-<span id="cb44-146"><a href="#cb44-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-147"><a href="#cb44-147" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-148"><a href="#cb44-148" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-149"><a href="#cb44-149" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
-<span id="cb44-150"><a href="#cb44-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-151"><a href="#cb44-151" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
-<span id="cb44-152"><a href="#cb44-152" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
-<span id="cb44-153"><a href="#cb44-153" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
-<span id="cb44-154"><a href="#cb44-154" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if address is invalid</span></span>
-<span id="cb44-155"><a href="#cb44-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-156"><a href="#cb44-156" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
-<span id="cb44-157"><a href="#cb44-157" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
-<span id="cb44-158"><a href="#cb44-158" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
-<span id="cb44-159"><a href="#cb44-159" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-160"><a href="#cb44-160" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.valid_text(address):</span>
-<span id="cb44-161"><a href="#cb44-161" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid address"</span>)</span>
-<span id="cb44-162"><a href="#cb44-162" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__address <span class="op">=</span> address</span>
-<span id="cb44-163"><a href="#cb44-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-164"><a href="#cb44-164" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
-<span id="cb44-165"><a href="#cb44-165" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> telephone(<span class="va">self</span>):</span>
-<span id="cb44-166"><a href="#cb44-166" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-167"><a href="#cb44-167" aria-hidden="true" tabindex="-1"></a><span class="co">        Gets the Contact Telephone</span></span>
-<span id="cb44-168"><a href="#cb44-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-169"><a href="#cb44-169" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-170"><a href="#cb44-170" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-171"><a href="#cb44-171" aria-hidden="true" tabindex="-1"></a><span class="co">        str</span></span>
-<span id="cb44-172"><a href="#cb44-172" aria-hidden="true" tabindex="-1"></a><span class="co">           contact telephone</span></span>
-<span id="cb44-173"><a href="#cb44-173" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-174"><a href="#cb44-174" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__telephone</span>
-<span id="cb44-175"><a href="#cb44-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-176"><a href="#cb44-176" aria-hidden="true" tabindex="-1"></a>    <span class="at">@telephone.setter</span></span>
-<span id="cb44-177"><a href="#cb44-177" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> telephone(<span class="va">self</span>, telephone):</span>
-<span id="cb44-178"><a href="#cb44-178" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb44-179"><a href="#cb44-179" aria-hidden="true" tabindex="-1"></a><span class="co">        Set the Contact Telephone</span></span>
-<span id="cb44-180"><a href="#cb44-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-181"><a href="#cb44-181" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb44-182"><a href="#cb44-182" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb44-183"><a href="#cb44-183" aria-hidden="true" tabindex="-1"></a><span class="co">        telephone : str</span></span>
-<span id="cb44-184"><a href="#cb44-184" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact telephone, must be a valid length</span></span>
-<span id="cb44-185"><a href="#cb44-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-186"><a href="#cb44-186" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb44-187"><a href="#cb44-187" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb44-188"><a href="#cb44-188" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
-<span id="cb44-189"><a href="#cb44-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-190"><a href="#cb44-190" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
-<span id="cb44-191"><a href="#cb44-191" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
-<span id="cb44-192"><a href="#cb44-192" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
-<span id="cb44-193"><a href="#cb44-193" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if telephone is invalid</span></span>
-<span id="cb44-194"><a href="#cb44-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-195"><a href="#cb44-195" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
-<span id="cb44-196"><a href="#cb44-196" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
-<span id="cb44-197"><a href="#cb44-197" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
-<span id="cb44-198"><a href="#cb44-198" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb44-199"><a href="#cb44-199" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.valid_text(telephone):</span>
-<span id="cb44-200"><a href="#cb44-200" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid telephone"</span>)</span>
-<span id="cb44-201"><a href="#cb44-201" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__telephone <span class="op">=</span> telephone</span>
-<span id="cb44-202"><a href="#cb44-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-203"><a href="#cb44-203" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
-<span id="cb44-204"><a href="#cb44-204" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb44-205"><a href="#cb44-205" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
-<span id="cb44-206"><a href="#cb44-206" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
-<span id="cb44-207"><a href="#cb44-207" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-112"><a href="#cb44-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">@address.setter</span></span>
+<span id="cb44-113"><a href="#cb44-113" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> address(<span class="va">self</span>, address):</span>
+<span id="cb44-114"><a href="#cb44-114" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.valid_text(address):</span>
+<span id="cb44-115"><a href="#cb44-115" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid address"</span>)</span>
+<span id="cb44-116"><a href="#cb44-116" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__address <span class="op">=</span> address</span>
+<span id="cb44-117"><a href="#cb44-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-118"><a href="#cb44-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb44-119"><a href="#cb44-119" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> telephone(<span class="va">self</span>):</span>
+<span id="cb44-120"><a href="#cb44-120" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb44-121"><a href="#cb44-121" aria-hidden="true" tabindex="-1"></a><span class="co">        telephone : str</span></span>
+<span id="cb44-122"><a href="#cb44-122" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact Telephone</span></span>
+<span id="cb44-123"><a href="#cb44-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-124"><a href="#cb44-124" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
+<span id="cb44-125"><a href="#cb44-125" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
+<span id="cb44-126"><a href="#cb44-126" aria-hidden="true" tabindex="-1"></a><span class="co">        Exception</span></span>
+<span id="cb44-127"><a href="#cb44-127" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if new telephone is invalid</span></span>
+<span id="cb44-128"><a href="#cb44-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-129"><a href="#cb44-129" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb44-130"><a href="#cb44-130" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb44-131"><a href="#cb44-131" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact.valid_text : validates text input</span></span>
+<span id="cb44-132"><a href="#cb44-132" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb44-133"><a href="#cb44-133" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__telephone</span>
+<span id="cb44-134"><a href="#cb44-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-135"><a href="#cb44-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">@telephone.setter</span></span>
+<span id="cb44-136"><a href="#cb44-136" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> telephone(<span class="va">self</span>, telephone):</span>
+<span id="cb44-137"><a href="#cb44-137" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> Contact.valid_text(telephone):</span>
+<span id="cb44-138"><a href="#cb44-138" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid telephone"</span>)</span>
+<span id="cb44-139"><a href="#cb44-139" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__telephone <span class="op">=</span> telephone</span>
+<span id="cb44-140"><a href="#cb44-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-141"><a href="#cb44-141" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
+<span id="cb44-142"><a href="#cb44-142" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb44-143"><a href="#cb44-143" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new Contact instance</span></span>
+<span id="cb44-144"><a href="#cb44-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-145"><a href="#cb44-145" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb44-146"><a href="#cb44-146" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb44-147"><a href="#cb44-147" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
+<span id="cb44-148"><a href="#cb44-148" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact Name</span></span>
+<span id="cb44-149"><a href="#cb44-149" aria-hidden="true" tabindex="-1"></a><span class="co">        address : str</span></span>
+<span id="cb44-150"><a href="#cb44-150" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact's postal or street address.</span></span>
+<span id="cb44-151"><a href="#cb44-151" aria-hidden="true" tabindex="-1"></a><span class="co">        telephone : str</span></span>
+<span id="cb44-152"><a href="#cb44-152" aria-hidden="true" tabindex="-1"></a><span class="co">            Contact phone number (stored as a string).</span></span>
+<span id="cb44-153"><a href="#cb44-153" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb44-154"><a href="#cb44-154" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb44-155"><a href="#cb44-155" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.address <span class="op">=</span> address</span>
+<span id="cb44-156"><a href="#cb44-156" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
+<span id="cb44-157"><a href="#cb44-157" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>The great thing about properties is they can be effectively drop in for traditional attributes
@@ -2029,7 +2011,7 @@ Caution
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These statements look like normal variable assignments, nothing here indicates that these steps can fail. However, the following statement fails,</p>
-<div id="07bc6589" class="cell" data-execution_count="31">
+<div id="fc4aba25" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>    rob <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Rob"</span>, address<span class="op">=</span><span class="st">"18 Pussycat Mews, London NE1 410S"</span>, telephone<span class="op">=</span><span class="st">"1234 56789"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -2038,21 +2020,23 @@ Caution
 <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[31]</span><span class="ansi-green-fg">, line 1</span>
 <span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> rob = <span class="ansi-yellow-bg">Contact</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">name</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">Rob</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">address</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">18 Pussycat Mews, London NE1 410S</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">telephone</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">1234 56789</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[30]</span><span class="ansi-green-fg">, line 204</span>, in <span class="ansi-cyan-fg">Contact.__init__</span><span class="ansi-blue-fg">(self, name, address, telephone)</span>
-<span class="ansi-green-fg">    203</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">__init__</span>(<span style="color:rgb(0,135,0)">self</span>, name, address, telephone):
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">204</span>     <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">name</span> = name
-<span class="ansi-green-fg">    205</span>     <span style="color:rgb(0,135,0)">self</span>.address = address
-<span class="ansi-green-fg">    206</span>     <span style="color:rgb(0,135,0)">self</span>.telephone = telephone
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[30]</span><span class="ansi-green-fg">, line 154</span>, in <span class="ansi-cyan-fg">Contact.__init__</span><span class="ansi-blue-fg">(self, name, address, telephone)</span>
+<span class="ansi-green-fg">    141</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">__init__</span>(<span style="color:rgb(0,135,0)">self</span>, name, address, telephone):
+<span class="ansi-green-fg">    142</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic" class="ansi-yellow-fg">"""</span>
+<span class="ansi-green-fg">    143</span> <span style="font-style:italic" class="ansi-yellow-fg">    Create a new Contact instance</span>
+<span class="ansi-green-fg">    144</span> 
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">    152</span> <span style="font-style:italic" class="ansi-yellow-fg">        Contact phone number (stored as a string).</span>
+<span class="ansi-green-fg">    153</span> <span style="font-style:italic" class="ansi-yellow-fg">    """</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">154</span>     <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">name</span> = name
+<span class="ansi-green-fg">    155</span>     <span style="color:rgb(0,135,0)">self</span>.address = address
+<span class="ansi-green-fg">    156</span>     <span style="color:rgb(0,135,0)">self</span>.telephone = telephone
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[30]</span><span class="ansi-green-fg">, line 122</span>, in <span class="ansi-cyan-fg">Contact.name</span><span class="ansi-blue-fg">(self, name)</span>
-<span class="ansi-green-fg">    100</span> <span style="font-style:italic" class="ansi-yellow-fg">"""</span>
-<span class="ansi-green-fg">    101</span> <span style="font-style:italic" class="ansi-yellow-fg">Set the Contact Name</span>
-<span class="ansi-green-fg">    102</span> 
-<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">    119</span> <span style="font-style:italic" class="ansi-yellow-fg">Contact.valid_text : validates text input</span>
-<span class="ansi-green-fg">    120</span> <span style="font-style:italic" class="ansi-yellow-fg">"""</span>
-<span class="ansi-green-fg">    121</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> Contact.valid_text(name):
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">122</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">Exception</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Invalid name</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">    123</span> <span style="color:rgb(0,135,0)">self</span>.__name = name
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[30]</span><span class="ansi-green-fg">, line 92</span>, in <span class="ansi-cyan-fg">Contact.name</span><span class="ansi-blue-fg">(self, name)</span>
+<span class="ansi-green-fg">     89</span> <span style="color:rgb(175,0,255)">@name</span>.setter
+<span class="ansi-green-fg">     90</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">name</span>(<span style="color:rgb(0,135,0)">self</span>, name):
+<span class="ansi-green-fg">     91</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> Contact.valid_text(name):
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">92</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">Exception</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Invalid name</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">     93</span>     <span style="color:rgb(0,135,0)">self</span>.__name = name
 
 <span class="ansi-red-fg">Exception</span>: Invalid name</pre>
 </div>
@@ -2067,6 +2051,140 @@ Caution
 </section>
 <section id="evolve-class-design" class="level3">
 <h3 class="anchored" data-anchor-id="evolve-class-design">Evolve Class Design</h3>
+<blockquote class="blockquote">
+<p>Scenario</p>
+<p>The lawyer likes your program but would now like to use it for billing. The program should track both the hours worked for a client and the the billing amount owed by each contact</p>
+<p>Prices are calculated as follows, for every session worked there is - A $30 flat case fee - A $50 hourly fee</p>
+<p>For example a one hour session would cost $80</p>
+<p>The client wants the billing amount to be automatically updated each time they add a session. Displaying a contact should then also display the billing amount</p>
+<pre class="text"><code>Name: Rob Miles
+Address: 18 Pussycat Mews, London, NE1 410S
+Telephone: 1234 56789
+Hours on the case: 2.0
+Billing amount: 130.0</code></pre>
+</blockquote>
+<section id="code-analysis-managing-the-billing-amount" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-managing-the-billing-amount">Code Analysis: Managing the Billing Amount</h4>
+<p><em>Work through the following questions to understand how we design managing the billing amount</em></p>
+<ol type="1">
+<li><p><em>How would we store the billing amount for a contact?</em></p>
+<ul>
+<li>Store as a data attribute on a <code>Contact</code> object</li>
+<li>Manage like <code>__hours_worked</code> with validators</li>
+<li>Let’s call it <code>__billing_amount</code></li>
+</ul></li>
+<li><p><em>Why does</em> <code>__billing_amount</code> <em>have two leading underscores in the name?</em></p>
+<ul>
+<li><p>Indicates the variable is private to the class</p></li>
+<li><p>Provides name-mangling to reduce chance for accidental use</p></li>
+<li><p>Provide access via a read-only property</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>  <span class="at">@property</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> billing_amount(<span class="va">self</span>):</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">self</span>.__billing_amount</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We omit a setter, the property cannot be directly modified</p></li>
+<li><p>Can then access the property as we would expect</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Rob owes:"</span>, rob.billing_amount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Same output might look like,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#| echo: false</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Rob owes:"</span>, <span class="fl">130.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><em>What would the statement calculating the billable amount for a session look like?</em></p>
+<ul>
+<li><p>At it’s most basic the statement might look like,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>  amount_to_bill <span class="op">=</span> <span class="dv">30</span> <span class="op">+</span> (<span class="dv">50</span> <span class="op">*</span> session_length)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>session_lengtth</code> value is multipled by the hourly rate (<span class="math inline">\(50\)</span>)</p></li>
+<li><p>flat fee <span class="math inline">\(30\)</span> is added to the total</p></li>
+<li><p>Can then add this to the billing amount</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.__billing_amount <span class="op">=</span> <span class="va">self</span>.billing_amount <span class="op">+</span> amount_to_bill</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Observe that this approach means that each session incurs the same <span class="math inline">\(30\)</span> case opening fee</p></li>
+<li><p>It’s possible multiple sessions might be spent on the same case</p>
+<ul>
+<li>Might not incur the <span class="math inline">\(30\)</span> fee each time</li>
+<li>This would be something to confirm with the client</li>
+</ul></li>
+</ul></li>
+<li><p><em>Is it sensible to just use the values</em> <span class="math inline">\(30\)</span> <em>and</em> <span class="math inline">\(50\)</span> <em>in this code?</em></p>
+<ul>
+<li><p>No</p></li>
+<li><p>They are magic constants</p></li>
+<li><p>Better to make them internal class variables of the <code>Contact</code> class</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>      __open_fee <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>      __hourly_fee <span class="op">=</span> <span class="dv">50</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Observe that we flag them as private, they are internals for the class</p></li>
+<li><p>The new amount to bill statement is then,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>  amount_to_bill <span class="op">=</span> Contact.__open_fee <span class="op">+</span> (Contact.__hourly_fee <span class="op">*</span> session_length)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><em>Where should the above statement go?</em></p>
+<ul>
+<li><p>Adjusting the billing is something that occurs when we add a session</p></li>
+<li><p>Makes sense to go in the <code>add_session</code> code of the <code>Contact</code> class</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Adds a session (in hours) to the Contacts hours</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Updates the Contact's session hours and calculates</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co">      the billable amount owed</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co">      session_length : int | float</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co">          time spent on session in hours</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="co">      Raises</span></span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="co">      ------</span></span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="co">      Exception</span></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="co">          Raised if invalid session length passed</span></span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a><span class="co">      See Also</span></span>
+<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a><span class="co">      --------</span></span>
+<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact.valid_session_length : checks a session length is valid</span></span>
+<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="kw">not</span> Contact.validate_session_length(session_length):</span>
+<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>          <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Invalid session length"</span>)</span>
+<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__hours_worked <span class="op">=</span> <span class="va">self</span>.__hours_worked <span class="op">+</span> session_length</span>
+<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a>      amount_to_bill <span class="op">=</span> Contact.__open_fee <span class="op">+</span> (Contact.__hourly_fee <span class="op">*</span> session_length)</span>
+<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__billing_amount <span class="op">=</span> <span class="va">self</span>.__billing_amount <span class="op">+</span> amount_to_bill</span>
+<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Billing amount is updated <em>after</em> we have validated and updated the hours worked</p></li>
+</ul></li>
+</ol>
+<ul>
+<li>We change the <code>display_contact</code> method to add the billing amount</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_contact(contact):</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Displays the Contact details for the supplied contact</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co">    contact : Contact</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co">        contact to display</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co">    None</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="co">    See Also</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co">    display_contacts : Displays all contacts matching a search name</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Name:"</span>, contact.name)</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Address:"</span>, contact.address)</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Telephone:"</span>, contact.telephone)</span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hours worked for this Contact:"</span>, contact.get_hours_worked(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Amount to bill:"</span>, contact.billing_amount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The complete program can be found in <a href="./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithPropertiesAndExceptionHandling.py">Time Tracker with Billing Amount</a></li>
+</ul>
+</section>
+<section id="manage-class-versions" class="level4">
+<h4 class="anchored" data-anchor-id="manage-class-versions">Manage Class Versions</h4>
+</section>
 </section>
 </section>
 <section id="summary" class="level2">
