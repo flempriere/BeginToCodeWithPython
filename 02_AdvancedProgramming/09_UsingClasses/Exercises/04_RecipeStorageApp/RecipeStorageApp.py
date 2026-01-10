@@ -59,7 +59,7 @@ def get_ingredients():
 
     Supports duplicates for an ingredient. If a duplicate is detected the
     user will be prompted if they wish to overwrite the existing key, value
-    pair, add the description to the pair or ignore the current entry
+    pair; add the description to the pair or ignore the current entry
 
     Returns
     -------
