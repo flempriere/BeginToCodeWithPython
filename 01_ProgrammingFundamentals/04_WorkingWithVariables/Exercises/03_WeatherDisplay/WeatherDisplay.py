@@ -1,4 +1,5 @@
 # Exercise 4.3: Weather Display
+#
 # Displays the Weather in Seattle
 
 import snaps

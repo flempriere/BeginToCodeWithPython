@@ -52,6 +52,10 @@ def sort_high_to_low():
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_low_to_high : sorts from lowest to highest
     """
     pass
 
@@ -63,6 +67,10 @@ def sort_low_to_high():
     Returns
     -------
     None
+
+    See Also
+    --------
+    sort_high_to_low : sorts from highest to lowest
     """
     pass
 

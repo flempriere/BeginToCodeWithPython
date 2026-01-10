@@ -1,4 +1,4 @@
-# Input Functions
+# Example 7.12 Input Functions
 # A collection of functions for reading validated input
 # from the user
 
@@ -10,7 +10,7 @@ def read_text(prompt="Please enter some text: "):
 
     Parameters
     ----------
-    prompt: str
+    prompt : str
         Prompt the user sees before entering text
 
     Returns
@@ -42,13 +42,17 @@ def read_float(prompt):
 
     Parameters
     ----------
-    prompt: str
+    prompt : str
         Prompt the user sees before giving input
 
     Returns
     -------
     float
         The input value
+
+    See Also
+    --------
+    read_float_ranged : reads a float restricted to a closed interval
     """
     while True:
         try:
@@ -76,9 +80,9 @@ def read_float_ranged(prompt, min_value, max_value):
 
     Parameters
     ----------
-    min_value: float
+    min_value : float
         minimum value (inclusive)
-    max_value: float
+    max_value : float
         maximum value (inclusive)
 
     Returns
@@ -90,6 +94,10 @@ def read_float_ranged(prompt, min_value, max_value):
     ------
     Exception
         If min_value > max_value
+
+    See Also
+    --------
+    read_float : reads an unbounded float
     """
     if min_value > max_value:
         raise Exception("Min value is greater than max value")

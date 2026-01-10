@@ -10,6 +10,15 @@ import BTCInput
 class Contact:
     """
     Stores Contact Information
+
+    Attributes
+    ----------
+    name : str
+        Contact Name
+    address : str
+        Contact's postal or street address.
+    telephone : str
+        Contact phone number (stored as a string).
     """
 
     pass
@@ -25,6 +34,10 @@ def new_contact():
     Returns
     -------
     None
+
+    See Also
+    --------
+    Contact : class for storing contact information
     """
     print("Create the new contact")
     new_contact = Contact()
@@ -41,7 +54,7 @@ def find_contacts(search_name):
     Parameters
     ----------
     search_name : str
-        Name to search for
+        Name to search for (uses prefix matching)
 
     Returns
     -------
@@ -83,14 +96,16 @@ def edit_contacts():
     Allows user to edit contacts matching a provided name
 
     Reads in a name to search for and then allows the user to
-    edit the details of the contact.
-
-    If there are no matching contacts the function will indicate
-    that the name was not found
+    edit the details of the contact. If there are no matching contacts
+    the function will indicate that the name was not found
 
     Returns
     -------
     None
+
+    See Also
+    --------
+    find_contacts : returns contacts matching a search name
     """
     print("Edit Contact")
     contacts = find_contacts(BTCInput.read_text("Enter the contact name: "))

@@ -1,4 +1,5 @@
 # Example 6.8: Ignore Ride
+#
 # Demonstrates the use of continue to move
 # to the next loop iteration, skipping remaining
 # loop logic
