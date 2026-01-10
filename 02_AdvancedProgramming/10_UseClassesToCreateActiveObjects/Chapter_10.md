@@ -1942,7 +1942,7 @@ def display_contact(contact):
 ```
 
 - The complete program can be found in [Time Tracker with Billing
-  Amount](./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithPropertiesAndExceptionHandling.py)
+  Amount](./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithBillingAmount.py)
 
 #### Manage Class Versions
 
@@ -2173,7 +2173,7 @@ As we can see, the amount to bill is now correctly displayed
     display_contact(contact)
   ```
 
-      <__main__.Contact object at 0x7f9ddc61c500>
+      <__main__.Contact object at 0x7f72845f7fe0>
 
 - default for objects is the class name following by the memory address
   of the object
@@ -2422,7 +2422,7 @@ following questions*
         print(session_record)
       ```
 
-          <__main__.Session object at 0x7f9ddc868e90>
+          <__main__.Session object at 0x7f72844de180>
 
     - creates a `Session` with the passed `session_length` parameter
 
@@ -2706,7 +2706,7 @@ indented_code = map(indent, code)
 indented_code
 ```
 
-    <map at 0x7f9ddc58a350>
+    <map at 0x7f72844df8e0>
 
 Naively we expected a list of indented strings. Instead we have
 something called a *map object*. `map` returns something called an
@@ -3494,7 +3494,7 @@ You are encouraged to work through the full program yourself
     > directory as snaps
 
 - We can start with a simple program that [plays all the
-  notes](./Examples/15_MusicWithSnaps/PlayNotes.py),
+  notes](./Examples/15_MusicWithSnaps/01_PlayNotes.py),
 
   ``` python
     # Example 10.15.1 Play Notes

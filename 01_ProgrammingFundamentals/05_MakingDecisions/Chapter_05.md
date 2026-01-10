@@ -295,7 +295,7 @@ simply need to format the attribute as nessecary. The final
 ```
 
     The date is 10 / 1 / 2026
-    The time is 13 : 33 : 22
+    The time is 13 : 42 : 26
 
 #### Comparing Values
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 13 : 33
+    The time is 13 : 42
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -1641,8 +1641,8 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    You will meet a tall, dark stranger
-    A life of comfort is coming
+    Nobody unexpected will enter your life
+    You would do well to husband your wealth
     To define your future, avoid getting hung up on the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
