@@ -1,8 +1,7 @@
-# Exercise 9.3 Music Storage
+# Exercise 10.1 Playlist Storage
 #
-# A simple music storage app that stores tracks and their length. Provides the
-# ability to search based on track length, suggest playlists up to a certain
-# size and calculate the length of the current play list
+# Improves the Music Storage App by allowing the user to manage multiple
+# playlists
 
 import pickle
 import random
@@ -79,6 +78,10 @@ class MusicTrack:
             raise ValueError("Track length must be greater than zero")
         self.length_in_seconds = length_in_seconds
 
+    def __str__(self):
+        template = "{0} ({1} s)"
+        return template.format(self.name, self.length_in_seconds)
+
 
 def new_track():
     """
@@ -120,7 +123,6 @@ def filter_tracks_by_name(search_name, tracks_to_search):
     list[MusicTrack]
         list of tracks matching the name. If no matches
         exist the list is empty
-
     """
     search_name = search_name.strip().lower()  # normalise the search name
     results = []
@@ -343,7 +345,7 @@ def display_track(track):
     --------
     display_tracks : display all tracks in a list
     """
-    print("Name:", track.name, "(", track.length_in_seconds, "seconds )")
+    print(track)
 
 
 def display_tracks(tracks):
@@ -498,6 +500,222 @@ def find_tracks_greater_than_length():
     display_tracks(filter_tracks_greater_than_length(min_length, tracks))
 
 
+class Playlist:
+    """
+    A class representing a music playlist with a name and list of tracks
+
+    Tracks and records the length of the playlist
+    """
+
+    def __init__(self, name, tracks=[]):
+        """
+        Create a new Playlist instance
+
+        Parameters
+        ----------
+        name : str
+            name to associate with the playlist
+        tracks : list, optional
+            list of songs in the playlist, by default []
+        """
+        self.name = name
+        self.tracks = tracks
+        self.__runtime = 0
+        for song in self.tracks:
+            self.__runtime += song.length_in_seconds
+
+    def __str__(self):
+        template = """Playlist: {0}
+Total Length: {1} s
+Songs:
+{2}"""
+        return template.format(self.name, self.runtime, self.track_report)
+
+    @property
+    def runtime(self):
+        """
+        runtime : int
+            total run time of the playlist in seconds
+        """
+        return self.__runtime
+
+    @property
+    def track_report(self):
+        """
+        track_report : str
+            string representation of tracks in the playlist, giving each track
+            on its own line
+        """
+        song_strings = map(str, self.tracks)
+        return "\n".join(song_strings)
+
+    def add_track(self, track):
+        """
+        Add a new track to the playlist
+
+        Updates the playlist length
+
+        Parameters
+        ----------
+        track : MusicTrack
+            track to add to the playlist
+
+        Returns
+        -------
+        None
+
+        See Also
+        --------
+        Playlist.remove_track : removes a track from a playlist
+        """
+        # first update runtime so a non-track objects causes an error
+        self.__runtime += track.length_in_seconds
+        self.tracks.append(track)
+
+    def remove_track(self, track):
+        """
+        Remove a track from the playlist
+
+        Parameters
+        ----------
+        track : MusicTrack
+            track to remove from the playlist
+
+        See Also
+        --------
+        Playlist.add_track : add a track to a playlist
+        Playlist.clear_tracks : remove all tracks from a playlist
+        """
+        try:
+            self.tracks.remove(track)
+            self.__runtime -= track.length_in_seconds
+        except ValueError:
+            print("Could not find track:", track.name, "in the playlist")
+
+    def clear_tracks(self):
+        """
+        Remove all tracks from a playlist
+
+        Runtime is set to 0
+        """
+        self.tracks.clear()
+        self.__runtime = 0
+
+
+def valid_playlist_name(name):
+    """
+    Verifies that a playlist name is valid
+
+    Playlist names must be unique
+
+    Parameters
+    ----------
+    name : str
+        proposed name for a playlist
+
+    Returns
+    -------
+    bool
+        `True` if playlist name is valid else, `False`
+    """
+    if name == "None":
+        return False
+    for playlist in playlists:
+        if name == playlist.name:
+            return False
+    return True
+
+
+def create_playlist(tracks=[]):
+    """
+    Create a new playlist and make it the active playlist
+
+    Prompts the user for a new name for the playlist, and ensures its valid
+    then constructs a playlist and sets it as the current active playlist
+
+    Parameters
+    ----------
+    tracks : list, optional
+        tracks to assign to the playlist, by default []
+
+    See Also
+    --------
+    valid_playlist_name : validates a playlist name
+    Playlist : class used to represent a playlist
+    """
+    print("Create a new playlist")
+    global current_playlist
+
+    new_playlist_name = BTCInput.read_text("Enter the playlist name: ")
+    while not valid_playlist_name(new_playlist_name):
+        print("That playlist name is already in use")
+        new_playlist_name = BTCInput.read_text("Enter the playlist name: ")
+
+    new_playlist = Playlist(new_playlist_name, tracks)
+    current_playlist = new_playlist
+    playlists.append(new_playlist)
+
+
+def select_playlist():
+    """
+    Select an existing playlist to be the current playlist
+
+    Prompts the user for a search name then returns all playlists
+    that match that string. The user will be displayed each playlist
+    in turn and asked if they want to make that the current playlist
+
+    Notes
+    -----
+    Passing the empty string can be used to display all playlists
+    """
+    print("Select a playlist")
+    global current_playlist
+
+    search_name = BTCInput.read_text("Enter playlist name (enter to see ): ")
+
+    matched_playlists = []
+
+    for playlist in playlists:
+        if playlist.name.strip().lower().startswith(search_name.strip().lower()):
+            matched_playlists.append(playlist)
+
+    if len(matched_playlists) > 0:
+        print("Found {0} matches".format(len(matched_playlists)))
+        for playlist in matched_playlists:
+            display_playlist(playlist)
+            select = BTCInput.read_int_ranged(
+                "Select this playlist? (1 - Yes, 0 - No): ", min_value=0, max_value=1
+            )
+            if select:
+                current_playlist = playlist
+                return
+    else:
+        print("No playlists found matching that name")
+
+
+def display_playlist(playlist, name_only=True):
+    """
+    Display a playlist
+
+    Can optionally list all the tracks or just the name and length
+
+    Parameters
+    ----------
+    playlist : Playlist
+        playlist to display
+    name_only : bool, optional
+        only dispaly the playlists name and runtime, by default `True`
+
+    Returns
+    -------
+    None
+    """
+    if name_only:
+        print("{0} ({1} s)".format(playlist.name, playlist.runtime))
+    else:
+        print(playlist)
+
+
 def add_track_to_playlist():
     """
     Adds a track from the track database to the current playlist
@@ -511,7 +729,7 @@ def add_track_to_playlist():
     Returns
     -------
     None
-        Accepted tracks are added to the global playlist
+        Accepted tracks are added to the current playlist
 
     See Also
     --------
@@ -526,7 +744,7 @@ def add_track_to_playlist():
     for track in matched_tracks:
         display_track(track)
         if BTCInput.read_int_ranged("Add this track? (1 - Yes, 0 - No): ", 0, 1):
-            playlist.append(track)
+            current_playlist.add_track(track)
 
 
 def remove_tracks_from_playlist():
@@ -549,14 +767,14 @@ def remove_tracks_from_playlist():
     """
     print("Remove tracks from playlist")
     matched_tracks = filter_tracks_by_name(
-        BTCInput.read_text("Enter track to remove: "), playlist
+        BTCInput.read_text("Enter track to remove: "), current_playlist.tracks
     )
     print("Found", len(matched_tracks), "matches")
 
     for track in matched_tracks:
         display_track(track)
         if BTCInput.read_int_ranged("Remove this track? (1 - Yes, 0 - No): ", 0, 1):
-            playlist.remove(track)
+            current_playlist.remove_track(track)
 
 
 def clear_playlist():
@@ -568,7 +786,7 @@ def clear_playlist():
     None
     """
     print("Clear playlist")
-    playlist.clear()
+    current_playlist.clear_tracks()
 
 
 def calculate_playlist_length():
@@ -581,10 +799,7 @@ def calculate_playlist_length():
     None
     """
     print("Calculate length of playlist")
-    total_length = 0
-    for track in playlist:
-        total_length = total_length + track.length_in_seconds
-    print("The playlist is", total_length, "seconds long")
+    print("The playlist is", current_playlist.runtime, "seconds long")
 
 
 def suggest_playlist_of_given_length():
@@ -605,15 +820,15 @@ def suggest_playlist_of_given_length():
     None
     """
     print("Suggest playlist of given length")
-    global playlist
+    global current_playlist
 
     target_length = read_min_valued_integer(
         "Enter maximum playlist length: ", min_value=1
     )
 
     while True:
-        suggested_playlist = []
-        playlist_length = 0
+        suggested_tracks = []
+        suggested_tracks_total_length = 0
         # find tracks that could fit in the playlist
         candidate_songs = filter_tracks_shorter_than_length(target_length, tracks)
 
@@ -624,20 +839,22 @@ def suggest_playlist_of_given_length():
         while len(candidate_songs) > 0:  # stop when no more eligable songs
             # add a random song and update the playlist length
             song_choice = random.choice(candidate_songs)
-            suggested_playlist.append(song_choice)
-            playlist_length = playlist_length + song_choice.length_in_seconds
+            suggested_tracks.append(song_choice)
+            suggested_tracks_total_length = (
+                suggested_tracks_total_length + song_choice.length_in_seconds
+            )
 
             # filter out songs that no longer fit
             candidate_songs = filter_tracks_shorter_than_length(
-                target_length - playlist_length, candidate_songs
+                target_length - suggested_tracks_total_length, candidate_songs
             )
         print("Generated a playlist...")
         # let the user review the playlist
-        display_tracks(suggested_playlist)
+        display_tracks(suggested_tracks)
         if BTCInput.read_int_ranged(
             "Accept this playlist? (1 - Yes, 0 - No): ", min_value=0, max_value=1
         ):
-            playlist = suggested_playlist
+            create_playlist(suggested_tracks)
             return
         else:
             if BTCInput.read_int_ranged(
@@ -647,7 +864,7 @@ def suggest_playlist_of_given_length():
             return
 
 
-def save_playlist():
+def export_playlist():
     """
     Saves the current playlist as a human readable list
 
@@ -662,17 +879,74 @@ def save_playlist():
     Exceptions are raised if the save fails
     """
     print("Save playlist")
-    if len(playlist) == 0:
+    if len(current_playlist.tracks) == 0:
         print("No playlist to save")
         return
 
     file_name = BTCInput.read_text("Enter file to save playlist to: ")
     try:
         with open(file_name, "w") as output_file:
-            for track in playlist:
-                output_file.write(track.name + "\n")
+            output_file.write(str(current_playlist))
     except:  # noqa: E722
         print("Failed to save playlist")
+
+
+def save_playlists(file_name):
+    """
+    Saves the playlists to the given file
+
+    Playlists are stored in binary as a pickled file
+
+    Parameters
+    ----------
+    file_name : str
+        string giving the path to the file to store the playlist data in
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    An Exception is raised if the file could not be saved
+
+    See Also
+    --------
+    load_playlists : load playlists from a pickled file
+    """
+    print("Save playlists")
+    with open(file_name, "wb") as out_file:
+        pickle.dump(playlists, out_file)
+
+
+def load_playlists(file_name):
+    """
+    Loads the playlists from the given file
+
+    Playlists are stored in binary as a pickled file
+
+    Parameters
+    ----------
+    file_name : str
+        string giving the path to the file where the playlists data is stored
+
+    Returns
+    -------
+    None
+        Playlists are loaded into the global playlists list
+
+    Raises
+    ------
+    An Exception is raised if the file could not be loaded
+
+    See Also
+    --------
+    save_playlists : save playlists as a pickled file
+    """
+    global playlists  # connect to global track list to load into
+    print("Load playlists")
+    with open(file_name, "rb") as input_file:
+        playlists = pickle.load(input_file)
 
 
 def run_track_menu():
@@ -781,15 +1055,16 @@ def run_playlist_management_menu():
     """
     Provides the user with a looping playlist menu
 
-    The user has to the option to
-    1. Add a track to the playlist
-    2. Remove a track from the playlist
-    3. Clear the playlist
-    4. Display the playlist
-    5. Show the runtime of the playlist
-    6. Get a suggested playlist of a target length
-    7. Save the current playlist
-    8. Return to the main menu
+    1. Create a new playlist
+    2. Select playlist
+    3. Get a suggested playlist of a target length
+    4. Add a track to the playlist
+    5. Remove a track from the playlist
+    6. Clear the playlist
+    7. Display the playlist
+    8. Show the runtime of the playlist
+    9. Export the current playlist
+    10. Return to the main menu
 
     Returns
     -------
@@ -802,37 +1077,49 @@ def run_playlist_management_menu():
         occur in live code, please raise a bug report if encountered
     """
     playlist_management_menu = """Playlist Management
+Current playlist is {0}
 
-1. Add Track to Playlist
-2. Remove Track from Playlist
-3. Clear Playlist
-4. Display Current Playlist
-5. Show Runtime of Current Playlist
-6. Suggest Playlist of Specified Length
-7. Save Current Playlist
-8. Back to Main Menu
+1. Create a new playlist
+2. Select playlist
+3. Get a suggested playlist of a target length
+4. Add a track to the playlist
+5. Remove a track from the playlist
+6. Clear the playlist
+7. Display the playlist
+8. Show the runtime of the playlist
+9. Export the current playlist
+10. Return to the main menu
 
 Enter your command: """
     while True:
         command = BTCInput.read_int_ranged(
-            prompt=playlist_management_menu, min_value=1, max_value=8
+            prompt=playlist_management_menu.format(current_playlist.name),
+            min_value=1,
+            max_value=10,
         )
         if command == 1:
-            add_track_to_playlist()
+            create_playlist()
         elif command == 2:
-            remove_tracks_from_playlist()
+            select_playlist()
         elif command == 3:
-            clear_playlist()
-        elif command == 4:
-            display_tracks(playlist)
-        elif command == 5:
-            calculate_playlist_length()
-        elif command == 6:
             suggest_playlist_of_given_length()
-        elif command == 7:
-            save_playlist()
-        elif command == 8:
+        elif command == 10:
             break
+        elif current_playlist.name == "None":
+            print("There is no active playlist. Please select or create one")
+            continue
+        elif command == 4:
+            add_track_to_playlist()
+        elif command == 5:
+            remove_tracks_from_playlist()
+        elif command == 6:
+            clear_playlist()
+        elif command == 7:
+            display_playlist(current_playlist, name_only=False)
+        elif command == 8:
+            calculate_playlist_length()
+        elif command == 9:
+            export_playlist()
         else:
             raise ValueError(
                 "Invalid command id "
@@ -879,9 +1166,10 @@ Enter your command: """
             run_playlist_management_menu()
         elif command == 4:
             try:
-                save_tracks(file_name)
+                save_tracks(tracks_file_name)
+                save_playlists(playlists_file_name)
             except:  # noqa: E722
-                print("Tracks failed to save")
+                print("Error while trying to save tracks and playlists")
             break
         else:
             raise ValueError(
@@ -889,14 +1177,23 @@ Enter your command: """
             )
 
 
-file_name = "tracks.pickle"
+tracks_file_name = "tracks.pickle"
+playlists_file_name = "playlists.pickle"
 
 try:
-    load_tracks(file_name)
+    load_tracks(tracks_file_name)
 except:  # noqa: E722
     print("Tracks file not found")
     tracks = []
 
-playlist = []
+try:
+    load_playlists(playlists_file_name)
+except:  # noqa: E722
+    print("Playlist file not found")
+    playlists = []
+
+# null object
+no_playlist = Playlist(name="None")
+current_playlist = no_playlist
 
 run_main_menu()
