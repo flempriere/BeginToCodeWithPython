@@ -29,6 +29,7 @@ website:
           - section: 02_AdvancedProgramming/09_UsingClasses/Chapter_09.qmd
             contents:
               - 02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.qmd
+          - 02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.qmd
 format:
   html:
     code-fold: false

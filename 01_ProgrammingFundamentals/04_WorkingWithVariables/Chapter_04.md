@@ -2,55 +2,58 @@
 
 - [Notes](#notes)
   - [Variables in Python](#variables-in-python)
-    - [Example: Working with Variables](#example-working-with-variables)
+    - [Make Something Happen: Working with
+      Variables](#make-something-happen-working-with-variables)
     - [Python Names](#python-names)
-    - [Exercise: Typing Errors and
-      Testing](#exercise-typing-errors-and-testing)
-    - [Example: Self-Timer Party Game](#example-self-timer-party-game)
+    - [Code Analysis: Typing Errors and
+      Testing](#code-analysis-typing-errors-and-testing)
+    - [Make Something Happen: Self-Timer Party
+      Game](#make-something-happen-self-timer-party-game)
   - [Working with Text](#working-with-text)
-    - [Example: Text and Numeric
-      Variables](#example-text-and-numeric-variables)
+    - [Make Something Happen: Text and Numeric
+      Variables](#make-something-happen-text-and-numeric-variables)
     - [Marking the Start and End of
       Strings](#marking-the-start-and-end-of-strings)
     - [Escape Characters in Text](#escape-characters-in-text)
-      - [Exercise: Investigating Escape
-        Sequences](#exercise-investigating-escape-sequences)
+      - [Code Analysis: Investigating Escape
+        Sequences](#code-analysis-investigating-escape-sequences)
     - [Read in Text using the `input`
       Function](#read-in-text-using-the-input-function)
-      - [Example: Use `input` to make a “greeter”
-        Program](#example-use-input-to-make-a-greeter-program)
+      - [Make Something Happen: Use `input` to make a “greeter”
+        Program](#make-something-happen-use-input-to-make-a-greeter-program)
   - [Working with Numbers](#working-with-numbers)
     - [Convert Strings into Integer
       Values](#convert-strings-into-integer-values)
       - [Example: Configurable Egg
         Timer](#example-configurable-egg-timer)
-      - [Exercise: Reading Numbers](#exercise-reading-numbers)
+      - [Code Analysis: Reading Numbers](#code-analysis-reading-numbers)
     - [Whole Numbers and Real Numbers](#whole-numbers-and-real-numbers)
-      - [Exercise: Whole Numbers vs Real
-        Numbers](#exercise-whole-numbers-vs-real-numbers)
+      - [Code Analysis: Whole Numbers vs Real
+        Numbers](#code-analysis-whole-numbers-vs-real-numbers)
     - [Real Numbers and Floating
       Point](#real-numbers-and-floating-point)
-      - [Exercise: Floating Point Variables and
-        Errors](#exercise-floating-point-variables-and-errors)
-      - [Example: Working with Floating Point
-        Variables](#example-working-with-floating-point-variables)
+      - [Code Analysis: Floating Point Variables and
+        Errors](#code-analysis-floating-point-variables-and-errors)
+      - [Code Analysis: Working with Floating Point
+        Variables](#code-analysis-working-with-floating-point-variables)
     - [Converting `string` into `float`
       values](#converting-string-into-float-values)
       - [Example: Ultra-Precise Egg
         Timer](#example-ultra-precise-egg-timer)
     - [Perform Calculations](#perform-calculations)
-      - [Exercise: Work out the Results](#exercise-work-out-the-results)
+      - [Code Analysis: Work out the
+        Results](#code-analysis-work-out-the-results)
     - [Convert Between `float` and
       `int`](#convert-between-float-and-int)
-      - [Exercise: Calculating a Pizza
-        Order](#exercise-calculating-a-pizza-order)
-      - [Exercise: Converting Between Fahrenheit and
-        Centigrade](#exercise-converting-between-fahrenheit-and-centigrade)
+      - [Make Something Happen: Calculating a Pizza
+        Order](#make-something-happen-calculating-a-pizza-order)
+      - [Make Something Happen: Converting Between Fahrenheit and
+        Centigrade](#make-something-happen-converting-between-fahrenheit-and-centigrade)
   - [Weather Snaps](#weather-snaps)
     - [Example: Seattle Temperature](#example-seattle-temperature)
     - [Example: Seattle Weather](#example-seattle-weather)
-    - [Exercise: Weather Display
-      Program](#exercise-weather-display-program)
+    - [Make Something Happen: Weather Display
+      Program](#make-something-happen-weather-display-program)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -114,7 +117,7 @@ class zeroDescr BG
   variable `total` to be equal to the sum of the variables `us_sales`
   and `world_wide_sales`
 
-#### Example: Working with Variables
+#### Make Something Happen: Working with Variables
 
 *Start up a python interpreter, then run the following commands in
 sequence*
@@ -125,7 +128,7 @@ sequence*
      total = 0
     ```
 
-    - *No output is generated, the assignment is performed silently*
+    - No output is generated, the assignment is performed silently
 
 2. `total`
 
@@ -135,9 +138,9 @@ sequence*
 
         0
 
-    - `0` *output*
-    - `total` *has been assigned* `0`*, putting the variable name into
-      the terminal returns the value associated with this value*
+    - `0` output
+    - `total` has been assigned `0`, putting the variable name into the
+      terminal returns the value associated with this value
 
 3. `total = total + 10`
 
@@ -145,11 +148,11 @@ sequence*
      total = total + 10
     ```
 
-    - *No output*
-    - *Like with the first statement, variable assignment generates no
-      output*
-    - *Here we assign* `total` *the value given by the **current** value
-      of* `total` *plus* $10$
+    - No output
+    - Like with the first statement, variable assignment generates no
+      output
+    - Here we assign `total` the value given by the *current* value of
+      `total` plus $10$
 
 4. `total`
 
@@ -159,8 +162,8 @@ sequence*
 
         10
 
-    - `10` *output*
-    - *The new value of* `total` *is printed*
+    - `10` output
+    - The new value of `total` is printed
 
 #### Python Names
 
@@ -170,7 +173,8 @@ sequence*
   2. Can contain letters, numbers or \_ characters
 - Some valid names are
   - `total`
-  - `xyz` -`t0tal`
+  - `xyz`
+  - `t0tal`
 - Some invalid names are
   - `2_be_or_not_to_be`
     - Starts with a number which is not allowed
@@ -202,7 +206,7 @@ sequence*
   - Longer names can be hard to read
   - Names should be no longer than they need to convey clear meaning
 
-#### Exercise: Typing Errors and Testing
+#### Code Analysis: Typing Errors and Testing
 
 *You’ve already seen that python can generate errors when it is unable
 to interpret an input. Answer the following questions to investigate how
@@ -213,7 +217,7 @@ been defined*
     to add* $10$ *to the variable* `total`*?*
 
     ``` python
-     #| echo: false
+     # clearing saved variables in the notebook
      %reset
     ```
 
@@ -236,6 +240,8 @@ been defined*
       the use of all lowercase letters for variable names
 
     > [!NOTE]
+    >
+    > **Identifying Errors**
     >
     > Other languages with more strict type systems and variable
     > declarations, may be able to identify logic errors like the one
@@ -262,7 +268,7 @@ been defined*
     equals is mispelled. What will happen when this program runs?*
 
     ``` python
-     #| echo: false
+     # Again clear the notebook variables
      %reset
     ```
 
@@ -285,10 +291,10 @@ been defined*
       error. Since the error is that `Total` doesn’t exist, we see a
       `NameError`.
 
-#### Example: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
+#### Make Something Happen: [Self-Timer Party Game](./Examples/01_SelfTimer/selfTimer.py)
 
 *Consider the [Nerves of
-Steel](../03_PythonProgramStructure/Chapter_03.qmd#exercise-34-nerves-of-steel)
+Steel](../03_PythonProgramStructure/Chapter_03.qmd#make-something-happen-nerves-of-steel)
 exercise from [Chapter 3](../03_PythonProgramStructure/Chapter_03.qmd).
 In the game, players must remain standing right up to the moment before
 they think a random timer will expire*
@@ -310,27 +316,27 @@ the time remaining and then sleeping for that period of time. This means
 we need to use a variable to store the value of the time remaining*
 
 ``` python
-# Chapter 4 Example 1: Self Timer
-# Based on original code by Rob Miles
+# Example 4.1: Self Timer
+#
 # Extends the Nerves of Steel Game from Chapter 3, by adding a skill element
 # with the players being informed of how long they have to stand for
 
-import time
 import random
+import time
 
-print('Welcome to Self Timer')
-print() #just prints a newline
-print('Everybody stand up')
-print('Stay standing until you think the time has ended')
-print('Then sit down')
-print('Anyone still standing when the time expires loses')
-print('The last person to sit down before the time ended will win')
+print("Welcome to Self Timer")
+print()  # just prints a newline
+print("Everybody stand up")
+print("Stay standing until you think the time has ended")
+print("Then sit down")
+print("Anyone still standing when the time expires loses")
+print("The last person to sit down before the time ended will win")
 
-stand_time = random.randint(5, 20) #generate the time to stand for
+stand_time = random.randint(5, 20)  # generate the time to stand for
 
-print('Stay standing for', stand_time, 'seconds.') #display standing time
-time.sleep(stand_time) #sleep for the standing time
-print('****TIMES UP, LAST TO SIT WINS!****')
+print("Stay standing for", stand_time, "seconds.")  # display standing time
+time.sleep(stand_time)  # sleep for the standing time
+print("****TIMES UP, LAST TO SIT WINS!****")
 ```
 
     Welcome to Self Timer
@@ -340,18 +346,17 @@ print('****TIMES UP, LAST TO SIT WINS!****')
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 6 seconds.
+    Stay standing for 5 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
-- *Most of the code is just text, but the key takeaway is the line
-  `stand_time = random.randint(5, 20)` which assigns `stand_time` the
-  result of `random.randint(5, 20)`, i.e a random number from `5` to
-  `20` inclusive*
-- *We then call `stand_time` is our call to `print` to display the time,
-  and then `sleep` for the same amount of time*
-- *Observe we couldn’t just write the number into both functions
-  explicitly since it’s randomly generated, we would need to know ahead
-  of time what the value will be*
+Most of the code is just text, but the key takeaway is the line
+`stand_time = random.randint(5, 20)` which assigns `stand_time` the
+result of `random.randint(5, 20)`, i.e a random number from `5` to `20`
+inclusive. We then call `stand_time` is our call to `print` to display
+the time, and then `sleep` for the same amount of time. Observe we
+couldn’t just write the number into both functions explicitly since it’s
+randomly generated, we would need to know ahead of time what the value
+will be
 
 ### Working with Text
 
@@ -360,9 +365,17 @@ print('****TIMES UP, LAST TO SIT WINS!****')
 - Can use a string variable anywhere we would use a string literal,
   e.g. `message = 'the name is ' + customer_name` performs the string
   concatenation of `'the name is'` and the value of `customer_name` and
-  assigns the result to `message`
+  assigns the result to `message`, which we can confirm below,
 
-#### Example: Text and Numeric Variables
+``` python
+  customer_name = "fred"
+  message = "the name is " + customer_name
+  print(message)
+```
+
+    the name is fred
+
+#### Make Something Happen: Text and Numeric Variables
 
 *Python tracks the contents of each variable and only allows operations
 that make sense. Using the python interpreter experiment with the
@@ -383,14 +396,14 @@ customer_age_in_years + customer_name
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    Cell In[12], line 1
+    Cell In[13], line 1
     ----> 1 customer_age_in_years + customer_name
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
 
-*Here we are trying to add a number and a string, which we saw
-previously shouldn’t work. The terminal should provide some error output
-like the below*
+Here we are trying to add a number and a string, which we saw previously
+shouldn’t work. The terminal should provide some error output like the
+below
 
 *Now try the below line*
 
@@ -398,15 +411,17 @@ like the below*
 customer_age_in_years = 'Fred'
 ```
 
-*One might expect the above to generate an error, after all we assign
+One might expect the above to generate an error, after all we assign
 text to a variable that was just storing a number. Instead python simply
 discards the old numeric value of the variable, and now stores text in
 `customer_age_in_years`. You should generally avoid doing this, being
 able to reason about the type of a variable is typically an important
 part of safe and effective programming, and the weak typing of python is
-typically disliked outside of quick prototyping*
+typically disliked outside of quick prototyping
 
 > [!NOTE]
+>
+> **Weak vs Strong Typing**
 >
 > The above behaviour is an example of python as a what’s called a
 > weakly typed language. Types are a quite developed part of programming
@@ -424,7 +439,7 @@ typically disliked outside of quick prototyping*
 #### Marking the Start and End of Strings
 
 - Python lets you use either single-quotes (’) or double-quotes (“)
-  - Lets us include ’ or ” in a string
+  - Lets us include ’ or ” in a string, by using the alternate delimiter
 - For example, compare the two quote snippets,
 
 ``` python
@@ -440,7 +455,7 @@ print('It's a trap')
 ```
 
     SyntaxError: unterminated string literal (detected at line 1) (860608861.py, line 1)
-      Cell In[15], line 1
+      Cell In[16], line 1
         print('It's a trap')
                           ^
     SyntaxError: unterminated string literal (detected at line 1)
@@ -460,7 +475,7 @@ print('''...and then Luke said "It's a trap"''')
 
 - Triple quoted strings have the added advantage of capturing newlines.
   To see this, we could rewrite the intro string in [Nerves of
-  Steel](../03_PythonProgramStructure/Chapter_03.qmd#exercise-nerves-of-steel)
+  Steel](../03_PythonProgramStructure/Chapter_03.qmd#make-something-happen-nerves-of-steel)
   as
 
 ``` python
@@ -479,6 +494,8 @@ Sit down just before you think the time will end. ''')
 
 > [!CAUTION]
 >
+> **String Delimiters must Match**
+>
 > You must using matching delimiters, if we try to mix them we’ll get an
 > error
 >
@@ -487,7 +504,7 @@ Sit down just before you think the time will end. ''')
 > ```
 >
 >     SyntaxError: unterminated string literal (detected at line 1) (2736789527.py, line 1)
->       Cell In[18], line 1
+>       Cell In[19], line 1
 >         print('hello")
 >               ^
 >     SyntaxError: unterminated string literal (detected at line 1)
@@ -532,7 +549,7 @@ Sit down just before you think the time will end. ''')
 >
 > The most common escape characters are newline `\n` and escaping quotes
 
-> [!NOTE]
+> [!IMPORTANT]
 >
 > **Newline in Python**
 >
@@ -545,7 +562,7 @@ Sit down just before you think the time will end. ''')
 > automatically and we can just use `\n` regardless of the operating
 > system we are actually running on
 
-##### Exercise: Investigating Escape Sequences
+##### Code Analysis: Investigating Escape Sequences
 
 *Start a python interpreter and answer the following questions*
 
@@ -639,7 +656,7 @@ Sit down just before you think the time will end. ''')
 input('Press enter to continue...')
 ```
 
-##### Example: Use `input` to make a “greeter” Program
+##### Make Something Happen: Use `input` to make a “greeter” Program
 
 *Use python to create a simple program that will issue a personalised
 greeting. Create a new program
@@ -669,7 +686,7 @@ would output,*
 - `input` returns a string
   - Fine if we want that, but what if we want to handle numbers?
   - e.g. if we wanted to have a user-specified [egg
-    timer](../03_PythonProgramStructure/Chapter_03.qmd#exercise-egg-timer)
+    timer](../03_PythonProgramStructure/Chapter_03.qmd#make-something-happen-make-an-egg-timer)
 - `int` is a function that converts the argument to a whole number e.g.
 
 ``` python
@@ -679,35 +696,42 @@ time_int = int(time_next) #perform conversion to number
 
 ##### Example: [Configurable Egg Timer](./Examples/03_ConfigurableEggTimer/ConfigurableEggTimer.py)
 
-- *The complete program would then look like,*
+- The complete program would then look like,
 
-``` python
-# Example 4.3: Configurable Egg Timer
-# Reads in a user specified time to set the timer for
+  ``` python
+    # Example 4.3: Configurable Egg Timer
+    #
+    # Reads in a user specified time to set the timer for
 
-import time
+    import time
 
-time_text = input("Enter the cooking time in seconds: ")
-time_int = int(time_text)
+    time_text = input("Enter the cooking time in seconds: ")
+    time_int = int(time_text)
 
-print("Put the egg in boiling water now")
-input("Press enter to continue once the egg is in...")
+    print("Put the egg in boiling water now")
+    input("Press enter to continue once the egg is in...")
 
-time.sleep(time_int)
+    time.sleep(time_int)
 
-print("Take the egg out now")
-```
+    print("Take the egg out now")
+  ```
 
-##### Exercise: Reading Numbers
+- This basic pattern works just as well for an alarm as it does for a
+  configurable timer
+
+##### Code Analysis: Reading Numbers
 
 *Consider the previous [example](#example-configurable-egg-timer), and
 answer the following questions*
 
 1. *How many variables are used in the program above?*
+
     - two, the first `time_text` stores the initial text input, while
       the second `time_int` contains the converted numeric
       representation
+
 2. *Could you write the program without the time_text variable?*
+
     - Yes, we could immediately pass the input result to `int`, e.g.
 
     ``` python
@@ -716,8 +740,10 @@ answer the following questions*
 
     - It’s an open debate which format is clearer. In the second there’s
       more to grok on one line, but the whole workflow is there
+
 3. *What do you think will happen if the user enters something other
     than a number?*
+
     - Let us find out,
 
     ``` python
@@ -727,7 +753,7 @@ answer the following questions*
         ValueError: invalid literal for int() with base 10: 'kaboom'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[24], line 1
+        Cell In[25], line 1
         ----> 1 x = int('kaboom')
 
         ValueError: invalid literal for int() with base 10: 'kaboom'
@@ -735,7 +761,7 @@ answer the following questions*
     - We get an error, `int` tries to convert the string `'kaboom'` to
       an integer, which it clearly cant
     - The art of programming to handle invalid input like the above is
-      called error-handling, we’ll see that later
+      called *error-handling*, we’ll see that later
 
 #### Whole Numbers and Real Numbers
 
@@ -747,27 +773,32 @@ answer the following questions*
     - Must be truncated to be stored in memory, so cannot always be
       stored accurately
 
-##### Exercise: Whole Numbers vs Real Numbers
+##### Code Analysis: Whole Numbers vs Real Numbers
 
 *Learn about the differences between whole numbers and real numbers
 through the following questions*
 
 1. *I’m building a device that can count the number of hairs on your
     head. Should this be stored as a whole or real number?*
+
     - Integer, we generally wouldn’t count fractions of a hair
     - Alternatively, given how many hairs there are, and that we might
       not care about being precise, we *might* instead want to use a
       real number to store the approximate magnitude
+
 2. *I want to use my hair-counting machine on* $100$ *people and
     determine the average number of hairs on all their heads. Should I
     use this value as a whole or real number?*
+
     - We expect that the average will not be a whole number, so we
       should store it as a real number
     - Alternatively, we may not *care* about getting the number exact
       down to the fraction, so we could use a whole number to round to
       the nearest number
+
 3. *I want to keep track of the price of a product in my program.
     Should I use whole numbers or real numbers?*
+
     - Naively we would a real number, however as we mentioned real
       numbers have some uncertainty stored in them
     - When dealing with financial values we *need* to maintain that
@@ -788,6 +819,18 @@ through the following questions*
 >
 > **The way you store a variable depends on what you want to do with
 > it**
+>
+> As the discussion above highlights, sometimes the answer to how we
+> want to store data is not the immediate first answer. It’s important
+> to consider not just what the natural representation of a value is,
+> but what it’s purpose in the code is.
+>
+> For example as we discussed above, money is naturally expressed as
+> real numbers. However due to the it’s use case, which requires high
+> precision and also generally a limited range (values of even a
+> trillion are rare, and we typically only consider down to whole cents)
+> compared to the full range of a floating point number we might want to
+> look at alternative representations
 
 #### Real Numbers and Floating Point
 
@@ -813,7 +856,7 @@ through the following questions*
 - A quirk of floating point is that some apparently simple numbers like
   $0.1$ can’t be stored exactly
 
-##### Exercise: Floating Point Variables and Errors
+##### Code Analysis: Floating Point Variables and Errors
 
 *Conduct the following experiments in the python shell to learn about
 floating points*
@@ -868,10 +911,8 @@ floating points*
 > Using higher precision can result in slower programs that use more
 > memory
 
-##### Example: Working with Floating Point Variables
-
-- *Python automatically creates variables for use in programs*
-- *The type of a variable is determined by what is stored in it*
+- Python automatically creates variables for use in programs
+- The type of a variable is determined by what is stored in it
 
 ``` python
 name = 'Rob'
@@ -881,71 +922,84 @@ age = 25
 - The above creates two variables
   - One `name` is a `string` type
   - The other `age` is an `int` or integer type
-- *You can create a floating point variable by assigning a floating
-  point number e.g. the below creates a variable* `x` *and assigns it
-  the floating point value* $1.5$
 
-``` python
-x = 1.5
-x
-```
+##### Code Analysis: Working with Floating Point Variables
 
-    1.5
+*Work through the following following questions to understand how
+floating-point variables work?*
 
-- *Let’s consider what happens if we assign integral values to floating
-  point variables*
+1. *How do you create a floating point variable?*
 
-  - *The below assigns the integer value* $1.0$ to a variable `y`
-  - *If we print the value back we can say it keeps the decimal,
-    indicating it is a floating point value*
+    - You can create a floating point variable by assigning a floating
+      point number e.g. the below creates a variable\* `x` \*and assigns
+      it the floating point value $1.5$
 
-  ``` python
-    y = 1.0
-    y
-  ```
+    ``` python
+     x = 1.5
+     x
+    ```
 
-      1.0
+        1.5
 
-  - *i.e. by writing the decimal point we* **coerce** *the type of* `y`
-    *to be floating point*
+2. *What happens if you assign an integer to a floating point
+    variable?*
 
-- *The next question is to consider what happens when we mix integer and
-  floating point types in operations, e.g. if we compare the two
-  additions below, we can see that when we add floating points, the
-  addition stays a floating point even if the result is integral*
+    - The below assigns the integer value $1.0$ to a variable `y`
+    - If we print the value back we can see it keeps the decimal,
+      indicating it is a floating point value
 
-  ``` python
-    2 + 2
-  ```
+    ``` python
+     y = 1.0
+     y
+    ```
 
-      4
+        1.0
 
-  ``` python
-    2.0 + 2.0
-  ```
+    - i.e. by writing the decimal point we *coerce* the type of `y` to
+      be floating point
 
-      4.0
+3. *What happens when we mix floating point and integers in
+    calculations?*
 
-- *If we mix a floating point and integer type we can also see that the
-  result is returned as a floating point (even when the final result is
-  integral)*
+    - If we compare the two additions below, we can see that when we add
+      floating points, the addition stays a floating point even if the
+      result is integral
 
-  ``` python
-  2 + 2.0
-  ```
+    ``` python
+     2 + 2
+    ```
 
-      4.0
+        4
 
-- *Lastly what happens if we divide two coprime integers?, we see that
-  the result gives the appropriate floating point fraction*
+    ``` python
+     2.0 + 2.0
+    ```
 
-``` python
-1/2
-```
+        4.0
 
-    0.5
+    - If we mix a floating point and integer type we can also see that
+      the result is returned as a floating point (even when the final
+      result is integral)
+
+    ``` python
+     2 + 2.0
+    ```
+
+        4.0
+
+    - Lastly what happens if we divide two coprime integers?
+    - We see that the result gives the appropriate floating point
+      fraction
+
+    ``` python
+     1/2
+    ```
+
+        0.5
 
 > [!WARNING]
+>
+> **Integer Division**
 >
 > While the last point about division behaviour may seem obvious if you
 > haven’t programmed before you would do well to be careful. In many
@@ -985,11 +1039,10 @@ time_float = float(time_text)
 
 ##### Example: [Ultra-Precise Egg Timer](./Examples/04_UltraPreciseEggTimer/UltraPreciseEggTimer.py)
 
-*The complete program would then look like*
+- The complete program would then look like
 
 ``` python
-# Example 4.4
-# Ultra-Precise Egg Timer
+# Example 4.4 Ultra-Precise Egg Timer
 #
 # A version of the Configurable Egg Timer using floating point for the input time
 
@@ -1006,8 +1059,8 @@ time.sleep(time_float)
 print("Take the egg out now")
 ```
 
-*You can see the code is the same except we make the subsitution* `int`
-$\to$ `float`
+- The code is the same except we make the subsitution `int` $\to$
+  `float`
 
 #### Perform Calculations
 
@@ -1029,18 +1082,18 @@ $\to$ `float`
 
 - Basic operators and their precedence
 
-##### Exercise: Work out the Results
+##### Code Analysis: Work out the Results
 
-*See if you can work out the values of* `a`, `b` and `c` when the
-following statements are evaluated,
+*See if you can work out the values of* `a`*,* `b` *and* `c` *when the
+following statements are evaluated,*
 
 ``` python
-a = 1
-b = 2
-c = a + b
+    a = 1
+    b = 2
+    c = a + b
 
-c = c * (a + b)
-b = a + b + c
+    c = c * (a + b)
+    b = a + b + c
 ```
 
 The first three lines give `a` = $1$, `b` = $2$ and `c` = $3$.
@@ -1085,6 +1138,8 @@ print('c: ', c)
 
 > [!CAUTION]
 >
+> **Dumb Calculations**
+>
 > Python won’t try and stop you if you do something that mathematically
 > makes no sense like dividing a number by zero, instead an error is
 > raised, but this won’t occur until your program runs! Therefore when
@@ -1099,7 +1154,7 @@ print('c: ', c)
 >     ZeroDivisionError: division by zero
 >     ---------------------------------------------------------------------------
 >     ZeroDivisionError                         Traceback (most recent call last)
->     Cell In[37], line 1
+>     Cell In[38], line 1
 >     ----> 1 1/0
 >
 >     ZeroDivisionError: division by zero
@@ -1123,7 +1178,7 @@ z
 - If we want to go the other way we can use `int` to convert a `float`
   to an `int`.
   - The number is rounded towards zero, i.e. fractional components are
-    truncated (see @integer-division)
+    truncated (see the callout-box above about integer division)
 
 ``` python
 i = int(2.9)
@@ -1132,7 +1187,7 @@ i
 
     2
 
-##### Exercise: Calculating a Pizza Order
+##### Make Something Happen: Calculating a Pizza Order
 
 *Consider the following
 [program](./Examples/05_PizzaOrderCalculator/PizzaOrderCalculator.py)
@@ -1142,6 +1197,7 @@ hackathon with* $x$ *number of particpants using the heuristic that* $1$
 
 ``` python
 # Example 4.5: Pizza Order Calculator
+#
 # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
 
 students_int = int(
@@ -1159,64 +1215,66 @@ $1.5$*, the program recommends ordering a fractional number of pizzas.
 This is generally not possible, so we need to convert the output to an
 integer.*
 
-1. *Modify the [program](#exercise-calculating-a-pizza-order) to return
-    an `int` by calling `int` directly during the calculation of
+1. *Modify the
+    [program](#make-something-happen-calculating-a-pizza-order) to
+    return an `int` by calling `int` directly during the calculation of
     `pizza_count`. What potential problems does this solution have?*
 
     ``` python
-    # Exercise 4.1.1: Pizza Order Calculator
-    # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
-    # Converts the rseult to an integer using int when calculating pizza_count
-    # has the disadvantage it will tend to underestimate the number of pizzas needed
+     # Exercise 4.1.1: Pizza Order Calculator
+     #
+     # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
 
-    students_int = int(
-     input("How many students are attending? ")
-    )  # read in string, convert to int and store
-    pizza_count = int(students_int / 1.5)  # perform division int -> float
-    print("You will need", pizza_count, "pizzas")
+     students_int = int(
+         input("How many students are attending? ")
+     )  # read in string, convert to int and store
+     pizza_count = students_int / 1.5  # perform division int -> float
+     print("You will need", pizza_count, "pizzas")
     ```
 
     - This method has the disadvantage that it will tend to
-      underestimate the number of pizzas needed. For example if we
-      needed to feed $40$ people, the program would give us $26$, which
-      can satisfy, $39$ people, meaning someone goes hungry
+      underestimate the number of pizzas needed.
+    - For example if we needed to feed $40$ people, the program would
+      give us $26$, which can satisfy, $39$ people, meaning someone goes
+      hungry
 
 2. *Modify the
     [program](./Exercises/01_PizzaOrderCalculator/PizzaOrderCalculatorIntOnResultPlusOne.py)
     to return an `int` by calling `int` to convert the division to an
-    `int` then adding $1$. Explain how this changes the behaviour*
+    `int` then adding* $1$*. Explain how this changes the behaviour*
 
     ``` python
-    # Exercise 4.1.2: Pizza Order Calculator
-    # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
-    # Converts the rseult to an integer using int on pizza_count then adding one
-    # has the disadvantage it will tend to overestimate the number of pizzas needed
+     # Exercise 4.1.2: Pizza Order Calculator
+     #
+     # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
+     # Converts the rseult to an integer using int on pizza_count then adding one
+     # has the disadvantage it will tend to overestimate the number of pizzas needed
 
-    students_int = int(
-        input("How many students are attending? ")
-    )  # read in string, convert to int and store
-    pizza_count = int(students_int / 1.5) + 1  # perform division int -> float
-    print("You will need", pizza_count, "pizzas")
+     students_int = int(
+         input("How many students are attending? ")
+     )  # read in string, convert to int and store
+     pizza_count = int(students_int / 1.5) + 1  # perform division int -> float
+     print("You will need", pizza_count, "pizzas")
     ```
 
     - This method will tend to add an additional spare pizza or
-      overestimate the number of pizzas needed. Since it’s generally
-      better for there to be a little left over than someone go hungry,
-      this behaviour is probably preferred.
+      overestimate the number of pizzas needed.
+    - Since it’s generally better for there to be a little left over
+      than someone go hungry, this behaviour is probably preferred.
 
 > [!IMPORTANT]
 >
 > **Never assume you know what a program is supposed to do**
 >
 > When faced with a choice like the above for the [pizza order
-> calculator](#exercise-calculating-a-pizza-order) for a product being
-> made by a client, you should *not* decide what the expected behaviour
-> is yourself. For example, in the above the customer may prefer to
-> round down the number of pizzas to reduce cost.
+> calculator](#make-something-happen-calculating-a-pizza-order) for a
+> product being made by a client, you should *not* decide what the
+> expected behaviour is yourself. For example, in the above the customer
+> may prefer to round down the number of pizzas to reduce cost.
 >
 > Never assume you know what the program should do, ask the client
 
-##### Exercise: Converting Between Fahrenheit and Centigrade
+##### Make Something Happen: Converting Between Fahrenheit and Centigrade
 
 *Write a program to convert from Fahrenheit to Centigrade. The formula
 for this is*
@@ -1228,25 +1286,29 @@ $$
 $$
 
 Our solution is very similar to the [Pizza
-Calculator](#exercise-calculating-a-pizza-order), but with some of the
-text changed. The other major difference is that we want to be able to
-accept a `float` value, and output a `float` value.
+Calculator](#make-something-happen-calculating-a-pizza-order), but with
+some of the text changed. The other major difference is that we want to
+be able to accept a `float` value, and output a `float` value.
 
 ``` python
-  # Exercise 4.2: Fahrenheit to Celcius
-  # Converts Fahrenheit to Celcius
+    # Exercise 4.2: Fahrenheit to Celcius
+    #
+    # Converts Fahrenheit to Celcius
 
-  temperature_fahrenheit = float(
-      input("Enter a temperature in Fahrenheit: ")
-  )  # read in string, convert to float
-  temperature_centrigrade = (temperature_fahrenheit - 32) / 1.8
-  print("The temperature is", temperature_centrigrade, "degrees Celcius")
+    temperature_fahrenheit = float(
+        input("Enter a temperature in Fahrenheit: ")
+    )  # read in string, convert to float
+    temperature_centrigrade = (temperature_fahrenheit - 32) / 1.8
+    print("The temperature is", temperature_centrigrade, "degrees Celcius")
 ```
 
 A sample output may look like,
 
     Enter a temperature in Fahrenheit: 0
     The temperature is -17.77777777777778 degrees Celcius
+
+- Later we’ll see how we can format the output to be a bit more
+  presentable
 
 ### Weather Snaps
 
@@ -1258,45 +1320,47 @@ A sample output may look like,
 
 #### Example: [Seattle Temperature](./Examples/06_SeattleTemperature/SeattleTemperature.py)
 
-*The following program can be used to get the current temperature
-reading from Seattle using* `snaps`
+- The following program can be used to get the current temperature
+  reading from Seattle using `snaps`
 
-``` python
-# Example 4.6: Seattle Temperature
-# Get the current temperature in Seattle
+  ``` python
+    # Example 4.6: Seattle Temperature
+    #
+    # Get the current temperature in Seattle
 
-import snaps
+    import snaps
 
-temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
+    temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
 
-print("The temperature in Seattle is:", temp)
-```
+    print("The temperature in Seattle is:", temp)
+  ```
 
-    pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
-    Hello from the pygame community. https://www.pygame.org/contribute.html
-    The temperature in Seattle is: 42
+      pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
+      Hello from the pygame community. https://www.pygame.org/contribute.html
+      The temperature in Seattle is: 37
 
-    /home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
-      from pkg_resources import resource_stream, resource_exists
+      /home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+        from pkg_resources import resource_stream, resource_exists
 
 #### Example: [Seattle Weather](./Examples/07_SeattleWeather/SeattleWeather.py)
 
-*We can also use* `snaps` *to get a short description of the current
-weather*
+- We can also use `snaps` to get a short description of the current
+  weather
 
-``` python
-# Example 4.7: Seattle Weather
-# Uses snaps to get a description of the weather in Seattle
+  ``` python
+    # Example 4.7: Seattle Weather
+    #
+    # Uses snaps to get a description of the weather in Seattle
 
-import snaps
+    import snaps
 
-desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
-print("The conditions are:", desc)
-```
+    desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+    print("The conditions are:", desc)
+  ```
 
-    The conditions are: Mostly Cloudy
+      The conditions are: Clear
 
-#### Exercise: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
+#### Make Something Happen: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
 
 *Write a program that displays the current weather conditions. If you
 use the* `display_text` *function from snaps, your program can display
@@ -1306,6 +1370,7 @@ Our solution is written below,
 
 ``` python
 # Exercise 4.3: Weather Display
+#
 # Displays the Weather in Seattle
 
 import snaps
@@ -1323,9 +1388,12 @@ snaps.display_message(weather_string, size=100)
 input("Press enter to continue...")
 ```
 
-As we can see most of the work is done to construct the appropriate
-strings and merge them together so they can be passed to the
-`display_message` function for output
+As we can see most the actual getting of the temperature and weather
+data is the same as for the Seattle
+[Temperature](#example-seattle-temperature) and
+[Weather](#example-seattle-weather) programs. The rest of the work is
+done to construct the appropriate strings and merge them together so
+they can be passed to the `display_message` function for output
 
 ## Summary
 

@@ -1,9 +1,10 @@
 # Example 5.12: Theme Park Snaps Display
+#
 # Reimplments the shell of the Ride Selector Menu using Snaps
 
 import time
-import snaps
 
+import snaps
 
 snaps.display_image("themepark.png")
 

@@ -25,6 +25,10 @@ def save_sales(file_path):
     ------
     FileException
         Raised if the save fails
+
+    See Also
+    --------
+    load_sales : load sales from a given file
     """
     print("Save the sales in:", file_path)
     try:
@@ -53,6 +57,10 @@ def load_sales(file_path):
     ------
     FileException
         Raised if the load fails
+
+    See Also
+    --------
+    save_sales : save sales to a file
     """
     print("Load the sales in:", file_path)
     sales.clear()

@@ -6,9 +6,9 @@
 sales = [50, 54, 29, 33, 22, 100, 45, 54, 89, 75]
 
 
-def total_sales():
+def average_sales():
     """
-    Print out the total sales of a sales list
+    Print out the average sales of a sales list
 
     Returns
     -------
@@ -23,4 +23,4 @@ def total_sales():
 
 print("Input list:", sales)
 
-total_sales()
+average_sales()

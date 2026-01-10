@@ -2,50 +2,53 @@
 
 - [Notes](#notes)
   - [What makes a Function?](#what-makes-a-function)
-    - [Example: Investigating
-      Functions](#example-investigating-functions)
-    - [Exercise: Program Pathfinder](#exercise-program-pathfinder)
+    - [Make Something Happen: Investigating
+      Functions](#make-something-happen-investigating-functions)
+    - [Code Analysis: Program
+      Pathfinder](#code-analysis-program-pathfinder)
     - [Structure of a Function
       Definition](#structure-of-a-function-definition)
     - [Give Information to Functions using
       Parameters](#give-information-to-functions-using-parameters)
       - [Arguments and Parameters](#arguments-and-parameters)
-        - [Example: Argument and
-          Parameters](#example-argument-and-parameters)
+        - [Code Analysis: Argument and
+          Parameters](#code-analysis-argument-and-parameters)
       - [Multiple Parameters in a
         Function](#multiple-parameters-in-a-function)
       - [Positional and Keyword
         Arguments](#positional-and-keyword-arguments)
       - [Default Parameter Values](#default-parameter-values)
-      - [Example: Parameters as Values](#example-parameters-as-values)
-      - [Exercise: Creating a Teletype
-        Printer](#exercise-creating-a-teletype-printer)
-      - [Exercise: Teletype Fortune
-        Teller](#exercise-teletype-fortune-teller)
+      - [Code Analysis: Parameters as
+        Values](#code-analysis-parameters-as-values)
+      - [Make Something Happen: Creating a Teletype
+        Printer](#make-something-happen-creating-a-teletype-printer)
+      - [Make Something Happen: Teletype Fortune
+        Teller](#make-something-happen-teletype-fortune-teller)
     - [Return Values from Function
       Calls](#return-values-from-function-calls)
-      - [Example: Functions and `return`](#example-functions-and-return)
+      - [Code Analysis: Functions and
+        `return`](#code-analysis-functions-and-return)
     - [Local Variables in Python
       Functions](#local-variables-in-python-functions)
     - [Global Variables in Python
       Programs](#global-variables-in-python-programs)
   - [Build Reusable Functions](#build-reusable-functions)
     - [Create a Text Input Function](#create-a-text-input-function)
-      - [Exercise: Investigate the `read_text`
-        function](#exercise-investigate-the-read_text-function)
+      - [Code Analysis: Investigate the `read_text`
+        function](#code-analysis-investigate-the-read_text-function)
     - [Add Help Information to
       Functions](#add-help-information-to-functions)
       - [Use Pydoc](#use-pydoc)
     - [Create a Number Input Function](#create-a-number-input-function)
-    - [Exercise: Investigating the `read_float_ranged`
-      Function](#exercise-investigating-the-read_float_ranged-function)
+    - [Code Analysis: Investigating the `read_float_ranged`
+      Function](#code-analysis-investigating-the-read_float_ranged-function)
     - [Convert our Functions into a Python
       Module](#convert-our-functions-into-a-python-module)
-      - [Exercise: Add `BTCInput` to your Existing
-        Programs](#exercise-add-btcinput-to-your-existing-programs)
+      - [Make Something Happen: Add `BTCInput` to your Existing
+        Programs](#make-something-happen-add-btcinput-to-your-existing-programs)
   - [Using a Debugger](#using-a-debugger)
-    - [Exercise: Investigate Programmers with a
-      Debugger](#exercise-investigate-programmers-with-a-debugger)
+    - [Make Something Happen: Investigate Programmers with a
+      Debugger](#make-something-happen-investigate-programmers-with-a-debugger)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -74,7 +77,7 @@
 
   - functions must be defined *before* they can be called
 
-#### Example: Investigating Functions
+#### Make Something Happen: Investigating Functions
 
 *Use a python interpreter to work through the following questions to
 understand python functions*
@@ -88,14 +91,14 @@ def greeter():
 
 1. *Why did the interpreter not print* `"Hello"`*?*
 
-    - *Because the* `print` *statement is stored as part of the*
-      `greeter` *function*
+    - Because the `print` statement is stored as part of the `greeter`
+      function
 
 2. *How do I tell Python that I’ve finished entering the* `greeter`
     *function?*
 
-    - *The same way you close a loop or an* `if` *statement, by
-      deindenting and adding an empty line*
+    - The same way you close a loop or an `if` statement, by deindenting
+      and adding an empty line
 
 3. *How do I make a call to the* `greeter` *function?*
 
@@ -105,10 +108,10 @@ def greeter():
 
         Hello
 
-    - *The same way you call any other function. Write the function name
+    - The same way you call any other function. Write the function name
       and a parenthesised list of parameters. In this case the list is
       empty. Once called the function runs all the statements contained
-      in its definition.*
+      in its definition.
 
 *Now consider the following code snippet*
 
@@ -119,14 +122,14 @@ x()
 
     Hello
 
-*Observe that we can treat functions like variables. We can assign them
-to other **labels/variables** in this case* `x` *is set to the value of*
-`greeter`*. We can then call* `x` *as if it where* `greeter`
+Observe that we can treat functions like variables. We can assign them
+to other *labels/variables* in this case `x` is set to the value of
+`greeter`. We can then call `x` as if it where `greeter`
 
-*The ability to treat functions as variables is a powerful feature we
-will explore more in Chapter 12*
+The ability to treat functions as variables is a powerful feature we
+will explore more in Chapter 12
 
-#### Exercise: Program Pathfinder
+#### Code Analysis: Program Pathfinder
 
 *Examine the following code block and and answer the following questions
 to understand how functions work. (You can run the code at
@@ -181,7 +184,7 @@ m1()
       - `m1` and thus the program ends
     - The final output is thus:
 
-    ``` bash
+    ``` text
      the
      cat
      sat on
@@ -194,38 +197,39 @@ m1()
 
     - Let’s try changing `m1` to the following,
 
-    ``` python
-     def m1():
-         m1()
+      ``` python
+        def m1():
+            m1()
 
-     m1()
-    ```
+        m1()
+      ```
 
-        RecursionError: maximum recursion depth exceeded
-        ---------------------------------------------------------------------------
-        RecursionError                            Traceback (most recent call last)
-        Cell In[6], line 4
-              1 def m1():
-              2     m1()
-        ----> 4 m1()
+          RecursionError: maximum recursion depth exceeded
+          ---------------------------------------------------------------------------
+          RecursionError                            Traceback (most recent call last)
+          Cell In[6], line 4
+                1 def m1():
+                2     m1()
+          ----> 4 m1()
 
-        Cell In[6], line 2, in m1()
-              1 def m1():
-        ----> 2     m1()
+          Cell In[6], line 2, in m1()
+                1 def m1():
+          ----> 2     m1()
 
-        Cell In[6], line 2, in m1()
-              1 def m1():
-        ----> 2     m1()
+          Cell In[6], line 2, in m1()
+                1 def m1():
+          ----> 2     m1()
 
-            [... skipping similar frames: m1 at line 2 (2975 times)]
+              [... skipping similar frames: m1 at line 2 (2975 times)]
 
-        Cell In[6], line 2, in m1()
-              1 def m1():
-        ----> 2     m1()
+          Cell In[6], line 2, in m1()
+                1 def m1():
+          ----> 2     m1()
 
-        RecursionError: maximum recursion depth exceeded
+          RecursionError: maximum recursion depth exceeded
 
     - The code generates a `RecursionError`!
+
       - A function that calls itself is called a rescursive function
       - Like an infinite loop infinite recursion occurs when a function
         calls itself with no condition to stop
@@ -233,7 +237,9 @@ m1()
         function calls
         - This can be dangerous so Python prematurely limits the “depth”
           of recursive calls a function can make
+
     - Formally with recursion:
+
       - Each time a function is called Python stores the return address
         (where the code goes back to) on the “stack”
         - The stack is special memory responsible for managing the
@@ -243,8 +249,10 @@ m1()
       - Calling and exiting functions thus grows and shrinks the stack
         - Up to a limit defined by Python at which point a recursion
           error occurs
+
     - Recursive functions are a powerful and elegant technique in many
       cases
+
       - However, often it is better to use simple loop structures
       - Recursion more of interest for theory
 
@@ -337,7 +345,7 @@ block-beta
   - functions *do* things, i.e. the are naturally associated with verbs
     - Unlike variables with *are* things i.e. nouns
   - e.g. `display_menu` names a function which takes the *action* to
-    *display* **a** menu
+    *display* a menu
 - Then parameters in a parenthese-enclosed, comma-delimited list
   - No space between name and left parenthesis
   - Parameters feed extra information for the function to work on
@@ -404,7 +412,7 @@ block-beta
 - Consider it as the phrase “we call the function passing the arguments
   to the parameters”
 
-###### Example: Argument and Parameters
+###### Code Analysis: Argument and Parameters
 
 *Find out more about arguments and parameters by answering the following
 questions*
@@ -482,9 +490,10 @@ questions*
     - Second: If it is a problem, what is the way to fix it?
       1. Print a warning message?
       2. Stop the program?
+      3. Hande the error locally? (within the function)
     - In this case let’s throw an error if the type is not an integer
-      - `isinstance` function lets you type check an item
-      - accepts two arguments, item to test, and the type
+      - The `isinstance` function lets you type check an item
+      - Accepts two arguments, item to test, and the type to match
       - Returns `True` if item is that type else `False`
 
     ``` python
@@ -633,7 +642,7 @@ questions*
 - *Default* parameters let us combine both behaviours
 
   ``` python
-    # Example 7.6: Default Parameters
+    # Example 7.5: Default Parameters
     #
     # Demonstrates default arguments by capturing the single
     # argument times table code in the two parameter version
@@ -679,13 +688,13 @@ questions*
 > intent. Reduce the possibility of getting arguments confused or mixed
 > up. Makes it easy to define “standard” behaviour for a function
 
-##### Example: Parameters as Values
+##### Code Analysis: Parameters as Values
 
 *What does it mean when we pass the value of an argument to a function
 parameter? Consider the following program*
 
 ``` python
-# Example 7.7 Parameters as Values
+# Example 7.6 Parameters as Values
 #
 # Demonstrates how python handles passing values to a function
 
@@ -708,20 +717,20 @@ then print the value of* `test` *after the function call*
 *Answer the following question,*
 
 1. *What would this program print when it runs?*
-    - *The program follows this sequence*
-      1. `test` *is set to* $0$
-      2. `what_would_I_do` *is called, being passed the value of*
-          `test` *which is* $0$
-      3. *In* `what_whould_I_do`, `input_value` *is initially set to*
-          $0$
-      4. `input_value` *is set to* $99$
-      5. `what_would_I_do` *then ends*
-      6. *The value of* `test` *is printed*
-    - *The main observation here is that the* **value** *of* `test` *is
-      passed to the function* **not** `test` *itself, so* `test` *is
-      unchanged outside the function*
 
-##### Exercise: Creating a Teletype Printer
+    - The program follows this sequence
+      1. `test` is set to $0$
+      2. `what_would_I_do` is called, being passed the value of `test`
+          which is $0$
+      3. In `what_whould_I_do`, `input_value` is initially set to $0$
+      4. `input_value` is set to $99$
+      5. `what_would_I_do` then ends
+      6. The value of `test` is printed
+    - The main observation here is that the *value* of `test` is passed
+      to the function *not* `test` itself
+      - `test` is unchanged outside the function
+
+##### Make Something Happen: Creating a Teletype Printer
 
 *Write a function* `teletype_print` *that slowly writes out an input
 string. Use a* `for` *loop to loop over the contents of the string and
@@ -742,13 +751,14 @@ but we’ll work through the code in parts
 # by using a for loop and time to slowly loop over
 # an input string
 
-import time
 import random
+import time
 ```
 
 - We then define our function signature, `text` is left as something
   that must be supplied while `delay` is given a default value of $0.5$
-  (purely to make the delay obvious)
+  (purely to make the delay more obvious than the $0.1$ suggested in the
+  original book)
 - We then add a *jitter* to the delay from $1/10$ through to the full
   size of the delay, by generating a random number
   - We then randomly generate a $0$ or a $1$ and use that to determine
@@ -789,11 +799,11 @@ teletype_printer("hello")
 
     hello
 
-##### Exercise: Teletype Fortune Teller
+##### Make Something Happen: Teletype Fortune Teller
 
 *Use the function you wrote for a teletype output to add some style to
 the [Fortune Teller
-Program](../05_MakingDecisions/Chapter_05.qmd#exercise-fortune-teller)*
+Program](../05_MakingDecisions/Chapter_05.qmd#make-something-happen-fortune-teller)*
 
 Our solution is given in
 [TeletypeFortuneTeller.py](./Exercises/02_TeletypeFortuneTeller/TeletypeFortuneTeller.py)
@@ -805,8 +815,8 @@ and repeated below
 # Version of the Fortune Teller Program that uses the teletype_printer function
 # to delay the output
 
-import time
 import random
+import time
 
 
 def teletype_printer(text, delay=0.25):
@@ -853,10 +863,10 @@ else:
 ```
 
 We basically copy across the `teletype_printer` function from the
-[previous exercise](#exercise-creating-a-teletype-printer) and replace
-the previous `print` statements with the new function. For fun we change
-the default delay to a lower number so the prints occur faster but
-between advice add a new
+[previous exercise](#make-something-happen-creating-a-teletype-printer)
+and replace the previous `print` statements with the new function. For
+fun we change the default delay to a lower number so the prints occur
+faster but between advice add a new
 
 ``` python
 teletype_printer("...", delay=0.5)
@@ -886,7 +896,7 @@ return_one()
 
     1
 
-##### Example: Functions and `return`
+##### Code Analysis: Functions and `return`
 
 *Take a look look at the* `return` *in the following function and the
 attached program to answer the following questions*
@@ -904,9 +914,9 @@ print("You have selected ride", ride_number)
 
 1. *What would the above program print?*
 
-    - *The function returns at the first* `return` *which in this case
-      is* $1$*, so the returned value is* $1$
-    - *The second* `return` *is never reached*
+    - The function returns at the first `return` which in this case is
+      $1$, so the returned value is $1$
+    - The second `return` is never reached
 
 2. *What would the program below print? Would it run correctly?*
 
@@ -920,16 +930,16 @@ print("You have selected ride", ride_number)
 
         You have selected ride: None
 
-    - `return` *ends the function without returning a value*
-    - *A distinct value* `None` *is returned*
-      - *Represents the lack of a usable value*
-    - `None` *is also returned when a function ends without hitting* a
-      `return` *statement*
+    - `return` ends the function without returning a value
+    - A distinct value `None` is returned
+      - Represents the lack of a usable value
+    - `None` is also returned when a function ends without hitting a
+      `return` statement
 
 3. *Can a function contain multiple* `return` *statements?*
 
-    - *Yes! We already saw this with the first question*
-    - *A program exits from a function as soon as it reaches a* `return`
+    - Yes! We already saw this with the first question
+    - A program exits from a function as soon as it reaches a `return`
 
 - The program below gives a generic function that asks the user for an
   integer with a client specified `prompt` between a range of
@@ -968,6 +978,16 @@ ride_number = get_value(
 print("You have selected ride: ", ride_number)
 ```
 
+- An example interaction might proceed as follows
+
+<!-- -->
+
+    Please enter the ride number you want:  6
+    Value too large
+    The maximum value is 5
+    Please enter the ride number you want:  3
+    You have selected ride: 3
+
 > [!TIP]
 >
 > **Designing Functions**
@@ -988,7 +1008,8 @@ print("You have selected ride: ", ride_number)
 >     - Tests run the function for some input and check the output
 >       against some expected output
 >     - Tests are typically written alongside the code itself, and mean
->       that as the code is developed we can ensure it still works
+>       that as the code is developed and modified we can ensure it
+>       still works
 
 #### Local Variables in Python Functions
 
@@ -1134,7 +1155,7 @@ print("You have selected ride: ", ride_number)
   - Simply want to prevent the user interrupting the program
   - Also useful to provide a generic standard prompt if the user doesn’t
     want to provide one every time, i.e. default argument
-- Start by defining the funtion header
+- Start by defining the function header
 
 ``` python
 read_text(prompt="Please enter some text: ")
@@ -1162,19 +1183,24 @@ def read_text(prompt="Please enter some text: "):
     return result
 ```
 
-##### Exercise: Investigate the `read_text` function
+##### Code Analysis: Investigate the `read_text` function
 
 *Use the [`read_text`](./Chapter_07.qmd#create-a-text-input-function)
 function to answer the following questions*
 
 1. *What is the* `result` *variable used to accomplish?*
+
     - Local variable storing the user input to be returned
+
 2. *What stops the function from repeating continously?*
+
     - The `break` statement ends the loop one a string has been entered
     - Once the loop finishes the rest of the function is linear and will
       end
+
 3. *Why does the text reading loop repeat after the exception has been
     handled?*
+
     - The function reaches the end of the loop block (look at the
       indentation of the `return`)
     - The loop condition is `while True` so unless stopped by the
@@ -1205,21 +1231,47 @@ def read_text(prompt="Please enter some text: "):
     Displays a prompt and reads in a string of text.
     Keyboard Interrupts are ignored
 
-    prompt: str prompt the user sees before entering text
+    prompt: str
+        prompt the user sees before entering text
 
     return: str
-    returns a string containing the string input by the user
+        returns a string containing the string input by the user
     """
 ```
 
 - Note the use of triple quotes to write a string over multiple lines
 - Here we describe the function, it’s parameters and the return in
   detail
+  - Our descriptions of parameters and returns explain both what they
+    mean, and also the expected type
+
+> [!TIP]
+>
+> **Use a standard docstring convention**
+>
+> There are a number of standard formats used for docstrings. Two common
+> ones being
+> [google](https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings)
+> and
+> [numpy](https://numpydoc.readthedocs.io/en/latest/format.html#method-docstrings)
+>
+> The advantage of using a common format is that it means that not only
+> can we generate and display information about functions in code (see
+> below for information about [pydoc](#use-pydoc)) but that there exists
+> many tools for converting these standard formats into reference
+> documentation that can be hosted or shared (e.g. on a website.)
+>
+> You could of course define your own format, but then you might need to
+> roll your own tooling if you ever wanted to publish your own reference
+> documentation.
+>
+> In these notes and the included code snippets we have generally stuck
+> to using the **numpy** convention
 
 ##### Use Pydoc
 
 - The pydoc library is designed to read function docstrings
-  - For example if we use in on the standard library function `print`
+  - For example if we use it on the standard library function `print`
 
   ``` python
     import pydoc
@@ -1265,13 +1317,23 @@ def read_text(prompt="Please enter some text: "):
 def read_float(prompt):
     """
     Displays a prompt and reads in a number
+
     Keyboard interrupts are ignored
     Invalid numbers are rejected
 
-    prompt: str prompt the user sees before giving input
+    Parameters
+    ----------
+    prompt : str
+        Prompt the user sees before giving input
 
-    return: str
-    returns a float containing the input value
+    Returns
+    -------
+    float
+        The input value
+
+    See Also
+    --------
+    read_float_ranged : reads a float restricted to a closed interval
     """
     while True:
         try:
@@ -1291,9 +1353,18 @@ age = read_float("Please enter your age: ")
 print(age)
 ```
 
+- Which the user might see as,
+
+``` python
+print("Please enter your age: \033[31m 32.7 \033[0m")
+print(32.7)
+```
+
+    Please enter your age:  32.7
+    32.7
+
 - We can then create a specialised version of `read_float` that uses it
-  as a component that limits the range of the value received to a given
-  range
+  as a component to get a float restricted to a user specified range
 
 ``` python
 def read_float_ranged(prompt, min_value, max_value):
@@ -1341,17 +1412,20 @@ def read_float_ranged(prompt, min_value, max_value):
   - We can do this because we cleanly define the responsibilities of
     each function
 
-#### Exercise: Investigating the `read_float_ranged` Function
+#### Code Analysis: Investigating the `read_float_ranged` Function
 
 *Let’s examine the final function* `read_float_ranged` *in more detail
 to capture all the things we’ve built up. Answer the following
 questions*
 
 1. *Why doesn’t this function have code to capture exceptions?*
+
     - No, The two exception types we care about `KeyboardInterrupt` and
       `ValueError` are handled by `read_text` (via `read_float`) and
       `read_float` respectively
+
 2. *Will chaining these functions together slow down the program?*
+
     - There would probably be some slow down, since each time we have to
       call a function there is some setup and teardown
     - However, the slow down would be miniscule
@@ -1359,8 +1433,10 @@ questions*
       in readability and maintability for the user
       - This practice of building higher-level functions out of smaller
         “lower level” functions is very common
+
 3. *What would happen if a programmer reversed the minimum and maximum
     values?*
+
     - The program would not work, it would require a number that is
       greater than what it thinks is the `min` (actually `max`) and less
       than what it thinks is the `max` (actually the `min`). These are
@@ -1425,21 +1501,21 @@ from BTCInput import *
 age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 ```
 
-##### Exercise: Add `BTCInput` to your Existing Programs
+##### Make Something Happen: Add `BTCInput` to your Existing Programs
 
 *Rewrite the following programs to use* `BTCInput` *for input*
 
-1. *[Greeter](../04_WorkingWithVariables/Chapter_04.qmd#example-use-input-to-make-a-greeter-program)*
+1. *[Greeter](../04_WorkingWithVariables/Chapter_04.qmd#make-something-happen-use-input-to-make-a-greeter-program)*
 2. *[Ultra Precise Egg
     Timer](../04_WorkingWithVariables/Chapter_04.qmd#example-ultra-precise-egg-timer)*
 3. *[Pizza Order
-    Calculator](../04_WorkingWithVariables/Chapter_04.qmd#exercise-calculating-a-pizza-order)*
+    Calculator](../04_WorkingWithVariables/Chapter_04.qmd#make-something-happen-calculating-a-pizza-order)*
 4. *[Fahrenheit To
-    Celcius](../04_WorkingWithVariables/Chapter_04.qmd#exercise-converting-between-fahrenheit-and-centigrade)*
+    Celcius](../04_WorkingWithVariables/Chapter_04.qmd#make-something-happen-converting-between-fahrenheit-and-centigrade)*
 5. *[Ride
     Selector](../05_MakingDecisions/Chapter_05.qmd#use-decisions-to-make-an-application)*
 6. *[User-Selected Times
-    Table](../06_RepeatingActionsWithLoops/Chapter_06.qmd#exercise-allow-the-user-to-select-the-times-value)*
+    Table](../06_RepeatingActionsWithLoops/Chapter_06.qmd#make-something-happen-allow-the-user-to-select-the-times-value)*
 
 > [!NOTE]
 >
@@ -1450,7 +1526,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 > offers a more complete set of validation functions based on the
 > discussion above.
 >
-> To use correctly setup `BTCInput.py` ensure the variable
+> To correctly setup `BTCInput.py` ensure the variable
 > `DEBUG_MODE = FALSE`
 
 1. [Greeter](./Exercises/03_BTCInputApplications/Greeter.py)
@@ -1474,8 +1550,8 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
     - We can combine the original code that reads in the egg boiling
       time and the float conversion to one call to the `BTCInput`
       function `read_float`. Note that we don’t change the second input
-      which just asks the user to press enter, since they might want to
-      stop the program early, and enter is not a word
+      which just asks the user to press enter, since really we’re
+      looking for any input from the user
 
     ``` python
      # Exercise 7.2.2 Ultra-Precise Egg Timer
@@ -1536,7 +1612,7 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 
     - The implementation is based on the [Full input validated version
       of Ride
-      Selector](../06_RepeatingActionsWithLoops/Chapter_06.qmd#exercise-add-validation-to-the-theme-park-age-input)
+      Selector](../06_RepeatingActionsWithLoops/Chapter_06.qmd#make-something-happen-add-validation-to-the-theme-park-age-input)
       in Chapter 6
 
     - There are two important changes, first to ensure the user selects
@@ -1548,7 +1624,8 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
         )
       ```
 
-    - *Remember that* $0$ *is the number to quit*
+    - *Remember that* $0$ *is a number we’ve chosen to represent
+      quitting the program*
 
     - Second the ensure the user adds an age, here even though we have a
       valid age range, this is for being able to ride
@@ -1606,9 +1683,16 @@ age = read_float_ranged("Enter your age: ", min_value=5, max_value=90)
 
 > [!NOTE]
 >
+> **Breakpoints vs** `break`
+>
 > A *breakpoint* is different to the `break` keyword
+>
+> - `break` is used to immediately escape a loop structure in a running
+>   program
+> - A *breakpoint* is used to pause the execution of a program at a
+>   specific point when it is being debugged
 
-#### Exercise: Investigate Programmers with a Debugger
+#### Make Something Happen: Investigate Programmers with a Debugger
 
 *Use the following example, found in*
 [InvestigateTheDebugger.py](./Examples/14_InvestigateTheDebugger/InvestigateTheDebugger.py)
@@ -1633,7 +1717,7 @@ print("The answer is:", y)
 *Using your debugger, set a breakpoint on the line* `x = 99`
 
 - In *VSCode* for my setup with the python extensions I simply click on
-  line, left of the line number, a red circle appears indicating a
+  the line, left of the line number, a red circle appears indicating a
   breakpoint
   - To clear the breakpoint just click on it again
 - Then run your program using the debugger

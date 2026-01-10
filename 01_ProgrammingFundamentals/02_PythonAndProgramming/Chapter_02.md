@@ -8,28 +8,31 @@
     - [Machines, Computers and Us](#machines-computers-and-us)
     - [Programs as Data Processors](#programs-as-data-processors)
     - [Python as a Data Processor](#python-as-a-data-processor)
-      - [Example: Playing with the
-        Shell](#example-playing-with-the-shell)
-      - [Exercise: Python Expressions](#exercise-python-expressions)
+      - [Make Something Happen: Have a Conversation with
+        Python](#make-something-happen-have-a-conversation-with-python)
+      - [Code Analysis: Python
+        Expressions](#code-analysis-python-expressions)
     - [Python as a Scripting Language](#python-as-a-scripting-language)
   - [Data and Information](#data-and-information)
     - [Data Processing in Python](#data-processing-in-python)
-      - [Example: Work with Text in
-        Python](#example-work-with-text-in-python)
-      - [Exercise: Break the rules with
-        Python](#exercise-break-the-rules-with-python)
+      - [Make Something Happen: Work with Text in
+        Python](#make-something-happen-work-with-text-in-python)
+      - [Code Analysis: Break the rules with
+        Python](#code-analysis-break-the-rules-with-python)
     - [Text and Numbers as Data Types](#text-and-numbers-as-data-types)
   - [Working with Python Functions](#working-with-python-functions)
     - [The `ord` function](#the-ord-function)
-      - [Example: Investigate Text Representation using
-        `ord`](#example-investigate-text-representation-using-ord)
+      - [Make Something Happen: Investigate Text Representation using
+        `ord`](#make-something-happen-investigate-text-representation-using-ord)
     - [The `chr` function](#the-chr-function)
-      - [Example: Convert Numbers to text using
-        `chr`](#example-convert-numbers-to-text-using-chr)
+      - [Make Something Happen: Convert Numbers to text using
+        `chr`](#make-something-happen-convert-numbers-to-text-using-chr)
     - [Investigate data storage using
       `bin`](#investigate-data-storage-using-bin)
-      - [Exercise: Discover Binary
-        Representation](#exercise-discover-binary-representation)
+      - [Make Something Happen: Discover Binary
+        Representation](#make-something-happen-discover-binary-representation)
+      - [Code Analysis: Building Binary
+        Numbers](#code-analysis-building-binary-numbers)
 - [Summary](#summary)
 - [Question and Answers](#question-and-answers)
 
@@ -210,9 +213,10 @@ computer-->output
   `python command shell` (*the computer*) and turned into results
   (*output*)
 
-##### Example: Playing with the Shell
+##### Make Something Happen: Have a Conversation with Python
 
 - *Start up a python interpreter and run the following*
+
   1. `hello`
 
       ``` python
@@ -227,10 +231,10 @@ computer-->output
 
           NameError: name 'hello' is not defined
 
-      - *The interpreter doesn’t recognise the arbitrary word* `hello`
-        *and produces an error message*
+      - The interpreter doesn’t recognise the arbitrary word `hello` and
+        produces an error message
 
-  2. `2` - `2`
+  2. `2`
 
       ``` python
       2
@@ -238,7 +242,7 @@ computer-->output
 
           2
 
-      - *The interpreter echoes a number back out!*
+      - The interpreter echoes a number back out!
 
   3. `2 + 2`
 
@@ -248,10 +252,13 @@ computer-->output
 
           4
 
-  - *The interpreter **evaluates** and **echoes** out the arithmetic!*
+      - The interpreter **evaluates** and **echoes** out the arithmetic!
+
 - `2 + 2` in the previous example is a representation of an *expression*
+
 - Python can be seen as an *expression* evaluator. An expression
   consists of *operators* that act on *operands* to produce new output
+
 - We can break down the `2+2` example from the previous example to
 
 ``` mermaid
@@ -308,76 +315,82 @@ class operatorDescr BG
 >           ^
 >     SyntaxError: invalid syntax
 
-##### Exercise: Python Expressions
+##### Code Analysis: Python Expressions
 
 1. *What do you think would happen if you tried to evaluate `2+3*4`?*
 
-We would expect `14` from the basic mathematical order of operations.
-Plugging this into the shell,
+    - We would expect `14` from the basic mathematical order of
+      operations. Plugging this into the shell,
 
-``` python
-2 + 3 * 4
-```
+    ``` python
+     2 + 3 * 4
+    ```
 
-    14
+        14
 
-2.  *What do you think would happen if you tried to evaluate `(2+3)*4`?*
+2. *What do you think would happen if you tried to evaluate `(2+3)*4`?*
 
-We would expect `20` from the basic mathematical order of operations.
-Plugging this into the shell,
+    - We would expect `20` from the basic mathematical order of
+      operations. Plugging this into the shell,
 
-``` python
-(2 + 3) * 4
-```
+    ``` python
+     (2 + 3) * 4
+    ```
 
-    20
+        20
 
-3.  *What do you think would happen if you tried to evaluate `(2+3*4`?*
+3. *What do you think would happen if you tried to evaluate `(2+3*4`?*
 
-We might expect a syntax error, instead the interpreter, simply goes to
-a new line, and waits for us to enter the matching parenthesis. One such
-sequence in the shell might be,
+    - We might expect a syntax error
+    - Instead the interpreter, simply goes to a new line, and waits for
+      us to enter the matching parenthesis
+    - One such sequence in the shell might be,
 
-``` python
-(2 + 3 * 4
-)
-```
+    ``` python
+     (2 + 3 * 4
+     )
+    ```
 
-    14
+        14
 
-These notes use a slightly different version of a python interpreter
-called a [Jupyter Notebook](https://jupyter.org/) to render the inline
-code. In Jupyter Notebooks code is written in cells and executed cell-by
-cell. This means that the interpreter can’t *wait* for the user to
-provide the missing input, so instead we get the slightly different
-error message below,
+    > [!IMPORTANT]
+    >
+    > **There a different implementations of the Python Interpreter**
+    >
+    > These notes use a slightly different version of a python
+    > interpreter called a [Jupyter Notebook](https://jupyter.org/) to
+    > render the inline code. In Jupyter Notebooks code is written in
+    > cells and executed cell-by cell. This means that the interpreter
+    > can’t *wait* for the user to provide the missing input, so instead
+    > we get the slightly different error message below,
 
-``` python
-(2 + 3 * 4
-```
+    ``` python
+     (2 + 3 * 4
+    ```
 
-    SyntaxError: incomplete input (4019191811.py, line 1)
-      Cell In[8], line 1
-        (2 + 3 * 4
-                  ^
-    SyntaxError: incomplete input
+        SyntaxError: incomplete input (3168310686.py, line 1)
+          Cell In[8], line 1
+            (2 + 3 * 4
+                      ^
+        SyntaxError: incomplete input
 
-4.  *What do you think would happen if you tried to evaluate `)2+3*4`?*
+4. *What do you think would happen if you tried to evaluate `)2+3*4`?*
 
-If we see a right parenthesis before a left parenthesis there is no way
-to retroactively go back and fix the missing left, like in the previous
-case where the shell simply waited for us to add the parenthesis. So
-here we would expect a syntax error.
+    - If we see a right parenthesis before a left parenthesis there is
+      no way to retroactively go back and fix the missing left, like in
+      the previous case where the shell simply waited for us to add the
+      parenthesis
+    - So here we would expect a syntax error
 
-``` python
-)2+3*4
-```
+    ``` python
+     )2+3*4
+    ```
 
-    SyntaxError: unmatched ')' (1306523100.py, line 1)
-      Cell In[9], line 1
-        )2+3*4
-        ^
-    SyntaxError: unmatched ')'
+        SyntaxError: unmatched ')' (2651741774.py, line 1)
+          Cell In[9], line 1
+            )2+3*4
+            ^
+        SyntaxError: unmatched ')'
 
 #### Python as a Scripting Language
 
@@ -409,7 +422,7 @@ here we would expect a syntax error.
 - Python scripts thus can be considered data processors
   - The script is interpreted and converted to output
 
-##### Example: Work with Text in Python
+##### Make Something Happen: Work with Text in Python
 
 *Start up the python interpreter and run the following*
 
@@ -423,7 +436,7 @@ here we would expect a syntax error.
 
     - Like before with $2$ the word is echoed.
 
-2. \`‘hello’ + ’ world’
+2. `'hello' + ' world'`
 
     ``` python
      'hello' + 'world'
@@ -437,7 +450,7 @@ here we would expect a syntax error.
     - A cool observation is that `+` changes it’s behaviour in response
       to what it’s arguments are
 
-##### Exercise: Break the rules with Python
+##### Code Analysis: Break the rules with Python
 
 1. *What do you think would happen if missed the closing quote of a
     string you were typing?*
@@ -446,18 +459,20 @@ here we would expect a syntax error.
       like with the missing left parenthesis, or a syntax error like a
       right quote. We find,
 
-    ``` python
-    'hello
-    ```
+      ``` python
+        'hello
+      ```
 
-        SyntaxError: unterminated string literal (detected at line 1) (628875690.py, line 1)
-          Cell In[12], line 1
-            'hello
-            ^
-        SyntaxError: unterminated string literal (detected at line 1)
+          SyntaxError: unterminated string literal (detected at line 1) (3801843517.py, line 1)
+            Cell In[12], line 1
+              'hello
+              ^
+          SyntaxError: unterminated string literal (detected at line 1)
 
     - EOL stands for “End of Line”
+
     - Operands like strings and numbers can’t span multiple lines
+
     - A string literal is just a string there in the code
 
 2. *What do you think would happen if you tried to subtract one string
@@ -465,25 +480,28 @@ here we would expect a syntax error.
 
     - While addition of strings can be easily seen as concatenation,
       there is no meaningful equivalent for substraction.
+
     - We could think of it as substring removal, but that has a lot of
       nuance that is hard to capture in a single symbol. We expect an
       error.
 
-    ``` python
-     'hello' - ' world'
-    ```
+      ``` python
+        'hello' - ' world'
+      ```
 
-        TypeError: unsupported operand type(s) for -: 'str' and 'str'
-        ---------------------------------------------------------------------------
-        TypeError                                 Traceback (most recent call last)
-        Cell In[13], line 1
-        ----> 1 'hello' - ' world'
+          TypeError: unsupported operand type(s) for -: 'str' and 'str'
+          ---------------------------------------------------------------------------
+          TypeError                                 Traceback (most recent call last)
+          Cell In[13], line 1
+          ----> 1 'hello' - ' world'
 
-        TypeError: unsupported operand type(s) for -: 'str' and 'str'
+          TypeError: unsupported operand type(s) for -: 'str' and 'str'
 
-    - TypeError: unsupported operand type(s) for -: ‘str’ and ‘str’
     - The error message is somewhat obtuse but simply means that for the
       operand (-) we can’t subtract a string from another string
+
+    - `TypeError` indicates that something has gone wrong with the type
+      of the data (here the type is string)
 
 3. *What do you think would happen if you tried to add a number to a
     string?*
@@ -513,16 +531,18 @@ here we would expect a syntax error.
     a number?
 
     - Again there are two interpretations,
+
       - You can’t multiply a word by a number
       - You can consider `word * 3` as adding word three lots of `word`,
         where adding is string concatenation
+
     - Lets see what choice python uses,
 
-    ``` python
-     'hello' * 3
-    ```
+      ``` python
+        'hello' * 3
+      ```
 
-        'hellohellohello'
+          'hellohellohello'
 
     - The moral? Python tries to do something sensible when it can
 
@@ -560,7 +580,7 @@ here we would expect a syntax error.
 
         87
 
-##### Example: Investigate Text Representation using `ord`
+##### Make Something Happen: Investigate Text Representation using `ord`
 
 *Start up a python interpreter, and run the following,*
 
@@ -572,7 +592,7 @@ here we would expect a syntax error.
 
         87
 
-    - *This matches our first example*
+    - This matches our first example
 
 2. `ord(W)`
 
@@ -588,9 +608,9 @@ here we would expect a syntax error.
 
         NameError: name 'W' is not defined
 
-    - *Here we get an error*
-    - `ord` *is quite pedantic, requiring it’s argument to be a single
-      character string*
+    - Here we get an error
+    - `ord` is quite pedantic, requiring it’s argument to be a single
+      character string
 
 - Observe a function is called with the structure (using `ord` as an
   example),
@@ -656,7 +676,7 @@ class rightPname BG
 
       'W'
 
-##### Example: Convert Numbers to text using `chr`
+##### Make Something Happen: Convert Numbers to text using `chr`
 
 *Start up a python interpreter, and run the following,*
 
@@ -668,7 +688,7 @@ class rightPname BG
 
         'W'
 
-    - *Exactly what we saw before, and what we would expect from* `ord`
+    - Exactly what we saw before, and what we would expect from `ord`
 
 2. `chr(88)`
 
@@ -678,9 +698,9 @@ class rightPname BG
 
         'X'
 
-    - *Observe that there is some logical progression.*
-    - *X comes after W in the alphabet, and does so in numerical
-      representation*
+    - Observe that there is some logical progression.
+    - *X* comes after *W* in the alphabet, and does so in numerical
+      representation
 
 - International standards govern text representation
   - However, older languages, software or hardware that predates these
@@ -695,16 +715,23 @@ class rightPname BG
 - `bin` converts a number to a string containing it’s binary
   representation
 
+##### Make Something Happen: Discover Binary Representation
+
+*Use the* `bin` *function to investigate how data is stored in a
+computer, start by running,*
+
 ``` python
 bin(87)
 ```
 
     '0b1010111'
 
+- `bin` returns a string giving the binary representation
+  - i.e. a string of `1`’s and `0`’s
 - The prefix `0b` indicates that the remaining suffix is the binary
   representation of a number
 
-##### Exercise: Discover Binary Representation
+##### Code Analysis: Building Binary Numbers
 
 *Answer the following questions about binary representations*
 

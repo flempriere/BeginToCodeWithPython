@@ -1,4 +1,5 @@
 # Example 4.6: Seattle Temperature
+#
 # Get the current temperature in Seattle
 
 import snaps

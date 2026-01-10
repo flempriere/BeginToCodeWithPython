@@ -1,3 +1,5 @@
+name: Quarto Publish
+
 on:
   workflow_dispatch:
   push:
@@ -6,16 +8,17 @@ on:
     paths:
       - "**/*.qmd"
   pull_request:
+    types: [opened, synchronize, reopened]
     paths:
       - "**/*.qmd"
-
-name: Quarto Publish
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
+      issues: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
@@ -122,30 +125,3 @@ jobs:
           render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: cleanup PR previews when PR closed
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          git fetch origin gh-pages || true
-          if git ls-remote --exit-code --heads origin gh-pages; then
-            git checkout gh-pages
-          else
-            echo "No gh-pages branch exists on origin; nothing to clean."
-            exit 0
-          fi
-
-          PR_DIR="pr-preview/${{ github.event.pull_request.number }}"
-          if [ -d "$PR_DIR" ]; then
-            git rm -r --ignore-unmatch "$PR_DIR"
-            if ! git diff --quiet --exit-code; then
-              git commit -m "Remove PR preview #${{ github.event.pull_request.number }}"
-              git push origin gh-pages
-            else
-              echo "No changes to commit after removal."
-            fi
-          else
-            echo "No PR preview found for this PR"
-          fi

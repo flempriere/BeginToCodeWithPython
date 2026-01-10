@@ -3,8 +3,8 @@
 # Version of the Fortune Teller Program that uses the teletype_printer function
 # to delay the output
 
-import time
 import random
+import time
 
 
 def teletype_printer(text, delay=0.25):
