@@ -1593,7 +1593,7 @@ def display_contact(contact):
     print("Amount to bill:", contact.billing_amount)
 ```
 
-- The complete program can be found in [Time Tracker with Billing Amount](./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithPropertiesAndExceptionHandling.py)
+- The complete program can be found in [Time Tracker with Billing Amount](./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithBillingAmount.py)
 
 #### Manage Class Versions
 
@@ -2887,7 +2887,7 @@ You are encouraged to work through the full program yourself ([PlaylistStorage.p
       This path is relative to snaps and so the folder must in the same directory as snaps
       :::
 
-- We can start with a simple program that [plays all the notes](./Examples/15_MusicWithSnaps/PlayNotes.py),
+- We can start with a simple program that [plays all the notes](./Examples/15_MusicWithSnaps/01_PlayNotes.py),
 
   ```python
     # Example 10.15.1 Play Notes
