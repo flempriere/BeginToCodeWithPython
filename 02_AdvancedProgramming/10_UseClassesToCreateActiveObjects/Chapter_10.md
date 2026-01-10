@@ -944,7 +944,7 @@ the following questions to understand static validation methods*
         ValueError: invalid literal for int() with base 10: 'Rob'
         ---------------------------------------------------------------------------
         ValueError                                Traceback (most recent call last)
-        Cell In[75], line 1
+        Cell In[11], line 1
         ----> 1 x = int("Rob")
 
         ValueError: invalid literal for int() with base 10: 'Rob'
@@ -1038,12 +1038,12 @@ attempt to add a session length of $4$, which should be invalid,
     Exception: Invalid Session Length
     ---------------------------------------------------------------------------
     Exception                                 Traceback (most recent call last)
-    Cell In[80], line 3
+    Cell In[16], line 3
           1 rob = Contact("Rob Miles", "18 Pussycat Mews, London, NE1 410S", "1234 56789")
           2 add_session(rob, 2)
     ----> 3 add_session(rob, 4)
 
-    Cell In[76], line 24, in add_session(self, session_length)
+    Cell In[12], line 24, in add_session(self, session_length)
           2 """
           3 Adds a session (in hours) to the Contacts hours
           4
@@ -1260,7 +1260,7 @@ attribute, we can see that nothing stops us from doing so
     AttributeError: 'Secret' object has no attribute '__top_secret'
     ---------------------------------------------------------------------------
     AttributeError                            Traceback (most recent call last)
-    Cell In[85], line 1
+    Cell In[21], line 1
     ----> 1 x.__top_secret
 
     AttributeError: 'Secret' object has no attribute '__top_secret'
@@ -1716,10 +1716,10 @@ class Contact:
 >     Exception: Invalid name
 >     ---------------------------------------------------------------------------
 >     Exception                                 Traceback (most recent call last)
->     Cell In[95], line 1
+>     Cell In[31], line 1
 >     ----> 1 rob = Contact(name="Rob", address="18 Pussycat Mews, London NE1 410S", telephone="1234 56789")
 >
->     Cell In[94], line 154, in Contact.__init__(self, name, address, telephone)
+>     Cell In[30], line 154, in Contact.__init__(self, name, address, telephone)
 >         141 def __init__(self, name, address, telephone):
 >         142     """
 >         143     Create a new Contact instance
@@ -1730,7 +1730,7 @@ class Contact:
 >         155     self.address = address
 >         156     self.telephone = telephone
 >
->     Cell In[94], line 92, in Contact.name(self, name)
+>     Cell In[30], line 92, in Contact.name(self, name)
 >          89 @name.setter
 >          90 def name(self, name):
 >          91     if not Contact.valid_text(name):
@@ -1827,7 +1827,7 @@ managing the billing amount*
         amount_to_bill = 30 + (50 * session_length)
       ```
 
-    - `session_lengtth` value is multipled by the hourly rate ($50$)
+    - `session_length` value is multipled by the hourly rate ($50$)
 
     - flat fee $30$ is added to the total
 
@@ -1955,7 +1955,7 @@ def display_contact(contact):
         AttributeError: 'Contact' object has no attribute '_Contact__billing_amount'
         ---------------------------------------------------------------------------
         AttributeError                            Traceback (most recent call last)
-        Cell In[96], line 1
+        Cell In[32], line 1
         ----> 1 raise AttributeError("'Contact' object has no attribute '_Contact__billing_amount'")
 
         AttributeError: 'Contact' object has no attribute '_Contact__billing_amount'
@@ -2173,7 +2173,7 @@ As we can see, the amount to bill is now correctly displayed
     display_contact(contact)
   ```
 
-      <__main__.Contact object at 0x79f95814c9b0>
+      <__main__.Contact object at 0x7f9ddc61c500>
 
 - default for objects is the class name following by the memory address
   of the object
@@ -2422,7 +2422,7 @@ following questions*
         print(session_record)
       ```
 
-          <__main__.Session object at 0x79f95814fe00>
+          <__main__.Session object at 0x7f9ddc868e90>
 
     - creates a `Session` with the passed `session_length` parameter
 
@@ -2706,7 +2706,7 @@ indented_code = map(indent, code)
 indented_code
 ```
 
-    <map at 0x79f95814d870>
+    <map at 0x7f9ddc58a350>
 
 Naively we expected a list of indented strings. Instead we have
 something called a *map object*. `map` returns something called an
@@ -2771,7 +2771,7 @@ print(indented_code.__next__())
     StopIteration:
     ---------------------------------------------------------------------------
     StopIteration                             Traceback (most recent call last)
-    Cell In[118], line 3
+    Cell In[54], line 3
           1 print(indented_code.__next__())
           2 print(indented_code.__next__())
     ----> 3 print(indented_code.__next__())
