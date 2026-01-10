@@ -443,7 +443,7 @@ Hours worked: 3.0</code></pre>
 <li>Add an <code>hours_worked</code> field</li>
 </ul></li>
 </ul>
-<div id="1e4a2f8b" class="cell" data-execution_count="1">
+<div id="bd4a7e1b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
@@ -515,7 +515,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="st">"This name was not found"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Don’t forget we also have to update how we display contacts for the <code>Find Contact</code> functionality (or in our case the <code>display_contact</code>) function.</p>
-<div id="6bf8d57f" class="cell" data-execution_count="2">
+<div id="47cf390f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> display_contact(contact):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Displays the Contact details for the supplied contact</span></span>
@@ -539,7 +539,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Hours worked for this Contact:"</span>, contact.hours_worked, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>If we create a new <code>Contact</code> object then we can see how this looks,</p>
-<div id="07e6f80d" class="cell" data-execution_count="3">
+<div id="801fe9a8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  contact <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Alice"</span>, address<span class="op">=</span><span class="st">"Bob St"</span>, telephone<span class="op">=</span><span class="st">"555"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  contact.hours_worked <span class="op">=</span> <span class="fl">5.0</span></span>
@@ -644,7 +644,7 @@ Tip
 </ul></li>
 <li><p>Start by defining a method to access the hours worked</p></li>
 </ul>
-<div id="ac37972b" class="cell" data-execution_count="4">
+<div id="fde5436c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
@@ -700,7 +700,7 @@ Tip
 <li><p>A method is part of an object</p></li>
 <li><p><code>self</code> tells the method which object it is a part of</p></li>
 <li><p>The code sample below shows how the method doesn’t need an additional reference to the <code>Contact</code> it refers to</p>
-<div id="8c17e2f4" class="cell" data-execution_count="5">
+<div id="efb16c53" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set up</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"1"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  rob.hours_worked <span class="op">=</span> <span class="dv">1</span></span>
@@ -732,7 +732,7 @@ Tip
 </ol>
 <ul>
 <li><p>We can create a second method to handle adding a session to a <code>Contact</code></p>
-<div id="388ed936" class="cell" data-execution_count="6">
+<div id="c7a0b8a3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># existing class definition</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
@@ -787,7 +787,7 @@ Tip
 <h4 class="anchored" data-anchor-id="add-validation-to-methods">Add Validation to Methods</h4>
 <ul>
 <li><p>Currently <code>add_session</code> would allow function calls like,</p>
-<div id="70363169" class="cell" data-execution_count="7">
+<div id="9cb70f56" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"555"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  rob.add_session(<span class="op">-</span><span class="dv">10</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(rob.get_hours_worked())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -844,7 +844,7 @@ Note
 <li>No longer magic constants</li>
 <li>Accessible by all <code>Contact</code> instances</li>
 </ul>
-<div id="2cd8645d" class="cell" data-execution_count="8">
+<div id="ba406546" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact with a name, address and telephone number.</span></span>
@@ -985,7 +985,7 @@ Note
 <li>Static methods can be considered as methods defined on a class rather than an object instance</li>
 </ul></li>
 <li><p>We can define one as below,</p>
-<div id="ad094712" class="cell" data-execution_count="9">
+<div id="a677629b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact with a name, address and telephone number.</span></span>
@@ -1104,7 +1104,7 @@ Note
 <li>Static methods can exist even without an instance of the given class</li>
 </ul></li>
 <li><p>Static methods can be called directly from the class e.g.</p>
-<div id="cee30893" class="cell" data-execution_count="10">
+<div id="ebfa7f0f" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(Contact.valid_session_length(<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>False</code></pre>
@@ -1237,7 +1237,7 @@ Note
 <li><p>meaningless to continue with an unconverted number</p></li>
 <li><p><em>Unless</em> the caller specifies what to do in that case</p></li>
 <li><p>So this causes an exception</p>
-<div id="87bd0121" class="cell" data-execution_count="11">
+<div id="5e95ba45" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="bu">int</span>(<span class="st">"Rob"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1255,7 +1255,7 @@ Note
 <ul>
 <li>We use the <code>raise</code> keyword</li>
 </ul>
-<div id="c977a162" class="cell" data-execution_count="12">
+<div id="1a773838" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Adds a session (in hours) to the Contacts hours</span></span>
@@ -1304,7 +1304,7 @@ Note
 <h5 class="anchored" data-anchor-id="make-something-happen-raising-exceptions-from-code">Make Something Happen: Raising Exceptions from Code</h5>
 <p><em>Investigate how exceptions are raised using the sample program <a href="./Examples/06_TimeTrackerWithException/TimeTrackerWithException.py">Time Tracker with Exception</a></em></p>
 <p>Start a python interpreter and run the example program above, select option <span class="math inline">\(1\)</span> on the menu, and enter the following,</p>
-<div id="87f9afca" class="cell" data-execution_count="13">
+<div id="1e94f637" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Time Tracker
@@ -1337,7 +1337,7 @@ Enter the contact phone: <span class="ansi-red-fg"> 1234 56789 </span>
 </div>
 </div>
 <p>Now add a session lasting 2 hours to the contact using option 4:</p>
-<div id="f8e163eb" class="cell" data-execution_count="14">
+<div id="b9c03072" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1358,7 +1358,7 @@ Updated hours worked: 2.0
 </div>
 </div>
 <p>This should work because <span class="math inline">\(2\)</span> is a valid session length, now repeat but attempt to add a session length of <span class="math inline">\(4\)</span>, which should be invalid,</p>
-<div id="9c0f3812" class="cell" data-execution_count="15">
+<div id="a2535af1" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1376,7 +1376,7 @@ Session Length: <span class="ansi-red-fg"> 4</span>
 </div>
 </div>
 </div>
-<div id="a3cc2c7a" class="cell" data-execution_count="16">
+<div id="a9ce1786" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -1437,7 +1437,7 @@ Note
 <li>Passing an exception to <code>print</code> prints our the message associated with the exception</li>
 <li>A representative use might look like,</li>
 </ul>
-<div id="0219ed63" class="cell" data-execution_count="17">
+<div id="313522ee" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1579,7 +1579,7 @@ Warning
 <section id="make-something-happen-protecting-data-attributes-in-a-class" class="level5">
 <h5 class="anchored" data-anchor-id="make-something-happen-protecting-data-attributes-in-a-class">Make Something Happen: Protecting Data Attributes in a Class</h5>
 <p><em>Follow the following steps to examine how to make a python class secure. Open a python interpreter and enter the statements below</em></p>
-<div id="f1af118b" class="cell" data-execution_count="18">
+<div id="77ab0fd8" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Secret:</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._secret <span class="op">=</span> <span class="dv">99</span></span>
@@ -1587,12 +1587,12 @@ Warning
 </div>
 <p>The above creates a class <code>Secret</code> which has two attributes, <code>_secret</code> and <code>__top_secret</code></p>
 <p><em>Create an instance of the</em> <code>Secret</code> <em>class</em></p>
-<div id="9128ec94" class="cell" data-execution_count="19">
+<div id="bf489e61" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Secret()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above creates a new instance of a <code>Secret</code> class and stores it with the variable <code>x</code>.</p>
 <p><em>Try to access the</em> <code>_secret</code> <em>attribute on</em> <code>x</code></p>
-<div id="af4fbdc8" class="cell" data-execution_count="20">
+<div id="2dbcf2d1" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>    x._secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>99</code></pre>
@@ -1600,7 +1600,7 @@ Warning
 </div>
 <p>Even though we said that <code>_</code> indicates we should not access the data attribute, we can see that nothing stops us from doing so</p>
 <p><em>Now try to access the</em> <code>__top_secret</code> <em>attribute</em></p>
-<div id="ee79a307" class="cell" data-execution_count="21">
+<div id="6c09758e" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>    x.__top_secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1615,7 +1615,7 @@ Warning
 </div>
 <p>This time we get an <code>AttributeError</code> which suggests that there is no <code>__top_secret</code> attribute associated with the <code>Secret</code> class</p>
 <p><em>However, Python has performed some “name-mangling” to the name</em> <code>__top_secret</code><em>. Inside the</em> <code>Secret</code> <em>class we can refer to</em> <code>__top_secret</code><em>. Outside the class, the variable name is prepended with the class name (and an underscore). So we can still access it, as the below proves</em></p>
-<div id="451cc986" class="cell" data-execution_count="22">
+<div id="63f4845d" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    x._Secret__top_secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>100</code></pre>
@@ -1663,7 +1663,7 @@ Tip
 </ul></li>
 <li>Realistically they would be discussed and confirmed with the customer</li>
 </ul>
-<div id="7a1be697" class="cell" data-execution_count="23">
+<div id="18cdd14a" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
@@ -1705,7 +1705,7 @@ Tip
 </ul>
 <section id="code-analysis-properties-in-classes" class="level4">
 <h4 class="anchored" data-anchor-id="code-analysis-properties-in-classes">Code Analysis: Properties in Classes</h4>
-<div id="6fc757e6" class="cell" data-execution_count="24">
+<div id="81aa9564" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1806,7 +1806,7 @@ Tip
 <section id="make-something-happen-investigating-properties" class="level4">
 <h4 class="anchored" data-anchor-id="make-something-happen-investigating-properties">Make Something Happen: Investigating Properties</h4>
 <p><em>Investigate how properties work. Open up the python interpreter and enter the statements below</em></p>
-<div id="23a21c0e" class="cell" data-execution_count="25">
+<div id="f85a8b92" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Prop:</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> x(<span class="va">self</span>):</span>
@@ -1819,11 +1819,11 @@ Tip
 </div>
 <p>This creates a new class <code>Prop</code> with a property <code>x</code> that has a <code>setter</code></p>
 <p><em>Now create an instance of this class as below</em></p>
-<div id="fd654b96" class="cell" data-execution_count="26">
+<div id="522de584" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>    test <span class="op">=</span> Prop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>Put a value for</em> <code>x</code> <em>into the</em> <code>test</code> <em>instance</em></p>
-<div id="3a2c0cd7" class="cell" data-execution_count="27">
+<div id="d5dc1226" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>    test.x <span class="op">=</span> <span class="dv">99</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>set property x: 99</code></pre>
@@ -1831,7 +1831,7 @@ Tip
 </div>
 <p>When python executes the above, it runs the setter method for the property. As we can see from the output above.</p>
 <p><em>Now try to read the property</em></p>
-<div id="ad78d4e8" class="cell" data-execution_count="28">
+<div id="a21503c5" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(test.x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>got property x
@@ -1840,7 +1840,7 @@ Tip
 </div>
 <p>When reading the property, python runs the property method, as indicated above</p>
 <p><em>We can combine getting and setting in complex expressions, execute the following</em></p>
-<div id="6961bd17" class="cell" data-execution_count="29">
+<div id="2d1e3017" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>    test.x <span class="op">=</span> test.x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>got property x
@@ -1852,7 +1852,7 @@ set property x: 100</code></pre>
 <ul>
 <li>The relevant changes to the <code>Contact</code> class are then,</li>
 </ul>
-<div id="9e10312d" class="cell" data-execution_count="30">
+<div id="ea97e568" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
@@ -2041,7 +2041,7 @@ Caution
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These statements look like normal variable assignments, nothing here indicates that these steps can fail. However, the following statement fails,</p>
-<div id="8356f2ab" class="cell" data-execution_count="31">
+<div id="01626b08" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>    rob <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Rob"</span>, address<span class="op">=</span><span class="st">"18 Pussycat Mews, London NE1 410S"</span>, telephone<span class="op">=</span><span class="st">"1234 56789"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -2209,7 +2209,7 @@ Billing amount: 130.0</code></pre>
 <span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hours worked for this Contact:"</span>, contact.get_hours_worked(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Amount to bill:"</span>, contact.billing_amount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>The complete program can be found in <a href="./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithPropertiesAndExceptionHandling.py">Time Tracker with Billing Amount</a></li>
+<li>The complete program can be found in <a href="./Examples/11_TimeTrackerWithBillingAmount/TimeTrackerWithBillingAmount.py">Time Tracker with Billing Amount</a></li>
 </ul>
 </section>
 <section id="manage-class-versions" class="level4">
@@ -2220,7 +2220,7 @@ Billing amount: 130.0</code></pre>
 <ul>
 <li><p>They will load</p></li>
 <li><p>But whe we try to display or add a session we’ll get an error, like</p>
-<div id="47283569" class="cell" data-execution_count="32">
+<div id="1a666dfe" class="cell" data-execution_count="32">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -2357,7 +2357,7 @@ Billing amount: 130.0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-explore-version-management">Make Something Happen: Explore Version Management</h5>
 <p><em>To get a better understanding of versioning, work through the following steps</em></p>
 <p><em>Start by running the program <a href="./Examples/10_TimeTrackerWithPropertiesAndExceptionHandling/TimeTrackerWithPropertiesAndExceptionHandling.py">TimeTrackerWithPropertiesAndExceptionHandling.py</a>. Create a new contact as below</em></p>
-<div id="a7633ccd" class="cell" data-execution_count="33">
+<div id="2f6b8636" class="cell" data-execution_count="33">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg">1</span>
@@ -2374,7 +2374,7 @@ Enter the contact phone: <span class="ansi-red-fg">1234 56789</span>
 </div>
 </div>
 <p>This creates a new contact, which looks like, (use Find Contact)</p>
-<div id="687e86fe" class="cell" data-execution_count="34">
+<div id="07b64044" class="cell" data-execution_count="34">
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rob Miles
 Address: 18 Pussycat Mews, London, NE1 410S
@@ -2386,7 +2386,7 @@ Hours on the case: 0</code></pre>
 <p><em>Exit the program so the contact is saved. Now load this pickle file with <a href="./Examples/12_TimeTrackerWithVersion/TimeTrackerWithVersion.py">TimeTrackerWithVersion.py</a></em></p>
 <p>This should load the contact (which is unversioned), and upgrade it to the versioned variant with a billing amount</p>
 <p><em>Attempt to display this contact, you should see something like</em></p>
-<div id="a88b1e3d" class="cell" data-execution_count="35">
+<div id="6257f451" class="cell" data-execution_count="35">
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rob Miles
 Address: 18 Pussycat Mews, London, NE1 410S
@@ -2420,7 +2420,7 @@ Important
 <li><p>Each time we add a new attribute to the <code>Contact</code> class we have to modify <code>display_contact</code></p></li>
 <li><p>Would be nice just to be able to print a <code>Contact</code> directly</p></li>
 <li><p>However, doing so, we find the output is pretty useless (using the mock below)</p>
-<div id="298ed0d5" class="cell" data-execution_count="36">
+<div id="950df36e" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -2434,7 +2434,7 @@ Important
 <span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.Contact object at 0x7ff428b646e0&gt;</code></pre>
+<pre><code>&lt;__main__.Contact object at 0x7f59143ac5f0&gt;</code></pre>
 </div>
 </div></li>
 <li><p>default for objects is the class name following by the memory address of the object</p></li>
@@ -2453,7 +2453,7 @@ Important
 <span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Amount to bill: "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.billing_amount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>The <code>\</code> character above is used to continue the string onto a new line</p></li>
 <li><p>printing now, we get what we expect</p>
-<div id="d282501e" class="cell" data-execution_count="38">
+<div id="6fcfa2fc" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rob Miles
@@ -2495,18 +2495,18 @@ Amount to bill: 0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-adventures-with-string-formatting">Make Something Happen: Adventures with String Formatting</h5>
 <p><em>Open the python interpreter and work through the following steps to understand how string formatting works</em></p>
 <p><em>Enter the statements below</em></p>
-<div id="135e3f3a" class="cell" data-execution_count="39">
+<div id="9881a226" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Rob Miles"</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">21</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above creates two variables <code>name</code> and <code>age</code></p>
 <p><em>Now create the following template string</em></p>
-<div id="79978a0f" class="cell" data-execution_count="40">
+<div id="19f349fc" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"My name is </span><span class="sc">{0}</span><span class="st"> and my age is </span><span class="sc">{1}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The just creates a string called <code>template</code>, <code>{0}</code> and <code>{1}</code> are two placeholder indicators for the <code>format</code> function</p>
 <p><em>Now call the</em> <code>format</code> <em>method on</em> <code>template</code></p>
-<div id="4ba0ed32" class="cell" data-execution_count="41">
+<div id="543e8ab0" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>template.<span class="bu">format</span>(name, age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>'My name is Rob Miles and my age is 21'</code></pre>
@@ -2514,7 +2514,7 @@ Amount to bill: 0</code></pre>
 </div>
 <p>As we can see the placeholder values have been substituted with the values of the <code>name</code> and <code>age</code> value</p>
 <p><em>We can add additional formatting information. Redefine and format the template as follows</em></p>
-<div id="af5c5bd5" class="cell" data-execution_count="42">
+<div id="2f53fab0" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"My name is </span><span class="sc">{0:20}</span><span class="st"> and my age is </span><span class="sc">{1:10}</span><span class="st">"</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>template.<span class="bu">format</span>(name, age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
@@ -2523,7 +2523,7 @@ Amount to bill: 0</code></pre>
 </div>
 <p>We write the placeholder as <code>{n:w}</code> where <span class="math inline">\(n\)</span> is the index of the placeholder. <span class="math inline">\(w\)</span> is the width value, as you can see from above, the value is still substituted but then spaces are added to pad out to the width. This is useful for defining columns. We use a <code>:</code> to seperate the <em>format specifiers</em> from the placeholder index</p>
 <p>For floating point values you can also specify the number of decimal places to be printed</p>
-<div id="a5b1bb54" class="cell" data-execution_count="43">
+<div id="96b8baa2" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"My name is </span><span class="sc">{0:20}</span><span class="st"> and my age is </span><span class="sc">{1:10.2f}</span><span class="st">"</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>template.<span class="bu">format</span>(name, age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
@@ -2584,7 +2584,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </ol></li>
 <li><p>We should also move the <code>Contact</code> class attributes validating a session length to the <code>Session</code> class</p></li>
 </ul>
-<div id="26958b99" class="cell" data-execution_count="44">
+<div id="5aa0ce3c" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> time</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">class</span> Session:</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>     <span class="co">"""</span></span>
@@ -2642,12 +2642,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <ul>
 <li><p>We can now create <code>Session</code> objects</p>
-<div id="d598820e" class="cell" data-execution_count="45">
+<div id="a60a426a" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>  session_length <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  session_record <span class="op">=</span> Session(session_length)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(session_record)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.Session object at 0x7ff428e3bad0&gt;</code></pre>
+<pre><code>&lt;__main__.Session object at 0x7f59143153d0&gt;</code></pre>
 </div>
 </div></li>
 <li><p>creates a <code>Session</code> with the passed <code>session_length</code> parameter</p></li>
@@ -2844,23 +2844,23 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-investigating-the-map-function-and-iteration">Make Something Happen: Investigating the <code>map</code> Function and Iteration</h5>
 <p><em>These next few steps go on for a quite a while. So work through it at your own pace. However, this will give you a good understanding of not just</em> <code>map</code> <em>but also some fundamentals for python</em></p>
 <p><em>Open up a python interpreter and work through the following steps. We’ll use</em> <code>map</code> <em>to indent a list of strings. Run the following steps</em></p>
-<div id="06574198" class="cell" data-execution_count="46">
+<div id="8ca999a3" class="cell" data-execution_count="46">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> [<span class="st">'line1'</span>, <span class="st">'line2'</span>, <span class="st">'line3'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This creates a list containing three strings, we can easily view the contents</p>
-<div id="558c7a0f" class="cell" data-execution_count="47">
+<div id="f2189f9b" class="cell" data-execution_count="47">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>['line1', 'line2', 'line3']</code></pre>
 </div>
 </div>
 <p><em>Now we need to create our indentation function. We can do this by adding four spaces (or a tab etc.) at the beginning of a string. Define the following python funcion</em></p>
-<div id="94ec64bd" class="cell" data-execution_count="48">
+<div id="0a961ccb" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> indent(x):</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"    "</span> <span class="op">+</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can test this function, on a sample string,</p>
-<div id="d2ed6689" class="cell" data-execution_count="49">
+<div id="8fb52faa" class="cell" data-execution_count="49">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rob"</span>)</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>indent(<span class="st">"Rob"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2872,16 +2872,16 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>We would like to apply the <code>indent</code> function to every string in the <code>code</code> list. We could do this using a <code>for</code> loop, instead we use a <code>map</code> function</p>
 <p><em>Now run the following statements</em></p>
-<div id="aa84010a" class="cell" data-execution_count="50">
+<div id="7dc20fb5" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>indented_code <span class="op">=</span> <span class="bu">map</span>(indent, code)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>indented_code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>&lt;map at 0x7ff428b810c0&gt;</code></pre>
+<pre><code>&lt;map at 0x7f5914314100&gt;</code></pre>
 </div>
 </div>
 <p>Naively we expected a list of indented strings. Instead we have something called a <em>map object</em>. <code>map</code> returns something called an iterator. Iterators return items from a collection or sequence one at a time. We can work through iterators using a <code>for</code> loop. This is how we can work through lists. <code>range</code> also returns an iterator</p>
 <p><em>Now run the following</em> <code>for</code> <em>loop to get the</em> <code>indented_code</code> <em>values</em></p>
-<div id="cc8c0a91" class="cell" data-execution_count="51">
+<div id="14f7c631" class="cell" data-execution_count="51">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> indented_code:</span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2894,12 +2894,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <p>Iterators allow us to save memory, rather than having to store the entire result in memory we can simply generate each one as needed. Each time we ask for a new result from the map object, <code>map</code> gets the next value from the original collection (<code>code</code>) and applies the function <code>indent</code> to it. Once the map iterator runs out of values to return, it raises <code>StopIteration</code> as an exception. This stops the loop.</p>
 <p>Lets explore this in more detail</p>
 <p><em>Recreate the statement creating the map</em></p>
-<div id="cb4b719e" class="cell" data-execution_count="52">
+<div id="85ce3476" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>indented_code <span class="op">=</span> <span class="bu">map</span>(indent, code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can then ask for the next item from an iterator using the <code>__next__</code> method.</p>
 <p><em>Call this method on</em> <code>indented_code</code></p>
-<div id="3b62b91f" class="cell" data-execution_count="53">
+<div id="f2492ab8" class="cell" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>indented_code.<span class="fu">__next__</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="53">
 <pre><code>'    line1'</code></pre>
@@ -2907,7 +2907,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>We can see this produces the <em>next</em> value, though in this case, it’s the first item. We can keep repeating this</p>
 <p><em>Run the following</em></p>
-<div id="032f011a" class="cell" data-execution_count="54">
+<div id="f10d8dd1" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indented_code.<span class="fu">__next__</span>())</span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indented_code.<span class="fu">__next__</span>())</span>
 <span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indented_code.<span class="fu">__next__</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2930,12 +2930,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>We can see that we get the next two items from the iterator, and then finally after trying to get an non-existent value we see a <code>StopIteration</code> exception is raised</p>
 <p><em>You can’t reuse a iterator once it has run out of items. You have to recreate it</em></p>
-<div id="fb34b77a" class="cell" data-execution_count="55">
+<div id="3a5cc904" class="cell" data-execution_count="55">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>indent_iterator <span class="op">=</span> <span class="bu">map</span>(indent, code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we want to convert this to normal collection, we can do something like call <code>list</code> to convert to a list</p>
 <p><em>Check this out by running the following statements</em></p>
-<div id="281cb4ad" class="cell" data-execution_count="56">
+<div id="18ba1897" class="cell" data-execution_count="56">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>indented_code <span class="op">=</span> <span class="bu">list</span>(indent_iterator)</span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>indented_code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
@@ -2944,13 +2944,13 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>What happens if we make the input of a <code>map</code> function an iterator</p>
 <p><em>Enter the following statements to explore</em></p>
-<div id="3a92451c" class="cell" data-execution_count="57">
+<div id="9d4a0bf1" class="cell" data-execution_count="57">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>i1 <span class="op">=</span> <span class="bu">map</span>(indent, code)</span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>i2 <span class="op">=</span> <span class="bu">map</span>(indent, i1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We first create the iterator <code>i1</code> to apply the <code>indent</code> function to the list <code>code</code>. We then create a second iterator <code>i2</code> to apply the <code>indent</code> function to the items of the <code>i1</code> iterator</p>
 <p><em>Use</em> <code>list</code> <em>to convert</em> <code>i2</code> <em>to a list</em></p>
-<div id="e04c4983" class="cell" data-execution_count="58">
+<div id="60bdfbb5" class="cell" data-execution_count="58">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(i2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>['        line1', '        line2', '        line3']</code></pre>
@@ -2966,7 +2966,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <h4 class="anchored" data-anchor-id="the-python-join-method">The Python <code>join</code> Method</h4>
 <ul>
 <li><p>We can call string methods on string literals, e.g.</p>
-<div id="fdddce73" class="cell" data-execution_count="59">
+<div id="85a1bd58" class="cell" data-execution_count="59">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"FRED"</span>.lower()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>'fred'</code></pre>
@@ -2978,7 +2978,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <ul>
 <li>the string on which <code>join</code> is called is inserted between each item</li>
 </ul>
-<div id="1961e8b1" class="cell" data-execution_count="60">
+<div id="90493f69" class="cell" data-execution_count="60">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>  report_strings <span class="op">=</span> [<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>]</span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  report_results <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(report_strings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
@@ -2987,12 +2987,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-investigating-the-join-function">Make Something Happen: Investigating the <code>join</code> Function</h5>
 <p><em>Work through the following steps with the python interpreter to understand</em> <code>join</code></p>
 <p><em>Enter the statement below</em></p>
-<div id="dd75e94a" class="cell" data-execution_count="61">
+<div id="94b9ca96" class="cell" data-execution_count="61">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>report_strings <span class="op">=</span> [<span class="st">"report1"</span>, <span class="st">"report2"</span>, <span class="st">"report3"</span>, <span class="st">"report4"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above creates a list of four strings, <code>report_strings</code>. Lists are iterators so we can pass this to <code>join</code></p>
 <p><em>Call the join function as below</em></p>
-<div id="e6f746cf" class="cell" data-execution_count="62">
+<div id="fe4290b6" class="cell" data-execution_count="62">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co">"**"</span>.join(report_strings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
 <pre><code>'report1**report2**report3**report4'</code></pre>
@@ -3000,7 +3000,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>As observed we iterate over the strings, merging them with <code>**</code> inserted in between. Observe that <code>**</code> is not placed at the start or end of the resulting string</p>
 <p><em>Rerun the statement with the newline character below</em></p>
-<div id="56405d59" class="cell" data-execution_count="63">
+<div id="c54dc312" class="cell" data-execution_count="63">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(report_strings))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>report1
@@ -3012,7 +3012,7 @@ report4</code></pre>
 <p>This does the same but instead each string is printed on its own line</p>
 <p>We can use <code>join</code> to concatenate strings by using the empty string</p>
 <p><em>Run the following statement</em></p>
-<div id="1dd964e7" class="cell" data-execution_count="64">
+<div id="c996718f" class="cell" data-execution_count="64">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">""</span>.join(report_strings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>'report1report2report3report4'</code></pre>
@@ -3474,7 +3474,7 @@ Warning
 </div>
 </div></li>
 </ul></li>
-<li><p>We can start with a simple program that <a href="./Examples/15_MusicWithSnaps/PlayNotes.py">plays all the notes</a>,</p>
+<li><p>We can start with a simple program that <a href="./Examples/15_MusicWithSnaps/01_PlayNotes.py">plays all the notes</a>,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 10.15.1 Play Notes</span></span>
 <span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
 <span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Demonstrates using snaps to play notes</span></span>
