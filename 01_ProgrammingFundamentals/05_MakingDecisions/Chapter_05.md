@@ -260,7 +260,7 @@ and copy the below text.*
     print("The hour is", hour)
 ```
 
-    The hour is 13
+    The hour is 14
 
 Run the program, it should print out the current hour
 
@@ -295,7 +295,7 @@ simply need to format the attribute as nessecary. The final
 ```
 
     The date is 10 / 1 / 2026
-    The time is 13 : 48 : 57
+    The time is 14 : 36 : 27
 
 #### Comparing Values
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 13 : 48
+    The time is 14 : 36
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -1641,9 +1641,9 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    You will meet a tall, dark stranger
-    A life of comfort is coming
-    You will soon face a decision that will redefine everything
+    Nobody unexpected will enter your life
+    You would do well to husband your wealth
+    Sometimes the answers to our future, come from the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise

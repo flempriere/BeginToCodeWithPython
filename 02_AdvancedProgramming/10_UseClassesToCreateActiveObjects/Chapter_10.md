@@ -2173,7 +2173,7 @@ As we can see, the amount to bill is now correctly displayed
     display_contact(contact)
   ```
 
-      <__main__.Contact object at 0x7fc0280c4fe0>
+      <__main__.Contact object at 0x7f51102b3b00>
 
 - default for objects is the class name following by the memory address
   of the object
@@ -2422,7 +2422,7 @@ following questions*
         print(session_record)
       ```
 
-          <__main__.Session object at 0x7fc0280c6480>
+          <__main__.Session object at 0x7f5100f07980>
 
     - creates a `Session` with the passed `session_length` parameter
 
@@ -2706,7 +2706,7 @@ indented_code = map(indent, code)
 indented_code
 ```
 
-    <map at 0x7fc0280c6140>
+    <map at 0x7f5100f06560>
 
 Naively we expected a list of indented strings. Instead we have
 something called a *map object*. `map` returns something called an
