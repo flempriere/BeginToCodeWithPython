@@ -33,6 +33,7 @@ jobs:
           if [ -d "$PR_DIR" ]; then
               git rm -r --ignore-unmatch "$PR_DIR"
               if ! git diff --quiet --exit-code; then
+              git add -u
               git commit -m "Remove PR preview #${{ github.event.pull_request.number }}"
               git push origin gh-pages
               else
