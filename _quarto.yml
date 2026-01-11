@@ -30,9 +30,9 @@ website:
             contents:
               - 02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.qmd
           - 02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.qmd
-          - 02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chpater_11.qmd
+          - 02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd
 format:
-  bookup-html:
+  html:
     code-fold: false
     code-links: repo
   gfm:
