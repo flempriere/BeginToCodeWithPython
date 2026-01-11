@@ -3,6 +3,15 @@
 - [Notes](#notes)
   - [Fashion Shop Application](#fashion-shop-application)
     - [Application Data Design](#application-data-design)
+    - [Object-oriented Design](#object-oriented-design)
+    - [Creating superclasses and
+      subclasses](#creating-superclasses-and-subclasses)
+      - [Abstraction in Software
+        Design](#abstraction-in-software-design)
+      - [Code Analysis: Understanding
+        Inheritance](#code-analysis-understanding-inheritance)
+      - [Storing Data in a Class
+        Hierachy](#storing-data-in-a-class-hierachy)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -62,6 +71,702 @@
 - The above options are all pretty straightforward for now
 
 #### Application Data Design
+
+- Before designing the program we need to understand the data we have to
+  represent
+
+- Our client tells us that each stock item requires,
+
+  1. Stock reference id
+  2. Price
+  3. Colour
+  4. Number in stock
+
+- The client also has specifics for different types of stock items
+
+  - For Dresses we require
+
+    1. Size
+    2. Style
+    3. Pattern
+
+  - For pants we require
+
+    1. Length
+    2. Waist size
+    3. Style
+    4. Pattern
+
+  - For hats we require
+
+    1. Size
+
+  - For blouses we require
+
+    1. Size
+    2. Style
+    3. Pattern
+
+- We can map out some descriptions
+
+  ``` text
+    Dress: stock reference: 'D0001' price: 100.0 color: red pattern: swirly size: 12
+    Pants: stock reference: 'TR12327'price: 50 color: black pattern: plain length: 30 waist: 30
+  ```
+
+- Now that we have our *data requirements* and some mock items, we want
+  to carry out *data design*
+
+- Data design is the process of specifying how we represent a programs
+  data
+
+#### Object-oriented Design
+
+- A design paradigm we could use is to represent each data object as a
+  class
+  - This object-centric approach is called *object-oriented programming*
+- Solution elements are mapped to software objects
+- A way to formulate classes is to break a problem statement down into
+  *nouns*
+- *nouns* describe *things* which naturally translate to *objects*
+  - e.g. a food service point-of-sale system might be described as
+
+        The customer will select a dish from the menu and add it to his order.
+
+  - The four nouns above (written in red) could map to classes in the
+    application
+
+    - This is only a starting point
+    - We would have to dive deeper into the design requirements with the
+      client
+
+> [!TIP]
+>
+> **Don’t write any code before you have completed your data design**
+>
+> Design mistakes are easiest to correct early in a project’s lifecycle.
+> For this reason data design is almost always carried out and completed
+> before we actually starting to right code.
+>
+> If we were to continue developing the restaurant point of sale system
+> above, we would have to work through the data requirements with the
+> client. For example if we were developing a `Customer` class, we might
+> map out paper variants of the class, and work through usage scenarios
+> with the client to ensure all the details are captured.
+>
+> For example if a customer needed to provide a telephone number we
+> would want to capture this design requirement early.
+
+- For our first design we could implement all these different stock
+  items as different classes, (you can find the code in
+  [SeperateClasses.py](./Examples/01_SeperateClasses/SeperateClasses.py))
+
+``` python
+# Example 11.1 Fashion Items as Seperate Classes
+#
+# Mocks out the class-based implementation of the fashion items, treating
+# each different item type as it's own standalone class
+
+
+class Dress:
+    """
+    Represents the inventory details for a Dress
+    """
+
+    def __init__(self, stock_ref, price, colour, pattern, size):
+        """
+        Creates a Dress instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            stock reference code
+        price : int | float
+            dress price
+        colour : str
+            description of the dress colour
+        pattern : str
+            description of the dress pattern
+        size : int
+            dress size
+        """
+        self.stock_ref = stock_ref
+        self.__price = price
+        self.__stock_level = 0
+        self.colour = colour
+        self.pattern = pattern
+        self.size = size
+
+    @property
+    def price(self):
+        """
+        price : int | float
+            dress price
+        """
+        return self.__price
+
+    @property
+    def stock_level(self):
+        """
+        stock_level : int
+            amount of stock in inventory
+        """
+        return self.__stock_level
+
+
+class Pants:
+    """
+    Represents the inventory details for a pair of Pants
+    """
+
+    def __init__(self, stock_ref, price, colour, pattern, length, waist):
+        """
+        Creates a Pants instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            stock reference code
+        price : int | float
+            pants price
+        colour : str
+            description of the pants colour
+        pattern : str
+            description of the pants pattern
+        length: int
+            length of the pants
+        waist : int
+            pants waist size
+        """
+        self.stock_ref = stock_ref
+        self.__price = price
+        self.__stock_level = 0
+        self.colour = colour
+        self.pattern = pattern
+        self.length = length
+        self.waist = waist
+
+    @property
+    def price(self):
+        """
+        price : int | float
+            dress price
+        """
+        return self.__price
+
+    @property
+    def stock_level(self):
+        """
+        stock_level : int
+            amount of stock in inventory
+        """
+        return self.__stock_level
+
+
+x = Dress(stock_ref="D001", price=100, colour="Red", pattern="Swirly", size=12)
+y = Pants(
+    stock_ref="TR12327", price=50, colour="Black", pattern="Plain", length=30, waist=25
+)
+
+print(x.price)
+print(y.stock_level)
+```
+
+    100
+    0
+
+- We define a `Dress` and a `Pants` class
+- Each class has to have an `__init__` to set them up
+- Both classes have private price and stock levels
+  - These are important parts of the inventory system that should have
+    controlled modification
+  - We don’t want the price being modified and overcharging customers
+  - We don’t want the stock level being off causing us to misorder
+- Both classes have properties to access price and stock levels
+  - Later we’ll make methods to control these
+
+> [!CAUTION]
+>
+> **Avoid overusing block-copy**
+>
+> Using a text editor it might seem convenient to copy a large block of
+> code when we have to reuse it elsewhere. Whenever you feel yourself
+> copying lets of code to different sections this is usually a good
+> indicator that something is not right. You should aim to write a piece
+> of code *once*. Code written once is more maintainable, as we only
+> need to modify it in one place. If the code is used multiple times, it
+> is a good candidate to be converted into a function or a method
+>
+> As mentioned block copying is liable to introduce bugs. If we need to
+> slightly modify the code in the new section we have to make sure we do
+> it correctly (which might be hard if you’ve copied a big chunk).
+> Additionally if you latter find a bug, you may have to fix *all* the
+> copies (which requires you to remember where they are).
+>
+> Use this as advice, if you find yourself copying lots of code, its a
+> good time to take a step back at look at your overall design
+
+#### Creating superclasses and subclasses
+
+- Many languages (including python) let us use *inheritance*
+
+- Inheritance allows one class to *base* itself on another
+
+  - i.e. it *inherits* the behaviour of another class
+
+- The original class is called the *superclass*
+
+- Creating this new class is called *extending the superclass*
+
+- By default all python classes extend the `object` class
+
+- We could write this explicitly
+
+  ``` python
+    class Contact(object)
+  ```
+
+- We can replace the `object` in the above with the class we want to use
+  as a superclass
+
+- Looking at our data design we can see there is a bunch of behaviour
+  common to all stock items
+
+- We can start by defining a `StockItem` to act as a superclass
+
+  - `StockItem` stores all common attributes
+
+    1. Stock reference
+    2. Price
+    3. Colour
+    4. Stock level
+
+- `Dress` and `Pants` now extend `StockItem`
+
+  - The other stock items will do so as well
+
+- The diagram below shows what’s called a *class diagram* or
+  *inheritance hierachy*
+
+``` mermaid
+---
+title: Fashion Shop Class Diagram
+---
+
+classDiagram
+    class object
+
+    class StockItem {
+        str stock_ref
+        str item_name
+        str colour
+        number price
+        int stock_level
+    }
+
+    class Dress {
+        str pattern
+        int size
+    }
+
+    class Pants {
+        int length
+        str pattern
+        int waist
+    }
+
+    object <|-- StockItem
+    StockItem <|-- Dress
+    StockItem <|--  Pants
+```
+
+- We can see that *both* `Pants` and `Dress` are *subclasses* of
+  `StockItem`
+- The inverse relationship is `StockItem` is the *superclass* of `Pants`
+  and `Dress`
+- We call this inheritance because the subclasses inherit the attributes
+  of the superclass
+- When building an inheritance hierachy you need to focus on your data
+  - Here we have a collection of related data items
+  - The basic behaviour of a data item is the same
+  - The related items also have some common data attributes
+- We capture the common behaviour and data in a superclass
+  - Then *extend* with subclasses the specific behaviour of different
+    data items
+- Also means that if we add *new* common behaviour we only have to add
+  it in one place
+  - i.e. the superclass
+  - Otherwise we would have to put it in all the classes
+
+##### Abstraction in Software Design
+
+- Abstraction is a term used to describe attempting to capture
+  behaviours and data of a system at a higher level
+- Here by introducing a `StockItem` class we are attempting to talk
+  about the behaviour of stock items in generality as opposed to any
+  specific type of stock item
+  - i.e. We know that a stock item should be,
+
+    1. Able to be added
+    2. Able to be sold
+    3. Find out what stock items we have
+
+  - We do not capture the specifics of *how* these processes occur
+
+    - Just know that we need to capture them in our program
+- Abstract lets us look at processes without getting caught up in the
+  details
+- Later we can go and fill those details in
+- Typically as we move *down* a class hierachy, we should move from the
+  *more abstract* to the *more concrete*
+  - At the highest level a class or interface might just say what
+    methods an object should have
+  - The next level down might implement some common attributes and
+    methods (`StockItem`)
+  - The next level down might provide specialised attributes and
+    specific methods (`Dress` and `Pants`)
+
+##### Code Analysis: Understanding Inheritance
+
+*Work through the following questions on object-oriented design and
+inheritance. It’s a good idea to consider your own thoughts on the
+topic*
+
+1. *Why don’t we put all the attributes in one class and not bother
+    with subclasses?*
+
+    - We could add every possible attribute to *one* class
+    - However then we would have to handle the fact that some attributes
+      are not defined for certain types
+      - e.g. `Dress` has no `waist` attribute and `Pants` has no `size`
+    - As we add more classes we would have to consider all the valid
+      possible combinations of attributes and manage them
+      - Exactly the kind of thing that the subclass approach does
+        naturally
+    - Additionally if we want to customise behaviour by type, we would
+      have to add an attribute to track this
+      - Inheritance provides *polymorphism* as a way to do this
+        naturally
+
+2. *Why is the superclass called super?*
+
+    - It is derived from mathematical terminology around sets
+    - In maths $A$ is a subset of $B$ if $A$ is entirely contained in
+      $B$
+    - $A$ is a superset of $B$ if $A$ contains $B$
+    - The idea carries onto the language of classes, where the
+      superclass is called super because every *subclass* **is** also an
+      instance of the superclass.
+
+3. *Which is most abstract, a superclass or a subclass?*
+
+    - Recall, the concept of the class hierachy
+    - Moving *down* into subclasses is getting more concrete (less
+      abstract)
+    - Moving *up* into superclasses is getting more abstact
+
+4. *Can you extend a subclass?*
+
+    - Yes
+    - We can see this in the class hierachy
+    - `StockItem` is a subclass of `Object`
+    - `Dress` *extends* `StockItem` to create a new subclass
+
+5. *Why is the* `pattern` *attribute not in the* `StockItem` *class?*
+
+    - Looking at our current class diagram this does make sense
+      - Both `Dress` and `Pants` have a pattern attribute
+    - However our client had other types of items e.g. Hat that didn’t
+      have a pattern attribute
+    - If we wanted to remove the duplication we might introduce a
+      `PatternedItem` between `StockItem` and the `Dress` and `Pants`
+      classes
+      - However for one specific attribute this is probably not
+        nessecary right now
+      - Especially as the `PatternedItem` seems partially arbitrary
+        rather than reflecting an actual category of item
+
+6. *Will our system ever create a* `StockItem` *object?*
+
+    - Nothing prevents us from doing so
+    - However, in practice we there’s no real use case
+      - `StockItem` is not representing an actual physical item
+      - It represents the concept of a stock item
+    - If we wanted to do we could define `StockItem` as an *abstract
+      class*
+      - Abstract classes can’t be instantiated
+      - They are good for defining the structure and behaviour of a
+        class
+      - Implementation left to the subclasses
+
+7. *The client decides in future she may like to track which customers
+    have bought which stock items. Here are three potential
+    implementations. Which implementation makes the most sense?*
+
+    1. Extend the `StockItem` class to make a `Customer` subclass that
+        contains the customer details because customers buy `StockItems`
+    2. Add `Customer` details to each `StockItem`
+    3. Create a new `Customer` class that contains a list of the
+        `StockItems` that the `Customer` has bought
+
+    - Class hierachies should reflect an *is-a* relationship
+    - A Customer *is not* a Stock item
+    - So option 1 is out
+    - Multiple customers might buy the same stock item
+    - The stock item also represents a category of stock as opposed to
+      one specific item
+    - So we don’t want to have a `Customer` field
+      - We could have a list of customers if we wanted to do it this way
+    - However, in the future we might want to add more behaviour for
+      interacting with a customer itself
+      - Thus makes sense to define a `Customer` class
+
+##### Storing Data in a Class Hierachy
+
+- Now lets refactor our code to use a class hierachy
+- The naive implementation looks like,
+
+``` python
+from abc import ABC
+
+
+class StockItem(ABC):
+    """
+    Abstract base class representing a single inventory item.
+
+    Attributes
+    ----------
+    stock_ref : str
+        reference id of the stock item
+    colour : str
+        description of the item's colour
+    """
+
+    def __init__(self, stock_ref, price, colour):
+        """
+        Creates a StockItem instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            stock reference id
+        price : int | float
+            stock price
+        colour : str
+            description of stock item's colour
+        """
+        self.stock_ref = stock_ref
+        self.__price = price
+        self.colour = colour
+        self.__stock_level = 0
+        self.__stock_level = 0
+
+    @property
+    def price(self):
+        """
+        price : int | float
+            dress price
+        """
+        return self.__price
+
+    @property
+    def stock_level(self):
+        """
+        stock_level : int
+            amount of stock in inventory
+        """
+        return self.__stock_level
+```
+
+- The `StockItem` looks pretty standard for a class
+
+- You may observe that we import `ABC` from the `abc` module
+
+  - `abc` is a python module to provide abstract classes
+  - `ABC` is the superclass for abstract classes
+
+- We inherit from `ABC` to make `StockItem` abstract
+
+  - This prevents it from being instantiated directly
+
+- We move the common attributes and properties to the class
+
+- Define an `__init__` as usual
+
+- Now lets define our `Dress` class, naively you might write,
+
+  ``` python
+    class Dress(StockItem):
+        """
+        Represents the inventory details for a Dress
+
+        Inherits from `StockItem`
+
+        Attributes
+        ----------
+        stock_ref : str
+            dress reference id
+        price : int | float
+            dress price
+        colour : str
+            description of dress's colour
+        pattern : str
+            description of the dress pattern
+        size : int
+            dress size
+
+        See Also
+        --------
+        `StockItem` : Parent Class
+        """
+
+        def __init__(self, stock_ref, price, colour, pattern, size):
+            """
+            Creates a Dress instance
+
+            Parameters
+            ----------
+            stock_ref : str
+                stock reference code
+            price : int | float
+                dress price
+            colour : str
+                description of the dress colour
+            pattern : str
+                description of the dress pattern
+            size : int
+                dress size
+            """
+            self.pattern = pattern
+            self.size = size
+  ```
+
+- `Dress` subclasses `StockItem`
+
+- We add the unique attributes
+
+- Currently no need to define any new behaviour
+
+- However, when we try to create a `Dress` instance and use it we see
+
+  ``` python
+    x = Dress(stock_ref="D0001", price=100, colour="red", pattern="swirly", size=12)
+    print(x.pattern)
+    print(x.price)
+  ```
+
+      swirly
+
+      AttributeError: 'Dress' object has no attribute '_StockItem__price'
+      ---------------------------------------------------------------------------
+      AttributeError                            Traceback (most recent call last)
+      Cell In[5], line 3
+            1 x = Dress(stock_ref="D0001", price=100, colour="red", pattern="swirly", size=12)
+            2 print(x.pattern)
+      ----> 3 print(x.price)
+
+      Cell In[3], line 41, in StockItem.price(self)
+           35 @property
+           36 def price(self):
+           37     """
+           38     price : int | float
+           39         dress price
+           40     """
+      ---> 41     return self.__price
+
+      AttributeError: 'Dress' object has no attribute '_StockItem__price'
+
+- We see that we have no issue creating the object
+
+- Can also access the attributes defined in the subclass (`pattern`)
+
+- But we get an error, when we try to access a property on the
+  superclass (`price`)
+
+- In fact the error tells us that we can’t find the attribute
+  `_StockItem__price`
+
+- Why? Well if we look at the initialiser we never seem to have set up
+  the stock level, price, stock reference or color
+
+  - We can’t just write `self.colour = colour` etc
+  - Because this adds an attribute on the subclass
+  - Also basically means we’ve rewritten the superclass `__init__` again
+
+- Need a way to pass arguments to the `__init__` method of the
+  superclass
+
+- We can do this using `super()`
+
+  - `super()` is like `self`
+  - Used to return a reference to the superclass instance
+
+``` python
+class Dress(StockItem):
+    """
+    Represents the inventory details for a Dress
+
+    Inherits from `StockItem`
+
+    Attributes
+    ----------
+    stock_ref : str
+        dress reference id
+    price : int | float
+        dress price
+    colour : str
+        description of dress's colour
+    pattern : str
+        description of the dress pattern
+    size : int
+        dress size
+
+    See Also
+    --------
+    `StockItem` : Parent Class
+    """
+
+    def __init__(self, stock_ref, price, colour, pattern, size):
+        """
+        Creates a Dress instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            stock reference code
+        price : int | float
+            dress price
+        colour : str
+            description of the dress colour
+        pattern : str
+            description of the dress pattern
+        size : int
+            dress size
+        """
+        super().__init__(stock_ref, price, colour)
+        self.pattern = pattern
+        self.size = size
+
+
+x = Dress(stock_ref="D0001", price=100, colour="red", pattern="swirly", size=12)
+print(x.pattern)
+print(x.price)
+```
+
+    swirly
+    100
+
+- We use `super()` to get a reference to the super object
+
+- Then call the `__init__` object on the instance and pass the required
+  parameters
+
+- **Key Takeaway:** When initialising a subclass you must explicitly
+  initialise the superclass too
+
+- The complete code for our class hierachy incorporating `Pants` can be
+  found in
+  [ClassHierachy.py](./Examples/02_ClassHierachy/ClassHierachy.py)
 
 ## Summary
 
