@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -37,15 +72,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-3cc2e486aa02406e648a04badc12dbc2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ac68a04a458a2101c318e2a4b67371a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-3cc2e486aa02406e648a04badc12dbc2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cd485886e7d9fdf962c406a9545ac554.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-8a90546efc8e3e5620448eb3a1897fb3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-cd485886e7d9fdf962c406a9545ac554.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/quarto-contrib/bookup_fonts_gwf-0.0/fonts-embed.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fd21d93db373728c2f8fcda4b672d2ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,173 +103,43 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -265,7 +165,6 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -274,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 11: Object-based Solution Design</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html">Advanced Programming</a></li><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html">Chapter 11: Object-based Solution Design</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -384,8 +283,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chpater_11.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 11: Object-based Solution Design</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -403,6 +305,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#fashion-shop-application" id="toc-fashion-shop-application" class="nav-link" data-scroll-target="#fashion-shop-application">Fashion Shop Application</a>
   <ul>
   <li><a href="#application-data-design" id="toc-application-data-design" class="nav-link" data-scroll-target="#application-data-design">Application Data Design</a></li>
+  <li><a href="#object-oriented-design" id="toc-object-oriented-design" class="nav-link" data-scroll-target="#object-oriented-design">Object-oriented Design</a></li>
+  <li><a href="#creating-superclasses-and-subclasses" id="toc-creating-superclasses-and-subclasses" class="nav-link" data-scroll-target="#creating-superclasses-and-subclasses">Creating superclasses and subclasses</a>
+  <ul>
+  <li><a href="#abstraction-in-software-design" id="toc-abstraction-in-software-design" class="nav-link" data-scroll-target="#abstraction-in-software-design">Abstraction in Software Design</a></li>
+  <li><a href="#code-analysis-understanding-inheritance" id="toc-code-analysis-understanding-inheritance" class="nav-link" data-scroll-target="#code-analysis-understanding-inheritance">Code Analysis: Understanding Inheritance</a></li>
+  <li><a href="#storing-data-in-a-class-hierachy" id="toc-storing-data-in-a-class-hierachy" class="nav-link" data-scroll-target="#storing-data-in-a-class-hierachy">Storing Data in a Class Hierachy</a></li>
+  </ul></li>
   </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
@@ -413,8 +322,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html">Advanced Programming</a></li><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html">Chapter 11: Object-based Solution Design</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Chapter 11: Object-based Solution Design</h1>
 </div>
@@ -477,6 +385,676 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="application-data-design" class="level4">
 <h4 class="anchored" data-anchor-id="application-data-design">Application Data Design</h4>
+<ul>
+<li><p>Before designing the program we need to understand the data we have to represent</p></li>
+<li><p>Our client tells us that each stock item requires,</p>
+<ol type="1">
+<li>Stock reference id</li>
+<li>Price</li>
+<li>Colour</li>
+<li>Number in stock</li>
+</ol></li>
+<li><p>The client also has specifics for different types of stock items</p>
+<ul>
+<li><p>For Dresses we require</p>
+<ol type="1">
+<li>Size</li>
+<li>Style</li>
+<li>Pattern</li>
+</ol></li>
+<li><p>For pants we require</p>
+<ol type="1">
+<li>Length</li>
+<li>Waist size</li>
+<li>Style</li>
+<li>Pattern</li>
+</ol></li>
+<li><p>For hats we require</p>
+<ol type="1">
+<li>Size</li>
+</ol></li>
+<li><p>For blouses we require</p>
+<ol type="1">
+<li>Size</li>
+<li>Style</li>
+<li>Pattern</li>
+</ol></li>
+</ul></li>
+<li><p>We can map out some descriptions</p>
+<pre class="text"><code>  Dress: stock reference: 'D0001' price: 100.0 color: red pattern: swirly size: 12
+  Pants: stock reference: 'TR12327'price: 50 color: black pattern: plain length: 30 waist: 30</code></pre></li>
+<li><p>Now that we have our <em>data requirements</em> and some mock items, we want to carry out <em>data design</em></p></li>
+<li><p>Data design is the process of specifying how we represent a programs data</p></li>
+</ul>
+</section>
+<section id="object-oriented-design" class="level4">
+<h4 class="anchored" data-anchor-id="object-oriented-design">Object-oriented Design</h4>
+<ul>
+<li>A design paradigm we could use is to represent each data object as a class
+<ul>
+<li>This object-centric approach is called <em>object-oriented programming</em></li>
+</ul></li>
+<li>Solution elements are mapped to software objects</li>
+<li>A way to formulate classes is to break a problem statement down into <em>nouns</em></li>
+<li><em>nouns</em> describe <em>things</em> which naturally translate to <em>objects</em>
+<ul>
+<li><p>e.g.&nbsp;a food service point-of-sale system might be described as</p>
+<div id="41b09ef6" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre>The <span class="ansi-red-fg">customer </span>will select a <span class="ansi-red-fg">dish</span> from the <span class="ansi-red-fg">menu</span> and add it to his <span class="ansi-red-fg">order</span>.
+</pre>
+</div>
+</div>
+</div></li>
+<li><p>The four nouns above (written in red) could map to classes in the application</p>
+<ul>
+<li>This is only a starting point</li>
+<li>We would have to dive deeper into the design requirements with the client</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Don’t write any code before you have completed your data design</strong></p>
+<p>Design mistakes are easiest to correct early in a project’s lifecycle. For this reason data design is almost always carried out and completed before we actually starting to right code.</p>
+<p>If we were to continue developing the restaurant point of sale system above, we would have to work through the data requirements with the client. For example if we were developing a <code>Customer</code> class, we might map out paper variants of the class, and work through usage scenarios with the client to ensure all the details are captured.</p>
+<p>For example if a customer needed to provide a telephone number we would want to capture this design requirement early.</p>
+</div>
+</div>
+<ul>
+<li>For our first design we could implement all these different stock items as different classes, (you can find the code in <a href="./Examples/01_SeperateClasses/SeperateClasses.py">SeperateClasses.py</a>)</li>
+</ul>
+<div id="c30f6034" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 11.1 Fashion Items as Seperate Classes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mocks out the class-based implementation of the fashion items, treating</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># each different item type as it's own standalone class</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dress:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents the inventory details for a Dress</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, colour, pattern, size):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">        Creates a Dress instance</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">        stock_ref : str</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">            stock reference code</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">        price : int | float</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">            dress price</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">        colour : str</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">            description of the dress colour</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">        pattern : str</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">            description of the dress pattern</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">        size : int</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">            dress size</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.stock_ref <span class="op">=</span> stock_ref</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__price <span class="op">=</span> price</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__stock_level <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.colour <span class="op">=</span> colour</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pattern <span class="op">=</span> pattern</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.size <span class="op">=</span> size</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> price(<span class="va">self</span>):</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">        price : int | float</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">            dress price</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__price</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> stock_level(<span class="va">self</span>):</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">        stock_level : int</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co">            amount of stock in inventory</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__stock_level</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Pants:</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents the inventory details for a pair of Pants</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, colour, pattern, length, waist):</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="co">        Creates a Pants instance</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="co">        stock_ref : str</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="co">            stock reference code</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="co">        price : int | float</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="co">            pants price</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="co">        colour : str</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="co">            description of the pants colour</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="co">        pattern : str</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="co">            description of the pants pattern</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="co">        length: int</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="co">            length of the pants</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="co">        waist : int</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="co">            pants waist size</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.stock_ref <span class="op">=</span> stock_ref</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__price <span class="op">=</span> price</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__stock_level <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.colour <span class="op">=</span> colour</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pattern <span class="op">=</span> pattern</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.length <span class="op">=</span> length</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.waist <span class="op">=</span> waist</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> price(<span class="va">self</span>):</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="co">        price : int | float</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="co">            dress price</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__price</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> stock_level(<span class="va">self</span>):</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="co">        stock_level : int</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="co">            amount of stock in inventory</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__stock_level</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dress(stock_ref<span class="op">=</span><span class="st">"D001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"Red"</span>, pattern<span class="op">=</span><span class="st">"Swirly"</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Pants(</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    stock_ref<span class="op">=</span><span class="st">"TR12327"</span>, price<span class="op">=</span><span class="dv">50</span>, colour<span class="op">=</span><span class="st">"Black"</span>, pattern<span class="op">=</span><span class="st">"Plain"</span>, length<span class="op">=</span><span class="dv">30</span>, waist<span class="op">=</span><span class="dv">25</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.price)</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y.stock_level)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>100
+0</code></pre>
+</div>
+</div>
+<ul>
+<li>We define a <code>Dress</code> and a <code>Pants</code> class</li>
+<li>Each class has to have an <code>__init__</code> to set them up</li>
+<li>Both classes have private price and stock levels
+<ul>
+<li>These are important parts of the inventory system that should have controlled modification</li>
+<li>We don’t want the price being modified and overcharging customers</li>
+<li>We don’t want the stock level being off causing us to misorder</li>
+</ul></li>
+<li>Both classes have properties to access price and stock levels
+<ul>
+<li>Later we’ll make methods to control these</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Avoid overusing block-copy</strong></p>
+<p>Using a text editor it might seem convenient to copy a large block of code when we have to reuse it elsewhere. Whenever you feel yourself copying lets of code to different sections this is usually a good indicator that something is not right. You should aim to write a piece of code <em>once</em>. Code written once is more maintainable, as we only need to modify it in one place. If the code is used multiple times, it is a good candidate to be converted into a function or a method</p>
+<p>As mentioned block copying is liable to introduce bugs. If we need to slightly modify the code in the new section we have to make sure we do it correctly (which might be hard if you’ve copied a big chunk). Additionally if you latter find a bug, you may have to fix <em>all</em> the copies (which requires you to remember where they are).</p>
+<p>Use this as advice, if you find yourself copying lots of code, its a good time to take a step back at look at your overall design</p>
+</div>
+</div>
+</section>
+<section id="creating-superclasses-and-subclasses" class="level4">
+<h4 class="anchored" data-anchor-id="creating-superclasses-and-subclasses">Creating superclasses and subclasses</h4>
+<ul>
+<li><p>Many languages (including python) let us use <em>inheritance</em></p></li>
+<li><p>Inheritance allows one class to <em>base</em> itself on another</p>
+<ul>
+<li>i.e.&nbsp;it <em>inherits</em> the behaviour of another class</li>
+</ul></li>
+<li><p>The original class is called the <em>superclass</em></p></li>
+<li><p>Creating this new class is called <em>extending the superclass</em></p></li>
+<li><p>By default all python classes extend the <code>object</code> class</p></li>
+<li><p>We could write this explicitly</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact(<span class="bu">object</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We can replace the <code>object</code> in the above with the class we want to use as a superclass</p></li>
+<li><p>Looking at our data design we can see there is a bunch of behaviour common to all stock items</p></li>
+<li><p>We can start by defining a <code>StockItem</code> to act as a superclass</p>
+<ul>
+<li><p><code>StockItem</code> stores all common attributes</p>
+<ol type="1">
+<li>Stock reference</li>
+<li>Price</li>
+<li>Colour</li>
+<li>Stock level</li>
+</ol></li>
+</ul></li>
+<li><p><code>Dress</code> and <code>Pants</code> now extend <code>StockItem</code></p>
+<ul>
+<li>The other stock items will do so as well</li>
+</ul></li>
+<li><p>The diagram below shows what’s called a <em>class diagram</em> or <em>inheritance hierachy</em></p></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">---
+title: Fashion Shop Class Diagram
+---
+
+classDiagram
+    class object
+
+    class StockItem {
+        str stock_ref
+        str item_name
+        str colour
+        number price
+        int stock_level
+    }
+
+    class Dress {
+        str pattern
+        int size
+    }
+
+    class Pants {
+        int length
+        str pattern
+        int waist
+    }
+
+    object &lt;|-- StockItem
+    StockItem &lt;|-- Dress
+    StockItem &lt;|--  Pants
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>We can see that <em>both</em> <code>Pants</code> and <code>Dress</code> are <em>subclasses</em> of <code>StockItem</code></li>
+<li>The inverse relationship is <code>StockItem</code> is the <em>superclass</em> of <code>Pants</code> and <code>Dress</code></li>
+<li>We call this inheritance because the subclasses inherit the attributes of the superclass</li>
+<li>When building an inheritance hierachy you need to focus on your data
+<ul>
+<li>Here we have a collection of related data items</li>
+<li>The basic behaviour of a data item is the same</li>
+<li>The related items also have some common data attributes</li>
+</ul></li>
+<li>We capture the common behaviour and data in a superclass
+<ul>
+<li>Then <em>extend</em> with subclasses the specific behaviour of different data items</li>
+</ul></li>
+<li>Also means that if we add <em>new</em> common behaviour we only have to add it in one place
+<ul>
+<li>i.e.&nbsp;the superclass</li>
+<li>Otherwise we would have to put it in all the classes</li>
+</ul></li>
+</ul>
+<section id="abstraction-in-software-design" class="level5">
+<h5 class="anchored" data-anchor-id="abstraction-in-software-design">Abstraction in Software Design</h5>
+<ul>
+<li>Abstraction is a term used to describe attempting to capture behaviours and data of a system at a higher level</li>
+<li>Here by introducing a <code>StockItem</code> class we are attempting to talk about the behaviour of stock items in generality as opposed to any specific type of stock item
+<ul>
+<li><p>i.e.&nbsp;We know that a stock item should be,</p>
+<ol type="1">
+<li>Able to be added</li>
+<li>Able to be sold</li>
+<li>Find out what stock items we have</li>
+</ol></li>
+<li><p>We do not capture the specifics of <em>how</em> these processes occur</p>
+<ul>
+<li>Just know that we need to capture them in our program</li>
+</ul></li>
+</ul></li>
+<li>Abstract lets us look at processes without getting caught up in the details</li>
+<li>Later we can go and fill those details in</li>
+<li>Typically as we move <em>down</em> a class hierachy, we should move from the <em>more abstract</em> to the <em>more concrete</em>
+<ul>
+<li>At the highest level a class or interface might just say what methods an object should have</li>
+<li>The next level down might implement some common attributes and methods (<code>StockItem</code>)</li>
+<li>The next level down might provide specialised attributes and specific methods (<code>Dress</code> and <code>Pants</code>)</li>
+</ul></li>
+</ul>
+</section>
+<section id="code-analysis-understanding-inheritance" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-understanding-inheritance">Code Analysis: Understanding Inheritance</h5>
+<p><em>Work through the following questions on object-oriented design and inheritance. It’s a good idea to consider your own thoughts on the topic</em></p>
+<ol type="1">
+<li><p><em>Why don’t we put all the attributes in one class and not bother with subclasses?</em></p>
+<ul>
+<li>We could add every possible attribute to <em>one</em> class</li>
+<li>However then we would have to handle the fact that some attributes are not defined for certain types
+<ul>
+<li>e.g.&nbsp;<code>Dress</code> has no <code>waist</code> attribute and <code>Pants</code> has no <code>size</code></li>
+</ul></li>
+<li>As we add more classes we would have to consider all the valid possible combinations of attributes and manage them
+<ul>
+<li>Exactly the kind of thing that the subclass approach does naturally</li>
+</ul></li>
+<li>Additionally if we want to customise behaviour by type, we would have to add an attribute to track this
+<ul>
+<li>Inheritance provides <em>polymorphism</em> as a way to do this naturally</li>
+</ul></li>
+</ul></li>
+<li><p><em>Why is the superclass called super?</em></p>
+<ul>
+<li>It is derived from mathematical terminology around sets</li>
+<li>In maths <span class="math inline">\(A\)</span> is a subset of <span class="math inline">\(B\)</span> if <span class="math inline">\(A\)</span> is entirely contained in <span class="math inline">\(B\)</span></li>
+<li><span class="math inline">\(A\)</span> is a superset of <span class="math inline">\(B\)</span> if <span class="math inline">\(A\)</span> contains <span class="math inline">\(B\)</span></li>
+<li>The idea carries onto the language of classes, where the superclass is called super because every <em>subclass</em> <strong>is</strong> also an instance of the superclass.</li>
+</ul></li>
+<li><p><em>Which is most abstract, a superclass or a subclass?</em></p>
+<ul>
+<li>Recall, the concept of the class hierachy</li>
+<li>Moving <em>down</em> into subclasses is getting more concrete (less abstract)</li>
+<li>Moving <em>up</em> into superclasses is getting more abstact</li>
+</ul></li>
+<li><p><em>Can you extend a subclass?</em></p>
+<ul>
+<li>Yes</li>
+<li>We can see this in the class hierachy</li>
+<li><code>StockItem</code> is a subclass of <code>Object</code></li>
+<li><code>Dress</code> <em>extends</em> <code>StockItem</code> to create a new subclass</li>
+</ul></li>
+<li><p><em>Why is the</em> <code>pattern</code> <em>attribute not in the</em> <code>StockItem</code> <em>class?</em></p>
+<ul>
+<li>Looking at our current class diagram this does make sense
+<ul>
+<li>Both <code>Dress</code> and <code>Pants</code> have a pattern attribute</li>
+</ul></li>
+<li>However our client had other types of items e.g.&nbsp;Hat that didn’t have a pattern attribute</li>
+<li>If we wanted to remove the duplication we might introduce a <code>PatternedItem</code> between <code>StockItem</code> and the <code>Dress</code> and <code>Pants</code> classes
+<ul>
+<li>However for one specific attribute this is probably not nessecary right now</li>
+<li>Especially as the <code>PatternedItem</code> seems partially arbitrary rather than reflecting an actual category of item</li>
+</ul></li>
+</ul></li>
+<li><p><em>Will our system ever create a</em> <code>StockItem</code> <em>object?</em></p>
+<ul>
+<li>Nothing prevents us from doing so</li>
+<li>However, in practice we there’s no real use case
+<ul>
+<li><code>StockItem</code> is not representing an actual physical item</li>
+<li>It represents the concept of a stock item</li>
+</ul></li>
+<li>If we wanted to do we could define <code>StockItem</code> as an <em>abstract class</em>
+<ul>
+<li>Abstract classes can’t be instantiated</li>
+<li>They are good for defining the structure and behaviour of a class</li>
+<li>Implementation left to the subclasses</li>
+</ul></li>
+</ul></li>
+<li><p><em>The client decides in future she may like to track which customers have bought which stock items. Here are three potential implementations. Which implementation makes the most sense?</em></p>
+<ol type="1">
+<li>Extend the <code>StockItem</code> class to make a <code>Customer</code> subclass that contains the customer details because customers buy <code>StockItems</code></li>
+<li>Add <code>Customer</code> details to each <code>StockItem</code></li>
+<li>Create a new <code>Customer</code> class that contains a list of the <code>StockItems</code> that the <code>Customer</code> has bought</li>
+</ol>
+<ul>
+<li>Class hierachies should reflect an <em>is-a</em> relationship</li>
+<li>A Customer <em>is not</em> a Stock item</li>
+<li>So option 1 is out</li>
+<li>Multiple customers might buy the same stock item</li>
+<li>The stock item also represents a category of stock as opposed to one specific item</li>
+<li>So we don’t want to have a <code>Customer</code> field
+<ul>
+<li>We could have a list of customers if we wanted to do it this way</li>
+</ul></li>
+<li>However, in the future we might want to add more behaviour for interacting with a customer itself
+<ul>
+<li>Thus makes sense to define a <code>Customer</code> class</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="storing-data-in-a-class-hierachy" class="level5">
+<h5 class="anchored" data-anchor-id="storing-data-in-a-class-hierachy">Storing Data in a Class Hierachy</h5>
+<ul>
+<li>Now lets refactor our code to use a class hierachy</li>
+<li>The naive implementation looks like,</li>
+</ul>
+<div id="758e6e54" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> abc <span class="im">import</span> ABC</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockItem(ABC):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Abstract base class representing a single inventory item.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    stock_ref : str</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">        reference id of the stock item</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">    colour : str</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">        description of the item's colour</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, colour):</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Creates a StockItem instance</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">        stock_ref : str</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">            stock reference id</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">        price : int | float</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">            stock price</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">        colour : str</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">            description of stock item's colour</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.stock_ref <span class="op">=</span> stock_ref</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__price <span class="op">=</span> price</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.colour <span class="op">=</span> colour</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__stock_level <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__stock_level <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> price(<span class="va">self</span>):</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">        price : int | float</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">            dress price</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__price</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> stock_level(<span class="va">self</span>):</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co">        stock_level : int</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">            amount of stock in inventory</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__stock_level</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>The <code>StockItem</code> looks pretty standard for a class</p></li>
+<li><p>You may observe that we import <code>ABC</code> from the <code>abc</code> module</p>
+<ul>
+<li><code>abc</code> is a python module to provide abstract classes</li>
+<li><code>ABC</code> is the superclass for abstract classes</li>
+</ul></li>
+<li><p>We inherit from <code>ABC</code> to make <code>StockItem</code> abstract</p>
+<ul>
+<li>This prevents it from being instantiated directly</li>
+</ul></li>
+<li><p>We move the common attributes and properties to the class</p></li>
+<li><p>Define an <code>__init__</code> as usual</p></li>
+<li><p>Now lets define our <code>Dress</code> class, naively you might write,</p>
+<div id="cbeb69f3" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Dress(StockItem):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Represents the inventory details for a Dress</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Inherits from `StockItem`</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">      Attributes</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">      stock_ref : str</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">          dress reference id</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">      price : int | float</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">          dress price</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">      colour : str</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">          description of dress's colour</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">      pattern : str</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">          description of the dress pattern</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">      size : int</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">          dress size</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">      See Also</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">      --------</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">      `StockItem` : Parent Class</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, colour, pattern, size):</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">          Creates a Dress instance</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">          stock_ref : str</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">              stock reference code</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">          price : int | float</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">              dress price</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">          colour : str</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">              description of the dress colour</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">          pattern : str</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">              description of the dress pattern</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">          size : int</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">              dress size</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.pattern <span class="op">=</span> pattern</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.size <span class="op">=</span> size</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><p><code>Dress</code> subclasses <code>StockItem</code></p></li>
+<li><p>We add the unique attributes</p></li>
+<li><p>Currently no need to define any new behaviour</p></li>
+<li><p>However, when we try to create a <code>Dress</code> instance and use it we see</p>
+<div id="e52f610f" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> Dress(stock_ref<span class="op">=</span><span class="st">"D0001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"red"</span>, pattern<span class="op">=</span><span class="st">"swirly"</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(x.pattern)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(x.price)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>swirly</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> x = Dress(stock_ref=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">D0001</span><span class="ansi-yellow-fg">"</span>, price=<span class="ansi-green-fg">100</span>, colour=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">red</span><span class="ansi-yellow-fg">"</span>, pattern=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">swirly</span><span class="ansi-yellow-fg">"</span>, size=<span class="ansi-green-fg">12</span>)
+<span class="ansi-green-fg">      2</span> <span style="color:rgb(0,135,0)">print</span>(x.pattern)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">price</span>)
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 41</span>, in <span class="ansi-cyan-fg">StockItem.price</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">     35</span> <span style="color:rgb(175,0,255)">@property</span>
+<span class="ansi-green-fg">     36</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">price</span>(<span style="color:rgb(0,135,0)">self</span>):
+<span class="ansi-green-fg">     37</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic" class="ansi-yellow-fg">"""</span>
+<span class="ansi-green-fg">     38</span> <span style="font-style:italic" class="ansi-yellow-fg">    price : int | float</span>
+<span class="ansi-green-fg">     39</span> <span style="font-style:italic" class="ansi-yellow-fg">        dress price</span>
+<span class="ansi-green-fg">     40</span> <span style="font-style:italic" class="ansi-yellow-fg">    """</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">41</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">__price</span>
+
+<span class="ansi-red-fg">AttributeError</span>: 'Dress' object has no attribute '_StockItem__price'</pre>
+</div>
+</div>
+</div></li>
+<li><p>We see that we have no issue creating the object</p></li>
+<li><p>Can also access the attributes defined in the subclass (<code>pattern</code>)</p></li>
+<li><p>But we get an error, when we try to access a property on the superclass (<code>price</code>)</p></li>
+<li><p>In fact the error tells us that we can’t find the attribute <code>_StockItem__price</code></p></li>
+<li><p>Why? Well if we look at the initialiser we never seem to have set up the stock level, price, stock reference or color</p>
+<ul>
+<li>We can’t just write <code>self.colour = colour</code> etc</li>
+<li>Because this adds an attribute on the subclass</li>
+<li>Also basically means we’ve rewritten the superclass <code>__init__</code> again</li>
+</ul></li>
+<li><p>Need a way to pass arguments to the <code>__init__</code> method of the superclass</p></li>
+<li><p>We can do this using <code>super()</code></p>
+<ul>
+<li><code>super()</code> is like <code>self</code></li>
+<li>Used to return a reference to the superclass instance</li>
+</ul></li>
+</ul>
+<div id="5fb4e7f0" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dress(StockItem):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents the inventory details for a Dress</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Inherits from `StockItem`</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    stock_ref : str</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">        dress reference id</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    price : int | float</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">        dress price</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">    colour : str</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">        description of dress's colour</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    pattern : str</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">        description of the dress pattern</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    size : int</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">        dress size</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">    See Also</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">    `StockItem` : Parent Class</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, colour, pattern, size):</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">        Creates a Dress instance</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">        stock_ref : str</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">            stock reference code</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">        price : int | float</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">            dress price</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">        colour : str</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">            description of the dress colour</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">        pattern : str</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">            description of the dress pattern</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">        size : int</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co">            dress size</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(stock_ref, price, colour)</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pattern <span class="op">=</span> pattern</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.size <span class="op">=</span> size</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dress(stock_ref<span class="op">=</span><span class="st">"D0001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"red"</span>, pattern<span class="op">=</span><span class="st">"swirly"</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.pattern)</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.price)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>swirly
+100</code></pre>
+</div>
+</div>
+<ul>
+<li><p>We use <code>super()</code> to get a reference to the super object</p></li>
+<li><p>Then call the <code>__init__</code> object on the instance and pass the required parameters</p></li>
+<li><p><strong>Key Takeaway:</strong> When initialising a subclass you must explicitly initialise the superclass too</p></li>
+<li><p>The complete code for our class hierachy incorporating <code>Pants</code> can be found in <a href="./Examples/02_ClassHierachy/ClassHierachy.py">ClassHierachy.py</a></p></li>
+</ul>
+</section>
 </section>
 </section>
 </section>
@@ -492,19 +1070,6 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
