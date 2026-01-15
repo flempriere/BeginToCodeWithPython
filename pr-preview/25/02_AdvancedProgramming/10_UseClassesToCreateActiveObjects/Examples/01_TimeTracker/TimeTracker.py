@@ -36,7 +36,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -237,7 +237,7 @@ def load_contacts(file_name):
     Returns
     -------
     None
-        Contact detail is loaded into the global contacts value
+        Contact detail is loaded into the global `contacts` value
 
     Raises
     ------
