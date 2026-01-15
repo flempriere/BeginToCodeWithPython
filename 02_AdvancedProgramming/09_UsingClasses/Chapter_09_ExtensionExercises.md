@@ -251,11 +251,6 @@ class MusicTrack:
     length_in_seconds : int
         length of the track in seconds
 
-    Raises
-    ------
-    ValueError
-        Raised if `length_in_seconds` is non-positive
-
     Examples
     --------
     >>> MusicTrack("Merry Christmas Everyone", 220)
@@ -264,7 +259,7 @@ class MusicTrack:
 
     def __init__(self, name, length_in_seconds):
         """
-        Create a new MusicTrack instance
+        Create a new `MusicTrack` instance
 
         Parameters
         ----------
@@ -276,7 +271,7 @@ class MusicTrack:
         Raises
         ------
         ValueError
-                Raised if length_in_seconds is invalid
+                Raised if `length_in_seconds` is invalid
         """
         self.name = name
         if length_in_seconds <= 0:
@@ -299,7 +294,7 @@ input function.
 def read_min_valued_integer(prompt, min_value):
     """
     Displays a prompt and reads in a integer number greater
-    than or equal to min_value.
+    than or equal to `min_value`.
 
     Keyboard interrupts (CTRL+C) are ignored
     Invalid numbers are rejected
@@ -316,7 +311,7 @@ def read_min_valued_integer(prompt, min_value):
     Returns
     -------
     int
-        integer > 0 entered by the user
+        integer >= `min_value` entered by the user
     """
     while True:
         result = BTCInput.read_int(prompt)
@@ -370,7 +365,7 @@ print(tracks[0].length_in_seconds)
 
     Enter the track name: Merry Christmas Everyone
     Enter the track length (in seconds): 220
-    [<__main__.MusicTrack object at 0x7f04208c4200>]
+    [<__main__.MusicTrack object at 0x7f0f7cff0200>]
     Merry Christmas Everyone
     220
 
@@ -437,7 +432,7 @@ print(results[0].length_in_seconds)
 print(filter_tracks_by_name("Missing Track", tracks))
 ```
 
-    [<__main__.MusicTrack object at 0x7f04208c4200>]
+    [<__main__.MusicTrack object at 0x7f0f7cff0200>]
     Merry Christmas Everyone
     220
     []
@@ -648,7 +643,7 @@ def load_tracks(file_name):
     Returns
     -------
     None
-        Music Tracks are loaded into the global tracks list
+        Music Tracks are loaded into the global `tracks` list
 
     Raises
     ------
@@ -1220,7 +1215,7 @@ class Recipe:
 
     def __init__(self, name, ingredients, steps):
         """
-        Create a new Recipe instance
+        Create a new `Recipe` instance
 
         Parameters
         ----------
