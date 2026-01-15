@@ -65,7 +65,7 @@ class Contact:
         Validates text to be stored in the contact storage
 
         Valid input must be have a length greater than or
-        equal to Contact.__min_text_length
+        equal to `Contact.__min_text_length`
 
         Parameters
         ----------
@@ -153,7 +153,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -425,7 +425,7 @@ def add_session():
 
     See Also
     --------
-    Contact.add_session : add a session to a Contact instance
+    Contact.add_session : add a session to a `Contact` instance
     find_contacts : returns contacts matching a search name
     """
     print("Add Hours")

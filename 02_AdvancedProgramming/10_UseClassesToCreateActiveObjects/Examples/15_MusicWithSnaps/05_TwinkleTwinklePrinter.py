@@ -15,7 +15,7 @@ class Note:
 
     def __init__(self, note, duration):
         """
-        Create a Note instance
+        Create a `Note` instance
 
         Parameters
         ----------
