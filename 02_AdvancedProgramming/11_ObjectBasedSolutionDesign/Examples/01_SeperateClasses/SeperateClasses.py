@@ -11,7 +11,7 @@ class Dress:
 
     def __init__(self, stock_ref, price, colour, pattern, size):
         """
-        Creates a Dress instance
+        Creates a `Dress` instance
 
         Parameters
         ----------
@@ -57,7 +57,7 @@ class Pants:
 
     def __init__(self, stock_ref, price, colour, pattern, length, waist):
         """
-        Creates a Pants instance
+        Creates a `Pants` instance
 
         Parameters
         ----------

@@ -45,7 +45,7 @@ class Note:
 
     def __init__(self, note, duration):
         """
-        Create a Note instance
+        Create a `Note` instance
 
         Parameters
         ----------
@@ -86,9 +86,18 @@ class Note:
 
 
 class Tune:
+    """
+    Represents a tune consisting of a sequence of notes of a specified duration
+
+    Attributes
+    ----------
+    name : str
+        name of the tune
+    """
+
     def __init__(self, name):
         """
-        Create a new Tune instance
+        Create a new `Tune` instance
 
         Parameters
         ----------
@@ -150,12 +159,16 @@ notes:
         note : Note
             note to add to the tune
         index : int | None, optional
-            index to insert the note at, if None, the Note is appended,
-            by default None
+            index to insert the note at, if `None`, the Note is appended,
+            by default `None`
 
         Returns
         -------
         None
+
+        See Also
+        --------
+        Tune.remove_note : remove a note at a given index from a `Tune`
         """
         if index is not None:
             self.__notes.insert(index, note)
@@ -176,6 +189,11 @@ notes:
         -------
         Note
             the removed Note
+
+        See Also
+        --------
+        Tune.add_note : insert or append a new note to a `Tune` instance
+        Tune.clear_tune : remove all notes in a `Tune` instance
         """
         try:
             note = self.__notes.pop(index)
@@ -191,6 +209,10 @@ notes:
         Returns
         -------
         None
+
+        See Also
+        --------
+        Tune.remove_note : remove a note at a given index from a `Tune`
         """
         self.__notes.clear()
         self.__length = 0
@@ -221,7 +243,7 @@ def get_new_note_from_user():
     Returns
     -------
     Note
-        Note object containing the user specified note id and duration
+        `Note` object containing the user specified note id and duration
     """
 
     note_prompt = "Enter note ({0} - {1}): ".format(Note.min_note_id, Note.max_note_id)
@@ -246,7 +268,7 @@ def add_note_to_tune():
     Adds a note to the current tune
 
     Prompts the user to specify a new note as well as an index of
-    where to insert the note in the tune (-1 indicating append). The created
+    where to insert the note in the tune (`-1` indicating append). The created
     note is then added to the current tune at the indicated index (or appended)
 
     Returns
@@ -554,7 +576,7 @@ def load_tunes(file_name):
     Returns
     -------
     None
-        Tunes are loaded into the global tunes list
+        Tunes are loaded into the global `tunes` list
 
     Raises
     ------

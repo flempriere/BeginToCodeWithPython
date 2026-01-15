@@ -80,7 +80,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -230,9 +230,9 @@ class Contact:
     name : str
         Contact Name
     address : str
-        Contact's postal or street address.
+        Contact's postal or street address
     telephone : str
-        Contact phone number (stored as a string).
+        Contact phone number (stored as a string)
     hours_worked : int | float
         Hours worked with a Contact, initialised to 0
 
@@ -244,7 +244,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -429,7 +429,7 @@ You should think carefully about what is valid input for any function, especiall
 
         def __init__(self, name, address, telephone):
             """
-            Create a new Contact instance
+            Create a new `Contact` instance
 
             Parameters
             ----------
@@ -576,7 +576,7 @@ program
 
         def __init__(self, name, address, telephone):
             """
-            Create a new Contact instance
+            Create a new `Contact` instance
 
             Parameters
             ----------
@@ -1104,7 +1104,7 @@ class Contact:
         Validates text to be stored in the contact storage
 
         Valid input must be have a length greater than or
-        equal to Contact.__min_text_length
+        equal to `Contact.__min_text_length`
 
         Parameters
         ----------
@@ -1288,7 +1288,7 @@ class Contact:
         Validates text to be stored in the contact storage
 
         Valid input must be have a length greater than or
-        equal to Contact.__min_text_length
+        equal to `Contact.__min_text_length`
 
         Parameters
         ----------
@@ -1621,7 +1621,7 @@ def display_contact(contact):
   ```python
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -1650,10 +1650,14 @@ def display_contact(contact):
   ```python
     def check_version(self):
         """
-        Check the version of a Contact instance
+        Check the version of a `Contact` instance
 
         Upgrades the instance to the most recent version
         if required
+
+        Returns
+        -------
+        None
         """
         pass
   ```
@@ -1677,7 +1681,7 @@ def display_contact(contact):
     Returns
     -------
     None
-        Contact detail is loaded into the global contacts value
+        Contact detail is loaded into the global `contacts` value
 
     Raises
     ------
@@ -1705,10 +1709,14 @@ def display_contact(contact):
   ```python
     def check_version(self):
     """
-    Check the version of a Contact instance
+    Check the version of a `Contact` instance
 
     Upgrades the instance to the most recent version
     if required
+
+    Returns
+    -------
+    None
     """
     try:
         if not self.__version == 1:
@@ -2007,7 +2015,7 @@ You can find the full version of Time Tracker using the string method in
 
         def __init__(self, session_length):
             """
-            Create a new Session instance
+            Create a new `Session` instance
 
             Parameters
             ----------
@@ -2055,10 +2063,14 @@ You can find the full version of Time Tracker using the string method in
       ```python
         def check_version(self):
             """
-            Check the version of a Contact instance
+            Check the version of a `Contact` instance
 
             Upgrades the instance to the most recent version
             if required
+
+            Returns
+            -------
+            None
             """
             pass
       ```
@@ -2117,7 +2129,7 @@ You can find the full version of Time Tracker using the string method in
   ```python
     def check_version(self):
         """
-        Check the version of a Contact instance
+        Check the version of a `Contact` instance
 
         Upgrades the instance to the most recent version
         if required. This includes upgrading any Session
@@ -2125,7 +2137,7 @@ You can find the full version of Time Tracker using the string method in
 
         See Also
         --------
-        Session.check_version : Checks and upgrades Session instances
+        Session.check_version : Checks and upgrades `Session` instances
         """
         try:
             if self.__version == 1:
@@ -2445,7 +2457,7 @@ class Playlist:
 
     def __init__(self, name, tracks=[]):
         """
-        Create a new Playlist instance
+        Create a new `Playlist` instance
 
         Parameters
         ----------
@@ -2539,6 +2551,10 @@ def clear_tracks(self):
     Remove all tracks from a playlist
 
     Runtime is set to 0
+
+    See Also
+    --------
+    Playlist.remove_track : remove a single track from a playlist
     """
     self.tracks.clear()
     self.__runtime = 0
@@ -3013,7 +3029,7 @@ You are encouraged to work through the full program yourself ([PlaylistStorage.p
 
         def __init__(self, note, duration):
             """
-            Create a Note instance
+            Create a `Note` instance
 
             Parameters
             ----------
@@ -3120,7 +3136,7 @@ For fun we'll make two little tunes
 
         def __init__(self, note, duration):
             """
-            Create a Note instance
+            Create a `Note` instance
 
             Parameters
             ----------
@@ -3183,7 +3199,7 @@ For fun we'll make two little tunes
 
         def __init__(self, note, duration):
             """
-            Create a Note instance
+            Create a `Note` instance
 
             Parameters
             ----------
@@ -3340,9 +3356,18 @@ Now when making [our own music](#make-something-happen-make-your-own-music), we 
 
 ```python
 class Tune:
+    """
+    Represents a tune consisting of a sequence of notes of a specified duration
+
+    Attributes
+    ----------
+    name : str
+        name of the tune
+    """
+
     def __init__(self, name):
         """
-        Create a new Tune instance
+        Create a new `Tune` instance
 
         Parameters
         ----------
@@ -3399,12 +3424,16 @@ As you can see the list of notes is private, so we also want to provide some met
         note : Note
             note to add to the tune
         index : int | None, optional
-            index to insert the note at, if None, the Note is appended,
-            by default None
+            index to insert the note at, if `None`, the Note is appended,
+            by default `None`
 
         Returns
         -------
         None
+
+        See Also
+        --------
+        Tune.remove_note : remove a note at a given index from a `Tune` instance
         """
         if index is not None:
             self.__notes.insert(index, note)
@@ -3425,6 +3454,11 @@ As you can see the list of notes is private, so we also want to provide some met
         -------
         Note
             the removed Note
+
+        See Also
+        --------
+        Tune.add_note : insert or append a new note to a `Tune` instance
+        Tune.clear_tune : remove all notes in a `Tune` instance
         """
         try:
             note = self.__notes.pop(index)
@@ -3440,6 +3474,10 @@ As you can see the list of notes is private, so we also want to provide some met
         Returns
         -------
         None
+
+        See Also
+        --------
+        Tune.remove_note : remove a note at a given index from a `Tune`
         """
         self.__notes.clear()
         self.__length = 0
@@ -3854,7 +3892,7 @@ Lets work through these functions
         Adds a note to the current tune
 
         Prompts the user to specify a new note as well as an index of
-        where to insert the note in the tune (-1 indicating append). The created
+        where to insert the note in the tune (`-1` indicating append). The created
         note is then added to the current tune at the indicated index (or appended)
 
         Returns

@@ -1032,7 +1032,7 @@ Pickle files are not designed to be human-readable. While most text editors will
         Returns
         -------
         None
-            Contact detail is loaded into the global contacts value
+            Contact detail is loaded into the global `contacts` value
 
         Raises
         ------
@@ -1249,7 +1249,7 @@ class InitPrint:
     class Contact:
         def __init__(self, name, address, telephone):
             """
-            Create a new Contact instance
+            Create a new `Contact` instance
 
             Parameters
             ----------

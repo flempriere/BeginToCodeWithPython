@@ -179,7 +179,7 @@ def load_contacts(file_name):
     Returns
     -------
     None
-        Contact detail is loaded into the global contacts value
+        Contact detail is loaded into the global `contacts` value
 
     Raises
     ------

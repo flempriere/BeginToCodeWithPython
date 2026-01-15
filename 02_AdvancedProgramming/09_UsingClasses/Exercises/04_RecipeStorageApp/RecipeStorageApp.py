@@ -31,7 +31,7 @@ class Recipe:
 
     def __init__(self, name, ingredients, steps):
         """
-        Create a new Recipe instance
+        Create a new `Recipe` instance
 
         Parameters
         ----------
@@ -193,7 +193,7 @@ def load_recipes(file_name):
     Returns
     -------
     None
-        Recipes are loaded into the global recipes list
+        Recipes are loaded into the global `recipes` list
 
     Raises
     ------

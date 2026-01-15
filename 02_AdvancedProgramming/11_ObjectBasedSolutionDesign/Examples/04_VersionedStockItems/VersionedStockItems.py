@@ -1,13 +1,18 @@
-# Example 11.2 Fashion Items using a Class Hierachy
+# Example 11.4 Fashion Items using version control
 #
 # Mocks out the Fashion stock items classes using an inheritance hierachy
+# Demonstates using independent versions to manage independent updates to the
+# superclass and subclasses in a hierachy
 
-from abc import ABC
+import abc
 
 
-class StockItem(ABC):
+class StockItem(abc.ABC):
     """
     Abstract base class representing a single inventory item.
+
+    Subclasses are expected to overwrite the `item_name` abstract
+    property with a user friendly string description
 
     Attributes
     ----------
@@ -34,6 +39,26 @@ class StockItem(ABC):
         self.__price = price
         self.colour = colour
         self.__stock_level = 0
+        self.__StockItem_version = 1
+
+    def __str__(self):
+        template = """Stock Reference: {0}
+Type: {1}
+Price: {2}
+Stock level: {3}
+Colour: {4}"""
+        return template.format(
+            self.stock_ref, self.item_name, self.price, self.stock_level, self.colour
+        )
+
+    @property
+    @abc.abstractmethod
+    def item_name(self):
+        """
+        item_name : str
+            the stock item's name as a user friendly string
+        """
+        pass
 
     @property
     def price(self):
@@ -50,6 +75,16 @@ class StockItem(ABC):
             amount of stock in inventory
         """
         return self.__stock_level
+
+    def check_version(self):
+        """
+        Checks the version of a StockItem instance and upgrades it if required
+
+        Returns
+        -------
+        None
+        """
+        pass  # for version 1, no need to check
 
 
 class Dress(StockItem):
@@ -96,6 +131,28 @@ class Dress(StockItem):
         super().__init__(stock_ref, price, colour)
         self.pattern = pattern
         self.size = size
+        self.__Dress_version = 1
+
+    def __str__(self):
+        stock_details = super().__str__()
+        template = """{0}
+Pattern: {1}
+Size: {2}"""
+        return template.format(stock_details, self.pattern, self.size)
+
+    @property
+    def item_name(self):  # type: ignore
+        return "Dress"
+
+    def check_version(self):
+        """
+        Checks the version of a `Dress` instance and upgrades it if required
+
+        Returns
+        -------
+        None
+        """
+        super().check_version()
 
 
 class Pants(StockItem):
@@ -147,6 +204,29 @@ class Pants(StockItem):
         self.pattern = pattern
         self.length = length
         self.waist = waist
+        self.__Pants_version = 1
+
+    def __str__(self):
+        stock_details = super().__str__()
+        template = """{0}
+Pattern: {1}
+Length: {2}
+Waist: {3}"""
+        return template.format(stock_details, self.pattern, self.length, self.waist)
+
+    @property
+    def item_name(self):  # type: ignore
+        return "Pants"
+
+    def check_version(self):
+        """
+        Checks the version of a `Pants` instance and upgrades it if required
+
+        Returns
+        -------
+        None
+        """
+        super().check_version()
 
 
 x = Dress(stock_ref="D001", price=100, colour="Red", pattern="Swirly", size=12)
@@ -154,5 +234,5 @@ y = Pants(
     stock_ref="TR12327", price=50, colour="Black", pattern="Plain", length=30, waist=25
 )
 
-print(x.price)
-print(y.stock_level)
+print(x)
+print(y)

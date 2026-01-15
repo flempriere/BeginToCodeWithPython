@@ -43,7 +43,7 @@ class Session:
 
     def __init__(self, session_length):
         """
-        Create a new Session instance
+        Create a new `Session` instance
 
         Parameters
         ----------
@@ -89,10 +89,14 @@ class Session:
 
     def check_version(self):
         """
-        Check the version of a Contact instance
+        Check the version of a `Session` instance
 
         Upgrades the instance to the most recent version
         if required
+
+        Returns
+        -------
+        None
         """
         pass
 
@@ -129,7 +133,7 @@ class Contact:
         Validates text to be stored in the contact storage
 
         Valid input must be have a length greater than or
-        equal to Contact.__min_text_length
+        equal to `Contact.__min_text_length`
 
         Parameters
         ----------
@@ -148,7 +152,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -282,15 +286,19 @@ Sessions: \n{5}"""
 
     def check_version(self):
         """
-        Check the version of a Contact instance
+        Check the version of a `Contact` instance
 
         Upgrades the instance to the most recent version
         if required. This includes upgrading any Session
         instances associated with this Contact instance
 
+        Returns
+        -------
+        None
+
         See Also
         --------
-        Session.check_version : Checks and upgrades Session instances
+        Session.check_version : Checks and upgrades `Session` instances
         """
         try:
             if self.__version == 1:
@@ -529,7 +537,7 @@ def load_contacts(file_name):
     Returns
     -------
     None
-        Contact detail is loaded into the global contacts value
+        Contact detail is loaded into the global `contacts` value
 
     Raises
     ------
@@ -566,7 +574,7 @@ def add_session():
 
     See Also
     --------
-    Contact.add_session : add a session to a Contact instance
+    Contact.add_session : add a session to a `Contact` instance
     find_contacts : returns contacts matching a search name
     """
     print("Add Hours")
@@ -651,5 +659,4 @@ while True:
             print("Contacts failed to save")
         break
     else:
-        raise ValueError("Unexpected command id found: " + str(command))
         raise ValueError("Unexpected command id found: " + str(command))
