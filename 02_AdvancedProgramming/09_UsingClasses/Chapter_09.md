@@ -1317,7 +1317,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
         Returns
         -------
         None
-            Contact detail is loaded into the global contacts value
+            Contact detail is loaded into the global `contacts` value
 
         Raises
         ------
@@ -1613,7 +1613,7 @@ line of the class is an empty line*
     class Contact:
         def __init__(self, name, address, telephone):
             """
-            Create a new Contact instance
+            Create a new `Contact` instance
 
             Parameters
             ----------
@@ -1976,7 +1976,7 @@ line of the class is an empty line*
      print(contact_dictionary)
     ```
 
-        {'Rob Miles': <__main__.Contact object at 0x7fa4fc81b710>}
+        {'Rob Miles': <__main__.Contact object at 0x7f503477fcb0>}
 
   - We can then search for a contact by just querying the key
 
@@ -1984,7 +1984,7 @@ line of the class is an empty line*
       contact_dictionary["Rob Miles"]
     ```
 
-        <__main__.Contact at 0x7fa4fc81b710>
+        <__main__.Contact at 0x7f503477fcb0>
 
   - However the user would have to type the correct full name
 

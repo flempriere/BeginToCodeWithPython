@@ -151,7 +151,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -338,9 +338,9 @@ class Contact:
     name : str
         Contact Name
     address : str
-        Contact's postal or street address.
+        Contact's postal or street address
     telephone : str
-        Contact phone number (stored as a string).
+        Contact phone number (stored as a string)
     hours_worked : int | float
         Hours worked with a Contact, initialised to 0
 
@@ -352,7 +352,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -562,7 +562,7 @@ method) and the `display_contact` functions to use the new methods
 
         def __init__(self, name, address, telephone):
             """
-            Create a new Contact instance
+            Create a new `Contact` instance
 
             Parameters
             ----------
@@ -739,7 +739,7 @@ questions about their use-cases*
 
         def __init__(self, name, address, telephone):
             """
-            Create a new Contact instance
+            Create a new `Contact` instance
 
             Parameters
             ----------
@@ -1367,7 +1367,7 @@ class Contact:
         Validates text to be stored in the contact storage
 
         Valid input must be have a length greater than or
-        equal to Contact.__min_text_length
+        equal to `Contact.__min_text_length`
 
         Parameters
         ----------
@@ -1573,7 +1573,7 @@ class Contact:
         Validates text to be stored in the contact storage
 
         Valid input must be have a length greater than or
-        equal to Contact.__min_text_length
+        equal to `Contact.__min_text_length`
 
         Parameters
         ----------
@@ -1974,7 +1974,7 @@ def display_contact(contact):
   ``` python
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -2004,10 +2004,14 @@ def display_contact(contact):
   ``` python
     def check_version(self):
         """
-        Check the version of a Contact instance
+        Check the version of a `Contact` instance
 
         Upgrades the instance to the most recent version
         if required
+
+        Returns
+        -------
+        None
         """
         pass
   ```
@@ -2033,7 +2037,7 @@ def display_contact(contact):
     Returns
     -------
     None
-        Contact detail is loaded into the global contacts value
+        Contact detail is loaded into the global `contacts` value
 
     Raises
     ------
@@ -2065,10 +2069,14 @@ def display_contact(contact):
   ``` python
     def check_version(self):
     """
-    Check the version of a Contact instance
+    Check the version of a `Contact` instance
 
     Upgrades the instance to the most recent version
     if required
+
+    Returns
+    -------
+    None
     """
     try:
         if not self.__version == 1:
@@ -2173,7 +2181,7 @@ As we can see, the amount to bill is now correctly displayed
     display_contact(contact)
   ```
 
-      <__main__.Contact object at 0x7fdb885cc500>
+      <__main__.Contact object at 0x7f33a8868410>
 
 - default for objects is the class name following by the memory address
   of the object
@@ -2391,7 +2399,7 @@ following questions*
 
          def __init__(self, session_length):
              """
-             Create a new Session instance
+             Create a new `Session` instance
 
              Parameters
              ----------
@@ -2422,7 +2430,7 @@ following questions*
         print(session_record)
       ```
 
-          <__main__.Session object at 0x7fdb88739520>
+          <__main__.Session object at 0x7f33a879ef60>
 
     - creates a `Session` with the passed `session_length` parameter
 
@@ -2449,10 +2457,14 @@ following questions*
       ``` python
         def check_version(self):
             """
-            Check the version of a Contact instance
+            Check the version of a `Contact` instance
 
             Upgrades the instance to the most recent version
             if required
+
+            Returns
+            -------
+            None
             """
             pass
       ```
@@ -2519,7 +2531,7 @@ following questions*
   ``` python
     def check_version(self):
         """
-        Check the version of a Contact instance
+        Check the version of a `Contact` instance
 
         Upgrades the instance to the most recent version
         if required. This includes upgrading any Session
@@ -2527,7 +2539,7 @@ following questions*
 
         See Also
         --------
-        Session.check_version : Checks and upgrades Session instances
+        Session.check_version : Checks and upgrades `Session` instances
         """
         try:
             if self.__version == 1:
@@ -2706,7 +2718,7 @@ indented_code = map(indent, code)
 indented_code
 ```
 
-    <map at 0x7fdb88557f70>
+    <map at 0x7f33a879eb60>
 
 Naively we expected a list of indented strings. Instead we have
 something called a *map object*. `map` returns something called an
@@ -2978,7 +2990,7 @@ class Playlist:
 
     def __init__(self, name, tracks=[]):
         """
-        Create a new Playlist instance
+        Create a new `Playlist` instance
 
         Parameters
         ----------
@@ -3078,6 +3090,10 @@ def clear_tracks(self):
     Remove all tracks from a playlist
 
     Runtime is set to 0
+
+    See Also
+    --------
+    Playlist.remove_track : remove a single track from a playlist
     """
     self.tracks.clear()
     self.__runtime = 0
@@ -3636,7 +3652,7 @@ You are encouraged to work through the full program yourself
 
         def __init__(self, note, duration):
             """
-            Create a Note instance
+            Create a `Note` instance
 
             Parameters
             ----------
@@ -3750,7 +3766,7 @@ For fun we’ll make two little tunes
 
          def __init__(self, note, duration):
              """
-             Create a Note instance
+             Create a `Note` instance
 
              Parameters
              ----------
@@ -3816,7 +3832,7 @@ For fun we’ll make two little tunes
 
          def __init__(self, note, duration):
              """
-             Create a Note instance
+             Create a `Note` instance
 
              Parameters
              ----------
@@ -3989,9 +4005,18 @@ class that captures behaviour. We’ll call this class `Tune`
 
 ``` python
 class Tune:
+    """
+    Represents a tune consisting of a sequence of notes of a specified duration
+
+    Attributes
+    ----------
+    name : str
+        name of the tune
+    """
+
     def __init__(self, name):
         """
-        Create a new Tune instance
+        Create a new `Tune` instance
 
         Parameters
         ----------
@@ -4060,12 +4085,16 @@ some methods that allow us to modify the notes list
         note : Note
             note to add to the tune
         index : int | None, optional
-            index to insert the note at, if None, the Note is appended,
-            by default None
+            index to insert the note at, if `None`, the Note is appended,
+            by default `None`
 
         Returns
         -------
         None
+
+        See Also
+        --------
+        Tune.remove_note : remove a note at a given index from a `Tune` instance
         """
         if index is not None:
             self.__notes.insert(index, note)
@@ -4086,6 +4115,11 @@ some methods that allow us to modify the notes list
         -------
         Note
             the removed Note
+
+        See Also
+        --------
+        Tune.add_note : insert or append a new note to a `Tune` instance
+        Tune.clear_tune : remove all notes in a `Tune` instance
         """
         try:
             note = self.__notes.pop(index)
@@ -4101,6 +4135,10 @@ some methods that allow us to modify the notes list
         Returns
         -------
         None
+
+        See Also
+        --------
+        Tune.remove_note : remove a note at a given index from a `Tune`
         """
         self.__notes.clear()
         self.__length = 0
@@ -4531,7 +4569,7 @@ Lets work through these functions
          Adds a note to the current tune
 
          Prompts the user to specify a new note as well as an index of
-         where to insert the note in the tune (-1 indicating append). The created
+         where to insert the note in the tune (`-1` indicating append). The created
          note is then added to the current tune at the indicated index (or appended)
 
          Returns

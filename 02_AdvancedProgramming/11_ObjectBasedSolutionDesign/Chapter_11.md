@@ -36,6 +36,10 @@
     - [Implement Application
       Behaviours](#implement-application-behaviours)
       - [Create a New Stock Item](#create-a-new-stock-item)
+      - [Add Stock to an Existing Item](#add-stock-to-an-existing-item)
+      - [Sell a Stock Item](#sell-a-stock-item)
+    - [Objects as Components](#objects-as-components)
+  - [Create a `FashionShop` Component](#create-a-fashionshop-component)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -687,12 +691,12 @@ class StockItem(ABC):
       AttributeError: 'Dress' object has no attribute '_StockItem__price'
       ---------------------------------------------------------------------------
       AttributeError                            Traceback (most recent call last)
-      Cell In[152], line 3
+      Cell In[5], line 3
             1 x = Dress(stock_ref="D0001", price=100, colour="red", pattern="swirly", size=12)
             2 print(x.pattern)
       ----> 3 print(x.price)
 
-      Cell In[150], line 41, in StockItem.price(self)
+      Cell In[3], line 41, in StockItem.price(self)
            35 @property
            36 def price(self):
            37     """
@@ -921,7 +925,7 @@ print(x.price)
       TypeError: Can't instantiate abstract class Pants without an implementation for abstract method 'item_name'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[158], line 4
+      Cell In[11], line 4
             1 d = Dress()
             2 print(d.item_name)
       ----> 4 p = Pants()
@@ -969,7 +973,7 @@ value of `o` we are calling the `__str__` method on the `object` class
 print(o)
 ```
 
-    <object object at 0x7210e7caf2b0>
+    <object object at 0x7fac3ca1ebe0>
 
 `print` requires a `str` argument, so `o` is converted to a string by
 calling its `__str__` method. In this case the `__str__` method of the
@@ -1528,10 +1532,10 @@ reading the answers*
           TypeError: StockItem.__init__() missing 1 required positional argument: 'location'
           ---------------------------------------------------------------------------
           TypeError                                 Traceback (most recent call last)
-          Cell In[170], line 1
+          Cell In[23], line 1
           ----> 1 d = Dress("D001", 100, "red", "swirly", 12)
 
-          Cell In[169], line 3, in Dress.__init__(self, stock_ref, price, colour, pattern, size)
+          Cell In[22], line 3, in Dress.__init__(self, stock_ref, price, colour, pattern, size)
                 2 def __init__(self, stock_ref, price, colour, pattern, size):
           ----> 3     super().__init__(stock_ref, price, colour)
                 4     self.pattern = pattern
@@ -1564,7 +1568,7 @@ reading the answers*
         print(d)
       ```
 
-          <__main__.Dress object at 0x7210c1551df0>
+          <__main__.Dress object at 0x7fac3ce29be0>
 
     - The takeaway is that class hierachies are *very* brittle to
       changes
@@ -1992,6 +1996,81 @@ Waist: {3}"""
         """
         print("**Pants check_version called")
         super().check_version()
+
+
+class Jeans(Pants):
+    """
+    Represents the inventory details for a pair of Jeans
+
+    Inherits from `Pants`
+
+    Attributes
+    ----------
+    stock_ref : str
+        jeans reference id
+    price : int | float
+        jeans price
+    colour : str
+        description of jeans colour
+    pattern : str
+        description of the jeans pattern
+    length : int
+        length of the jeans
+    waist : int
+        waist size of the jeans
+    style : str
+        style of the jeans
+
+    See Also
+    --------
+    Pants : Parent Class
+    """
+
+    def __init__(self, stock_ref, price, colour, pattern, length, waist, style):
+        """
+        Creates a `Jeans` instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            jeans reference id
+        price : int | float
+            jeans price
+        colour : str
+            description of jeans colour
+        pattern : str
+            description of the jeans pattern
+        length : int
+            length of the jeans
+        waist : int
+            waist size of the jeans
+        style : str
+            style of the jeans
+        """
+        if StockItem.show_instrumentation:
+            print("**Jeans __init__ called")
+        super().__init__(stock_ref, price, colour, pattern, length, waist)
+        self.style = style
+        self.__Jeans_version = 1
+
+    def __str__(self):
+        if StockItem.show_instrumentation:
+            print("**Jeans __str__ called")
+        pants_details = super().__str__()
+        template = """{0}
+Style: {1}"""
+        return template.format(pants_details, self.style)
+
+    @property
+    def item_name(self):  # type: ignore
+        if StockItem.show_instrumentation:
+            print("**Jeans get item_name called")
+        return "Jeans"
+
+    def check_version(self):
+        if StockItem.show_instrumentation:
+            print("**Jeans check_version called")
+        super().check_version()
 ```
 
 *First define a new* `Dress` *item as described*
@@ -2021,21 +2100,9 @@ jeans = Jeans(
 )
 ```
 
-    NameError: name 'Jeans' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[178], line 1
-    ----> 1 jeans = Jeans(
-          2     stock_ref="TR12327",
-          3     price=50,
-          4     colour="Black",
-          5     pattern="Plain",
-          6     length=30,
-          7     waist=25,
-          8     style="flared",
-          9 )
-
-    NameError: name 'Jeans' is not defined
+    **Jeans __init__ called
+    **Pants __init__ called
+    **StockItem __init__ called
 
 - We can see this time there are three `__init__` calls, in order they
   are
@@ -2050,13 +2117,21 @@ jeans = Jeans(
 print(jeans)
 ```
 
-    NameError: name 'jeans' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[179], line 1
-    ----> 1 print(jeans)
-
-    NameError: name 'jeans' is not defined
+    **Jeans __str__ called
+    **Pants __str__ called
+    **StockItem __str__ called
+    **Jeans get item_name called
+    **StockItem get price called
+    **StockItem get stock_level called
+    Stock Reference: TR12327
+    Type: Jeans
+    Price: 50
+    Stock level: 0
+    Colour: Black
+    Pattern: Plain
+    Length: 30
+    Waist: 25
+    Style: flared
 
 - We can see that when we the `__str__` method is called from the
   `Jeans` subclass
@@ -2078,14 +2153,15 @@ StockItem.show_instrumentation = False
 print(jeans)
 ```
 
-    NameError: name 'jeans' is not defined
-    ---------------------------------------------------------------------------
-    NameError                                 Traceback (most recent call last)
-    Cell In[180], line 2
-          1 StockItem.show_instrumentation = False
-    ----> 2 print(jeans)
-
-    NameError: name 'jeans' is not defined
+    Stock Reference: TR12327
+    Type: Jeans
+    Price: 50
+    Stock level: 0
+    Colour: Black
+    Pattern: Plain
+    Length: 30
+    Waist: 25
+    Style: flared
 
 - We can see now there is no instrumentation printed
 - A more advanced form of instrumentation is called *logging*
@@ -2126,6 +2202,1161 @@ Enter your command:
 
     Enter item to add:
   ```
+
+- The full code is given in [Creating Stock
+  Items](./Examples/06_CreatingStockItems/CreatingStockItems.py)
+
+  ``` python
+    class StockItem(abc.ABC):
+    """
+    Abstract base class representing a single inventory item.
+
+    Subclasses are expected to overwrite the `item_name` abstract
+    property with a user friendly string description
+
+    Attributes
+    ----------
+    stock_ref : str
+        reference id of the stock item
+    colour : str
+        description of the item's colour
+    location : str
+        description of where the pants are located
+
+    Class Attributes
+    ----------------
+    show_instrumentation : bool
+        Indicates if instrumentation should be printed
+
+    min_price : int | float
+        minimum price of any stock item
+
+    max_price : int | float
+        maximum price of any stock item
+    """
+
+    show_instrumentation = True
+
+    min_price = 0.5
+    max_price = 500
+
+    def __init__(self, stock_ref, price, colour, location):
+        """
+        Creates a `StockItem` instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            stock reference id
+        price : int | float
+            stock price
+        colour : str
+            description of stock item's colour
+        location : str
+            description of where the pants are located
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem __init__ called")
+        self.stock_ref = stock_ref
+        self.__price = price
+        self.colour = colour
+        self.location = location
+        self.__stock_level = 0
+        self.__StockItem_version = 2
+
+    def __str__(self):
+        if StockItem.show_instrumentation:
+            print("**StockItem __str__ called")
+        template = """Stock Reference: {0}
+  Type: {1}
+  Price: {2}
+  Stock level: {3}
+  Location: {4}
+  Colour: {5}"""
+        return template.format(
+            self.stock_ref,
+            self.item_name,
+            self.price,
+            self.stock_level,
+            self.location,
+            self.colour,
+        )
+
+    @property
+    @abc.abstractmethod
+    def item_name(self):
+        """
+        item_name : str
+            the stock item's name as a user friendly string
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem item_name called")
+        pass
+
+    @property
+    def price(self):
+        """
+        price : int | float
+            dress price
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem get price called")
+        return self.__price
+
+    @property
+    def stock_level(self):
+        """
+        stock_level : int
+            amount of stock in inventory
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem get stock_level called")
+        return self.__stock_level
+
+    def check_version(self):
+        """
+        Checks the version of a `StockItem` instance and upgrades it if required
+
+        Returns
+        -------
+        None
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem check_version called")
+        if self.__StockItem_version < 2:
+            self.location = None
+            self.__StockItem_version = 2
+
+
+    class Dress(StockItem):
+        """
+        Represents the inventory details for a Dress
+
+        Inherits from `StockItem`
+
+        Attributes
+        ----------
+        stock_ref : str
+            dress reference id
+        price : int | float
+            dress price
+        colour : str
+            description of dress's colour
+        pattern : str
+            description of the dress pattern
+        size : int
+            dress size
+        location : str
+            place where the dress is located
+
+        See Also
+        --------
+        StockItem : Parent Class
+        """
+
+        def __init__(self, stock_ref, price, colour, pattern, size, location):
+            """
+            Creates a `Dress` instance
+
+            Parameters
+            ----------
+            stock_ref : str
+                stock reference code
+            price : int | float
+                dress price
+            colour : str
+                description of the dress colour
+            pattern : str
+                description of the dress pattern
+            size : int
+                dress size
+            location : str
+                place where the dress is located
+            """
+            if StockItem.show_instrumentation:
+                print("**Dress __init__ called")
+            super().__init__(stock_ref, price, colour, location)
+            self.pattern = pattern
+            self.size = size
+            self.__Dress_version = 1
+
+        def __str__(self):
+            if StockItem.show_instrumentation:
+                print("**Dress __str__ called")
+            stock_details = super().__str__()
+            template = """{0}
+  Pattern: {1}
+  Size: {2}"""
+            return template.format(stock_details, self.pattern, self.size)
+
+        @property
+        def item_name(self):  # type: ignore
+            if StockItem.show_instrumentation:
+                print("**Dress get item_name called")
+            return "Dress"
+
+        def check_version(self):
+            """
+            Checks the version of a `Dress` instance and upgrades it if required
+
+            Returns
+            -------
+            None
+            """
+            if StockItem.show_instrumentation:
+                print("**Dress check_version called")
+            super().check_version()
+
+
+    class Pants(StockItem):
+        """
+        Represents the inventory details for a pair of Pants
+
+        Inherits from `StockItem`
+
+        Attributes
+        ----------
+        stock_ref : str
+            pants reference id
+        price : int | float
+            pants price
+        colour : str
+            description of pants's colour
+        pattern : str
+            description of the pants pattern
+        length : int
+            length of the pants
+        waist : int
+            waist size of the pants
+        location : str
+            description of where the pants are located
+
+        See Also
+        --------
+        StockItem : Parent Class
+        """
+
+        def __init__(self, stock_ref, price, colour, pattern, length, waist, location):
+            """
+            Creates a `Pants` instance
+
+            Parameters
+            ----------
+            stock_ref : str
+                stock reference code
+            price : int | float
+                pants price
+            colour : str
+                description of the pants colour
+            pattern : str
+                description of the pants pattern
+            length: int
+                length of the pants
+            waist : int
+                pants waist size
+            location : str
+                description of where the pants are located
+            """
+            if StockItem.show_instrumentation:
+                print("**Pants __init__ called")
+            super().__init__(stock_ref, price, colour, location)
+            self.pattern = pattern
+            self.length = length
+            self.waist = waist
+            self.__Pants_version = 1
+
+        def __str__(self):
+            if StockItem.show_instrumentation:
+                print("**Pants __str__ called")
+            stock_details = super().__str__()
+            template = """{0}
+  Pattern: {1}
+  Length: {2}
+  Waist: {3}"""
+            return template.format(stock_details, self.pattern, self.length, self.waist)
+
+        @property
+        def item_name(self):  # type: ignore
+            if StockItem.show_instrumentation:
+                print("**Pants get item_name called")
+            return "Pants"
+
+        def check_version(self):
+            """
+            Checks the version of a `Pants` instance and upgrades it if required
+
+            Returns
+            -------
+            None
+            """
+            print("**Pants check_version called")
+            super().check_version()
+
+
+    class Jeans(Pants):
+        """
+        Represents the inventory details for a pair of Jeans
+
+        Inherits from `Pants`
+
+        Attributes
+        ----------
+        stock_ref : str
+            jeans reference id
+        price : int | float
+            jeans price
+        colour : str
+            description of jeans colour
+        pattern : str
+            description of the jeans pattern
+        length : int
+            length of the jeans
+        waist : int
+            waist size of the jeans
+        style : str
+            style of the jeans
+        location : str
+            description of where the pants are located
+
+        See Also
+        --------
+        Pants : Parent Class
+        """
+
+        def __init__(
+            self, stock_ref, price, colour, pattern, length, waist, style, location
+        ):
+            """
+            Creates a `Jeans` instance
+
+            Parameters
+            ----------
+            stock_ref : str
+                jeans reference id
+            price : int | float
+                jeans price
+            colour : str
+                description of jeans colour
+            pattern : str
+                description of the jeans pattern
+            length : int
+                length of the jeans
+            waist : int
+                waist size of the jeans
+            style : str
+                style of the jeans
+            location : str
+                description of where the jeans are located
+            """
+            if StockItem.show_instrumentation:
+                print("**Jeans __init__ called")
+            super().__init__(stock_ref, price, colour, pattern, length, waist, location)
+            self.style = style
+            self.__Jeans_version = 1
+
+        def __str__(self):
+            if StockItem.show_instrumentation:
+                print("**Jeans __str__ called")
+            pants_details = super().__str__()
+            template = """{0}
+  Style: {1}"""
+            return template.format(pants_details, self.style)
+
+        @property
+        def item_name(self):  # type: ignore
+            if StockItem.show_instrumentation:
+                print("**Jeans get item_name called")
+            return "Jeans"
+
+        def check_version(self):
+            if StockItem.show_instrumentation:
+                print("**Jeans check_version called")
+            super().check_version()
+
+
+    class Hat(StockItem):
+        """
+        Represents the inventory details for a Hat
+
+        Inherits from `StockItem`
+
+        Attributes
+        ----------
+        stock_ref : str
+            hat reference id
+        price : int | float
+            hat price
+        colour : str
+            description of hats colour
+        size : int
+            Hat size in diameter
+        location : str
+            description of where the hat is located
+
+        See Also
+        --------
+        StockItem : Parent Class
+        """
+
+        def __init__(self, stock_ref, price, colour, size, location):
+            """
+            Creates a `Hat` instance
+
+            Parameters
+            ----------
+            stock_ref : str
+                hat stock reference id
+            price : int | float
+                hat price
+            colour : str
+                hat colour
+            size : int
+                hat size in diameter
+            location : str
+                where the hat is located in the store
+            """
+            if StockItem.show_instrumentation:
+                print("**Hat __init__ called")
+            super().__init__(stock_ref, price, colour, location)
+            self.size = size
+            self.__Hat_version = 1
+
+        def __str__(self):
+            if StockItem.show_instrumentation:
+                print("** Hat __str__ called")
+            stock_details = super().__str__()
+            template = """{0}
+  Size: {1}"""
+            return template.format(stock_details, self.size)
+
+        @property
+        def item_name(self):  # type: ignore
+            if StockItem.show_instrumentation:
+                print("** Hat get item_name called")
+            return "Hat"
+
+        def check_version(self):
+            """
+            Checks the version and upgrades a `Hat` instance as requires
+            """
+            if StockItem.show_instrumentation:
+                print("** Hat check_version called")
+            super().check_version()
+
+
+    class Blouse(StockItem):
+        """
+        Represents the inventory details for a Blouse
+
+        Inherits from `StockItem`
+
+        Attributes
+        ----------
+        stock_ref : str
+            stock reference code
+        price : int | float
+            blouse price
+        colour : str
+            description of the blouse colour
+        pattern : str
+            description of the blouse pattern
+        style : str
+            description of the blouse style
+        size : int
+            blouse size
+        location : str
+            place where the blouse is located
+
+        See Also
+        --------
+        StockItem : Parent Class
+        """
+
+        def __init__(self, stock_ref, price, colour, pattern, style, size, location):
+            """
+            Creates a `Blouse` instance
+
+            Parameters
+            ----------
+            stock_ref : str
+                stock reference code
+            price : int | float
+                blouse price
+            colour : str
+                description of the blouse colour
+            pattern : str
+                description of the blouse pattern
+            style : str
+                description of the blouse style
+            size : int
+                blouse size
+            location : str
+                place where the blouse is located
+            """
+            if StockItem.show_instrumentation:
+                print("** Blouse __init__ called")
+            super().__init__(stock_ref, price, colour, location)
+            self.pattern = pattern
+            self.style = style
+            self.size = size
+            self.__Blouse_version = 1
+
+        def __str__(self):
+            if StockItem.show_instrumentation:
+                print("** Blouse __str__ called")
+            stock_details = super().__str__()
+            template = """{0}
+  Size: {1}
+  Style: {2}
+  Pattern: {3}"""
+            return template.format(stock_details, self.size, self.style, self.pattern)
+
+        @property
+        def item_name(self):  # type: ignore
+            if StockItem.show_instrumentation:
+                print("** Blouse get item_name called")
+            return "Blouse"
+
+        def check_version(self):
+            """
+            Checks the version and upgrades a `Blouse` instance as required
+
+            Returns
+            -------
+            None
+            """
+            if StockItem.show_instrumentation:
+                print("** Blouse check_version called")
+            return super().check_version()
+  ```
+
+      IndentationError: unexpected indent (2471121209.py, line 1)
+        Cell In[34], line 1
+          class StockItem(abc.ABC):
+          ^
+      IndentationError: unexpected indent
+
+- We’ve implemented in all our remaining subclasses `Hat` and `Blouse`
+
+- We’ve also added the [`location` variable](#code-analysis-data-design)
+
+- Our Menu looks pretty straight forward now
+
+- In `StockItem` we’ve also added extra class attributes
+
+  - `min_price` and
+  - `max_price`
+  - These are designed to be used by external validators
+    - We can add validation directly to the classes later
+
+``` python
+menu = """
+Create a new stock item
+
+1. Dress
+2. Pants
+3. Hat
+4. Blouse
+5. Jeans
+
+Enter item to add: """
+
+first_menu_option = 1
+last_menu_option = 5
+
+min_stock_item_size = 0
+max_stock_item_size = 99
+
+item = BTCInput.read_int_ranged(menu, first_menu_option, last_menu_option)
+
+if item < first_menu_option or item > last_menu_option:
+    raise ValueError(
+        "Unexpected value {0} found in menu. Please raise a bug report".format(item)
+    )
+```
+
+- We define our standard menu framework
+
+- The `min_stock_item_size` and `max_stock_item_size` are variables that
+  store the min and max of any size related properties like size,
+  length, waist etc.
+
+- We then get the user’s choice and check that it’s valid
+
+  - This is our usual mechanism of making the code robust to changes
+  - When we add a command `first_menu_option` and/or
+    `second_menu_option` should be updated
+  - Needs to be replicated through to getting user input
+  - The guard clause makes sure these align
+
+- Now we have a valid item we can get the common attributes for a
+  `StockItem`
+
+  ``` python
+    # now we have a valid item so get the common attributes
+    stock_ref = BTCInput.read_text("Enter Stock reference: ")
+    price = BTCInput.read_float_ranged(
+        "Enter price: ", min_value=StockItem.min_price, max_value=StockItem.max_price
+    )
+    colour = BTCInput.read_text("Enter colour: ")
+    location = BTCInput.read_text("Enter location: ")
+  ```
+
+- Then we implement the menu choices as below
+
+- We report to the user what object we’re creating
+
+- We then ask for the attributes unique to that stock item type
+
+- Then create the appropriate object
+
+  ``` python
+    if item == 1:
+    print("Creating a Dress")
+    pattern = BTCInput.read_text("Enter pattern: ")
+    size = BTCInput.read_int_ranged(
+        "Enter size: ", min_value=min_stock_item_size, max_value=max_stock_item_size
+    )
+    stock_item = Dress(stock_ref, price, colour, pattern, size, location)
+
+    elif item == 2:
+        print("Creating a pair of Pants")
+        pattern = BTCInput.read_text("Enter pattern: ")
+        length = BTCInput.read_int_ranged(
+            "Enter length: ", min_value=min_stock_item_size, max_value=max_stock_item_size
+        )
+        waist = BTCInput.read_int_ranged(
+            "Enter waist size: ",
+            min_value=min_stock_item_size,
+            max_value=max_stock_item_size,
+        )
+        stock_item = Pants(stock_ref, price, colour, pattern, length, waist, location)
+
+    elif item == 3:
+        print("Creating a Hat")
+        size = BTCInput.read_int_ranged(
+            "Enter size: ", min_value=min_stock_item_size, max_value=max_stock_item_size
+        )
+        stock_item = Hat(stock_ref, price, colour, size, location)
+
+    elif item == 4:
+        print("Creating a Blouse")
+        pattern = BTCInput.read_text("Enter pattern: ")
+        style = BTCInput.read_text("Enter style: ")
+        size = BTCInput.read_int_ranged(
+            "Enter size: ", min_value=min_stock_item_size, max_value=max_stock_item_size
+        )
+        stock_item = Blouse(stock_ref, price, colour, pattern, style, size, location)
+
+    elif item == 5:
+        print("Creating a pair of Jeans")
+        pattern = BTCInput.read_text("Enter pattern: ")
+        style = BTCInput.read_text("Enter style: ")
+        length = BTCInput.read_int_ranged(
+            "Enter length: ", min_value=min_stock_item_size, max_value=max_stock_item_size
+        )
+        waist = BTCInput.read_int_ranged(
+            "Enter waist size: ",
+            min_value=min_stock_item_size,
+            max_value=max_stock_item_size,
+        )
+        stock_item = Jeans(
+            stock_ref, price, colour, pattern, length, waist, style, location
+        )
+    else:
+        stock_item = None
+  ```
+
+- An example output from this program might then look like
+
+<!-- -->
+
+    Create a new stock item
+
+    1. Dress
+    2. Pants
+    3. Hat
+    4. Blouse
+    5. Jeans
+
+    Enter item to add:  1
+    Enter Stock reference: DO001
+    Enter price: 100
+    Enter colour: Red
+    Enter location: Shop Window
+    Creating a Dress
+    Enter pattern: Swirly
+    Enter size: 12
+    Stock Reference: D001
+    Type: Dress
+    Price: 100
+    Stock level: 0
+    Colour: Red
+    Pattern: Swirly
+    Size: 12
+
+- In the future we will look at how to wrap these user interactions in a
+  class `FashionShopShellApplication`
+
+##### Add Stock to an Existing Item
+
+- When items are created they start with a default stock level of $0$
+- We need some way to increase a stock item’s stock level when an order
+  arrives
+- We can’t directly modify `__stock_level` as it’s private
+- So we need to add a method
+
+``` python
+# Example 11.7 Updating Stock Levels on an Item
+#
+# Continues demonstrating behaviours of the fashion shop, here we highlight how
+# to implement adding to stock levels
+
+import abc
+
+
+class StockItem(abc.ABC):
+    """
+    Abstract base class representing a single inventory item.
+
+    Subclasses are expected to overwrite the `item_name` abstract
+    property with a user friendly string description
+
+    Attributes
+    ----------
+    stock_ref : str
+        reference id of the stock item
+    colour : str
+        description of the item's colour
+    location : str
+        description of where the pants are located
+
+    Class Attributes
+    ----------------
+    show_instrumentation : bool
+        Indicates if instrumentation should be printed
+
+    max_stock_add : int
+        maximum amount of stock that can be added to an item's stock level at a time
+    """
+
+    show_instrumentation = True
+
+    max_stock_add = 10
+
+    def __init__(self, stock_ref, price, colour, location):
+        """
+        Creates a `StockItem` instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            stock reference id
+        price : int | float
+            stock price
+        colour : str
+            description of stock item's colour
+        location : str
+            description of where the pants are located
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem __init__ called")
+        self.stock_ref = stock_ref
+        self.__price = price
+        self.colour = colour
+        self.location = location
+        self.__stock_level = 0
+        self.__StockItem_version = 2
+
+    def __str__(self):
+        if StockItem.show_instrumentation:
+            print("**StockItem __str__ called")
+        template = """Stock Reference: {0}
+Type: {1}
+Price: {2}
+Stock level: {3}
+Location: {4}
+Colour: {5}"""
+        return template.format(
+            self.stock_ref,
+            self.item_name,
+            self.price,
+            self.stock_level,
+            self.location,
+            self.colour,
+        )
+
+    @property
+    @abc.abstractmethod
+    def item_name(self):
+        """
+        item_name : str
+            the stock item's name as a user friendly string
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem item_name called")
+        pass
+
+    @property
+    def price(self):
+        """
+        price : int | float
+            dress price
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem get price called")
+        return self.__price
+
+    @property
+    def stock_level(self):
+        """
+        stock_level : int
+            amount of stock in inventory
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem get stock_level called")
+        return self.__stock_level
+
+    def check_version(self):
+        """
+        Checks the version of a `StockItem` instance and upgrades it if required
+
+        Returns
+        -------
+        None
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem check_version called")
+        if self.__StockItem_version < 2:
+            self.location = None
+            self.__StockItem_version = 2
+
+    def add_stock(self, count):
+        """
+        Add stock to an item
+
+        Parameters
+        ----------
+        count : int
+            amount of stock to add to an item
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            raised if `count` < 0 or `count` > `StockItem.max_stock_add`
+
+        See Also
+        --------
+        StockItem.max_stock_add : maximum amount of stock that can be added to a `StockItem`
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem add_stock called")
+        if count < 0 or count > StockItem.max_stock_add:
+            raise Exception("Invalid add amount")
+        self.__stock_level = self.__stock_level + count
+
+
+class Dress(StockItem):
+    """
+    Represents the inventory details for a Dress
+
+    Inherits from `StockItem`
+
+    Attributes
+    ----------
+    stock_ref : str
+        dress reference id
+    price : int | float
+        dress price
+    colour : str
+        description of dress's colour
+    pattern : str
+        description of the dress pattern
+    size : int
+        dress size
+    location : str
+        place where the dress is located
+
+    See Also
+    --------
+    StockItem : Parent Class
+    """
+
+    def __init__(self, stock_ref, price, colour, pattern, size, location):
+        """
+        Creates a `Dress` instance
+
+        Parameters
+        ----------
+        stock_ref : str
+            stock reference code
+        price : int | float
+            dress price
+        colour : str
+            description of the dress colour
+        pattern : str
+            description of the dress pattern
+        size : int
+            dress size
+        location : str
+            place where the dress is located
+        """
+        if StockItem.show_instrumentation:
+            print("**Dress __init__ called")
+        super().__init__(stock_ref, price, colour, location)
+        self.pattern = pattern
+        self.size = size
+        self.__Dress_version = 1
+
+    def __str__(self):
+        if StockItem.show_instrumentation:
+            print("**Dress __str__ called")
+        stock_details = super().__str__()
+        template = """{0}
+Pattern: {1}
+Size: {2}"""
+        return template.format(stock_details, self.pattern, self.size)
+
+    @property
+    def item_name(self):  # type: ignore
+        if StockItem.show_instrumentation:
+            print("**Dress get item_name called")
+        return "Dress"
+
+    def check_version(self):
+        """
+        Checks the version of a `Dress` instance and upgrades it if required
+
+        Returns
+        -------
+        None
+        """
+        if StockItem.show_instrumentation:
+            print("**Dress check_version called")
+        super().check_version()
+```
+
+- We add a new class attribute `max_stock_add` which defines the maximum
+  amount of stock that can be added to an item in one go
+
+- We then define an `add_stock` method
+
+  ``` python
+    def add_stock(self, count):
+        """
+        Add stock to an item
+
+        Parameters
+        ----------
+        count : int
+            amount of stock to add to an item
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            raised if `count` < 0 or `count` > `StockItem.max_stock_add`
+
+        See Also
+        --------
+        StockItem.max_stock_add : maximum amount of stock that can be added to a `StockItem`
+        """
+        if StockItem.show_instrumentation:
+            print("**StockItem add_stock called")
+        if count < 0 or count > StockItem.max_stock_add:
+            raise Exception("Invalid add amount")
+        self.__stock_level = self.__stock_level + count
+  ```
+
+- We first validate the `count` variable
+
+  - Raising an `Exception` if invalid so it can be handled
+
+- Once validated we can directly update the private variable
+
+- Let us see how this works with a `Dress` now
+
+  ``` python
+    d = Dress(
+        "D0001", price=100, colour="Red", pattern="Swirly", size=12, location="Shop Window"
+    )
+    d.add_stock(5)
+    print(d)
+  ```
+
+      **Dress __init__ called
+      **StockItem __init__ called
+      **StockItem add_stock called
+      **Dress __str__ called
+      **StockItem __str__ called
+      **Dress get item_name called
+      **StockItem get price called
+      **StockItem get stock_level called
+      Stock Reference: D0001
+      Type: Dress
+      Price: 100
+      Stock level: 5
+      Location: Shop Window
+      Colour: Red
+      Pattern: Swirly
+      Size: 12
+
+- We can see the Stock Level is now $5$
+
+- What happens if we try to add more than `StockItem.max_stock_add`?
+
+``` python
+d.add_stock(15)
+```
+
+    **StockItem add_stock called
+
+    Exception: Invalid add amount
+    ---------------------------------------------------------------------------
+    Exception                                 Traceback (most recent call last)
+    Cell In[38], line 1
+    ----> 1 d.add_stock(15)
+
+    Cell In[36], line 150, in StockItem.add_stock(self, count)
+        148     print("**StockItem add_stock called")
+        149 if count < 0 or count > StockItem.max_stock_add:
+    --> 150     raise Exception("Invalid add amount")
+        151 self.__stock_level = self.__stock_level + count
+
+    Exception: Invalid add amount
+
+- Well as expected we get an Exception, showing our error-handling is
+  working correctly
+- As the above shows, by adding the method directly to `StockItem` it is
+  automatically availabel to all of the subclasses without the need to
+  write extra code
+
+##### Sell a Stock Item
+
+- Now we need to account for the opposite case where stock is sold
+
+- The stock level will correspondingly decrease
+
+- We do this with another method on `StockItem`
+
+  ``` python
+    class StockItem(abc.ABC):
+        """
+        Stock Item for the Fashion Shop
+        """
+        ...
+
+        def sell_stock(self, count):
+            if count < 1:
+                raise Exception("Invalid number of items to sell")
+            if count > self.__stock_level:
+                raise Exception("Not enough stock to sell")
+            self.__stock_level = self.__stock_level - count
+  ```
+
+- The amount to sell is given by the `count` parameter
+
+- We raise an exception in two cases
+
+  1. The user tries to sell $< 1$ items, since this physically doesn’t
+      make sense
+  2. The user tries to sell more items than are available i.e. `count`
+      $>$ `self.__stock_level`
+
+- Let’s see how this plays out with the `Dress` class
+
+  ``` python
+    d = Dress(
+        "D0001", price=100, colour="Red", pattern="Swirly", size=12, location="Shop Window"
+    )
+    d.add_stock(5)
+    d.sell_stock(1)
+    print(d)
+  ```
+
+      **Dress __init__ called
+      **StockItem __init__ called
+      **StockItem add_stock called
+      **StockItem sell_stock called
+      **Dress __str__ called
+      **StockItem __str__ called
+      **Dress get item_name called
+      **StockItem get price called
+      **StockItem get stock_level called
+      Stock Reference: D0001
+      Type: Dress
+      Price: 100
+      Stock level: 4
+      Location: Shop Window
+      Colour: Red
+      Pattern: Swirly
+      Size: 12
+
+- And again what happens if we try to do something invalid like selling
+  more stock than we have
+
+  ``` python
+    d.sell_stock(10)
+  ```
+
+      **StockItem sell_stock called
+
+      Exception: Not enough stock to sell
+      ---------------------------------------------------------------------------
+      Exception                                 Traceback (most recent call last)
+      Cell In[41], line 1
+      ----> 1 d.sell_stock(10)
+
+      Cell In[39], line 178, in StockItem.sell_stock(self, count)
+          176     raise Exception("Invalid number of items to sell")
+          177 if count > self.__stock_level:
+      --> 178     raise Exception("Not enough stock to sell")
+          179 self.__stock_level = self.__stock_level - count
+
+      Exception: Not enough stock to sell
+
+- As expected, an exception is raised
+
+#### Objects as Components
+
+- We have completed the `StockItem` and it’s associated class hierarchy
+- All behaviours given by the fashion shop item data spec is now
+  implemented by the class and its subclasses
+- `StockItem` is a purely self-contained and cohesive
+- We’ve done some basic testing of the external behaviours
+  - Later we’ll look at how to implement automatic testing of our
+    objects
+- Sometimes we call a cohesive, self-contained part a *component*
+- E.g. in a car production line different parts of the line produce
+  different parts, like the motor, panels, transmission etc.
+  - All are made seperately and the final product is composed of all the
+    parts
+- We would like to do something similar with `StockItem`
+  - Move it around as it’s own component
+  - Can then potentially reuse it as it’s own feature in other projects
+
+> [!TIP]
+>
+> **Self-contained components are a great way to build software**
+>
+> Breaking software projects down into individual components is a great
+> design philosophy. When you’re working solo it lets you focus on a
+> small completeable part of the program and progressively build up the
+> complexity. When working with a larger team, different parts of the
+> team can be assigned to work on the different independent components
+> without interferring with each others work.
+>
+> For example in our fashion shop project someone could be building the
+> `StockItem` while another person works on the UI
+
+### Create a `FashionShop` Component
 
 ## Summary
 
