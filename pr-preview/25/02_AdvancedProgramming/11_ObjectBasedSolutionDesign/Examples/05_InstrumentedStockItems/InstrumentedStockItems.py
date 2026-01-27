@@ -1,6 +1,6 @@
 # Example 11.5 Fashion Items using Instrumentation
 #
-# Adds optional instrumentation to the StockItem hierachy to demonstrate the
+# Adds optional instrumentation to the StockItem hierarchy to demonstrate the
 # control flow
 
 import abc
@@ -200,7 +200,7 @@ class Pants(StockItem):
     length : int
         length of the pants
     waist : int
-        waist size of the pantts
+        waist size of the pants
 
     See Also
     --------

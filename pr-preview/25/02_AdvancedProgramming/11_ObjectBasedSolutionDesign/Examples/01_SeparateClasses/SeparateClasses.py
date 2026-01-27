@@ -1,4 +1,4 @@
-# Example 11.1 Fashion Items as Seperate Classes
+# Example 11.1 Fashion Items as Separate Classes
 #
 # Mocks out the class-based implementation of the fashion items, treating
 # each different item type as it's own standalone class
