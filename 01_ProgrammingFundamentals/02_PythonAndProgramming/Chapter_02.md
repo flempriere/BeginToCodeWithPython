@@ -73,7 +73,7 @@
 > **Communication leads to the most interesting work**
 >
 > Interesting tasks go to developers who are good communicators. They
-> can articulate their ideas and liase with customers
+> can articulate their ideas and liaise with customers
 
 ### Computers as Data Processors
 
@@ -82,8 +82,8 @@
 - Computers automate instructions
   - They follow given instructions
   - Convert input data into output data
-- Computers are typically unware of the veracity of their data
-  - No inate ability to question, or *error recover*
+- Computers are typically unaware of the veracity of their data
+  - No innate ability to question, or *error recover*
 
 ``` mermaid
 block-beta
@@ -479,7 +479,7 @@ class operatorDescr BG
     from another?*
 
     - While addition of strings can be easily seen as concatenation,
-      there is no meaningful equivalent for substraction.
+      there is no meaningful equivalent for subtraction.
 
     - We could think of it as substring removal, but that has a lot of
       nuance that is hard to capture in a single symbol. We expect an
@@ -548,7 +548,7 @@ class operatorDescr BG
 
 #### Text and Numbers as Data Types
 
-- Python seperates numerical data (e.g. `2`) from text data (e.g. `'2'`)
+- Python separates numerical data (e.g. `2`) from text data (e.g. `'2'`)
   - Numerics and text are stored differently
 - Behaviour of operators depends on the data types fed into them as
   operands
@@ -564,7 +564,7 @@ class operatorDescr BG
 > **Functions are a critical part of programming languages**
 >
 > Learning a new language often involves learning the functions it
-> natively supports.
+> naively supports.
 
 #### The `ord` function
 
@@ -793,7 +793,7 @@ bin(87)
 
 - Computers view data as binary
 - Computers process input data into output data
-- Humans intepret data as *information*
+- Humans interpret data as *information*
 - Computers do not naturally understand meaningful or nonsense input or
   output
 - A program is the process of telling a computer how to convert input
@@ -813,7 +813,7 @@ bin(87)
 
 1. *Would a computer “know” that its stupid for someone to have an age
     of* $-20$*?*
-    - No. As far as the computer is concerned, the age valueis just a
+    - No. As far as the computer is concerned, the age value is just a
       pattern of bits that represents a number. If we want a computer to
       reject negative ages, we must actually build that understanding
       into the program
@@ -825,9 +825,9 @@ bin(87)
       which might affect humans, so this makes the output information
       rather than data by the authors opinion
 3. *Is the computer stupid because it can’t understand English?*
-    - No, english can be a quite ambiguous languge. The legal profession
-      is an example of somewhere were debate over the semantics of
-      language is tricky
+    - No, english can be a quite ambiguous language. The legal
+      profession is an example of somewhere were debate over the
+      semantics of language is tricky
 4. *If I don’t know how to solve a problem, can I write a program to do
     it?*
     - No, you need to understand the solution before you can write it

@@ -5,8 +5,8 @@
     - [Make a Prototype](#make-a-prototype)
       - [Code Analysis: The Contacts Application
         Prototype](#code-analysis-the-contacts-application-prototype)
-    - [Store Contact Details in Seperate
-      Lists](#store-contact-details-in-seperate-lists)
+    - [Store Contact Details in Separate
+      Lists](#store-contact-details-in-separate-lists)
       - [Code Analysis: The `find_contact`
         Function](#code-analysis-the-find_contact-function)
     - [Use a Class to Store Contact
@@ -40,9 +40,9 @@
       - [Code Analysis: Saving and Loading
         Contacts](#code-analysis-saving-and-loading-contacts)
     - [Setup Class Instances](#setup-class-instances)
-      - [The Python Initialiser Method](#the-python-initialiser-method)
+      - [The Python Initializer Method](#the-python-initializer-method)
         - [Make Something Happen: Create an
-          Initialiser](#make-something-happen-create-an-initialiser)
+          Initializer](#make-something-happen-create-an-initializer)
         - [Code Analysis: Parameters and the `__init__`
           method](#code-analysis-parameters-and-the-__init__-method)
       - [Use Default Arguments in a
@@ -235,7 +235,7 @@ Work through the following questions.*
       additional characters that make them much more like strings
       (e.g. +)
 
-#### Store Contact Details in Seperate Lists
+#### Store Contact Details in Separate Lists
 
 - Start with storing Contact Details
 
@@ -424,7 +424,7 @@ empty placeholder class*
 3. *This looks like a function call. Are we calling a function here?*
 
     - Technically this is a call to a function called a constructor
-    - Which is responsible for creating an intance of a `Contact`
+    - Which is responsible for creating an instance of a `Contact`
     - By using capital letters it’s clear that this is an object
       instantiation
 
@@ -1058,7 +1058,7 @@ flowchart TD
         x = 99.99
       ```
 
-    - We don’t want the above to accidently change the value of the
+    - We don’t want the above to accidentally change the value of the
       constant `pi`
 
 > [!IMPORTANT]
@@ -1084,7 +1084,7 @@ flowchart TD
 - Our program implementation, uses a simple interface optionally modify
   each attribute one at a time
 
-  - Need to read a user string for each modifiable atttribute
+  - Need to read a user string for each modifiable attribute
   - [Our duplicates
     implementation](./Examples/06_TinyContactsWithEdit/TinyContactsWithEdit.py)
     also needs to read an int to indicate if we want to modify a
@@ -1163,7 +1163,7 @@ flowchart TD
 >
 > Some programming languages e.g. Java, C#, C++ check for these errors
 > before a program executes. Python does not. This means that minor
-> typos e.g. writing `adress` instead of `address` can lead to runtime
+> typos e.g. writing `address` instead of `address` can lead to runtime
 > errors
 
 #### Save Contacts in a File using `pickle`
@@ -1176,7 +1176,7 @@ flowchart TD
 
 - We could replicate this for large class based structures
 
-  - e.g. write out all attributes as comma, seperated values
+  - e.g. write out all attributes as comma, separated values
 
 - Python provides a process called *pickling* for storing large data
   structures
@@ -1365,7 +1365,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
 >
 > **Version Control**
 >
-> Pickle is a tool called a *serialiser* because it converts a data
+> Pickle is a tool called a *serializer* because it converts a data
 > structure is a *serial stream* (i.e. ordered sequence of data) that
 > can be sent to another program and/or stored in a file.
 >
@@ -1485,7 +1485,7 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
     new_contact = Contact()
     new_contact.name = BTCInput.read_text("Enter the contact name: ")
     new_contact.address = BTCInput.read_text("Enter the contact address: ")
-    new_contact.telephon = BTCInput.read_text("Enter the contact phone: ")
+    new_contact.telephone = BTCInput.read_text("Enter the contact phone: ")
   ```
 
 - This makes the program fragile
@@ -1499,22 +1499,22 @@ displayed](./Examples/07_TinyContactsWithLoadAndSave/pickle_content.png)
 - We can do so with a *Constructor*, a special method called to create
   the object
 
-  - Also sometimes called an *initialiser* method
+  - Also sometimes called an *initializer* method
 
 - A method attribute is like a data attribute but as an attached
   function
 
-##### The Python Initialiser Method
+##### The Python Initializer Method
 
 - Held inside a python class
 - Named `__init__`
   - python uses “dunder methods” marked `__function_name__` to mark
     special functions defined by the language
 
-###### Make Something Happen: Create an Initialiser
+###### Make Something Happen: Create an Initializer
 
 *Open the python interpreter and work through the following steps to
-create an understand an initialiser, answering the questions*
+create an understand an initializer, answering the questions*
 
 *Type the below code in to define a class*
 
@@ -1524,14 +1524,14 @@ class InitPrint:
         print("you made an InitPrint instance")
 ```
 
-*The above defines the class* `InitPrint` *it defines an initialiser
+*The above defines the class* `InitPrint` *it defines an initializer
 method that prints a method. Note the double underscore* *before and
 after the* `init` *are required, as is the parameter* `self`*. The last
 line of the class is an empty line*
 
-1. *The initialiser looks remarkably like a function why is that?*
+1. *The initializer looks remarkably like a function why is that?*
 
-    - An initialiser is a function that is called when a class instance
+    - An initializer is a function that is called when a class instance
       is created.
 
     - *Type in the code below, which creates an instance of* `InitPrint`
@@ -1559,15 +1559,15 @@ line of the class is an empty line*
             self.name = new_name
   ```
 
-  - The initialiser can take arguments like any other function, here it
+  - The initializer can take arguments like any other function, here it
     takes `new_name`
 
-  - Initialiser no longer prints a message but rather sets a `name`
+  - Initializer no longer prints a message but rather sets a `name`
     attribute on the variable `self`
 
   - `self` is a reference to the object running the method
 
-    - In the initialiser this is the object being created
+    - In the initializer this is the object being created
     - `self` is always the first parameter of a method, and must be
       included
 
@@ -1586,7 +1586,7 @@ line of the class is an empty line*
 
   - Observe we don’t explicitly pass `self`
 
-- Once an initialiser is defined, it is the only way to create an
+- Once an initializer is defined, it is the only way to create an
   instance
 
   - Attempting otherwise leads to an error, e.g. if we exclude the
@@ -1634,7 +1634,7 @@ line of the class is an empty line*
 *Work through the following questions to ensure you understand the*
 `__init__` *method*
 
-1. *It looks like you’ve written the assignments in the initialiser so
+1. *It looks like you’ve written the assignments in the initializer so
     that a value is assigned to itself. What’s going on?*
 
     - Consider a statement
@@ -1645,9 +1645,9 @@ line of the class is an empty line*
 
     - This looks like assigning `telephone` to `telephone` it, does not
 
-    - The left is the `telephone` atrribute on the `self` object
+    - The left is the `telephone` attribute on the `self` object
 
-    - The right is the `telephone` parameter passed to the initialiser
+    - The right is the `telephone` parameter passed to the initializer
 
     - Python variable names are *namespaced*
 
@@ -1661,7 +1661,7 @@ line of the class is an empty line*
     - namespaces allow different contexts to use the same variable name
       distinct from each other
 
-    - Generally it is convention to give initialiser parameters the same
+    - Generally it is convention to give initializer parameters the same
       name as their associated object attributes
 
 2. *What happens if the user of the constructor supplies silly
@@ -1976,7 +1976,7 @@ line of the class is an empty line*
      print(contact_dictionary)
     ```
 
-        {'Rob Miles': <__main__.Contact object at 0x7fb290e01d00>}
+        {'Rob Miles': <__main__.Contact object at 0x7fcd4c289a00>}
 
   - We can then search for a contact by just querying the key
 
@@ -1984,7 +1984,7 @@ line of the class is an empty line*
       contact_dictionary["Rob Miles"]
     ```
 
-        <__main__.Contact at 0x7fb290e01d00>
+        <__main__.Contact at 0x7fcd4c289a00>
 
   - However the user would have to type the correct full name
 
@@ -2228,7 +2228,7 @@ building data storage applications that handle more functionality than
 tiny contacts.
 
 Due to the size of the discussion required for each exercise they are
-linked on [a seperate page](./Chapter_09_ExtensionExercises.qmd)
+linked on [a separate page](./Chapter_09_ExtensionExercises.qmd)
 
 #### [Music Tracks](./Chapter_09_ExtensionExercises.qmd#make-something-happen-music-storage-app)
 
@@ -2251,7 +2251,7 @@ storage
 - Supports different mechanisms for viewing details about a recipe
   1. Viewing the ingredients
   2. Viewing the steps
-  3. Steping through the recipe, step by step
+  3. Stepping through the recipe, step by step
 
 You are encouraged to work through or examine these exercises
 
@@ -2302,7 +2302,7 @@ You are encouraged to work through or examine these exercises
       - The most basic structure is called a *linked list*
       - More complex structures like trees have more complicated
         referential structures
-3. *Is an object forced to have a constructor / initialiser?*
+3. *Is an object forced to have a constructor / initializer?*
     - No, we saw this with the first `Contact` which was a simple blank
       class
     - `__init__` provides greater ability to ensure that objects are
@@ -2311,7 +2311,7 @@ You are encouraged to work through or examine these exercises
     - No
     - This has the impact of allowing us to create incompatible and
       distinct instances of the same class where for some reason one has
-      been argumented with an additional attribute
+      been augmented with an additional attribute
 5. *Can you remove attributes from an object?*
     - Yes, you can use the `del` operator to delete an attribute
 

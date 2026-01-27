@@ -109,9 +109,9 @@ class zeroName BG
 class zeroDescr BG
 ```
 
-- The above diagramatically breaks down variable assignment. On the left
-  we have the variable, then `=` which means *assignment*, followed by
-  the expression to assign
+- The above diagrammatically breaks down variable assignment. On the
+  left we have the variable, then `=` which means *assignment*, followed
+  by the expression to assign
 - The assignment expression does not need to be made of simple
   primitives, e.g. `total = us_sales + world_wide_sales` defines the
   variable `total` to be equal to the sum of the variables `us_sales`
@@ -236,7 +236,7 @@ been defined*
         they (typically) don’t stop a program running, they just produce
         incorrect behaviour
       - Python typically cannot warn you about them ahead of time
-    - This variable misassignment is why python style guides recommend
+    - This variable mis-assignment is why python style guides recommend
       the use of all lowercase letters for variable names
 
     > [!NOTE]
@@ -265,7 +265,7 @@ been defined*
 
 3. *The statement below also contains a misspelling of the variable*
     `total`*. However, this time the name on the right-hand side of the
-    equals is mispelled. What will happen when this program runs?*
+    equals is misspelled. What will happen when this program runs?*
 
     ``` python
      # Again clear the notebook variables
@@ -428,8 +428,8 @@ typically disliked outside of quick prototyping
 > theory that can be discussed later. In some languages, types are
 > enforced to greater degrees of strictness. In some languages (like
 > `C`) you can assign variables *compatible* types, i.e. ones that can
-> be converted to the variable’s inate type. In other stricter languages
-> a variable can only hold the exact specified type
+> be converted to the variable’s innate type. In other stricter
+> languages a variable can only hold the exact specified type
 >
 > The more strictly a language enforces its typing system typically the
 > harder it is to generate errors at runtime, however they are often
@@ -537,8 +537,8 @@ Sit down just before you think the time will end. ''')
 > ASCII itself is less used today since it only covers around $100$
 > characters, which is nowhere near enough to cover all modern
 > languages, before you start adding in characters like emojis. However
-> modern text encodings like *unicode* are typically backwards
-> compatible with ASCII.
+> modern text encoding like *unicode* are typically backwards compatible
+> with ASCII.
 >
 > Not all ASCII escape sequences may work on a modern computer. `\a` was
 > designed to ring a mechanical bell on old computers. Some modern
@@ -586,9 +586,9 @@ Sit down just before you think the time will end. ''')
      print('Item\tSales\ncar\t50\nboat\t10')
     ```
 
-    - We can see this prints a series of tab seperated lines. So this is
-      essentially a tab seperated table (a similar format to the more
-      familiar *comma*-seperated table)
+    - We can see this prints a series of tab separated lines. So this is
+      essentially a tab separated table (a similar format to the more
+      familiar *comma*-separated table)
 
     <!-- -->
 
@@ -668,7 +668,7 @@ name = input('Enter your name please: ')
 print('Hello', name)
 ```
 
-*Save the program and execute it to see the output. For me the proram
+*Save the program and execute it to see the output. For me the program
 would output,*
 
     Enter your name please: Felix
@@ -676,8 +676,8 @@ would output,*
 
 > [!TIP]
 >
-> I’ve used colour to emphase what is my *input*, versus the *program’s*
-> output
+> I’ve used colour to emphases what is my *input*, versus the
+> *program’s* output
 
 ### Working with Numbers
 
@@ -888,7 +888,7 @@ floating points*
       error. This is because there is an error accumulation from adding
       $0.1$ to $0.2$ and the underlying floating point representations
 
-- These issues are not python specific. They are an inate challenge of
+- These issues are not python specific. They are an innate challenge of
   trying to represent real numbers on hardware. Modern floating-point
   numbers are also an internationally recognised standard which lets
   different programs and hardware talk to each other.
@@ -1059,7 +1059,7 @@ time.sleep(time_float)
 print("Take the egg out now")
 ```
 
-- The code is the same except we make the subsitution `int` $\to$
+- The code is the same except we make the substitution `int` $\to$
   `float`
 
 #### Perform Calculations
@@ -1072,10 +1072,10 @@ print("Take the egg out now")
     but must extend for programming specific syntax
   - As in maths, parentheses are used to enforce an evaluation order
 
-| **Operator** | **Usecase**                            |
+| **Operator** | **Use case**                           |
 |--------------|----------------------------------------|
 | `-`          | Unary minus, denotes a negative number |
-| `*`          | Multiplication (inlieu of $\times$)    |
+| `*`          | Multiplication (in-lieu of $\times$)   |
 | `/`          | Division                               |
 | `+`          | Addition                               |
 | `-`          | binary minus or subtraction            |
@@ -1145,7 +1145,7 @@ print('c: ', c)
 > raised, but this won’t occur until your program runs! Therefore when
 > using division you should always take care to make sure you either
 > handling division by zero cases appropriately or preventing them from
-> occuring
+> occurring
 >
 > ``` python
 > 1/0
@@ -1192,8 +1192,8 @@ i
 *Consider the following
 [program](./Examples/05_PizzaOrderCalculator/PizzaOrderCalculator.py)
 which is designed to calculate the number of pizzas needed for a
-hackathon with* $x$ *number of particpants using the heuristic that* $1$
-*pizza can satisfy* $1.5$ *people*
+hackathon with* $x$ *number of participants using the heuristic that*
+$1$ *pizza can satisfy* $1.5$ *people*
 
 ``` python
 # Example 4.5: Pizza Order Calculator
@@ -1247,7 +1247,7 @@ integer.*
      # Exercise 4.1.2: Pizza Order Calculator
      #
      # A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed
-     # Converts the rseult to an integer using int on pizza_count then adding one
+     # Converts the result to an integer using int on pizza_count then adding one
      # has the disadvantage it will tend to overestimate the number of pizzas needed
 
      students_int = int(
@@ -1281,7 +1281,7 @@ for this is*
 
 $$
 \begin{align}
-\text{Centrigrade} &= \frac{\text{Fahrenheit} - 32}{1.8}
+\text{Centigrade} &= \frac{\text{Fahrenheit} - 32}{1.8}
 \end{align}
 $$
 
@@ -1291,21 +1291,21 @@ some of the text changed. The other major difference is that we want to
 be able to accept a `float` value, and output a `float` value.
 
 ``` python
-    # Exercise 4.2: Fahrenheit to Celcius
+    # Exercise 4.2: Fahrenheit to Celsius
     #
-    # Converts Fahrenheit to Celcius
+    # Converts Fahrenheit to Celsius
 
     temperature_fahrenheit = float(
         input("Enter a temperature in Fahrenheit: ")
     )  # read in string, convert to float
-    temperature_centrigrade = (temperature_fahrenheit - 32) / 1.8
-    print("The temperature is", temperature_centrigrade, "degrees Celcius")
+    temperature_centigrade = (temperature_fahrenheit - 32) / 1.8
+    print("The temperature is", temperature_centigrade, "degrees Celsius")
 ```
 
 A sample output may look like,
 
     Enter a temperature in Fahrenheit: 0
-    The temperature is -17.77777777777778 degrees Celcius
+    The temperature is -17.77777777777778 degrees Celsius
 
 - Later we’ll see how we can format the output to be a bit more
   presentable
@@ -1337,7 +1337,7 @@ A sample output may look like,
 
       pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
       Hello from the pygame community. https://www.pygame.org/contribute.html
-      The temperature in Seattle is: 36
+      The temperature in Seattle is: 34
 
       /home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
         from pkg_resources import resource_stream, resource_exists
@@ -1354,11 +1354,22 @@ A sample output may look like,
 
     import snaps
 
-    desc = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+    desc = snaps.get_weather_description(latitude=47.61, longitude=-122.33)
     print("The conditions are:", desc)
   ```
 
-      The conditions are: Partly Cloudy
+      AttributeError: module 'snaps' has no attribute 'get_weather_description'
+      ---------------------------------------------------------------------------
+      AttributeError                            Traceback (most recent call last)
+      Cell In[43], line 7
+            1 # Example 4.7: Seattle Weather
+            2 #
+            3 # Uses snaps to get a description of the weather in Seattle
+            5 import snaps
+      ----> 7 desc = snaps.get_weather_description(latitude=47.61, longitude=-122.33)
+            8 print("The conditions are:", desc)
+
+      AttributeError: module 'snaps' has no attribute 'get_weather_description'
 
 #### Make Something Happen: [Weather Display Program](./Exercises/03_WeatherDisplay/WeatherDisplay.py)
 
@@ -1378,7 +1389,7 @@ import snaps
 temperature_fahrenheit = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
 temperature_string = "The temperature in Seattle is: " + str(temperature_fahrenheit)
 
-weather_descr = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+weather_descr = snaps.get_weather_description(latitude=47.61, longitude=-122.33)
 weather_descr_string = "The conditions are: " + str(weather_descr)
 
 weather_string = temperature_string + "\n" + weather_descr_string

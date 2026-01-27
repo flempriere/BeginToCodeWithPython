@@ -91,7 +91,7 @@ same way as for Tiny Contacts (i.e. on program start and exit)
 
 We can then turn to our playlist interface. At some level this will look
 like the interface for adding tracks to the database. With some extra
-featues such as a convenience function to remove all the tracks in a
+features such as a convenience function to remove all the tracks in a
 playlist. The two functions we were told that we had to add was
 
 1. To be able to get the length of a given playlist, and,
@@ -324,7 +324,7 @@ def read_min_valued_integer(prompt, min_value):
 
 We make this generic by calling it `read_min_valued_integer` and using a
 parameter to define a `min_value`. There is no bound on the `max_value`.
-We then use `BTCInput.read_int` and wrap it in the bound checkings we
+We then use `BTCInput.read_int` and wrap it in the bound checking we
 need.
 
 #### Adding Tracks to the Database
@@ -365,7 +365,7 @@ print(tracks[0].length_in_seconds)
 
     Enter the track name: Merry Christmas Everyone
     Enter the track length (in seconds): 220
-    [<__main__.MusicTrack object at 0x7f419cf04fb0>]
+    [<__main__.MusicTrack object at 0x7f7020ff8290>]
     Merry Christmas Everyone
     220
 
@@ -432,7 +432,7 @@ print(results[0].length_in_seconds)
 print(filter_tracks_by_name("Missing Track", tracks))
 ```
 
-    [<__main__.MusicTrack object at 0x7f419cf04fb0>]
+    [<__main__.MusicTrack object at 0x7f7020ff8290>]
     Merry Christmas Everyone
     220
     []
@@ -724,7 +724,7 @@ def display_tracks(tracks):
     Params
     ------
     list[MusicTrack]
-        List of MusicTrack objcts to display
+        List of MusicTrack objects to display
 
     Returns
     -------
@@ -920,7 +920,7 @@ calculate_playlist_length()
 Similarly, `save_playlist` can be implemented pretty easily using what
 we’ve seen. We prompt the user for the file that they want to save to,
 then write out the names of all of the tracks (one per line) using the
-standard `try...except` and `with` consruct we’ve seen before
+standard `try...except` and `with` construct we’ve seen before
 
 ``` python
 def save_playlist():
@@ -1013,7 +1013,7 @@ def suggest_playlist_of_given_length():
             print("Could not generate a playlist of that length. Try a longer playlist")
             return
 
-        while len(candidate_songs) > 0:  # stop when no more eligable songs
+        while len(candidate_songs) > 0:  # stop when no more eligible songs
             # add a random song and update the playlist length
             song_choice = random.choice(candidate_songs)
             suggested_playlist.append(song_choice)
@@ -1049,7 +1049,7 @@ from the user),
             print("Could not generate a playlist of that length. Try a longer playlist")
             return
 
-        while len(candidate_songs) > 0:  # stop when no more eligable songs
+        while len(candidate_songs) > 0:  # stop when no more eligible songs
             # add a random song and update the playlist length
             song_choice = random.choice(candidate_songs)
             suggested_playlist.append(song_choice)
@@ -1083,7 +1083,7 @@ it has many components, if you can follow it, you are doing well!
 ## Make Something Happen: Recipe Storage App
 
 *Make a recipe storage app that stores lists of ingredients and
-preperation details. Remember that one of the items in a class could be
+preparation details. Remember that one of the items in a class could be
 a list of strings, which could be the steps performed to prepare the
 recipe*
 
@@ -1335,7 +1335,7 @@ This code can be broken down as follows,
     - This next bit is a bit tricky, but we check if the ingredient
       already exists in the dictionary, if it does the user can,
       1. Overwrite it
-          - Say if they accidently misentered the previous ingredient
+          - Say if they accidentally mis-entered the previous ingredient
             they can use this to correct it
           - We use the `del` keyword to delete the key and the list
             associated with the key `ingredient`
@@ -1343,7 +1343,7 @@ This code can be broken down as follows,
           - This allows the inclusion of multiple ingredient
             descriptions per ingredient
       3. Forget it
-          - Perhaps the user simply accidently entered an ingredient
+          - Perhaps the user simply accidentally entered an ingredient
             twice, this gives them to option to simply forget this entry
             and move on
 2. Ask the user for a description of the ingredient like the quantity
@@ -1447,9 +1447,9 @@ documentation for `find` reads,
 
         Return -1 on failure.
 
-We can see that `find` searchs a string for matching substring anywhere
-in the string (like `startswith` searchs a string for matching substring
-at the start)
+We can see that `find` searches a string for matching substring anywhere
+in the string (like `startswith` searches a string for matching
+substring at the start)
 
 Importantly, it also returns `-1` if there no match. This means that we
 can use `find` to see if a recipe name contains the user provided search
@@ -1887,17 +1887,17 @@ def edit_recipe():
             recipe.steps = get_steps()
 ```
 
-This implementatation perhaps isn’t the greatest, for example it might
-be annoying to have to renter every step if you just want to fix a typo
-in one step, or to have to renter every ingredient if you want to add a
-new one. However for now this will do for a first pass
+This implementation perhaps isn’t the greatest, for example it might be
+annoying to have to renter every step if you just want to fix a typo in
+one step, or to have to renter every ingredient if you want to add a new
+one. However for now this will do for a first pass
 
 ### Improving the Recipe Application
 
 As we’ve hinted, there are plenty of ways that the recipe app could be
 completed. However as it stands now, I’m pretty happy with it as a
-something thats gone through an initial design and a refactor. if you’re
-interested you might like to try improve the following features
+something that’s gone through an initial design and a refactor. if
+you’re interested you might like to try improve the following features
 
 1. Improve the ingredient search to be more forgiving in how it matches
 2. Improve the edit functionality

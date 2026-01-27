@@ -128,7 +128,7 @@ class suiteDescr BG
     ```
 
     - The above should only print `"Loop"` when executed
-    - If you accidently do this you may need to use `CTRL+C`, `CRTL+Z`
+    - If you accidentally do this you may need to use `CTRL+C`, `CTRL+Z`
       or an interrupt execution feature of your live environment to stop
       the execution
 
@@ -231,7 +231,7 @@ class suiteDescr BG
 #### Make Something Happen: Create a Looping Selection Program
 
 *Use a* `while` *loop, to make a theme park selector that runs
-continously. All you need to do is put all of the statements that
+continuously. All you need to do is put all of the statements that
 implement the theme park behaviour into a* `while True` *construction*
 
 For usability our program won’t loop endlessly. We’ll say that any
@@ -534,7 +534,7 @@ The full code is given in
 
       ValueError: invalid literal for int() with base 10: 'three'
 
-  - This occurs because `int` requires it’s input to be convertable to a
+  - This occurs because `int` requires it’s input to be convertible to a
     number
     - Unfortunately this does not extend to human-language written
       versions of a number
@@ -543,9 +543,9 @@ The full code is given in
   - In general, when a program encounters an error state, it should aim
     to fail fast, rather than continue and generate unexpected outcomes
 - *Exceptions* are a mechanism by which elements of a program can inform
-  other parts about errors that have occured
-  - *Exceptions* combine a description of *what* the error that occured
-    was, with *where* the error occured
+  other parts about errors that have occurred
+  - *Exceptions* combine a description of *what* the error that occurred
+    was, with *where* the error occurred
   - In the example above e.g. we are told that we got a `ValueError`
   - i.e. an invalid value was found, we are given the additional detail
     “invalid literal for int() with base 10: ‘three’”
@@ -771,7 +771,7 @@ while not ride_number_valid:  # repeats while flag is False
     except ValueError:  # catch the ValueError
         print("Invalid number. Please enter a number in digits")
     except KeyboardInterrupt:  # catches the interrupt
-        print("You do not have permission to interupt this program")
+        print("You do not have permission to interrupt this program")
 # Once outside the loop we have a valid number
 print("You have selected ride", ride_number)  # type: ignore
 ```
@@ -811,7 +811,7 @@ while True:  # use break rather than a condition to exit
     except ValueError:
         print("Invalid number text. Please enter digits")
     except KeyboardInterrupt:
-        print("You do not have permission to interupt this program")
+        print("You do not have permission to interrupt this program")
 # Once outside the loop we have a valid number
 print("You have selected ride", ride_number)  # type: ignore
 ```
@@ -1242,7 +1242,7 @@ questions about* `break` *and* `continue`
 #### Make Something Happen: Make a Times Table Quiz
 
 *Reverse the behaviour of the times-table program so that rather than
-printing out the times-table your program insteads asks questions like,*
+printing out the times-table your program instead asks questions like,*
 “What is $6$ times $4$?” *The user could enter their answer, and the
 program could compare it with the correct answer and keep score of how
 many correct answers are given. You could use a loop to make the program
@@ -1393,7 +1393,7 @@ time it should tell us to go to sleep.
 
 The `if...else` construct here is a bit more complicated. We only want
 to play the alarm sound at $7:30:00$ rather than just if the user runs
-the clock after the wakeup time. This is because the clock will then
+the clock after the wake up time. This is because the clock will then
 continuously play the sound every second it updates!
 
 Our first `if` statement thus checks if we are exactly on the alarm
@@ -1422,7 +1422,7 @@ it is time for us to be in bed by default. So we don’t need to do extra
 checks and can just update the message to tell us to go to sleep
 
 ``` python
-    # Play alarm and optionally append a wakeup message
+    # Play alarm and optionally append a wake up message
     hour_to_get_up = 7 + is_weekend
     hour_to_sleep = 22
     minute_to_get_up = 30
@@ -1468,7 +1468,7 @@ updating the clock again
   - `break` immediately terminates a loop
   - `continue` immediately moves to the next loop iteration
 - Tuples are a basic form of container for storing values
-  - declared as a comma seperated list of values surrounded by
+  - declared as a comma separated list of values surrounded by
     parentheses
 - `range(start, stop)` creates a collection of integers from `start`
   (inclusive) to `stop` (exclusive)

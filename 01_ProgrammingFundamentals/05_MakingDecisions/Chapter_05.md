@@ -260,7 +260,7 @@ and copy the below text.*
     print("The hour is", hour)
 ```
 
-    The hour is 12
+    The hour is 13
 
 Run the program, it should print out the current hour
 
@@ -271,7 +271,7 @@ Run the program, it should print out the current hour
 fully featured clock that reports the time, and date when run*
 
 We can use the table above to grab the correct attributes. We then
-simply need to format the attribute as nessecary. The final
+simply need to format the attribute as necessary. The final
 [program](./Exercises/01_ImprovedClock/ImprovedClock.py) is given below
 
 ``` python
@@ -295,7 +295,7 @@ simply need to format the attribute as nessecary. The final
 ```
 
     The date is 27 / 1 / 2026
-    The time is 12 : 34 : 34
+    The time is 13 : 23 : 17
 
 #### Comparing Values
 
@@ -622,7 +622,7 @@ if it_is_time_to_get_up:
 - Condition is a term for the expression that controls which branch of
   the `if` is executed
 - If the condition evaluates `True` the indented branch is run
-- If the condition evluates `False` the indented branch is skipped
+- If the condition evaluates `False` the indented branch is skipped
 - We could simply the above code by including the check directly in the
   `if` rather than an intermediate variable
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 12 : 34
+    The time is 13 : 23
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -1641,9 +1641,9 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    Nobody unexpected will enter your life
-    A life of comfort is coming
-    To define your future, avoid getting hung up on the past
+    You will meet a tall, dark stranger
+    I see a future lived on the streets...
+    Sometimes the answers to our future, come from the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise
