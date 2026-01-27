@@ -11,7 +11,7 @@
       - [Code Analysis: Understanding
         Inheritance](#code-analysis-understanding-inheritance)
       - [Storing Data in a Class
-        Hierachy](#storing-data-in-a-class-hierachy)
+        Hierarchy](#storing-data-in-a-class-hierarchy)
       - [Manage the Item Name in the Fashion Shop
         Program](#manage-the-item-name-in-the-fashion-shop-program)
         - [Abstract Methods](#abstract-methods)
@@ -65,7 +65,7 @@
       - [Create a set from a String of
         Text](#create-a-set-from-a-string-of-text)
       - [Filter on Tags](#filter-on-tags)
-    - [Sets versus Class Hierachies](#sets-versus-class-hierachies)
+    - [Sets versus Class Hierarchies](#sets-versus-class-hierarchies)
       - [Advantages of Using Sets and
         Tags](#advantages-of-using-sets-and-tags)
       - [Disadvantages of using
@@ -91,7 +91,7 @@
 > A friend who runs a fashion shop would like you to build an
 > application to help manage her stock. She sells a large range of
 > clothing items and wants to be able to track inventory. Her workflow
-> is as follows, stock arrvies from suppliers, the details are entered
+> is as follows, stock arrives from suppliers, the details are entered
 > in the system. When an item is sold it should be removed from the
 > stock. She would also like to be produce reports indicating how many
 > of each item are in stock.
@@ -170,8 +170,8 @@
 - We can map out some descriptions
 
   ``` text
-    Dress: stock reference: 'D0001' price: 100.0 color: red pattern: swirly size: 12
-    Pants: stock reference: 'TR12327'price: 50 color: black pattern: plain length: 30 waist: 30
+    Dress: stock reference: 'D0001' price: 100.0 colour: red pattern: swirly size: 12
+    Pants: stock reference: 'TR12327'price: 50 colour: black pattern: plain length: 30 waist: 30
   ```
 
 - Now that we have our *data requirements* and some mock items, we want
@@ -219,10 +219,10 @@
 
 - For our first design we could implement all these different stock
   items as different classes, (you can find the code in
-  [SeperateClasses.py](./Examples/01_SeperateClasses/SeperateClasses.py))
+  [SeparateClasses.py](./Examples/01_SeparateClasses/SeparateClasses.py))
 
 ``` python
-# Example 11.1 Fashion Items as Seperate Classes
+# Example 11.1 Fashion Items as Separate Classes
 #
 # Mocks out the class-based implementation of the fashion items, treating
 # each different item type as it's own standalone class
@@ -341,7 +341,7 @@ print(y.stock_level)
   - These are important parts of the inventory system that should have
     controlled modification
   - We don’t want the price being modified and overcharging customers
-  - We don’t want the stock level being off causing us to misorder
+  - We don’t want the stock level being off causing us to mis-order
 - Both classes have properties to access price and stock levels
   - Later we’ll make methods to control these
 
@@ -406,7 +406,7 @@ print(y.stock_level)
   - The other stock items will do so as well
 
 - The diagram below shows what’s called a *class diagram* or
-  *inheritance hierachy*
+  *inheritance hierarchy*
 
 ``` mermaid
 ---
@@ -446,7 +446,7 @@ classDiagram
   and `Dress`
 - We call this inheritance because the subclasses inherit the attributes
   of the superclass
-- When building an inheritance hierachy you need to focus on your data
+- When building an inheritance hierarchy you need to focus on your data
   - Here we have a collection of related data items
   - The basic behaviour of a data item is the same
   - The related items also have some common data attributes
@@ -477,7 +477,7 @@ classDiagram
 - Abstract lets us look at processes without getting caught up in the
   details
 - Later we can go and fill those details in
-- Typically as we move *down* a class hierachy, we should move from the
+- Typically as we move *down* a class hierarchy, we should move from the
   *more abstract* to the *more concrete*
   - At the highest level a class or interface might just say what
     methods an object should have
@@ -520,15 +520,15 @@ topic*
 
 3. *Which is most abstract, a superclass or a subclass?*
 
-    - Recall, the concept of the class hierachy
+    - Recall, the concept of the class hierarchy
     - Moving *down* into subclasses is getting more concrete (less
       abstract)
-    - Moving *up* into superclasses is getting more abstact
+    - Moving *up* into superclasses is getting more abstract
 
 4. *Can you extend a subclass?*
 
     - Yes
-    - We can see this in the class hierachy
+    - We can see this in the class hierarchy
     - `StockItem` is a subclass of `Object`
     - `Dress` *extends* `StockItem` to create a new subclass
 
@@ -542,7 +542,7 @@ topic*
       `PatternedItem` between `StockItem` and the `Dress` and `Pants`
       classes
       - However for one specific attribute this is probably not
-        nessecary right now
+        necessary right now
       - Especially as the `PatternedItem` seems partially arbitrary
         rather than reflecting an actual category of item
 
@@ -569,7 +569,7 @@ topic*
     3. Create a new `Customer` class that contains a list of the
         `StockItems` that the `Customer` has bought
 
-    - Class hierachies should reflect an *is-a* relationship
+    - Class hierarchies should reflect an *is-a* relationship
     - A Customer *is not* a Stock item
     - So option 1 is out
     - Multiple customers might buy the same stock item
@@ -581,9 +581,9 @@ topic*
       interacting with a customer itself
       - Thus makes sense to define a `Customer` class
 
-##### Storing Data in a Class Hierachy
+##### Storing Data in a Class Hierarchy
 
-- Now lets refactor our code to use a class hierachy
+- Now lets refactor our code to use a class hierarchy
 - The naive implementation looks like,
 
 ``` python
@@ -723,12 +723,12 @@ class StockItem(ABC):
       AttributeError: 'Dress' object has no attribute '_StockItem__price'
       ---------------------------------------------------------------------------
       AttributeError                            Traceback (most recent call last)
-      Cell In[86], line 3
+      Cell In[5], line 3
             1 x = Dress(stock_ref="D0001", price=100, colour="red", pattern="swirly", size=12)
             2 print(x.pattern)
       ----> 3 print(x.price)
 
-      Cell In[84], line 41, in StockItem.price(self)
+      Cell In[3], line 41, in StockItem.price(self)
            35 @property
            36 def price(self):
            37     """
@@ -749,8 +749,8 @@ class StockItem(ABC):
 - In fact the error tells us that we can’t find the attribute
   `_StockItem__price`
 
-- Why? Well if we look at the initialiser we never seem to have set up
-  the stock level, price, stock reference or color
+- Why? Well if we look at the initializer we never seem to have set up
+  the stock level, price, stock reference or colour
 
   - We can’t just write `self.colour = colour` etc
   - Because this adds an attribute on the subclass
@@ -824,9 +824,9 @@ print(x.price)
   parameters
 - **Key Takeaway:** When initialising a subclass you must explicitly
   initialise the superclass too
-- The complete code for our class hierachy incorporating `Pants` can be
+- The complete code for our class hierarchy incorporating `Pants` can be
   found in
-  [ClassHierachy.py](./Examples/02_ClassHierachy/ClassHierachy.py)
+  [ClassHierarchy.py](./Examples/02_ClassHierarchy/ClassHierarchy.py)
 
 ##### Manage the Item Name in the Fashion Shop Program
 
@@ -957,7 +957,7 @@ print(x.price)
       TypeError: Can't instantiate abstract class Pants without an implementation for abstract method 'item_name'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[92], line 4
+      Cell In[11], line 4
             1 d = Dress()
             2 print(d.item_name)
       ----> 4 p = Pants()
@@ -1005,7 +1005,7 @@ value of `o` we are calling the `__str__` method on the `object` class
 print(o)
 ```
 
-    <object object at 0x70e42e57b7d0>
+    <object object at 0x7f96fc552c10>
 
 `print` requires a `str` argument, so `o` is converted to a string by
 calling its `__str__` method. In this case the `__str__` method of the
@@ -1110,7 +1110,7 @@ Size: {2}"""
         return template.format(stock_details, self.pattern, self.size)
 ```
 
-- We use the `super()` to get the intial part of the string
+- We use the `super()` to get the initial part of the string
 - Then again use a template string
   - First inject the superclasses string
   - Then add on the new attributes in the same style
@@ -1142,7 +1142,7 @@ print(x)
 
     - When a method is called, python looks at the object to see if the
       method exists
-    - If it doesn’t python looks up the class hierachy to see if it can
+    - If it doesn’t python looks up the class hierarchy to see if it can
       find a matching method
     - First matching method found is called
     - If all the superclasses are exhausted then an `AttributeError` is
@@ -1206,7 +1206,7 @@ class StockItem(abc.ABC):
         pass  # for version 1, no need to check
 ```
 
-- For `StockItem` we add a version attribute labeled
+- For `StockItem` we add a version attribute labelled
   `__StockItem_version` to distinguish from the version numbers of the
   subclasses
   - Version number is hard-coded by the constructor
@@ -1267,7 +1267,7 @@ class Dress(StockItem):
     different behaviours
     - e.g. default `object` prints the memory address, an `int` gives a
       string representation of its number, and our `StockItem` class
-      prints its attributes as a newline seperated list
+      prints its attributes as a newline separated list
   - This behaviour is said to be polymorphic, because different objects
     have different responses to the same behaviour (string conversion)
 - Software is frequently polymorphic
@@ -1287,10 +1287,10 @@ class Dress(StockItem):
 *Try and work through the following questions about polymorphism before
 reading the answers*
 
-1. *Is polymorphism all about providing methods in a class hierachy?*
+1. *Is polymorphism all about providing methods in a class hierarchy?*
 
     - No
-    - In this example we’ve used a class hierachy
+    - In this example we’ve used a class hierarchy
       - `__str__` behaves differently, but all objects have a `__str__`
       - However we have defined a `check_version`
       - `StockItem` and `Dress` both behave differently when
@@ -1300,8 +1300,8 @@ reading the answers*
         - Again behaves completely differently
         - But no direct method overwrite chain
         - Would still say this behaviour is polymorphic
-    - Polymorphism is a broader concept that a class hierachy
-      - Though we’ve seen, a class hierachy is one way of structuring
+    - Polymorphism is a broader concept that a class hierarchy
+      - Though we’ve seen, a class hierarchy is one way of structuring
         polymorphic behaviour
 
 2. *How do I know which methods in my application should be
@@ -1312,7 +1312,7 @@ reading the answers*
       that work differently for each
     - e.g. in a video game all enemies might *attack* but different
       enemy types might do so differently
-      - Could then define a class hierachy with some base enemy type
+      - Could then define a class hierarchy with some base enemy type
       - This could then define `attack`, etc.
         - Subclasses then override the behaviour polymorphically
         - But we can still talk about “enemies” as a whole
@@ -1321,7 +1321,7 @@ reading the answers*
 
 - When constructing our classes we made some attributes private
 
-- How does this carry through the class hierachy? e.g.
+- How does this carry through the class hierarchy? e.g.
 
   ``` python
     class StockItem(abc.ABC):
@@ -1386,7 +1386,7 @@ reading the answers*
   - A protected variable is one that can be accessed by the class it is
     defined in, *or* any subclasses of that class
 
-- When designing a class hierachy you should think about how the data
+- When designing a class hierarchy you should think about how the data
   may be used by subclasses
 
 - If you think you might need to customise behaviour on an attribute
@@ -1564,10 +1564,10 @@ reading the answers*
           TypeError: StockItem.__init__() missing 1 required positional argument: 'location'
           ---------------------------------------------------------------------------
           TypeError                                 Traceback (most recent call last)
-          Cell In[104], line 1
+          Cell In[23], line 1
           ----> 1 d = Dress("D001", 100, "red", "swirly", 12)
 
-          Cell In[103], line 3, in Dress.__init__(self, stock_ref, price, colour, pattern, size)
+          Cell In[22], line 3, in Dress.__init__(self, stock_ref, price, colour, pattern, size)
                 2 def __init__(self, stock_ref, price, colour, pattern, size):
           ----> 3     super().__init__(stock_ref, price, colour)
                 4     self.pattern = pattern
@@ -1600,12 +1600,12 @@ reading the answers*
         print(d)
       ```
 
-          <__main__.Dress object at 0x70e4104e6f90>
+          <__main__.Dress object at 0x7f96fcb27fb0>
 
-    - The takeaway is that class hierachies are *very* brittle to
+    - The takeaway is that class hierarchies are *very* brittle to
       changes
 
-      - Especially changes high up in the abstraction hierachy
+      - Especially changes high up in the abstraction hierarchy
 
     - Hence you should aim to be very sure of the design of your high
       level classes
@@ -1702,7 +1702,7 @@ reading the answers*
     - Of the three methods, what are the pros and cons of each?
 
       1. Adding `location` to the `__init__` is the most robust, but
-          requires the most changes to the class hierachy
+          requires the most changes to the class hierarchy
           - Enforces `location` defined
       2. Is robust, and still maintains a cohesive well-defined class
           via properties, but requires external management of when to
@@ -1768,7 +1768,7 @@ Work through the following code and consider the examples below*
 ``` python
 # Example 11.5 Fashion Items using Instrumentation
 #
-# Adds optional instrumentation to the StockItem hierachy to demonstrate the
+# Adds optional instrumentation to the StockItem hierarchy to demonstrate the
 # control flow
 
 import abc
@@ -1968,7 +1968,7 @@ class Pants(StockItem):
     length : int
         length of the pants
     waist : int
-        waist size of the pantts
+        waist size of the pants
 
     See Also
     --------
@@ -2167,7 +2167,7 @@ print(jeans)
 
 - We can see that when we the `__str__` method is called from the
   `Jeans` subclass
-- We propagate up the class hierachy calling `__str__` for `Pants` then
+- We propagate up the class hierarchy calling `__str__` for `Pants` then
   `StockItem`
 - Within the `StockItem` `__str__` we see that the getter for
   `item_name` is called
@@ -2197,7 +2197,7 @@ print(jeans)
 
 - We can see now there is no instrumentation printed
 - A more advanced form of instrumentation is called *logging*
-  - Logs are typically stored in a seperate file
+  - Logs are typically stored in a separate file
   - Can provide more detailed information and triage of problems
 
 #### Implement Application Behaviours
@@ -3256,10 +3256,10 @@ d.add_stock(15)
     Exception: Invalid add amount
     ---------------------------------------------------------------------------
     Exception                                 Traceback (most recent call last)
-    Cell In[119], line 1
+    Cell In[38], line 1
     ----> 1 d.add_stock(15)
 
-    Cell In[117], line 150, in StockItem.add_stock(self, count)
+    Cell In[36], line 150, in StockItem.add_stock(self, count)
         148     print("**StockItem add_stock called")
         149 if count < 0 or count > StockItem.max_stock_add:
     --> 150     raise Exception("Invalid add amount")
@@ -3270,7 +3270,7 @@ d.add_stock(15)
 - Well as expected we get an Exception, showing our error-handling is
   working correctly
 - As the above shows, by adding the method directly to `StockItem` it is
-  automatically availabel to all of the subclasses without the need to
+  automatically available to all of the subclasses without the need to
   write extra code
 
 ##### Sell a Stock Item
@@ -3346,10 +3346,10 @@ d.add_stock(15)
       Exception: Not enough stock to sell
       ---------------------------------------------------------------------------
       Exception                                 Traceback (most recent call last)
-      Cell In[122], line 1
+      Cell In[41], line 1
       ----> 1 d.sell_stock(10)
 
-      Cell In[120], line 178, in StockItem.sell_stock(self, count)
+      Cell In[39], line 178, in StockItem.sell_stock(self, count)
           176     raise Exception("Invalid number of items to sell")
           177 if count > self.__stock_level:
       --> 178     raise Exception("Not enough stock to sell")
@@ -3371,7 +3371,7 @@ d.add_stock(15)
 - Sometimes we call a cohesive, self-contained part a *component*
 - E.g. in a car production line different parts of the line produce
   different parts, like the motor, panels, transmission etc.
-  - All are made seperately and the final product is composed of all the
+  - All are made separately and the final product is composed of all the
     parts
 - We would like to do something similar with `StockItem`
   - Move it around as it’s own component
@@ -3383,10 +3383,10 @@ d.add_stock(15)
 >
 > Breaking software projects down into individual components is a great
 > design philosophy. When you’re working solo it lets you focus on a
-> small completeable part of the program and progressively build up the
+> small completable part of the program and progressively build up the
 > complexity. When working with a larger team, different parts of the
 > team can be assigned to work on the different independent components
-> without interferring with each others work.
+> without interfering with each others work.
 >
 > For example in our fashion shop project someone could be building the
 > `StockItem` while another person works on the UI
@@ -3574,7 +3574,7 @@ d.add_stock(15)
     print(shop)
   ```
 
-      <__main__.FashionShop object at 0x70e4104e7d40>
+      <__main__.FashionShop object at 0x7f96fc85ba10>
 
 #### Save the `FashionShop` Object
 
@@ -3679,7 +3679,7 @@ d.add_stock(15)
 
 - `store_new_stock_item` adds a new stock item to the container
 
-- It does not create one, we have to do that seperately
+- It does not create one, we have to do that separately
 
 - The method checks for duplicates, throwing a `KeyError` if the stock
   reference is already used
@@ -3707,10 +3707,10 @@ d.add_stock(15)
       KeyError: 'This stock reference is already used'
       ---------------------------------------------------------------------------
       KeyError                                  Traceback (most recent call last)
-      Cell In[127], line 1
+      Cell In[46], line 1
       ----> 1 shop.store_new_stock_item(dress)
 
-      Cell In[125], line 93, in FashionShop.store_new_stock_item(self, item)
+      Cell In[44], line 93, in FashionShop.store_new_stock_item(self, item)
            73 """
            74 Store a new item in the reference system
            75
@@ -3899,7 +3899,7 @@ have three different account types*
 3. Credit Account
     - Have a maximum withdrawal limit
     - A credit account balance cannot be positive
-    - Every month a credit account balance is incresed by the interest
+    - Every month a credit account balance is increased by the interest
       rate (i.e. any unpaid credit is increased)
     - A credit account can not have a negative balance whose magnitude
       is greater than the maximum withdrawal limit
@@ -3915,13 +3915,13 @@ with the following,
 6. Provide a listing of all accounts
 7. Find all accounts associated with a particular person
 
-Lets start by mapping out a class hierachy for accounts. We can see that
-all accounts have a number, interest rate, balance and an associated
-account holder, each also supports being able to withdraw or deposit
-money and have interest applied, however they each implement these
-methods differently. So we’ll define an *abstract base class* `Account`
-that provides these data attributes and declares these methods.
-Subclasses then overwrite the method.
+Lets start by mapping out a class hierarchy for accounts. We can see
+that all accounts have a number, interest rate, balance and an
+associated account holder, each also supports being able to withdraw or
+deposit money and have interest applied, however they each implement
+these methods differently. So we’ll define an *abstract base class*
+`Account` that provides these data attributes and declares these
+methods. Subclasses then overwrite the method.
 
 Our first subclass will be a savings account which requires no
 additional data attributes. Our second is a long-term savings account.
@@ -4327,7 +4327,7 @@ Has matured? {4}"""
 
         A mature long term savings account can be closed
         by providing an alternate account to transfer the
-        balance into. Alternatiely if no account is provided
+        balance into. Alternately if no account is provided
         the account is reinvested and a new term starts.
 
         The owner of the long term savings account and the
@@ -4487,7 +4487,7 @@ Has matured? {4}"""
 
         A mature long term savings account can be closed
         by providing an alternate account to transfer the
-        balance into. Alternatiely if no account is provided
+        balance into. Alternately if no account is provided
         the account is reinvested and a new term starts.
 
         The owner of the long term savings account and the
@@ -4842,7 +4842,7 @@ account_system.add_new_account(new_saving)
 account_system.add_new_account(new_long_term)
 account_system.add_new_account(new_credit)
 
-print("Getting the account with a specifiic id")
+print("Getting the account with a specific id")
 print(account_system.get_account(1))
 print("Getting all accounts associated with a specific client")
 print(account_system.find_users_accounts("felix"))
@@ -4850,7 +4850,7 @@ print("Printing the entire system")
 print(account_system)
 ```
 
-    Getting the account with a specifiic id
+    Getting the account with a specific id
     ==Savings Account==
     Account Number: 1
     Account Holder: alice
@@ -5004,7 +5004,7 @@ print(account_system)
                 break
             else:
                 raise ValueError(
-                    "Invalid command id {0} encounteed in main menu!".format(command)
+                    "Invalid command id {0} encountered in main menu!".format(command)
                 )
   ```
 
@@ -5323,7 +5323,7 @@ small to make it easy to demo)
         Create a new account and add it to the system
 
         Prompts the user for the type of account to create and
-        the nessecary descriptors of the item. The account is
+        the necessary descriptors of the item. The account is
         then added to the system
 
         Returns
@@ -5670,7 +5670,7 @@ The implementation is given below,
         try:
             account.manage_account(transfer_account)
             print(
-                "Funds in account {0} transfered to account {1}".format(
+                "Funds in account {0} transferred to account {1}".format(
                     account.account_number, transfer_account.account_number
                 )
             )
@@ -5766,16 +5766,16 @@ options to consider. For this small program we’ve left the bug in as a
 demonstration.
 
 There are a couple other design considerations. One is about cohesion,
-we have logic for defining the interest applied to accounts seperate
+we have logic for defining the interest applied to accounts separate
 from the `Account` class stored on arguably the UI class
 `BankAccountApplication`. This is fine for this small system but perhaps
 suggests a lack of cohesion. If we were to change out our UI class to a
 GUI that GUI would then have to implement the same business logic. One
-solution is to move those details to the `Account` class hierachy. Here
+solution is to move those details to the `Account` class hierarchy. Here
 each subclass might have to define a property `base_interest_rate` which
 defines the default interest rate for an account. On the other hand if
 we decide that an `Account` should have an interest rate, but has no
-buisness knowing how that interest rate is set, we may have to implement
+business knowing how that interest rate is set, we may have to implement
 this behaviour either in the `AccountSystem` or in another class that
 purely handles the business logic around interest rates and propagates
 that through to the accounts. For the scale of this system, we probably
@@ -5785,7 +5785,7 @@ easier, we can always refactor later)
 The last question is more on of a philosophical design choice. This
 program implements features that are very client focused such as
 creating accounts, depositing and withdrawing (and arguably managing a
-long-term account), and some that a more targetted towards an internal
+long-term account), and some that a more targeted towards an internal
 user (applying interest, the ability to modify any account and see
 anybody’s account). This is fine for a simple toy program like the one
 we’re building. But if we were to scale this up we would probably want
@@ -5873,10 +5873,10 @@ classDiagram
 
 #### Make Something Happen: Investigating Sets
 
-*Work through the following steps in the python interpeter to understand
-sets*
+*Work through the following steps in the python interpreter to
+understand sets*
 
-A set can be created by explicitly using the `set` initialiser
+A set can be created by explicitly using the `set` initializer
 
 ``` python
 set1 = set()
@@ -5921,7 +5921,7 @@ set1
     {1, 2}
 
 Like with lists and dictionaries there is a quick set declaration
-syntax. We simply provide a comma-seperated list enclosed in curly
+syntax. We simply provide a comma-separated list enclosed in curly
 braces
 
 ``` python
@@ -5932,7 +5932,7 @@ set2
     {2, 3, 4, 5}
 
 This is similar but distinct to the dictionary case where the curly
-brace list is comma seperated `key:value` pairs
+brace list is comma separated `key:value` pairs
 
 For those familiar with set theory, sets provide the standard suite of
 set operations.
@@ -6032,7 +6032,7 @@ pocket = {"axe", "apple", "herbs", "flashlight"}
 
 - Sets allow for easy membership checks
 
-- especially when we want to look at muliple members
+- especially when we want to look at multiple members
 
   ``` python
     apple_potion = {"apple", "herbs"}
@@ -6074,7 +6074,7 @@ pocket = {"axe", "apple", "herbs", "flashlight"}
 > summer, formal, etc. She would like to be able to *tag* stock items so
 > they can be easily searched
 
-- Tagging items with descripters is very common
+- Tagging items with descriptors is very common
 - Blogs or Youtube videos are often tagged with metadata that describes
   their content
 - Sets are a good technique here since each tag should be unique
@@ -6088,12 +6088,12 @@ pocket = {"axe", "apple", "herbs", "flashlight"}
 - A sample UI might look like,
 
 ``` python
-print("Enter tags (seperated by commas): \033[31moutdoor, spring, informal, short\033[0m")
+print("Enter tags (separated by commas): \033[31moutdoor, spring, informal, short\033[0m")
 ```
 
-    Enter tags (seperated by commas): outdoor, spring, informal, short
+    Enter tags (separated by commas): outdoor, spring, informal, short
 
-- Then need to convert the comma seperated list into individual tag
+- Then need to convert the comma separated list into individual tag
   items
 
 - First we want to normalise tags, i.e. lowercase and leading / trailing
@@ -6104,11 +6104,11 @@ print("Enter tags (seperated by commas): \033[31moutdoor, spring, informal, shor
 
   - Since there might be white space between the words
 
-- So we can first lower, then seperate the words using `split`
+- So we can first lower, then separate the words using `split`
 
-  - `split` takes a string to split and a seperator character (here `,`)
+  - `split` takes a string to split and a separator character (here `,`)
     to split on
-  - The seperator is not included in the split strings
+  - The separator is not included in the split strings
   - Returns a list containing the new strings
 
 - We can then use `map` to apply the string method `str.strip` to each
@@ -6138,7 +6138,7 @@ class FashionShopApplication:
     @staticmethod
     def tag_set_from_text(tag_text):
         """
-        Create a set of tags from a comma-seperated list
+        Create a set of tags from a comma-separated list
 
         Tags are normalised as lowercase with leading and
         trailing whitespace stripped
@@ -6146,7 +6146,7 @@ class FashionShopApplication:
         Parameters
         ----------
         tag_text: str
-            comma-seperated list of tags
+            comma-separated list of tags
 
         Returns
         -------
@@ -6173,7 +6173,7 @@ class FashionShopApplication:
 - Below is a proposed interface
 
   ``` python
-    print("Enter the tags to look for (comma seperated): \033[31moutdoor, spring\033[0m")
+    print("Enter the tags to look for (comma separated): \033[31moutdoor, spring\033[0m")
     print("Stock Reference: BL343")
     print("Type: Blouse\033[0m")
     print("Price: 100")
@@ -6185,7 +6185,7 @@ class FashionShopApplication:
     print("Pattern: check")
   ```
 
-      Enter the tags to look for (comma seperated): outdoor, spring
+      Enter the tags to look for (comma separated): outdoor, spring
       Stock Reference: BL343
       Type: Blouse
       Price: 100
@@ -6336,7 +6336,7 @@ class FashionShop:
             self.__StockItem_version = 3
   ```
 
-#### Sets versus Class Hierachies
+#### Sets versus Class Hierarchies
 
 - It’s quite common for customers to provide feedback on the usability
   of their product
@@ -6351,7 +6351,7 @@ class FashionShop:
 
     Enter stock reference: D001
     Enter price: 120
-    Enter tags (seperated by commas): dress, colour:red, location:shop window, pattern:swirly, size:12, evening, long
+    Enter tags (separated by commas): dress, colour:red, location:shop window, pattern:swirly, size:12, evening, long
 
 - The client finds searching by tags easy to work with
 
@@ -6359,7 +6359,7 @@ class FashionShop:
   stock by hand
 
 - Tags give the flexibility to add new items or change how items are
-  described without needing to recompose the class hierachy
+  described without needing to recompose the class hierarchy
 
 - The only additional request the client has is to allow the ability to
   edit the tags on a stock item
@@ -6368,9 +6368,9 @@ class FashionShop:
   - Can correct edits
 
 - The downside is that any tags that are not entered correctly will
-  result in failed searchs
+  result in failed searches
 
-  - The class hierachy enforces that the specified attributes for each
+  - The class hierarchy enforces that the specified attributes for each
     `StockItem` subclass exist
 
 - A tags only implementation is given by in the
@@ -6487,7 +6487,7 @@ class FashionShop:
 >
 > **Data Migration is Painful**
 >
-> In moving from the class hierachy to a tags based implementation,
+> In moving from the class hierarchy to a tags based implementation,
 > we’ve encountered one common problem. Data Migration. Before we’ve
 > used simple versioning on classes to update them when we change their
 > implementation. But here we have a bigger scale problem. What do we do
@@ -6505,14 +6505,14 @@ class FashionShop:
 - It only ever sees objects as `StockItem`s and manages the collection
 - We do need to make minor updates to `FashionShopApplication`
   - This is just adjusting how we create new items to reflect that we
-    don’t have a class hierachy
+    don’t have a class hierarchy
 
   ``` python
     def create_new_stock_item(self):
         """
         Create a new stock item and add it to the system
 
-        Prompts the user for the nessecary descriptors and
+        Prompts the user for the necessary descriptors and
         any optional tags then creates a corresponding stock
         item and adds it to the store
 
@@ -6529,7 +6529,7 @@ class FashionShop:
             max_value=StockItem.StockItem.max_price,
         )
         tags = FashionShopApplication.tag_set_from_text(
-            BTCInput.read_text("Enter tags (seperated by commas): ")
+            BTCInput.read_text("Enter tags (separated by commas): ")
         )
 
         self.__shop.store_new_stock_item(StockItem.StockItem(stock_ref, price, tags))
@@ -6550,9 +6550,9 @@ class FashionShop:
 > documentation for our API.
 >
 > However, you should be considered in how you document your code. A
-> comment is a maintenaince overhead, and an incorrect comment can
-> result in a lot of frustration if it confuses someone looking at the
-> code base
+> comment is a maintenance overhead, and an incorrect comment can result
+> in a lot of frustration if it confuses someone looking at the code
+> base
 
 ##### Advantages of Using Sets and Tags
 
@@ -6560,13 +6560,13 @@ class FashionShop:
 - Tags can be added and searched for on the fly
   - This may get unwieldy if the number of tags gets very large
 - The program implementation is much simpler
-  - No need for complicated, synchronised class hierachy
+  - No need for complicated, synchronised class hierarchy
   - Everything is now a stock item
 
 ##### Disadvantages of using Classes
 
-- Class hierachies allow you to implement strict buisness or application
-  logic
+- Class hierarchies allow you to implement strict business or
+  application logic
 - All objects created must obey the specified interfaces
   - For example we enforce that a dress has a size, pattern and colour
 - Using open-ended tags means that a required tag (say size) might be
@@ -6590,8 +6590,8 @@ class FashionShop:
 > or appreciate the nature of the businesses logic.
 >
 > In the case of the Fashion Shop application we created a complex
-> hierachy based on the assumption that the it was important to store
-> all the details for different categories of stock. The class hierachy
+> hierarchy based on the assumption that the it was important to store
+> all the details for different categories of stock. The class hierarchy
 > enforces that all objects are fully described.
 >
 > However, from the client’s perspective as long as the item is properly
@@ -6613,7 +6613,7 @@ based implementation makes sense*
 
 1. *You’re creating banking software for a local bank to manage their
     accounts. The bank offers credit and checking accounts. Should we
-    use a class hierachy?*
+    use a class hierarchy?*
 
     - Yes
     - Accounts are likely to have a rigid set of attributes that all
@@ -6632,7 +6632,7 @@ based implementation makes sense*
 
 2. *You’ve been approached to help a local gallery track their artwork.
     The gallery holds pictures, sculptures, and manuscripts. Should we
-    use a class hierachy?*
+    use a class hierarchy?*
 
     - Likely not
     - There is likely not a lot of common functionality between the
@@ -6665,7 +6665,7 @@ based implementation makes sense*
     - Could instead use a database implementation
     - No need to rewrite the other classes as long as the method
       interface is the same
-  - Components can be developed and tested indepedently and
+  - Components can be developed and tested independently and
     cooperatively once their interfaces are defined
 - Python provides a `set` collection
   - A set is a collection of unique values
@@ -6678,7 +6678,7 @@ based implementation makes sense*
 
 ## Questions and Answers
 
-1. *Do I have to use a class hierachy if I want to store many related
+1. *Do I have to use a class hierarchy if I want to store many related
     items?*
 
     - No
@@ -6700,7 +6700,7 @@ based implementation makes sense*
         - So all good, these are still cohesive
       - We don’t want to be calling out to *external* objects
       - Poor cohesion would have methods like `add_stock` and
-        `sell_stock` outside in a seperate class
+        `sell_stock` outside in a separate class
     - Considering how easy it would be to swap the class for one with a
       similar interface is a good test of how cohesive a class is
       - If the class is cohesive this should be easy
@@ -6718,8 +6718,8 @@ based implementation makes sense*
     - No
     - Python uses duck-typing, which means if we try to call a method on
       an object, it will be called so long as it’s defined
-    - Thus we can implement polymorphism without a rigid class hierachy
-    - The downside is without a clear class hierachy it can be hard to
+    - Thus we can implement polymorphism without a rigid class hierarchy
+    - The downside is without a clear class hierarchy it can be hard to
       propagate method or design changes between related implementations
     - Remember that typically the largest time cost of code is
       maintaining and understanding existing code
@@ -6742,7 +6742,7 @@ based implementation makes sense*
     - This continues until the base class for all python instances
       `object` is found
     - If the object is *still* not found an error will be found, for
-      example with the `int` object below we try to call the fictious
+      example with the `int` object below we try to call the fictitious
       method `foo`
 
     ``` python
@@ -6753,7 +6753,7 @@ based implementation makes sense*
         AttributeError: 'int' object has no attribute 'foo'
         ---------------------------------------------------------------------------
         AttributeError                            Traceback (most recent call last)
-        Cell In[162], line 2
+        Cell In[81], line 2
               1 x = 10
         ----> 2 x.foo()
 
