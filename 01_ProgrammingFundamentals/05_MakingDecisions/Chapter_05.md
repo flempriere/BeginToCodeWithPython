@@ -294,8 +294,8 @@ simply need to format the attribute as nessecary. The final
     print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 15 / 1 / 2026
-    The time is 12 : 40 : 58
+    The date is 27 / 1 / 2026
+    The time is 12 : 18 : 35
 
 #### Comparing Values
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 12 : 40
+    The time is 12 : 18
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -1642,7 +1642,7 @@ else:
 ```
 
     Nobody unexpected will enter your life
-    I see a future lived on the streets...
+    You would do well to husband your wealth
     To define your future, avoid getting hung up on the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
