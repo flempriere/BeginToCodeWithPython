@@ -30,6 +30,7 @@ I started this repository to work through an easy and basic book before working 
   - [Chapter 9: Using Classes to Store Data](./02_AdvancedProgramming/09_UsingClasses/Chapter_09.qmd)
     - [Extension Exercises for Chapter 9](./02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.qmd)
   - [Chapter 10: Use Classes to Create Active Objects](./02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.qmd)
+  - [Chapter 11: Object-Based Solution Design](./02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd)
 
 
 ### Useful Python
@@ -50,5 +51,5 @@ I started this repository to work through an easy and basic book before working 
   introduced, e.g
     1. We use `random.choice` to select random items from a list, **after** having been exposed to both the `random` and `list`
     libraries
-    2. We use the string method `find` after having been introdued to the concept of string methods and substring searching with
+    2. We use the string method `find` after having been introduced to the concept of string methods and substrings searching with
     `startswith`
