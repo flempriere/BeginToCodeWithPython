@@ -12,6 +12,6 @@ while not ride_number_valid:  # repeats while flag is False
     except ValueError:  # catch the ValueError
         print("Invalid number. Please enter a number in digits")
     except KeyboardInterrupt:  # catches the interrupt
-        print("You do not have permission to interupt this program")
+        print("You do not have permission to interrupt this program")
 # Once outside the loop we have a valid number
 print("You have selected ride", ride_number)  # type: ignore

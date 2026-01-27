@@ -444,7 +444,7 @@ user &lt;--&gt; computer
 <section id="make-something-happen-work-with-print-in-a-program" class="level5">
 <h5 class="anchored" data-anchor-id="make-something-happen-work-with-print-in-a-program">Make Something Happen: Work with <code>print</code> in a program</h5>
 <p><em>Write a python file (<a href="./Examples/02_UsingPrint/using_print.py"><code>using_print.py</code></a>) with the following contents</em></p>
-<div id="c41ddf25" class="cell" data-execution_count="1">
+<div id="def3e598" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>4</code></pre>
@@ -454,7 +454,7 @@ user &lt;--&gt; computer
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> using_print.py</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Now create a new file (<a href="./Examples/02_UsingPrint/using_print2.py">using_print2.py</a>) with the following contents</em></p>
-<div id="d4f2d635" class="cell" data-execution_count="2">
+<div id="aa1c9887" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The answer is: '</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -464,14 +464,14 @@ user &lt;--&gt; computer
 </div>
 <p><em>Save and run this file. The output should match the above</em></p>
 <p><em>Observe here that the program automatically adds a new line, if we want to avoid that we can instead write</em></p>
-<div id="eccf30c1" class="cell" data-execution_count="3">
+<div id="68c7e006" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The answer is:'</span>, <span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The answer is: 4</code></pre>
 </div>
 </div>
 <p><em>Write and run a new file (<a href="./Examples/02_UsingPrint/using_print3.py">using_print3.py</a>) containing the above line and check the output matches the above.</em></p>
-<p><em>Here we see that one of the ways to call <code>print</code> is to provide a comma seperated list of values. By default <code>print</code> adds a space between these elements</em></p>
+<p><em>Here we see that one of the ways to call <code>print</code> is to provide a comma separated list of values. By default <code>print</code> adds a space between these elements</em></p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -483,7 +483,7 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p>There are several ways a python program can fail, for example</p>
-<div id="efb42451" class="cell" data-execution_count="4">
+<div id="232c8db7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The answer is: '</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -496,7 +496,7 @@ Caution
 </div>
 </div>
 <p>leads to a syntax error, because the wrong parentheses have been used. Or,</p>
-<div id="9603bc4a" class="cell" data-execution_count="5">
+<div id="41d51b36" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Print(<span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -509,7 +509,7 @@ Caution
 </div>
 </div>
 </div>
-<p>leads to a <code>NameError</code> because function names are case sensitive, and we have put <code>Print</code> not <code>print</code>. Proper use of tooling can catch these syntax and other errors before you run the code, however sometimes errors slip through and you end up with errors occuring at run time!</p>
+<p>leads to a <code>NameError</code> because function names are case sensitive, and we have put <code>Print</code> not <code>print</code>. Proper use of tooling can catch these syntax and other errors before you run the code, however sometimes errors slip through and you end up with errors occurring at run time!</p>
 </div>
 </div>
 </section>
@@ -537,7 +537,7 @@ Caution
 <section id="make-something-happen-investigate-the-random-library" class="level5">
 <h5 class="anchored" data-anchor-id="make-something-happen-investigate-the-random-library">Make Something Happen: <a href="./Examples/03_InvestigateRandom/throw_die.py">Investigate the <code>random</code> Library</a></h5>
 <p><em>Write and run a python program containing the following lines</em></p>
-<div id="baaa150b" class="cell" data-execution_count="6">
+<div id="6e5c99a3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'You have rolled:'</span>, random.randint(<span class="dv">1</span>,<span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -581,7 +581,7 @@ Caution
 <section id="example-using-sleep" class="level5">
 <h5 class="anchored" data-anchor-id="example-using-sleep">Example: <a href="./Examples/04_Sleep/sleep.py">Using <code>sleep</code></a></h5>
 <p><em>Write and execute the following program</em></p>
-<div id="0c8d7789" class="cell" data-execution_count="7">
+<div id="975aac30" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'I will need to think about that...'</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">5</span>)</span>
@@ -605,7 +605,7 @@ The answer is: 42</code></pre>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nearly cooked, get your spoon ready'</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">300</span>)</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Egg cooked, remove now.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="977cdb9b" class="cell" data-execution_count="8">
+<div id="44534e18" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>Make sure the water is boiling!!!
 Drop the egg in...
@@ -641,7 +641,7 @@ Egg cooked, remove now.</code></pre>
 <ul>
 <li>The above comment is good because it explains why the function is called</li>
 <li>A bad comment simply repeats the code</li>
-<li>Comments have a maintainence overhead, you must keep them consistent with the surrounding code or they will generate confusion</li>
+<li>Comments have a maintenance overhead, you must keep them consistent with the surrounding code or they will generate confusion</li>
 </ul>
 </section>
 <section id="delay-the-end-of-a-program" class="level3">
@@ -727,7 +727,7 @@ Tip
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 3.5.2 Displaying Text via Snaps</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extends the previous example by demonstrating</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># adding color, size, text position</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># adding colour, size, text position</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -747,9 +747,9 @@ Tip
 <ul>
 <li>Like <code>display_message</code>, the <code>display_image</code> function in <code>snaps</code> can be used to display an image file.</li>
 <li>Function takes the path to the image and can be an png or jpeg</li>
-<li>Text can be overlayed on an image by calling <code>display_message</code> <em>after</em> <code>display_image</code></li>
+<li>Text can be overlaid on an image by calling <code>display_message</code> <em>after</em> <code>display_image</code></li>
 <li>For example: <a href="./Examples/06_DisplayingImages/displayImage.py">Displaying Images</a></li>
-<li>Here we use <code>display_image</code> to render a jpeg, with some overlayed text</li>
+<li>Here we use <code>display_image</code> to render a jpeg, with some overlaid text</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 3.6 Display Image</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -885,11 +885,11 @@ Tip
 <li>Observe that we have to wrap the <code>display_message</code> calls with calls to <code>sleep</code> to ensure that there is time for the user to read the messages</li>
 <li>The output of (a terminal implementation of the program) should look something like,</li>
 </ul>
-<div id="35b52bb9" class="cell" data-execution_count="9">
+<div id="fe8c1c86" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
-<pre><code>The first number is:  5
+<pre><code>The first number is:  8
 Will the next be higher or lower?
-The second number is:  3</code></pre>
+The second number is:  10</code></pre>
 </div>
 </div>
 </section>
@@ -924,7 +924,7 @@ The second number is:  3</code></pre>
 <li>We add a sleep at the end so the players have time to read the text. We also switch the final text from the initial red to green to celebrate the winner</li>
 <li>The output of a terminal-based implementation might look like,</li>
 </ul>
-<div id="743a4873" class="cell" data-execution_count="10">
+<div id="8cf63c4d" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>Players Stand
 Last to sit down wins</code></pre>
@@ -975,12 +975,12 @@ Last to sit down wins</code></pre>
 </ul></li>
 <li><em>Can I make comments more than one line long?</em>
 <ul>
-<li>Several languages support multiline comments (e.g.&nbsp;Java, C, C#), these are comments that by default span multiple lines</li>
+<li>Several languages support multi-line comments (e.g.&nbsp;Java, C, C#), these are comments that by default span multiple lines</li>
 <li>Python requires you to use multiple <code>#</code>, i.e.&nbsp;one for each line
 <ul>
 <li>This is referred to as only supporting single line comments</li>
 </ul></li>
-<li>Later we’ll see a syntax for adding multiline strings that can be used for documentation in a similar way to multiline comments</li>
+<li>Later we’ll see a syntax for adding multi-line strings that can be used for documentation in a similar way to multi-line comments</li>
 </ul></li>
 <li><em>Can a python program run on any computer?</em>
 <ul>

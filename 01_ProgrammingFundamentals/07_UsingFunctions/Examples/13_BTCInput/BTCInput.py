@@ -50,7 +50,7 @@ def read_float(prompt):
 
     See Also
     --------
-    read_float_ranged : reads a float resticted to a closed interval
+    read_float_ranged : reads a float restricted to a closed interval
     """
     while True:
         try:

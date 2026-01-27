@@ -1,6 +1,6 @@
 # Example 9.5 Tiny Contacts Refactor
 #
-# Refactored version of Tiny Contacts that seperates out the search
+# Refactored version of Tiny Contacts that separates out the search
 # functionality from the display functionality
 
 import BTCInput

@@ -443,7 +443,7 @@ class suiteDescr BG
 <ul>
 <li>Yes, for example the block of statements in the <code>while</code> here shouldn’t run</li>
 </ul>
-<div id="a797f115" class="cell" data-execution_count="1">
+<div id="92643766" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">while</span> <span class="va">False</span>:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     <span class="bu">print</span>(<span class="st">"Loop"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">"Outside the Loop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -460,7 +460,7 @@ class suiteDescr BG
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">"Outside the Loop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>The above should only print <code>"Loop"</code> when executed</li>
-<li>If you accidently do this you may need to use <code>CTRL+C</code>, <code>CRTL+Z</code> or an interrupt execution feature of your live environment to stop the execution</li>
+<li>If you accidentally do this you may need to use <code>CTRL+C</code>, <code>CTRL+Z</code> or an interrupt execution feature of your live environment to stop the execution</li>
 </ul></li>
 <li><p><em>Will the following program ever print out the message,</em> <code>"Outside loop"</code><em>?</em></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">while</span> <span class="va">True</span>:</span>
@@ -470,7 +470,7 @@ class suiteDescr BG
 <li>No, the above is a quintessential infinite loop</li>
 </ul></li>
 <li><p><em>Will the following program ever print out the message,</em> <code>"Inside Loop"</code><em>? How about</em> <code>"Outside loop"</code><em>?</em></p>
-<div id="91ab26b5" class="cell" data-execution_count="2">
+<div id="c49c4d6b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">while</span> <span class="va">False</span>:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="bu">print</span>(<span class="st">"Inside Loop"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">"Outside Loop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -482,7 +482,7 @@ class suiteDescr BG
 <li>The <code>while</code> never executes the statements inside so <code>"Inside Loop"</code> is never printed, but <code>"Outside Loop"</code> is.</li>
 </ul></li>
 <li><p><em>What will the following program print?</em></p>
-<div id="46d0eb22" class="cell" data-execution_count="3">
+<div id="83b1757f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Example 6.1 Loop with Flag</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Demonstrates control of a loop with a boolean flag</span></span>
@@ -515,7 +515,7 @@ Outside Loop</code></pre>
 <li>We thus get an infinite series of <code>"Inside Loop"</code> being printed.</li>
 </ul></li>
 <li><p><em>What will the following program print?</em></p>
-<div id="ca98e3cb" class="cell" data-execution_count="4">
+<div id="5ce3469e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Example 6.2 Loop with Counter</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Demonstrates use control of a while loop</span></span>
@@ -545,7 +545,7 @@ Outside Loop</code></pre>
 </section>
 <section id="make-something-happen-create-a-looping-selection-program" class="level4">
 <h4 class="anchored" data-anchor-id="make-something-happen-create-a-looping-selection-program">Make Something Happen: Create a Looping Selection Program</h4>
-<p><em>Use a</em> <code>while</code> <em>loop, to make a theme park selector that runs continously. All you need to do is put all of the statements that implement the theme park behaviour into a</em> <code>while True</code> <em>construction</em></p>
+<p><em>Use a</em> <code>while</code> <em>loop, to make a theme park selector that runs continuously. All you need to do is put all of the statements that implement the theme park behaviour into a</em> <code>while True</code> <em>construction</em></p>
 <p>For usability our program won’t loop endlessly. We’ll say that any number that it is not a valid ride number is code for quitting the program. The relevant changes to the <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html#use-decisions-to-make-an-application">Ride Selector</a> are then,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 6.1 Looping Ride Selector</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
@@ -589,7 +589,7 @@ Outside Loop</code></pre>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(time_left)</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    time_left <span class="op">=</span> time_left <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="290e5f53" class="cell" data-execution_count="5">
+<div id="606371ce" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>10
 9
@@ -766,7 +766,7 @@ Important
 <li>e.g.&nbsp;in the ride selector how do we deal with the user typing in a word rather than a number?</li>
 <li>Consider the snippet below, emulating the ride selector given a string input, we get an error, <em>before</em> we even get a chance to validate the value</li>
 </ul>
-<div id="004fef69" class="cell" data-execution_count="6">
+<div id="0422ea37" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>  ride_number_text <span class="op">=</span> <span class="st">"three"</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  ride_number <span class="op">=</span> <span class="bu">int</span>(ride_number_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -782,16 +782,16 @@ Important
 </div>
 </div>
 <ul>
-<li>This occurs because <code>int</code> requires it’s input to be convertable to a number
+<li>This occurs because <code>int</code> requires it’s input to be convertible to a number
 <ul>
 <li>Unfortunately this does not extend to human-language written versions of a number</li>
 <li>In this case <code>int</code> <em>throws</em> an error, it is better to end the program than continue in an erroneous state</li>
 </ul></li>
 <li>In general, when a program encounters an error state, it should aim to fail fast, rather than continue and generate unexpected outcomes</li>
 </ul></li>
-<li><em>Exceptions</em> are a mechanism by which elements of a program can inform other parts about errors that have occured
+<li><em>Exceptions</em> are a mechanism by which elements of a program can inform other parts about errors that have occurred
 <ul>
-<li><em>Exceptions</em> combine a description of <em>what</em> the error that occured was, with <em>where</em> the error occured</li>
+<li><em>Exceptions</em> combine a description of <em>what</em> the error that occurred was, with <em>where</em> the error occurred</li>
 <li>In the example above e.g.&nbsp;we are told that we got a <code>ValueError</code></li>
 <li>i.e.&nbsp;an invalid value was found, we are given the additional detail “invalid literal for int() with base 10: ‘three’”</li>
 <li>In plain english, the program did not know how to convert ‘three’ to an integer</li>
@@ -1020,7 +1020,7 @@ class exceptTwoStatementsDescr BG
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:  <span class="co"># catch the ValueError</span></span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Invalid number. Please enter a number in digits"</span>)</span>
 <span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:  <span class="co"># catches the interrupt</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You do not have permission to interupt this program"</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You do not have permission to interrupt this program"</span>)</span>
 <span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Once outside the loop we have a valid number</span></span>
 <span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"You have selected ride"</span>, ride_number)  <span class="co"># type: ignore</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -1060,14 +1060,14 @@ Important
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Invalid number text. Please enter digits"</span>)</span>
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You do not have permission to interupt this program"</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"You do not have permission to interrupt this program"</span>)</span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Once outside the loop we have a valid number</span></span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"You have selected ride"</span>, ride_number)  <span class="co"># type: ignore</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>The above follows the previous example, but uses <code>break</code> rather than a flag to control the loop</li>
 <li><code>break</code> statements can be paired with conditionals like <code>if</code>, as demonstrated in <a href="./Examples/07_EarlyExitLoop/EarlyExitLoop.py">EarlyExitLoop.py</a></li>
 </ul>
-<div id="25ef4714" class="cell" data-execution_count="7">
+<div id="56855d1f" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 6.7 Loop with condition ending early</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrates the pairing of break and conditional</span></span>
@@ -1142,7 +1142,7 @@ Note
 <ul>
 <li>You can use a variable to make a loop repeat a specified number of times, e.g.&nbsp;in the below <a href="./Examples/09_TimesTablesTutor/TimesTablesTutor.py">Times Tables Program</a></li>
 </ul>
-<div id="dac4b767" class="cell" data-execution_count="8">
+<div id="1cefded8" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 6.9 Times Tables Tutor</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses Times Tables to demonstrate use of a counter</span></span>
@@ -1307,7 +1307,7 @@ class in BG
 </ul></li>
 <li>We can pair the above tuple with a <code>for</code> loop e.g.</li>
 </ul>
-<div id="1c30316d" class="cell" data-execution_count="9">
+<div id="32e1a08b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 6.10 Name Printer</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints a collection of names</span></span>
@@ -1331,7 +1331,7 @@ Imogen</code></pre>
 <li>e.g.&nbsp;We could rewrite ours times table program as using range (see [RangeBasedTimeTables.py])</li>
 </ul></li>
 </ul>
-<div id="b0e39f98" class="cell" data-execution_count="10">
+<div id="477300ab" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 6.11 Range Based Times Tables</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrates Python's range function using a for</span></span>
@@ -1367,7 +1367,7 @@ Imogen</code></pre>
 <p><em>Look at the following simple programs, and answer the corresponding questions about</em> <code>break</code> <em>and</em> <code>continue</code></p>
 <ol type="1">
 <li><p><em>What would the following code print?</em></p>
-<div id="cc762677" class="cell" data-execution_count="11">
+<div id="d5c6b4b6" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>):</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span> count <span class="op">==</span> <span class="dv">5</span>:</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>         <span class="cf">break</span></span>
@@ -1386,7 +1386,7 @@ Finished</code></pre>
 <li>Since when <code>count</code> is <span class="math inline">\(5\)</span> the loop breaks <strong>before</strong> the print statement and then the print outside the loop is called</li>
 </ul></li>
 <li><p><em>What would the following code print?</em></p>
-<div id="39040790" class="cell" data-execution_count="12">
+<div id="e1f3c94a" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>):</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span> count <span class="op">==</span> <span class="dv">5</span>:</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>         <span class="cf">continue</span></span>
@@ -1412,7 +1412,7 @@ Finished</code></pre>
 <li>This is because the <code>continue</code> causes the loop iteration for <code>count = 5</code> to skip the print statement in the loop and go to the next loop iteration</li>
 </ul></li>
 <li><p><em>What would the following code print?</em></p>
-<div id="039e575c" class="cell" data-execution_count="13">
+<div id="c1f47d9f" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>):</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>     count <span class="op">=</span> <span class="dv">13</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>     <span class="bu">print</span>(count)</span>
@@ -1441,7 +1441,7 @@ Finished</code></pre>
 <li>Of course <code>"Finished"</code> is printed after the loop is down</li>
 </ul></li>
 <li><p><em>Would the following program run forever?</em></p>
-<div id="b566fc0a" class="cell" data-execution_count="14">
+<div id="26351347" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">break</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">'Finished'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1461,7 +1461,7 @@ Finished</code></pre>
 <li>This happens forever</li>
 </ul></li>
 <li><p><em>What would the following program do? Is it legal?</em></p>
-<div id="03accf62" class="cell" data-execution_count="15">
+<div id="2a8d1f37" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> letter <span class="kw">in</span> <span class="st">'hello world'</span>:</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>     <span class="bu">print</span>(letter)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1486,7 +1486,7 @@ d</code></pre>
 </section>
 <section id="make-something-happen-make-a-times-table-quiz" class="level4">
 <h4 class="anchored" data-anchor-id="make-something-happen-make-a-times-table-quiz">Make Something Happen: Make a Times Table Quiz</h4>
-<p><em>Reverse the behaviour of the times-table program so that rather than printing out the times-table your program insteads asks questions like,</em> “What is <span class="math inline">\(6\)</span> times <span class="math inline">\(4\)</span>?” <em>The user could enter their answer, and the program could compare it with the correct answer and keep score of how many correct answers are given. You could use a loop to make the program produce</em> <span class="math inline">\(12\)</span> <em>“times-table” questions, and you could use random numbers so that the quiz is different every time</em></p>
+<p><em>Reverse the behaviour of the times-table program so that rather than printing out the times-table your program instead asks questions like,</em> “What is <span class="math inline">\(6\)</span> times <span class="math inline">\(4\)</span>?” <em>The user could enter their answer, and the program could compare it with the correct answer and keep score of how many correct answers are given. You could use a loop to make the program produce</em> <span class="math inline">\(12\)</span> <em>“times-table” questions, and you could use random numbers so that the quiz is different every time</em></p>
 <p>Our solution given in <a href="./Exercises/06_TimesTableQuiz/TimesTableQuiz.py">TimesTableQuiz.py</a> is relatively complete. We use first print a header message, then we set up a variable to track the number of correct answers total and a second variable to track the number of questions to ask. We then go into our <code>for</code> loop, looping over <code>range(0, NumberOfQuestions)</code>, this makes the loop run <code>NumberOfQuestions</code> times.</p>
 <p>The actual quiz then proceeds, we randomly generate the two numbers, the <code>times_value</code> from the range <code>[2, 12]</code> and the <code>count</code> from the range <code>[1, 12]</code>. We then calculate the correct answer, and prompt the user for an answer, using the standard <code>ValueError</code> exception handling. If the user’s answer is correct we congratulate them and increment the score, else we tell them what the correct answer is. After they’ve answered all the questions we give them the final score</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 6.6: Times Table Quiz</span></span>
@@ -1582,13 +1582,13 @@ d</code></pre>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    time_message <span class="op">=</span> <span class="st">"The time is "</span> <span class="op">+</span> <span class="bu">str</span>(hour) <span class="op">+</span> <span class="st">":"</span> <span class="op">+</span> <span class="bu">str</span>(minute) <span class="op">+</span> <span class="st">":"</span> <span class="op">+</span> <span class="bu">str</span>(second)</span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    message <span class="op">=</span> date_message <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> time_message</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next we want to play a wake alarm at <span class="math inline">\(7:30\)</span> giving as extra hour to sleep in on weekends. We also want to define a bed time. When the time hits <span class="math inline">\(7:30\)</span> we want to play the alarm, then before bed time (<span class="math inline">\(22:00\)</span>)the clock should display a message telling us to get up, while after bed time it should tell us to go to sleep.</p>
-<p>The <code>if...else</code> construct here is a bit more complicated. We only want to play the alarm sound at <span class="math inline">\(7:30:00\)</span> rather than just if the user runs the clock after the wakeup time. This is because the clock will then continuously play the sound every second it updates!</p>
+<p>The <code>if...else</code> construct here is a bit more complicated. We only want to play the alarm sound at <span class="math inline">\(7:30:00\)</span> rather than just if the user runs the clock after the wake up time. This is because the clock will then continuously play the sound every second it updates!</p>
 <p>Our first <code>if</code> statement thus checks if we are exactly on the alarm time, and if we are plays the alarm sound and updates the message</p>
 <p>We then have to consider now when we check if the time is after the alarm has gone off that it is also <em>not</em> before it is time to go back to bed. It’s cleaner to split this into two cases (our <code>elif</code> statements)</p>
 <p>In the first case if the hour is equal to the hour to get up and greater than the minute to get up then it must be time to get up and we don’t need to play the alarm (since the first if statement catches this case). Note this makes the assumption that we don’t wake up at a time like <span class="math inline">\(8:30\)</span> and then go to bed at <span class="math inline">\(8:59\)</span> which is reasonable.</p>
 <p>The second case is when the hour is greater than the hour to get up. Here we have to check that <em>either</em> the hour is less than the hour we go to bed at <em>or</em> if it is the same, that the minutes are less than the minutes we go to bed at. (Effectively the reverse of our old alarm condition.) In either of the previous cases we only then need to update the final printed message with the statement that we should be up</p>
 <p>The last case (the <code>else</code>) is our default case for when none of the previous cases are matched. By exhaustion of cases this has to be when it is time for us to be in bed by default. So we don’t need to do extra checks and can just update the message to tell us to go to sleep</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Play alarm and optionally append a wakeup message</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Play alarm and optionally append a wake up message</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    hour_to_get_up <span class="op">=</span> <span class="dv">7</span> <span class="op">+</span> is_weekend</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    hour_to_sleep <span class="op">=</span> <span class="dv">22</span></span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    minute_to_get_up <span class="op">=</span> <span class="dv">30</span></span>
@@ -1634,7 +1634,7 @@ d</code></pre>
 </ul></li>
 <li>Tuples are a basic form of container for storing values
 <ul>
-<li>declared as a comma seperated list of values surrounded by parentheses</li>
+<li>declared as a comma separated list of values surrounded by parentheses</li>
 </ul></li>
 <li><code>range(start, stop)</code> creates a collection of integers from <code>start</code> (inclusive) to <code>stop</code> (exclusive)</li>
 </ul>

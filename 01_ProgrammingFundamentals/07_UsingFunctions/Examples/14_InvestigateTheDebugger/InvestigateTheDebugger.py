@@ -1,6 +1,6 @@
 # Example 7.14 Investigate the Debugger
 #
-# A sample code for practicing with the debugger
+# A sample code for practising with the debugger
 
 
 def increment_function(input_value):

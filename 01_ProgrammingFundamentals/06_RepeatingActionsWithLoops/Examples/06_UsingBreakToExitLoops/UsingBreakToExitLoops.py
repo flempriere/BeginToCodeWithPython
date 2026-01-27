@@ -11,6 +11,6 @@ while True:  # use break rather than a condition to exit
     except ValueError:
         print("Invalid number text. Please enter digits")
     except KeyboardInterrupt:
-        print("You do not have permission to interupt this program")
+        print("You do not have permission to interrupt this program")
 # Once outside the loop we have a valid number
 print("You have selected ride", ride_number)  # type: ignore
