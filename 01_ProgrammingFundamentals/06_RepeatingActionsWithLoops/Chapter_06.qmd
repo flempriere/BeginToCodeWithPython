@@ -79,7 +79,7 @@ class suiteDescr BG
    ```
 
     - The above should only print `"Loop"` when executed
-    - If you accidently do this you may need to use `CTRL+C`, `CRTL+Z` or an interrupt execution feature of your live environment to stop the execution
+    - If you accidentally do this you may need to use `CTRL+C`, `CTRL+Z` or an interrupt execution feature of your live environment to stop the execution
 
 3. *Will the following program ever print out the message,* `"Outside loop"`*?*
 
@@ -157,7 +157,7 @@ class suiteDescr BG
 
 #### Make Something Happen: Create a Looping Selection Program
 
-*Use a* `while` *loop, to make a theme park selector that runs continously. All you need to do is put all of the statements that implement the theme park behaviour into a* `while True` *construction*
+*Use a* `while` *loop, to make a theme park selector that runs continuously. All you need to do is put all of the statements that implement the theme park behaviour into a* `while True` *construction*
 
 For usability our program won't loop endlessly. We'll say that any number that it is not a valid ride number is code for quitting the program. The relevant changes to the [Ride Selector](../05_MakingDecisions/Chapter_05.qmd#use-decisions-to-make-an-application) are then,
 
@@ -378,13 +378,13 @@ The full code is given in [AgeValidation.py](./Exercises/04_AgeValidation/AgeVal
     ride_number = int(ride_number_text)
   ```
 
-    - This occurs because `int` requires it's input to be convertable to a number
+    - This occurs because `int` requires it's input to be convertible to a number
         - Unfortunately this does not extend to human-language written versions of a number
         - In this case `int` *throws* an error, it is better to end the program than continue in an erroneous state
     - In general, when a program encounters an error state, it should aim to fail fast, rather than continue and generate unexpected outcomes
 
-- *Exceptions* are a mechanism by which elements of a program can inform other parts about errors that have occured
-    - *Exceptions* combine a description of *what* the error that occured was, with *where* the error occured
+- *Exceptions* are a mechanism by which elements of a program can inform other parts about errors that have occurred
+    - *Exceptions* combine a description of *what* the error that occurred was, with *where* the error occurred
     - In the example above e.g. we are told that we got a `ValueError`
     - i.e. an invalid value was found, we are given the additional detail "invalid literal for int() with base 10: 'three'"
     - In plain english, the program did not know how to convert 'three' to an integer
@@ -588,7 +588,7 @@ while not ride_number_valid:  # repeats while flag is False
     except ValueError:  # catch the ValueError
         print("Invalid number. Please enter a number in digits")
     except KeyboardInterrupt:  # catches the interrupt
-        print("You do not have permission to interupt this program")
+        print("You do not have permission to interrupt this program")
 # Once outside the loop we have a valid number
 print("You have selected ride", ride_number)  # type: ignore
 ```
@@ -621,7 +621,7 @@ while True:  # use break rather than a condition to exit
     except ValueError:
         print("Invalid number text. Please enter digits")
     except KeyboardInterrupt:
-        print("You do not have permission to interupt this program")
+        print("You do not have permission to interrupt this program")
 # Once outside the loop we have a valid number
 print("You have selected ride", ride_number)  # type: ignore
 ```
@@ -927,7 +927,7 @@ for count in range(1, 13):
 
 #### Make Something Happen: Make a Times Table Quiz
 
-*Reverse the behaviour of the times-table program so that rather than printing out the times-table your program insteads asks questions like,* "What is $6$ times $4$?" *The user could enter their answer, and the program could compare it with the correct answer and keep score of how many correct answers are given. You could use a loop to make the program produce* $12$ *"times-table" questions, and you could use random numbers so that the quiz is different every time*
+*Reverse the behaviour of the times-table program so that rather than printing out the times-table your program instead asks questions like,* "What is $6$ times $4$?" *The user could enter their answer, and the program could compare it with the correct answer and keep score of how many correct answers are given. You could use a loop to make the program produce* $12$ *"times-table" questions, and you could use random numbers so that the quiz is different every time*
 
 Our solution given in [TimesTableQuiz.py](./Exercises/06_TimesTableQuiz/TimesTableQuiz.py) is relatively complete. We use first print a header message, then we set up a variable to track the number of correct answers total and a second variable to track the number of questions to ask. We then go into our `for` loop, looping over `range(0, NumberOfQuestions)`, this makes the loop run `NumberOfQuestions` times.
 
@@ -1043,7 +1043,7 @@ Now we prepare our datetime strings
 
 Next we want to play a wake alarm at $7:30$ giving as extra hour to sleep in on weekends. We also want to define a bed time. When the time hits $7:30$ we want to play the alarm, then before bed time ($22:00$)the clock should display a message telling us to get up, while after bed time it should tell us to go to sleep.
 
-The `if...else` construct here is a bit more complicated. We only want to play the alarm sound at $7:30:00$ rather than just if the user runs the clock after the wakeup time. This is because the clock will then continuously play the sound every second it updates!
+The `if...else` construct here is a bit more complicated. We only want to play the alarm sound at $7:30:00$ rather than just if the user runs the clock after the wake up time. This is because the clock will then continuously play the sound every second it updates!
 
 Our first `if` statement thus checks if we are exactly on the alarm time, and if we are plays the alarm sound and updates the message
 
@@ -1056,7 +1056,7 @@ The second case is when the hour is greater than the hour to get up. Here we hav
 The last case (the `else`) is our default case for when none of the previous cases are matched. By exhaustion of cases this has to be when it is time for us to be in bed by default. So we don't need to do extra checks and can just update the message to tell us to go to sleep
 
 ```python
-    # Play alarm and optionally append a wakeup message
+    # Play alarm and optionally append a wake up message
     hour_to_get_up = 7 + is_weekend
     hour_to_sleep = 22
     minute_to_get_up = 30
@@ -1099,7 +1099,7 @@ Finally we display the message and then sleep for a second before updating the c
     - `break` immediately terminates a loop
     - `continue` immediately moves to the next loop iteration
 - Tuples are a basic form of container for storing values
-    - declared as a comma seperated list of values surrounded by parentheses
+    - declared as a comma separated list of values surrounded by parentheses
 - `range(start, stop)` creates a collection of integers from `start` (inclusive) to `stop` (exclusive)
 
 ## Questions and Answers

@@ -9,7 +9,7 @@ import time
 import snaps
 
 temp = snaps.get_weather_temp(latitude=47.61, longitude=-122.33)
-conditions = snaps.get_weather_desciption(latitude=47.61, longitude=-122.33)
+conditions = snaps.get_weather_description(latitude=47.61, longitude=-122.33)
 
 if temp is None or conditions is None:
     msg = "Could not retrieve Weather..."

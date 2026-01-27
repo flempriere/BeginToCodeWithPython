@@ -160,7 +160,7 @@ Run the program, it should print out the current hour
 
 *Improve the previous [example](./Chapter_05.qmd#example-one-handed-clock) to produce a more fully featured clock that reports the time, and date when run*
 
-We can use the table above to grab the correct attributes. We then simply need to format the attribute as nessecary. The final [program](./Exercises/01_ImprovedClock/ImprovedClock.py) is given below
+We can use the table above to grab the correct attributes. We then simply need to format the attribute as necessary. The final [program](./Exercises/01_ImprovedClock/ImprovedClock.py) is given below
 
 ```{python}
     # Exercise 5.1: Improved Clock
@@ -431,7 +431,7 @@ if it_is_time_to_get_up:
 
 - Condition is a term for the expression that controls which branch of the `if` is executed
 - If the condition evaluates `True` the indented branch is run
-- If the condition evluates `False` the indented branch is skipped
+- If the condition evaluates `False` the indented branch is skipped
 - We could simply the above code by including the check directly in the `if` rather than an intermediate variable
 
 ```{python}

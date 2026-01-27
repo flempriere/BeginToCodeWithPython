@@ -158,7 +158,7 @@ title: "Chapter 9: Use Classes to Store Data"
     - Our plan is store the number as a string
     - While referred to as a number, telephone numbers typically have additional characters that make them much more like strings (e.g. +)
 
-#### Store Contact Details in Seperate Lists
+#### Store Contact Details in Separate Lists
 
 - Start with storing Contact Details
 - Simplest implementation is to maintain a list for each different type of information we store
@@ -318,7 +318,7 @@ class Contact:
 3. *This looks like a function call. Are we calling a function here?*
 
     - Technically this is a call to a function called a constructor
-    - Which is responsible for creating an intance of a `Contact`
+    - Which is responsible for creating an instance of a `Contact`
     - By using capital letters it's clear that this is an object instantiation
 
 4. *What's an instance?*
@@ -843,7 +843,7 @@ flowchart TD
         x = 99.99
       ```
 
-    - We don't want the above to accidently change the value of the constant `pi`
+    - We don't want the above to accidentally change the value of the constant `pi`
 
 :::{.callout-important}
 **Programming Languages work with values differently**
@@ -859,7 +859,7 @@ Remember that the `tuple` collection type is also immutable
 
 - Once we have found a reference we can read and modify the attributes
 - Our program implementation, uses a simple interface optionally modify each attribute one at a time
-    - Need to read a user string for each modifiable atttribute
+    - Need to read a user string for each modifiable attribute
     - [Our duplicates implementation](./Examples/06_TinyContactsWithEdit/TinyContactsWithEdit.py) also needs to read an int to indicate if we want to modify a specific contact (and print the current contact)
 - The book implementation is,
 
@@ -915,7 +915,7 @@ print("contact address is", contact.address)
 
 Some programming languages e.g. Java, C#, C++ check for these errors before a
 program executes. Python does not. This means that minor typos e.g. writing
-`adress` instead of `address` can lead to runtime errors
+`address` instead of `address` can lead to runtime errors
 :::
 
 #### Save Contacts in a File using `pickle`
@@ -923,7 +923,7 @@ program executes. Python does not. This means that minor typos e.g. writing
 - We saw in [Chapter 8](../../01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.qmd#store-data-in-a-file) that we can save and load data to files
     - There we used a human-readable text representation
 - We could replicate this for large class based structures
-    - e.g. write out all attributes as comma, seperated values
+    - e.g. write out all attributes as comma, separated values
 - Python provides a process called *pickling* for storing large data structures
     - pickled data is stored as *binary*
     - Data is therefore computer-readable and more compressed than human text
@@ -1073,7 +1073,7 @@ Pickle files are not designed to be human-readable. While most text editors will
 :::{.callout-tip}
 **Version Control**
 
-Pickle is a tool called a *serialiser* because it converts a data structure is a *serial stream* (i.e. ordered sequence of data)
+Pickle is a tool called a *serializer* because it converts a data structure is a *serial stream* (i.e. ordered sequence of data)
 that can be sent to another program and/or stored in a file.
 
 This introduces the need for *version control.* If the design of a class e.g. `Contact` (say we added an email attribute)
@@ -1165,7 +1165,7 @@ we can clearly explain *what* the constant means
     new_contact = Contact()
     new_contact.name = BTCInput.read_text("Enter the contact name: ")
     new_contact.address = BTCInput.read_text("Enter the contact address: ")
-    new_contact.telephon = BTCInput.read_text("Enter the contact phone: ")
+    new_contact.telephone = BTCInput.read_text("Enter the contact phone: ")
   ```
 
 - This makes the program fragile
@@ -1173,18 +1173,18 @@ we can clearly explain *what* the constant means
     - Forget to set one
 - Ideally want to create a `Contact` and ensure values are set as part of creation
 - We can do so with a *Constructor*, a special method called to create the object
-    - Also sometimes called an *initialiser* method
+    - Also sometimes called an *initializer* method
 - A method attribute is like a data attribute but as an attached function
 
-##### The Python Initialiser Method
+##### The Python Initializer Method
 
 - Held inside a python class
 - Named `__init__`
     - python uses "dunder methods" marked `__function_name__` to mark special functions defined by the language
 
-###### Make Something Happen: Create an Initialiser
+###### Make Something Happen: Create an Initializer
 
-*Open the python interpreter and work through the following steps to create an understand an initialiser, answering the questions*
+*Open the python interpreter and work through the following steps to create an understand an initializer, answering the questions*
 
 *Type the below code in to define a class*
 ```{python}
@@ -1194,12 +1194,12 @@ class InitPrint:
 
 ```
 
-*The above defines the class* `InitPrint` *it defines an initialiser method that prints a method. Note the double underscore*
+*The above defines the class* `InitPrint` *it defines an initializer method that prints a method. Note the double underscore*
 *before and after the* `init` *are required, as is the parameter* `self`*. The last line of the class is an empty line*
 
-1. *The initialiser looks remarkably like a function why is that?*
+1. *The initializer looks remarkably like a function why is that?*
 
-    - An initialiser is a function that is called when a class instance is created.
+    - An initializer is a function that is called when a class instance is created.
 
     - *Type in the code below, which creates an instance of* `InitPrint` *and assigns it to the variable* `x`*,observe that the* `__init__` *method is called even without us explicitly putting it*
 
@@ -1220,10 +1220,10 @@ class InitPrint:
             self.name = new_name
   ```
 
-    - The initialiser can take arguments like any other function, here it takes `new_name`
-    - Initialiser no longer prints a message but rather sets a `name` attribute on the variable `self`
+    - The initializer can take arguments like any other function, here it takes `new_name`
+    - Initializer no longer prints a message but rather sets a `name` attribute on the variable `self`
     - `self` is a reference to the object running the method
-        - In the initialiser this is the object being created
+        - In the initializer this is the object being created
         - `self` is always the first parameter of a method, and must be included
     - Now replicate the code below to see how the new `__init__` method works
 
@@ -1234,7 +1234,7 @@ class InitPrint:
 
     - When creating an `InitName` object we now have to pass the `new_name` parameter
     - Observe we don't explicitly pass `self`
-- Once an initialiser is defined, it is the only way to create an instance
+- Once an initializer is defined, it is the only way to create an instance
     - Attempting otherwise leads to an error, e.g. if we exclude the `new_name`
 
   ```{python}
@@ -1269,7 +1269,7 @@ class InitPrint:
 
 *Work through the following questions to ensure you understand the* `__init__` *method*
 
-1. *It looks like you've written the assignments in the initialiser so that a value is assigned to itself. What's going on?*
+1. *It looks like you've written the assignments in the initializer so that a value is assigned to itself. What's going on?*
 
     - Consider a statement
 
@@ -1277,14 +1277,14 @@ class InitPrint:
         self.telephone = telephone
       ```
     - This looks like assigning `telephone` to `telephone` it, does not
-    - The left is the `telephone` atrribute on the `self` object
-    - The right is the `telephone` parameter passed to the initialiser
+    - The left is the `telephone` attribute on the `self` object
+    - The right is the `telephone` parameter passed to the initializer
     - Python variable names are *namespaced*
         - namespaces are regions in which names are uniquely identified
     - One namespace is the local namespace of the `__init__` method
     - The other namespace is the attribute namespace of the `self` object
     - namespaces allow different contexts to use the same variable name distinct from each other
-    - Generally it is convention to give initialiser parameters the same name as their associated object attributes
+    - Generally it is convention to give initializer parameters the same name as their associated object attributes
 
 2. *What happens if the user of the constructor supplies silly arguments to it?*
     - Currently the constructor doesn't validate the input
@@ -1767,7 +1767,7 @@ and `edit_contacts` looks similar
 This Chapter also contains two further examples which
 demonstrate building data storage applications that handle more functionality than tiny contacts.
 
-Due to the size of the discussion required for each exercise they are linked on [a seperate page](./Chapter_09_ExtensionExercises.qmd)
+Due to the size of the discussion required for each exercise they are linked on [a separate page](./Chapter_09_ExtensionExercises.qmd)
 
 #### [Music Tracks](./Chapter_09_ExtensionExercises.qmd#make-something-happen-music-storage-app)
 
@@ -1789,7 +1789,7 @@ Demonstrates working with larger more complicated objects in data storage
 - Supports different mechanisms for viewing details about a recipe
     1. Viewing the ingredients
     2. Viewing the steps
-    3. Steping through the recipe, step by step
+    3. Stepping through the recipe, step by step
 
 You are encouraged to work through or examine these exercises
 
@@ -1829,12 +1829,12 @@ You are encouraged to work through or examine these exercises
         - Object A references Object B references Object C etc.
         - The most basic structure is called a *linked list*
         - More complex structures like trees have more complicated referential structures
-3. *Is an object forced to have a constructor / initialiser?*
+3. *Is an object forced to have a constructor / initializer?*
     - No, we saw this with the first `Contact` which was a simple blank class
     - `__init__` provides greater ability to ensure that objects are created properly though
 4. *Can you stop a program from adding new attributes to an object?*
     - No
-    - This has the impact of allowing us to create incompatible and distinct instances of the same class where for some reason one has been argumented with an additional attribute
+    - This has the impact of allowing us to create incompatible and distinct instances of the same class where for some reason one has been augmented with an additional attribute
 5. *Can you remove attributes from an object?*
     - Yes, you can use the `del` operator to delete an attribute
 

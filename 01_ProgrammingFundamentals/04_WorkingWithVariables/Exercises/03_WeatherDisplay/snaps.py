@@ -496,7 +496,7 @@ def get_weather_temp(latitude, longitude):
                                             return int(t.text)
 
 
-def get_weather_desciption(latitude, longitude):
+def get_weather_description(latitude, longitude):
     """
     Uses forecast.weather.gov to get the weather
     for the specified latitude and longitude

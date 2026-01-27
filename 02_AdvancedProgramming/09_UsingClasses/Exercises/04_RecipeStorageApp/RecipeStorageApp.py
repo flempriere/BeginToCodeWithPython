@@ -1,7 +1,7 @@
 # Exercise 9.4 Recipe Storage App
 #
 # A simple recipe storage app that stores recipes
-# as a list of ingedients and a list of steps
+# as a list of ingredients and a list of steps
 
 import pickle
 
@@ -338,7 +338,7 @@ def run_find_recipe_menu():
     1. Find Recipe by Name
         - Matches against a provided user-provided substring in the name
     2. Find Recipe by Ingredient
-        - Peforms an exact match against a user-provided ingredient
+        - Performs an exact match against a user-provided ingredient
 
     Returns
     -------

@@ -1,6 +1,6 @@
 # Example 10.15.4 Twinkle Twinkle with Classes
 #
-# Modifies the data driven tuple implementation by definining a lightweight
+# Modifies the data driven tuple implementation by defining a lightweight
 # Note class
 
 import time

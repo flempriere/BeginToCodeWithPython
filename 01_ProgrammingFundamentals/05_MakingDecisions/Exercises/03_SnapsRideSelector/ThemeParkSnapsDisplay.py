@@ -1,8 +1,8 @@
 # Exercise 5.3: Snaps Ride Selector
 #
-# Reimplments the entirety of the Theme Park Ride Selector using
+# Reimplements the entirety of the Theme Park Ride Selector using
 # a snaps interface, and adds some audio ques to warn the user
-# when they are ineligable for ride
+# when they are ineligible for ride
 
 import time
 
