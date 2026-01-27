@@ -1,8 +1,8 @@
 # Example 11.3 Fashion Items using properties and __str__
 #
-# Mocks out the Fashion stock items classes using an inheritance hierachy
+# Mocks out the Fashion stock items classes using an inheritance hierarchy
 # Demonstrates using methods of the superclass in the subclass and
-# abstractmethods
+# abstract methods
 
 import abc
 
@@ -152,7 +152,7 @@ class Pants(StockItem):
     length : int
         length of the pants
     waist : int
-        waist size of the pantts
+        waist size of the pants
 
     See Also
     --------

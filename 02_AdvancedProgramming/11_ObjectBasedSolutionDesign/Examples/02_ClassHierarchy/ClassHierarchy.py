@@ -1,6 +1,6 @@
-# Example 11.2 Fashion Items using a Class Hierachy
+# Example 11.2 Fashion Items using a Class Hierarchy
 #
-# Mocks out the Fashion stock items classes using an inheritance hierachy
+# Mocks out the Fashion stock items classes using an inheritance hierarchy
 
 from abc import ABC
 
@@ -117,7 +117,7 @@ class Pants(StockItem):
     length : int
         length of the pants
     waist : int
-        waist size of the pantts
+        waist size of the pants
 
     See Also
     --------
