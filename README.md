@@ -24,6 +24,7 @@ I started this repository to work through an easy and basic book before working 
 - [Chapter 9: Using Classes to Store Data](./02_AdvancedProgramming/09_UsingClasses/Chapter_09.md)
   - [Extension Exercises for Chapter 9](./02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.md)
 - [Chapter 10: Use Classes to Create Active Objects](./02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.md)
+- [Chapter 11: Object-Based Solution Design](./02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.md)
 
 ### Useful Python
 
@@ -41,7 +42,8 @@ I started this repository to work through an easy and basic book before working 
 - In general the code style of the solutions is restricted to elements of the python language introduced up until that point
   - For some of the extension exercises we have gone beyond that by still restricting ourselves to concepts that have been
   introduced, e.g
-    1. We use `random.choice` to select random items from a list, **after** having been exposed to both the `random` and `list`
+    1. We use `random.choice` and `random.choices` to select random items from a list, **after** having been exposed to both the `random` and `list`
     libraries
-    2. We use the string method `find` after having been introdued to the concept of string methods and substring searching with
+    2. We use the string method `find` after having been introduced to the concept of string methods and substrings searching with
     `startswith`
+    3. We use the `datetime` module to simplify arithmetic on date and time objects after having extensively used the `time` module
