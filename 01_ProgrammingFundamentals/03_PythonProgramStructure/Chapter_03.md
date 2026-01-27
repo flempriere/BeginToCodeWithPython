@@ -150,7 +150,7 @@ print('The answer is:', 2+2)
 the above line and check the output matches the above.*
 
 *Here we see that one of the ways to call `print` is to provide a comma
-seperated list of values. By default `print` adds a space between these
+separated list of values. By default `print` adds a space between these
 elements*
 
 > [!CAUTION]
@@ -185,7 +185,7 @@ elements*
 > leads to a `NameError` because function names are case sensitive, and
 > we have put `Print` not `print`. Proper use of tooling can catch these
 > syntax and other errors before you run the code, however sometimes
-> errors slip through and you end up with errors occuring at run time!
+> errors slip through and you end up with errors occurring at run time!
 
 ### Use Python Libraries
 
@@ -329,7 +329,7 @@ time.sleep(300) #sleep while egg cooks (300 seconds or 5 minutes)
 - The above comment is good because it explains why the function is
   called
 - A bad comment simply repeats the code
-- Comments have a maintainence overhead, you must keep them consistent
+- Comments have a maintenance overhead, you must keep them consistent
   with the surrounding code or they will generate confusion
 
 ### Delay the End of a Program
@@ -421,7 +421,7 @@ time.sleep(5)  # add a sleep so the window doesn't autoclose
 # Example 3.5.2 Displaying Text via Snaps
 #
 # Extends the previous example by demonstrating
-# adding color, size, text position
+# adding colour, size, text position
 
 import time
 
@@ -442,11 +442,11 @@ time.sleep(5)  # add a sleep for 5 seconds so the window doesn't autoclose
 - Like `display_message`, the `display_image` function in `snaps` can be
   used to display an image file.
 - Function takes the path to the image and can be an png or jpeg
-- Text can be overlayed on an image by calling `display_message` *after*
+- Text can be overlaid on an image by calling `display_message` *after*
   `display_image`
 - For example: [Displaying
   Images](./Examples/06_DisplayingImages/displayImage.py)
-- Here we use `display_image` to render a jpeg, with some overlayed text
+- Here we use `display_image` to render a jpeg, with some overlaid text
 
 ``` python
 # Example 3.6 Display Image
@@ -604,7 +604,7 @@ time.sleep(10)  # leave time for the players to read
 
     The first number is:  3
     Will the next be higher or lower?
-    The second number is:  3
+    The second number is:  10
 
 ##### Make Something Happen: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
@@ -684,12 +684,12 @@ time.sleep(5)  # so program doesn't immediately end
     - If we use the `from library import *` function then we might have
       an issue as the names will clash
 3. *Can I make comments more than one line long?*
-    - Several languages support multiline comments (e.g. Java, C, C#),
+    - Several languages support multi-line comments (e.g. Java, C, C#),
       these are comments that by default span multiple lines
     - Python requires you to use multiple `#`, i.e. one for each line
       - This is referred to as only supporting single line comments
-    - Later we’ll see a syntax for adding multiline strings that can be
-      used for documentation in a similar way to multiline comments
+    - Later we’ll see a syntax for adding multi-line strings that can be
+      used for documentation in a similar way to multi-line comments
 4. *Can a python program run on any computer?*
     - Yes and No. If a computer has a python interpreter installed then
       code should be able to run on it. However, there are caveats, the

@@ -286,9 +286,9 @@ class Contact:
   ```
 
 - The magic constant problem is one issue,
-  - If we were to use the `Contact` as a libary object in another
+  - If we were to use the `Contact` as a library object in another
     application, (like a graphical version) then we would have to
-    maintain the validation code in two seperate places
+    maintain the validation code in two separate places
 
 > [!TIP]
 >
@@ -838,7 +838,7 @@ the following questions to understand static validation methods*
     - This concept of making a function responsible for one thing is
       called either
       - The *single responsibility principle*,
-      - or more generally *seperation of concerns*
+      - or more generally *separation of concerns*
     - Here a `Contact` object performs behaviours that modify or capture
       a the state of a clients interactions with a client
       - How the user responds to those states is not its responsibility
@@ -984,7 +984,7 @@ the following questions to understand static validation methods*
 - Exception somewhat like a message
   - Tells the program what went wrong
 - `Exception` class provides behaviours for exceptions
-  - Takes a string as an initialiser argument
+  - Takes a string as an initializer argument
   - string should describe the error
 - Once raised, the exception is either,
   1. handled by an `Except` handler inside a `try` block
@@ -1103,7 +1103,7 @@ attempt to add a session length of $4$, which should be invalid,
 
 *Repeat the steps in the [previous
 example](#make-something-happen-raising-exceptions-from-code) but this
-time use the new code in [Time Tracker with Exceptionn
+time use the new code in [Time Tracker with Exception
 Handler](./Examples/07_TimeTrackerWithExceptionHandler/TimeTrackerWithExceptionHandler.py).
 You should find the program runs and the errors are captured without
 causing a crash*
@@ -1171,7 +1171,7 @@ causing a crash*
 
 - Client no longer needs to directly interact with `hours_worked`
 - However, client can still modify `hours_worked`
-  - Programmer could accidently change the value
+  - Programmer could accidentally change the value
   - Could also intentionally change it to break the code
 - Ideally we want to prevent it being directly modified
 
@@ -1185,7 +1185,7 @@ causing a crash*
 > the data attributes.
 >
 > There is no mechanism in the python language to prevent another
-> progrmmer adding code that changes `hours_worked` in the `Contact`
+> programmer adding code that changes `hours_worked` in the `Contact`
 > object
 
 - By convention, python dictates that an attribute name starting with
@@ -1213,7 +1213,7 @@ causing a crash*
 - No actual protection for `_hours_worked`
   - Could still be ignored by a programmer
 - Can get greater security through, *name-mangling*
-  - starting a varible name with double underscores `__`
+  - starting a variable name with double underscores `__`
 - *name-mangling* makes it harder to access and modify the variable
 
 ##### Make Something Happen: Protecting Data Attributes in a Class
@@ -1685,7 +1685,7 @@ class Contact:
 - No need to update the downstream calling code
   - property syntax matches the traditional access pattern
 - The complete integration is seen in
-  [TimeTrackerWithPropertie.py](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py)
+  [TimeTrackerWithProperties.py](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py)
 
 > [!CAUTION]
 >
@@ -1695,7 +1695,7 @@ class Contact:
 > program](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py)
 > implements the name, address and telephone number elements of a
 > contact as properties. Setting a property to an invalid value will
-> cause an exception. The initialiser looks like,
+> cause an exception. The initializer looks like,
 >
 > ``` python
 >     def __init__(self, name, address, telephone):
@@ -1827,7 +1827,7 @@ managing the billing amount*
         amount_to_bill = 30 + (50 * session_length)
       ```
 
-    - `session_length` value is multipled by the hourly rate ($50$)
+    - `session_length` value is multiplied by the hourly rate ($50$)
 
     - flat fee $30$ is added to the total
 
@@ -2149,7 +2149,7 @@ As we can see, the amount to bill is now correctly displayed
 > Tracker program we expect that the client will request changes to the
 > features, so we should consider versioning it from the start
 >
-> Everytime a new version of a program is installed, we then have to go
+> Every time a new version of a program is installed, we then have to go
 > through the process of updating the underlying data to the new version
 >
 > When writing a program for a customer, you should consider how long it
@@ -2181,7 +2181,7 @@ As we can see, the amount to bill is now correctly displayed
     display_contact(contact)
   ```
 
-      <__main__.Contact object at 0x7f8828943fb0>
+      <__main__.Contact object at 0x7f47403245f0>
 
 - default for objects is the class name following by the memory address
   of the object
@@ -2242,7 +2242,7 @@ As we can see, the amount to bill is now correctly displayed
 
 - Values in format are inserted at marked points in the string
 - Marked points are `{n}` where $n$ is the index of the argument to
-  substitue
+  substitute
   - Starting from $0$
 
 ##### Make Something Happen: Adventures with String Formatting
@@ -2292,7 +2292,7 @@ template.format(name, age)
 We write the placeholder as `{n:w}` where $n$ is the index of the
 placeholder. $w$ is the width value, as you can see from above, the
 value is still substituted but then spaces are added to pad out to the
-width. This is useful for defining columns. We use a `:` to seperate the
+width. This is useful for defining columns. We use a `:` to separate the
 *format specifiers* from the placeholder index
 
 For floating point values you can also specify the number of decimal
@@ -2353,7 +2353,7 @@ following questions*
 
 1. *How will we store information about a session?*
 
-    - We need to store a bunch of heterogenous related data
+    - We need to store a bunch of heterogeneous related data
 
     - Good idea to consider a class, say `Session`
 
@@ -2430,7 +2430,7 @@ following questions*
         print(session_record)
       ```
 
-          <__main__.Session object at 0x7f8828940260>
+          <__main__.Session object at 0x7f47402935c0>
 
     - creates a `Session` with the passed `session_length` parameter
 
@@ -2643,7 +2643,7 @@ following questions*
   string representations
 
 - Uses `join` to then convert the list of strings to a single string
-  with each element seperated by a newline
+  with each element separated by a newline
 
 #### The Python `map` Function
 
@@ -2689,7 +2689,7 @@ code
 
 *Now we need to create our indentation function. We can do this by
 adding four spaces (or a tab etc.) at the beginning of a string. Define
-the following python funcion*
+the following python function*
 
 ``` python
 def indent(x):
@@ -2718,7 +2718,7 @@ indented_code = map(indent, code)
 indented_code
 ```
 
-    <map at 0x7f882895b340>
+    <map at 0x7f47402919c0>
 
 Naively we expected a list of indented strings. Instead we have
 something called a *map object*. `map` returns something called an
@@ -2971,7 +2971,7 @@ time around. We start by defining our `Playlist` class
 Let us first focus on the data attributes, we want a name and a list of
 songs. We also want the total runtime. Now for simplicity we’ll leave
 the `name` and `tracks` as public attributes, but we’ll define the
-`runtime` as a property, intefacing with a protected variable
+`runtime` as a property, interfacing with a protected variable
 `__runtime`. We do this because the runtime is calculated from `tracks`
 so we don’t want the caller to modify it themselves.
 
@@ -3106,12 +3106,12 @@ track list, we also ensure the runtime is kept synchronised
 >
 > **It is important to keep data synchronised**
 >
-> We store the runtime as a seperate variable so that we don’t need to
-> calculate it on the fly everytime a function requires it. However this
-> introduces the difficulty that we have to keep `runtime` synched with
-> the data it is representing (the sum of the length of the tracks in
-> the `tracks` attribute). This is important in real world scenarios, as
-> if these two data attributes diverge we might get nonsense results.
+> We store the runtime as a separate variable so that we don’t need to
+> calculate it on the fly every time a function requires it. However
+> this introduces the difficulty that we have to keep `runtime` synched
+> with the data it is representing (the sum of the length of the tracks
+> in the `tracks` attribute). This is important in real world scenarios,
+> as if these two data attributes diverge we might get nonsense results.
 >
 > This is actually one of the big reasons why we like to make data
 > attributes private, it ensures we can maintain the relationships
@@ -3125,7 +3125,7 @@ would propagate to the original list
 
 One option would be to provide a deep copy (a unique copy for each
 call), or another would be make `tracks` private and define methods on
-the class for all the nessecary interactions. I haven’t done this to
+the class for all the necessary interactions. I haven’t done this to
 minimise the disruption to the overall API, since this current API lets
 us reuse the adding and searching functionality we defined for the
 complete list of tracks. This could be something we change in the future
@@ -3237,7 +3237,7 @@ You can see that we’ve defined new functions,
 and that we’ve renamed the old `save_playlist` function to
 `export_playlist`. This last change is because we’ve introduced
 `save_playlists` and `load_playlists` as functions to pickle and
-unpickle the playlists binary data. Renaming `save_playlist` to
+un-pickle the playlists binary data. Renaming `save_playlist` to
 `export_playlist` makes it clear that this function is not related to
 those two.
 
@@ -3450,7 +3450,7 @@ def suggest_playlist_of_given_length():
             print("Could not generate a playlist of that length. Try a longer playlist")
             return
 
-        while len(candidate_songs) > 0:  # stop when no more eligable songs
+        while len(candidate_songs) > 0:  # stop when no more eligible songs
             # add a random song and update the playlist length
             song_choice = random.choice(candidate_songs)
             suggested_tracks.append(song_choice)
@@ -3574,7 +3574,7 @@ You are encouraged to work through the full program yourself
 
 - We repeatedly write the `play_note` followed by a `sleep` time
 
-- Have to manuually modify the code
+- Have to manually modify the code
 
 - We could make this *data-driven*
 
@@ -3627,7 +3627,7 @@ You are encouraged to work through the full program yourself
 - We use unpacking to assign the elements of the tuple meaningful names
   (`note_id` and `sleep_time`)
 
-- While playback is simple, constructing is not nessecarily
+- While playback is simple, constructing is not necessarily
 
   - The tuples are undocumented and rely on the programmer knowing the
     indices
@@ -3637,7 +3637,7 @@ You are encouraged to work through the full program yourself
   ``` python
     # Example 10.15.4 Twinkle Twinkle with Classes
     #
-    # Modifies the data driven tuple implementation by definining a lightweight
+    # Modifies the data driven tuple implementation by defining a lightweight
     # Note class
 
     import time
@@ -3746,11 +3746,11 @@ You are encouraged to work through the full program yourself
 
 For fun we’ll make two little tunes
 
-1. The classic [Macca’s
+1. The classic [Maccas
     jingle](./Exercises/02_SnapsTunes/MaccasJingle.py)
 
     ``` python
-     # Exercise 10.2.1 Maccas Jingle
+     # Exercise 10.2.1  Maccas Jingle
      #
      # Uses the Note playback program to play the Maccas jingle
 
@@ -4057,7 +4057,7 @@ notes:
 ```
 
 The class has a simple structure. The tune constructor only needs a
-name, we then create an empty list of notes, and a seperate variable
+name, we then create an empty list of notes, and a separate variable
 that tracks the full length of the tune. Our string representation
 (`__str__`) follows the usual pattern, we print the name and duration of
 the `Tune`, the the list of `Note` objects in the tune. We use
