@@ -3,6 +3,8 @@
 - [Notes](#notes)
   - [Advanced Functions](#advanced-functions)
     - [References to Functions](#references-to-functions)
+      - [Use Function References in the BTCInput
+        Module](#use-function-references-in-the-btcinput-module)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -24,6 +26,8 @@
     [`filter`](../11_ObjectBasedSolutionDesign/Chapter_11.qmd#filter-on-tags)
 
 - Let’s explore this in more detail, consider the following code snippet
+  (see
+  [SimpleFunctionReferences.py](./Examples/01_SimpleFunctionReferences/SimpleFunctionReferences.py))
 
   ``` python
     # Example 12.1 Simple Function References
@@ -53,7 +57,8 @@
 
 - The variable is effectively another name for the function
 
-- We still have to call it properly, e.g.
+- We still have to call it properly, e.g. (see
+  [InvalidFunctionReferences.py](./Examples/02_InvalidFunctionReferences/InvalidFunctionReferences.py))
 
   ``` python
     # Example 12.2 Invalid Function References
@@ -68,12 +73,21 @@
       TypeError: func_1() takes 0 positional arguments but 1 was given
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[4], line 7
+      Cell In[2], line 7
             4     print("Hello from func_1")
             6 x = func_1
       ----> 7 x(99)
 
       TypeError: func_1() takes 0 positional arguments but 1 was given
+
+- The above generates an error as expected, because `x` is given an
+  argument `99`
+
+- `func_1` takes no arguments
+
+- The error resolves to the original function name (here `func_1`)
+
+##### Use Function References in the BTCInput Module
 
 ## Summary
 
