@@ -25,6 +25,7 @@ I started this repository to work through an easy and basic book before working 
   - [Extension Exercises for Chapter 9](./02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.md)
 - [Chapter 10: Use Classes to Create Active Objects](./02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.md)
 - [Chapter 11: Object-Based Solution Design](./02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.md)
+- [Chapter 12: Python Applications](./02_AdvancedProgramming/12_PythonApplications/Chapter_12.qmd)
 
 ### Useful Python
 
