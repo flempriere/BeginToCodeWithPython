@@ -12,7 +12,7 @@ import BTCInput
 def read_min_valued_integer(prompt, min_value):
     """
     Displays a prompt and reads in a integer number greater
-    than or equal to min_value.
+    than or equal to `min_value`.
 
     Keyboard interrupts (CTRL+C) are ignored
     Invalid numbers are rejected
@@ -29,7 +29,7 @@ def read_min_valued_integer(prompt, min_value):
     Returns
     -------
     int
-        integer > 0 entered by the user
+        integer >= `min_value` entered by the user
     """
     while True:
         result = BTCInput.read_int(prompt)
@@ -59,7 +59,7 @@ class MusicTrack:
 
     def __init__(self, name, length_in_seconds):
         """
-        Create a new MusicTrack instance
+        Create a new `MusicTrack` instance
 
         Parameters
         ----------
@@ -71,7 +71,7 @@ class MusicTrack:
         Raises
         ------
         ValueError
-                Raised if length_in_seconds is invalid
+                Raised if `length_in_seconds` is invalid
         """
         self.name = name
         if length_in_seconds <= 0:
@@ -242,7 +242,7 @@ def load_tracks(file_name):
     Returns
     -------
     None
-        Music Tracks are loaded into the global tracks list
+        Music Tracks are loaded into the global `tracks` list
 
     Raises
     ------
@@ -448,7 +448,7 @@ def filter_tracks_greater_than_length(min_length, tracks_to_filter):
     -------
     list[MusicTrack]
         List of MusicTracks satisfying
-        `MusicTrack.length_in_seconds <= maximum length`.
+        `MusicTrack.length_in_seconds` <= maximum length.
         If no MusicTracks are found an empty list is returned
 
     See Also
@@ -509,7 +509,7 @@ class Playlist:
 
     def __init__(self, name, tracks=[]):
         """
-        Create a new Playlist instance
+        Create a new `Playlist` instance
 
         Parameters
         ----------
@@ -597,6 +597,10 @@ Songs:
         Remove all tracks from a playlist
 
         Runtime is set to 0
+
+        See Also
+        --------
+        Playlist.remove_track : remove a single track from a playlist
         """
         self.tracks.clear()
         self.__runtime = 0
@@ -704,7 +708,7 @@ def display_playlist(playlist, name_only=True):
     playlist : Playlist
         playlist to display
     name_only : bool, optional
-        only dispaly the playlists name and runtime, by default `True`
+        only display the playlists name and runtime, by default `True`
 
     Returns
     -------

@@ -502,7 +502,7 @@ window.Quarto = {
 <li><em>nouns</em> describe <em>things</em> which naturally translate to <em>objects</em>
 <ul>
 <li><p>e.g.&nbsp;a food service point-of-sale system might be described as</p>
-<div id="13206c9c" class="cell" data-execution_count="1">
+<div id="018a4b12" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>The <span class="ansi-red-fg">customer </span>will select a <span class="ansi-red-fg">dish</span> from the <span class="ansi-red-fg">menu</span> and add it to his <span class="ansi-red-fg">order</span>.
@@ -536,7 +536,7 @@ Tip
 <ul>
 <li>For our first design we could implement all these different stock items as different classes, (you can find the code in <a href="./Examples/01_SeparateClasses/SeparateClasses.py">SeparateClasses.py</a>)</li>
 </ul>
-<div id="73f1e3a9" class="cell" data-execution_count="2">
+<div id="2d848653" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 11.1 Fashion Items as Separate Classes</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mocks out the class-based implementation of the fashion items, treating</span></span>
@@ -896,7 +896,7 @@ classDiagram
 <li>Now lets refactor our code to use a class hierarchy</li>
 <li>The naive implementation looks like,</li>
 </ul>
-<div id="878f87af" class="cell" data-execution_count="3">
+<div id="34b7a53a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> abc <span class="im">import</span> ABC</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -962,7 +962,7 @@ classDiagram
 <li><p>We move the common attributes and properties to the class</p></li>
 <li><p>Define an <code>__init__</code> as usual</p></li>
 <li><p>Now lets define our <code>Dress</code> class, naively you might write,</p>
-<div id="b696dd0e" class="cell" data-execution_count="4">
+<div id="026defd4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Dress(StockItem):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Represents the inventory details for a Dress</span></span>
@@ -1011,7 +1011,7 @@ classDiagram
 <li><p>We add the unique attributes</p></li>
 <li><p>Currently no need to define any new behaviour</p></li>
 <li><p>However, when we try to create a <code>Dress</code> instance and use it we see</p>
-<div id="e67475e8" class="cell" data-execution_count="5">
+<div id="2be4aeb6" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> Dress(stock_ref<span class="op">=</span><span class="st">"D0001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"red"</span>, pattern<span class="op">=</span><span class="st">"swirly"</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(x.pattern)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(x.price)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1057,7 +1057,7 @@ classDiagram
 <li>Used to return a reference to the superclass instance</li>
 </ul></li>
 </ul>
-<div id="ac53cfab" class="cell" data-execution_count="6">
+<div id="59be5eaa" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dress(StockItem):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents the inventory details for a Dress</span></span>
@@ -1135,7 +1135,7 @@ classDiagram
 </ul></li>
 <li><p>Provides a user friendly string name</p></li>
 <li><p>Implement as a class property</p>
-<div id="db9b89c6" class="cell" data-execution_count="7">
+<div id="98c691e2" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> StockItem(<span class="bu">object</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">@property</span></span>
@@ -1151,7 +1151,7 @@ classDiagram
 <li>Overridden attributes are used inplace of the superclass implementation</li>
 </ul></li>
 <li><p>e.g.&nbsp;For the <code>Dress</code> class we might write</p>
-<div id="64c8944d" class="cell" data-execution_count="8">
+<div id="98da470d" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Dress(StockItem):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>      ...</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">@property</span></span>
@@ -1160,7 +1160,7 @@ classDiagram
 </div>
 <ul>
 <li><p>Then calling <code>item_name</code> on a <code>Dress</code> instance should return <code>"Dress"</code> instead of <code>"Stock Item"</code> as demonstrated below</p>
-<div id="0f5acc1a" class="cell" data-execution_count="9">
+<div id="f6cd89f4" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    item <span class="op">=</span> StockItem()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"item name is"</span>, item.item_name)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    dress <span class="op">=</span> Dress()</span>
@@ -1189,7 +1189,7 @@ dress name is Dress</code></pre>
 </ul></li>
 <li>We can see this in practice below</li>
 </ul>
-<div id="d5b1d080" class="cell" data-execution_count="10">
+<div id="a07f9c20" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> abc</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> StockItem(abc.ABC):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1223,7 +1223,7 @@ dress name is Dress</code></pre>
 <li><code>Pants</code> does not</li>
 </ul></li>
 <li><p>Let’s see what happens when we try to instantiate these</p>
-<div id="0cc06412" class="cell" data-execution_count="11">
+<div id="1cd0cd63" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  d <span class="op">=</span> Dress()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(d.item_name)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1269,22 +1269,22 @@ dress name is Dress</code></pre>
 <h6 class="anchored" data-anchor-id="make-something-happen-method-overriding-in-classes">Make Something Happen: Method Overriding in Classes</h6>
 <p><em>Open the python interpreter and work through the following steps to understand method overriding</em></p>
 <p><em>Enter the following statement</em></p>
-<div id="8d4f0cef" class="cell" data-execution_count="12">
+<div id="b1a753f9" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> <span class="bu">object</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This creates an <code>object</code> instance referenced by <code>o</code>. If we print the value of <code>o</code> we are calling the <code>__str__</code> method on the <code>object</code> class</p>
 <p><em>Run the print statement as below</em></p>
-<div id="5df0b138" class="cell" data-execution_count="13">
+<div id="902745ec" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(o)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;object object at 0x7ff11429abe0&gt;</code></pre>
+<pre><code>&lt;object object at 0x7f7444366be0&gt;</code></pre>
 </div>
 </div>
 <p><code>print</code> requires a <code>str</code> argument, so <code>o</code> is converted to a string by calling its <code>__str__</code> method. In this case the <code>__str__</code> method of the <code>object</code> class. We can see the result is a message that indicates the type of the object and the memory address where the instance is stored.</p>
 <p>This should be familiar to what we see in the earlier <code>Contact</code> class before we defined a <code>__str__</code> method. What happened there was that when <code>__str__</code> was called to convert a <code>Contact</code> to an string, it deferred to the superclass <code>__str__</code> method which was <code>object</code></p>
 <p>To define different behaviour we have to provide our own <code>__str__</code> method which is said to <em>override</em> the superclass <code>__str__</code> method.</p>
 <p><em>Define a new class</em> <code>StrTest</code> <em>by entering the statements below</em></p>
-<div id="289d3704" class="cell" data-execution_count="14">
+<div id="61a54dc6" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StrTest(<span class="bu">object</span>):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"string from StrTest"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1292,7 +1292,7 @@ dress name is Dress</code></pre>
 <p>Remember that we don’t have to explicitly inherit from <code>object</code> we’ve just done it to be clear</p>
 <p>If we now print this new <code>StrTest</code> object, we can see that the new <code>__str__</code> method on the <code>StrTest</code> is used.</p>
 <p><em>Test this by running the line below</em></p>
-<div id="995677c7" class="cell" data-execution_count="15">
+<div id="fc280e23" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(StrTest())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>string from StrTest</code></pre>
@@ -1300,14 +1300,14 @@ dress name is Dress</code></pre>
 </div>
 <p>But what if we want to use the <code>__str__</code> method from the superclass as part of the <code>__str__</code> method of the subclass? Well we can do so by using <code>super()</code> to access the superclass instance associated with the subclass instance. We can then directly reference the <code>__str__</code> method</p>
 <p><em>Demonstrate this by defining a new class, as below</em></p>
-<div id="1ce569b2" class="cell" data-execution_count="16">
+<div id="1bf07c1d" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StrTestSub(StrTest):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">super</span>().<span class="fu">__str__</span>() <span class="op">+</span> <span class="st">"..with sub"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>__str__</code> method still overrides the superclass, but <code>super()</code> lets us incorporate the <code>__str__</code> result from the <code>StrTest</code> superclass. We can see this behaviour if we try to print the object.</p>
 <p><em>Call print on an instance of</em> <code>StrTestSub</code> <em>as below</em></p>
-<div id="c71aeb57" class="cell" data-execution_count="17">
+<div id="bcc5fbf7" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(StrTestSub())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>string from StrTest..with sub</code></pre>
@@ -1350,7 +1350,7 @@ dress name is Dress</code></pre>
 </ul></li>
 <li>Let us look at this in practice</li>
 </ul>
-<div id="cec21897" class="cell" data-execution_count="20">
+<div id="f64b04e4" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dress(stock_ref<span class="op">=</span><span class="st">"D001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"red"</span>, pattern<span class="op">=</span><span class="st">"swirly"</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1756,7 +1756,7 @@ Size: 12</code></pre>
 <li>All items need this property so most appropriate to add to <code>StockItem</code></li>
 <li>Should be added to the <code>__init__</code></li>
 </ul>
-<div id="4a55b154" class="cell" data-execution_count="21">
+<div id="dd49def6" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">class</span> StockItem(abc.ABC):</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, colour, location):</span>
@@ -1770,7 +1770,7 @@ Size: 12</code></pre>
 <ul>
 <li><p>This has a problem that it breaks our program!</p></li>
 <li><p>If we try create a new <code>Dress</code> we find</p>
-<div id="dd74512e" class="cell" data-execution_count="23">
+<div id="2d3e2a41" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>   d <span class="op">=</span> Dress(<span class="st">"D001"</span>, <span class="dv">100</span>, <span class="st">"red"</span>, <span class="st">"swirly"</span>, <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1797,7 +1797,7 @@ Size: 12</code></pre>
 <ul>
 <li>Same for every other subclass</li>
 </ul>
-<div id="d36cc561" class="cell" data-execution_count="24">
+<div id="391ceb4b" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Dress(StockItem):</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, colour, location, pattern, size):</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>          <span class="bu">super</span>().<span class="fu">__init__</span>(stock_ref, price, colour, location)</span>
@@ -1806,11 +1806,11 @@ Size: 12</code></pre>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__Dress_version <span class="op">=</span> <span class="dv">1</span> <span class="co"># no attribute changes to `Dress`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>Now the instantiation should work</p>
-<div id="1e13890d" class="cell" data-execution_count="25">
+<div id="7cad17d0" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>  d <span class="op">=</span> Dress(<span class="st">"D001"</span>, <span class="dv">100</span>, <span class="st">"red"</span>, <span class="st">"front shelf"</span>, <span class="st">"swirly"</span>, <span class="dv">12</span>)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.Dress object at 0x7ff11466ffe0&gt;</code></pre>
+<pre><code>&lt;__main__.Dress object at 0x7f7444923740&gt;</code></pre>
 </div>
 </div></li>
 <li><p>The takeaway is that class hierarchies are <em>very</em> brittle to changes</p>
@@ -1868,7 +1868,7 @@ Size: 12</code></pre>
 </ol></li>
 <li><p><code>hasattr</code> returns <code>True</code> if the attribute exists, else <code>False</code></p></li>
 </ul>
-<div id="32da45d9" class="cell" data-execution_count="27">
+<div id="04feff6e" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a> d <span class="op">=</span> Dress(<span class="st">"D001"</span>, <span class="dv">100</span>, <span class="st">"red"</span>, <span class="st">"swirly"</span>, <span class="dv">12</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a> d.location <span class="op">=</span> <span class="st">"Front of Shop"</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1921,7 +1921,7 @@ The dress does not have location information</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-instrumented-stock-items">Make Something Happen: Instrumented Stock Items</h5>
 <p><em>A technique for following the flow of a program is to add instrumentation to code. The most basic form of instrumentation is to add print statements that show the flow of the program. Work through the following exercise to see how this works.</em></p>
 <p>For example the below code demonstrates adding instrumentation to the <code>StockItem</code> class. We add a class level variable <code>show_instrumentation</code> that lets us toggle on or off the instrumentation. The most basic implementation just adds print statements that let us know which classes are called.</p>
-<div id="a0a8f41c" class="cell" data-execution_count="28">
+<div id="7138c1ab" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> abc</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockItem(abc.ABC):</span>
@@ -1940,7 +1940,7 @@ The dress does not have location information</code></pre>
 </div>
 <p>Each instrumentation call string is given by the <code>**</code> prefix to distinguish it from the normal code.</p>
 <p><em>The code for the instrumentation is replicated below, and can be found in</em> <a href="./Examples/05_InstrumentedStockItems/InstrumentedStockItems.py">Instrumented Stock Items</a><em>. Work through the following code and consider the examples below</em></p>
-<div id="d0895d14" class="cell" data-execution_count="29">
+<div id="66b9b6b1" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 11.5 Fashion Items using Instrumentation</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adds optional instrumentation to the StockItem hierarchy to demonstrate the</span></span>
@@ -2280,7 +2280,7 @@ The dress does not have location information</code></pre>
 <span id="cb47-337"><a href="#cb47-337" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().check_version()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>First define a new</em> <code>Dress</code> <em>item as described</em></p>
-<div id="d48122b4" class="cell" data-execution_count="30">
+<div id="1a9d1841" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>dress <span class="op">=</span> Dress(stock_ref<span class="op">=</span><span class="st">"D001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"Red"</span>, pattern<span class="op">=</span><span class="st">"Swirly"</span>, size<span class="op">=</span><span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>**Dress __init__ called
@@ -2292,7 +2292,7 @@ The dress does not have location information</code></pre>
 <li>Then the <code>StockItem</code> <code>__init__</code> is called (from within the previous <code>__init__</code>)</li>
 </ul>
 <p><em>Now define a new</em> <code>Jeans</code> <em>item as below</em></p>
-<div id="4a6be100" class="cell" data-execution_count="31">
+<div id="5ad5718d" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>jeans <span class="op">=</span> Jeans(</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    stock_ref<span class="op">=</span><span class="st">"TR12327"</span>,</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    price<span class="op">=</span><span class="dv">50</span>,</span>
@@ -2317,7 +2317,7 @@ The dress does not have location information</code></pre>
 </ol></li>
 <li><p>Now lets see what happens when we try to print a <code>Jeans</code> item</p></li>
 </ul>
-<div id="f8955c83" class="cell" data-execution_count="32">
+<div id="3f15e07b" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(jeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>**Jeans __str__ called
@@ -2352,7 +2352,7 @@ Style: flared</code></pre>
 </ul></li>
 <li>If we want to turn off the instrumentation we can change the value of <code>StockItem.show_instrumentation</code> e.g.</li>
 </ul>
-<div id="a0f8f124" class="cell" data-execution_count="33">
+<div id="488c7c39" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>StockItem.show_instrumentation <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(jeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2406,7 +2406,7 @@ Enter your command:</code></pre>
 
   Enter item to add:</code></pre></li>
 <li><p>The full code is given in <a href="./Examples/06_CreatingStockItems/CreatingStockItems.py">Creating Stock Items</a></p>
-<div id="305c26fb" class="cell" data-execution_count="34">
+<div id="128d28a3" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> StockItem(abc.ABC):</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Abstract base class representing a single inventory item.</span></span>
@@ -3043,7 +3043,7 @@ Enter your command:</code></pre>
 <span id="cb61-54"><a href="#cb61-54" aria-hidden="true" tabindex="-1"></a>      stock_item <span class="op">=</span> <span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>An example output from this program might then look like</p></li>
 </ul>
-<div id="89a8082e" class="cell" data-execution_count="35">
+<div id="2e34b32d" class="cell" data-execution_count="35">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Create a new stock item
@@ -3125,7 +3125,7 @@ Size: 12
 <li>We can’t directly modify <code>__stock_level</code> as it’s private</li>
 <li>So we need to add a method</li>
 </ul>
-<div id="61717f7b" class="cell" data-execution_count="36">
+<div id="1e989b82" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 11.7 Updating Stock Levels on an Item</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Continues demonstrating behaviours of the fashion shop, here we highlight how</span></span>
@@ -3394,7 +3394,7 @@ Size: 12
 </ul></li>
 <li><p>Once validated we can directly update the private variable</p></li>
 <li><p>Let us see how this works with a <code>Dress</code> now</p>
-<div id="9b502111" class="cell" data-execution_count="37">
+<div id="50105bb3" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>  d <span class="op">=</span> Dress(</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"D0001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"Red"</span>, pattern<span class="op">=</span><span class="st">"Swirly"</span>, size<span class="op">=</span><span class="dv">12</span>, location<span class="op">=</span><span class="st">"Shop Window"</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  )</span>
@@ -3422,7 +3422,7 @@ Size: 12</code></pre>
 <li><p>We can see the Stock Level is now <span class="math inline">\(5\)</span></p></li>
 <li><p>What happens if we try to add more than <code>StockItem.max_stock_add</code>?</p></li>
 </ul>
-<div id="89428384" class="cell" data-execution_count="38">
+<div id="751191b3" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>d.add_stock(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>**StockItem add_stock called</code></pre>
@@ -3474,7 +3474,7 @@ Size: 12</code></pre>
 <li>The user tries to sell more items than are available i.e.&nbsp;<code>count</code> <span class="math inline">\(&gt;\)</span> <code>self.__stock_level</code></li>
 </ol></li>
 <li><p>Let’s see how this plays out with the <code>Dress</code> class</p>
-<div id="3bd10463" class="cell" data-execution_count="40">
+<div id="efa24158" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>  d <span class="op">=</span> Dress(</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"D0001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"Red"</span>, pattern<span class="op">=</span><span class="st">"Swirly"</span>, size<span class="op">=</span><span class="dv">12</span>, location<span class="op">=</span><span class="st">"Shop Window"</span></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  )</span>
@@ -3502,7 +3502,7 @@ Size: 12</code></pre>
 </div>
 </div></li>
 <li><p>And again what happens if we try to do something invalid like selling more stock than we have</p>
-<div id="bb4cf0d6" class="cell" data-execution_count="41">
+<div id="2ffa6a8a" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>  d.sell_stock(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>**StockItem sell_stock called</code></pre>
@@ -3715,7 +3715,7 @@ Tip
 <ul>
 <li><p>Our first step is to define our data attributes and define the <code>__init__</code></p></li>
 <li><p>We’ll start by using a dictionary to store our items</p>
-<div id="5fe78005" class="cell" data-execution_count="42">
+<div id="2efd45c9" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> FashionShop:</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
@@ -3725,11 +3725,11 @@ Tip
 <li><p>Purely creates an empty dictionary (<code>self.__stock_dictionary</code>) to store future stock items</p></li>
 <li><p>We make the dictionary private to avoid accidental modification</p></li>
 <li><p>We can now create a new <code>FashionShop</code></p>
-<div id="40f86714" class="cell" data-execution_count="43">
+<div id="f255ad00" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>  shop <span class="op">=</span> FashionShop()</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(shop)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.FashionShop object at 0x7ff1143f1e80&gt;</code></pre>
+<pre><code>&lt;__main__.FashionShop object at 0x7f7444678b90&gt;</code></pre>
 </div>
 </div></li>
 </ul>
@@ -3815,7 +3815,7 @@ Tip
 <li><p>The method checks for duplicates, throwing a <code>KeyError</code> if the stock reference is already used</p></li>
 <li><p>If no exception is raised, the item is inserted into the stock dictionary</p></li>
 <li><p>Let us see this in practice,</p>
-<div id="746528fb" class="cell" data-execution_count="45">
+<div id="6f68b274" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>  dress <span class="op">=</span> Dress(stock_ref<span class="op">=</span><span class="st">"D001"</span>, price<span class="op">=</span><span class="dv">100</span>, colour<span class="op">=</span><span class="st">"red"</span>, pattern<span class="op">=</span><span class="st">"swirly"</span>, size<span class="op">=</span><span class="dv">12</span>, location<span class="op">=</span><span class="st">"front"</span>)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  shop <span class="op">=</span> FashionShop()</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  shop.store_new_stock_item(dress)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -3825,7 +3825,7 @@ Tip
 </div>
 </div></li>
 <li><p>And if we try to add it again…</p>
-<div id="c9dfe0d2" class="cell" data-execution_count="46">
+<div id="8496828a" class="cell" data-execution_count="46">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>  shop.store_new_stock_item(dress)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -3880,7 +3880,7 @@ Tip
 <li>The calling code is responsible for checking that the returned value is a valid <code>StockItem</code></li>
 <li>Let’s demonstrate this by trying to find the dress we just added, and one that didn’t exist</li>
 </ul>
-<div id="9cd8b37e" class="cell" data-execution_count="48">
+<div id="5a08c3ae" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shop.find_stock_item(<span class="st">"D001"</span>))</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shop.find_stock_item(<span class="st">"AAAA"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -3927,7 +3927,7 @@ None</code></pre>
 <li>Like our <a href="#make-something-happen-instrumented-stock-items">instrumented version</a> of <code>StockItem</code>, <code>FashionShop</code> provides instrumentation so you can view the program flow</li>
 </ul></li>
 </ul>
-<div id="d9804218" class="cell" data-execution_count="50">
+<div id="601a6d4d" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>dress <span class="op">=</span> Dress(</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>    stock_ref<span class="op">=</span><span class="st">"D001"</span>,</span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>    price<span class="op">=</span><span class="dv">100</span>,</span>
@@ -4077,7 +4077,7 @@ classDiagram
 </div>
 </div>
 <p>Our abstract base class is fairly simple, it defines the properties and the abstract methods. You’ll observe that we make the majority of data attributes <em>read-only</em>. This is because when dealing with people’s money we want to be really careful about inappropriate changes!</p>
-<div id="52d76268" class="cell" data-execution_count="51">
+<div id="20d2ea32" class="cell" data-execution_count="51">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -4216,7 +4216,7 @@ classDiagram
 </ul></li>
 <li>We can then define our savings account</li>
 </ul>
-<div id="b98eff98" class="cell" data-execution_count="52">
+<div id="3836056c" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SavingsAccount(Account):</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents a standard savings account</span></span>
@@ -4293,7 +4293,7 @@ classDiagram
 <li><p>Apply interest just uses the default implementation</p></li>
 <li><p>We then derive from <code>SavingsAccount</code> for <code>LongTermSavingsAccount</code></p></li>
 </ul>
-<div id="0fe560fb" class="cell" data-execution_count="53">
+<div id="396cc3d9" class="cell" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LongTermSavingsAccount(SavingsAccount):</span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents a long term savings account</span></span>
@@ -4611,7 +4611,7 @@ classDiagram
 <li><p>Lastly we define a <code>CreditAccount</code> class</p></li>
 <li><p>Works very similar to a <code>SavingsAccount</code> but can only have negative balances</p></li>
 </ul>
-<div id="cba6c9d5" class="cell" data-execution_count="54">
+<div id="ffb44c72" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CreditAccount(Account):</span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents a basic credit account</span></span>
@@ -4726,7 +4726,7 @@ classDiagram
 <li><code>withdraw</code> checks that the withdrawal keeps the balance under the withdrawal limit</li>
 </ul>
 <p>We can then define our <code>AccountSystem</code>, this is basically the <code>FashionShop</code> renamed. However we also add a second dictionary <code>account_name_dictionary</code> which stores all the accounts where the list of accounts associated with a specific account holder is keyed by that account holder. This means we can do fast lookup both by account number (to get a specific account) or by client to get all their associated accounts. We provide two methods <code>get_account</code> which performs the id based lookup and <code>find_users_accounts</code> which finds the accounts associated with a user</p>
-<div id="d8aa1695" class="cell" data-execution_count="55">
+<div id="c377056b" class="cell" data-execution_count="55">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 11.1b Account System</span></span>
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Provides a class for managing and storing collections of accounts</span></span>
@@ -4876,7 +4876,7 @@ classDiagram
 <span id="cb99-147"><a href="#cb99-147" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> []</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Below demonstrates how the code works</p>
-<div id="f0722736" class="cell" data-execution_count="56">
+<div id="c9ecf632" class="cell" data-execution_count="56">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test Savings Account</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>new_saving <span class="op">=</span> SavingsAccount(<span class="dv">1</span>, <span class="st">"Alice"</span>, <span class="fl">0.003</span>)</span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>new_saving.deposit(<span class="dv">100</span>)</span>
@@ -5770,7 +5770,7 @@ classDiagram
 <h4 class="anchored" data-anchor-id="make-something-happen-investigating-sets">Make Something Happen: Investigating Sets</h4>
 <p><em>Work through the following steps in the python interpreter to understand sets</em></p>
 <p>A set can be created by explicitly using the <code>set</code> initializer</p>
-<div id="a90e9768" class="cell" data-execution_count="57">
+<div id="d651e62b" class="cell" data-execution_count="57">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>set1 <span class="op">=</span> <span class="bu">set</span>()</span>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>set1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="57">
@@ -5779,7 +5779,7 @@ classDiagram
 </div>
 <p>This creates an empty set.</p>
 <p>We can add to set like with a list, but we use <code>add</code> rather than <code>append</code></p>
-<div id="c13e61a6" class="cell" data-execution_count="58">
+<div id="9e308b7d" class="cell" data-execution_count="58">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>set1.add(<span class="dv">1</span>)</span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>set1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
@@ -5787,7 +5787,7 @@ classDiagram
 </div>
 </div>
 <p>Sets can only hold one instance of a given value, what happens if we try to add the same element twice?</p>
-<div id="d7a79644" class="cell" data-execution_count="59">
+<div id="42f7644f" class="cell" data-execution_count="59">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>set1.add(<span class="dv">1</span>)</span>
 <span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>set1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="59">
@@ -5796,7 +5796,7 @@ classDiagram
 </div>
 <p>As we can see the set contents have not changed, there is only one <code>1</code> in the set. However the other thing to observe is that no error was thrown, the second <code>add</code> fails silently</p>
 <p>We can add multiple values as long as they are distinct</p>
-<div id="2b424b22" class="cell" data-execution_count="60">
+<div id="531b7312" class="cell" data-execution_count="60">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>set1.add(<span class="dv">2</span>)</span>
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>set1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
@@ -5804,7 +5804,7 @@ classDiagram
 </div>
 </div>
 <p>Like with lists and dictionaries there is a quick set declaration syntax. We simply provide a comma-separated list enclosed in curly braces</p>
-<div id="3519bb96" class="cell" data-execution_count="61">
+<div id="47c6d863" class="cell" data-execution_count="61">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>set2 <span class="op">=</span> {<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>}</span>
 <span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>set2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="61">
@@ -5814,42 +5814,42 @@ classDiagram
 <p>This is similar but distinct to the dictionary case where the curly brace list is comma separated <code>key:value</code> pairs</p>
 <p>For those familiar with set theory, sets provide the standard suite of set operations.</p>
 <p><code>difference</code> is called on one set, and takes another set as an argument. It returns a new set containing the elements in the original set that are not in the argument set, e.g.</p>
-<div id="259f986c" class="cell" data-execution_count="62">
+<div id="a6181e7e" class="cell" data-execution_count="62">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>set1.difference(set2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
 <pre><code>{1}</code></pre>
 </div>
 </div>
 <p>and</p>
-<div id="96e737ab" class="cell" data-execution_count="63">
+<div id="0d9be1b1" class="cell" data-execution_count="63">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>set2.difference(set1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="63">
 <pre><code>{3, 4, 5}</code></pre>
 </div>
 </div>
 <p><code>Union</code> returns a set containing the elements that are in either of the sets</p>
-<div id="40687f37" class="cell" data-execution_count="64">
+<div id="b8ce0aff" class="cell" data-execution_count="64">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb133"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>set1.union(set2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>{1, 2, 3, 4, 5}</code></pre>
 </div>
 </div>
 <p><code>intersection</code> returns a set containing the elements that are in both of the sets</p>
-<div id="4876b7a2" class="cell" data-execution_count="65">
+<div id="ad762027" class="cell" data-execution_count="65">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb135"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>set1.intersection(set2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="65">
 <pre><code>{2}</code></pre>
 </div>
 </div>
 <p>There are also a number of methods for comparing the contents of a set. <code>isdisjoint</code> returns <code>True</code> if the two sets have no common elements</p>
-<div id="ad4b0d2a" class="cell" data-execution_count="66">
+<div id="fbb2174c" class="cell" data-execution_count="66">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb137"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>set1.isdisjoint(set2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p><code>issubset</code> takes the form <code>seta.issubset(setb)</code> and returns <code>True</code> if <code>seta</code> is a subset of <code>setb</code>. <span class="math inline">\(A\)</span> being a subset of <span class="math inline">\(B\)</span> means all the elements of <span class="math inline">\(A\)</span> are in <span class="math inline">\(B\)</span></p>
-<div id="febb8693" class="cell" data-execution_count="67">
+<div id="b246b7e3" class="cell" data-execution_count="67">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>set3 <span class="op">=</span> {<span class="dv">2</span>, <span class="dv">3</span>}</span>
 <span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>set3.issubset(set2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="67">
@@ -5857,7 +5857,7 @@ classDiagram
 </div>
 </div>
 <p>The opposite method is <code>issuperset</code> which returns true if the set the method is called on is a superset of the argument. <span class="math inline">\(A\)</span> is a superset of <span class="math inline">\(B\)</span> if <span class="math inline">\(A\)</span> contains every element of <span class="math inline">\(B\)</span></p>
-<div id="b4803f8b" class="cell" data-execution_count="68">
+<div id="4329262f" class="cell" data-execution_count="68">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>set3.issuperset(set2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="68">
 <pre><code>False</code></pre>
@@ -5869,7 +5869,7 @@ classDiagram
 <li>Let us remove duplicates in a collection</li>
 </ul></li>
 </ul>
-<div id="5ea1dff9" class="cell" data-execution_count="69">
+<div id="726f5014" class="cell" data-execution_count="69">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>(<span class="st">"Hello World"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="69">
 <pre><code>{' ', 'H', 'W', 'd', 'e', 'l', 'o', 'r'}</code></pre>
@@ -5879,7 +5879,7 @@ classDiagram
 <li>Python’s sets are unordered</li>
 <li>They can be sorted using the function <code>sorted</code></li>
 </ul>
-<div id="8330ba97" class="cell" data-execution_count="70">
+<div id="e56fdfbb" class="cell" data-execution_count="70">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb145"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(<span class="st">"Hello World"</span>))</span>
 <span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(<span class="bu">set</span>(<span class="st">"Hello World"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -5893,13 +5893,13 @@ classDiagram
 <li>e.g.&nbsp;a players inventory</li>
 </ul></li>
 </ul>
-<div id="45fa4760" class="cell" data-execution_count="71">
+<div id="04a181d0" class="cell" data-execution_count="71">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb147"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>pocket <span class="op">=</span> {<span class="st">"axe"</span>, <span class="st">"apple"</span>, <span class="st">"herbs"</span>, <span class="st">"flashlight"</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><p>Sets allow for easy membership checks</p></li>
 <li><p>especially when we want to look at multiple members</p>
-<div id="779a8e5e" class="cell" data-execution_count="72">
+<div id="378cd5f3" class="cell" data-execution_count="72">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb148"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>  apple_potion <span class="op">=</span> {<span class="st">"apple"</span>, <span class="st">"herbs"</span>}</span>
 <span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> apple_potion.issubset(pocket):</span>
 <span id="cb148-3"><a href="#cb148-3" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Making an apple potion"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -5916,7 +5916,7 @@ classDiagram
 <li>Use set difference to remove the ingredients</li>
 <li>Then add an apple potion</li>
 </ul>
-<div id="b2efa866" class="cell" data-execution_count="73">
+<div id="71992e30" class="cell" data-execution_count="73">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>  pocket <span class="op">=</span> pocket <span class="op">-</span> apple_potion</span>
 <span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>  pocket.add(<span class="st">"apple potion"</span>)</span>
 <span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a>  pocket</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -5950,7 +5950,7 @@ classDiagram
 <li>Creating a <code>StockItem</code> now requires us to input the tag values at object creation</li>
 <li>A sample UI might look like,</li>
 </ul>
-<div id="9d9c78ca" class="cell" data-execution_count="74">
+<div id="b43f9e37" class="cell" data-execution_count="74">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Enter tags (separated by commas): </span><span class="ch">\033</span><span class="st">[31moutdoor, spring, informal, short</span><span class="ch">\033</span><span class="st">[0m"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
@@ -5973,7 +5973,7 @@ classDiagram
 <li>Returns a list containing the new strings</li>
 </ul></li>
 <li><p>We can then use <code>map</code> to apply the string method <code>str.strip</code> to each individual tag</p>
-<div id="46cb1ddf" class="cell" data-execution_count="76">
+<div id="3b2a9c6c" class="cell" data-execution_count="76">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb153"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>  tag_list <span class="op">=</span> <span class="bu">str</span>.split(<span class="bu">str</span>.lower(tag_string), sep<span class="op">=</span><span class="st">','</span>)</span>
 <span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a>  tag_list <span class="op">=</span> <span class="bu">map</span>(<span class="bu">str</span>.strip, tag_list)</span>
 <span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="bu">list</span>(tag_list))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -5982,7 +5982,7 @@ classDiagram
 </div>
 </div></li>
 <li><p>The last step is to ensure all the tags are unique by converting to a set</p>
-<div id="21d1551f" class="cell" data-execution_count="77">
+<div id="4647e40d" class="cell" data-execution_count="77">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb155"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>  tags <span class="op">=</span> <span class="bu">set</span>(tag_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>Now that we’ve defined this pipeline for creating our sets, we should really encapsulate it as a method</p></li>
@@ -6024,7 +6024,7 @@ classDiagram
 <li><p>Now that we’ve added tags we need a way to use them to search for items</p></li>
 <li><p>The client wants to provide a list of tags and receive a list of items matching those tags</p></li>
 <li><p>Below is a proposed interface</p>
-<div id="d02b4966" class="cell" data-execution_count="78">
+<div id="4c1dd050" class="cell" data-execution_count="78">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb157"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Enter the tags to look for (comma separated): </span><span class="ch">\033</span><span class="st">[31moutdoor, spring</span><span class="ch">\033</span><span class="st">[0m"</span>)</span>
 <span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Stock Reference: BL343"</span>)</span>
 <span id="cb157-3"><a href="#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Type: Blouse</span><span class="ch">\033</span><span class="st">[0m"</span>)</span>
@@ -6071,7 +6071,7 @@ Pattern: check
 </ul></li>
 <li><p>In the above example we can see the blouse matched because the search tags (<code>{"outdoor", "spring"}</code>) are a subset of the blouse’s tags (<code>{"spring", "friendly", "city", "outdoor"}</code>)</p></li>
 <li><p>This implementation is thus a simple application of <code>issubset</code></p>
-<div id="59e87208" class="cell" data-execution_count="79">
+<div id="3fccbc3a" class="cell" data-execution_count="79">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> match_tags(item):</span>
 <span id="cb158-2"><a href="#cb158-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb158-3"><a href="#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Checks if the given item matches the specified search tags</span></span>
@@ -6174,7 +6174,7 @@ Pattern: check
 <blockquote class="blockquote">
 <p>Your client would like to make changes to how the program functions. She enjoys using tags to identify stock elements. She finds having to specify a specific item type (e.g.&nbsp;pants, jeans, hat etc.) a painful process. She would prefer to index all stock using tags. Dresses would have the <code>dress</code> tag, etc. Together you propose the following mock-up</p>
 </blockquote>
-<div id="b3d4e588" class="cell" data-execution_count="80">
+<div id="25372269" class="cell" data-execution_count="80">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter stock reference: <span class="ansi-red-fg">D001</span>
@@ -6537,7 +6537,7 @@ Important
 <li>This continues until the base class for all python instances <code>object</code> is found</li>
 <li>If the object is <em>still</em> not found an error will be found, for example with the <code>int</code> object below we try to call the fictitious method <code>foo</code></li>
 </ul>
-<div id="eefb4d39" class="cell" data-execution_count="81">
+<div id="e0418d95" class="cell" data-execution_count="81">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a> x <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb166-2"><a href="#cb166-2" aria-hidden="true" tabindex="-1"></a> x.foo()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">

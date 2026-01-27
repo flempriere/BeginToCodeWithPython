@@ -279,6 +279,12 @@ window.Quarto = {
  <span class="menu-text">Chapter 10: Using Classes to Create Active Objects</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Object-based Solution Design</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -443,7 +449,7 @@ Hours worked: 3.0</code></pre>
 <li>Add an <code>hours_worked</code> field</li>
 </ul></li>
 </ul>
-<div id="4923a7ef" class="cell" data-execution_count="1">
+<div id="d0208753" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
@@ -468,7 +474,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new Contact instance</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new `Contact` instance</span></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
@@ -515,7 +521,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="st">"This name was not found"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Don’t forget we also have to update how we display contacts for the <code>Find Contact</code> functionality (or in our case the <code>display_contact</code>) function.</p>
-<div id="9bb76314" class="cell" data-execution_count="2">
+<div id="828c2172" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> display_contact(contact):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Displays the Contact details for the supplied contact</span></span>
@@ -539,7 +545,7 @@ Hours worked: 3.0</code></pre>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Hours worked for this Contact:"</span>, contact.hours_worked, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>If we create a new <code>Contact</code> object then we can see how this looks,</p>
-<div id="958b2b1b" class="cell" data-execution_count="3">
+<div id="e02ffec1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  contact <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Alice"</span>, address<span class="op">=</span><span class="st">"Bob St"</span>, telephone<span class="op">=</span><span class="st">"555"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  contact.hours_worked <span class="op">=</span> <span class="fl">5.0</span></span>
@@ -644,7 +650,7 @@ Tip
 </ul></li>
 <li><p>Start by defining a method to access the hours worked</p></li>
 </ul>
-<div id="98e4defa" class="cell" data-execution_count="4">
+<div id="8410e96b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
@@ -655,9 +661,9 @@ Tip
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    name : str</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact Name</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    address : str</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact's postal or street address.</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact's postal or street address</span></span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">    telephone : str</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact phone number (stored as a string).</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Contact phone number (stored as a string)</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">    hours_worked : int | float</span></span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Hours worked with a Contact, initialised to 0</span></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
@@ -669,7 +675,7 @@ Tip
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new Contact instance</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new `Contact` instance</span></span>
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
@@ -700,7 +706,7 @@ Tip
 <li><p>A method is part of an object</p></li>
 <li><p><code>self</code> tells the method which object it is a part of</p></li>
 <li><p>The code sample below shows how the method doesn’t need an additional reference to the <code>Contact</code> it refers to</p>
-<div id="39ce2b86" class="cell" data-execution_count="5">
+<div id="9a1f217b" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set up</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"1"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  rob.hours_worked <span class="op">=</span> <span class="dv">1</span></span>
@@ -732,7 +738,7 @@ Tip
 </ol>
 <ul>
 <li><p>We can create a second method to handle adding a session to a <code>Contact</code></p>
-<div id="7d5b76fb" class="cell" data-execution_count="6">
+<div id="3a8062fb" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># existing class definition</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
@@ -787,7 +793,7 @@ Tip
 <h4 class="anchored" data-anchor-id="add-validation-to-methods">Add Validation to Methods</h4>
 <ul>
 <li><p>Currently <code>add_session</code> would allow function calls like,</p>
-<div id="03b779bf" class="cell" data-execution_count="7">
+<div id="1f2eb468" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  rob <span class="op">=</span> Contact(<span class="st">"Rob"</span>, <span class="st">"A St"</span>, <span class="st">"555"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  rob.add_session(<span class="op">-</span><span class="dv">10</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(rob.get_hours_worked())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -844,7 +850,7 @@ Note
 <li>No longer magic constants</li>
 <li>Accessible by all <code>Contact</code> instances</li>
 </ul>
-<div id="c4af7069" class="cell" data-execution_count="8">
+<div id="aaa6de8a" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact with a name, address and telephone number.</span></span>
@@ -881,7 +887,7 @@ Note
 <span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new Contact instance</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new `Contact` instance</span></span>
 <span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
 <span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
@@ -985,7 +991,7 @@ Note
 <li>Static methods can be considered as methods defined on a class rather than an object instance</li>
 </ul></li>
 <li><p>We can define one as below,</p>
-<div id="9a952716" class="cell" data-execution_count="9">
+<div id="1c448737" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact with a name, address and telephone number.</span></span>
@@ -1043,7 +1049,7 @@ Note
 <span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new Contact instance</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new `Contact` instance</span></span>
 <span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
 <span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
@@ -1104,7 +1110,7 @@ Note
 <li>Static methods can exist even without an instance of the given class</li>
 </ul></li>
 <li><p>Static methods can be called directly from the class e.g.</p>
-<div id="e6bcdb0d" class="cell" data-execution_count="10">
+<div id="fd233127" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(Contact.valid_session_length(<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>False</code></pre>
@@ -1237,7 +1243,7 @@ Note
 <li><p>meaningless to continue with an unconverted number</p></li>
 <li><p><em>Unless</em> the caller specifies what to do in that case</p></li>
 <li><p>So this causes an exception</p>
-<div id="8fd2e894" class="cell" data-execution_count="11">
+<div id="408b45ef" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> <span class="bu">int</span>(<span class="st">"Rob"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1255,7 +1261,7 @@ Note
 <ul>
 <li>We use the <code>raise</code> keyword</li>
 </ul>
-<div id="bdc35c22" class="cell" data-execution_count="12">
+<div id="2833fc8c" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> add_session(<span class="va">self</span>, session_length):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Adds a session (in hours) to the Contacts hours</span></span>
@@ -1304,7 +1310,7 @@ Note
 <h5 class="anchored" data-anchor-id="make-something-happen-raising-exceptions-from-code">Make Something Happen: Raising Exceptions from Code</h5>
 <p><em>Investigate how exceptions are raised using the sample program <a href="./Examples/06_TimeTrackerWithException/TimeTrackerWithException.py">Time Tracker with Exception</a></em></p>
 <p>Start a python interpreter and run the example program above, select option <span class="math inline">\(1\)</span> on the menu, and enter the following,</p>
-<div id="5dc2e305" class="cell" data-execution_count="13">
+<div id="59c78ecf" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Time Tracker
@@ -1337,7 +1343,7 @@ Enter the contact phone: <span class="ansi-red-fg"> 1234 56789 </span>
 </div>
 </div>
 <p>Now add a session lasting 2 hours to the contact using option 4:</p>
-<div id="ac1587a9" class="cell" data-execution_count="14">
+<div id="aad203ef" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1358,7 +1364,7 @@ Updated hours worked: 2.0
 </div>
 </div>
 <p>This should work because <span class="math inline">\(2\)</span> is a valid session length, now repeat but attempt to add a session length of <span class="math inline">\(4\)</span>, which should be invalid,</p>
-<div id="7f005302" class="cell" data-execution_count="15">
+<div id="c66d98d5" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1376,7 +1382,7 @@ Session Length: <span class="ansi-red-fg"> 4</span>
 </div>
 </div>
 </div>
-<div id="25f4e1fb" class="cell" data-execution_count="16">
+<div id="e1a5e4e7" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -1437,7 +1443,7 @@ Note
 <li>Passing an exception to <code>print</code> prints our the message associated with the exception</li>
 <li>A representative use might look like,</li>
 </ul>
-<div id="73b4c41c" class="cell" data-execution_count="17">
+<div id="6f372b50" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg"> 4</span>
@@ -1579,7 +1585,7 @@ Warning
 <section id="make-something-happen-protecting-data-attributes-in-a-class" class="level5">
 <h5 class="anchored" data-anchor-id="make-something-happen-protecting-data-attributes-in-a-class">Make Something Happen: Protecting Data Attributes in a Class</h5>
 <p><em>Follow the following steps to examine how to make a python class secure. Open a python interpreter and enter the statements below</em></p>
-<div id="93f73a21" class="cell" data-execution_count="18">
+<div id="d0a1d9c5" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Secret:</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._secret <span class="op">=</span> <span class="dv">99</span></span>
@@ -1587,12 +1593,12 @@ Warning
 </div>
 <p>The above creates a class <code>Secret</code> which has two attributes, <code>_secret</code> and <code>__top_secret</code></p>
 <p><em>Create an instance of the</em> <code>Secret</code> <em>class</em></p>
-<div id="66c1a0af" class="cell" data-execution_count="19">
+<div id="e2216f14" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Secret()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above creates a new instance of a <code>Secret</code> class and stores it with the variable <code>x</code>.</p>
 <p><em>Try to access the</em> <code>_secret</code> <em>attribute on</em> <code>x</code></p>
-<div id="4869a712" class="cell" data-execution_count="20">
+<div id="3694e697" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>    x._secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>99</code></pre>
@@ -1600,7 +1606,7 @@ Warning
 </div>
 <p>Even though we said that <code>_</code> indicates we should not access the data attribute, we can see that nothing stops us from doing so</p>
 <p><em>Now try to access the</em> <code>__top_secret</code> <em>attribute</em></p>
-<div id="0eae918c" class="cell" data-execution_count="21">
+<div id="2fd32fb6" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>    x.__top_secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1615,7 +1621,7 @@ Warning
 </div>
 <p>This time we get an <code>AttributeError</code> which suggests that there is no <code>__top_secret</code> attribute associated with the <code>Secret</code> class</p>
 <p><em>However, Python has performed some “name-mangling” to the name</em> <code>__top_secret</code><em>. Inside the</em> <code>Secret</code> <em>class we can refer to</em> <code>__top_secret</code><em>. Outside the class, the variable name is prepended with the class name (and an underscore). So we can still access it, as the below proves</em></p>
-<div id="04413068" class="cell" data-execution_count="22">
+<div id="ebd9418f" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    x._Secret__top_secret</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>100</code></pre>
@@ -1663,7 +1669,7 @@ Tip
 </ul></li>
 <li>Realistically they would be discussed and confirmed with the customer</li>
 </ul>
-<div id="3124031b" class="cell" data-execution_count="23">
+<div id="b83de88c" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
@@ -1705,7 +1711,7 @@ Tip
 </ul>
 <section id="code-analysis-properties-in-classes" class="level4">
 <h4 class="anchored" data-anchor-id="code-analysis-properties-in-classes">Code Analysis: Properties in Classes</h4>
-<div id="84419e44" class="cell" data-execution_count="24">
+<div id="2ea05dba" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    __min_text_length <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1715,7 +1721,7 @@ Tip
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">        Validates text to be stored in the contact storage</span></span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Valid input must be have a length greater than or</span></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">        equal to Contact.__min_text_length</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">        equal to `Contact.__min_text_length`</span></span>
 <span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
@@ -1806,7 +1812,7 @@ Tip
 <section id="make-something-happen-investigating-properties" class="level4">
 <h4 class="anchored" data-anchor-id="make-something-happen-investigating-properties">Make Something Happen: Investigating Properties</h4>
 <p><em>Investigate how properties work. Open up the python interpreter and enter the statements below</em></p>
-<div id="75f6d4cd" class="cell" data-execution_count="25">
+<div id="92890d11" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Prop:</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> x(<span class="va">self</span>):</span>
@@ -1819,11 +1825,11 @@ Tip
 </div>
 <p>This creates a new class <code>Prop</code> with a property <code>x</code> that has a <code>setter</code></p>
 <p><em>Now create an instance of this class as below</em></p>
-<div id="a7ff50a8" class="cell" data-execution_count="26">
+<div id="6218a3bc" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>    test <span class="op">=</span> Prop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>Put a value for</em> <code>x</code> <em>into the</em> <code>test</code> <em>instance</em></p>
-<div id="3dbbe3f5" class="cell" data-execution_count="27">
+<div id="cdbadd76" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>    test.x <span class="op">=</span> <span class="dv">99</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>set property x: 99</code></pre>
@@ -1831,7 +1837,7 @@ Tip
 </div>
 <p>When python executes the above, it runs the setter method for the property. As we can see from the output above.</p>
 <p><em>Now try to read the property</em></p>
-<div id="256bd819" class="cell" data-execution_count="28">
+<div id="1b080405" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(test.x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>got property x
@@ -1840,7 +1846,7 @@ Tip
 </div>
 <p>When reading the property, python runs the property method, as indicated above</p>
 <p><em>We can combine getting and setting in complex expressions, execute the following</em></p>
-<div id="c457965e" class="cell" data-execution_count="29">
+<div id="211ccc2d" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>    test.x <span class="op">=</span> test.x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>got property x
@@ -1852,7 +1858,7 @@ set property x: 100</code></pre>
 <ul>
 <li>The relevant changes to the <code>Contact</code> class are then,</li>
 </ul>
-<div id="a63d4e01" class="cell" data-execution_count="30">
+<div id="18db06ee" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Contact:</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Contact with a name, address and telephone number.</span></span>
@@ -1907,7 +1913,7 @@ set property x: 100</code></pre>
 <span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a><span class="co">        Validates text to be stored in the contact storage</span></span>
 <span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a><span class="co">        Valid input must be have a length greater than or</span></span>
-<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a><span class="co">        equal to Contact.__min_text_length</span></span>
+<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a><span class="co">        equal to `Contact.__min_text_length`</span></span>
 <span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
 <span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
@@ -2041,7 +2047,7 @@ Caution
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.telephone <span class="op">=</span> telephone</span>
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__hours_worked <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These statements look like normal variable assignments, nothing here indicates that these steps can fail. However, the following statement fails,</p>
-<div id="8e604727" class="cell" data-execution_count="31">
+<div id="b619d44d" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>    rob <span class="op">=</span> Contact(name<span class="op">=</span><span class="st">"Rob"</span>, address<span class="op">=</span><span class="st">"18 Pussycat Mews, London NE1 410S"</span>, telephone<span class="op">=</span><span class="st">"1234 56789"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -2220,7 +2226,7 @@ Billing amount: 130.0</code></pre>
 <ul>
 <li><p>They will load</p></li>
 <li><p>But whe we try to display or add a session we’ll get an error, like</p>
-<div id="e16bd311" class="cell" data-execution_count="32">
+<div id="35a451d7" class="cell" data-execution_count="32">
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -2250,7 +2256,7 @@ Billing amount: 130.0</code></pre>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Create a new Contact instance</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Create a new `Contact` instance</span></span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
 <span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
@@ -2279,12 +2285,16 @@ Billing amount: 130.0</code></pre>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> check_version(<span class="va">self</span>):</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Check the version of a Contact instance</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Check the version of a `Contact` instance</span></span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Upgrades the instance to the most recent version</span></span>
 <span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co">      if required</span></span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Leave it as a stub for now</p></li>
 <li><p>We want to use it when we load contacts to check versions</p></li>
 <li><p>Updated <code>load_contacts</code> is below</p>
@@ -2302,7 +2312,7 @@ Billing amount: 130.0</code></pre>
 <span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="co">  Returns</span></span>
 <span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="co">  -------</span></span>
 <span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="co">  None</span></span>
-<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact detail is loaded into the global contacts value</span></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="co">      Contact detail is loaded into the global `contacts` value</span></span>
 <span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="co">  Raises</span></span>
 <span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a><span class="co">  ------</span></span>
@@ -2329,18 +2339,22 @@ Billing amount: 130.0</code></pre>
 <li><p>In future we might define a version <span class="math inline">\(2\)</span>, then we would redefine the <code>check_version</code> method to upgrade any class that isn’t version <span class="math inline">\(2\)</span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> check_version(<span class="va">self</span>):</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Check the version of a Contact instance</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Check the version of a `Contact` instance</span></span>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co">  Upgrades the instance to the most recent version</span></span>
 <span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co">  if required</span></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span>:</span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.__version <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__billing_amount <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__version <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">except</span> <span class="pp">AttributeError</span>:</span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__billing_amount <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__version <span class="op">=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co">  Returns</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co">  -------</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="co">  None</span></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span>:</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.__version <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__billing_amount <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__version <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">except</span> <span class="pp">AttributeError</span>:</span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__billing_amount <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__version <span class="op">=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>We first attempt to check the version number</p></li>
 <li><p>If it’s not the current version (<span class="math inline">\(1\)</span>) we upgrade the class</p>
 <ul>
@@ -2357,7 +2371,7 @@ Billing amount: 130.0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-explore-version-management">Make Something Happen: Explore Version Management</h5>
 <p><em>To get a better understanding of versioning, work through the following steps</em></p>
 <p><em>Start by running the program <a href="./Examples/10_TimeTrackerWithPropertiesAndExceptionHandling/TimeTrackerWithPropertiesAndExceptionHandling.py">TimeTrackerWithPropertiesAndExceptionHandling.py</a>. Create a new contact as below</em></p>
-<div id="603008bb" class="cell" data-execution_count="33">
+<div id="54f34db1" class="cell" data-execution_count="33">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter your command: <span class="ansi-red-fg">1</span>
@@ -2374,7 +2388,7 @@ Enter the contact phone: <span class="ansi-red-fg">1234 56789</span>
 </div>
 </div>
 <p>This creates a new contact, which looks like, (use Find Contact)</p>
-<div id="349a91f9" class="cell" data-execution_count="34">
+<div id="f88dc8bb" class="cell" data-execution_count="34">
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rob Miles
 Address: 18 Pussycat Mews, London, NE1 410S
@@ -2386,7 +2400,7 @@ Hours on the case: 0</code></pre>
 <p><em>Exit the program so the contact is saved. Now load this pickle file with <a href="./Examples/12_TimeTrackerWithVersion/TimeTrackerWithVersion.py">TimeTrackerWithVersion.py</a></em></p>
 <p>This should load the contact (which is unversioned), and upgrade it to the versioned variant with a billing amount</p>
 <p><em>Attempt to display this contact, you should see something like</em></p>
-<div id="9f4891fa" class="cell" data-execution_count="35">
+<div id="bab82845" class="cell" data-execution_count="35">
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rob Miles
 Address: 18 Pussycat Mews, London, NE1 410S
@@ -2420,7 +2434,7 @@ Important
 <li><p>Each time we add a new attribute to the <code>Contact</code> class we have to modify <code>display_contact</code></p></li>
 <li><p>Would be nice just to be able to print a <code>Contact</code> directly</p></li>
 <li><p>However, doing so, we find the output is pretty useless (using the mock below)</p>
-<div id="b330ad6b" class="cell" data-execution_count="36">
+<div id="546490c3" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Contact:</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, address, telephone):</span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -2434,7 +2448,7 @@ Important
 <span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.Contact object at 0x7f4fc847f9e0&gt;</code></pre>
+<pre><code>&lt;__main__.Contact object at 0x7fd098b43a10&gt;</code></pre>
 </div>
 </div></li>
 <li><p>default for objects is the class name following by the memory address of the object</p></li>
@@ -2453,7 +2467,7 @@ Important
 <span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Amount to bill: "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.billing_amount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>The <code>\</code> character above is used to continue the string onto a new line</p></li>
 <li><p>printing now, we get what we expect</p>
-<div id="644782f3" class="cell" data-execution_count="38">
+<div id="c8b71137" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  display_contact(contact)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Name: Rob Miles
@@ -2495,18 +2509,18 @@ Amount to bill: 0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-adventures-with-string-formatting">Make Something Happen: Adventures with String Formatting</h5>
 <p><em>Open the python interpreter and work through the following steps to understand how string formatting works</em></p>
 <p><em>Enter the statements below</em></p>
-<div id="e8019508" class="cell" data-execution_count="39">
+<div id="07671b42" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Rob Miles"</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">21</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above creates two variables <code>name</code> and <code>age</code></p>
 <p><em>Now create the following template string</em></p>
-<div id="b8e4a154" class="cell" data-execution_count="40">
+<div id="f282ee38" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"My name is </span><span class="sc">{0}</span><span class="st"> and my age is </span><span class="sc">{1}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The just creates a string called <code>template</code>, <code>{0}</code> and <code>{1}</code> are two placeholder indicators for the <code>format</code> function</p>
 <p><em>Now call the</em> <code>format</code> <em>method on</em> <code>template</code></p>
-<div id="10b29a92" class="cell" data-execution_count="41">
+<div id="1e5f0c45" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>template.<span class="bu">format</span>(name, age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>'My name is Rob Miles and my age is 21'</code></pre>
@@ -2514,7 +2528,7 @@ Amount to bill: 0</code></pre>
 </div>
 <p>As we can see the placeholder values have been substituted with the values of the <code>name</code> and <code>age</code> value</p>
 <p><em>We can add additional formatting information. Redefine and format the template as follows</em></p>
-<div id="90e87c97" class="cell" data-execution_count="42">
+<div id="1728aa86" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"My name is </span><span class="sc">{0:20}</span><span class="st"> and my age is </span><span class="sc">{1:10}</span><span class="st">"</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>template.<span class="bu">format</span>(name, age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
@@ -2523,7 +2537,7 @@ Amount to bill: 0</code></pre>
 </div>
 <p>We write the placeholder as <code>{n:w}</code> where <span class="math inline">\(n\)</span> is the index of the placeholder. <span class="math inline">\(w\)</span> is the width value, as you can see from above, the value is still substituted but then spaces are added to pad out to the width. This is useful for defining columns. We use a <code>:</code> to seperate the <em>format specifiers</em> from the placeholder index</p>
 <p>For floating point values you can also specify the number of decimal places to be printed</p>
-<div id="8b56ac1e" class="cell" data-execution_count="43">
+<div id="b248bb8b" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>template <span class="op">=</span> <span class="st">"My name is </span><span class="sc">{0:20}</span><span class="st"> and my age is </span><span class="sc">{1:10.2f}</span><span class="st">"</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>template.<span class="bu">format</span>(name, age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
@@ -2584,7 +2598,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </ol></li>
 <li><p>We should also move the <code>Contact</code> class attributes validating a session length to the <code>Session</code> class</p></li>
 </ul>
-<div id="5d258dd4" class="cell" data-execution_count="44">
+<div id="ecf9b427" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> time</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">class</span> Session:</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>     <span class="co">"""</span></span>
@@ -2618,7 +2632,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <span id="cb78-31"><a href="#cb78-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb78-32"><a href="#cb78-32" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, session_length):</span>
 <span id="cb78-33"><a href="#cb78-33" aria-hidden="true" tabindex="-1"></a>         <span class="co">"""</span></span>
-<span id="cb78-34"><a href="#cb78-34" aria-hidden="true" tabindex="-1"></a><span class="co">         Create a new Session instance</span></span>
+<span id="cb78-34"><a href="#cb78-34" aria-hidden="true" tabindex="-1"></a><span class="co">         Create a new `Session` instance</span></span>
 <span id="cb78-35"><a href="#cb78-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb78-36"><a href="#cb78-36" aria-hidden="true" tabindex="-1"></a><span class="co">         Parameters</span></span>
 <span id="cb78-37"><a href="#cb78-37" aria-hidden="true" tabindex="-1"></a><span class="co">         ----------</span></span>
@@ -2642,12 +2656,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <ul>
 <li><p>We can now create <code>Session</code> objects</p>
-<div id="7fc8ded1" class="cell" data-execution_count="45">
+<div id="6a0f6f52" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>  session_length <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  session_record <span class="op">=</span> Session(session_length)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(session_record)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.Session object at 0x7f4fc847e8a0&gt;</code></pre>
+<pre><code>&lt;__main__.Session object at 0x7fd098ddadb0&gt;</code></pre>
 </div>
 </div></li>
 <li><p>creates a <code>Session</code> with the passed <code>session_length</code> parameter</p></li>
@@ -2669,12 +2683,16 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <li><p>Thus also want to implement a <code>check_version</code> method</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> check_version(<span class="va">self</span>):</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Check the version of a Contact instance</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Check the version of a `Contact` instance</span></span>
 <span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Upgrades the instance to the most recent version</span></span>
 <span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="co">      if required</span></span>
-<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
-<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Currently does nothing</p>
 <ul>
 <li>All <code>Session</code> instances will be versioned</li>
@@ -2732,7 +2750,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> check_version(<span class="va">self</span>):</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Check the version of a Contact instance</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Check the version of a `Contact` instance</span></span>
 <span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Upgrades the instance to the most recent version</span></span>
 <span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="co">      if required. This includes upgrading any Session</span></span>
@@ -2740,7 +2758,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="co">      See Also</span></span>
 <span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a><span class="co">      --------</span></span>
-<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="co">      Session.check_version : Checks and upgrades Session instances</span></span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="co">      Session.check_version : Checks and upgrades `Session` instances</span></span>
 <span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
 <span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">try</span>:</span>
 <span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.__version <span class="op">==</span> <span class="dv">1</span>:</span>
@@ -2844,23 +2862,23 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-investigating-the-map-function-and-iteration">Make Something Happen: Investigating the <code>map</code> Function and Iteration</h5>
 <p><em>These next few steps go on for a quite a while. So work through it at your own pace. However, this will give you a good understanding of not just</em> <code>map</code> <em>but also some fundamentals for python</em></p>
 <p><em>Open up a python interpreter and work through the following steps. We’ll use</em> <code>map</code> <em>to indent a list of strings. Run the following steps</em></p>
-<div id="45bec43e" class="cell" data-execution_count="46">
+<div id="d2405ecd" class="cell" data-execution_count="46">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> [<span class="st">'line1'</span>, <span class="st">'line2'</span>, <span class="st">'line3'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This creates a list containing three strings, we can easily view the contents</p>
-<div id="ebc83254" class="cell" data-execution_count="47">
+<div id="b9336f70" class="cell" data-execution_count="47">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>['line1', 'line2', 'line3']</code></pre>
 </div>
 </div>
 <p><em>Now we need to create our indentation function. We can do this by adding four spaces (or a tab etc.) at the beginning of a string. Define the following python funcion</em></p>
-<div id="addc7064" class="cell" data-execution_count="48">
+<div id="e7d94308" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> indent(x):</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"    "</span> <span class="op">+</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can test this function, on a sample string,</p>
-<div id="337151d9" class="cell" data-execution_count="49">
+<div id="01f0a24c" class="cell" data-execution_count="49">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rob"</span>)</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>indent(<span class="st">"Rob"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2872,16 +2890,16 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>We would like to apply the <code>indent</code> function to every string in the <code>code</code> list. We could do this using a <code>for</code> loop, instead we use a <code>map</code> function</p>
 <p><em>Now run the following statements</em></p>
-<div id="c15b2367" class="cell" data-execution_count="50">
+<div id="aa27b579" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>indented_code <span class="op">=</span> <span class="bu">map</span>(indent, code)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>indented_code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>&lt;map at 0x7f4fc847d7e0&gt;</code></pre>
+<pre><code>&lt;map at 0x7fd098dd8b20&gt;</code></pre>
 </div>
 </div>
 <p>Naively we expected a list of indented strings. Instead we have something called a <em>map object</em>. <code>map</code> returns something called an iterator. Iterators return items from a collection or sequence one at a time. We can work through iterators using a <code>for</code> loop. This is how we can work through lists. <code>range</code> also returns an iterator</p>
 <p><em>Now run the following</em> <code>for</code> <em>loop to get the</em> <code>indented_code</code> <em>values</em></p>
-<div id="7af3ba64" class="cell" data-execution_count="51">
+<div id="a34412ac" class="cell" data-execution_count="51">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> indented_code:</span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2894,12 +2912,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <p>Iterators allow us to save memory, rather than having to store the entire result in memory we can simply generate each one as needed. Each time we ask for a new result from the map object, <code>map</code> gets the next value from the original collection (<code>code</code>) and applies the function <code>indent</code> to it. Once the map iterator runs out of values to return, it raises <code>StopIteration</code> as an exception. This stops the loop.</p>
 <p>Lets explore this in more detail</p>
 <p><em>Recreate the statement creating the map</em></p>
-<div id="31e0b1ab" class="cell" data-execution_count="52">
+<div id="3c76f92d" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>indented_code <span class="op">=</span> <span class="bu">map</span>(indent, code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can then ask for the next item from an iterator using the <code>__next__</code> method.</p>
 <p><em>Call this method on</em> <code>indented_code</code></p>
-<div id="cc1615cf" class="cell" data-execution_count="53">
+<div id="57d6199d" class="cell" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>indented_code.<span class="fu">__next__</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="53">
 <pre><code>'    line1'</code></pre>
@@ -2907,7 +2925,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>We can see this produces the <em>next</em> value, though in this case, it’s the first item. We can keep repeating this</p>
 <p><em>Run the following</em></p>
-<div id="69345979" class="cell" data-execution_count="54">
+<div id="0f72925f" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indented_code.<span class="fu">__next__</span>())</span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indented_code.<span class="fu">__next__</span>())</span>
 <span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indented_code.<span class="fu">__next__</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2930,12 +2948,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>We can see that we get the next two items from the iterator, and then finally after trying to get an non-existent value we see a <code>StopIteration</code> exception is raised</p>
 <p><em>You can’t reuse a iterator once it has run out of items. You have to recreate it</em></p>
-<div id="c7941622" class="cell" data-execution_count="55">
+<div id="e15d5dff" class="cell" data-execution_count="55">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>indent_iterator <span class="op">=</span> <span class="bu">map</span>(indent, code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we want to convert this to normal collection, we can do something like call <code>list</code> to convert to a list</p>
 <p><em>Check this out by running the following statements</em></p>
-<div id="370f6531" class="cell" data-execution_count="56">
+<div id="795bb4a6" class="cell" data-execution_count="56">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>indented_code <span class="op">=</span> <span class="bu">list</span>(indent_iterator)</span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>indented_code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
@@ -2944,13 +2962,13 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>What happens if we make the input of a <code>map</code> function an iterator</p>
 <p><em>Enter the following statements to explore</em></p>
-<div id="59b7ec13" class="cell" data-execution_count="57">
+<div id="6bae8b2f" class="cell" data-execution_count="57">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>i1 <span class="op">=</span> <span class="bu">map</span>(indent, code)</span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>i2 <span class="op">=</span> <span class="bu">map</span>(indent, i1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We first create the iterator <code>i1</code> to apply the <code>indent</code> function to the list <code>code</code>. We then create a second iterator <code>i2</code> to apply the <code>indent</code> function to the items of the <code>i1</code> iterator</p>
 <p><em>Use</em> <code>list</code> <em>to convert</em> <code>i2</code> <em>to a list</em></p>
-<div id="f1f143be" class="cell" data-execution_count="58">
+<div id="a6baaedb" class="cell" data-execution_count="58">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(i2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>['        line1', '        line2', '        line3']</code></pre>
@@ -2966,7 +2984,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <h4 class="anchored" data-anchor-id="the-python-join-method">The Python <code>join</code> Method</h4>
 <ul>
 <li><p>We can call string methods on string literals, e.g.</p>
-<div id="a94f47ec" class="cell" data-execution_count="59">
+<div id="f1484a40" class="cell" data-execution_count="59">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"FRED"</span>.lower()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>'fred'</code></pre>
@@ -2978,7 +2996,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <ul>
 <li>the string on which <code>join</code> is called is inserted between each item</li>
 </ul>
-<div id="e6d22fa6" class="cell" data-execution_count="60">
+<div id="55c48497" class="cell" data-execution_count="60">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>  report_strings <span class="op">=</span> [<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>]</span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  report_results <span class="op">=</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(report_strings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
@@ -2987,12 +3005,12 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 <h5 class="anchored" data-anchor-id="make-something-happen-investigating-the-join-function">Make Something Happen: Investigating the <code>join</code> Function</h5>
 <p><em>Work through the following steps with the python interpreter to understand</em> <code>join</code></p>
 <p><em>Enter the statement below</em></p>
-<div id="146cb125" class="cell" data-execution_count="61">
+<div id="6db07563" class="cell" data-execution_count="61">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>report_strings <span class="op">=</span> [<span class="st">"report1"</span>, <span class="st">"report2"</span>, <span class="st">"report3"</span>, <span class="st">"report4"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above creates a list of four strings, <code>report_strings</code>. Lists are iterators so we can pass this to <code>join</code></p>
 <p><em>Call the join function as below</em></p>
-<div id="9417a011" class="cell" data-execution_count="62">
+<div id="130d74ef" class="cell" data-execution_count="62">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co">"**"</span>.join(report_strings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
 <pre><code>'report1**report2**report3**report4'</code></pre>
@@ -3000,7 +3018,7 @@ Date: Mon Aug 14 16:51:45 2017 Length: 1.0</code></pre>
 </div>
 <p>As observed we iterate over the strings, merging them with <code>**</code> inserted in between. Observe that <code>**</code> is not placed at the start or end of the resulting string</p>
 <p><em>Rerun the statement with the newline character below</em></p>
-<div id="82596bef" class="cell" data-execution_count="63">
+<div id="48923441" class="cell" data-execution_count="63">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(report_strings))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>report1
@@ -3012,7 +3030,7 @@ report4</code></pre>
 <p>This does the same but instead each string is printed on its own line</p>
 <p>We can use <code>join</code> to concatenate strings by using the empty string</p>
 <p><em>Run the following statement</em></p>
-<div id="63e78d57" class="cell" data-execution_count="64">
+<div id="23b11b74" class="cell" data-execution_count="64">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">""</span>.join(report_strings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>'report1report2report3report4'</code></pre>
@@ -3056,7 +3074,7 @@ report4</code></pre>
 <span id="cb121-7"><a href="#cb121-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb121-8"><a href="#cb121-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, tracks<span class="op">=</span>[]):</span>
 <span id="cb121-9"><a href="#cb121-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb121-10"><a href="#cb121-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new Playlist instance</span></span>
+<span id="cb121-10"><a href="#cb121-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new `Playlist` instance</span></span>
 <span id="cb121-11"><a href="#cb121-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb121-12"><a href="#cb121-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
 <span id="cb121-13"><a href="#cb121-13" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
@@ -3145,9 +3163,13 @@ report4</code></pre>
 <span id="cb122-46"><a href="#cb122-46" aria-hidden="true" tabindex="-1"></a><span class="co">    Remove all tracks from a playlist</span></span>
 <span id="cb122-47"><a href="#cb122-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb122-48"><a href="#cb122-48" aria-hidden="true" tabindex="-1"></a><span class="co">    Runtime is set to 0</span></span>
-<span id="cb122-49"><a href="#cb122-49" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb122-50"><a href="#cb122-50" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.tracks.clear()</span>
-<span id="cb122-51"><a href="#cb122-51" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.__runtime <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb122-49"><a href="#cb122-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-50"><a href="#cb122-50" aria-hidden="true" tabindex="-1"></a><span class="co">    See Also</span></span>
+<span id="cb122-51"><a href="#cb122-51" aria-hidden="true" tabindex="-1"></a><span class="co">    --------</span></span>
+<span id="cb122-52"><a href="#cb122-52" aria-hidden="true" tabindex="-1"></a><span class="co">    Playlist.remove_track : remove a single track from a playlist</span></span>
+<span id="cb122-53"><a href="#cb122-53" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb122-54"><a href="#cb122-54" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.tracks.clear()</span>
+<span id="cb122-55"><a href="#cb122-55" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.__runtime <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These are all relatively simple, the takeaway is that as we update the track list, we also ensure the runtime is kept synchronised</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -3590,7 +3612,7 @@ Warning
 <span id="cb132-15"><a href="#cb132-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb132-16"><a href="#cb132-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, note, duration):</span>
 <span id="cb132-17"><a href="#cb132-17" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
-<span id="cb132-18"><a href="#cb132-18" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a Note instance</span></span>
+<span id="cb132-18"><a href="#cb132-18" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a `Note` instance</span></span>
 <span id="cb132-19"><a href="#cb132-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb132-20"><a href="#cb132-20" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
 <span id="cb132-21"><a href="#cb132-21" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
@@ -3690,7 +3712,7 @@ Warning
 <span id="cb135-14"><a href="#cb135-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb135-15"><a href="#cb135-15" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, note, duration):</span>
 <span id="cb135-16"><a href="#cb135-16" aria-hidden="true" tabindex="-1"></a>         <span class="co">"""</span></span>
-<span id="cb135-17"><a href="#cb135-17" aria-hidden="true" tabindex="-1"></a><span class="co">         Create a Note instance</span></span>
+<span id="cb135-17"><a href="#cb135-17" aria-hidden="true" tabindex="-1"></a><span class="co">         Create a `Note` instance</span></span>
 <span id="cb135-18"><a href="#cb135-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb135-19"><a href="#cb135-19" aria-hidden="true" tabindex="-1"></a><span class="co">         Parameters</span></span>
 <span id="cb135-20"><a href="#cb135-20" aria-hidden="true" tabindex="-1"></a><span class="co">         ----------</span></span>
@@ -3750,7 +3772,7 @@ Warning
 <span id="cb136-14"><a href="#cb136-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-15"><a href="#cb136-15" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, note, duration):</span>
 <span id="cb136-16"><a href="#cb136-16" aria-hidden="true" tabindex="-1"></a>         <span class="co">"""</span></span>
-<span id="cb136-17"><a href="#cb136-17" aria-hidden="true" tabindex="-1"></a><span class="co">         Create a Note instance</span></span>
+<span id="cb136-17"><a href="#cb136-17" aria-hidden="true" tabindex="-1"></a><span class="co">         Create a `Note` instance</span></span>
 <span id="cb136-18"><a href="#cb136-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-19"><a href="#cb136-19" aria-hidden="true" tabindex="-1"></a><span class="co">         Parameters</span></span>
 <span id="cb136-20"><a href="#cb136-20" aria-hidden="true" tabindex="-1"></a><span class="co">         ----------</span></span>
@@ -3894,46 +3916,55 @@ Warning
 <p>This is pretty much the same as the <code>Note</code> class in the <a href="#make-music-with-snaps">Making Music Section</a>. However we need the duration so that we can report how long the total tune is so we add a read only property for duration. Additionally since we’re now going to be taking user input to create notes we’ll want to validate that input. It makes sense for it to be in the <code>Note</code> class, so we define class variables <code>min_note_id</code> and <code>max_note_id</code> and a corresponding validation method, <code>valid_note</code> that can be used to check that a note (represented by an integer) is valid. We leave the class variables as public so we can use them in the prompts we display to the user</p>
 <p>Now when making <a href="#make-something-happen-make-your-own-music">our own music</a>, we used a list of notes to create a tune. We want to use this structure but wrap it in a class that captures behaviour. We’ll call this class <code>Tune</code></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Tune:</span>
-<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
-<span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb138-4"><a href="#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new Tune instance</span></span>
-<span id="cb138-5"><a href="#cb138-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-6"><a href="#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb138-7"><a href="#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb138-8"><a href="#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
-<span id="cb138-9"><a href="#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="co">            name of the tune</span></span>
-<span id="cb138-10"><a href="#cb138-10" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb138-11"><a href="#cb138-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb138-12"><a href="#cb138-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__notes <span class="op">=</span> []</span>
-<span id="cb138-13"><a href="#cb138-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__length <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents a tune consisting of a sequence of notes of a specified duration</span></span>
+<span id="cb138-4"><a href="#cb138-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-5"><a href="#cb138-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
+<span id="cb138-6"><a href="#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb138-7"><a href="#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="co">    name : str</span></span>
+<span id="cb138-8"><a href="#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="co">        name of the tune</span></span>
+<span id="cb138-9"><a href="#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb138-10"><a href="#cb138-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-11"><a href="#cb138-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
+<span id="cb138-12"><a href="#cb138-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb138-13"><a href="#cb138-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new `Tune` instance</span></span>
 <span id="cb138-14"><a href="#cb138-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-15"><a href="#cb138-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
-<span id="cb138-16"><a href="#cb138-16" aria-hidden="true" tabindex="-1"></a>        notes_string <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb138-17"><a href="#cb138-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> idx, note <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">map</span>(<span class="bu">str</span>, <span class="va">self</span>.__notes)):</span>
-<span id="cb138-18"><a href="#cb138-18" aria-hidden="true" tabindex="-1"></a>            notes_string <span class="op">=</span> notes_string <span class="op">+</span> <span class="bu">str</span>(idx) <span class="op">+</span> <span class="st">": "</span> <span class="op">+</span> note <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb138-19"><a href="#cb138-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-20"><a href="#cb138-20" aria-hidden="true" tabindex="-1"></a>        template <span class="op">=</span> <span class="st">"""name: </span><span class="sc">{0}</span></span>
-<span id="cb138-21"><a href="#cb138-21" aria-hidden="true" tabindex="-1"></a><span class="st">duration: </span><span class="sc">{1}</span></span>
-<span id="cb138-22"><a href="#cb138-22" aria-hidden="true" tabindex="-1"></a><span class="st">notes:</span></span>
-<span id="cb138-23"><a href="#cb138-23" aria-hidden="true" tabindex="-1"></a><span class="sc">{2}</span></span>
-<span id="cb138-24"><a href="#cb138-24" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb138-25"><a href="#cb138-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> template.<span class="bu">format</span>(<span class="va">self</span>.name, <span class="va">self</span>.__length, notes_string)</span>
-<span id="cb138-26"><a href="#cb138-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-27"><a href="#cb138-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
-<span id="cb138-28"><a href="#cb138-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> length(<span class="va">self</span>):</span>
-<span id="cb138-29"><a href="#cb138-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb138-30"><a href="#cb138-30" aria-hidden="true" tabindex="-1"></a><span class="co">        length : int | float</span></span>
-<span id="cb138-31"><a href="#cb138-31" aria-hidden="true" tabindex="-1"></a><span class="co">            total length of the tune in seconds</span></span>
-<span id="cb138-32"><a href="#cb138-32" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb138-33"><a href="#cb138-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__length</span>
-<span id="cb138-34"><a href="#cb138-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-35"><a href="#cb138-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
-<span id="cb138-36"><a href="#cb138-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> number_of_notes(<span class="va">self</span>):</span>
-<span id="cb138-37"><a href="#cb138-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb138-38"><a href="#cb138-38" aria-hidden="true" tabindex="-1"></a><span class="co">        number_of_notes : int</span></span>
-<span id="cb138-39"><a href="#cb138-39" aria-hidden="true" tabindex="-1"></a><span class="co">            number of notes in the tune</span></span>
-<span id="cb138-40"><a href="#cb138-40" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb138-41"><a href="#cb138-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.__notes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb138-15"><a href="#cb138-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb138-16"><a href="#cb138-16" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb138-17"><a href="#cb138-17" aria-hidden="true" tabindex="-1"></a><span class="co">        name : str</span></span>
+<span id="cb138-18"><a href="#cb138-18" aria-hidden="true" tabindex="-1"></a><span class="co">            name of the tune</span></span>
+<span id="cb138-19"><a href="#cb138-19" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb138-20"><a href="#cb138-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb138-21"><a href="#cb138-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__notes <span class="op">=</span> []</span>
+<span id="cb138-22"><a href="#cb138-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__length <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb138-23"><a href="#cb138-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-24"><a href="#cb138-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb138-25"><a href="#cb138-25" aria-hidden="true" tabindex="-1"></a>        notes_string <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb138-26"><a href="#cb138-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> idx, note <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">map</span>(<span class="bu">str</span>, <span class="va">self</span>.__notes)):</span>
+<span id="cb138-27"><a href="#cb138-27" aria-hidden="true" tabindex="-1"></a>            notes_string <span class="op">=</span> notes_string <span class="op">+</span> <span class="bu">str</span>(idx) <span class="op">+</span> <span class="st">": "</span> <span class="op">+</span> note <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb138-28"><a href="#cb138-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-29"><a href="#cb138-29" aria-hidden="true" tabindex="-1"></a>        template <span class="op">=</span> <span class="st">"""name: </span><span class="sc">{0}</span></span>
+<span id="cb138-30"><a href="#cb138-30" aria-hidden="true" tabindex="-1"></a><span class="st">duration: </span><span class="sc">{1}</span></span>
+<span id="cb138-31"><a href="#cb138-31" aria-hidden="true" tabindex="-1"></a><span class="st">notes:</span></span>
+<span id="cb138-32"><a href="#cb138-32" aria-hidden="true" tabindex="-1"></a><span class="sc">{2}</span></span>
+<span id="cb138-33"><a href="#cb138-33" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb138-34"><a href="#cb138-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> template.<span class="bu">format</span>(<span class="va">self</span>.name, <span class="va">self</span>.__length, notes_string)</span>
+<span id="cb138-35"><a href="#cb138-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-36"><a href="#cb138-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb138-37"><a href="#cb138-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> length(<span class="va">self</span>):</span>
+<span id="cb138-38"><a href="#cb138-38" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb138-39"><a href="#cb138-39" aria-hidden="true" tabindex="-1"></a><span class="co">        length : int | float</span></span>
+<span id="cb138-40"><a href="#cb138-40" aria-hidden="true" tabindex="-1"></a><span class="co">            total length of the tune in seconds</span></span>
+<span id="cb138-41"><a href="#cb138-41" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb138-42"><a href="#cb138-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__length</span>
+<span id="cb138-43"><a href="#cb138-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-44"><a href="#cb138-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb138-45"><a href="#cb138-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> number_of_notes(<span class="va">self</span>):</span>
+<span id="cb138-46"><a href="#cb138-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb138-47"><a href="#cb138-47" aria-hidden="true" tabindex="-1"></a><span class="co">        number_of_notes : int</span></span>
+<span id="cb138-48"><a href="#cb138-48" aria-hidden="true" tabindex="-1"></a><span class="co">            number of notes in the tune</span></span>
+<span id="cb138-49"><a href="#cb138-49" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb138-50"><a href="#cb138-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.__notes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The class has a simple structure. The tune constructor only needs a name, we then create an empty list of notes, and a seperate variable that tracks the full length of the tune. Our string representation (<code>__str__</code>) follows the usual pattern, we print the name and duration of the <code>Tune</code>, the the list of <code>Note</code> objects in the tune. We use <code>enumerate</code> to make this a numbered list with each item on its own line. This is because most of our edits will require an index, so we want to user to be able to easily see the index of all the notes. Additionally we define two useful properties, one to get the length of the tune, and the second that returns the total number of notes in the tune. Both properties are read-only, while this last one is mostly used to help with validating user input</p>
 <p>As you can see the list of notes is private, so we also want to provide some methods that allow us to modify the notes list</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_note(<span class="va">self</span>, note, index<span class="op">=</span><span class="va">None</span>):</span>
@@ -3948,50 +3979,63 @@ Warning
 <span id="cb139-10"><a href="#cb139-10" aria-hidden="true" tabindex="-1"></a><span class="co">        note : Note</span></span>
 <span id="cb139-11"><a href="#cb139-11" aria-hidden="true" tabindex="-1"></a><span class="co">            note to add to the tune</span></span>
 <span id="cb139-12"><a href="#cb139-12" aria-hidden="true" tabindex="-1"></a><span class="co">        index : int | None, optional</span></span>
-<span id="cb139-13"><a href="#cb139-13" aria-hidden="true" tabindex="-1"></a><span class="co">            index to insert the note at, if None, the Note is appended,</span></span>
-<span id="cb139-14"><a href="#cb139-14" aria-hidden="true" tabindex="-1"></a><span class="co">            by default None</span></span>
+<span id="cb139-13"><a href="#cb139-13" aria-hidden="true" tabindex="-1"></a><span class="co">            index to insert the note at, if `None`, the Note is appended,</span></span>
+<span id="cb139-14"><a href="#cb139-14" aria-hidden="true" tabindex="-1"></a><span class="co">            by default `None`</span></span>
 <span id="cb139-15"><a href="#cb139-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb139-16"><a href="#cb139-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
 <span id="cb139-17"><a href="#cb139-17" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
 <span id="cb139-18"><a href="#cb139-18" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
-<span id="cb139-19"><a href="#cb139-19" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb139-20"><a href="#cb139-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> index <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb139-21"><a href="#cb139-21" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__notes.insert(index, note)</span>
-<span id="cb139-22"><a href="#cb139-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb139-23"><a href="#cb139-23" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__notes.append(note)</span>
-<span id="cb139-24"><a href="#cb139-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__length <span class="op">+=</span> note.duration</span>
-<span id="cb139-25"><a href="#cb139-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-26"><a href="#cb139-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> remove_note(<span class="va">self</span>, index):</span>
-<span id="cb139-27"><a href="#cb139-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb139-28"><a href="#cb139-28" aria-hidden="true" tabindex="-1"></a><span class="co">        Remove a note from the tune</span></span>
+<span id="cb139-19"><a href="#cb139-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-20"><a href="#cb139-20" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb139-21"><a href="#cb139-21" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb139-22"><a href="#cb139-22" aria-hidden="true" tabindex="-1"></a><span class="co">        Tune.remove_note : remove a note at a given index from a `Tune` instance</span></span>
+<span id="cb139-23"><a href="#cb139-23" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb139-24"><a href="#cb139-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> index <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb139-25"><a href="#cb139-25" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__notes.insert(index, note)</span>
+<span id="cb139-26"><a href="#cb139-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb139-27"><a href="#cb139-27" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__notes.append(note)</span>
+<span id="cb139-28"><a href="#cb139-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__length <span class="op">+=</span> note.duration</span>
 <span id="cb139-29"><a href="#cb139-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-30"><a href="#cb139-30" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
-<span id="cb139-31"><a href="#cb139-31" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
-<span id="cb139-32"><a href="#cb139-32" aria-hidden="true" tabindex="-1"></a><span class="co">        index : int</span></span>
-<span id="cb139-33"><a href="#cb139-33" aria-hidden="true" tabindex="-1"></a><span class="co">            index of the note to remove</span></span>
-<span id="cb139-34"><a href="#cb139-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-35"><a href="#cb139-35" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb139-36"><a href="#cb139-36" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb139-37"><a href="#cb139-37" aria-hidden="true" tabindex="-1"></a><span class="co">        Note</span></span>
-<span id="cb139-38"><a href="#cb139-38" aria-hidden="true" tabindex="-1"></a><span class="co">            the removed Note</span></span>
-<span id="cb139-39"><a href="#cb139-39" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb139-40"><a href="#cb139-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb139-41"><a href="#cb139-41" aria-hidden="true" tabindex="-1"></a>            note <span class="op">=</span> <span class="va">self</span>.__notes.pop(index)</span>
-<span id="cb139-42"><a href="#cb139-42" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__length <span class="op">-=</span> note.duration</span>
-<span id="cb139-43"><a href="#cb139-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> note</span>
-<span id="cb139-44"><a href="#cb139-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">IndexError</span>:</span>
-<span id="cb139-45"><a href="#cb139-45" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Failed to remove the </span><span class="sc">{0}</span><span class="st">-th note"</span>.<span class="bu">format</span>(index <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb139-46"><a href="#cb139-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-47"><a href="#cb139-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> clear_tune(<span class="va">self</span>):</span>
-<span id="cb139-48"><a href="#cb139-48" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
-<span id="cb139-49"><a href="#cb139-49" aria-hidden="true" tabindex="-1"></a><span class="co">        Clear all notes from the tune</span></span>
-<span id="cb139-50"><a href="#cb139-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-51"><a href="#cb139-51" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
-<span id="cb139-52"><a href="#cb139-52" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
-<span id="cb139-53"><a href="#cb139-53" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
-<span id="cb139-54"><a href="#cb139-54" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb139-55"><a href="#cb139-55" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__notes.clear()</span>
-<span id="cb139-56"><a href="#cb139-56" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__length <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb139-30"><a href="#cb139-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> remove_note(<span class="va">self</span>, index):</span>
+<span id="cb139-31"><a href="#cb139-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb139-32"><a href="#cb139-32" aria-hidden="true" tabindex="-1"></a><span class="co">        Remove a note from the tune</span></span>
+<span id="cb139-33"><a href="#cb139-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-34"><a href="#cb139-34" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb139-35"><a href="#cb139-35" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb139-36"><a href="#cb139-36" aria-hidden="true" tabindex="-1"></a><span class="co">        index : int</span></span>
+<span id="cb139-37"><a href="#cb139-37" aria-hidden="true" tabindex="-1"></a><span class="co">            index of the note to remove</span></span>
+<span id="cb139-38"><a href="#cb139-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-39"><a href="#cb139-39" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb139-40"><a href="#cb139-40" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb139-41"><a href="#cb139-41" aria-hidden="true" tabindex="-1"></a><span class="co">        Note</span></span>
+<span id="cb139-42"><a href="#cb139-42" aria-hidden="true" tabindex="-1"></a><span class="co">            the removed Note</span></span>
+<span id="cb139-43"><a href="#cb139-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-44"><a href="#cb139-44" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb139-45"><a href="#cb139-45" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb139-46"><a href="#cb139-46" aria-hidden="true" tabindex="-1"></a><span class="co">        Tune.add_note : insert or append a new note to a `Tune` instance</span></span>
+<span id="cb139-47"><a href="#cb139-47" aria-hidden="true" tabindex="-1"></a><span class="co">        Tune.clear_tune : remove all notes in a `Tune` instance</span></span>
+<span id="cb139-48"><a href="#cb139-48" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb139-49"><a href="#cb139-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb139-50"><a href="#cb139-50" aria-hidden="true" tabindex="-1"></a>            note <span class="op">=</span> <span class="va">self</span>.__notes.pop(index)</span>
+<span id="cb139-51"><a href="#cb139-51" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__length <span class="op">-=</span> note.duration</span>
+<span id="cb139-52"><a href="#cb139-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> note</span>
+<span id="cb139-53"><a href="#cb139-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">IndexError</span>:</span>
+<span id="cb139-54"><a href="#cb139-54" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Failed to remove the </span><span class="sc">{0}</span><span class="st">-th note"</span>.<span class="bu">format</span>(index <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb139-55"><a href="#cb139-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-56"><a href="#cb139-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> clear_tune(<span class="va">self</span>):</span>
+<span id="cb139-57"><a href="#cb139-57" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb139-58"><a href="#cb139-58" aria-hidden="true" tabindex="-1"></a><span class="co">        Clear all notes from the tune</span></span>
+<span id="cb139-59"><a href="#cb139-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-60"><a href="#cb139-60" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb139-61"><a href="#cb139-61" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb139-62"><a href="#cb139-62" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
+<span id="cb139-63"><a href="#cb139-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-64"><a href="#cb139-64" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb139-65"><a href="#cb139-65" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb139-66"><a href="#cb139-66" aria-hidden="true" tabindex="-1"></a><span class="co">        Tune.remove_note : remove a note at a given index from a `Tune`</span></span>
+<span id="cb139-67"><a href="#cb139-67" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb139-68"><a href="#cb139-68" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__notes.clear()</span>
+<span id="cb139-69"><a href="#cb139-69" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__length <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first <code>add_note</code> takes a note, and an optional index. If the index is specified the note is inserted into the list (at the specified index), otherwise we append it. The second <code>remove_note</code> <em>requires</em> an index, and removes the note at that index. The removed note is returned as part of this process. We also provide some error handling in case the provided index does not actually exist. Last we provide a <code>clear_tune</code> method which simply removes all the notes</p>
 <p>The arguably most important function for the <code>Tune</code> class however is <code>play</code> which simply plays the tune</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> play(<span class="va">self</span>):</span>
@@ -4379,7 +4423,7 @@ Warning
 <span id="cb148-33"><a href="#cb148-33" aria-hidden="true" tabindex="-1"></a><span class="co">     Adds a note to the current tune</span></span>
 <span id="cb148-34"><a href="#cb148-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb148-35"><a href="#cb148-35" aria-hidden="true" tabindex="-1"></a><span class="co">     Prompts the user to specify a new note as well as an index of</span></span>
-<span id="cb148-36"><a href="#cb148-36" aria-hidden="true" tabindex="-1"></a><span class="co">     where to insert the note in the tune (-1 indicating append). The created</span></span>
+<span id="cb148-36"><a href="#cb148-36" aria-hidden="true" tabindex="-1"></a><span class="co">     where to insert the note in the tune (`-1` indicating append). The created</span></span>
 <span id="cb148-37"><a href="#cb148-37" aria-hidden="true" tabindex="-1"></a><span class="co">     note is then added to the current tune at the indicated index (or appended)</span></span>
 <span id="cb148-38"><a href="#cb148-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb148-39"><a href="#cb148-39" aria-hidden="true" tabindex="-1"></a><span class="co">     Returns</span></span>

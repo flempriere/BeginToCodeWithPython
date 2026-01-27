@@ -69,7 +69,7 @@ class Contact:
 
     def __init__(self, name, address, telephone):
         """
-        Create a new Contact instance
+        Create a new `Contact` instance
 
         Parameters
         ----------
@@ -307,7 +307,7 @@ def load_contacts(file_name):
     Returns
     -------
     None
-        Contact detail is loaded into the global contacts value
+        Contact detail is loaded into the global `contacts` value
 
     Raises
     ------
@@ -341,7 +341,7 @@ def add_session():
 
     See Also
     --------
-    Contact.add_session : add a session to a Contact instance
+    Contact.add_session : add a session to a `Contact` instance
     find_contacts : returns contacts matching a search name
     """
     print("Add Hours")
