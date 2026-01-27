@@ -1005,7 +1005,7 @@ value of `o` we are calling the `__str__` method on the `object` class
 print(o)
 ```
 
-    <object object at 0x7fecbcf26be0>
+    <object object at 0x7fd164866be0>
 
 `print` requires a `str` argument, so `o` is converted to a string by
 calling its `__str__` method. In this case the `__str__` method of the
@@ -1600,7 +1600,7 @@ reading the answers*
         print(d)
       ```
 
-          <__main__.Dress object at 0x7feccc3b2f30>
+          <__main__.Dress object at 0x7fd164e374d0>
 
     - The takeaway is that class hierarchies are *very* brittle to
       changes
@@ -3574,7 +3574,7 @@ d.add_stock(15)
     print(shop)
   ```
 
-      <__main__.FashionShop object at 0x7feccc2eaba0>
+      <__main__.FashionShop object at 0x7fd164bb7620>
 
 #### Save the `FashionShop` Object
 
