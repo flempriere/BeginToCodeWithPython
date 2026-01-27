@@ -355,7 +355,7 @@ def display_tracks(tracks):
     Params
     ------
     list[MusicTrack]
-        List of MusicTrack objcts to display
+        List of MusicTrack objects to display
 
     Returns
     -------
@@ -753,7 +753,7 @@ def add_track_to_playlist():
 
 def remove_tracks_from_playlist():
     """
-    Removes a track from the currrent playlist
+    Removes a track from the current playlist
 
     Prompts the user for a the start of a track name, then
     finds all tracks that have a name starting with the
@@ -840,7 +840,7 @@ def suggest_playlist_of_given_length():
             print("Could not generate a playlist of that length. Try a longer playlist")
             return
 
-        while len(candidate_songs) > 0:  # stop when no more eligable songs
+        while len(candidate_songs) > 0:  # stop when no more eligible songs
             # add a random song and update the playlist length
             song_choice = random.choice(candidate_songs)
             suggested_tracks.append(song_choice)

@@ -3,8 +3,9 @@
 # Rob Miles July 2017
 # Version 1.0
 
-import time
 import random
+import time
+
 import pygame
 
 surface = None
@@ -370,6 +371,7 @@ def get_string(prompt, size=50, margin=20,
 import urllib.request
 import xml.etree.ElementTree
 
+
 def get_weather_temp(latitude,longitude):
     '''
     Uses forecast.weather.gov to get the weather
@@ -393,7 +395,7 @@ def get_weather_temp(latitude,longitude):
                                             return int(t.text)
 
 
-def get_weather_desciption(latitude,longitude):
+def get_weather_description(latitude,longitude):
     '''
     Uses forecast.weather.gov to get the weather
     for the specified latitude and longitude

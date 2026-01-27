@@ -1,6 +1,6 @@
 # Example 10.13 Time Tracker with __str__ method
 #
-# Overides the default __str__ method for a Contact to simplify displaying
+# Overrides the default __str__ method for a Contact to simplify displaying
 # a contact
 #
 # Provides additional support over the original example code for duplicates in

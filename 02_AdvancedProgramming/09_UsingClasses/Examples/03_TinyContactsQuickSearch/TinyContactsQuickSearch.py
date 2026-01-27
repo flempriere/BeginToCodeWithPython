@@ -1,6 +1,6 @@
 # Example 9.3 Tiny Contacts Quick Search
 #
-# An implementation of Tiny Contacts that uses startswith to faciliate a search
+# An implementation of Tiny Contacts that uses startswith to facilitate a search
 # that doesn't need the full name
 
 import BTCInput

@@ -23,7 +23,7 @@ for question in range(0, NumberOfQuestions):
             print("Please enter an integer")
     if answer == correct_answer:
         score = score + 1
-        print("Corect!")
+        print("Correct!")
     else:
         print("Sorry that's wrong!")
         print("The correct answer is", correct_answer, "you gave", answer)

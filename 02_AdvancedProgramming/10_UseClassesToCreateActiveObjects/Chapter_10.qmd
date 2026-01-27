@@ -192,7 +192,7 @@ class Contact:
   ```
 
 - The magic constant problem is one issue,
-    - If we were to use the `Contact` as a libary object in another application, (like a graphical version) then we would have to maintain the validation code in two seperate places
+    - If we were to use the `Contact` as a library object in another application, (like a graphical version) then we would have to maintain the validation code in two separate places
 
 :::{.callout-tip}
 **Keep Business Rules in Business Objects**
@@ -657,7 +657,7 @@ program
             - e.g. display text vs a window
     - This concept of making a function responsible for one thing is called either
         - The *single responsibility principle*,
-        - or more generally *seperation of concerns*
+        - or more generally *separation of concerns*
     - Here a `Contact` object performs behaviours that modify or capture a the state of a clients interactions with a client
         - How the user responds to those states is not its responsibility
 
@@ -786,7 +786,7 @@ program
 - Exception somewhat like a message
     - Tells the program what went wrong
 - `Exception` class provides behaviours for exceptions
-    - Takes a string as an initialiser argument
+    - Takes a string as an initializer argument
     - string should describe the error
 - Once raised, the exception is either,
     1. handled by an `Except` handler inside a `try` block
@@ -894,7 +894,7 @@ want to access the message in the exception?
 
 ##### Make Something Happen: Catching Exceptions
 
-*Repeat the steps in the [previous example](#make-something-happen-raising-exceptions-from-code) but this time use the new code in [Time Tracker with Exceptionn Handler](./Examples/07_TimeTrackerWithExceptionHandler/TimeTrackerWithExceptionHandler.py). You should find the program runs and the errors are captured without causing a crash*
+*Repeat the steps in the [previous example](#make-something-happen-raising-exceptions-from-code) but this time use the new code in [Time Tracker with Exception Handler](./Examples/07_TimeTrackerWithExceptionHandler/TimeTrackerWithExceptionHandler.py). You should find the program runs and the errors are captured without causing a crash*
 
 ##### Code Analysis: Raising and Dealing with Exceptions
 
@@ -947,7 +947,7 @@ want to access the message in the exception?
 
 - Client no longer needs to directly interact with `hours_worked`
 - However, client can still modify `hours_worked`
-    - Programmer could accidently change the value
+    - Programmer could accidentally change the value
     - Could also intentionally change it to break the code
 - Ideally we want to prevent it being directly modified
 
@@ -956,7 +956,7 @@ want to access the message in the exception?
 
 Python provides features to help protect data attributes against accidental modifications. However, they don't stop a programmer who intentionally (and perhaps maliciously) decides they want to modify the data attributes.
 
-There is no mechanism in the python language to prevent another progrmmer adding code that changes `hours_worked` in the `Contact` object
+There is no mechanism in the python language to prevent another programmer adding code that changes `hours_worked` in the `Contact` object
 :::
 
 - By convention, python dictates that an attribute name starting with `_` should not be used outside the class
@@ -981,7 +981,7 @@ There is no mechanism in the python language to prevent another progrmmer adding
 - No actual protection for `_hours_worked`
     - Could still be ignored by a programmer
 - Can get greater security through, *name-mangling*
-    - starting a varible name with double underscores `__`
+    - starting a variable name with double underscores `__`
 - *name-mangling* makes it harder to access and modify the variable
 
 ##### Make Something Happen: Protecting Data Attributes in a Class
@@ -1398,12 +1398,12 @@ class Contact:
     - Define properties to mask the original names
 - No need to update the downstream calling code
     - property syntax matches the traditional access pattern
-- The complete integration is seen in [TimeTrackerWithPropertie.py](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py)
+- The complete integration is seen in [TimeTrackerWithProperties.py](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py)
 
 :::{.callout-caution}
 **Failures in property code can be confusing**
 
-The [example program](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py) implements the name, address and telephone number elements of a contact as properties. Setting a property to an invalid value will cause an exception. The initialiser looks like,
+The [example program](./Examples/09_TimeTrackerWithProperties/TimeTrackerWithProperties.py) implements the name, address and telephone number elements of a contact as properties. Setting a property to an invalid value will cause an exception. The initializer looks like,
 
 ```python
     def __init__(self, name, address, telephone):
@@ -1493,7 +1493,7 @@ should then also display the billing amount
         amount_to_bill = 30 + (50 * session_length)
       ```
 
-    - `session_length` value is multipled by the hourly rate ($50$)
+    - `session_length` value is multiplied by the hourly rate ($50$)
     - flat fee $30$ is added to the total
     - Can then add this to the billing amount
 
@@ -1785,7 +1785,7 @@ As we can see, the amount to bill is now correctly displayed
 
 When starting a project you should consider which items are being stored and if they need version management. For example in the Time Tracker program we expect that the client will request changes to the features, so we should consider versioning it from the start
 
-Everytime a new version of a program is installed, we then have to go through the process of updating the underlying data to the new version
+Every time a new version of a program is installed, we then have to go through the process of updating the underlying data to the new version
 
 When writing a program for a customer, you should consider how long it will take to write code that deal with data updates (or migrations). This can make trivial programs significantly more complex
 :::
@@ -1879,7 +1879,7 @@ When writing a program for a customer, you should consider how long it will take
   ```
 
 - Values in format are inserted at marked points in the string
-- Marked points are `{n}` where $n$ is the index of the argument to substitue
+- Marked points are `{n}` where $n$ is the index of the argument to substitute
     - Starting from $0$
 
 ##### Make Something Happen: Adventures with String Formatting
@@ -1918,7 +1918,7 @@ template = "My name is {0:20} and my age is {1:10}"
 template.format(name, age)
 ```
 
-We write the placeholder as `{n:w}` where $n$ is the index of the placeholder. $w$ is the width value, as you can see from above, the value is still substituted but then spaces are added to pad out to the width. This is useful for defining columns. We use a `:` to seperate the *format specifiers* from the placeholder index
+We write the placeholder as `{n:w}` where $n$ is the index of the placeholder. $w$ is the width value, as you can see from above, the value is still substituted but then spaces are added to pad out to the width. This is useful for defining columns. We use a `:` to separate the *format specifiers* from the placeholder index
 
 For floating point values you can also specify the number of decimal places to be printed
 
@@ -1971,7 +1971,7 @@ You can find the full version of Time Tracker using the string method in
 
 1. *How will we store information about a session?*
 
-    - We need to store a bunch of heterogenous related data
+    - We need to store a bunch of heterogeneous related data
     - Good idea to consider a class, say `Session`
     - Need to consider data to store
 
@@ -2220,7 +2220,7 @@ You can find the full version of Time Tracker using the string method in
   ```
 
 - Uses `map` to convert a list of session objects to a list of their string representations
-- Uses `join` to then convert the list of strings to a single string with each element seperated by a newline
+- Uses `join` to then convert the list of strings to a single string with each element separated by a newline
 
 #### The Python `map` Function
 
@@ -2252,7 +2252,7 @@ This creates a list containing three strings, we can easily view the contents
 code
 ```
 
-*Now we need to create our indentation function. We can do this by adding four spaces (or a tab etc.) at the beginning of a string. Define the following python funcion*
+*Now we need to create our indentation function. We can do this by adding four spaces (or a tab etc.) at the beginning of a string. Define the following python function*
 
 ```{python}
 def indent(x):
@@ -2443,7 +2443,7 @@ In the previous chapter we created a [Music Storage app](../09_UsingClasses/Chap
 
 Thankfully this isn't as in depth as building the application the first time around. We start by defining our `Playlist` class
 
-Let us first focus on the data attributes, we want a name and a list of songs. We also want the total runtime. Now for simplicity we'll leave the `name` and `tracks` as public attributes, but we'll define the `runtime` as a property, intefacing with a protected variable `__runtime`. We do this because the runtime is calculated from `tracks` so we don't want the caller to modify it themselves.
+Let us first focus on the data attributes, we want a name and a list of songs. We also want the total runtime. Now for simplicity we'll leave the `name` and `tracks` as public attributes, but we'll define the `runtime` as a property, interfacing with a protected variable `__runtime`. We do this because the runtime is calculated from `tracks` so we don't want the caller to modify it themselves.
 
 Inspired by Time Tracker's `session_report` we'll also define a `track_report` property using that interfaces with `map` to provide a string representation of the tracks in a playlist where each track is on its own line
 
@@ -2566,14 +2566,14 @@ These are all relatively simple, the takeaway is that as we update the track lis
 :::{.callout-warning}
 **It is important to keep data synchronised**
 
-We store the runtime as a seperate variable so that we don't need to calculate it on the fly everytime a function requires it. However this introduces the difficulty that we have to keep `runtime` synched with the data it is representing (the sum of the length of the tracks in the `tracks` attribute). This is important in real world scenarios, as if these two data attributes diverge we might get nonsense results.
+We store the runtime as a separate variable so that we don't need to calculate it on the fly every time a function requires it. However this introduces the difficulty that we have to keep `runtime` synched with the data it is representing (the sum of the length of the tracks in the `tracks` attribute). This is important in real world scenarios, as if these two data attributes diverge we might get nonsense results.
 
 This is actually one of the big reasons why we like to make data attributes private, it ensures we can maintain the relationships between elements.
 :::
 
 As written our code has the problem that data could become desynchronised because the user can directly modify the `tracks` list. We can't get around this easily by making a read-only property, because it we return a reference to a list, than any changes on that reference would propagate to the original list
 
-One option would be to provide a deep copy (a unique copy for each call), or another would be make `tracks` private and define methods on the class for all the nessecary interactions. I haven't done this to minimise the disruption to the overall API, since this current API lets us reuse the adding and searching functionality we defined for the complete list of tracks. This could be something we change in the future
+One option would be to provide a deep copy (a unique copy for each call), or another would be make `tracks` private and define methods on the class for all the necessary interactions. I haven't done this to minimise the disruption to the overall API, since this current API lets us reuse the adding and searching functionality we defined for the complete list of tracks. This could be something we change in the future
 
 Lets now consider how we want to program to work. Previously we had one playlist. Now like the tracks, we want a list of them. However we still want to be able to work on and modify a playlist. To minimise the changes from the original design lets use the following approach
 
@@ -2673,7 +2673,7 @@ You can see that we've defined new functions,
 2. `select_playlist`
 3. `display_playlist`
 
-and that we've renamed the old `save_playlist` function to `export_playlist`. This last change is because we've introduced `save_playlists` and `load_playlists` as functions to pickle and unpickle the playlists binary data. Renaming `save_playlist` to `export_playlist` makes it clear that this function is not related to those two.
+and that we've renamed the old `save_playlist` function to `export_playlist`. This last change is because we've introduced `save_playlists` and `load_playlists` as functions to pickle and un-pickle the playlists binary data. Renaming `save_playlist` to `export_playlist` makes it clear that this function is not related to those two.
 
 You also might notice that we've reordered the menu so that all the functions dealing with changing the current playlist (`create_playlist`, `select_playlist`, `suggest_playlist_of_given_length`) come first. This allows us to then check that we have an active playlist before running any of the other commands. We also check if user has decided to exit here to, since if we put it after the check for an active playlist the user can't exit the playlist menu if the don't have an active playlist
 
@@ -2854,7 +2854,7 @@ def suggest_playlist_of_given_length():
             print("Could not generate a playlist of that length. Try a longer playlist")
             return
 
-        while len(candidate_songs) > 0:  # stop when no more eligable songs
+        while len(candidate_songs) > 0:  # stop when no more eligible songs
             # add a random song and update the playlist length
             song_choice = random.choice(candidate_songs)
             suggested_tracks.append(song_choice)
@@ -2964,7 +2964,7 @@ You are encouraged to work through the full program yourself ([PlaylistStorage.p
 
 - We can see this is already becoming tedious
 - We repeatedly write the `play_note` followed by a `sleep` time
-- Have to manuually modify the code
+- Have to manually modify the code
 - We could make this *data-driven*
 - We supply a list of tuples
     - Each tuple contains the id for a note and the time to sleep after playing that note
@@ -3007,14 +3007,14 @@ You are encouraged to work through the full program yourself ([PlaylistStorage.p
 - Each tuple stores the note and the sleep time
 - We then loop over the tuples
 - We use unpacking to assign the elements of the tuple meaningful names (`note_id` and `sleep_time`)
-- While playback is simple, constructing is not nessecarily
+- While playback is simple, constructing is not necessarily
     - The tuples are undocumented and rely on the programmer knowing the indices
 - We could instead define a lightweight class
 
   ```python
     # Example 10.15.4 Twinkle Twinkle with Classes
     #
-    # Modifies the data driven tuple implementation by definining a lightweight
+    # Modifies the data driven tuple implementation by defining a lightweight
     # Note class
 
     import time
@@ -3117,10 +3117,10 @@ You are encouraged to work through the full program yourself ([PlaylistStorage.p
 
 For fun we'll make two little tunes
 
-1. The classic [Macca's jingle](./Exercises/02_SnapsTunes/MaccasJingle.py)
+1. The classic [Maccas jingle](./Exercises/02_SnapsTunes/MaccasJingle.py)
 
    ```python
-    # Exercise 10.2.1 Maccas Jingle
+    # Exercise 10.2.1  Maccas Jingle
     #
     # Uses the Note playback program to play the Maccas jingle
 
@@ -3407,7 +3407,7 @@ notes:
         return len(self.__notes)
 ```
 
-The class has a simple structure. The tune constructor only needs a name, we then create an empty list of notes, and a seperate variable that tracks the full length of the tune. Our string representation (`__str__`) follows the usual pattern, we print the name and duration of the `Tune`, the the list of `Note` objects in the tune. We use `enumerate` to make this a numbered list with each item on its own line. This is because most of our edits will require an index, so we want to user to be able to easily see the index of all the notes. Additionally we define two useful properties, one to get the length of the tune, and the second that returns the total number of notes in the tune. Both properties are read-only, while this last one is mostly used to help with validating user input
+The class has a simple structure. The tune constructor only needs a name, we then create an empty list of notes, and a separate variable that tracks the full length of the tune. Our string representation (`__str__`) follows the usual pattern, we print the name and duration of the `Tune`, the the list of `Note` objects in the tune. We use `enumerate` to make this a numbered list with each item on its own line. This is because most of our edits will require an index, so we want to user to be able to easily see the index of all the notes. Additionally we define two useful properties, one to get the length of the tune, and the second that returns the total number of notes in the tune. Both properties are read-only, while this last one is mostly used to help with validating user input
 
 As you can see the list of notes is private, so we also want to provide some methods that allow us to modify the notes list
 
