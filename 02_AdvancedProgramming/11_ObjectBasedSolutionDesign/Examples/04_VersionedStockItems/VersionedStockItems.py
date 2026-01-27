@@ -1,8 +1,8 @@
 # Example 11.4 Fashion Items using version control
 #
-# Mocks out the Fashion stock items classes using an inheritance hierachy
-# Demonstates using independent versions to manage independent updates to the
-# superclass and subclasses in a hierachy
+# Mocks out the Fashion stock items classes using an inheritance hierarchy
+# Demonstrates using independent versions to manage independent updates to the
+# superclass and subclasses in a hierarchy
 
 import abc
 
@@ -174,7 +174,7 @@ class Pants(StockItem):
     length : int
         length of the pants
     waist : int
-        waist size of the pantts
+        waist size of the pants
 
     See Also
     --------
