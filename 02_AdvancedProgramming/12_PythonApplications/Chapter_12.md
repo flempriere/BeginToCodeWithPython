@@ -73,6 +73,7 @@
       TypeError: func_1() takes 0 positional arguments but 1 was given
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
+      Cell In[14], line 7
       Cell In[2], line 7
             4     print("Hello from func_1")
             6 x = func_1
