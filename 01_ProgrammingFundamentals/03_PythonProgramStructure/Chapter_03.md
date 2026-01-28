@@ -213,7 +213,7 @@ import random
 print('You have rolled:', random.randint(1,6))
 ```
 
-    You have rolled: 1
+    You have rolled: 2
 
 *Try running this program multiple times and see what the output is*
 
@@ -602,7 +602,7 @@ time.sleep(10)  # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  2
+    The first number is:  1
     Will the next be higher or lower?
     The second number is:  7
 
