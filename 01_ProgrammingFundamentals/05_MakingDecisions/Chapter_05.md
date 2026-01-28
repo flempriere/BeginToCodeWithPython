@@ -260,7 +260,7 @@ and copy the below text.*
     print("The hour is", hour)
 ```
 
-    The hour is 13
+    The hour is 1
 
 Run the program, it should print out the current hour
 
@@ -294,8 +294,8 @@ simply need to format the attribute as necessary. The final
     print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 27 / 1 / 2026
-    The time is 13 : 53 : 27
+    The date is 28 / 1 / 2026
+    The time is 1 : 29 : 21
 
 #### Comparing Values
 
@@ -608,8 +608,6 @@ if it_is_time_to_get_up:
     print("IT IS TIME TO GET UP")
 ```
 
-    IT IS TIME TO GET UP
-
 - The program should print `IT IS TIME TO GET UP` only if the time is
   after $7:30$
 - The `if` construct starts with the word `if`, following by a boolean
@@ -630,8 +628,6 @@ if it_is_time_to_get_up:
 if (hour > 7) or (hour == 7 and minutes > 29):
     print("IT IS TIME TO GET UP")
 ```
-
-    IT IS TIME TO GET UP
 
 #### Combine Python Statements into a Suite
 
@@ -700,10 +696,7 @@ if (hour > 7) or (hour == 7 and minute > 29):
 print("The time is", hour, ":", minute)
 ```
 
-    TIME TO GET UP
-    RISE AND SHINE
-    THE EARLY BIRD GETS THE WORM
-    The time is 13 : 53
+    The time is 1 : 29
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -752,9 +745,6 @@ print("The time is", hour, ":", minute)
 >          print("IT IS TIME TO GET UP")
 >          print("The early bird gets the worm...")
 >     ```
->
->         IT IS TIME TO GET UP
->         The early bird gets the worm...
 >
 >     - Most programmers and even text editors will automatically
 >       convert one style of indentation to the other (commonly tabs to
@@ -913,7 +903,7 @@ else:
     print("Go back to bed")
 ```
 
-    IT IS TIME TO GET UP
+    Go back to bed
 
 - Observe that only one line of the paired `if-else` statements is
   printed
