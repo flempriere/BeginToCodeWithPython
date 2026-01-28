@@ -52,6 +52,476 @@ title: "Chapter 12: Python Applications"
 
 ##### Use Function References in the BTCInput Module
 
+- Recall back in [Chapter 7](../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.qmd) we created a module for getting validated user input, [BTCInput](../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.qmd#build-reusable-functions)
+- We wrote code for reading integers and floating points with an additional ranged API
+- Both functions pretty much looked the same except one used `int()` to convert user input, the other used `float()`
+- As a refresher here is `read_int`
+
+  ```python
+    def read_int(prompt):
+        while True:
+            try:
+                # read in the number
+                number_text = read_text(prompt)
+                # perform conversion to int
+                result = int(number_text)
+                break
+            except ValueError:
+                print("Please enter an integer")
+        return result
+  ```
+
+- We could combine these two functions into one by using a function-valued variable
+- i.e. the function now accepts as a argument a function that takes in a string
+and converts the result to the appropriate type of number
+
+  ```python
+    def read_number(prompt, number_converter):
+        """
+        Read and convert a user-provided number
+
+        User is prompted for a number, and the resulting
+        string is converted by the supplied `number_converter`
+        function
+
+        Parameters
+        ----------
+        prompt : str
+            string to display to the user when asking for input
+        number_converter : Callable[[[str], int | float]
+            function that converts a string to a number. Must
+            raise a `ValueError` on invalid input
+
+        Returns
+        -------
+        int | float
+            User input converted to a number
+        """
+        while True:
+            try:
+                number_text = read_text(prompt)
+                result = number_converter(number_text)
+                break
+            except ValueError:
+                print("Please enter a number")
+        return result
+  ```
+
+- Now the call to `int` or `float` is instead replaced with a call to `number_converter`
+- As part of the documentation we have to specify the required behaviour of the `number_converter` function
+    - Here we need it to be a one parameter function that accepts a string
+    - The returned result should be an `int` or `float`
+    - Additionally a *key* requirement is that any failed conversion raises a `ValueError` so that the error-handling code in `read_number` catches it
+
+- `read_number` is a great function from our programmer perspective
+    - But not necessarily the cleanest implementation for a downstream user
+    - They would still likely just want to call `read_int` or `read_float`
+    - We'll provide wrapper functions `read_int` and `read_float` that pass the appropriate parameters through to `read_number`
+        - We'll make them match the old API for input so a downstream user sees no change
+
+  ```python
+    def read_float(prompt):
+        return read_number(prompt=prompt, number_converter=float)
+  ```
+
+- *Observe* when we pass a function we just pass the name, don't use `()`
+
+##### Code Analysis: Function References
+
+*Function references are complicated, work through the following questions to help your understanding*
+
+1. *What is a function reference?*
+
+    - One piece of a program telling another what to do
+    - `read_number` is given a prompt, and a function
+        - The function tells `read_number` how to convert to a number
+
+2. *Why is using function references like this a good idea?*
+
+    - Makes code more maintainable
+    - Rather than having basically the same code in two places `read_int` and `read_float` we have it in one place
+    - If we later need to modify the code, we can now do it in one place `read_number` rather than making sure both functions remain consistent
+
+3. *If I wrote a function that converted Roman numerals into a numeric result, could I use `read_number` to read Roman Numbers?*
+
+    - Yes, as long as that function matches the requirements for `number_converter`
+    - i.e. Only takes in a string
+        - Easy enough, this should be the roman numerals
+    - Returns either an `int` or `float`
+        - Easy again Roman numerals convert to integers
+    - Raises a `ValueError` if an invalid Roman numeral is encountered
+    - If we meet this API we could then use `read_number e.g.`
+
+      ```python
+        number = read_number("Enter your age in roman numerals: ", number_converter=roman_converter)
+      ```
+
+    - There is in fact nothing (other than the name `read_number`) that prevents us from using this function more generally
+    - We could let `number_converter` be *any* function that takes a string argument, and returns a value, raising a `ValueError` on invalid input
+        - e.g. we could write `date_converter` that asks the user for a valid date string (e.g. `12/10/2017`)
+        - Could convert this into a `date` object
+    - Function parameters are thus a form of abstraction
+        - We step away from a more concrete implementation (`read_int`, `read_float` etc)
+        - Use a more general solution `read_number`
+        - We may then find that our solution is more general then we thought
+            - e.g. `read_number` actually provides a structure to parse a lot of input depending on the provided parsing function (`number_converter`)
+            - i.e. we might instead call `read_number` as `parse_input`
+
+##### Exercise: Write a Roman Numeral Converter
+
+*Write a function that takes a string representing roman numerals and converts it to an integer. Make this function work with the* `read_number` *API*
+
+First lets set out some ground rules. The valid roman numerals are:
+
+| **Symbol** | I | V | X  | L  | C   | D   | M    |
+|------------|---|---|----|----|-----|-----|------|
+| **Value**  | 1 | 5 | 10 | 50 | 100 | 500 | 1000 |
+
+The standard form for the roman numerals is given by,
+
+|   | Thousands | Hundreds | Tens | Ones |
+|---|-----------|----------|------|------|
+| 1 | M         | C        | X    | I    |
+| 2 | MM        | CC       | XX   | II   |
+| 3 | MMM       | CCC      | XXX  | III  |
+| 4 |           | CD       | XL   | IV   |
+| 5 |           | D        | L    | V    |
+| 6 |           | DC       | LX   | VI   |
+| 7 |           | DCC      | LXX  | VII  |
+| 8 |           | DCCC     | LXXX | VIII |
+| 9 |           | CM       | XC   | IX   |
+
+To create a value we append the appropriate thousands, hundreds, tens, and ones.
+
+e.g. $3698 = MMM + DC + XC + VIII = MMMDCXCVIII$
+
+The basic conversion rules are as follows,
+
+1. Read from left to right
+2. Consider a "digit".
+
+    - If the next digit is the same value or less, then it is added to the total
+        - e.g. in $II$ and $XI$, we read these as $1 = 1$, and $10 > 1$, so the running total is $1$ and $10$ respectively
+
+    - If the next digit is a greater value, then we subtract from the total
+        - e.g. in $IV$  we read this as $1 < 4$, so the running total is $-1$
+    - If there is no next digit, then the value is added
+
+This is the basic ruleset, we could write a function to convert using these rules and be perfectly happy with it. However, in many modern use cases there are stricter syntax rules which for fun we'll also implement, namely
+
+1. $M$, $C$, $X$, $I$ can be repeated no more than three times sequentially, e.g. $IIII$ is invalid
+2. $V$, $L$, $D$ can't be sequentially repeated, e.g. $VV$ is invalid
+3. There can be no repeated sequence of the same value before a subtraction, i.e. $IIV$ is invalid because this should translate to $5 - 2$.
+4. There are precedence rules
+    - "Tens"-like values can only precede smaller or the next two largest valued characters
+        - e.g. $IV$ or $IX$ are valid, but not $IM$
+        - e.g. $XL$ or $XC$ are valid, but not $XD$
+    - "Fives"-like can values can only precede smaller
+        - e.g. $VI$ is valid, but not $VX$
+        - e.g. $LI$ and $LX$ are valid, but not $LD$
+
+Let's now plan out our algorithm, before considering valid syntax the basic structure will be as follows,
+
+1. set a running total to $0$
+2. Iterate over each character
+
+    1. Convert the character to their integer value
+    2. If the next character exists and it's value is larger subtract the current value from the total
+    3. Else, add the current value
+4. Once all the characters have been processed return the total
+
+The easiest way to do this would be to use a dictionary lookup. We can directly convert the symbol to a value. Now let's go one step further. We'll define a lightweight class `RomanNumeral` this holds the symbol, the value and importantly also a set bookkeeping what other roman numerals this one is allowed to precede
+
+```{python}
+class RomanNumeral:
+    """
+    Lightweight class representing a roman numeral
+
+    Attributes
+    ----------
+    symbol : str
+        latin character symbolising the roman numeral
+    value : int
+        numeric value of a roman numeral
+    precedes : set[str]
+        set of strings representing other roman numerals this numeral may precede
+    """
+
+    def __init__(self, symbol, value, precedes):
+        """
+        Create a new `RomanNumeral` Instance
+
+        Parameters
+        ----------
+        symbol : str
+            latin character symbolising the roman numeral
+        value : int
+            numeric value of a roman numeral
+        repetition_limit : int
+            maximum number of times the same numeral can be repeated
+        precedes : set[str]
+            set of strings representing other roman numerals this numeral may precede
+        """
+        self.symbol = symbol
+        self.value = value
+        self.precedes = precedes
+
+    def may_precede(self, roman_numeral):
+        """
+        Checks if this numeral may precede another
+
+        Parameters
+        ----------
+        roman_numeral : str
+            character representing roman numeral to check if we can precede
+
+        Returns
+        -------
+        `True` if `self` may precede `roman_numeral` else, `False`
+        """
+        return roman_numeral in self.precedes
+```
+
+- We define one helper function `may_precede` which is used to check if one symbol may precede another
+- We then define at the start of our function a dictionary containing the valid roman numerals
+
+```python
+def roman_numeral_converter(number_string):
+    """
+    Convert a number written in roman numerals to an int
+
+    The string must be a valid roman numeral in `standard format`__
+
+    Parameters
+    ----------
+    number_string : str
+        A valid roman numeral expression
+
+    Returns
+    -------
+    int
+        Result of converting the roman numeral to an int
+
+    Raises
+    ------
+    ValueError
+        Raised if `number_string` is not a valid roman numeral
+
+    .. _standard format: https://en.wikipedia.org/wiki/Roman_numerals#Standard_form
+    """
+    roman_numerals = {
+        "I": RomanNumeral("I", 1, {"I", "V", "X"}),
+        "V": RomanNumeral("V", 5, {"I"}),
+        "X": RomanNumeral("X", 10, {"I", "X", "L", "C"}),
+        "L": RomanNumeral("L", 50, {"I", "V", "X"}),
+        "C": RomanNumeral("C", 100, {"I", "V", "X", "L", "C", "M"}),
+        "D": RomanNumeral("D", 500, {"C", "L", "X", "V", "I"}),
+        "M": RomanNumeral("M", 1000, {"I", "V", "X", "L", "C", "D", "M"}),
+    }
+
+    def get_roman_numeral(numeral):
+        """
+        Returns the `RomanNumeral` corresponding to the provided string
+
+        Parameters
+        ----------
+        numeral : str
+            character representing a roman numeral digit
+
+        Returns
+        -------
+        RomanNumeral
+            object describing the corresponding roman numeral
+
+        Raises
+        ------
+        ValueError
+            The provided character is not a valid roman numeral digit
+
+        """
+        try:
+            return roman_numerals[numeral]
+        except KeyError:
+            raise ValueError(numeral, "is not a valid character for a roman numeral")
+```
+
+- The function `get_roman_numeral` is a helper function defined inside our converter
+    - It wraps the error handling of getting the roman numeral from the dictionary
+    - It's main purpose is to convert a `KeyError` for an invalid character into a `ValueError` as required by the `read_number` interface
+
+- Now lets work through our previous algorithm and add in the syntax checking at the appropriate steps
+
+1. set a running total to $0$, and previous to `None`
+2. Iterate over each character
+
+    1. If the character doesn't exist, a `ValueError` is raised
+    2. If this character is the same as the previous increment the number of repetitions
+        - If it's more than three, raise a `ValueError` for violation of the repetition rule
+        - Else reset the number of repetitions
+    3. Check if we're at the end of the string
+        - If so, add the current character's value to the total and return
+        - Else, attempt to get the next character's roman numeral data
+            - Again raise a `ValueError` if it doesn't exist
+    4. Check that the current character is allowed to precede the next character
+        - Raise a `ValueError` if it can't
+    5. Check the next character's value is larger
+        - If it is
+            - Check if the number of repetitions is greater than $1$
+                - If it is, raise a `ValueError` since there can be no repetitions before a subtraction
+                - Else subtract the value of the current character from the total
+        - Else
+            - Add the value to the current total
+    6. Set the previous to the current character
+
+The complete implementation is given by,
+
+```{python}
+def roman_numeral_converter(number_string):
+    """
+    Convert a number written in roman numerals to an int
+
+    The string must be a valid roman numeral in `standard format`__
+
+    Parameters
+    ----------
+    number_string : str
+        A valid roman numeral expression
+
+    Returns
+    -------
+    int
+        Result of converting the roman numeral to an int
+
+    Raises
+    ------
+    ValueError
+        Raised if `number_string` is not a valid roman numeral
+
+    .. _standard format: https://en.wikipedia.org/wiki/Roman_numerals#Standard_form
+    """
+    roman_numerals = {
+        "I": RomanNumeral("I", 1, {"I", "V", "X"}),
+        "V": RomanNumeral("V", 5, {"I"}),
+        "X": RomanNumeral("X", 10, {"I", "X", "L", "C"}),
+        "L": RomanNumeral("L", 50, {"I", "V", "X"}),
+        "C": RomanNumeral("C", 100, {"I", "V", "X", "L", "C", "M"}),
+        "D": RomanNumeral("D", 500, {"C", "L", "X", "V", "I"}),
+        "M": RomanNumeral("M", 1000, {"I", "V", "X", "L", "C", "D", "M"}),
+    }
+
+    def get_roman_numeral(numeral):
+        """
+        Returns the `RomanNumeral` corresponding to the provided string
+
+        Parameters
+        ----------
+        numeral : str
+            character representing a roman numeral digit
+
+        Returns
+        -------
+        RomanNumeral
+            object describing the corresponding roman numeral
+
+        Raises
+        ------
+        ValueError
+            The provided character is not a valid roman numeral digit
+
+        """
+        try:
+            return roman_numerals[numeral]
+        except KeyError:
+            raise ValueError(numeral, "is not a valid character for a roman numeral")
+
+    total = 0
+    previous = None
+    n_reps = 0
+    number_string = number_string.upper().strip()
+    max_repeats = 3
+
+    for i, ch in enumerate(number_string):
+        # get the roman numeral associated with the next character
+        numeral = get_roman_numeral(ch)
+        if numeral.value == previous:
+            # check that we haven't repeated this numeral too many times
+            n_reps += 1
+            if n_reps > max_repeats:
+                raise ValueError(
+                    ch,
+                    "repeated {0} times, maximum is {1}".format(n_reps, max_repeats),
+                )
+        else:
+            n_reps = 1
+        if i + 1 == len(number_string):  # reached the end and stop
+            return total + numeral.value
+        else:
+            next_numeral = get_roman_numeral(number_string[i + 1])
+
+            if not numeral.may_precede(next_numeral.symbol):
+                raise ValueError(
+                    "Invalid roman numeral: {0} may not precede {1}".format(
+                        numeral.symbol, next_numeral.symbol
+                    )
+                )
+            # if next is larger perform subtraction if valid
+            if next_numeral.value > numeral.value:
+                if n_reps > 1:
+                    raise ValueError(
+                        "Invalid roman numeral: cannot repeat digits for subtraction"
+                    )
+                else:
+                    total -= numeral.value
+            else:
+                total += numeral.value
+        previous = numeral.value
+    return total
+```
+
+Which we can see on some sample valid inputs,
+
+```{python}
+print("I: Expected: 1, Received: {0}".format(roman_numeral_converter("I")))
+print("V: Expected: 5, Received: {0}".format(roman_numeral_converter("V")))
+print("X: Expected: 10, Received: {0}".format(roman_numeral_converter("X")))
+print("II: Expected: 2, Received: {0}".format(roman_numeral_converter("II")))
+print("III: Expected: 3, Received: {0}".format(roman_numeral_converter("III")))
+print(
+    "MMMDCXCVIII: Expected: 3698, Result: {0}".format(
+        roman_numeral_converter("MMMDCXCVIII")
+    )
+)
+```
+
+And on a sample invalid input,
+
+```{python}
+    print(
+        "VV: Expected: Invalid Number, Received: {0}".format(
+            roman_numeral_converter("VV")
+        )
+    )
+```
+
+A more comprehensive set of tests can be found in the [complete program](./Exercises/01_RomanNumeralConverter/RomanNumeralConverter.py)
+
+:::{.callout-note}
+**Trusting vs Checking the Input**
+
+You can see that compared to the simple algorithm outlined for the case were we assumed the input was valid, the final algorithm is a lot longer. This is most due to it performing syntax validation at the same time as it calculates the result.
+
+This is a common philosophical argument. Should `roman_numeral_converter` validate it's input. In principle we could write a function `validate_roman_numeral` which would check that the string is valid. Doing it this way means we could make `roman_numeral_converter` itself quite lean. This has the downside that we would need to make two passes through the string now. The first to validate and the second to convert it.
+
+There are two sides here, the safer version of `roman_numeral_converter` can be used anywhere and always ensures it's input is valid. This comes at the cost that for valid input we are doing extra work checking it. Thus it's a tradeoff, if we expect to receive valid input then we can use the fast version (and if there is perhaps a separate path that can supply invalid input we might use `validate_roman_numeral`), but if not we should use a protected version.
+
+Since our implementation is designed to be for parsing user input, I've combined the code into one function. In the future if the design requirements changed I might revisit this choice
+:::
+
+#### Build Lists of Function References
+
+
+
+
 ## Summary
 
 ## Questions and Answers
