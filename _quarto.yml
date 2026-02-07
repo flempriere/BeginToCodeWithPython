@@ -31,6 +31,7 @@ website:
               - 02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.qmd
           - 02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.qmd
           - 02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd
+          - 02_AdvancedProgramming/12_PythonApplications/Chapter12_.qmd
 format:
   html:
     code-fold: false
