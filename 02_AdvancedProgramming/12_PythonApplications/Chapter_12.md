@@ -53,6 +53,8 @@
     - [Create Tests](#create-tests)
     - [Exercise: Complete the Testing of
       `StockItem`](#exercise-complete-the-testing-of-stockitem)
+    - [Exercise: Refactoring Ride Selector to Support
+      Testing](#exercise-refactoring-ride-selector-to-support-testing)
   - [View Program Documentation](#view-program-documentation)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
@@ -122,7 +124,7 @@
       TypeError: func_1() takes 0 positional arguments but 1 was given
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[990], line 7
+      Cell In[2], line 7
             4     print("Hello from func_1")
             6 x = func_1
       ----> 7 x(99)
@@ -679,14 +681,14 @@ And on a sample invalid input,
     ValueError: Invalid roman numeral: V may not precede V
     ---------------------------------------------------------------------------
     ValueError                                Traceback (most recent call last)
-    Cell In[994], line 3
+    Cell In[6], line 3
           1 print(
           2     "VV: Expected: Invalid Number, Received: {0}".format(
     ----> 3         roman_numeral_converter("VV")
           4     )
           5 )
 
-    Cell In[992], line 84, in roman_numeral_converter(number_string)
+    Cell In[4], line 84, in roman_numeral_converter(number_string)
          81 next_numeral = get_roman_numeral(number_string[i + 1])
          83 if not numeral.may_precede(next_numeral.symbol):
     ---> 84     raise ValueError(
@@ -1541,7 +1543,7 @@ following steps in the interpreter*
           TypeError: add_function() takes 2 positional arguments but 3 were given
           ---------------------------------------------------------------------------
           TypeError                                 Traceback (most recent call last)
-          Cell In[1016], line 1
+          Cell In[28], line 1
           ----> 1 add_function(1, 2, 3)
 
           TypeError: add_function() takes 2 positional arguments but 3 were given
@@ -1606,7 +1608,7 @@ following steps in the interpreter*
       TypeError: add_function() missing 1 required positional argument: 'start'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[1020], line 1
+      Cell In[32], line 1
       ----> 1 add_function()
 
       TypeError: add_function() missing 1 required positional argument: 'start'
@@ -2345,7 +2347,7 @@ we can inject a test implementation.
       AssertionError:
       ---------------------------------------------------------------------------
       AssertionError                            Traceback (most recent call last)
-      Cell In[1030], line 6
+      Cell In[42], line 6
             3         self.stock_level = 1
             5 item = StockItem(stock_ref="Test", price=10, tags="test:tag")
       ----> 6 assert item.stock_level == 0
@@ -2592,17 +2594,17 @@ Tags: {3}"""
 
 <!-- -->
 
+    **StockItem __init__ called
+    **StockItem get price called
+    **StockItem get stock_level called
+
     .
     ----------------------------------------------------------------------
     Ran 1 test in 0.001s
 
     OK
 
-    **StockItem __init__ called
-    **StockItem get price called
-    **StockItem get stock_level called
-
-    <unittest.main.TestProgram at 0x77bc511c99a0>
+    <unittest.main.TestProgram at 0x7fc6d0b78800>
 
 - The above should show that our test executed successfully
 - If we want more detail we can use the `verbosity` parameter
@@ -2615,7 +2617,7 @@ Tags: {3}"""
     test_StockItem_init (__main__.TestStockItem.test_StockItem_init) ... ok
 
     ----------------------------------------------------------------------
-    Ran 1 test in 0.003s
+    Ran 1 test in 0.002s
 
     OK
 
@@ -2623,7 +2625,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x77bc511ca930>
+    <unittest.main.TestProgram at 0x7fc6d0b2c050>
 
 - We can now see the name and status of each individual test
 
@@ -2668,12 +2670,12 @@ Tags: {3}"""
     FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_28289/3483629732.py", line 4, in test_that_fails
+      File "/tmp/ipykernel_3263/3483629732.py", line 4, in test_that_fails
         self.assertEqual(1, 0)
     AssertionError: 1 != 0
 
     ----------------------------------------------------------------------
-    Ran 2 tests in 0.003s
+    Ran 2 tests in 0.001s
 
     FAILED (failures=1)
 
@@ -2681,7 +2683,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x77bc51175f40>
+    <unittest.main.TestProgram at 0x7fc6d0b79d00>
 
 - The output indicates that tests have failed
 
@@ -2740,15 +2742,17 @@ class TestStockItem(unittest.TestCase):
 <!-- -->
 
     .
+
+    **StockItem __init__ called
+    **StockItem add_stock called
+
+
     ----------------------------------------------------------------------
     Ran 1 test in 0.001s
 
     OK
 
-    **StockItem __init__ called
-    **StockItem add_stock called
-
-    <unittest.main.TestProgram at 0x77bc5106a480>
+    <unittest.main.TestProgram at 0x7fc6d82729c0>
 
 - If we wanted to test for specific exceptions we can pass them to
   `assertRaises` as arguments
@@ -2804,7 +2808,7 @@ class TestStockItem(unittest.TestCase):
     **StockItem sell_stock called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x77bc5106a360>
+    <unittest.main.TestProgram at 0x7fc6d0dcf410>
 
 - `unittest` can be used to create more complex testing scenarios
   - [Read the docs at the python
@@ -2957,41 +2961,611 @@ class TestStockItem(unittest.TestCase):
 
 - We can then run these tests,
 
-<!-- -->
-
-    ModuleNotFoundError: No module named 'StockItem'
-    ---------------------------------------------------------------------------
-    ModuleNotFoundError                       Traceback (most recent call last)
-    Cell In[1044], line 8
-          1 # Exercise 12.2b Test Stock Item
-          2 #
-          3 # Uses the unittest package to provide a complete set of tests for StockItem
-          6 import unittest
-    ----> 8 import StockItem
-         11 class TestStockItem(unittest.TestCase):
-         12     def test_init(self):
-
-    ModuleNotFoundError: No module named 'StockItem'
-
 ``` python
 unittest.main(verbosity=2)
 ```
 
-    test_StockItem_add_and_sell_stock (__main__.TestStockItem.test_StockItem_add_and_sell_stock) ... ok
+    test_add_negative_stock_raises_exception (__main__.TestStockItem.test_add_negative_stock_raises_exception) ... ok
+    test_add_stock (__main__.TestStockItem.test_add_stock) ... ok
+    test_add_stock_greater_than_maximum_raises_exception (__main__.TestStockItem.test_add_stock_greater_than_maximum_raises_exception) ... ok
+    test_init (__main__.TestStockItem.test_init) ... ok
+    test_sell_negative_stock_raises_exception (__main__.TestStockItem.test_sell_negative_stock_raises_exception) ... ok
+    test_sell_stock (__main__.TestStockItem.test_sell_stock) ... ok
+    test_sell_stock_greater_than_stock_level_raises_exception (__main__.TestStockItem.test_sell_stock_greater_than_stock_level_raises_exception) ... ok
+    test_sell_zero_stock_raises_exception (__main__.TestStockItem.test_sell_zero_stock_raises_exception) ... ok
+    test_str (__main__.TestStockItem.test_str) ... ok
 
     ----------------------------------------------------------------------
-    Ran 1 test in 0.006s
+    Ran 9 tests in 0.009s
 
     OK
 
-    **StockItem __init__ called
-    **StockItem get stock_level called
-    **StockItem add_stock called
-    **StockItem get stock_level called
-    **StockItem sell_stock called
-    **StockItem get stock_level called
+    <unittest.main.TestProgram at 0x7fc6d0dcd9d0>
 
-    <unittest.main.TestProgram at 0x77bc5106a930>
+#### Exercise: Refactoring Ride Selector to Support Testing
+
+*In Chapter 5 we designed the [Ride Selector
+Program](../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.qmd#use-decisions-to-make-an-application).
+When designing the UI, we considered how we would implement testing.
+Update the program to use* `unittest`*. You may need to refactor the
+code to introduce testability*
+
+The most recent version of Ride Selector is given as an exercise in
+[Chapter
+7](../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.qmd#make-something-happen-add-btcinput-to-your-existing-programs)
+so we’ll use that version as our starting point.
+
+As noted, the program as written is not amenable to testing. Everything
+is one big nested loop and the outputs printed directly to the terminal.
+We first need to refactor this program into one suitable for testing.
+
+Let’s first start by defining a lightweight `Ride` class. Looking at our
+code we can see a ride has a name, and then optionally a maximum or
+minimum age. There is also a global minimum and maximum age limit.
+
+``` python
+class Ride:
+    """
+    A class representing a theme park amuse ride rider limitations
+
+    Attributes
+    ----------
+    name : str
+        name of the ride
+
+    min_age : int
+        minimum age in years to ride
+
+    max_age : int
+        maximum age in years to ride, must be greater than or equal to `min_age`
+
+    Class Attributes
+    ----------------
+    ride_min_age : int
+        minimum `min_age` for any ride
+
+    ride_max_age : int
+        maximum `max_age` for any ride
+
+    """
+
+    ride_min_age = 1
+    ride_max_age = 95
+
+    @staticmethod
+    def is_valid_age_limit(age):
+        """
+        Check a proposed ride age limit is valid
+
+        Parameters
+        ----------
+        age : int
+            proposed age limit in years
+
+        Returns
+        -------
+        bool
+            `True` if `age` is an allowed age limit, else `False`
+
+        See Also
+        --------
+        Ride.ride_min_age : minimum valid age limit for a ride
+        Ride.ride_max_age : maximum valid age limit for a ride
+        """
+        return Ride.ride_min_age <= age <= Ride.ride_max_age
+
+    def __init__(self, name, min_age, max_age):
+        """
+        Creates a new `Ride` instance
+
+        Parameters
+        ----------
+        name : str
+            name of the ride
+        min_age : int
+            minimum age (inclusive) to ride in years
+        max_age : int
+            maximum age to ride (inclusive) to ride in years.
+            `max_age` must be `>= min_age`
+
+        Raises
+        ------
+        ValueError
+            Raised if `max_age` is `< min_age`
+        ValueError
+            Raised if `min_age` or `max_age` is not a valid age limit
+
+        See Also
+        --------
+        Ride.is_valid_age_limit : Checks that ages are valid
+        """
+        if not Ride.is_valid_age_limit(min_age):
+            raise ValueError(
+                "{0} is not a valid age for the minimum age limit".format(min_age)
+            )
+        if not Ride.is_valid_age_limit(max_age):
+            raise ValueError(
+                "{0} is not a valid age for the maximum age limit".format(max_age)
+            )
+        if max_age < min_age:
+            raise ValueError(
+                "maximum age ({0}) must be greater than or equal to minimum age ({1})".format(
+                    max_age, min_age
+                )
+            )
+        self.name = name
+        self.min_age = min_age
+        self.max_age = max_age
+
+    def __str__(self):
+        return str(self.name)
+
+    def in_age_limit(self, age):
+        """
+        Validate that an age is within the limits of the ride
+
+        Parameters
+        ----------
+        age : int
+            age in years to validate is within the age limit
+
+        Returns
+        -------
+        bool
+            `True` if the age is within the ride limits, else `False`
+        """
+        return self.min_age <= age <= self.max_age
+```
+
+- The resulting class is lightweight
+
+- We define class variables `ride_min_age` and `ride_max_age` for the
+  global minimum and maximum ages
+
+- We provide a function, `is_age_valid_age_limit` as a static method
+  that checks a provided age is within these limits
+
+  - `Ride` uses this internally to validate the `min_age` and `max_age`
+    passed in `__init__`
+  - Can also be used externally to check if an age is allowed on any
+    ride
+
+- Defining our tests for `is_age_valid_age_limit`
+
+  ``` python
+    class TestRide(unittest.TestCase):
+    """
+    Test class implementing unit tests for the `Ride` class
+    """
+
+        # Test case for `is_valid_age_limit`
+
+        def test_is_valid_age_accepts_normal_age(self):
+            self.assertTrue(RideSelector.Ride.is_valid_age_limit(always_valid_middle_age))
+
+        def test_is_valid_age_accepts_min_age(self):
+            self.assertTrue(
+                RideSelector.Ride.is_valid_age_limit(RideSelector.Ride.ride_min_age)
+            )
+
+        def test_is_valid_age_accepts_max_age(self):
+            self.assertTrue(
+                RideSelector.Ride.is_valid_age_limit(RideSelector.Ride.ride_max_age)
+            )
+
+        def test_is_valid_age_rejects_less_than_min_age(self):
+            self.assertFalse(
+                RideSelector.Ride.is_valid_age_limit(RideSelector.Ride.ride_min_age - 1)
+            )
+
+        def test_is_valid_age_rejects_greater_than_max_age(self):
+            self.assertFalse(
+                RideSelector.Ride.is_valid_age_limit(RideSelector.Ride.ride_max_age + 1)
+            )
+  ```
+
+  - We can see there a range of test cases
+
+    1. Test a standard value within the range is accepted
+    2. Test the boundary values (`ride_min_age` and `ride_max_age`) are
+        accepted
+    3. Test values outside the boundaries are rejected
+
+- Next we can define our `__init__` and `__str__` methods
+
+``` python
+    def __init__(self, name, min_age, max_age):
+        """
+        Creates a new `Ride` instance
+
+        Parameters
+        ----------
+        name : str
+            name of the ride
+        min_age : int
+            minimum age (inclusive) to ride in years
+        max_age : int
+            maximum age to ride (inclusive) to ride in years.
+            `max_age` must be `>= min_age`
+
+        Raises
+        ------
+        ValueError
+            Raised if `max_age` is `< min_age`
+        ValueError
+            Raised if `min_age` or `max_age` is not a valid age limit
+
+        See Also
+        --------
+        Ride.is_valid_age_limit : Checks that ages are valid
+        """
+        if not Ride.is_valid_age_limit(min_age):
+            raise ValueError(
+                "{0} is not a valid age for the minimum age limit".format(min_age)
+            )
+        if not Ride.is_valid_age_limit(max_age):
+            raise ValueError(
+                "{0} is not a valid age for the maximum age limit".format(max_age)
+            )
+        if max_age < min_age:
+            raise ValueError(
+                "maximum age ({0}) must be greater than or equal to minimum age ({1})".format(
+                    max_age, min_age
+                )
+            )
+        self.name = name
+        self.min_age = min_age
+        self.max_age = max_age
+
+    def __str__(self):
+        return str(self.name)
+```
+
+- The `__init__` checks that the passed `min_range` and `max_range` are
+  valid
+
+  - Then checks that `min_range` and `max_range` follow the correct
+    ordering
+
+- Once the input is validated just sets the appropriate data values
+
+  - We’re leaving them public for the simplicity of demonstration
+
+- Our `__str__` method is defined to simply return `self.name` as a
+  string
+
+- We have a few tests here
+
+  1. Test that we can construct an object normally and have the values
+      set
+  2. Test that an invalid `min_age` is rejected
+  3. Test that an invalid `max_age` is rejected
+  4. Test that `min_age` may not be greater than `max_age`
+  5. Check that the appropriate string is returned
+
+``` python
+    # Test cases for init
+
+    def test_init_sets_attributes_correctly(self):
+        ride = RideSelector.Ride(
+            "Test", min_age=always_valid_middle_age, max_age=always_valid_middle_age
+        )
+        self.assertEqual(ride.name, "Test")
+        self.assertEqual(ride.min_age, always_valid_middle_age)
+        self.assertEqual(ride.max_age, always_valid_middle_age)
+
+    def test_init_raises_valueerror_on_invalid_min_age(self):
+        with self.assertRaises(ValueError):
+            ride = RideSelector.Ride(  # noqa: F841
+                "Test",
+                min_age=RideSelector.Ride.ride_min_age - 1,
+                max_age=always_valid_middle_age,
+            )
+
+    def test_init_raises_valueerror_on_invalid_max_age(self):
+        with self.assertRaises(ValueError):
+            ride = RideSelector.Ride(  # noqa: F841
+                "Test",
+                min_age=always_valid_middle_age,
+                max_age=RideSelector.Ride.ride_max_age + 1,
+            )
+
+    def test_init_raises_value_error_if_max_age_less_than_min_age(self):
+        with self.assertRaises(ValueError):
+            ride = RideSelector.Ride(  # noqa: F841
+                "Test",
+                min_age=RideSelector.Ride.ride_max_age + 1,
+                max_age=RideSelector.Ride.ride_min_age - 1,
+            )
+
+    def test_str_returns_ride_name(self):
+        ride = RideSelector.Ride(
+            "Test",
+            min_age=always_valid_middle_age,
+            max_age=always_valid_middle_age,
+        )
+        self.assertEqual(str(ride), "Test")
+```
+
+- The last method on `Ride` is one that now checks if a given age is
+  accepted by the specific `Ride` instance
+
+``` python
+    def in_age_limit(self, age):
+        """
+        Validate that an age is within the limits of the ride
+
+        Parameters
+        ----------
+        age : int
+            age in years to validate is within the age limit
+
+        Returns
+        -------
+        bool
+            `True` if the age is within the ride limits, else `False`
+        """
+        return self.min_age <= age <= self.max_age
+```
+
+- We pretty much want to test the same cases as for `is_valid_age_limit`
+
+  ``` python
+        def test_in_age_limit_accepts_valid_age(self):
+        ride = RideSelector.Ride(
+            "Test",
+            min_age=always_valid_middle_age,
+            max_age=always_valid_middle_age,
+        )
+        self.assertTrue(ride.in_age_limit(always_valid_middle_age))
+
+    def test_in_age_limit_rejects_too_small_age(self):
+        ride = RideSelector.Ride(
+            "Test",
+            min_age=always_valid_middle_age,
+            max_age=always_valid_middle_age,
+        )
+        self.assertFalse(ride.in_age_limit(ride.min_age - 1))
+
+    def test_in_age_limit_rejects_too_large_age(self):
+        ride = RideSelector.Ride(
+            "Test",
+            min_age=always_valid_middle_age,
+            max_age=always_valid_middle_age,
+        )
+        self.assertFalse(ride.in_age_limit(ride.max_age + 1))
+  ```
+
+- Next we construct our `RideSelector` class
+
+  - For simplicity this implementation mixes some of the container
+    management aspects with the UI presentation aspects
+  - Since some of the functionality requires user input or provides
+    output to the user, we can’t test absolutely everything
+  - Goal is to factor out the individual steps into functions that
+    accept arguments and return values
+  - These can then be tested against
+
+- `RideSelector` starts with a basic `__init__` method that populates it
+  with a preset lookup table of rides
+
+- The `__str__` method converts the tuple of rides into an indexed list
+  as a string
+
+- We’ll ignore testing the `__init__` method for now
+
+  - Since it’s not interesting
+
+- `__str__` uses a quite complicated `lambda` though to perform it’s
+  magic
+
+  - The idea is to map the tuple elements to their enumerated pair
+    - i.e. a tuple containing the index and the value
+  - We then write use a lambda that maps the enumerated pair to the form
+    `x. value` where `x` is the $index + 1$ (since we want to convert
+    from $0$-indexed to $1$-indexed) and `value` is the actual value
+  - We then use `map` to apply the lambda to all elements of the
+    `enumerate` object
+  - Lastly convert into our string using `"\n".join`
+  - This is quite a complicated set of steps and so should be tested
+
+- We’ll define a new test class for the `RideSelector` tests
+
+  - This is to make them distinct
+  - In a bigger program we would probably separate out each components
+    tests into their own test file
+  - Our `__str__` test will take define an expected string and compare
+    this to the result of calling the `__str__` method
+
+  ``` python
+    class TestRideSelector(unittest.TestCase):
+    """
+    Test cases for the `RideSelector` class
+    """
+
+    # test str method
+        def test_str_creates_enumerated_table(self):
+            ride_selector = RideSelector.RideSelector()
+            expected_str = """1. Scenic River Cruise
+    2. Carnival Carousel
+    3. Jungle Adventure Water Splash
+    4. Downhill Mountain Run
+    5. The Regurgitator"""
+            self.assertEqual(str(ride_selector), expected_str)
+  ```
+
+- Next we define a `get_ride` method that converts a user selection of a
+  ride into the corresponding ride object
+
+- This has a simple implementation
+
+  ``` python
+        def get_ride(self, index):
+        """
+        Get's the ride associated with a given index
+
+        Parameters
+        ----------
+        index : int
+            integer greater than zero corresponding a ride index
+
+        Returns
+        -------
+        Ride
+            the ride stored by the given index
+
+        Raises
+        ------
+        ValueError
+            Raised if `index <= 0`
+        IndexError
+            Raised if the no ride exists for the given index
+        """
+        if index <= 0:
+            raise ValueError("index must be a positive integer")
+        return self._rides[index - 1]
+  ```
+
+- There are clear cases to test here
+
+  1. That a valid index returns the correct `Ride` instance
+  2. That a non-positive index returns a `ValueError`
+  3. That an invalid index returns an `IndexError`
+
+  ``` python
+    # test get_ride method
+
+    def test_get_ride_returns_expected_ride(self):
+        ride_selector = RideSelector.RideSelector()
+        ride = ride_selector.get_ride(1)
+        self.assertEqual(str(ride), "Scenic River Cruise")
+
+    def test_get_ride_raises_valueerror_on_zero_index(self):
+        ride_selector = RideSelector.RideSelector()
+
+        with self.assertRaises(ValueError):
+            ride_selector.get_ride(0)
+
+    def test_get_ride_raises_valueerror_on_invalid_index(self):
+        ride_selector = RideSelector.RideSelector()
+
+        with self.assertRaises(IndexError):
+            ride_selector.get_ride(99)
+  ```
+
+- Our last testable component in then, `check_age_against_ride`
+
+  - This takes in an age and a ride
+  - Checks in a person of that age can ride the ride
+  - This has two stages
+    1. First validate that person can ride *any* ride
+        - Using `Ride.is_valid_age_limit`
+    2. Validate that person can ride the specific ride they selected
+        - Using that ride’s `in_age_limit` method
+  - Returns a string to display to the caller the outcome
+
+  ``` python
+    def check_age_against_ride(self, ride, age):
+        """
+        Provides a string describing in a rider of `age` years can ride the Ride `ride`
+
+        Parameters
+        ----------
+        ride : Ride
+            ride to check the age against
+        age : int
+            age of the prospective rider in years
+
+        Returns
+        -------
+        str
+            string describing if a rider of `age` years can ride `ride`
+        """
+        if age < Ride.ride_min_age:
+            return "You are too young to go on any rides"
+        elif age > Ride.ride_max_age:
+            return "You are too old to go on any rides"
+        elif age < ride.min_age:
+            return "Sorry, you are too young"
+        elif age > ride.max_age:
+            return "Sorry, you are too old"
+        else:
+            return "You can go on the ride"
+  ```
+
+  - We want to test these strings are returned correctly
+
+  - There are a few cases
+
+    1. Too young to go on any ride
+    2. Too young to go on this specific ride
+    3. Too old to go on any ride
+    4. Too old to go on this specific ride
+    5. Able to go on the ride
+
+  - Luckily since string literals are returned, we can check this easily
+
+  ``` python
+        # test check age against ride
+
+    def test_too_young_for_any_ride(self):
+        ride_selector = RideSelector.RideSelector()
+        ride = ride_selector.get_ride(1)
+        self.assertEqual(
+            "You are too young to go on any rides",
+            ride_selector.check_age_against_ride(
+                ride, RideSelector.Ride.ride_min_age - 1
+            ),
+        )
+
+    def test_too_old_for_any_ride(self):
+        ride_selector = RideSelector.RideSelector()
+        ride = ride_selector.get_ride(1)
+        self.assertEqual(
+            "You are too old to go on any rides",
+            ride_selector.check_age_against_ride(
+                ride, RideSelector.Ride.ride_max_age + 1
+            ),
+        )
+
+    def test_too_young_for_specific_ride(self):
+        ride_selector = RideSelector.RideSelector()
+        ride = ride_selector.get_ride(5)
+        self.assertEqual(
+            "Sorry, you are too young",
+            ride_selector.check_age_against_ride(ride, ride.min_age - 1),
+        )
+
+    def test_too_old_for_specific_ride(self):
+        ride_selector = RideSelector.RideSelector()
+        ride = ride_selector.get_ride(5)
+        self.assertEqual(
+            "Sorry, you are too old",
+            ride_selector.check_age_against_ride(ride, ride.max_age + 1),
+        )
+
+    def test_valid_age_is_accepted(self):
+        ride_selector = RideSelector.RideSelector()
+        ride = ride_selector.get_ride(5)
+        self.assertEqual(
+            "You can go on the ride",
+            ride_selector.check_age_against_ride(ride, ride.min_age),
+        )
+  ```
+
+- The last step is to the then run the tests
+
+``` python
+unitttest.main()
+```
+
+    ...............................
+    ----------------------------------------------------------------------
+    Ran 31 tests in 0.017s
+
+    OK
+
+    <unittest.main.TestProgram at 0x7fc6d0b73980>
 
 ### View Program Documentation
 
