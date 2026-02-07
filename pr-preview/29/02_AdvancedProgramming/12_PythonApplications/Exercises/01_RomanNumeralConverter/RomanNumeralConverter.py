@@ -1,6 +1,8 @@
-# Exercise 12.1 Roman Numeral Converter
+# Exercise 12.1a Roman Numeral Converter
 #
 # Write a function that converts strings of roman numerals to an integer
+# This initial implementation uses an active parser that reads the string
+# validating and converting to roman numerals as we go
 import BTCInput
 
 
