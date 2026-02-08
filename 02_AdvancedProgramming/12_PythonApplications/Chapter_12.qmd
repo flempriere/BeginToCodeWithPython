@@ -3527,9 +3527,154 @@ class TestRideSelector(unittest.TestCase):
 unittest.main(argv=["first-arg-is-ignored"], exit=False)
 ```
 
+:::{.callout-note}
+**Be careful with how you design your tests**
+
+Tests are designed generally to test expected behaviours. This is why test-driven development typically expects
+you to write the test before the implementation. The idea being that by first defining the behaviour you want rather
+than testing a specific implementation you avoid coupling your test directly to your implementation.
+
+This can be hard to avoid to some degree when dealing with unit tests because by their nature they test a specific unit. However, let's look at our tests and some of the design choices. One of the main things I have done for some of the tests is to parameterise the values being tested, rather than hard-coding values. There is a trade-off here. The tests are a bit more opaque but are in theory flexible to changes. For example I have used the `Ride.ride_min_age` and `Ride.ride_max_age` points are:
+
+1. By using the values, we make the tests test the behaviour rather than the specific chosen values
+2. We couple the test to the implementation providing those class attributes
+3. If we change those values we *might* actually want the tests to fail, so that we can then manually ensure that the change is correct
+    - Then update the test
+    - However, this has the problem, that our test is then being dictated by the implementation
+    - If we revert a change we would have to again rework the tests
+
+The notion of using parameters versus specific-values is a choice in testing, the above is just an example of how to think about how to test. The other consideration is if the testing framework fits with the design of your program. In rewiring the ride selector program we've arguably made it more complex and harder to reason about by trying to fit it into the individual component model that `unittest` expects. For Ride Selector which provides a fairly simple user interface where we mostly care about the user receiving the correct response a better testing implementation might actually be to test the program *externally*. By this we mean, we generate a test set of inputs, feed them into the program and record the outputs. We then compare these outputs to the expected outputs.
+
+Doing the testing this way has some tradeoffs. By testing the system as a whole it's harder to identify where the sources of failures arise. However, the overall program doesn't need to be refactored into a more complicated form just to facilitate the tests
+:::
 
 ### View Program Documentation
 
+- We saw that you could add docstrings to functions to describe their behaviour
+- Implicitly in the examples you've also seen these added to classes
+- Modules can also have docstrings too!
+    - The only rule across all three is that the docstring is the first statement after the start
+        - i.e. for a function, after the function definition
+        - for a class, after the class definition
+        - for a module, the first statement in the file
+
+#### Make Something Happen: Explore `pydoc`
+
+`Pydoc` *is a program written in python that can be run from the command line. Work through the following steps to see how it works*
+
+1. *Navigate to the folder [10_FashionShopWithDocumentation](./Examples/10_FashionShopWithDocumentation/)*
+2. *Open a terminal in this folder (or navigate to this folder in the terminal)*
+3. *Run the* `pydoc` *module, by executing the following command,*
+
+   ```shell
+    python -m pydoc
+   ```
+
+    - The `-m` following the call to python means "execute the following module"
+    - Running on `pydoc` with no additional arguments we can see it provides documentation about `pydoc` itself
+
+      ```{python}
+        ! python -m pydoc
+      ```
+
+    - We can see from the output that `pydoc` is a documentation tool
+    - There a number of different arguments we can supply that modify how it runs
+
+4. *For now we want to start a webpage to read our documentation. Reading the documentation we can see this can be done using the* `-b` *flag. Enter the following*
+
+   ```python
+    python -m pydoc -b
+   ```
+
+   - `pydoc` will then start a website that can be used to view the documentation
+   - The result should look something like the screenshot below
+
+     ![Generated Pydoc Website](./Examples/10_FashionShopWithDocumentation/pydoc_screenshot.png)
+
+    - We can see the site contains links to python's built-in modules
+    - But there is also a section for our own documented modules,
+        - I've included the generated html so you can interact with them directly
+            1. [Data](./Examples/10_FashionShopWithDocumentation/Docs/Data.html)
+            2. [FashionShopShellUI](./Examples/10_FashionShopWithDocumentation/Docs/FashionShopShellUI.html)
+            3. [RunTests](./Examples/10_FashionShopWithDocumentation/Docs/RunTests.html)
+
+    - You can also use the built-in search bar
+    - The docstrings are now displayed for the module, class and each method
+
+:::{.callout-warning}
+**Modules that run as programs can break pydoc**
+
+Recall that when loaded a module will execute all of the statements that it includes. For `pydoc` to generate the docstrings and site material from a module it first has to load it. This means that it *will* lead to those statements being executed.
+
+This means that if we had a module that represented an entry point to looping user input (such as [FashionShopShellUI.py](./Examples/10_FashionShopWithDocumentation/FashionShopShellUI.py)) it would immediately start executing and freeze `pydoc`. This is a reminder to use name guards to control the context in which a module can be executed.
+
+```python
+    if __name__ = "__main__":
+        # do things that should only occur if the module is executed directly
+```
+:::
+
+
 ## Summary
 
+- We've seen that testing can be automated and integrated into a program
+- `unittest` is an in-built framework for performing unit testing
+    - Unit tests are small tests that test a specific behaviour
+- Documentation is an important part of software development
+    - Documentation can be added as docstrings to functions, classes and modules
+    - Documentation can automatically be rendered
+        - `pydoc` is an inbuilt python program for generating html sites of python documentation
+- Variables can refer to functions
+    - Function references allow us to be flexible in implementing an interface
+- Lambda expressions allow us to write small expressions that apply actions to data
+    - Lambda's can also be treated as data themselves
+- `yield` allows us to write functions that serve as iterators
+- We can create packages in python
+    - Packages organise and group up modules
+- Variables can refer to classes
+    - Allows us to be flexible in implementation like with function references
+
 ## Questions and Answers
+
+1. *Is everything in python an object?*
+
+    - Yes
+    - The advantage of python's dynamic typing system is that everything is an object and can be treated as one
+    - let's us pass around a lot of different things to various parts of a system
+        - Gives us lots of why to be flexible in implementation
+    - The downside is that since there is no strict type checking we can get into situations where invalid objects are being passed
+        - e.g. we might try to call a method on an `int` that it doesn't possess
+
+2. *Should I feel bad if I don't understand things like lambda expressions and yield?*
+
+    - No
+    - These are advanced and complicated features
+    - It's also natural for a concept to require repeated exposure and multiple passes to sink in
+    - With simple programs you generally will not have a natural use for these features
+        - When you do have those use cases though, they are powerful
+
+3. *What happens when I move python packages from one computer to another?*
+
+    - They should work out of the box as long as a user has the correct version of python installed
+    - If you mess with the directory structure you may need to update the packages
+        - (See the comments about importing in packages made earlier)
+    - A more permanent way is to *publish* a package, so that it can be installed (and preferably downloaded from the internet)
+
+4. *When should I write my documentation and tests?*
+
+    - As you go along
+    - There is a natural back and forth between documentation, tests and implementation
+    - For a typical example workflow we might have a part of project we're working on
+
+        1. We start by documenting the design process
+        2. We right some simple tests that we should aim to fulfill
+        3. We then create an implementation
+        4. We document the implementation as we go (preferably in code)
+        5. We ensure the implementation passes the basic tests
+        6. We add further tests to capture any unexpected behaviour found while implementing
+
+    - Generally it is much easier to document a program as you write it and things are fresh than it is to go back and do it all
+    - Same for tests
+        - Write small bits of code then test them
+        - Easier and more likely to result in a working program than writing one large block and a bunch of tests
+        - Pythons dynamic typing and runtime error handling makes it very painful to try and fix large broken programs

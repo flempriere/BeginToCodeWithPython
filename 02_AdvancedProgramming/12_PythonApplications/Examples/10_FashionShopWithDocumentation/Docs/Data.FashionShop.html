@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module Data.FashionShop</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="Data.html" class="white">Data</a>.FashionShop</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/02_AdvancedProgramming/12_PythonApplications/Examples/10_FashionShopWithDocumentation/Data/FashionShop.py">/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/02_AdvancedProgramming/12_PythonApplications/Examples/10_FashionShopWithDocumentation/Data/FashionShop.py</a></td></tr></table>
+    <p><span class="code">Example&nbsp;12.10c&nbsp;<a href="#FashionShop">FashionShop</a><br>
+&nbsp;<br>
+Contains&nbsp;implementations&nbsp;for&nbsp;handling&nbsp;a&nbsp;collection&nbsp;of&nbsp;inventory&nbsp;items<br>
+&nbsp;<br>
+Routine&nbsp;Listings<br>
+----------------<br>
+<a href="#FashionShop">FashionShop</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Collection&nbsp;class&nbsp;for&nbsp;handling&nbsp;a&nbsp;collection&nbsp;of&nbsp;`StockItem`&nbsp;classes<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+Data.StockItem&nbsp;:&nbsp;Module&nbsp;containing&nbsp;implementations&nbsp;of&nbsp;inventory&nbsp;items</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="pickle.html">pickle</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="Data.FashionShop.html#FashionShop">FashionShop</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="FashionShop">class <strong>FashionShop</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">Represents&nbsp;the&nbsp;inventory&nbsp;management&nbsp;system&nbsp;of&nbsp;a&nbsp;Fashion<br>
+&nbsp;<br>
+Class&nbsp;Attributes<br>
+----------------<br>
+show_instrumentation&nbsp;:&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;indicates&nbsp;if&nbsp;instrumentation&nbsp;should&nbsp;be&nbsp;printed<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="FashionShop-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Create&nbsp;a&nbsp;new&nbsp;`<a href="#FashionShop">FashionShop</a>`&nbsp;instance</span></dd></dl>
+
+<dl><dt><a name="FashionShop-__str__"><strong>__str__</strong></a>(self)</dt><dd><span class="code">Return&nbsp;str(self).</span></dd></dl>
+
+<dl><dt><a name="FashionShop-find_matching_with_tags"><strong>find_matching_with_tags</strong></a>(self, search_tags)</dt><dd><span class="code">Get&nbsp;stock&nbsp;items&nbsp;that&nbsp;match&nbsp;all&nbsp;the&nbsp;specified&nbsp;search&nbsp;tags<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+search_tags&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;of&nbsp;tags&nbsp;to&nbsp;search&nbsp;against.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Item's&nbsp;must&nbsp;match&nbsp;all&nbsp;tags<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list[StockItem]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;containing&nbsp;all&nbsp;StockItem's&nbsp;matching&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;specified&nbsp;set&nbsp;of&nbsp;tags.&nbsp;If&nbsp;no&nbsp;matches&nbsp;are&nbsp;found<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;list&nbsp;is&nbsp;empty</span></dd></dl>
+
+<dl><dt><a name="FashionShop-find_stock_item"><strong>find_stock_item</strong></a>(self, stock_ref)</dt><dd><span class="code">Find&nbsp;the&nbsp;stock&nbsp;item&nbsp;with&nbsp;the&nbsp;corresponding&nbsp;reference&nbsp;id<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+stock_ref&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stock&nbsp;reference&nbsp;id&nbsp;of&nbsp;the&nbsp;item&nbsp;to&nbsp;find<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+StockItem&nbsp;|&nbsp;None<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns&nbsp;a&nbsp;`StockItem`&nbsp;with&nbsp;a&nbsp;matching&nbsp;`stock_ref`&nbsp;else&nbsp;`None`</span></dd></dl>
+
+<dl><dt><a name="FashionShop-save"><strong>save</strong></a>(self, filename)</dt><dd><span class="code">Save&nbsp;the&nbsp;`<a href="#FashionShop">FashionShop</a>`&nbsp;to&nbsp;a&nbsp;given&nbsp;file<br>
+&nbsp;<br>
+`<a href="#FashionShop">FashionShop</a>`&nbsp;is&nbsp;saved&nbsp;as&nbsp;a&nbsp;pickled&nbsp;binary&nbsp;file&nbsp;in&nbsp;the&nbsp;file&nbsp;given<br>
+by&nbsp;`filename`.&nbsp;The&nbsp;file&nbsp;is&nbsp;created&nbsp;if&nbsp;it&nbsp;doesn't&nbsp;exist.&nbsp;If&nbsp;the&nbsp;file<br>
+already&nbsp;exists&nbsp;it&nbsp;is&nbsp;overwritten<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+filename&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;to&nbsp;the&nbsp;file&nbsp;to&nbsp;save<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+Exceptions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;raised&nbsp;if&nbsp;the&nbsp;file&nbsp;fails&nbsp;to&nbsp;save<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+<a href="#FashionShop">FashionShop</a>.load&nbsp;:&nbsp;load&nbsp;a&nbsp;`<a href="#FashionShop">FashionShop</a>`&nbsp;<a href="builtins.html#object">object</a>&nbsp;from&nbsp;a&nbsp;file</span></dd></dl>
+
+<dl><dt><a name="FashionShop-store_new_stock_item"><strong>store_new_stock_item</strong></a>(self, item)</dt><dd><span class="code">Store&nbsp;a&nbsp;new&nbsp;item&nbsp;in&nbsp;the&nbsp;reference&nbsp;system<br>
+&nbsp;<br>
+The&nbsp;provided&nbsp;`item`&nbsp;can&nbsp;be&nbsp;indexed&nbsp;by&nbsp;it's&nbsp;`stock_ref`&nbsp;parameter<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+item&nbsp;:&nbsp;StockItem<br>
+&nbsp;&nbsp;&nbsp;&nbsp;item&nbsp;to&nbsp;add&nbsp;to&nbsp;the&nbsp;inventory&nbsp;system<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+KeyError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Raised&nbsp;if&nbsp;the&nbsp;item's&nbsp;`stock_ref`&nbsp;is&nbsp;already&nbsp;registered&nbsp;as&nbsp;a&nbsp;key</span></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="FashionShop-load"><strong>load</strong></a>(filename)</dt><dd><span class="code">Create&nbsp;a&nbsp;`<a href="#FashionShop">FashionShop</a>`&nbsp;instance&nbsp;from&nbsp;a&nbsp;pickled&nbsp;binary&nbsp;file<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+filename&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;to&nbsp;a&nbsp;file&nbsp;containing&nbsp;pickled&nbsp;`<a href="#FashionShop">FashionShop</a>`&nbsp;data<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+<a href="#FashionShop">FashionShop</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;loaded&nbsp;`<a href="#FashionShop">FashionShop</a>`&nbsp;instance<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+Exceptions<br>
+&nbsp;&nbsp;&nbsp;&nbsp;raised&nbsp;if&nbsp;the&nbsp;file&nbsp;fails&nbsp;to&nbsp;load<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+<a href="#FashionShop">FashionShop</a>.save&nbsp;:&nbsp;saves&nbsp;a&nbsp;`<a href="#FashionShop">FashionShop</a>`&nbsp;instance</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>show_instrumentation</strong> = True</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

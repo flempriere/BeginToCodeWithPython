@@ -3,9 +3,14 @@ project:
   render:
     - "*.qmd"
   post-render: quartoScripts/restoreMarkdownToRepositoryHierachy.sh
+  resources:
+    - "02_AdvancedProgramming/12_PythonApplications/Examples/10_FashionShopWithDocumentation/Docs/*.html"
+    - "**/Examples/"
+    - "**/Exercises/"
 
 website:
   title: "Beginning to Code with Python: Notes, Examples and Exercises"
+  open-graph: true
   navbar:
     search: true
     left:
@@ -31,7 +36,7 @@ website:
               - 02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.qmd
           - 02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.qmd
           - 02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd
-          - 02_AdvancedProgramming/12_PythonApplications/Chapter12_.qmd
+          - 02_AdvancedProgramming/12_PythonApplications/Chapter_12.qmd
 format:
   html:
     code-fold: false
