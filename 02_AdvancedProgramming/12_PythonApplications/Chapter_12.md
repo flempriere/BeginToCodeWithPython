@@ -56,6 +56,8 @@
     - [Exercise: Refactoring Ride Selector to Support
       Testing](#exercise-refactoring-ride-selector-to-support-testing)
   - [View Program Documentation](#view-program-documentation)
+    - [Make Something Happen: Explore
+      `pydoc`](#make-something-happen-explore-pydoc)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -124,7 +126,7 @@
       TypeError: func_1() takes 0 positional arguments but 1 was given
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[2], line 7
+      Cell In[62], line 7
             4     print("Hello from func_1")
             6 x = func_1
       ----> 7 x(99)
@@ -681,14 +683,14 @@ And on a sample invalid input,
     ValueError: Invalid roman numeral: V may not precede V
     ---------------------------------------------------------------------------
     ValueError                                Traceback (most recent call last)
-    Cell In[6], line 3
+    Cell In[66], line 3
           1 print(
           2     "VV: Expected: Invalid Number, Received: {0}".format(
     ----> 3         roman_numeral_converter("VV")
           4     )
           5 )
 
-    Cell In[4], line 84, in roman_numeral_converter(number_string)
+    Cell In[64], line 84, in roman_numeral_converter(number_string)
          81 next_numeral = get_roman_numeral(number_string[i + 1])
          83 if not numeral.may_precede(next_numeral.symbol):
     ---> 84     raise ValueError(
@@ -1543,7 +1545,7 @@ following steps in the interpreter*
           TypeError: add_function() takes 2 positional arguments but 3 were given
           ---------------------------------------------------------------------------
           TypeError                                 Traceback (most recent call last)
-          Cell In[28], line 1
+          Cell In[88], line 1
           ----> 1 add_function(1, 2, 3)
 
           TypeError: add_function() takes 2 positional arguments but 3 were given
@@ -1608,7 +1610,7 @@ following steps in the interpreter*
       TypeError: add_function() missing 1 required positional argument: 'start'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[32], line 1
+      Cell In[92], line 1
       ----> 1 add_function()
 
       TypeError: add_function() missing 1 required positional argument: 'start'
@@ -2347,7 +2349,7 @@ we can inject a test implementation.
       AssertionError:
       ---------------------------------------------------------------------------
       AssertionError                            Traceback (most recent call last)
-      Cell In[42], line 6
+      Cell In[102], line 6
             3         self.stock_level = 1
             5 item = StockItem(stock_ref="Test", price=10, tags="test:tag")
       ----> 6 assert item.stock_level == 0
@@ -2594,17 +2596,17 @@ Tags: {3}"""
 
 <!-- -->
 
-    **StockItem __init__ called
-    **StockItem get price called
-    **StockItem get stock_level called
-
     .
     ----------------------------------------------------------------------
     Ran 1 test in 0.001s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fc6d0b78800>
+    **StockItem __init__ called
+    **StockItem get price called
+    **StockItem get stock_level called
+
+    <unittest.main.TestProgram at 0x7cf4d45b5760>
 
 - The above should show that our test executed successfully
 - If we want more detail we can use the `verbosity` parameter
@@ -2617,7 +2619,7 @@ Tags: {3}"""
     test_StockItem_init (__main__.TestStockItem.test_StockItem_init) ... ok
 
     ----------------------------------------------------------------------
-    Ran 1 test in 0.002s
+    Ran 1 test in 0.001s
 
     OK
 
@@ -2625,7 +2627,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fc6d0b2c050>
+    <unittest.main.TestProgram at 0x7cf4d45b52e0>
 
 - We can now see the name and status of each individual test
 
@@ -2666,24 +2668,26 @@ Tags: {3}"""
 <!-- -->
 
     F.
-    ======================================================================
-    FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_3263/3483629732.py", line 4, in test_that_fails
-        self.assertEqual(1, 0)
-    AssertionError: 1 != 0
-
-    ----------------------------------------------------------------------
-    Ran 2 tests in 0.001s
-
-    FAILED (failures=1)
 
     **StockItem __init__ called
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fc6d0b79d00>
+
+    ======================================================================
+    FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/tmp/ipykernel_17817/3483629732.py", line 4, in test_that_fails
+        self.assertEqual(1, 0)
+    AssertionError: 1 != 0
+
+    ----------------------------------------------------------------------
+    Ran 2 tests in 0.002s
+
+    FAILED (failures=1)
+
+    <unittest.main.TestProgram at 0x7cf4d45adc70>
 
 - The output indicates that tests have failed
 
@@ -2742,17 +2746,15 @@ class TestStockItem(unittest.TestCase):
 <!-- -->
 
     .
-
-    **StockItem __init__ called
-    **StockItem add_stock called
-
-
     ----------------------------------------------------------------------
     Ran 1 test in 0.001s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fc6d82729c0>
+    **StockItem __init__ called
+    **StockItem add_stock called
+
+    <unittest.main.TestProgram at 0x7cf4d4562930>
 
 - If we wanted to test for specific exceptions we can pass them to
   `assertRaises` as arguments
@@ -2808,7 +2810,7 @@ class TestStockItem(unittest.TestCase):
     **StockItem sell_stock called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fc6d0dcf410>
+    <unittest.main.TestProgram at 0x7cf4d45b6000>
 
 - `unittest` can be used to create more complex testing scenarios
   - [Read the docs at the python
@@ -2976,11 +2978,11 @@ unittest.main(verbosity=2)
     test_str (__main__.TestStockItem.test_str) ... ok
 
     ----------------------------------------------------------------------
-    Ran 9 tests in 0.009s
+    Ran 9 tests in 0.010s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fc6d0dcd9d0>
+    <unittest.main.TestProgram at 0x7cf4d4562930>
 
 #### Exercise: Refactoring Ride Selector to Support Testing
 
@@ -3561,13 +3563,160 @@ unitttest.main()
 
     ...............................
     ----------------------------------------------------------------------
-    Ran 31 tests in 0.017s
+    Ran 31 tests in 0.019s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fc6d0b73980>
+    <unittest.main.TestProgram at 0x7cf4d6613290>
+
+> [!NOTE]
+>
+> **Be careful with how you design your tests**
+>
+> Tests are designed generally to test expected behaviours. This is why
+> test-driven development typically expects you to write the test before
+> the implementation. The idea being that by first defining the
+> behaviour you want rather than testing a specific implementation you
+> avoid coupling your test directly to your implementation.
+>
+> This can be hard to avoid to some degree when dealing with unit tests
+> because by their nature they test a specific unit. However, let’s look
+> at our tests and some of the design choices. One of the main things I
+> have done for some of the tests is to parameterise the values being
+> tested, rather than hard-coding values. There is a trade-off here. The
+> tests are a bit more opaque but are in theory flexible to changes. For
+> example I have used the `Ride.ride_min_age` and `Ride.ride_max_age`
+> points are:
+>
+> 1. By using the values, we make the tests test the behaviour rather
+>     than the specific chosen values
+> 2. We couple the test to the implementation providing those class
+>     attributes
+> 3. If we change those values we *might* actually want the tests to
+>     fail, so that we can then manually ensure that the change is
+>     correct
+>     - Then update the test
+>     - However, this has the problem, that our test is then being
+>       dictated by the implementation
+>     - If we revert a change we would have to again rework the tests
+>
+> The notion of using parameters versus specific-values is a choice in
+> testing, the above is just an example of how to think about how to
+> test. The other consideration is if the testing framework fits with
+> the design of your program. In rewiring the ride selector program
+> we’ve arguably made it more complex and harder to reason about by
+> trying to fit it into the individual component model that `unittest`
+> expects. For Ride Selector which provides a fairly simple user
+> interface where we mostly care about the user receiving the correct
+> response a better testing implementation might actually be to test the
+> program *externally*. By this we mean, we generate a test set of
+> inputs, feed them into the program and record the outputs. We then
+> compare these outputs to the expected outputs.
+>
+> Doing the testing this way has some tradeoffs. By testing the system
+> as a whole it’s harder to identify where the sources of failures
+> arise. However, the overall program doesn’t need to be refactored into
+> a more complicated form just to facilitate the tests
 
 ### View Program Documentation
+
+- We saw that you could add docstrings to functions to describe their
+  behaviour
+- Implicitly in the examples you’ve also seen these added to classes
+- Modules can also have docstrings too!
+  - The only rule across all three is that the docstring is the first
+    statement after the start
+    - i.e. for a function, after the function definition
+    - for a class, after the class definition
+    - for a module, the first statement in the file
+
+#### Make Something Happen: Explore `pydoc`
+
+`Pydoc` *is a program written in python that can be run from the command
+line. Work through the following steps to see how it works*
+
+1. *Navigate to the folder
+    [10_FashionShopWithDocumentation](./Examples/10_FashionShopWithDocumentation/)*
+
+2. *Open a terminal in this folder (or navigate to this folder in the
+    terminal)*
+
+3. *Run the* `pydoc` *module, by executing the following command,*
+
+    ``` shell
+     python -m pydoc
+    ```
+
+    - The `-m` following the call to python means “execute the following
+      module”
+
+    - Running on `pydoc` with no additional arguments we can see it
+      provides documentation about `pydoc` itself
+
+      ``` python
+        ! python -m pydoc
+      ```
+
+          pydoc - the Python documentation tool
+
+          pydoc <name> ...
+              Show text documentation on something.  <name> may be the name of a
+              Python keyword, topic, function, module, or package, or a dotted
+              reference to a class or function within a module or module in a
+              package.  If <name> contains a '/', it is used as the path to a
+              Python source file to document. If name is 'keywords', 'topics',
+              or 'modules', a listing of these things is displayed.
+
+          pydoc -k <keyword>
+              Search for a keyword in the synopsis lines of all available modules.
+
+          pydoc -n <hostname>
+              Start an HTTP server with the given hostname (default: localhost).
+
+          pydoc -p <port>
+              Start an HTTP server on the given port on the local machine.  Port
+              number 0 can be used to get an arbitrary unused port.
+
+          pydoc -b
+              Start an HTTP server on an arbitrary unused port and open a web browser
+              to interactively browse documentation.  This option can be used in
+              combination with -n and/or -p.
+
+          pydoc -w <name> ...
+              Write out the HTML documentation for a module to a file in the current
+              directory.  If <name> contains a '/', it is treated as a filename; if
+              it names a directory, documentation is written for all the contents.
+
+    - We can see from the output that `pydoc` is a documentation tool
+
+    - There a number of different arguments we can supply that modify
+      how it runs
+
+4. *For now we want to start a webpage to read our documentation.
+    Reading the documentation we can see this can be done using the*
+    `-b` *flag. Enter the following*
+
+    ``` python
+     python -m pydoc -b
+    ```
+
+    - `pydoc` will then start a website that can be used to view the
+      documentation
+
+    - The result should look something like the screenshot below
+
+      ![Generated Pydoc
+      Website](./Examples/10_FashionShopWithDocumentation/pydoc_screenshot.png)
+
+    - We can see the site contains links to python’s built-in modules
+
+    - But there is also a section for our own documented modules,
+
+      - I’ve included the generated html so you can interact with them
+        directly
+        1. [Data](./Examples/10_FashionShopWithDocumentation/Docs/Data.html)
+        2. [FashionShopShellUI](./Examples/10_FashionShopWithDocumentation/Docs/FashionShopShellUI.html)
+        3. [RunTests](./Examples/10_FashionShopWithDocumentation/Docs/RunTests.html)
 
 ## Summary
 

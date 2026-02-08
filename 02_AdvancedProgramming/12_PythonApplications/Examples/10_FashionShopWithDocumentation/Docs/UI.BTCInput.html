@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.BTCInput</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.BTCInput</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/02_AdvancedProgramming/12_PythonApplications/Examples/10_FashionShopWithDocumentation/UI/BTCInput.py">/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/02_AdvancedProgramming/12_PythonApplications/Examples/10_FashionShopWithDocumentation/UI/BTCInput.py</a></td></tr></table>
+    <p><span class="code">Example&nbsp;12.10e&nbsp;BTCInput<br>
+&nbsp;<br>
+Provides&nbsp;functions&nbsp;for&nbsp;reading&nbsp;and&nbsp;validating&nbsp;numbers&nbsp;and&nbsp;strings&nbsp;from&nbsp;user&nbsp;input<br>
+&nbsp;<br>
+Routine&nbsp;Listings<br>
+----------------<br>
+read_text&nbsp;:&nbsp;read&nbsp;text&nbsp;from&nbsp;user&nbsp;input<br>
+read_int&nbsp;:&nbsp;read&nbsp;an&nbsp;int&nbsp;from&nbsp;user&nbsp;input<br>
+read_float&nbsp;:&nbsp;read&nbsp;a&nbsp;float&nbsp;from&nbsp;user&nbsp;input<br>
+read_int_ranged&nbsp;:&nbsp;read&nbsp;an&nbsp;int&nbsp;restricted&nbsp;to&nbsp;the&nbsp;interval&nbsp;[min_value,&nbsp;max_value]<br>
+read_float_ranged&nbsp;:&nbsp;read&nbsp;a&nbsp;float&nbsp;restricted&nbsp;to&nbsp;the&nbsp;interval&nbsp;[min_value,&nbsp;max_value]<br>
+read_number&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;interface&nbsp;function&nbsp;allowing&nbsp;the&nbsp;caller&nbsp;to&nbsp;pass&nbsp;a&nbsp;custom&nbsp;number&nbsp;parsing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;to&nbsp;convert&nbsp;user&nbsp;input<br>
+read_number_ranged&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;interface&nbsp;function&nbsp;as&nbsp;for&nbsp;`read_number`&nbsp;but&nbsp;restricting&nbsp;the&nbsp;result&nbsp;to&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;interval&nbsp;[min_value,&nbsp;max_value]<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+BTCInput&nbsp;can&nbsp;be&nbsp;run&nbsp;as&nbsp;a&nbsp;main&nbsp;program&nbsp;to&nbsp;read&nbsp;a&nbsp;README&nbsp;overview</span></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-read_float"><strong>read_float</strong></a>(prompt)</dt><dd><span class="code">Displays&nbsp;a&nbsp;prompt&nbsp;and&nbsp;reads&nbsp;in&nbsp;a&nbsp;floating&nbsp;point&nbsp;number.<br>
+Keyboard&nbsp;interrupts&nbsp;(CTRL+C)&nbsp;are&nbsp;ignored<br>
+Invalid&nbsp;numbers&nbsp;are&nbsp;rejected<br>
+returns&nbsp;a&nbsp;float&nbsp;containing&nbsp;the&nbsp;value&nbsp;input&nbsp;by&nbsp;the&nbsp;user</span></dd></dl>
+ <dl><dt><a name="-read_float_ranged"><strong>read_float_ranged</strong></a>(prompt, min_value, max_value)</dt><dd><span class="code">Displays&nbsp;a&nbsp;prompt&nbsp;and&nbsp;reads&nbsp;in&nbsp;a&nbsp;floating&nbsp;point&nbsp;number.<br>
+min_value&nbsp;gives&nbsp;the&nbsp;inclusive&nbsp;minimum&nbsp;value<br>
+max_value&nbsp;gives&nbsp;the&nbsp;inclusive&nbsp;maximum&nbsp;value<br>
+Raises&nbsp;an&nbsp;exception&nbsp;if&nbsp;max&nbsp;and&nbsp;min&nbsp;are&nbsp;the&nbsp;wrong&nbsp;way&nbsp;round<br>
+Keyboard&nbsp;interrupts&nbsp;(CTRL+C)&nbsp;are&nbsp;ignored<br>
+Invalid&nbsp;numbers&nbsp;are&nbsp;rejected<br>
+returns&nbsp;a&nbsp;number&nbsp;containing&nbsp;the&nbsp;value&nbsp;input&nbsp;by&nbsp;the&nbsp;user</span></dd></dl>
+ <dl><dt><a name="-read_int"><strong>read_int</strong></a>(prompt)</dt><dd><span class="code">Displays&nbsp;a&nbsp;prompt&nbsp;and&nbsp;reads&nbsp;in&nbsp;an&nbsp;integer&nbsp;number.<br>
+Keyboard&nbsp;interrupts&nbsp;(CTRL+C)&nbsp;are&nbsp;ignored<br>
+Invalid&nbsp;numbers&nbsp;are&nbsp;rejected<br>
+returns&nbsp;an&nbsp;int&nbsp;containing&nbsp;the&nbsp;value&nbsp;input&nbsp;by&nbsp;the&nbsp;user</span></dd></dl>
+ <dl><dt><a name="-read_int_ranged"><strong>read_int_ranged</strong></a>(prompt, min_value, max_value)</dt><dd><span class="code">Displays&nbsp;a&nbsp;prompt&nbsp;and&nbsp;reads&nbsp;in&nbsp;an&nbsp;integer&nbsp;point&nbsp;number.<br>
+min_value&nbsp;gives&nbsp;the&nbsp;inclusive&nbsp;minimum&nbsp;value<br>
+max_value&nbsp;gives&nbsp;the&nbsp;inclusive&nbsp;maximum&nbsp;value<br>
+Raises&nbsp;an&nbsp;exception&nbsp;if&nbsp;max&nbsp;and&nbsp;min&nbsp;are&nbsp;the&nbsp;wrong&nbsp;way&nbsp;round<br>
+Keyboard&nbsp;interrupts&nbsp;(CTRL+C)&nbsp;are&nbsp;ignored<br>
+Invalid&nbsp;numbers&nbsp;are&nbsp;rejected<br>
+returns&nbsp;a&nbsp;number&nbsp;containing&nbsp;the&nbsp;value&nbsp;input&nbsp;by&nbsp;the&nbsp;user</span></dd></dl>
+ <dl><dt><a name="-read_number"><strong>read_number</strong></a>(prompt, function)</dt><dd><span class="code">Displays&nbsp;a&nbsp;prompt&nbsp;and&nbsp;reads&nbsp;in&nbsp;a&nbsp;floating&nbsp;point&nbsp;number.<br>
+Keyboard&nbsp;interrupts&nbsp;(CTRL+C)&nbsp;are&nbsp;ignored<br>
+Invalid&nbsp;numbers&nbsp;are&nbsp;rejected<br>
+returns&nbsp;a&nbsp;float&nbsp;containing&nbsp;the&nbsp;value&nbsp;input&nbsp;by&nbsp;the&nbsp;user</span></dd></dl>
+ <dl><dt><a name="-read_number_ranged"><strong>read_number_ranged</strong></a>(prompt, function, min_value, max_value)</dt><dd><span class="code">Displays&nbsp;a&nbsp;prompt&nbsp;and&nbsp;reads&nbsp;in&nbsp;a&nbsp;number.<br>
+min_value&nbsp;gives&nbsp;the&nbsp;inclusive&nbsp;minimum&nbsp;value<br>
+max_value&nbsp;gives&nbsp;the&nbsp;inclusive&nbsp;maximum&nbsp;value<br>
+Raises&nbsp;an&nbsp;exception&nbsp;if&nbsp;max&nbsp;and&nbsp;min&nbsp;are&nbsp;the&nbsp;wrong&nbsp;way&nbsp;round<br>
+Keyboard&nbsp;interrupts&nbsp;(CTRL+C)&nbsp;are&nbsp;ignored<br>
+Invalid&nbsp;numbers&nbsp;are&nbsp;rejected<br>
+returns&nbsp;a&nbsp;number&nbsp;containing&nbsp;the&nbsp;value&nbsp;input&nbsp;by&nbsp;the&nbsp;user</span></dd></dl>
+ <dl><dt><a name="-read_text"><strong>read_text</strong></a>(prompt)</dt><dd><span class="code">Displays&nbsp;a&nbsp;prompt&nbsp;and&nbsp;reads&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;text.<br>
+Keyboard&nbsp;interrupts&nbsp;(CTRL+C)&nbsp;are&nbsp;ignored<br>
+returns&nbsp;a&nbsp;string&nbsp;containing&nbsp;the&nbsp;string&nbsp;input&nbsp;by&nbsp;the&nbsp;user</span></dd></dl>
+ <dl><dt><a name="-readme"><strong>readme</strong></a>()</dt></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>DEBUG_MODE</strong> = False<br>
+<strong>VERSION</strong> = '1.0.0'</td></tr></table>
+</body></html>
