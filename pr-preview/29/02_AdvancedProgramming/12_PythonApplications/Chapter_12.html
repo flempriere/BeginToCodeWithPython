@@ -137,6 +137,9 @@ window.Quarto = {
 };
 </script>
 
+<meta property="og:title" content="Chapter 12: Python Applications – Beginning to Code with Python: Notes, Examples and Exercises">
+<meta property="og:image" content="./Examples/10_FashionShopWithDocumentation/pydoc_screenshot.png">
+<meta property="og:site_name" content="Beginning to Code with Python: Notes, Examples and Exercises">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -173,7 +176,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 12: Python Applications</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html">Advanced Programming</a></li><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/12_PythonApplications/Chapter_12.html">Chapter 12: Python Applications</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -289,8 +292,11 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">02_AdvancedProgramming/12_PythonApplications/Chapter12_.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/12_PythonApplications/Chapter_12.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 12: Python Applications</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -365,7 +371,10 @@ window.Quarto = {
   <li><a href="#exercise-complete-the-testing-of-stockitem" id="toc-exercise-complete-the-testing-of-stockitem" class="nav-link" data-scroll-target="#exercise-complete-the-testing-of-stockitem">Exercise: Complete the Testing of <code>StockItem</code></a></li>
   <li><a href="#exercise-refactoring-ride-selector-to-support-testing" id="toc-exercise-refactoring-ride-selector-to-support-testing" class="nav-link" data-scroll-target="#exercise-refactoring-ride-selector-to-support-testing">Exercise: Refactoring Ride Selector to Support Testing</a></li>
   </ul></li>
-  <li><a href="#view-program-documentation" id="toc-view-program-documentation" class="nav-link" data-scroll-target="#view-program-documentation">View Program Documentation</a></li>
+  <li><a href="#view-program-documentation" id="toc-view-program-documentation" class="nav-link" data-scroll-target="#view-program-documentation">View Program Documentation</a>
+  <ul>
+  <li><a href="#make-something-happen-explore-pydoc" id="toc-make-something-happen-explore-pydoc" class="nav-link" data-scroll-target="#make-something-happen-explore-pydoc">Make Something Happen: Explore <code>pydoc</code></a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
@@ -375,7 +384,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html">Advanced Programming</a></li><li class="breadcrumb-item"><a href="../../02_AdvancedProgramming/12_PythonApplications/Chapter_12.html">Chapter 12: Python Applications</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Chapter 12: Python Applications</h1>
 </div>
@@ -410,7 +419,7 @@ window.Quarto = {
 <li>Another example was <a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html#filter-on-tags"><code>filter</code></a></li>
 </ul></li>
 <li><p>Let’s explore this in more detail, consider the following code snippet (see <a href="./Examples/01_SimpleFunctionReferences/SimpleFunctionReferences.py">SimpleFunctionReferences.py</a>)</p>
-<div id="997b5f2f" class="cell" data-execution_count="1">
+<div id="ac725ba4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 12.1 Simple Function References</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> func_1():</span>
@@ -435,7 +444,7 @@ Hello from function 2</code></pre>
 </ul></li>
 <li><p>The variable is effectively another name for the function</p></li>
 <li><p>We still have to call it properly, e.g.&nbsp;(see <a href="./Examples/02_InvalidFunctionReferences/InvalidFunctionReferences.py">InvalidFunctionReferences.py</a>)</p>
-<div id="04bc9a38" class="cell" data-execution_count="2">
+<div id="04ec5867" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 12.2 Invalid Function References</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> func_1():</span>
@@ -737,7 +746,7 @@ Hello from function 2</code></pre>
 <li><p>Once all the characters have been processed return the total</p></li>
 </ol>
 <p>The easiest way to do this would be to use a dictionary lookup. We can directly convert the symbol to a value. Now let’s go one step further. We’ll define a lightweight class <code>RomanNumeral</code> this holds the symbol, the value and importantly also a set bookkeeping what other roman numerals this one is allowed to precede</p>
-<div id="c7a16aa0" class="cell" data-execution_count="3">
+<div id="a28d27a9" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RomanNumeral:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Lightweight class representing a roman numeral</span></span>
@@ -896,7 +905,7 @@ Hello from function 2</code></pre>
 </ol></li>
 </ol>
 <p>The complete implementation is given by,</p>
-<div id="0899ff6a" class="cell" data-execution_count="4">
+<div id="c5f17e18" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> roman_numeral_converter(number_string):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Convert a number written in roman numerals to an int</span></span>
@@ -999,7 +1008,7 @@ Hello from function 2</code></pre>
 <span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Which we can see on some sample valid inputs,</p>
-<div id="7102e6e1" class="cell" data-execution_count="5">
+<div id="8bab5575" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"I: Expected: 1, Received: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(roman_numeral_converter(<span class="st">"I"</span>)))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"V: Expected: 5, Received: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(roman_numeral_converter(<span class="st">"V"</span>)))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X: Expected: 10, Received: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(roman_numeral_converter(<span class="st">"X"</span>)))</span>
@@ -1020,7 +1029,7 @@ MMMDCXCVIII: Expected: 3698, Result: 3698</code></pre>
 </div>
 </div>
 <p>And on a sample invalid input,</p>
-<div id="ec87ec83" class="cell" data-execution_count="6">
+<div id="ddb5e1be" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"VV: Expected: Invalid Number, Received: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            roman_numeral_converter(<span class="st">"VV"</span>)</span>
@@ -1206,7 +1215,7 @@ Note
 <span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> move <span class="kw">in</span> dance_moves:</span>
 <span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    move()</span>
 <span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dance over"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="340ef50c" class="cell" data-execution_count="7">
+<div id="89fd6c79" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>Dance starting
 Robot moving forward
@@ -1288,7 +1297,7 @@ class expressionDescr BG
 <ul>
 <li>Is equivalent to,</li>
 </ul>
-<div id="d265f87e" class="cell" data-execution_count="8">
+<div id="ed7c4da5" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>increment <span class="op">=</span> <span class="kw">lambda</span> x : x <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(increment(<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1303,7 +1312,7 @@ class expressionDescr BG
 <p><em>Work through the following steps to understand lambda expressions</em></p>
 <ol type="1">
 <li><p><em>Enter the following statement</em></p>
-<div id="7193d122" class="cell" data-execution_count="9">
+<div id="914a7fc5" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a> numbers <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
@@ -1312,7 +1321,7 @@ class expressionDescr BG
 <li>We could do this normally by defining a function and using <code>map</code></li>
 </ul></li>
 <li><p><em>Define a function</em> <code>increment</code> <em>as below, and run the following code</em></p>
-<div id="170a30df" class="cell" data-execution_count="10">
+<div id="44333890" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> increment(x):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> x <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1333,7 +1342,7 @@ class expressionDescr BG
 </ul></li>
 </ul></li>
 <li><p><em>Repeat the previous steps, but use a lambda as below instead of an explicit function</em></p>
-<div id="0640f891" class="cell" data-execution_count="11">
+<div id="c8945792" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a> new_numbers <span class="op">=</span> <span class="bu">map</span>(<span class="kw">lambda</span> x : x <span class="op">+</span> <span class="dv">1</span>, numbers)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="bu">list</span>(new_numbers))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1345,7 +1354,7 @@ class expressionDescr BG
 <li>But the code is more compact, and the behaviour is localised to the map</li>
 </ul></li>
 <li><p><em>Create the following lambda</em></p>
-<div id="e229b12b" class="cell" data-execution_count="12">
+<div id="98444713" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a> adder <span class="op">=</span> <span class="kw">lambda</span> x, y : x <span class="op">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
@@ -1353,7 +1362,7 @@ class expressionDescr BG
 <li>We can now use the lambda as we want</li>
 </ul></li>
 <li><p><em>Run the following expressions to demonstrate using the lambda</em></p>
-<div id="6d9196e6" class="cell" data-execution_count="13">
+<div id="511d1234" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a> adder(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>3</code></pre>
@@ -1399,7 +1408,7 @@ class expressionDescr BG
 <li><p>A lambda could return <code>True</code> or <code>False</code></p></li>
 <li><p>Can then use as a condition in programs</p></li>
 <li><p>We can define <em>conditional expressions</em> to choose a value to return</p>
-<div id="074aa982" class="cell" data-execution_count="14">
+<div id="4e2d028d" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  hour <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"morning"</span> <span class="cf">if</span> hour <span class="op">&lt;</span> <span class="dv">12</span> <span class="cf">else</span> <span class="st">"afternoon"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1471,7 +1480,7 @@ class expressionDescr BG
 </div>
 <pre><code>- Conditional expressions can be used anywhere an expression can be
 - A lambda can thus return a conditional expression</code></pre>
-<div id="64fefac8" class="cell" data-execution_count="15">
+<div id="6765d2a9" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>    day_prompt <span class="op">=</span> <span class="kw">lambda</span> hour : <span class="st">"morning"</span> <span class="cf">if</span> hour <span class="op">&lt;</span> <span class="dv">12</span> <span class="cf">else</span> <span class="st">"afternoon"</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> is during the day: </span><span class="sc">{1}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="dv">8</span>, day_prompt(<span class="dv">8</span>)))</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="sc">{0}</span><span class="st"> is during the day: </span><span class="sc">{1}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="dv">13</span>, day_prompt(<span class="dv">13</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1502,7 +1511,7 @@ Note
 <li><p>Recall python has a concept of an <em>iterator</em></p></li>
 <li><p>Generally when we encounter iterators we work through the values they generate</p></li>
 <li><p><code>range</code> is an example, e.g.&nbsp;creating a sequence of numbers</p>
-<div id="c130e72b" class="cell" data-execution_count="16">
+<div id="c995815d" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>):</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1528,7 +1537,7 @@ Note
 <p><em>Use an interpreter to work through the following steps to learn about the</em> <code>yield</code> <em>keyword</em></p>
 <ol type="1">
 <li><p><em>Enter the following into the interpreter</em></p>
-<div id="4b87ced8" class="cell" data-execution_count="17">
+<div id="865cbbd4" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> my_yield():</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">yield</span> <span class="dv">1</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">yield</span> <span class="dv">2</span></span>
@@ -1541,7 +1550,7 @@ Note
 <li>Let’s see what happens when we now loop over the function</li>
 </ul></li>
 <li><p><em>Define and run the following loop</em></p>
-<div id="7732d8d0" class="cell" data-execution_count="18">
+<div id="7cd287ad" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> i <span class="kw">in</span> my_yield():</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>     <span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1556,7 +1565,7 @@ Note
 <li>We could also convert this to a list</li>
 </ul></li>
 <li><p><em>Define and run the following</em></p>
-<div id="07dfce5e" class="cell" data-execution_count="19">
+<div id="2690b849" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">list</span>(my_yield())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>[1, 2, 3, 4]</code></pre>
@@ -1590,7 +1599,7 @@ Tip
 <p>If you find yourself entering lots of test data into your programs, you should write a program to do the work for you. Remember that computers were created to spare us from drudgery, not create more of it</p>
 </div>
 </div>
-<div id="d5ec87cf" class="cell" data-execution_count="20">
+<div id="4eebbd6d" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 12.5 Test Contact Generator</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrates using yield to generate test Contacts for the</span></span>
@@ -1631,7 +1640,7 @@ Tip
 </ul></li>
 <li>We can the use the method as a iterator, see</li>
 </ul>
-<div id="006a07ef" class="cell" data-execution_count="21">
+<div id="d291aaa4" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> contact <span class="kw">in</span> Contact.create_test_contacts():</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(contact.name)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1743,7 +1752,7 @@ Hours worked: 11
 </ul></li>
 <li><p><code>return</code> does not support iteration</p></li>
 <li><p>Consider the following,</p>
-<div id="de39bf38" class="cell" data-execution_count="22">
+<div id="b5bbb7ce" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> yield_return():</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>      <span class="cf">yield</span> <span class="dv">1</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">yield</span> <span class="dv">2</span></span>
@@ -1766,7 +1775,7 @@ Hours worked: 11
 <ul>
 <li><p>No</p></li>
 <li><p>An iterator using <code>yield</code> could in theory run forever, e.g.</p>
-<div id="13884164" class="cell" data-execution_count="23">
+<div id="82f0218b" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> forever_tens():</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>      result <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> <span class="va">True</span>:</span>
@@ -1775,7 +1784,7 @@ Hours worked: 11
 </div></li>
 <li><p>This creates an infinitely long iteration</p></li>
 <li><p>Each value is ten times larger than before</p>
-<div id="946b48ba" class="cell" data-execution_count="24">
+<div id="242a36eb" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> result <span class="kw">in</span> forever_tens():</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(result)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> result <span class="op">&gt;</span> <span class="dv">100</span>:</span>
@@ -1809,7 +1818,7 @@ Hours worked: 11
 <h4 class="anchored" data-anchor-id="functions-with-an-arbitrary-number-of-arguments">Functions with an Arbitrary Number of Arguments</h4>
 <ul>
 <li><p>We’ve seen functions like <code>print</code> which seem to accept a variety of arguments, e.g.</p>
-<div id="51a4ae76" class="cell" data-execution_count="25">
+<div id="9c11f9bc" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"a"</span>)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"a"</span>, <span class="st">"b"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1826,20 +1835,20 @@ a b</code></pre>
 <p><em>Let’s learn about arbitrary-argument functions by working through the following steps in the interpreter</em></p>
 <ol type="1">
 <li><p><em>Define the following function</em></p>
-<div id="09de3d9b" class="cell" data-execution_count="26">
+<div id="c61b2f79" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">def</span> add_function(x, y):</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> x <span class="op">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><p>This is a function that adds two numbers</p>
-<div id="1313438b" class="cell" data-execution_count="27">
+<div id="5cafe484" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>  add_function(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>3</code></pre>
 </div>
 </div></li>
 <li><p>However if we tried to add <em>three</em> numbers,</p>
-<div id="3002a49c" class="cell" data-execution_count="28">
+<div id="31acb706" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>  add_function(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1858,7 +1867,7 @@ a b</code></pre>
 <ul>
 <li><p>It might make sense to have a function like <code>add_function</code> that accepts an arbitrary number of numbers and adds them all together</p></li>
 <li><p>We can specify to a python function that an arbitrary number of arguments are accepted with the <code>*</code> identifier, e.g.</p>
-<div id="d7b5e40b" class="cell" data-execution_count="29">
+<div id="6224b811" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> add_function(<span class="op">*</span>values):</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>      total <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> value <span class="kw">in</span> values:</span>
@@ -1866,7 +1875,7 @@ a b</code></pre>
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p>The above could accept any number of arguments, including zero</p>
-<div id="488fdd10" class="cell" data-execution_count="30">
+<div id="6016fb30" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(add_function())</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(add_function(<span class="dv">1</span>))</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(add_function(<span class="dv">1</span>,<span class="dv">2</span>))</span>
@@ -1880,7 +1889,7 @@ a b</code></pre>
 </div></li>
 <li><p>A parameter indicating an arbitrary number of parameters may be preceded by normal parameters</p></li>
 <li><p>For example, if we wanted to force the <code>add_function</code> to receive at least one value</p>
-<div id="f644b683" class="cell" data-execution_count="31">
+<div id="69507042" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> add_function(start, <span class="op">*</span>values):</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>      total <span class="op">=</span> start</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> value <span class="kw">in</span> values:</span>
@@ -1895,7 +1904,7 @@ a b</code></pre>
 </div>
 </div></li>
 <li><p>If we try and pass nothing to the above, we get an error</p>
-<div id="92b7aea6" class="cell" data-execution_count="32">
+<div id="77a63b0d" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>      add_function()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -1919,7 +1928,7 @@ a b</code></pre>
 <li>Unpacks a collection</li>
 </ul></li>
 <li><p>For example,</p>
-<div id="ce9befa1" class="cell" data-execution_count="33">
+<div id="1fc2857d" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>  numbers <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  add_function(<span class="dv">0</span>, <span class="op">*</span>numbers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
@@ -1947,7 +1956,7 @@ Warning
 <ul>
 <li><code>sum</code> expects its arguments to passed as an iterable though</li>
 </ul>
-<div id="c17d6175" class="cell" data-execution_count="34">
+<div id="de0c2f41" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">sum</span>(numbers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>10</code></pre>
@@ -1981,7 +1990,7 @@ Warning
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  age <span class="op">=</span> BTCInput.read_int_ranged(prompt<span class="op">=</span><span class="st">"Enter age: "</span>, min_value<span class="op">=</span><span class="dv">5</span>, max_value<span class="op">=</span><span class="dv">95</span>)</span>
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Your age is: "</span>, age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>A sample interaction might then be,</p>
-<div id="2ebd35da" class="cell" data-execution_count="35">
+<div id="5e7a0dee" class="cell" data-execution_count="35">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Enter age: <span class="ansi-red-fg"> 31</span>
@@ -1999,7 +2008,7 @@ Your age is: 31
 <h5 class="anchored" data-anchor-id="add-a-readme-function-to-btcinput">Add a <code>readme</code> Function to BTCInput</h5>
 <ul>
 <li><p>We could add a <code>readme</code> function to <code>BTCInput</code> that describes the modules contents</p>
-<div id="a191350e" class="cell" data-execution_count="36">
+<div id="f1ef8ea5" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  VERSION <span class="op">=</span> <span class="st">"1.0.0"</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2040,7 +2049,7 @@ Your age is: 31
 <ul>
 <li>So someone running <code>BTCInput</code> automatically sees the documentation</li>
 </ul>
-<div id="c8bf3dde" class="cell" data-execution_count="37">
+<div id="d0b0ff77" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># all the BTCInput functions go here</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># end of the file</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  readme()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2205,7 +2214,7 @@ Rob Miles</code></pre>
 <p><em>Classes can be used as values just as we’ve seen with functions. Work through the following steps in the python interpreter to understand how this works</em></p>
 <ol type="1">
 <li><p><em>Enter the statements below into the python interpreter</em></p>
-<div id="59a7a1a8" class="cell" data-execution_count="38">
+<div id="6eb28ebe" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">class</span> VarTest:</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>         <span class="bu">print</span>(<span class="st">"making a VarTest"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2214,7 +2223,7 @@ Rob Miles</code></pre>
 <li><p>This creates a class <code>VarTest</code> with a constructor</p></li>
 <li><p>Constructor simply prints a message</p></li>
 <li><p>We can create a <code>VarTest</code> instance easily enough</p>
-<div id="87c62b84" class="cell" data-execution_count="39">
+<div id="7a78bae4" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> VarTest()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>making a VarTest</code></pre>
@@ -2223,7 +2232,7 @@ Rob Miles</code></pre>
 <li><p>We can see the <code>__init__</code> method is called and we create a new <code>VarTest</code> instance, referenced by <code>x</code></p></li>
 </ul></li>
 <li><p><em>Now assign the class definition itself to a variable, as in the statement below</em></p>
-<div id="33609c63" class="cell" data-execution_count="40">
+<div id="45b3390d" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a> y <span class="op">=</span> VarTest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
@@ -2231,7 +2240,7 @@ Rob Miles</code></pre>
 <li><p>Mirrors the case where we want a reference to a function</p></li>
 <li><p><code>y</code> has the value of <code>VarTest</code> which is the class definition itself</p></li>
 <li><p><code>y</code> is effectively an alias for <code>VarTest</code> and can be used the same way, e.g.</p>
-<div id="8bd3d129" class="cell" data-execution_count="41">
+<div id="3f123ef2" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> y()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>making a VarTest</code></pre>
@@ -2484,7 +2493,7 @@ Important
 <ul>
 <li>We’ll define a dummy <code>StockItem</code> class with a non-zero starting stock level</li>
 </ul>
-<div id="26a6d033" class="cell" data-execution_count="42">
+<div id="e2123631" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> StockItem:</span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stock_ref, price, tags):</span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.stock_level <span class="op">=</span> <span class="dv">1</span></span>
@@ -2547,13 +2556,13 @@ Important
 <li><code>unittest</code> is provided as part of the python standard installation
 <ul>
 <li><p>Imported the usual way</p>
-<div id="f2d1bc14" class="cell" data-execution_count="43">
+<div id="d117e974" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> unittest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 </ul></li>
 <li>Recall our complete (tag-based) <code>StockItem</code> implementation</li>
 </ul>
-<div id="0c356ae9" class="cell" data-execution_count="44">
+<div id="2160fc8c" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockItem:</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Represents a single inventory item</span></span>
@@ -2711,7 +2720,7 @@ Important
 <li>We populate the class with method which implement our tests</li>
 </ul></li>
 <li><p>First we’ll write a test for the initializer</p>
-<div id="2e6aa136" class="cell" data-execution_count="45">
+<div id="231c947a" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> TestStockItem(unittest.TestCase):</span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> test_StockItem_init(<span class="va">self</span>):</span>
@@ -2737,7 +2746,7 @@ Important
 <li><p>We can run the test by calling the <code>main</code> method for the <code>unittest</code> module</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>  unittest.main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
-<div id="28616298" class="cell" data-execution_count="46">
+<div id="9137eb36" class="cell" data-execution_count="46">
 <div class="cell-output cell-output-stderr">
 <pre><code>.
 ----------------------------------------------------------------------
@@ -2751,7 +2760,7 @@ OK</code></pre>
 **StockItem get stock_level called</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="46">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fc7e872bcb0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fe2901df680&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -2762,7 +2771,7 @@ OK</code></pre>
 </ul></li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>    unittest.main(verbosity<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="93088197" class="cell" data-execution_count="47">
+<div id="c2a592fa" class="cell" data-execution_count="47">
 <div class="cell-output cell-output-stderr">
 <pre><code>test_StockItem_init (__main__.TestStockItem.test_StockItem_init) ... ok
 
@@ -2777,7 +2786,7 @@ OK</code></pre>
 **StockItem get stock_level called</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="47">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fc7e8728fe0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fe29093ae70&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -2801,7 +2810,7 @@ Warning
 </div>
 <ul>
 <li><p>What happens if a test fails?</p>
-<div id="2c325fb3" class="cell" data-execution_count="48">
+<div id="06a6b970" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> TestAlwaysFails(unittest.TestCase):</span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> test_that_fails(<span class="va">self</span>):</span>
@@ -2810,14 +2819,14 @@ Warning
 <li><p>The above defines a test that trivially fails, if we run our unit tests then</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>  unittest.main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
-<div id="bf011379" class="cell" data-execution_count="49">
+<div id="9f0f1c3c" class="cell" data-execution_count="49">
 <div class="cell-output cell-output-stderr">
 <pre><code>F.
 ======================================================================
 FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
-  File "/tmp/ipykernel_3236/3483629732.py", line 4, in test_that_fails
+  File "/tmp/ipykernel_3234/3483629732.py", line 4, in test_that_fails
     self.assertEqual(1, 0)
 AssertionError: 1 != 0
 
@@ -2832,7 +2841,7 @@ FAILED (failures=1)</code></pre>
 **StockItem get stock_level called</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="49">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fc7e8722660&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fe2901d6990&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -2938,7 +2947,7 @@ FAILED (failures=1)</code></pre>
 </ul></li>
 <li>We can use <code>assertRaises</code> to test for exceptions, e.g.</li>
 </ul>
-<div id="b6355a00" class="cell" data-execution_count="52">
+<div id="207905b1" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unittest</span>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TestStockItem(unittest.TestCase):</span>
@@ -2951,7 +2960,7 @@ FAILED (failures=1)</code></pre>
 <ul>
 <li>Running the unit test (hidden)</li>
 </ul>
-<div id="33ddaa17" class="cell" data-execution_count="53">
+<div id="fe6b5bf6" class="cell" data-execution_count="53">
 <div class="cell-output cell-output-stderr">
 <pre><code>.
 ----------------------------------------------------------------------
@@ -2964,7 +2973,7 @@ OK</code></pre>
 **StockItem add_stock called</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="53">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fc7e876f680&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fe29047d550&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -2995,7 +3004,7 @@ OK</code></pre>
 <ul>
 <li>e.g.&nbsp;we want to test that the normal process of adding and selling stock works</li>
 </ul>
-<div id="0be6d95c" class="cell" data-execution_count="54">
+<div id="f54b4284" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> TestStockItem(unittest.TestCase):</span>
 <span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> test_StockItem_add_and_sell_stock(<span class="va">self</span>):</span>
@@ -3009,7 +3018,7 @@ OK</code></pre>
 <li>Which should pass when run,</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>    unittest.main(verbosity<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="6c20c5d9" class="cell" data-execution_count="55">
+<div id="b93c716e" class="cell" data-execution_count="55">
 <div class="cell-output cell-output-stderr">
 <pre><code>test_StockItem_add_and_sell_stock (__main__.TestStockItem.test_StockItem_add_and_sell_stock) ... ok
 
@@ -3027,7 +3036,7 @@ OK</code></pre>
 **StockItem get stock_level called</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="55">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fc7e87cb110&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fe29047f620&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -3155,7 +3164,7 @@ Caution
 <li><p>We can then run these tests,</p></li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>unittest.main(verbosity<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="40fce870" class="cell" data-execution_count="58">
+<div id="1c80e6de" class="cell" data-execution_count="58">
 <div class="cell-output cell-output-stderr">
 <pre><code>test_add_negative_stock_raises_exception (__main__.TestStockItem.test_add_negative_stock_raises_exception) ... ok
 test_add_stock (__main__.TestStockItem.test_add_stock) ... ok
@@ -3168,12 +3177,12 @@ test_sell_zero_stock_raises_exception (__main__.TestStockItem.test_sell_zero_sto
 test_str (__main__.TestStockItem.test_str) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.009s
+Ran 9 tests in 0.010s
 
 OK</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="58">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fc7e876f680&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fe29047cf20&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -3687,29 +3696,248 @@ OK</code></pre>
 <li><p>The last step is to the then run the tests</p></li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>unitttest.main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="63f89d3c" class="cell" data-execution_count="59">
+<div id="794c240e" class="cell" data-execution_count="59">
 <div class="cell-output cell-output-stderr">
 <pre><code>...............................
 ----------------------------------------------------------------------
-Ran 31 tests in 0.011s
+Ran 31 tests in 0.012s
 
 OK</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="59">
-<pre><code>&lt;unittest.main.TestProgram at 0x7fc7e8e2ddf0&gt;</code></pre>
+<pre><code>&lt;unittest.main.TestProgram at 0x7fe290223fe0&gt;</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Be careful with how you design your tests</strong></p>
+<p>Tests are designed generally to test expected behaviours. This is why test-driven development typically expects you to write the test before the implementation. The idea being that by first defining the behaviour you want rather than testing a specific implementation you avoid coupling your test directly to your implementation.</p>
+<p>This can be hard to avoid to some degree when dealing with unit tests because by their nature they test a specific unit. However, let’s look at our tests and some of the design choices. One of the main things I have done for some of the tests is to parameterise the values being tested, rather than hard-coding values. There is a trade-off here. The tests are a bit more opaque but are in theory flexible to changes. For example I have used the <code>Ride.ride_min_age</code> and <code>Ride.ride_max_age</code> points are:</p>
+<ol type="1">
+<li>By using the values, we make the tests test the behaviour rather than the specific chosen values</li>
+<li>We couple the test to the implementation providing those class attributes</li>
+<li>If we change those values we <em>might</em> actually want the tests to fail, so that we can then manually ensure that the change is correct
+<ul>
+<li>Then update the test</li>
+<li>However, this has the problem, that our test is then being dictated by the implementation</li>
+<li>If we revert a change we would have to again rework the tests</li>
+</ul></li>
+</ol>
+<p>The notion of using parameters versus specific-values is a choice in testing, the above is just an example of how to think about how to test. The other consideration is if the testing framework fits with the design of your program. In rewiring the ride selector program we’ve arguably made it more complex and harder to reason about by trying to fit it into the individual component model that <code>unittest</code> expects. For Ride Selector which provides a fairly simple user interface where we mostly care about the user receiving the correct response a better testing implementation might actually be to test the program <em>externally</em>. By this we mean, we generate a test set of inputs, feed them into the program and record the outputs. We then compare these outputs to the expected outputs.</p>
+<p>Doing the testing this way has some tradeoffs. By testing the system as a whole it’s harder to identify where the sources of failures arise. However, the overall program doesn’t need to be refactored into a more complicated form just to facilitate the tests</p>
 </div>
 </div>
 </section>
 </section>
 <section id="view-program-documentation" class="level3">
 <h3 class="anchored" data-anchor-id="view-program-documentation">View Program Documentation</h3>
+<ul>
+<li>We saw that you could add docstrings to functions to describe their behaviour</li>
+<li>Implicitly in the examples you’ve also seen these added to classes</li>
+<li>Modules can also have docstrings too!
+<ul>
+<li>The only rule across all three is that the docstring is the first statement after the start
+<ul>
+<li>i.e.&nbsp;for a function, after the function definition</li>
+<li>for a class, after the class definition</li>
+<li>for a module, the first statement in the file</li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="make-something-happen-explore-pydoc" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-explore-pydoc">Make Something Happen: Explore <code>pydoc</code></h4>
+<p><code>Pydoc</code> <em>is a program written in python that can be run from the command line. Work through the following steps to see how it works</em></p>
+<ol type="1">
+<li><p><em>Navigate to the folder <a href="./Examples/10_FashionShopWithDocumentation/">10_FashionShopWithDocumentation</a></em></p></li>
+<li><p><em>Open a terminal in this folder (or navigate to this folder in the terminal)</em></p></li>
+<li><p><em>Run the</em> <code>pydoc</code> <em>module, by executing the following command,</em></p>
+<pre class="shell"><code> python -m pydoc</code></pre>
+<ul>
+<li><p>The <code>-m</code> following the call to python means “execute the following module”</p></li>
+<li><p>Running on <code>pydoc</code> with no additional arguments we can see it provides documentation about <code>pydoc</code> itself</p>
+<div id="4d3471ba" class="cell" data-execution_count="60">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb142"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>  <span class="op">!</span> python <span class="op">-</span>m pydoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>pydoc - the Python documentation tool
+
+pydoc &lt;name&gt; ...
+    Show text documentation on something.  &lt;name&gt; may be the name of a
+    Python keyword, topic, function, module, or package, or a dotted
+    reference to a class or function within a module or module in a
+    package.  If &lt;name&gt; contains a '/', it is used as the path to a
+    Python source file to document. If name is 'keywords', 'topics',
+    or 'modules', a listing of these things is displayed.
+
+pydoc -k &lt;keyword&gt;
+    Search for a keyword in the synopsis lines of all available modules.
+
+pydoc -n &lt;hostname&gt;
+    Start an HTTP server with the given hostname (default: localhost).
+
+pydoc -p &lt;port&gt;
+    Start an HTTP server on the given port on the local machine.  Port
+    number 0 can be used to get an arbitrary unused port.
+
+pydoc -b
+    Start an HTTP server on an arbitrary unused port and open a web browser
+    to interactively browse documentation.  This option can be used in
+    combination with -n and/or -p.
+
+pydoc -w &lt;name&gt; ...
+    Write out the HTML documentation for a module to a file in the current
+    directory.  If &lt;name&gt; contains a '/', it is treated as a filename; if
+    it names a directory, documentation is written for all the contents.
+</code></pre>
+</div>
+</div></li>
+<li><p>We can see from the output that <code>pydoc</code> is a documentation tool</p></li>
+<li><p>There a number of different arguments we can supply that modify how it runs</p></li>
+</ul></li>
+<li><p><em>For now we want to start a webpage to read our documentation. Reading the documentation we can see this can be done using the</em> <code>-b</code> <em>flag. Enter the following</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb144"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a> python <span class="op">-</span>m pydoc <span class="op">-</span>b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p><code>pydoc</code> will then start a website that can be used to view the documentation</p></li>
+<li><p>The result should look something like the screenshot below</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/10_FashionShopWithDocumentation/pydoc_screenshot.png" class="img-fluid figure-img"></p>
+<figcaption>Generated Pydoc Website</figcaption>
+</figure>
+</div></li>
+<li><p>We can see the site contains links to python’s built-in modules</p></li>
+<li><p>But there is also a section for our own documented modules,</p>
+<ul>
+<li>I’ve included the generated html so you can interact with them directly
+<ol type="1">
+<li><a href="./Examples/10_FashionShopWithDocumentation/Docs/Data.html">Data</a></li>
+<li><a href="./Examples/10_FashionShopWithDocumentation/Docs/FashionShopShellUI.html">FashionShopShellUI</a></li>
+<li><a href="./Examples/10_FashionShopWithDocumentation/Docs/RunTests.html">RunTests</a></li>
+</ol></li>
+</ul></li>
+<li><p>You can also use the built-in search bar</p></li>
+<li><p>The docstrings are now displayed for the module, class and each method</p></li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Modules that run as programs can break pydoc</strong></p>
+<p>Recall that when loaded a module will execute all of the statements that it includes. For <code>pydoc</code> to generate the docstrings and site material from a module it first has to load it. This means that it <em>will</em> lead to those statements being executed.</p>
+<p>This means that if we had a module that represented an entry point to looping user input (such as <a href="./Examples/10_FashionShopWithDocumentation/FashionShopShellUI.py">FashionShopShellUI.py</a>) it would immediately start executing and freeze <code>pydoc</code>. This is a reminder to use name guards to control the context in which a module can be executed.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb145"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">__name__</span> <span class="op">=</span> <span class="st">"__main__"</span>:</span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>        <span class="co"># do things that should only occur if the module is executed directly</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>We’ve seen that testing can be automated and integrated into a program</li>
+<li><code>unittest</code> is an in-built framework for performing unit testing
+<ul>
+<li>Unit tests are small tests that test a specific behaviour</li>
+</ul></li>
+<li>Documentation is an important part of software development
+<ul>
+<li>Documentation can be added as docstrings to functions, classes and modules</li>
+<li>Documentation can automatically be rendered
+<ul>
+<li><code>pydoc</code> is an inbuilt python program for generating html sites of python documentation</li>
+</ul></li>
+</ul></li>
+<li>Variables can refer to functions
+<ul>
+<li>Function references allow us to be flexible in implementing an interface</li>
+</ul></li>
+<li>Lambda expressions allow us to write small expressions that apply actions to data
+<ul>
+<li>Lambda’s can also be treated as data themselves</li>
+</ul></li>
+<li><code>yield</code> allows us to write functions that serve as iterators</li>
+<li>We can create packages in python
+<ul>
+<li>Packages organise and group up modules</li>
+</ul></li>
+<li>Variables can refer to classes
+<ul>
+<li>Allows us to be flexible in implementation like with function references</li>
+</ul></li>
+</ul>
 </section>
 <section id="questions-and-answers" class="level2">
 <h2 class="anchored" data-anchor-id="questions-and-answers">Questions and Answers</h2>
+<ol type="1">
+<li><p><em>Is everything in python an object?</em></p>
+<ul>
+<li>Yes</li>
+<li>The advantage of python’s dynamic typing system is that everything is an object and can be treated as one</li>
+<li>let’s us pass around a lot of different things to various parts of a system
+<ul>
+<li>Gives us lots of why to be flexible in implementation</li>
+</ul></li>
+<li>The downside is that since there is no strict type checking we can get into situations where invalid objects are being passed
+<ul>
+<li>e.g.&nbsp;we might try to call a method on an <code>int</code> that it doesn’t possess</li>
+</ul></li>
+</ul></li>
+<li><p><em>Should I feel bad if I don’t understand things like lambda expressions and yield?</em></p>
+<ul>
+<li>No</li>
+<li>These are advanced and complicated features</li>
+<li>It’s also natural for a concept to require repeated exposure and multiple passes to sink in</li>
+<li>With simple programs you generally will not have a natural use for these features
+<ul>
+<li>When you do have those use cases though, they are powerful</li>
+</ul></li>
+</ul></li>
+<li><p><em>What happens when I move python packages from one computer to another?</em></p>
+<ul>
+<li>They should work out of the box as long as a user has the correct version of python installed</li>
+<li>If you mess with the directory structure you may need to update the packages
+<ul>
+<li>(See the comments about importing in packages made earlier)</li>
+</ul></li>
+<li>A more permanent way is to <em>publish</em> a package, so that it can be installed (and preferably downloaded from the internet)</li>
+</ul></li>
+<li><p><em>When should I write my documentation and tests?</em></p>
+<ul>
+<li><p>As you go along</p></li>
+<li><p>There is a natural back and forth between documentation, tests and implementation</p></li>
+<li><p>For a typical example workflow we might have a part of project we’re working on</p>
+<ol type="1">
+<li>We start by documenting the design process</li>
+<li>We right some simple tests that we should aim to fulfill</li>
+<li>We then create an implementation</li>
+<li>We document the implementation as we go (preferably in code)</li>
+<li>We ensure the implementation passes the basic tests</li>
+<li>We add further tests to capture any unexpected behaviour found while implementing</li>
+</ol></li>
+<li><p>Generally it is much easier to document a program as you write it and things are fresh than it is to go back and do it all</p></li>
+<li><p>Same for tests</p>
+<ul>
+<li>Write small bits of code then test them</li>
+<li>Easier and more likely to result in a working program than writing one large block and a bunch of tests</li>
+<li>Pythons dynamic typing and runtime error handling makes it very painful to try and fix large broken programs</li>
+</ul></li>
+</ul></li>
+</ol>
 
 
 </section>
