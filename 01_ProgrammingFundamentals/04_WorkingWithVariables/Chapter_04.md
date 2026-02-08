@@ -346,7 +346,7 @@ print("****TIMES UP, LAST TO SIT WINS!****")
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 16 seconds.
+    Stay standing for 18 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 Most of the code is just text, but the key takeaway is the line
