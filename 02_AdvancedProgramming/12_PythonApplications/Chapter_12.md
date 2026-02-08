@@ -126,7 +126,7 @@
       TypeError: func_1() takes 0 positional arguments but 1 was given
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[62], line 7
+      Cell In[2], line 7
             4     print("Hello from func_1")
             6 x = func_1
       ----> 7 x(99)
@@ -683,14 +683,14 @@ And on a sample invalid input,
     ValueError: Invalid roman numeral: V may not precede V
     ---------------------------------------------------------------------------
     ValueError                                Traceback (most recent call last)
-    Cell In[66], line 3
+    Cell In[6], line 3
           1 print(
           2     "VV: Expected: Invalid Number, Received: {0}".format(
     ----> 3         roman_numeral_converter("VV")
           4     )
           5 )
 
-    Cell In[64], line 84, in roman_numeral_converter(number_string)
+    Cell In[4], line 84, in roman_numeral_converter(number_string)
          81 next_numeral = get_roman_numeral(number_string[i + 1])
          83 if not numeral.may_precede(next_numeral.symbol):
     ---> 84     raise ValueError(
@@ -1545,7 +1545,7 @@ following steps in the interpreter*
           TypeError: add_function() takes 2 positional arguments but 3 were given
           ---------------------------------------------------------------------------
           TypeError                                 Traceback (most recent call last)
-          Cell In[88], line 1
+          Cell In[28], line 1
           ----> 1 add_function(1, 2, 3)
 
           TypeError: add_function() takes 2 positional arguments but 3 were given
@@ -1610,7 +1610,7 @@ following steps in the interpreter*
       TypeError: add_function() missing 1 required positional argument: 'start'
       ---------------------------------------------------------------------------
       TypeError                                 Traceback (most recent call last)
-      Cell In[92], line 1
+      Cell In[32], line 1
       ----> 1 add_function()
 
       TypeError: add_function() missing 1 required positional argument: 'start'
@@ -2349,7 +2349,7 @@ we can inject a test implementation.
       AssertionError:
       ---------------------------------------------------------------------------
       AssertionError                            Traceback (most recent call last)
-      Cell In[102], line 6
+      Cell In[42], line 6
             3         self.stock_level = 1
             5 item = StockItem(stock_ref="Test", price=10, tags="test:tag")
       ----> 6 assert item.stock_level == 0
@@ -2606,7 +2606,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7cf4d45b5760>
+    <unittest.main.TestProgram at 0x7fee4ce58530>
 
 - The above should show that our test executed successfully
 - If we want more detail we can use the `verbosity` parameter
@@ -2627,7 +2627,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7cf4d45b52e0>
+    <unittest.main.TestProgram at 0x7fee4ce573e0>
 
 - We can now see the name and status of each individual test
 
@@ -2668,26 +2668,24 @@ Tags: {3}"""
 <!-- -->
 
     F.
+    ======================================================================
+    FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/tmp/ipykernel_3265/3483629732.py", line 4, in test_that_fails
+        self.assertEqual(1, 0)
+    AssertionError: 1 != 0
+
+    ----------------------------------------------------------------------
+    Ran 2 tests in 0.001s
+
+    FAILED (failures=1)
 
     **StockItem __init__ called
     **StockItem get price called
     **StockItem get stock_level called
 
-
-    ======================================================================
-    FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/tmp/ipykernel_17817/3483629732.py", line 4, in test_that_fails
-        self.assertEqual(1, 0)
-    AssertionError: 1 != 0
-
-    ----------------------------------------------------------------------
-    Ran 2 tests in 0.002s
-
-    FAILED (failures=1)
-
-    <unittest.main.TestProgram at 0x7cf4d45adc70>
+    <unittest.main.TestProgram at 0x7fee4ce551f0>
 
 - The output indicates that tests have failed
 
@@ -2754,7 +2752,7 @@ class TestStockItem(unittest.TestCase):
     **StockItem __init__ called
     **StockItem add_stock called
 
-    <unittest.main.TestProgram at 0x7cf4d4562930>
+    <unittest.main.TestProgram at 0x7fee5415c8f0>
 
 - If we wanted to test for specific exceptions we can pass them to
   `assertRaises` as arguments
@@ -2810,7 +2808,7 @@ class TestStockItem(unittest.TestCase):
     **StockItem sell_stock called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7cf4d45b6000>
+    <unittest.main.TestProgram at 0x7fee5415da60>
 
 - `unittest` can be used to create more complex testing scenarios
   - [Read the docs at the python
@@ -2978,11 +2976,11 @@ unittest.main(verbosity=2)
     test_str (__main__.TestStockItem.test_str) ... ok
 
     ----------------------------------------------------------------------
-    Ran 9 tests in 0.010s
+    Ran 9 tests in 0.007s
 
     OK
 
-    <unittest.main.TestProgram at 0x7cf4d4562930>
+    <unittest.main.TestProgram at 0x7fee5415f3b0>
 
 #### Exercise: Refactoring Ride Selector to Support Testing
 
@@ -3563,11 +3561,11 @@ unitttest.main()
 
     ...............................
     ----------------------------------------------------------------------
-    Ran 31 tests in 0.019s
+    Ran 31 tests in 0.014s
 
     OK
 
-    <unittest.main.TestProgram at 0x7cf4d6613290>
+    <unittest.main.TestProgram at 0x7fee4ce9f680>
 
 > [!NOTE]
 >
@@ -3718,6 +3716,118 @@ line. Work through the following steps to see how it works*
         2. [FashionShopShellUI](./Examples/10_FashionShopWithDocumentation/Docs/FashionShopShellUI.html)
         3. [RunTests](./Examples/10_FashionShopWithDocumentation/Docs/RunTests.html)
 
+    - You can also use the built-in search bar
+
+    - The docstrings are now displayed for the module, class and each
+      method
+
+> [!WARNING]
+>
+> **Modules that run as programs can break pydoc**
+>
+> Recall that when loaded a module will execute all of the statements
+> that it includes. For `pydoc` to generate the docstrings and site
+> material from a module it first has to load it. This means that it
+> *will* lead to those statements being executed.
+>
+> This means that if we had a module that represented an entry point to
+> looping user input (such as
+> [FashionShopShellUI.py](./Examples/10_FashionShopWithDocumentation/FashionShopShellUI.py))
+> it would immediately start executing and freeze `pydoc`. This is a
+> reminder to use name guards to control the context in which a module
+> can be executed.
+>
+> ``` python
+>     if __name__ = "__main__":
+>         # do things that should only occur if the module is executed directly
+> ```
+
 ## Summary
 
+- We’ve seen that testing can be automated and integrated into a program
+- `unittest` is an in-built framework for performing unit testing
+  - Unit tests are small tests that test a specific behaviour
+- Documentation is an important part of software development
+  - Documentation can be added as docstrings to functions, classes and
+    modules
+  - Documentation can automatically be rendered
+    - `pydoc` is an inbuilt python program for generating html sites of
+      python documentation
+- Variables can refer to functions
+  - Function references allow us to be flexible in implementing an
+    interface
+- Lambda expressions allow us to write small expressions that apply
+  actions to data
+  - Lambda’s can also be treated as data themselves
+- `yield` allows us to write functions that serve as iterators
+- We can create packages in python
+  - Packages organise and group up modules
+- Variables can refer to classes
+  - Allows us to be flexible in implementation like with function
+    references
+
 ## Questions and Answers
+
+1. *Is everything in python an object?*
+
+    - Yes
+    - The advantage of python’s dynamic typing system is that everything
+      is an object and can be treated as one
+    - let’s us pass around a lot of different things to various parts of
+      a system
+      - Gives us lots of why to be flexible in implementation
+    - The downside is that since there is no strict type checking we can
+      get into situations where invalid objects are being passed
+      - e.g. we might try to call a method on an `int` that it doesn’t
+        possess
+
+2. *Should I feel bad if I don’t understand things like lambda
+    expressions and yield?*
+
+    - No
+    - These are advanced and complicated features
+    - It’s also natural for a concept to require repeated exposure and
+      multiple passes to sink in
+    - With simple programs you generally will not have a natural use for
+      these features
+      - When you do have those use cases though, they are powerful
+
+3. *What happens when I move python packages from one computer to
+    another?*
+
+    - They should work out of the box as long as a user has the correct
+      version of python installed
+    - If you mess with the directory structure you may need to update
+      the packages
+      - (See the comments about importing in packages made earlier)
+    - A more permanent way is to *publish* a package, so that it can be
+      installed (and preferably downloaded from the internet)
+
+4. *When should I write my documentation and tests?*
+
+    - As you go along
+
+    - There is a natural back and forth between documentation, tests and
+      implementation
+
+    - For a typical example workflow we might have a part of project
+      we’re working on
+
+      1. We start by documenting the design process
+      2. We right some simple tests that we should aim to fulfill
+      3. We then create an implementation
+      4. We document the implementation as we go (preferably in code)
+      5. We ensure the implementation passes the basic tests
+      6. We add further tests to capture any unexpected behaviour found
+          while implementing
+
+    - Generally it is much easier to document a program as you write it
+      and things are fresh than it is to go back and do it all
+
+    - Same for tests
+
+      - Write small bits of code then test them
+      - Easier and more likely to result in a working program than
+        writing one large block and a bunch of tests
+      - Pythons dynamic typing and runtime error handling makes it very
+        painful to try and fix large broken programs
