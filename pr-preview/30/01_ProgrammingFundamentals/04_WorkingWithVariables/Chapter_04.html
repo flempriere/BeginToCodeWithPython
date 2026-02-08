@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 4: Working With Variables – Beginning to Code with Python: Notes, Examples and Exercises</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fd21d93db373728c2f8fcda4b672d2ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Chapter 4: Working With Variables – Beginning to Code with Python: Notes, Examples and Exercises">
+<meta property="og:site_name" content="Beginning to Code with Python: Notes, Examples and Exercises">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Beginning to Code with Python: Notes, Examples and Exercises</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Programming Fundamentals</a></li><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html">Chapter 4: Working With Variables</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Programming Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Python and Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Python Program Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 4: Working With Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Making Decisions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Repeating Actions with Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Using Functions to Simplify Programs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Storing Collections of Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Advanced Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Use Classes to Store Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extended Exercises for Chapter 9</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Using Classes to Create Active Objects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Object-based Solution Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/12_PythonApplications/Chapter_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12: Python Applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Useful Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13: Python and Graphical User Interfaces</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#variables-in-python" id="toc-variables-in-python" class="nav-link" data-scroll-target="#variables-in-python">Variables in Python</a>
+  <ul>
+  <li><a href="#make-something-happen-working-with-variables" id="toc-make-something-happen-working-with-variables" class="nav-link" data-scroll-target="#make-something-happen-working-with-variables">Make Something Happen: Working with Variables</a></li>
+  <li><a href="#python-names" id="toc-python-names" class="nav-link" data-scroll-target="#python-names">Python Names</a></li>
+  <li><a href="#code-analysis-typing-errors-and-testing" id="toc-code-analysis-typing-errors-and-testing" class="nav-link" data-scroll-target="#code-analysis-typing-errors-and-testing">Code Analysis: Typing Errors and Testing</a></li>
+  <li><a href="#make-something-happen-self-timer-party-game" id="toc-make-something-happen-self-timer-party-game" class="nav-link" data-scroll-target="#make-something-happen-self-timer-party-game">Make Something Happen: Self-Timer Party Game</a></li>
+  </ul></li>
+  <li><a href="#working-with-text" id="toc-working-with-text" class="nav-link" data-scroll-target="#working-with-text">Working with Text</a>
+  <ul>
+  <li><a href="#make-something-happen-text-and-numeric-variables" id="toc-make-something-happen-text-and-numeric-variables" class="nav-link" data-scroll-target="#make-something-happen-text-and-numeric-variables">Make Something Happen: Text and Numeric Variables</a></li>
+  <li><a href="#marking-the-start-and-end-of-strings" id="toc-marking-the-start-and-end-of-strings" class="nav-link" data-scroll-target="#marking-the-start-and-end-of-strings">Marking the Start and End of Strings</a></li>
+  <li><a href="#escape-characters-in-text" id="toc-escape-characters-in-text" class="nav-link" data-scroll-target="#escape-characters-in-text">Escape Characters in Text</a>
+  <ul>
+  <li><a href="#code-analysis-investigating-escape-sequences" id="toc-code-analysis-investigating-escape-sequences" class="nav-link" data-scroll-target="#code-analysis-investigating-escape-sequences">Code Analysis: Investigating Escape Sequences</a></li>
+  </ul></li>
+  <li><a href="#read-in-text-using-the-input-function" id="toc-read-in-text-using-the-input-function" class="nav-link" data-scroll-target="#read-in-text-using-the-input-function">Read in Text using the <code>input</code> Function</a>
+  <ul>
+  <li><a href="#make-something-happen-use-input-to-make-a-greeter-program" id="toc-make-something-happen-use-input-to-make-a-greeter-program" class="nav-link" data-scroll-target="#make-something-happen-use-input-to-make-a-greeter-program">Make Something Happen: Use <code>input</code> to make a “greeter” Program</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#working-with-numbers" id="toc-working-with-numbers" class="nav-link" data-scroll-target="#working-with-numbers">Working with Numbers</a>
+  <ul>
+  <li><a href="#convert-strings-into-integer-values" id="toc-convert-strings-into-integer-values" class="nav-link" data-scroll-target="#convert-strings-into-integer-values">Convert Strings into Integer Values</a>
+  <ul>
+  <li><a href="#example-configurable-egg-timer" id="toc-example-configurable-egg-timer" class="nav-link" data-scroll-target="#example-configurable-egg-timer">Example: Configurable Egg Timer</a></li>
+  <li><a href="#code-analysis-reading-numbers" id="toc-code-analysis-reading-numbers" class="nav-link" data-scroll-target="#code-analysis-reading-numbers">Code Analysis: Reading Numbers</a></li>
+  </ul></li>
+  <li><a href="#whole-numbers-and-real-numbers" id="toc-whole-numbers-and-real-numbers" class="nav-link" data-scroll-target="#whole-numbers-and-real-numbers">Whole Numbers and Real Numbers</a>
+  <ul>
+  <li><a href="#code-analysis-whole-numbers-vs-real-numbers" id="toc-code-analysis-whole-numbers-vs-real-numbers" class="nav-link" data-scroll-target="#code-analysis-whole-numbers-vs-real-numbers">Code Analysis: Whole Numbers vs Real Numbers</a></li>
+  </ul></li>
+  <li><a href="#real-numbers-and-floating-point" id="toc-real-numbers-and-floating-point" class="nav-link" data-scroll-target="#real-numbers-and-floating-point">Real Numbers and Floating Point</a>
+  <ul>
+  <li><a href="#code-analysis-floating-point-variables-and-errors" id="toc-code-analysis-floating-point-variables-and-errors" class="nav-link" data-scroll-target="#code-analysis-floating-point-variables-and-errors">Code Analysis: Floating Point Variables and Errors</a></li>
+  <li><a href="#code-analysis-working-with-floating-point-variables" id="toc-code-analysis-working-with-floating-point-variables" class="nav-link" data-scroll-target="#code-analysis-working-with-floating-point-variables">Code Analysis: Working with Floating Point Variables</a></li>
+  </ul></li>
+  <li><a href="#converting-string-into-float-values" id="toc-converting-string-into-float-values" class="nav-link" data-scroll-target="#converting-string-into-float-values">Converting <code>string</code> into <code>float</code> values</a>
+  <ul>
+  <li><a href="#example-ultra-precise-egg-timer" id="toc-example-ultra-precise-egg-timer" class="nav-link" data-scroll-target="#example-ultra-precise-egg-timer">Example: Ultra-Precise Egg Timer</a></li>
+  </ul></li>
+  <li><a href="#perform-calculations" id="toc-perform-calculations" class="nav-link" data-scroll-target="#perform-calculations">Perform Calculations</a>
+  <ul>
+  <li><a href="#code-analysis-work-out-the-results" id="toc-code-analysis-work-out-the-results" class="nav-link" data-scroll-target="#code-analysis-work-out-the-results">Code Analysis: Work out the Results</a></li>
+  </ul></li>
+  <li><a href="#convert-between-float-and-int" id="toc-convert-between-float-and-int" class="nav-link" data-scroll-target="#convert-between-float-and-int">Convert Between <code>float</code> and <code>int</code></a>
+  <ul>
+  <li><a href="#make-something-happen-calculating-a-pizza-order" id="toc-make-something-happen-calculating-a-pizza-order" class="nav-link" data-scroll-target="#make-something-happen-calculating-a-pizza-order">Make Something Happen: Calculating a Pizza Order</a></li>
+  <li><a href="#make-something-happen-converting-between-fahrenheit-and-centigrade" id="toc-make-something-happen-converting-between-fahrenheit-and-centigrade" class="nav-link" data-scroll-target="#make-something-happen-converting-between-fahrenheit-and-centigrade">Make Something Happen: Converting Between Fahrenheit and Centigrade</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#weather-snaps" id="toc-weather-snaps" class="nav-link" data-scroll-target="#weather-snaps">Weather Snaps</a>
+  <ul>
+  <li><a href="#example-seattle-temperature" id="toc-example-seattle-temperature" class="nav-link" data-scroll-target="#example-seattle-temperature">Example: Seattle Temperature</a></li>
+  <li><a href="#example-seattle-weather" id="toc-example-seattle-weather" class="nav-link" data-scroll-target="#example-seattle-weather">Example: Seattle Weather</a></li>
+  <li><a href="#make-something-happen-weather-display-program" id="toc-make-something-happen-weather-display-program" class="nav-link" data-scroll-target="#make-something-happen-weather-display-program">Make Something Happen: Weather Display Program</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/BeginToCodeWithPython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html">Programming Fundamentals</a></li><li class="breadcrumb-item"><a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html">Chapter 4: Working With Variables</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 4: Working With Variables</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="variables-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="variables-in-python">Variables in Python</h3>
+<ul>
+<li>Variables let us add <em>memory</em> to python
+<ul>
+<li>Can be viewed as an alias for a storage location</li>
+</ul></li>
+<li>Variables in python are created by defining a name, and providing a value, e.g.&nbsp;the below defines a variable <code>total</code> and assigns it the value <span class="math inline">\(0\)</span></li>
+</ul>
+<div id="8ecee1b1" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">block-beta
+    columns 3
+    space
+    title["Anatomy of Variable Assignment"]
+    space
+
+    block:variable
+    columns 1
+        varName["total"]
+        variablebody["variable"]
+        variableDescr["(thing to which value assigned)"]
+    end
+
+    block:equals
+    columns 1
+        equalsSymbol["="]
+        equalsName["equals"]
+        equalsDescr["(means assign)"]
+    end
+
+    block:argumentblock
+    columns 1
+        zero["0"]
+        zeroName["expression"]
+        zeroDescr["(value to assign)"]
+    end
+
+classDef BG stroke:transparent, fill:transparent
+class title BG
+class variablebody BG
+class variableDescr BG
+class equalsName BG
+class equalsDescr BG
+class zeroName BG
+class zeroDescr BG
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>The above diagrammatically breaks down variable assignment. On the left we have the variable, then <code>=</code> which means <em>assignment</em>, followed by the expression to assign</li>
+<li>The assignment expression does not need to be made of simple primitives, e.g.&nbsp;<code>total = us_sales + world_wide_sales</code> defines the variable <code>total</code> to be equal to the sum of the variables <code>us_sales</code> and <code>world_wide_sales</code></li>
+</ul>
+<section id="make-something-happen-working-with-variables" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-working-with-variables">Make Something Happen: Working with Variables</h4>
+<p><em>Start up a python interpreter, then run the following commands in sequence</em></p>
+<ol type="1">
+<li><p><code>total = 0</code></p>
+<div id="91dec61f" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>No output is generated, the assignment is performed silently</li>
+</ul></li>
+<li><p><code>total</code></p>
+<div id="5165a6f2" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>0</code></pre>
+</div>
+</div>
+<ul>
+<li><code>0</code> output</li>
+<li><code>total</code> has been assigned <code>0</code>, putting the variable name into the terminal returns the value associated with this value</li>
+</ul></li>
+<li><p><code>total = total + 10</code></p>
+<div id="b6169eb7" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> total <span class="op">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>No output</li>
+<li>Like with the first statement, variable assignment generates no output</li>
+<li>Here we assign <code>total</code> the value given by the <em>current</em> value of <code>total</code> plus <span class="math inline">\(10\)</span></li>
+</ul></li>
+<li><p><code>total</code></p>
+<div id="3603c1fa" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>10</code></pre>
+</div>
+</div>
+<ul>
+<li><code>10</code> output</li>
+<li>The new value of <code>total</code> is printed</li>
+</ul></li>
+</ol>
+</section>
+<section id="python-names" class="level4">
+<h4 class="anchored" data-anchor-id="python-names">Python Names</h4>
+<ul>
+<li>Variables require names</li>
+<li>Python variable names must obey a number of rules
+<ol type="1">
+<li>Must start with a letter or _</li>
+<li>Can contain letters, numbers or _ characters</li>
+</ol></li>
+<li>Some valid names are
+<ul>
+<li><code>total</code></li>
+<li><code>xyz</code></li>
+<li><code>t0tal</code></li>
+</ul></li>
+<li>Some invalid names are
+<ul>
+<li><code>2_be_or_not_to_be</code>
+<ul>
+<li>Starts with a number which is not allowed</li>
+</ul></li>
+<li><code>tot@l</code>
+<ul>
+<li><code>@</code> is not a valid character for a variable name</li>
+</ul></li>
+</ul></li>
+<li>Python names are case sensitive, i.e.&nbsp;<code>FRED</code> and <code>fred</code> are distinct variables</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Create Meaningful Names</strong></p>
+<p>Don’t use silly or meaningless names like <code>hello_mom</code>. Use meaningful names that convey information about what they represent like <code>length</code> or <code>length_in_centimetres</code>. The PEP8 style guide, sets out how to write and format python programs. This includes a section on <a href="https://peps.python.org/pep-0008/#naming-conventions">naming conventions</a></p>
+<p>Some languages recommend using <em>camel case</em> for variable naming. In this format words in a variable are distinguished by capital letters, but the first letter of the variable is lower case, e.g.&nbsp;<code>lengthInCentimetres</code>. Camel case is called this because the capital letters look like the humps of a camel. Either standard works, but when writing python it is best to stick to the python style guides</p>
+</div>
+</div>
+<ul>
+<li>Python does not limit the length of variable names
+<ul>
+<li>There should be no performance cost associated with long variable names</li>
+<li>Longer names can be hard to read</li>
+<li>Names should be no longer than they need to convey clear meaning</li>
+</ul></li>
+</ul>
+</section>
+<section id="code-analysis-typing-errors-and-testing" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-typing-errors-and-testing">Code Analysis: Typing Errors and Testing</h4>
+<p><em>You’ve already seen that python can generate errors when it is unable to interpret an input. Answer the following questions to investigate how errors can arise in using variables. Assume that <code>total</code> has already been defined</em></p>
+<ol type="1">
+<li><p><em>Can you identify an error in the statement below, which is supposed to add</em> <span class="math inline">\(10\)</span> <em>to the variable</em> <code>total</code><em>?</em></p>
+<div id="b80e4469" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># clearing saved variables in the notebook</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="op">%</span>reset</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c8ba9ee3" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> Total <span class="op">=</span> total <span class="op">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Variable names are case-sensitive. Therefore <code>Total</code> and <code>total</code> are distinct variables. So this declares a new variable <code>Total</code> and assigns it the value of <code>total + 10</code>. The value of <code>total</code> itself is unchanged.</li>
+<li>This is a <em>logic error</em>, it is a legal statement in python that generates the wrong behaviour
+<ul>
+<li>Logic errors are some of the hardest errors to deal with since they (typically) don’t stop a program running, they just produce incorrect behaviour</li>
+<li>Python typically cannot warn you about them ahead of time</li>
+</ul></li>
+<li>This variable mis-assignment is why python style guides recommend the use of all lowercase letters for variable names</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Identifying Errors</strong></p>
+<p>Other languages with more strict type systems and variable declarations, may be able to identify logic errors like the one above.</p>
+</div>
+</div></li>
+<li><p><em>How do we prevent logic errors?</em></p>
+<ul>
+<li>Testing
+<ul>
+<li>i.e checking that the actual behaviour of a program matches the expected behaviour</li>
+<li>Run a program with input that will generate a known output when running correctly
+<ul>
+<li>Verify the program generates this output</li>
+</ul></li>
+</ul></li>
+<li>Testing doesn’t guarantee a program is correct
+<ul>
+<li>Typically hard to check all inputs and use cases</li>
+<li>Does however give confidence and can provide that a program <em>isn’t</em> correct</li>
+</ul></li>
+<li>Typically tests should be written as the program is created or if using <em>test-driven development</em> the tests are written <em>before</em> the program itself is written</li>
+</ul></li>
+<li><p><em>The statement below also contains a misspelling of the variable</em> <code>total</code><em>. However, this time the name on the right-hand side of the equals is misspelled. What will happen when this program runs?</em></p>
+<div id="5b6b3aae" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Again clear the notebook variables</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="op">%</span>reset</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="1bf6beed" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> total <span class="op">=</span> Total <span class="op">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> total = <span class="ansi-green-fg">0</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> total = <span class="ansi-yellow-bg">Total</span> + <span class="ansi-green-fg">10</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'Total' is not defined</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>In this case, <code>Total</code> is not defined as a variable, so there is no meaningful way to interpret a value. Hence we would expect an error. Since the error is that <code>Total</code> doesn’t exist, we see a <code>NameError</code>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="make-something-happen-self-timer-party-game" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-self-timer-party-game">Make Something Happen: <a href="./Examples/01_SelfTimer/selfTimer.py">Self-Timer Party Game</a></h4>
+<p><em>Consider the <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html#make-something-happen-nerves-of-steel">Nerves of Steel</a> exercise from <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html">Chapter 3</a>. In the game, players must remain standing right up to the moment before they think a random timer will expire</em></p>
+<p><em>One suggestion is that the game might provide more skill if the program told the players how long they had to stand. The game now functions as a “Self-Timer”, the winner is now arguably the person who can best keep track of the time</em></p>
+<p><em>The “game” sequence is</em></p>
+<ol type="1">
+<li><em>Set the time to remain standing to a random number</em></li>
+<li><em>Display time to remain standing</em></li>
+<li><em>Sleep for the time to remain standing</em></li>
+<li><em>Display a message for the winner</em></li>
+</ol>
+<p><em>Observe that the time is required to be used in two places, displaying the time remaining and then sleeping for that period of time. This means we need to use a variable to store the value of the time remaining</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 4.1: Self Timer</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extends the Nerves of Steel Game from Chapter 3, by adding a skill element</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with the players being informed of how long they have to stand for</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Welcome to Self Timer"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># just prints a newline</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Everybody stand up"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Stay standing until you think the time has ended"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Then sit down"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Anyone still standing when the time expires loses"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The last person to sit down before the time ended will win"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>stand_time <span class="op">=</span> random.randint(<span class="dv">5</span>, <span class="dv">20</span>)  <span class="co"># generate the time to stand for</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Stay standing for"</span>, stand_time, <span class="st">"seconds."</span>)  <span class="co"># display standing time</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>time.sleep(stand_time)  <span class="co"># sleep for the standing time</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"****TIMES UP, LAST TO SIT WINS!****"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="678d6e06" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-stdout">
+<pre><code>Welcome to Self Timer
+
+Everybody stand up
+Stay standing until you think the time has ended
+Then sit down
+Anyone still standing when the time expires loses
+The last person to sit down before the time ended will win
+Stay standing for 7 seconds.
+****TIMES UP, LAST TO SIT WINS!****</code></pre>
+</div>
+</div>
+<p>Most of the code is just text, but the key takeaway is the line <code>stand_time = random.randint(5, 20)</code> which assigns <code>stand_time</code> the result of <code>random.randint(5, 20)</code>, i.e a random number from <code>5</code> to <code>20</code> inclusive. We then call <code>stand_time</code> is our call to <code>print</code> to display the time, and then <code>sleep</code> for the same amount of time. Observe we couldn’t just write the number into both functions explicitly since it’s randomly generated, we would need to know ahead of time what the value will be</p>
+</section>
+</section>
+<section id="working-with-text" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-text">Working with Text</h3>
+<ul>
+<li>Variables can also hold text, e.g.&nbsp;<code>customer_name = 'fred'</code> assigns the string <code>'fred'</code> to <code>customer_name</code></li>
+<li>Can use a string variable anywhere we would use a string literal, e.g.&nbsp;<code>message = 'the name is ' + customer_name</code> performs the string concatenation of <code>'the name is'</code> and the value of <code>customer_name</code> and assigns the result to <code>message</code>, which we can confirm below,</li>
+</ul>
+<div id="df6d2421" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  customer_name <span class="op">=</span> <span class="st">"fred"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  message <span class="op">=</span> <span class="st">"the name is "</span> <span class="op">+</span> customer_name</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(message)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>the name is fred</code></pre>
+</div>
+</div>
+<section id="make-something-happen-text-and-numeric-variables" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-text-and-numeric-variables">Make Something Happen: Text and Numeric Variables</h4>
+<p><em>Python tracks the contents of each variable and only allows operations that make sense. Using the python interpreter experiment with the following combinations of string and number variables.</em></p>
+<div id="7acda208" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>customer_age_in_years <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>customer_name <span class="op">=</span> <span class="st">'fred'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><em>After entering the above two lines in the interpreter, run the following line</em></p>
+<div id="4bdbd058" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>customer_age_in_years <span class="op">+</span> customer_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[13]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">customer_age_in_years</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">+</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">customer_name</span>
+
+<span class="ansi-red-fg">TypeError</span>: unsupported operand type(s) for +: 'int' and 'str'</pre>
+</div>
+</div>
+</div>
+<p>Here we are trying to add a number and a string, which we saw previously shouldn’t work. The terminal should provide some error output like the below</p>
+<p><em>Now try the below line</em></p>
+<div id="8f2c6b5a" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>customer_age_in_years <span class="op">=</span> <span class="st">'Fred'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>One might expect the above to generate an error, after all we assign text to a variable that was just storing a number. Instead python simply discards the old numeric value of the variable, and now stores text in <code>customer_age_in_years</code>. You should generally avoid doing this, being able to reason about the type of a variable is typically an important part of safe and effective programming, and the weak typing of python is typically disliked outside of quick prototyping</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Weak vs Strong Typing</strong></p>
+<p>The above behaviour is an example of python as a what’s called a weakly typed language. Types are a quite developed part of programming theory that can be discussed later. In some languages, types are enforced to greater degrees of strictness. In some languages (like <code>C</code>) you can assign variables <em>compatible</em> types, i.e.&nbsp;ones that can be converted to the variable’s innate type. In other stricter languages a variable can only hold the exact specified type</p>
+<p>The more strictly a language enforces its typing system typically the harder it is to generate errors at runtime, however they are often correspondingly more painful to actually write the code in the first place</p>
+</div>
+</div>
+</section>
+<section id="marking-the-start-and-end-of-strings" class="level4">
+<h4 class="anchored" data-anchor-id="marking-the-start-and-end-of-strings">Marking the Start and End of Strings</h4>
+<ul>
+<li>Python lets you use either single-quotes (’) or double-quotes (“)
+<ul>
+<li>Lets us include ’ or ” in a string, by using the alternate delimiter</li>
+</ul></li>
+<li>For example, compare the two quote snippets,</li>
+</ul>
+<div id="79beaeb3" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"It's a trap"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>It's a trap</code></pre>
+</div>
+</div>
+<ul>
+<li>Whereas if we tried to just use single quotes,</li>
+</ul>
+<div id="077973ea" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'It'</span>s a trap<span class="st">')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[16]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">print('It's a trap')</span>
+                      ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unterminated string literal (detected at line 1)
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>The single quote in <code>It's</code> ends the string, and we get a syntax error detecting what should be the closing single quote as opening a new string literal</li>
+<li>How do we handle the case where we have mixed quotes in a string?
+<ul>
+<li>We use triple quotes, a series of three single or double quotes in a row, see the example below</li>
+</ul></li>
+</ul>
+<div id="4d6e1d01" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'''...and then Luke said "It's a trap"'''</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>...and then Luke said "It's a trap"</code></pre>
+</div>
+</div>
+<ul>
+<li>Triple quoted strings have the added advantage of capturing newlines. To see this, we could rewrite the intro string in <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html#make-something-happen-nerves-of-steel">Nerves of Steel</a> as</li>
+</ul>
+<div id="85471c10" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'''Welcome to Nerves of Steel</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">Everybody stand up</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">Stay standing as long as you dare.</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="st">Sit down just before you think the time will end. '''</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Welcome to Nerves of Steel
+
+Everybody stand up
+Stay standing as long as you dare.
+Sit down just before you think the time will end. </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>String Delimiters must Match</strong></p>
+<p>You must using matching delimiters, if we try to mix them we’ll get an error</p>
+<div id="a9dc5f0b" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'hello")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[19]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-red-fg">    </span><span class="ansi-red-fg">print('hello")</span>
+          ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unterminated string literal (detected at line 1)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="escape-characters-in-text" class="level4">
+<h4 class="anchored" data-anchor-id="escape-characters-in-text">Escape Characters in Text</h4>
+<ul>
+<li><em>Escape sequences</em> are another way to include quote characters</li>
+<li>Extends to other symbols with meaning other than their literal character glyph in a string</li>
+<li>Denoted by the <code>\</code> character</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Escape Sequence</strong></th>
+<th><strong>Meaning</strong></th>
+<th><strong>Effect</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>\\</code></td>
+<td>Backslash character (<code>\</code>)</td>
+<td>Enter a backslash into a string</td>
+</tr>
+<tr class="even">
+<td><code>\'</code></td>
+<td>Single Quote (<code>'</code>)</td>
+<td>Enter a single quote into the string</td>
+</tr>
+<tr class="odd">
+<td><code>\"</code></td>
+<td>Double Quote (<code>"</code>)</td>
+<td>Enter a double quote into the string</td>
+</tr>
+<tr class="even">
+<td><code>\n</code></td>
+<td>ASCII Line Feed/New Line</td>
+<td>End this line and take a new one</td>
+</tr>
+<tr class="odd">
+<td><code>\t</code></td>
+<td>ASCII Tab</td>
+<td>Move to the right to the next tab stop</td>
+</tr>
+<tr class="even">
+<td><code>\r</code></td>
+<td>ASCII Carriage Return</td>
+<td>Return the printing position to the start of the line</td>
+</tr>
+<tr class="odd">
+<td><code>\a</code></td>
+<td>ASCII Bell</td>
+<td>Sound the bell on the terminal</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>ASCII</strong></p>
+<p>ASCII (short for American Standard Code for Information Interchange) is an old format for character encoding that covers a small range of symbols including the latin alphabet and digits.</p>
+<p>ASCII itself is less used today since it only covers around <span class="math inline">\(100\)</span> characters, which is nowhere near enough to cover all modern languages, before you start adding in characters like emojis. However modern text encoding like <em>unicode</em> are typically backwards compatible with ASCII.</p>
+<p>Not all ASCII escape sequences may work on a modern computer. <code>\a</code> was designed to ring a mechanical bell on old computers. Some modern computers may play a beep while others may do nothing. Similarly <code>\r</code> is supposed to return the print head of a computer back to the start of the line. This has very limited use cases, and may not be implemented on all systems.</p>
+<p>The most common escape characters are newline <code>\n</code> and escaping quotes</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Newline in Python</strong></p>
+<p>Python uses <code>\n</code> as the newline character. Technically this is known as a line feed and means “go to the next line”. In Linux and similar operating systems this is equivalent to starting a new line, but in windows going to the start of a new line is achieved via <code>\r\n</code>, i.e.&nbsp;return to the start of the line, and then feed to the next. Luckily python handles the conversion between the conventions automatically and we can just use <code>\n</code> regardless of the operating system we are actually running on</p>
+</div>
+</div>
+<section id="code-analysis-investigating-escape-sequences" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-investigating-escape-sequences">Code Analysis: Investigating Escape Sequences</h5>
+<p><em>Start a python interpreter and answer the following questions</em></p>
+<ol type="1">
+<li><p><em>What do you think the following quote would print?</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'hello</span><span class="ch">\n</span><span class="st">world'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We would expect this print <code>hello</code> on one line, then <code>world</code> on the next</li>
+</ul>
+<div id="de37c41c" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-stdout">
+<pre><code>hello
+world</code></pre>
+</div>
+</div></li>
+<li><p><em>What do you think the following would print?</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">'Item</span><span class="ch">\t</span><span class="st">Sales</span><span class="ch">\n</span><span class="st">car</span><span class="ch">\t</span><span class="st">50</span><span class="ch">\n</span><span class="st">boat</span><span class="ch">\t</span><span class="st">10'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We can see this prints a series of tab separated lines. So this is essentially a tab separated table (a similar format to the more familiar <em>comma</em>-separated table)</li>
+</ul>
+<div id="83aa74e7" class="cell" data-execution_count="21">
+<div class="cell-output cell-output-stdout">
+<pre><code>Item Sales
+car  50
+boat 10</code></pre>
+</div>
+</div>
+<ul>
+<li>The exact spacing of tab characters can depend on the computer system, and it is quite common for text editors to convert tabs to spaces, so this format isn’t the best. We’ll see other ways to format strings later</li>
+</ul></li>
+<li><p><em>How could I use Python escape sequences to print out this message?</em></p>
+<blockquote class="blockquote">
+<p>and then Luke said “It’s a trap”</p>
+</blockquote>
+<ul>
+<li>We saw how to do this with triple-delimited strings before. Instead we just have to remember to instead use a single-delimiter string and then escape the quotes that actually form the string contents. See,</li>
+</ul>
+<div id="78124163" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">'and then Luke said "It</span><span class="ch">\'</span><span class="st">s a trap"'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>and then Luke said "It's a trap"</code></pre>
+</div>
+</div></li>
+</ol>
+<ul>
+<li>Since the string is delimited by single quotes we only have to delimit the one single quote in <code>It's</code> rather than the two double quotes</li>
+</ul>
+</section>
+</section>
+<section id="read-in-text-using-the-input-function" class="level4">
+<h4 class="anchored" data-anchor-id="read-in-text-using-the-input-function">Read in Text using the <code>input</code> Function</h4>
+<ul>
+<li>We’ve seen how to <em>output</em> data with <code>print</code></li>
+<li>We can also <em>input</em> data with the appropriately named <code>input</code></li>
+<li>The code snippet below, takes input from the user and stores it in <code>name</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>  name <span class="op">=</span> <span class="bu">input</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The program will pause until the user supplies the input, (Try it yourself in the interpreter!)</li>
+<li>We can add a display prompt to the input statement</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>  name <span class="op">=</span> <span class="bu">input</span>(<span class="st">'Enter your name please: '</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The above should output something like the below when run</li>
+</ul>
+<div id="d5cc45c6" class="cell" data-execution_count="23">
+<div class="cell-output cell-output-stdout">
+<pre><code>Enter your name please: </code></pre>
+</div>
+</div>
+<ul>
+<li>As mentioned <code>input</code> passes what it receives into the receiving variable.
+<ul>
+<li>If we just immediately press enter this is the <em>empty</em> string i.e.&nbsp;a string containing no characters</li>
+</ul></li>
+<li><code>input</code> is another technique for delaying the end of a program, e.g.&nbsp;the below prints a prompt and then holds the program until some input is received</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">'Press enter to continue...'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="make-something-happen-use-input-to-make-a-greeter-program" class="level5">
+<h5 class="anchored" data-anchor-id="make-something-happen-use-input-to-make-a-greeter-program">Make Something Happen: Use <code>input</code> to make a “greeter” Program</h5>
+<p><em>Use python to create a simple program that will issue a personalised greeting. Create a new program (<a href="./Examples/02_Greeter/greeter.py">greeter.py</a>) with the following contents</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">'Enter your name please: '</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hello'</span>, name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Save the program and execute it to see the output. For me the program would output,</em></p>
+<div id="ca3fb7d6" class="cell" data-execution_count="24">
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre>Enter your name please: <span class="ansi-red-fg">Felix
+
+</span>Hello Felix
+</pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I’ve used colour to emphases what is my <em>input</em>, versus the <em>program’s</em> output</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="working-with-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-numbers">Working with Numbers</h3>
+<section id="convert-strings-into-integer-values" class="level4">
+<h4 class="anchored" data-anchor-id="convert-strings-into-integer-values">Convert Strings into Integer Values</h4>
+<ul>
+<li><code>input</code> returns a string
+<ul>
+<li>Fine if we want that, but what if we want to handle numbers?</li>
+<li>e.g.&nbsp;if we wanted to have a user-specified <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html#make-something-happen-make-an-egg-timer">egg timer</a></li>
+</ul></li>
+<li><code>int</code> is a function that converts the argument to a whole number e.g.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>time_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">'Enter the cooking time in seconds: '</span>) <span class="co">#receive time in seconds</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>time_int <span class="op">=</span> <span class="bu">int</span>(time_next) <span class="co">#perform conversion to number</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="example-configurable-egg-timer" class="level5">
+<h5 class="anchored" data-anchor-id="example-configurable-egg-timer">Example: <a href="./Examples/03_ConfigurableEggTimer/ConfigurableEggTimer.py">Configurable Egg Timer</a></h5>
+<ul>
+<li><p>The complete program would then look like,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 4.3: Configurable Egg Timer</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Reads in a user specified time to set the timer for</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> time</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  time_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter the cooking time in seconds: "</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  time_int <span class="op">=</span> <span class="bu">int</span>(time_text)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Put the egg in boiling water now"</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span>(<span class="st">"Press enter to continue once the egg is in..."</span>)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  time.sleep(time_int)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Take the egg out now"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This basic pattern works just as well for an alarm as it does for a configurable timer</p></li>
+</ul>
+</section>
+<section id="code-analysis-reading-numbers" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-reading-numbers">Code Analysis: Reading Numbers</h5>
+<p><em>Consider the previous <a href="#example-configurable-egg-timer">example</a>, and answer the following questions</em></p>
+<ol type="1">
+<li><p><em>How many variables are used in the program above?</em></p>
+<ul>
+<li>two, the first <code>time_text</code> stores the initial text input, while the second <code>time_int</code> contains the converted numeric representation</li>
+</ul></li>
+<li><p><em>Could you write the program without the time_text variable?</em></p>
+<ul>
+<li>Yes, we could immediately pass the input result to <code>int</code>, e.g.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a> time_int <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">'Enter the cooking time in seconds: '</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>It’s an open debate which format is clearer. In the second there’s more to grok on one line, but the whole workflow is there</li>
+</ul></li>
+<li><p><em>What do you think will happen if the user enters something other than a number?</em></p>
+<ul>
+<li>Let us find out,</li>
+</ul>
+<div id="261dfa9e" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a> x <span class="op">=</span> <span class="bu">int</span>(<span class="st">'kaboom'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[25]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> x = <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">int</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-fg ansi-yellow-bg">kaboom</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">ValueError</span>: invalid literal for int() with base 10: 'kaboom'</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>We get an error, <code>int</code> tries to convert the string <code>'kaboom'</code> to an integer, which it clearly cant</li>
+<li>The art of programming to handle invalid input like the above is called <em>error-handling</em>, we’ll see that later</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="whole-numbers-and-real-numbers" class="level4">
+<h4 class="anchored" data-anchor-id="whole-numbers-and-real-numbers">Whole Numbers and Real Numbers</h4>
+<ul>
+<li>There are two types of numbers
+<ul>
+<li>Whole numbers or <em>integers</em>
+<ul>
+<li>Are always held accurately by the computer</li>
+</ul></li>
+<li>Real numbers (or representations of) or <em>floating point</em>
+<ul>
+<li>Contain a fractional component</li>
+<li>Must be truncated to be stored in memory, so cannot always be stored accurately</li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="code-analysis-whole-numbers-vs-real-numbers" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-whole-numbers-vs-real-numbers">Code Analysis: Whole Numbers vs Real Numbers</h5>
+<p><em>Learn about the differences between whole numbers and real numbers through the following questions</em></p>
+<ol type="1">
+<li><p><em>I’m building a device that can count the number of hairs on your head. Should this be stored as a whole or real number?</em></p>
+<ul>
+<li>Integer, we generally wouldn’t count fractions of a hair</li>
+<li>Alternatively, given how many hairs there are, and that we might not care about being precise, we <em>might</em> instead want to use a real number to store the approximate magnitude</li>
+</ul></li>
+<li><p><em>I want to use my hair-counting machine on</em> <span class="math inline">\(100\)</span> <em>people and determine the average number of hairs on all their heads. Should I use this value as a whole or real number?</em></p>
+<ul>
+<li>We expect that the average will not be a whole number, so we should store it as a real number</li>
+<li>Alternatively, we may not <em>care</em> about getting the number exact down to the fraction, so we could use a whole number to round to the nearest number</li>
+</ul></li>
+<li><p><em>I want to keep track of the price of a product in my program. Should I use whole numbers or real numbers?</em></p>
+<ul>
+<li>Naively we would a real number, however as we mentioned real numbers have some uncertainty stored in them</li>
+<li>When dealing with financial values we <em>need</em> to maintain that precision
+<ul>
+<li>Instead we might then use whole cents
+<ul>
+<li>Works straightforward if we only care about the total</li>
+<li>If we care about averages, or fractions of a total then we might have to reconsider</li>
+</ul></li>
+<li>There are techniques used to control the error in a real number calculation</li>
+</ul></li>
+</ul></li>
+</ol>
+<ul>
+<li>As you can see the argument of <em>what</em> numerical type to use, requires understanding both the nature of the value itself, and what you want to do with it. You can then consider the properties of the numeric representation and choose the most appropriate one</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The way you store a variable depends on what you want to do with it</strong></p>
+<p>As the discussion above highlights, sometimes the answer to how we want to store data is not the immediate first answer. It’s important to consider not just what the natural representation of a value is, but what it’s purpose in the code is.</p>
+<p>For example as we discussed above, money is naturally expressed as real numbers. However due to the it’s use case, which requires high precision and also generally a limited range (values of even a trillion are rare, and we typically only consider down to whole cents) compared to the full range of a floating point number we might want to look at alternative representations</p>
+</div>
+</div>
+</section>
+</section>
+<section id="real-numbers-and-floating-point" class="level4">
+<h4 class="anchored" data-anchor-id="real-numbers-and-floating-point">Real Numbers and Floating Point</h4>
+<ul>
+<li>Real numbers have a fractional part
+<ul>
+<li>Their representation may not align 1:1 with what was originally input</li>
+</ul></li>
+<li>The most common way to store real numbers is called <em>floating point</em>
+<ul>
+<li>The floating means that the decimal point moves around in the representation, as opposed to a fixed point representation which has a set number of digits after the decimal point</li>
+<li>Using more memory to store a float lets us store it with greater precision, but we can never accurately represent all floating point numbers</li>
+</ul></li>
+<li>Real numbers can be defined by <em>range</em> and <em>precision</em>
+<ul>
+<li><em>Precision</em> governs how precisely a number is stored e.g.&nbsp;a float may be able to store <span class="math inline">\(123456789.0\)</span> or <span class="math inline">\(0.123456789\)</span> but not <span class="math inline">\(123456789.987654321\)</span> because the precision required is too great</li>
+<li><em>Range</em> determines how much we can <em>slide</em> the decimal point to represent large or small numbers e.g.&nbsp;we could store <span class="math inline">\(123456700\)</span> or <span class="math inline">\(0.0001234567\)</span></li>
+<li>In Python floats have <span class="math inline">\(15-16\)</span> digits of precision and can range from <span class="math inline">\(10^{308}\)</span> and <span class="math inline">\(10^{-324}\)</span></li>
+</ul></li>
+<li>A quirk of floating point is that some apparently simple numbers like <span class="math inline">\(0.1\)</span> can’t be stored exactly</li>
+</ul>
+<section id="code-analysis-floating-point-variables-and-errors" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-floating-point-variables-and-errors">Code Analysis: Floating Point Variables and Errors</h5>
+<p><em>Conduct the following experiments in the python shell to learn about floating points</em></p>
+<ol type="1">
+<li><p><em>What happens if we try to store a value that can’t be held accurately as a floating-point value?</em></p>
+<div id="c461d05f" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>0.1</code></pre>
+</div>
+</div>
+<ul>
+<li>Above we said that <span class="math inline">\(0.1\)</span> couldn’t be exactly represented, but that doesn’t match with what we just saw. The answer is because the error in the representation is very small, and <code>print</code> rounds off the answer</li>
+</ul></li>
+<li><p><em>Does the rounding really happen? Run the following and comment on the result</em></p>
+<div id="b95e952e" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>0.30000000000000004</code></pre>
+</div>
+</div>
+<ul>
+<li>We expected the answer to be <span class="math inline">\(0.3\)</span> but instead we see a slight error. This is because there is an error accumulation from adding <span class="math inline">\(0.1\)</span> to <span class="math inline">\(0.2\)</span> and the underlying floating point representations</li>
+</ul></li>
+</ol>
+<ul>
+<li>These issues are not python specific. They are an innate challenge of trying to represent real numbers on hardware. Modern floating-point numbers are also an internationally recognised standard which lets different programs and hardware talk to each other.</li>
+<li>Python differs from some languages in only providing a single floating point type that is <span class="math inline">\(8\)</span> bytes. In many languages this is referred to as a <em>double-precision floating point</em> or just a <em>double</em> and is one of several floating point types</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Don’t confuse precision with accuracy</strong></p>
+<p>Numbers don’t become more accurate when they are stored with more precision. Scientists often measure values with a measure of <em>uncertainty</em> which captures how sure they are in the accuracy of their number. There is no point storing a value to <span class="math inline">\(15\)</span> decimal places of precision, if the accuracy of a measurement is only to <span class="math inline">\(1-2\)</span> places, e.g.&nbsp;if we measure with a ruler</p>
+<p>Using higher precision can result in slower programs that use more memory</p>
+</div>
+</div>
+<ul>
+<li>Python automatically creates variables for use in programs</li>
+<li>The type of a variable is determined by what is stored in it</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">'Rob'</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The above creates two variables
+<ul>
+<li>One <code>name</code> is a <code>string</code> type</li>
+<li>The other <code>age</code> is an <code>int</code> or integer type</li>
+</ul></li>
+</ul>
+</section>
+<section id="code-analysis-working-with-floating-point-variables" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-working-with-floating-point-variables">Code Analysis: Working with Floating Point Variables</h5>
+<p><em>Work through the following following questions to understand how floating-point variables work?</em></p>
+<ol type="1">
+<li><p><em>How do you create a floating point variable?</em></p>
+<ul>
+<li>You can create a floating point variable by assigning a floating point number e.g.&nbsp;the below creates a variable* <code>x</code> *and assigns it the floating point value <span class="math inline">\(1.5\)</span></li>
+</ul>
+<div id="0945c7d5" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a> x <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>1.5</code></pre>
+</div>
+</div></li>
+<li><p><em>What happens if you assign an integer to a floating point variable?</em></p>
+<ul>
+<li>The below assigns the integer value <span class="math inline">\(1.0\)</span> to a variable <code>y</code></li>
+<li>If we print the value back we can see it keeps the decimal, indicating it is a floating point value</li>
+</ul>
+<div id="e117d899" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a> y <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>1.0</code></pre>
+</div>
+</div>
+<ul>
+<li>i.e.&nbsp;by writing the decimal point we <em>coerce</em> the type of <code>y</code> to be floating point</li>
+</ul></li>
+<li><p><em>What happens when we mix floating point and integers in calculations?</em></p>
+<ul>
+<li>If we compare the two additions below, we can see that when we add floating points, the addition stays a floating point even if the result is integral</li>
+</ul>
+<div id="f0a4d47d" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>4</code></pre>
+</div>
+</div>
+<div id="5254a983" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a> <span class="fl">2.0</span> <span class="op">+</span> <span class="fl">2.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>4.0</code></pre>
+</div>
+</div>
+<ul>
+<li>If we mix a floating point and integer type we can also see that the result is returned as a floating point (even when the final result is integral)</li>
+</ul>
+<div id="3452c304" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> <span class="op">+</span> <span class="fl">2.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>4.0</code></pre>
+</div>
+</div>
+<ul>
+<li>Lastly what happens if we divide two coprime integers?</li>
+<li>We see that the result gives the appropriate floating point fraction</li>
+</ul>
+<div id="bb572137" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>0.5</code></pre>
+</div>
+</div></li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Integer Division</strong></p>
+<p>While the last point about division behaviour may seem obvious if you haven’t programmed before you would do well to be careful. In many common languages, division of two integers is treated as integer division. In this case the result is always an integer with the result being rounded according to some scheme. Three common schemes are <em>towards zero</em>, in which the result is always rounded towards the number <span class="math inline">\(0\)</span>; <em>towards the nearest</em>, where the result is rounded to the nearest whole number and <em>floored division</em> in which the number is rounded towards negative infinity.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 12%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Division</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Interpretation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>towards zero</td>
+<td><span class="math inline">\(-1/2 = 0\)</span></td>
+<td>Discard decimal digits</td>
+</tr>
+<tr class="even">
+<td>towards nearest</td>
+<td><span class="math inline">\(3.2/2 = 2\)</span></td>
+<td>Minimise the difference between “true” division and result</td>
+</tr>
+<tr class="odd">
+<td>floored division</td>
+<td><span class="math inline">\(-1/2 = -1\)</span></td>
+<td>Round “down”</td>
+</tr>
+</tbody>
+</table>
+<p>Python lets you perform integer division using floored division behaviour with the <code>//</code> operator e.g.</p>
+<div id="a8028efe" class="cell" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">1</span><span class="op">//</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>-1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="converting-string-into-float-values" class="level4">
+<h4 class="anchored" data-anchor-id="converting-string-into-float-values">Converting <code>string</code> into <code>float</code> values</h4>
+<ul>
+<li>Converting <code>string</code> to float, works identically to as for <code>int</code> but we use <code>float</code> instead
+<ul>
+<li>e.g.&nbsp;We could rewrite the configurable egg timer with floats as,</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>time_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">'Enter the cooking time in seconds: '</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>time_float <span class="op">=</span> <span class="bu">float</span>(time_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="example-ultra-precise-egg-timer" class="level5">
+<h5 class="anchored" data-anchor-id="example-ultra-precise-egg-timer">Example: <a href="./Examples/04_UltraPreciseEggTimer/UltraPreciseEggTimer.py">Ultra-Precise Egg Timer</a></h5>
+<ul>
+<li>The complete program would then look like</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 4.4 Ultra-Precise Egg Timer</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A version of the Configurable Egg Timer using floating point for the input time</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>time_text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter the cooking time in seconds: "</span>)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>time_float <span class="op">=</span> <span class="bu">float</span>(time_text)</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Put the egg in boiling water now"</span>)</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Press enter to continue once the egg is in..."</span>)</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>time.sleep(time_float)</span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Take the egg out now"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The code is the same except we make the substitution <code>int</code> <span class="math inline">\(\to\)</span> <code>float</code></li>
+</ul>
+</section>
+</section>
+<section id="perform-calculations" class="level4">
+<h4 class="anchored" data-anchor-id="perform-calculations">Perform Calculations</h4>
+<ul>
+<li>As mentioned before python is an <em>expression</em> evaluator</li>
+<li>An expression consists of <em>operators</em> and <em>operands</em></li>
+<li>Python evaluates an expression <em>left</em> to <em>right</em>, and carries out <em>operations</em> according to their order of operations
+<ul>
+<li>Analogous to mathematical order of operations (and includes them) but must extend for programming specific syntax</li>
+<li>As in maths, parentheses are used to enforce an evaluation order</li>
+</ul></li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Operator</strong></th>
+<th><strong>Use case</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-</code></td>
+<td>Unary minus, denotes a negative number</td>
+</tr>
+<tr class="even">
+<td><code>*</code></td>
+<td>Multiplication (in-lieu of <span class="math inline">\(\times\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><code>/</code></td>
+<td>Division</td>
+</tr>
+<tr class="even">
+<td><code>+</code></td>
+<td>Addition</td>
+</tr>
+<tr class="odd">
+<td><code>-</code></td>
+<td>binary minus or subtraction</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Basic operators and their precedence</li>
+</ul>
+<section id="code-analysis-work-out-the-results" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-work-out-the-results">Code Analysis: Work out the Results</h5>
+<p><em>See if you can work out the values of</em> <code>a</code><em>,</em> <code>b</code> <em>and</em> <code>c</code> <em>when the following statements are evaluated,</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> c <span class="op">*</span> (a <span class="op">+</span> b)</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> a <span class="op">+</span> b <span class="op">+</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first three lines give <code>a</code> = <span class="math inline">\(1\)</span>, <code>b</code> = <span class="math inline">\(2\)</span> and <code>c</code> = <span class="math inline">\(3\)</span>. Substituting those into the second evaluation for <code>c</code>,</p>
+<div id="d0bebe24" class="cell" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span>)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>9</code></pre>
+</div>
+</div>
+<p>So <code>c</code> is assigned <span class="math inline">\(9\)</span>. We then repeat for the second assignment to <code>b</code> to get,</p>
+<div id="c561f6f3" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>So the final values are, <code>a</code> = <span class="math inline">\(1\)</span>, <code>b</code> = <span class="math inline">\(12\)</span>, <code>c</code> = <span class="math inline">\(9\)</span>. If we execute the original cell we can confirm this</p>
+<div id="8c529e41" class="cell" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c <span class="op">*</span> (a <span class="op">+</span> b)</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a <span class="op">+</span> b <span class="op">+</span> c</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a: '</span>, a)</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'b: '</span>, b)</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'c: '</span>, c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>a:  1
+b:  12
+c:  9</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Dumb Calculations</strong></p>
+<p>Python won’t try and stop you if you do something that mathematically makes no sense like dividing a number by zero, instead an error is raised, but this won’t occur until your program runs! Therefore when using division you should always take care to make sure you either handling division by zero cases appropriately or preventing them from occurring</p>
+<div id="6deef951" class="cell" data-execution_count="38">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">/</span><span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ZeroDivisionError</span>                         Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[38]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg">/</span><span class="ansi-green-fg ansi-yellow-bg">0</span>
+
+<span class="ansi-red-fg">ZeroDivisionError</span>: division by zero</pre>
+</div>
+</div>
+</div>
+<p>When using other languages, they may not raise and error, instead unexpected behaviour may occur including your program crashing.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="convert-between-float-and-int" class="level4">
+<h4 class="anchored" data-anchor-id="convert-between-float-and-int">Convert Between <code>float</code> and <code>int</code></h4>
+<ul>
+<li>We saw <code>float</code>can be used to convert a <code>string</code> to a float.
+<ul>
+<li>It can also be used to convert an integer value to a floating point value, e.g.</li>
+</ul></li>
+</ul>
+<div id="0614428f" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="bu">float</span>(<span class="dv">1</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>1.0</code></pre>
+</div>
+</div>
+<ul>
+<li>If we want to go the other way we can use <code>int</code> to convert a <code>float</code> to an <code>int</code>.
+<ul>
+<li>The number is rounded towards zero, i.e.&nbsp;fractional components are truncated (see the callout-box above about integer division)</li>
+</ul></li>
+</ul>
+<div id="7da90835" class="cell" data-execution_count="40">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="bu">int</span>(<span class="fl">2.9</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>i</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>2</code></pre>
+</div>
+</div>
+<section id="make-something-happen-calculating-a-pizza-order" class="level5">
+<h5 class="anchored" data-anchor-id="make-something-happen-calculating-a-pizza-order">Make Something Happen: Calculating a Pizza Order</h5>
+<p><em>Consider the following <a href="./Examples/05_PizzaOrderCalculator/PizzaOrderCalculator.py">program</a> which is designed to calculate the number of pizzas needed for a hackathon with</em> <span class="math inline">\(x\)</span> <em>number of participants using the heuristic that</em> <span class="math inline">\(1\)</span> <em>pizza can satisfy</em> <span class="math inline">\(1.5\)</span> <em>people</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 4.5: Pizza Order Calculator</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>students_int <span class="op">=</span> <span class="bu">int</span>(</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span>(<span class="st">"How many students are attending? "</span>)</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># read in string, convert to int and store</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>pizza_count <span class="op">=</span> students_int <span class="op">/</span> <span class="fl">1.5</span>  <span class="co"># perform division int -&gt; float</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"You will need"</span>, pizza_count, <span class="st">"pizzas"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note, that I’ve modified the code to directly pass the input to <code>int</code> and then to a variable, to demonstrate that it’s possible.</p>
+<p><em>The above program has the problem that for any number not divisible by</em> <span class="math inline">\(1.5\)</span><em>, the program recommends ordering a fractional number of pizzas. This is generally not possible, so we need to convert the output to an integer.</em></p>
+<ol type="1">
+<li><p><em>Modify the <a href="#make-something-happen-calculating-a-pizza-order">program</a> to return an <code>int</code> by calling <code>int</code> directly during the calculation of <code>pizza_count</code>. What potential problems does this solution have?</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Exercise 4.1.1: Pizza Order Calculator</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a> students_int <span class="op">=</span> <span class="bu">int</span>(</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>     <span class="bu">input</span>(<span class="st">"How many students are attending? "</span>)</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a> )  <span class="co"># read in string, convert to int and store</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a> pizza_count <span class="op">=</span> students_int <span class="op">/</span> <span class="fl">1.5</span>  <span class="co"># perform division int -&gt; float</span></span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">"You will need"</span>, pizza_count, <span class="st">"pizzas"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>This method has the disadvantage that it will tend to underestimate the number of pizzas needed.</li>
+<li>For example if we needed to feed <span class="math inline">\(40\)</span> people, the program would give us <span class="math inline">\(26\)</span>, which can satisfy, <span class="math inline">\(39\)</span> people, meaning someone goes hungry</li>
+</ul></li>
+<li><p><em>Modify the <a href="./Exercises/01_PizzaOrderCalculator/PizzaOrderCalculatorIntOnResultPlusOne.py">program</a> to return an <code>int</code> by calling <code>int</code> to convert the division to an <code>int</code> then adding</em> <span class="math inline">\(1\)</span><em>. Explain how this changes the behaviour</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># Exercise 4.1.2: Pizza Order Calculator</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># A basic pizza order calculator based on the heuristic that 1 pizza = 1.5 people fed</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># Converts the result to an integer using int on pizza_count then adding one</span></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># has the disadvantage it will tend to overestimate the number of pizzas needed</span></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a> students_int <span class="op">=</span> <span class="bu">int</span>(</span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>     <span class="bu">input</span>(<span class="st">"How many students are attending? "</span>)</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a> )  <span class="co"># read in string, convert to int and store</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a> pizza_count <span class="op">=</span> <span class="bu">int</span>(students_int <span class="op">/</span> <span class="fl">1.5</span>) <span class="op">+</span> <span class="dv">1</span>  <span class="co"># perform division int -&gt; float</span></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a> <span class="bu">print</span>(<span class="st">"You will need"</span>, pizza_count, <span class="st">"pizzas"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>This method will tend to add an additional spare pizza or overestimate the number of pizzas needed.</li>
+<li>Since it’s generally better for there to be a little left over than someone go hungry, this behaviour is probably preferred.</li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Never assume you know what a program is supposed to do</strong></p>
+<p>When faced with a choice like the above for the <a href="#make-something-happen-calculating-a-pizza-order">pizza order calculator</a> for a product being made by a client, you should <em>not</em> decide what the expected behaviour is yourself. For example, in the above the customer may prefer to round down the number of pizzas to reduce cost.</p>
+<p>Never assume you know what the program should do, ask the client</p>
+</div>
+</div>
+</section>
+<section id="make-something-happen-converting-between-fahrenheit-and-centigrade" class="level5">
+<h5 class="anchored" data-anchor-id="make-something-happen-converting-between-fahrenheit-and-centigrade">Make Something Happen: Converting Between Fahrenheit and Centigrade</h5>
+<p><em>Write a program to convert from Fahrenheit to Centigrade. The formula for this is</em></p>
+<p><span class="math display">\[
+\begin{align}
+\text{Centigrade} &amp;= \frac{\text{Fahrenheit} - 32}{1.8}
+\end{align}
+\]</span></p>
+<p>Our solution is very similar to the <a href="#make-something-happen-calculating-a-pizza-order">Pizza Calculator</a>, but with some of the text changed. The other major difference is that we want to be able to accept a <code>float</code> value, and output a <code>float</code> value.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exercise 4.2: Fahrenheit to Celsius</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Converts Fahrenheit to Celsius</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    temperature_fahrenheit <span class="op">=</span> <span class="bu">float</span>(</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span>(<span class="st">"Enter a temperature in Fahrenheit: "</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>    )  <span class="co"># read in string, convert to float</span></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>    temperature_centigrade <span class="op">=</span> (temperature_fahrenheit <span class="op">-</span> <span class="dv">32</span>) <span class="op">/</span> <span class="fl">1.8</span></span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The temperature is"</span>, temperature_centigrade, <span class="st">"degrees Celsius"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A sample output may look like,</p>
+<div id="c498bf78" class="cell" data-execution_count="41">
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre>Enter a temperature in Fahrenheit: <span class="ansi-red-fg">0
+
+</span>The temperature is -17.77777777777778 degrees Celsius
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>Later we’ll see how we can format the output to be a bit more presentable</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="weather-snaps" class="level3">
+<h3 class="anchored" data-anchor-id="weather-snaps">Weather Snaps</h3>
+<ul>
+<li><a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html#adding-some-snaps">Snaps</a> contains a function <code>get_weather_temp</code> for to return the temperature of a location in the United States
+<ul>
+<li>Data is scraped from the US National Weather Service website</li>
+<li>Function takes the latitude and longitude as an argument</li>
+</ul></li>
+</ul>
+<section id="example-seattle-temperature" class="level4">
+<h4 class="anchored" data-anchor-id="example-seattle-temperature">Example: <a href="./Examples/06_SeattleTemperature/SeattleTemperature.py">Seattle Temperature</a></h4>
+<ul>
+<li><p>The following program can be used to get the current temperature reading from Seattle using <code>snaps</code></p>
+<div id="5e27ec53" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 4.6: Seattle Temperature</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the current temperature in Seattle</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> snaps</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  temp <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"The temperature in Seattle is:"</span>, temp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
+Hello from the pygame community. https://www.pygame.org/contribute.html</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
+  from pkg_resources import resource_stream, resource_exists</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The temperature in Seattle is: 52</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="example-seattle-weather" class="level4">
+<h4 class="anchored" data-anchor-id="example-seattle-weather">Example: <a href="./Examples/07_SeattleWeather/SeattleWeather.py">Seattle Weather</a></h4>
+<ul>
+<li><p>We can also use <code>snaps</code> to get a short description of the current weather</p>
+<div id="957a79df" class="cell" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example 4.7: Seattle Weather</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Uses snaps to get a description of the weather in Seattle</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> snaps</span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>  desc <span class="op">=</span> snaps.get_weather_description(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"The conditions are:"</span>, desc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[43]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Example 4.7: Seattle Weather</span>
+<span class="ansi-green-fg">      2</span> <span style="font-style:italic;color:rgb(95,135,135)">#</span>
+<span class="ansi-green-fg">      3</span> <span style="font-style:italic;color:rgb(95,135,135)"># Uses snaps to get a description of the weather in Seattle</span>
+<span class="ansi-green-fg">      5</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">snaps</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> desc = <span class="ansi-yellow-bg">snaps</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">get_weather_description</span>(latitude=<span class="ansi-green-fg">47.61</span>, longitude=-<span class="ansi-green-fg">122.33</span>)
+<span class="ansi-green-fg">      8</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">The conditions are:</span><span class="ansi-yellow-fg">"</span>, desc)
+
+<span class="ansi-red-fg">AttributeError</span>: module 'snaps' has no attribute 'get_weather_description'</pre>
+</div>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="make-something-happen-weather-display-program" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-weather-display-program">Make Something Happen: <a href="./Exercises/03_WeatherDisplay/WeatherDisplay.py">Weather Display Program</a></h4>
+<p><em>Write a program that displays the current weather conditions. If you use the</em> <code>display_text</code> <em>function from snaps, your program can display the current weather and description</em></p>
+<p>Our solution is written below,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 4.3: Weather Display</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Displays the Weather in Seattle</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> snaps</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>temperature_fahrenheit <span class="op">=</span> snaps.get_weather_temp(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>temperature_string <span class="op">=</span> <span class="st">"The temperature in Seattle is: "</span> <span class="op">+</span> <span class="bu">str</span>(temperature_fahrenheit)</span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>weather_descr <span class="op">=</span> snaps.get_weather_description(latitude<span class="op">=</span><span class="fl">47.61</span>, longitude<span class="op">=-</span><span class="fl">122.33</span>)</span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>weather_descr_string <span class="op">=</span> <span class="st">"The conditions are: "</span> <span class="op">+</span> <span class="bu">str</span>(weather_descr)</span>
+<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a>weather_string <span class="op">=</span> temperature_string <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> weather_descr_string</span>
+<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a>snaps.display_message(weather_string, size<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Press enter to continue..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>As we can see most the actual getting of the temperature and weather data is the same as for the Seattle <a href="#example-seattle-temperature">Temperature</a> and <a href="#example-seattle-weather">Weather</a> programs. The rest of the work is done to construct the appropriate strings and merge them together so they can be passed to the <code>display_message</code> function for output</p>
+</section>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>Variables can be created
+<ul>
+<li>Variables are effectively named regions of memory</li>
+<li>Variables must start with a letter or underscore and can only consist of alphanumeric characters or underscores</li>
+</ul></li>
+<li>Data can be viewed as two fundamental types, text or numeric
+<ul>
+<li><code>string</code> is a type for holding text
+<ul>
+<li><code>input</code> can be used to get strings from the user</li>
+<li><code>int</code> and <code>float</code> can convert a string to an integer or floating point number respectively</li>
+</ul></li>
+<li>Numeric values have two forms
+<ul>
+<li><code>int</code> for whole numbers with no fractional part</li>
+<li><code>float</code> for real numbers with a fractional part
+<ul>
+<li><code>float</code> only approximate real numbers and can be subject to some errors</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="questions-and-answers" class="level2">
+<h2 class="anchored" data-anchor-id="questions-and-answers">Questions and Answers</h2>
+<ol type="1">
+<li><em>What happens if I “overwrite” a variable of one type with a value of another type?</em>
+<ul>
+<li>Python replaces the old variable with a new one of the same name but the new type</li>
+</ul></li>
+<li><em>Does using a long variable name slow the program down?</em>
+<ul>
+<li>If it does it is insignificant, it’s much more important to use a name that clearly conveys meaning</li>
+</ul></li>
+<li><em>Can we write all our programs using floating point numbers?</em>
+<ul>
+<li>You could, but you should use <code>int</code> where appropriate because <code>float</code> representation is inexact and subject to errors
+<ul>
+<li>These errors mean that it is often hard to compare for exact equality e.g.&nbsp;<code>1.0</code> might actually have the representation <code>1.0000...4</code></li>
+</ul></li>
+</ul></li>
+<li><em>Can I stop my program from crashing if someone types in an invalid input?</em>
+<ul>
+<li>Yes, this is called error handling. This will be covered later in Chapter 6</li>
+</ul></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
