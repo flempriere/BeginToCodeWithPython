@@ -260,7 +260,7 @@ and copy the below text.*
     print("The hour is", hour)
 ```
 
-    The hour is 7
+    The hour is 11
 
 Run the program, it should print out the current hour
 
@@ -294,8 +294,8 @@ simply need to format the attribute as necessary. The final
     print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 8 / 2 / 2026
-    The time is 7 : 28 : 35
+    The date is 10 / 2 / 2026
+    The time is 11 : 22 : 41
 
 #### Comparing Values
 
@@ -631,6 +631,8 @@ if (hour > 7) or (hour == 7 and minutes > 29):
     print("IT IS TIME TO GET UP")
 ```
 
+    IT IS TIME TO GET UP
+
 #### Combine Python Statements into a Suite
 
 - What if we want multiple statements to run after an `if` statement
@@ -698,7 +700,10 @@ if (hour > 7) or (hour == 7 and minute > 29):
 print("The time is", hour, ":", minute)
 ```
 
-    The time is 7 : 28
+    TIME TO GET UP
+    RISE AND SHINE
+    THE EARLY BIRD GETS THE WORM
+    The time is 11 : 22
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -747,6 +752,9 @@ print("The time is", hour, ":", minute)
 >          print("IT IS TIME TO GET UP")
 >          print("The early bird gets the worm...")
 >     ```
+>
+>         IT IS TIME TO GET UP
+>         The early bird gets the worm...
 >
 >     - Most programmers and even text editors will automatically
 >       convert one style of indentation to the other (commonly tabs to
@@ -905,7 +913,7 @@ else:
     print("Go back to bed")
 ```
 
-    Go back to bed
+    IT IS TIME TO GET UP
 
 - Observe that only one line of the paired `if-else` statements is
   printed
@@ -1633,9 +1641,9 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    You will meet a tall, dark stranger
-    A life of comfort is coming
-    To define your future, avoid getting hung up on the past
+    Nobody unexpected will enter your life
+    I see untold riches in your future
+    Sometimes the answers to our future, come from the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise
