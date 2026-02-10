@@ -33,6 +33,9 @@ I started this repository to work through an easy and basic book before working 
   - [Chapter 11: Object-Based Solution Design](./02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd)
   - [Chapter 12: Python Applications](./02_AdvancedProgramming/12_PythonApplications/Chapter_12.qmd)
 
+### Part 3. Useful Python
+
+  - [Chapter 13: Python and Graphical User Interfaces](./03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.qmd)
 
 ### Useful Python
 
