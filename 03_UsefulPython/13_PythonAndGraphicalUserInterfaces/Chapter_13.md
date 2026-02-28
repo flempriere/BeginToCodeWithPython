@@ -1,10 +1,643 @@
 # Chapter 13: Python and Graphical User Interfaces
 
 - [Notes](#notes)
+  - [Create a Graphical User Interface with
+    Tkinter](#create-a-graphical-user-interface-with-tkinter)
+    - [Make Something Happen: Build our First User
+      Interface](#make-something-happen-build-our-first-user-interface)
+    - [Code Analysis: Building a Graphical User
+      Interface](#code-analysis-building-a-graphical-user-interface)
+  - [Create a Graphical Application](#create-a-graphical-application)
+    - [Lay out a Grid](#lay-out-a-grid)
+      - [Use Sticky Formatting](#use-sticky-formatting)
+      - [Use Padding](#use-padding)
+      - [Span Grid Cells](#span-grid-cells)
+    - [Create an Event Handler
+      Function](#create-an-event-handler-function)
+    - [Code Analysis: Writing an Event
+      Handler](#code-analysis-writing-an-event-handler)
+    - [Create a Main Loop](#create-a-main-loop)
+  - [Handle Errors in a Graphical User
+    Interface](#handle-errors-in-a-graphical-user-interface)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
 ## Notes
+
+### Create a Graphical User Interface with Tkinter
+
+- Our previous programs have been text-based interfaces
+- Python lets us create *Graphical* user interfaces
+- Graphical UI’s typically consist of buttons, text fields etc.
+  - This is called the *front-end*
+  - Connects to behaviours in the underlying program (the *back-end*)
+- Graphical User Interfaces are typically implemented by representing
+  graphical elements as objects
+  - Interactions translate to method calls
+    - e.g. changing a label text
+- Tkinter is a built-in module in python for designing a user interface
+  - Represents UI elements through a class hierarchy
+  - Tkinter itself wraps a library called Tk
+  - Tk is a user interface toolkit
+
+#### Make Something Happen: Build our First User Interface
+
+*Familiarise yourself with the basics of TKinter and graphical
+interfaces by working through the following steps in the python
+interpreter*
+
+1. *Enter the following command*
+
+    ``` python
+     from tkinter import *
+    ```
+
+    - As discussed before this imports everything from the `TKinter`
+      module into the main namespace
+      - No need to preface the Tkinter components with the `Tkinter`
+        namespace
+    - Again, you should be careful about using this
+      - Increases the chance of naming collisions between different
+        parts of the program
+
+2. *Create a* **root** *window by running the following statement*
+
+    ``` python
+     root = Tk()
+    ```
+
+    - Root window acts as a container for display elements
+    - Should create a new window when executed
+      - Look’s something like below
+      - Tk uses the native OS windowing system
+      - So may look different if your OS is different
+
+![Tk Root Window](./Examples/01_IntroToTkinter/root.png)
+
+1. *Create a* `Label` *by executing the following statement*
+
+    ``` python
+     hello = Label(root, text="hello")
+    ```
+
+    - User’s can’t interact with a `Label`
+
+    - But does display text on a window
+
+    - A program can change the text on a label
+
+      - e.g. in response to user input
+
+    - `Label` has two parameters
+
+      1. parent
+
+          - the object *within* which the label is displayed
+          - Here we use the root
+          - We can use multiple levels of nesting to create complex
+            objects
+
+      2. text
+
+          - the actual text to display on the label
+
+    - Should observe that after executing the above we don’t see the
+      label text
+
+    - We have created the label
+
+    - We also need to specify how to display it
+
+    - Two mechanisms
+
+      1. `pack`
+
+          - packs elements together
+          - can supply hints e.g. `LEFT` or `TOP` to control where the
+            pack occurs
+
+      2. `grid`
+
+          - lay elements out on a grid
+          - Does mean you need to plan the UI layout
+          - `grid` method on graphical elements lets us specify how to
+            place the object on a grid
+
+2. *Display the* `Label` `hello` *on the window by using the* `grid`
+    *method as shown below*
+
+    ``` python
+     hello.grid(row=0, column=0)
+    ```
+
+    - Tells the program to display the `hello` label at the grid
+      coordinate `(0, 0)` (top left corner)
+    - Should now see the label displayed
+    - The window should shrink to the size of the label
+
+    ![Tk Window with Label](./Examples/01_IntroToTkinter/label.png)
+
+3. *Add another label* `Goodbye` *by executing the following*
+
+    ``` python
+     goodbye = Label(root, text="goodbye")
+     goodbye.grid(row=1, column=0)
+    ```
+
+    - Display now has two labels
+    - Labels are left aligned
+    - The hello label is slightly offset more than the goodbye label
+      - We can use settings to fix this
+
+    ![Tk Window with Two
+    Labels](./Examples/01_IntroToTkinter/two_labels.png)
+
+    - The next step is to allow the user to initiate actions in a
+      program
+    - E.g. using a button
+    - When pressed a button can link to some behaviour to be executed
+    - How do we link this behaviour?
+      - We create a function encapsulating the behaviour
+      - The button is passed the function as a function reference
+      - When the button is pressed it calls the function
+
+4. *Define a function for your button. Execute the following commands*
+
+    ``` python
+     def been_clicked():
+         print("click")
+    ```
+
+    - Simple function
+    - When called it just prints `click`
+
+5. *Create a button, and connect the* `been_clicked` *function to it.
+    Run the following statements*
+
+    ``` python
+     btn = Button(root, text="Click me", command=been_clicked)
+    ```
+
+    - This creates a `Button` called `btn`
+    - We specify it to be attached to the `root` window
+    - We set the button text to `"Click me"`
+    - We then link the `been_clicked` function via the `command`
+      argument
+    - Now we add the button to the display
+
+    ``` python
+     btn.grid(row=2, column=0)
+    ```
+
+    ![Tk Window with a Button](./Examples/01_IntroToTkinter/button.png)
+
+    - Click the button a few times and you should see output like,
+
+          >>> click
+          click
+          click
+
+    - Each click results in a call to `been_clicked`
+
+    - We often refer to the functions connected to GUI elements as
+      *event handlers*
+
+      - They *handle* the *external events* of the user
+
+6. *How do we modify a widget, such as changing the text? Work through
+    the following*
+
+    - Display elements provide a `config` method
+
+    - Can be used to change or configure their attributes
+
+    - We can rename the `hello` label as follows,
+
+      ``` python
+        hello.config(text="New Hello")
+      ```
+
+      ![Updated hello label](./Examples/01_IntroToTkinter/new_label.png)
+
+    - What if we want to read input from the user?
+
+      - We can use an `Entry` widget
+      - The `Entry` widget reads a line of text from the user
+
+7. *Create an* `Entry` *widget by executing the following statements*
+
+    ``` python
+     ent = Entry(root)
+     ent.grid(row=3, column=0)
+    ```
+
+    - The `Entry` widget `ent` is created at the bottom of the program
+
+    - The initial text line is empty
+
+      ![Tk Window with Entry
+      widget](./Examples/01_IntroToTkinter/entry.png)
+
+    - However, we can type something in, say the classic `Hello, World!`
+
+      ![Entry with text
+      entered](./Examples/01_IntroToTkinter/entry_with_text.png)
+
+    - The next question is how do we read the text into our program?
+
+      - The `Entry` object supports a `get` method
+
+      - `get` returns the text of the element
+
+      - Running this on our `Entry` object we should see,
+
+        ``` python
+          print(ent.get())
+        ```
+
+            hello world
+
+      - Try playing with this yourself
+
+We’ve combined all these steps into one
+[program](./Examples/01_IntroToTkinter/basic_ui.py)
+
+#### Code Analysis: Building a Graphical User Interface
+
+*Consider the following questions about graphical user interfaces*
+
+1. *What happens if we change the size of the window on the desktop?*
+
+    - By default, we can resize a window
+
+    - But the widgets themselves in the window do not resize
+
+    - We can prevent the widget from being resized
+
+      ``` python
+        root.resizable(width=False, height=False)
+      ```
+
+    - `resizable` method controls if a window can be resized
+
+    - You can also have a window be resizable and have the components
+      size and position change automatically
+
+2. *What happens if we close the window we created?*
+
+    - We created our window in the interpreter
+      - Window disappears when closed on the desktop
+    - For a program
+      - Can define ways to get control when the user tries to close the
+        program
+
+3. *Will the window look the same on different systems?*
+
+    - No
+    - The general UI will look the same
+    - However, modern tk uses the windowing system of the host machine
+    - These can vary for different systems
+
+4. *What happens if an event handler function connected to a button
+    takes a long time to complete?*
+
+    - Function connect to the button runs
+    - Button is “stuck down” until the function finishes executing
+    - All other controls also not available
+    - Generally event handlers should be responsive
+      - Python supports *threading* or multiple threads of execution
+        which can execute simultaneously
+      - Each thread can run a different program
+      - An event handler could spawn a separate thread to start a new
+        program
+    - Threads will not be discussed more broadly in these notes
+
+5. *What happens if I put two items in the same cell in a grid?*
+
+    - The most recent one will be drawn over the older one
+    - The new one blocks the old one
+    - This is generally a bad idea
+
+6. *Can we update the contents of elements on the screen from within an
+    event handler?*
+
+    - Yes
+    - This is how applications work
+
+- They key takeaway here is that user interactions are *events*
+- These *events* end up as calls to functions inside a program
+- This notion of wiring widgets to actions is similar to the idea of
+  wiring up an electronic device
+- We design the UI then connect the UI components to event handlers
+
+### Create a Graphical Application
+
+- We’ll now demonstrate our first meaningful graphical program
+
+- Let’s create a simple adding program
+
+  - User provides two numbers
+  - Program outputs the result
+
+- The full code is given by
+  [adder.py](./Examples/02_AddingMachine/adder.py)
+
+  ![Adding Program](./Examples/02_AddingMachine/Images/adder.png)
+
+- User enters two numbers
+
+- Presses the result button
+
+- Result is then displayed below
+
+- We’ll start creating an application
+
+  - We’ll start with an `Adder` class to hold the application
+
+  ``` python
+    class Adder:
+        """GUI-based adding machine
+
+        Call `display` to initiate the display
+
+        Notes
+        -----
+        Uses `Tkinter` as the GUI framework
+        """
+
+        def display(self):
+            """
+            Display the user interface
+
+            Returns
+            -------
+            None
+            """
+  ```
+
+- `display` provides the method for handling providing the UI
+
+  - We’ll fill this in later
+
+- We’ll add some script code to get this to run as a main program
+
+  ``` python
+    if __name__ == "__main__":
+        app = Adder()
+        app.display()
+  ```
+
+- This allows the code to loaded as a module (e.g. for `pydoc`)
+
+- Also executable as a main program
+
+- Now need to implement the adding machine
+
+#### Lay out a Grid
+
+- Let’s plan out the UI as a grid
+- The below figure overlays the final grid
+  - We can see some of the components seem to span multiple columns
+  - We’ll look at how to implement this latter
+
+  ![Adding Program Grid](./Examples/02_AddingMachine/Images/grid.png)
+- Let’s look at what widgets we need
+  - 3 Labels (first number, second number, result)
+  - 2 Entries (first number, second number)
+  - 1 Button (Calculate result)
+- Let’s build the first *component*
+  - Labelling the numbers
+
+  ``` python
+    first_number_label = tkinter.Label(root, text="First Number")
+    first_number_label.grid(sticky=tkinter.E, padx=5, pady=5, row=0, column=0)
+
+    second_number_label = tkinter.Label(root, text="First Number")
+    second_number_label.grid(sticky=tkinter.E, padx=5, pady=5, row=1, column=0)
+  ```
+
+- These create and position the number labels
+- They are positioned at the top of the widget (row zero and row one
+  respectively)
+- You can see we have `sticky`, `padx` and `pady` as extra positioning
+  parameters to the `grid` call
+
+##### Use Sticky Formatting
+
+- When using grid we often want to combine widgets of different sizes in
+  the same columns
+- Layout sizes a column to the largest element
+- By default items are centre-aligned
+- *sticky* lets you define a direction the widget should try to *stick*
+  or prioritise
+  - Given by compass directions
+  - `tkinter.E` stickies the label to the east or close to the adjacent
+    `tkinter.Entry` widget
+  - To *stretch* a widget you can sticky an item in multiple directions
+    - This is because sticky directions can be added together
+
+##### Use Padding
+
+- Padding adds extra space around a component
+- Useful to prevent a component being drawn right up against a boundary
+- Padding can be defined for both the $x$ and $y$ directions
+
+##### Span Grid Cells
+
+- We need a two column grid to but the number entry labels and entry
+  boxes next to each other
+
+- We’d like the calculate result button and the displayed result to take
+  up the whole row
+
+- We can merge columns by using the `columnspan` argument
+
+  ``` python
+    add_button = tkinter.Button(root, text="Add numbers", command=do_add)
+    add_button.grid(sticky=tkinter.E + tkinter.W, row=2, column=0, columnspan=2, padx=5, pady=5)
+  ```
+
+- `do_add` is a function we’ll define later to read the two numbers and
+  perform the addition
+
+- `columnspan=2` tells the program to draw `add_button` as spanning two
+  columns
+
+- By making the button sticky in east and west it will be drawn across
+  the entire row
+
+- Last steps are to add the `Entry` widgets and the result `Label`
+
+  ``` python
+    first_number_entry = tkinter.Entry(root, width=10)
+    first_number_entry.grid(sticky=tkinter.E, padx=5, pady=5, row=0, column=0)
+
+    second_number_entry = tkinter.Entry(root, width=10)
+    second_number_entry.grid(sticky=tkinter.E, padx=5, pady=5, row=1, column=0)
+
+    result_label = tkinter.Entry(root, text="Result")
+    result_label.grid(sticky=tkinter.E + tkinter.W, padx=5, pady=5, row=3, column=0, columnspan=2)
+  ```
+
+#### Create an Event Handler Function
+
+- Now need to define our function connected to the result button
+  `do_add`
+
+- We can define this local to `display` since no other part of the
+  program needs it
+
+- Event handler needs to read the text from the two number entry widgets
+
+- Then needs to convert these to numbers
+
+- Then add them
+
+- Then update the results label with the result
+
+- The implementation is given below,
+
+  ``` python
+    class Adder:
+        ...
+        def display(self):
+            # create the screen elements
+            def do_add():
+                # get first number
+                first_number_text = first_number_entry.get()
+                first_number = float(first_number_text)
+
+                # get second number
+                second_number_text = second_number_entry.get()
+                second_number = float(second_number_text)
+
+                # add them and update the display
+                result = first_number + second_number
+                result_label.config(text = str(result))
+  ```
+
+#### Code Analysis: Writing an Event Handler
+
+*Answer the following questions about an event handler*
+
+1. *Why is the event handler defined inside the display function?*
+
+    - The event handler function (`do_add`) needs access to display
+      elements defined in `display`
+    - Functions defined inside a function have access to the variables
+      of the enclosing scope
+    - Could define `do_add` as part of the `Adder` class
+      - But would then have to maintain references to all the display
+        elements outside of the display function
+
+2. *What happens if the user doesn’t type in a valid number before
+    pressing the Add numbers button?*
+
+    - `float` fails to convert the result
+    - This raises an exception
+    - The user won’t see the exception directly
+      - We may see it in logging or debug output
+    - The display won’t update properly though because the `do_add`
+      method will abort
+    - In the future well look at ways to provide the user with warning
+      or error popups
+
+#### Create a Main Loop
+
+- In the first shell example, we could see everything just worked
+- This was because the shell read input, processed it then waited for
+  more input
+- If we run our program as written, we’ll see a similar thing where the
+  script just ends
+  - We can’t just use `sleep` as before because this will freeze the
+    program
+  - The user should still be able to interact
+- To keep the display active we need to set up a *main loop*
+  - Code for making the program wait and then respond to user input
+
+    ``` python
+      root.mainloop()
+    ```
+
+- `mainloop` fetches events and sends it onto functions created to deal
+  with events
+- When the close button is pressed the `mainloop` ends
+- `mainloop` is typically the last statement
+  - The program usually ends then too
+
+### Handle Errors in a Graphical User Interface
+
+- Our program works, but it’s simple
+
+- Doesn’t handle invalid input
+
+- If we enter strings the program will appear not work
+
+  - This is because `float` throws an exception trying to convert
+    strings
+
+- We could add exception handling as we’ve done before
+
+  ``` python
+    def do_add():
+        first_number_text = first_number_entry.get()
+        try:
+            first_number = float(first_number_text)
+        except ValueError:
+            result_label.config(text="Invalid first number")
+
+        second_number_text = second_number_entry.get()
+        try:
+            second_number = float(second_number_text)
+        except ValueError:
+            result_label.config(text="Invalid second number")
+  ```
+
+- We could do a something identical for the second number
+
+- This has one problem
+
+  - If both the first and second number are invalid, only the first is
+    flagged
+
+- We want to build a more complex error string that reports all the
+  errors
+
+  ``` python
+    def do_add():
+        error_message = ""
+        first_number_text = first_number_entry.get()
+        try:
+            first_number = float(first_number_text)
+        except ValueError:
+            error_message = "Invalid first number\n"
+
+        second_number_text = second_number_entry.get()
+        try:
+            second_number = float(second_number_text)
+        except ValueError:
+            error_message += "Invalid second number"
+
+        if error_message != "":
+            result_label.config(text=error_message)
+        else:
+            result = first_number + second_number
+            result_label.config(text = str(result))
+  ```
+
+- We can use an empty error string to detect if we’ve encountered an
+  error
+
+- This lets different error sections contribute to the overall output
+
+- We can further extend this by providing a visual indicator of where
+  the error has occurred
+
+  - For example, by setting the background red, and the text blue
+
+    ``` python
+      first_number_entry.config(background="red", foreground="blue")
+    ```
 
 ## Summary
 
