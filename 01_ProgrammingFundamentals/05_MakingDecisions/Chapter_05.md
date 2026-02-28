@@ -260,7 +260,7 @@ and copy the below text.*
     print("The hour is", hour)
 ```
 
-    The hour is 11
+    The hour is 14
 
 Run the program, it should print out the current hour
 
@@ -294,8 +294,8 @@ simply need to format the attribute as necessary. The final
     print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 10 / 2 / 2026
-    The time is 11 : 22 : 41
+    The date is 28 / 2 / 2026
+    The time is 14 : 54 : 25
 
 #### Comparing Values
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 11 : 22
+    The time is 14 : 54
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -1642,7 +1642,7 @@ else:
 ```
 
     Nobody unexpected will enter your life
-    I see untold riches in your future
+    You would do well to husband your wealth
     Sometimes the answers to our future, come from the past
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of

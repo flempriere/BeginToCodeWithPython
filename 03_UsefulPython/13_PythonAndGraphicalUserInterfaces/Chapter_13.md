@@ -19,6 +19,11 @@
     - [Create a Main Loop](#create-a-main-loop)
   - [Handle Errors in a Graphical User
     Interface](#handle-errors-in-a-graphical-user-interface)
+  - [Make Something Happen: Fahrenheit to Centigrade and
+    Back](#make-something-happen-fahrenheit-to-centigrade-and-back)
+  - [Draw on a Canvas](#draw-on-a-canvas)
+    - [Make Something Happen: Investigate Events and
+      Drawing](#make-something-happen-investigate-events-and-drawing)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -638,6 +643,303 @@ We’ve combined all these steps into one
     ``` python
       first_number_entry.config(background="red", foreground="blue")
     ```
+
+  - In this case we also have to remember to reset the background, when
+    the user corrects the input
+
+- The final implementation can be found in
+  [AddingMachineWithExceptions](./Examples/03_AddingMachineWithExceptions/adder.py)
+
+  ![Adding Machine with
+  Exceptions](./Examples/03_AddingMachineWithExceptions/excepted_adder.png)
+
+  ### Display a Message Box
+
+- An alternative technique could be to use a message or dialog box
+
+- Forces the user to acknowledge the error
+
+- We can use Tkinter’s `messagebox`
+
+  ``` python
+    from tkinter import messagebox
+  ```
+
+- `messagebox` has three levels for displaying messages (functions)
+
+  - `showinfo`
+  - `showwarning`
+  - `showerror`
+
+- Only difference is the icon
+
+- UI is locked until the user clears the message
+
+- All have the same function signature, see below
+
+  ``` python
+    messagebox.showinfo("Rob Miles", "Rob Miles is awesome")
+  ```
+
+  ![An example message box with an information
+  notice](./Examples/04_AddingMachineWithMessageBox/info_message_box.png)
+
+- We can add this to our Adder program
+
+  - Instead of setting the result with the error text, we display a
+    message box
+  - To help the user we’ll also keep the background highlighting
+
+  ![The Adder program with invalid input highlighting and an error
+  message
+  box](./Examples/04_AddingMachineWithMessageBox/adder_message_box.png)
+
+### Make Something Happen: Fahrenheit to Centigrade and Back
+
+*In this challenge you will be provided with a half-finished program.
+Your goal is to complete the program. The program should allow the user
+to convert back and forth between fahrenheit and centigrade. The final
+program should look like the below,*
+
+![Final Fahrenheit to Celsius
+Implementation](./Exercises/01_FahrenheitToCelcius/final_implementation.png)
+
+*Currently it looks like*
+
+![Initial Fahrenheit to Celsius
+Implementation](./Exercises/01_FahrenheitToCelcius/initial_implementation.png)
+
+*The starter code is*
+
+``` python
+"""
+Exercise 13.1 Fahrenheit to Celsius
+
+Provides a graphical interface for converting between fahrenheit and centigrade
+"""
+
+import tkinter
+
+
+class Converter:
+    """
+    GUI-based Fahrenheit to Celsius converter (and vice-versa)
+
+    Call `display` to initiate the display
+
+    Notes
+    -----
+    Uses `Tkinter` as the GUI framework
+    """
+
+    def display(self):
+        """
+        display the user interface
+
+        Returns
+        -------
+        None
+        """
+        root = tkinter.Tk()
+
+        cent_label = tkinter.Label(root, text="Celsius:")
+        cent_label.grid(row=0, column=0, padx=5, pady=5, stick=tkinter.E)
+
+        cent_entry = tkinter.Entry(root, width=5)
+        cent_entry.grid(row=0, column=1, padx=5, pady=5)
+
+        fah_entry = tkinter.Entry(root, width=5)
+        fah_entry.grid(row=2, column=1, padx=5, pady=5)
+
+        def fahrenheit_to_celsius():
+            """
+            Convert from Fahrenheit to celsius and display the result
+
+            Returns
+            -------
+            None
+            """
+            fah_string = fah_entry.get()
+            fah_float = float(fah_string)
+            result = (fah_float - 32) / 1.89
+            cent_entry.delete(0, tkinter.END) # remove old text
+            cent_entry.insert(0, str(result))
+
+        def celsius_to_fahrenheit():
+            """
+            Convert from Celsius to Fahrenheit and display the result
+
+            Returns
+            -------
+            None
+            """
+            cent_string = cent_entry.get()
+            cent_float = float(cent_string)
+            result = cent_float * 1.8 + 32
+
+        fahrenheit_to_celsius_button = tkinter.Button(root, text="Fahrenheit to Celsius", command=fahrenheit_to_celsius)
+        fahrenheit_to_celsius_button.grid(row=1, column=0, padx=5, pady=5)
+
+        root.mainloop()
+
+if __name__ == "__main___":
+    app = Converter()
+    app.display()
+```
+
+This program uses a new feature, we use an `Entry` element to get the
+user specified fahrenheit or celsius temperature. When we click the
+appropriate button we need to overwrite what was in the other `Entry`
+label.
+
+`Entry` supports sophisticated text editing, but we only want to
+overwrite the text. We can’t just redefine the text like we would for a
+`Label`
+
+First we use `delete` to remove the old text.
+
+``` python
+    cent_entry.delete(0, tkinter.END) # remove the old text
+```
+
+The first argument is the index to delete from (inclusive), and the
+second is the index to delete to. `tkinter.END` is used to delete up to
+the end of the line
+
+We can then add the new text using `insert`
+
+``` python
+    cent_entry.insert(0, str(result))
+```
+
+This has a slightly different syntax. We indicate the index we want to
+insert the string at, and then the string we want to insert
+
+You can find the [starter code
+here](./Exercises/01_FahrenheitToCelcius/FahrenheitToCelcius_starter.py),
+and should have a go at yourself before reading the solution below
+
+Let’s first tidy up the already implemented Fahrenheit to Celsius code.
+We want to add proper error handling code. We’ve already seen how to do
+this with the [Message Box](#display-a-message-box).
+
+``` python
+        def fahrenheit_to_celsius():
+            """
+            Convert from Fahrenheit to celsius and display the result
+
+            Returns
+            -------
+            None
+            """
+            try:
+                fah_string = fah_entry.get()
+                fah_entry.config(background="white", foreground="black")
+                fah_float = float(fah_string)
+            except ValueError:
+                tkinter.messagebox.showerror(title="Temperature Converter", message="Fahrenheit must be a number")
+                fah_entry.config(background="red", foreground="blue")
+                return
+
+            result = (fah_float - 32) / 1.8
+            cent_entry.delete(0, tkinter.END) # remove old text
+            cent_entry.insert(0, "{0:.2f}".format(result))
+            cent_entry.config(background="white", foreground="black")
+```
+
+- This should look pretty familiar, we use a `try...except` block to
+  catch invalid input
+  - On invalid input we display an error box
+  - We also set the background for the entry element to be red and the
+    text to be blue
+  - This means we have to reset the entry element to the normal look
+    after a successful read (in case it had been set as an error)
+- Once we have validated all the input we can then update the text in
+  the other entry box
+- Here we have to be careful that if the user was previously typing
+  here, then it might to have be set to an error highlight
+- So here we also want to set it back to normal
+- Lastly you’ll notice we’ve updated the string we pass to `insert` to
+  `"{0:.2f}".format(result)`
+  - This allows means that the result will only be displayed to two
+    decimal places
+
+Next, we want to finish defining the reverse function for converting
+celsius to fahrenheit. This is pretty much identical to the previous
+function. Just swapping the roles of the entry boxes
+
+``` python
+        def celsius_to_fahrenheit():
+            """
+            Convert from celsius to Fahrenheit and display the result
+
+            Returns
+            -------
+            None
+            """
+            try:
+                cent_string = cent_entry.get()
+                cent_entry.config(background="white", foreground="black")
+                cent_float = float(cent_string)
+            except ValueError:
+                tkinter.messagebox.showerror(title="Temperature Converter", message="Celsius must be a number")
+                cent_entry.config(background="red", foreground="blue")
+                return
+            result = cent_float * 1.8 + 32
+            fah_entry.delete(0, tkinter.END)
+            fah_entry.insert(0, "{0:.2f}".format(result))
+            fah_entry.config(background="white", foreground="black")
+```
+
+We then need to add the button to connect to this function
+
+``` python
+    celsius_to_fahrenheit_button = tkinter.Button(root, text="Celsius to Fahrenheit", command=celsius_to_fahrenheit)
+    celsius_to_fahrenheit_button.grid(row=1, column=1, padx=5, pady=5)
+
+    root.mainloop()
+```
+
+Of course the last thing to do is add the Fahrenheit label and then
+perform some tidying up. Namely we want the `Entry` boxes to stretch to
+fill the whole column (so we use `tkinter.E + tkinter.W` in the `stick`
+parameter)
+
+``` python
+def display(self):
+    """
+    display the user interface
+
+    Returns
+    -------
+    None
+    """
+    root = tkinter.Tk()
+
+    cent_label = tkinter.Label(root, text="Celsius:")
+    cent_label.grid(row=0, column=0, padx=5, pady=5, stick=tkinter.E)
+
+    fah_label = tkinter.Label(root, text="Fahrenheit:")
+    fah_label.grid(row=2, column=0, padx=5, pady=5, stick=tkinter.E)
+
+    cent_entry = tkinter.Entry(root, width=5)
+    cent_entry.grid(row=0, column=1, padx=5, pady=5, stick=tkinter.E + tkinter.W)
+
+    fah_entry = tkinter.Entry(root, width=5)
+    fah_entry.grid(row=2, column=1, padx=5, pady=5, stick=tkinter.E + tkinter.W)
+```
+
+The final working implementation can be found in
+[FahrenheitToCelsius.py](./Exercises/01_FahrenheitToCelcius/FahrenheitToCelcius.py)
+
+### Draw on a Canvas
+
+- GUI’s typically work by recognising *events* or interactions
+- For example, we could recognise when a user has clicked on a screen to
+  draw something
+- Let’s create a basic drawing program
+
+#### Make Something Happen: Investigate Events and Drawing
 
 ## Summary
 
