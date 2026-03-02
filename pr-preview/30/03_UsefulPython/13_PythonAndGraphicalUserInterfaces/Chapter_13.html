@@ -348,6 +348,18 @@ window.Quarto = {
   <ul>
   <li><a href="#make-something-happen-investigate-events-and-drawing" id="toc-make-something-happen-investigate-events-and-drawing" class="nav-link" data-scroll-target="#make-something-happen-investigate-events-and-drawing">Make Something Happen: Investigate Events and Drawing</a></li>
   </ul></li>
+  <li><a href="#tkinter-events" id="toc-tkinter-events" class="nav-link" data-scroll-target="#tkinter-events">Tkinter Events</a></li>
+  <li><a href="#create-a-drawing-program" id="toc-create-a-drawing-program" class="nav-link" data-scroll-target="#create-a-drawing-program">Create a Drawing Program</a>
+  <ul>
+  <li><a href="#code-analysis-drawing-on-a-canvas" id="toc-code-analysis-drawing-on-a-canvas" class="nav-link" data-scroll-target="#code-analysis-drawing-on-a-canvas">Code Analysis: Drawing on a Canvas</a></li>
+  <li><a href="#make-something-happen-make-the-drawing-program-draw-ovals" id="toc-make-something-happen-make-the-drawing-program-draw-ovals" class="nav-link" data-scroll-target="#make-something-happen-make-the-drawing-program-draw-ovals">Make Something Happen: Make the Drawing Program Draw Ovals</a></li>
+  </ul></li>
+  <li><a href="#enter-multiline-text" id="toc-enter-multiline-text" class="nav-link" data-scroll-target="#enter-multiline-text">Enter Multiline Text</a>
+  <ul>
+  <li><a href="#make-something-happen-investigate-the-text-object" id="toc-make-something-happen-investigate-the-text-object" class="nav-link" data-scroll-target="#make-something-happen-investigate-the-text-object">Make Something Happen: Investigate the Text Object</a></li>
+  </ul></li>
+  <li><a href="#group-display-elements-in-frames" id="toc-group-display-elements-in-frames" class="nav-link" data-scroll-target="#group-display-elements-in-frames">Group Display Elements in Frames</a></li>
+  <li><a href="#create-an-editable-stockitem-using-a-gui" id="toc-create-an-editable-stockitem-using-a-gui" class="nav-link" data-scroll-target="#create-an-editable-stockitem-using-a-gui">Create an Editable <code>StockItem</code> Using a GUI</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
@@ -543,7 +555,7 @@ window.Quarto = {
 </div>
 <ul>
 <li><p>Click the button a few times and you should see output like,</p>
-<div id="de471580" class="cell" data-execution_count="1">
+<div id="ad1d375c" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&gt;&gt;&gt; click
 click
@@ -599,7 +611,7 @@ click</code></pre>
 <li><p><code>get</code> returns the text of the element</p></li>
 <li><p>Running this on our <code>Entry</code> object we should see,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(ent.get())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="8f1acba0" class="cell" data-execution_count="2">
+<div id="744a9aa1" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>hello world</code></pre>
 </div>
@@ -1178,7 +1190,564 @@ click</code></pre>
 </ul>
 <section id="make-something-happen-investigate-events-and-drawing" class="level4">
 <h4 class="anchored" data-anchor-id="make-something-happen-investigate-events-and-drawing">Make Something Happen: Investigate Events and Drawing</h4>
+<p><em>Investigate events in</em> <code>Tkinter</code> <em>by working through the following activity. Start by opening the python interpreter</em></p>
+<ol type="1">
+<li><p><em>Import Tkinter</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> tkinter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><em>Create a window on the screen</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> tkinter.Tk()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><em>Create a</em> <code>Canvas</code></p>
+<ul>
+<li><p>A <code>Canvas</code> is a display component that acts as a container for other display elements</p></li>
+<li><p>Elements can be drawn and positioned on a canvas</p></li>
+<li><p>When creating the canvas we need to specify the size</p></li>
+<li><p><em>Enter the following to create a canvas</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>  c <span class="op">=</span> Canvas(root, width<span class="op">=</span><span class="dv">500</span>, height<span class="op">=</span><span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><em>place the canvas on the display, by entering the following</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>  c.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><em>Add functionality to the canvas</em></p>
+<ul>
+<li><p>The canvas currently just appears as a square</p></li>
+<li><p>We need to attach functionality to the canvas</p></li>
+<li><p>Similar to how we attach a function to a button</p></li>
+<li><p>Start by defining our action function</p></li>
+<li><p><em>Define the function below</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> mouse_move(event):</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(event.x, event.y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Above function receives a single argument (<code>event</code>)</p>
+<ul>
+<li><code>event</code> has two attributes, <code>x</code> and <code>y</code></li>
+<li>These are the positions of the mouse when the event is triggered</li>
+</ul></li>
+<li><p>This function simply prints out the position of the mouse when the event is triggered</p></li>
+<li><p>Now we need to connect the event to this function</p>
+<ul>
+<li>This process is called <em>binding</em></li>
+</ul></li>
+<li><p>display objects contain a <code>bind</code> method used to bind events triggered on them to a function</p></li>
+<li><p><em>Enter the following to bind the</em> <code>&lt;B1-motion&gt;</code> <em>event on the canvas to your function</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>  c.bind(<span class="st">"&lt;B1-Motion&gt;"</span>, mouse_move)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>&lt;B1-Motion&gt;</code> corresponds to mouse movement with the <code>B1</code> button held down (left-button typically)</p></li>
+<li><p><code>bind</code> returns a unique string to identify the binding</p>
+<ul>
+<li>This string can be used to track and recover a binding later</li>
+<li>e.g.&nbsp;If we wanted to disable it</li>
+<li>String’s are typically machine specific</li>
+</ul></li>
+</ul></li>
+<li><p><em>Try out the new functionality</em></p>
+<ul>
+<li>Click and drag your mouse on the canvas</li>
+<li>You should see a stream of coordinates in the output</li>
+<li>In graphics typically the top left corner is <code>(0, 0)</code>
+<ul>
+<li>Indices increase <em>down</em> the screen and to the <em>right</em></li>
+</ul></li>
+</ul></li>
+<li><p><em>Convert the canvas to a drawing program</em></p>
+<ul>
+<li><p>We want our canvas to support drawing something!</p></li>
+<li><p><code>Canvas</code> provides a method <code>create_rectangle</code> to draw a rectangle on a screen</p></li>
+<li><p><em>Enter the following to draw a rectangle</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>  c.create_rectangle(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">200</span>, outline<span class="op">=</span><span class="st">"blue"</span>, fill<span class="op">=</span><span class="st">"blue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>create_rectangle</code> takes four arguments, corresponding to the <code>(x, y)</code> coordinates of the top left and the bottom right corner respectively</p></li>
+<li><p><code>outline</code> lets us optionally set the outline colour of the rectangle (default is black)</p></li>
+<li><p><code>fill</code> sets the fill in colour of the block (default black)</p></li>
+<li><p><code>create_rectangle</code> returns an integer</p></li>
+<li><p>This is an id for the drawn rectangle</p></li>
+<li><p>We can use this to manipulate the rectangle</p></li>
+<li><p><em>Delete the rectangle</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>  c.delete(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The ability to manipulate the objects on a canvas is very powerful</p></li>
+<li><p><em>Redefine a new function for the mouse press event</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> mouse_move_draw(event):</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>      c.create_rectangle(event.x <span class="op">-</span> <span class="dv">5</span>, event.y <span class="op">-</span><span class="dv">5</span>, event.x <span class="op">+</span> <span class="dv">5</span>, event.y <span class="op">+</span> <span class="dv">5</span>, fill<span class="op">=</span><span class="st">"red"</span>, outline<span class="op">=</span><span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The above draws a <span class="math inline">\(10 \times 10\)</span> pixel rectangle centred around the mouse click location</p></li>
+<li><p><em>Bind this new function to the canvas</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>  c.bind(<span class="st">"&lt;B1-Motion&gt;"</span>, mouse_move_draw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Now attempt to draw on the canvas, you should see something like below</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/05_Canvas/basic_canvas.png" class="img-fluid figure-img"></p>
+<figcaption>The basic drawing canvas</figcaption>
+</figure>
+</div></li>
+</ul></li>
+</ol>
+<p>The final result can be found in <a href="./Examples/05_Canvas/basic_canvas.png">Canvas.py</a></p>
 </section>
+</section>
+<section id="tkinter-events" class="level3">
+<h3 class="anchored" data-anchor-id="tkinter-events">Tkinter Events</h3>
+<ul>
+<li>Events are powerful and flexible</li>
+<li>Consider the event tag from before <code>"&lt;B1-Motion&gt;"</code>
+<ul>
+<li><p>It consists of two parts</p>
+<ol type="1">
+<li>The first part is the <em>modifier</em> (<code>B1</code>)
+<ul>
+<li>Condition required for event to generate</li>
+<li>Here the condition is that the primary mouse button is clicked</li>
+</ul></li>
+<li>The second part is the <em>detail</em>
+<ul>
+<li>Thing that produces the event (here moving the mouse)</li>
+</ul></li>
+</ol></li>
+<li><p>We could for example use the event <code>"&lt;Motion&gt;"</code></p>
+<ul>
+<li>This produces events for every mouse move</li>
+</ul></li>
+</ul></li>
+<li>Below is a table of common and useful events and modifiers</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 36%">
+<col style="width: 19%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modifier</th>
+<th>Action</th>
+<th>Detail</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Control</td>
+<td>Control key pressed</td>
+<td>Motion</td>
+<td>Mouse moved</td>
+</tr>
+<tr class="even">
+<td>Shift</td>
+<td>Shifty key pressed</td>
+<td>ButtonPress</td>
+<td>Mouse button pressed</td>
+</tr>
+<tr class="odd">
+<td>B1-B4</td>
+<td>corresponding mouse button</td>
+<td>ButtonRelease</td>
+<td>Mouse button released</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>KeyPress</td>
+<td>Key pressed</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>KeyRelease</td>
+<td>Key released</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>MouseWheel</td>
+<td>Mouse wheel moved</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Different actions may create different event information</li>
+<li>Events delivered when a key is pressed identify the key</li>
+<li>Events delivered by the mouse contain its coordinates</li>
+<li>Multiple modifiers can create complex events with multiple modifiers</li>
+</ul>
+</section>
+<section id="create-a-drawing-program" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-drawing-program">Create a Drawing Program</h3>
+<ul>
+<li><p>Let’s create a more sophisticated version of our drawing program</p>
+<ol type="1">
+<li>User can draw with a mouse</li>
+<li>Change the drawing colour with the keyboard</li>
+<li>clear the canvas</li>
+</ol></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">Example 13.6 Drawing Program</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">A simple drawing program where the user can</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">1. Draw</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">2. Change brush colour</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">3. Clear the canvas</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tkinter</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Drawing:</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co">    GUI element for a drawing program</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Notes</span></span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co">    -----</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="co">    Uses `tkinter` for the GUI framework</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> display(<span class="va">self</span>):</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a><span class="co">        Display the Drawing Program</span></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>        root <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>        canvas <span class="op">=</span> tkinter.Canvas(root, width<span class="op">=</span><span class="dv">500</span>, height<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a>        canvas.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a>        draw_colour <span class="op">=</span> <span class="st">"red"</span></span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> mouse_move(event):</span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a><span class="co">            Draw a 10 by 10 pixel rectangle centred on the mouse</span></span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a><span class="co">            Parameters</span></span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a><span class="co">            ----------</span></span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a><span class="co">            event</span></span>
+<span id="cb44-44"><a href="#cb44-44" aria-hidden="true" tabindex="-1"></a><span class="co">                the triggering event</span></span>
+<span id="cb44-45"><a href="#cb44-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-46"><a href="#cb44-46" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb44-47"><a href="#cb44-47" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb44-48"><a href="#cb44-48" aria-hidden="true" tabindex="-1"></a><span class="co">            None</span></span>
+<span id="cb44-49"><a href="#cb44-49" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb44-50"><a href="#cb44-50" aria-hidden="true" tabindex="-1"></a>            canvas.create_rectangle(</span>
+<span id="cb44-51"><a href="#cb44-51" aria-hidden="true" tabindex="-1"></a>                event.x <span class="op">-</span> <span class="dv">5</span>,</span>
+<span id="cb44-52"><a href="#cb44-52" aria-hidden="true" tabindex="-1"></a>                event.y <span class="op">-</span> <span class="dv">5</span>,</span>
+<span id="cb44-53"><a href="#cb44-53" aria-hidden="true" tabindex="-1"></a>                event.x <span class="op">+</span> <span class="dv">5</span>,</span>
+<span id="cb44-54"><a href="#cb44-54" aria-hidden="true" tabindex="-1"></a>                event.y <span class="op">+</span> <span class="dv">5</span>,</span>
+<span id="cb44-55"><a href="#cb44-55" aria-hidden="true" tabindex="-1"></a>                fill<span class="op">=</span>draw_colour,</span>
+<span id="cb44-56"><a href="#cb44-56" aria-hidden="true" tabindex="-1"></a>                outline<span class="op">=</span>draw_colour,</span>
+<span id="cb44-57"><a href="#cb44-57" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb44-58"><a href="#cb44-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-59"><a href="#cb44-59" aria-hidden="true" tabindex="-1"></a>        canvas.bind(<span class="st">"&lt;B1-Motion&gt;"</span>, mouse_move)</span>
+<span id="cb44-60"><a href="#cb44-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-61"><a href="#cb44-61" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> key_press(event):</span>
+<span id="cb44-62"><a href="#cb44-62" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb44-63"><a href="#cb44-63" aria-hidden="true" tabindex="-1"></a><span class="co">            Change the drawing program state in response to a key press</span></span>
+<span id="cb44-64"><a href="#cb44-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-65"><a href="#cb44-65" aria-hidden="true" tabindex="-1"></a><span class="co">            Parameters</span></span>
+<span id="cb44-66"><a href="#cb44-66" aria-hidden="true" tabindex="-1"></a><span class="co">            ----------</span></span>
+<span id="cb44-67"><a href="#cb44-67" aria-hidden="true" tabindex="-1"></a><span class="co">            event</span></span>
+<span id="cb44-68"><a href="#cb44-68" aria-hidden="true" tabindex="-1"></a><span class="co">                key press that triggered the function</span></span>
+<span id="cb44-69"><a href="#cb44-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-70"><a href="#cb44-70" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb44-71"><a href="#cb44-71" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb44-72"><a href="#cb44-72" aria-hidden="true" tabindex="-1"></a><span class="co">            None</span></span>
+<span id="cb44-73"><a href="#cb44-73" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb44-74"><a href="#cb44-74" aria-hidden="true" tabindex="-1"></a>            <span class="kw">nonlocal</span> draw_colour</span>
+<span id="cb44-75"><a href="#cb44-75" aria-hidden="true" tabindex="-1"></a>            ch <span class="op">=</span> event.char.upper()</span>
+<span id="cb44-76"><a href="#cb44-76" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ch <span class="op">==</span> <span class="st">"C"</span>:</span>
+<span id="cb44-77"><a href="#cb44-77" aria-hidden="true" tabindex="-1"></a>                canvas.delete(<span class="st">"all"</span>)</span>
+<span id="cb44-78"><a href="#cb44-78" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"R"</span>:</span>
+<span id="cb44-79"><a href="#cb44-79" aria-hidden="true" tabindex="-1"></a>                draw_colour <span class="op">=</span> <span class="st">"red"</span></span>
+<span id="cb44-80"><a href="#cb44-80" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"G"</span>:</span>
+<span id="cb44-81"><a href="#cb44-81" aria-hidden="true" tabindex="-1"></a>                draw_colour <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb44-82"><a href="#cb44-82" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"B"</span>:</span>
+<span id="cb44-83"><a href="#cb44-83" aria-hidden="true" tabindex="-1"></a>                draw_colour <span class="op">=</span> <span class="st">"blue"</span></span>
+<span id="cb44-84"><a href="#cb44-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-85"><a href="#cb44-85" aria-hidden="true" tabindex="-1"></a>        canvas.bind(<span class="st">"&lt;KeyPress&gt;"</span>, key_press)</span>
+<span id="cb44-86"><a href="#cb44-86" aria-hidden="true" tabindex="-1"></a>        canvas.focus_set()</span>
+<span id="cb44-87"><a href="#cb44-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-88"><a href="#cb44-88" aria-hidden="true" tabindex="-1"></a>        root.mainloop()</span>
+<span id="cb44-89"><a href="#cb44-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-90"><a href="#cb44-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-91"><a href="#cb44-91" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb44-92"><a href="#cb44-92" aria-hidden="true" tabindex="-1"></a>    app <span class="op">=</span> Drawing()</span>
+<span id="cb44-93"><a href="#cb44-93" aria-hidden="true" tabindex="-1"></a>    app.display()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output should look something like this,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/06_DrawingProgram/improved_canvas.png" class="img-fluid figure-img"></p>
+<figcaption>A more sophisticated drawing program supporting multiple colours</figcaption>
+</figure>
+</div>
+<p>and can be found in <a href="./Examples/06_DrawingProgram/DrawingProgram.py">DrawingProgram.py</a></p>
+<section id="code-analysis-drawing-on-a-canvas" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-drawing-on-a-canvas">Code Analysis: Drawing on a Canvas</h4>
+<p><em>To understand the code above, work through the following questions</em></p>
+<ol type="1">
+<li><p><em>What is the</em> <code>draw_colour</code> <em>variable used for?</em></p>
+<ul>
+<li><p><code>draw_colour</code> holds the current draw colour</p></li>
+<li><p>Many colours are recognised by name</p></li>
+<li><p>There are other methods for specifying colours too, such as by hexcode</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>  draw_colour <span class="op">=</span> <span class="st">"#FFFF00"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The hexcode is three two-digit hex values</li>
+<li>Correspond to the amount of red, green and blue respectively</li>
+<li>The above corresponds to yellow</li>
+</ul></li>
+<li><p>The Tcl wiki maintains a page with the <a href="https://wiki.tcl-lang.org/page/Color+Names%2C+running%2C+all+screens">colour names</a></p></li>
+<li><p>The program starts with <code>draw_colour</code> corresponding to red, and uses the keys <code>R</code>, <code>G</code>, <code>B</code> to switch colours</p></li>
+</ul></li>
+<li><p><em>How do you clear the canvas?</em></p>
+<ul>
+<li>We can delete specific items if we keep track of the ID</li>
+<li><code>delete</code> can accept <code>"all"</code> as its argument
+<ul>
+<li>In this case all elements are deleted</li>
+<li>This effectively clears the canvas</li>
+</ul></li>
+<li>In our program this is assigned to the <code>C</code> key</li>
+</ul></li>
+<li><p><em>In the</em> <code>key_press</code> <em>function, you’ve created a</em> <code>nonlocal</code> <em>variable called</em> <code>draw_colour</code><em>. What does this mean?</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> key_press(event):</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nonlocal</span> draw_colour</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>key_press</code> needs to be able to change the value of <code>draw_colour</code></li>
+<li><code>draw_colour</code> is declared in the outer <code>display</code> function scope</li>
+<li><code>draw_colour</code> is therefore not a global variable so we can’t use <code>global</code> to connect the function to the variable</li>
+<li><code>nonlocal</code> acts similar but means the variable exists in the enclosing scope</li>
+</ul></li>
+<li><p><em>What does the call of</em> <code>focus_set</code> <em>do?</em></p>
+<ul>
+<li>By default python doesn’t know what application a key press should be sent to
+<ul>
+<li>Or which component of an application</li>
+</ul></li>
+<li><code>focus_set</code> tells python that this component should receive the keyboard events</li>
+<li>This is independent of which window is actually focused (i.e.&nbsp;currently being looked at) by the user</li>
+</ul></li>
+</ol>
+</section>
+<section id="make-something-happen-make-the-drawing-program-draw-ovals" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-make-the-drawing-program-draw-ovals">Make Something Happen: Make the Drawing Program Draw Ovals</h4>
+<p><em>The</em> <code>Canvas</code> <em>object provides a method called</em> <code>create_oval</code><em>, which can be used to draw ovals. It has a different set of arguments from the</em> <code>create_rectangle</code> <em>method. Make a version of the drawing program that draws ovals. You could even allow the artist to swap between brushes by pressing S for square brush and O for an oval brush</em></p>
+<p>Let’s first implement the oval drawing mechanics. From the <code>tkinter</code> website, we can see that <code>create_oval</code> has a similar function signature to create_rectangle, but there is different semantic meaning. The oval is drawn inscribed in a rectangle defined by the upper left corner (the first two arguments) and the lower right corner (bottom two arguments).</p>
+<p>So we can define a function to draw an oval in response to an event as follows,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mouse_move_oval(event):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">        Draw an oval inscribed in an 10 x 10 pixel rectangle centred on</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">        the mouse</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co">        event</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co">            the triggering event</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>        canvas.create_oval(</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>            event.x <span class="op">-</span> size,</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>            event.y <span class="op">-</span> size,</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>            event.x <span class="op">+</span> size,</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>            event.y <span class="op">+</span> size,</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>            fill<span class="op">=</span>draw_colour,</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>            outline<span class="op">=</span>draw_colour,</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we need to add the functionality to switch between the two brushes. By default our program binds the <code>&lt;B1-Motion&gt;</code> event to drawing a square. We need to make this binding change. We’ll add additional keypress events to the <code>key_press</code> function <code>S</code> and <code>O</code> to switch the brush. Each of these events will have to rebind the appropriate function to the <code>&lt;B1-Motion&gt;</code> event. To help the user we’ll add a text label below the canvas that indicates the current brush. For symmetry we’ll add a second label below this one that indicates the current colour. So we then need to update the <code>key_press</code> function to properly update these labels.</p>
+<p>The final <code>key_press</code> function then looks like,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> key_press(event):</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">            Change the drawing program state in response to a key press</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co">            Parameters</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co">            ----------</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">            event</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co">                key press that triggered the function</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="co">            None</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>            <span class="kw">nonlocal</span> draw_colour</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>            <span class="kw">nonlocal</span> size</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>            ch <span class="op">=</span> event.char.upper()</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ch <span class="op">==</span> <span class="st">"C"</span>:</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>                canvas.delete(<span class="st">"all"</span>)</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"R"</span>:</span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>                draw_colour <span class="op">=</span> <span class="st">"red"</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>                colour_label.config(text<span class="op">=</span><span class="st">"Colour: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(draw_colour))</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"G"</span>:</span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>                draw_colour <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>                colour_label.config(text<span class="op">=</span><span class="st">"Colour: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(draw_colour))</span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"B"</span>:</span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>                draw_colour <span class="op">=</span> <span class="st">"blue"</span></span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a>                colour_label.config(text<span class="op">=</span><span class="st">"Colour: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(draw_colour))</span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"S"</span>:</span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>                canvas.bind(<span class="st">"&lt;B1-Motion&gt;"</span>, mouse_move_square)</span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a>                brush_label.config(text<span class="op">=</span><span class="st">"Brush: square"</span>)</span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"O"</span>:</span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a>                canvas.bind(<span class="st">"&lt;B1-Motion&gt;"</span>, mouse_move_oval)</span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>                brush_label.config(text<span class="op">=</span><span class="st">"Brush: oval"</span>)</span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"+"</span>:</span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a>                size <span class="op">=</span> <span class="bu">min</span>(size <span class="op">+</span> <span class="dv">5</span>, <span class="dv">50</span>)</span>
+<span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a>                size_label.config(text<span class="op">=</span><span class="st">"Size: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(size))</span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"-"</span>:</span>
+<span id="cb48-38"><a href="#cb48-38" aria-hidden="true" tabindex="-1"></a>                size <span class="op">=</span> <span class="bu">max</span>(size <span class="op">-</span> <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb48-39"><a href="#cb48-39" aria-hidden="true" tabindex="-1"></a>                size_label.config(text<span class="op">=</span><span class="st">"Size: </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(size))</span>
+<span id="cb48-40"><a href="#cb48-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> ch <span class="op">==</span> <span class="st">"H"</span>:</span>
+<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a>                tkinter.messagebox.showinfo(</span>
+<span id="cb48-43"><a href="#cb48-43" aria-hidden="true" tabindex="-1"></a>                    title<span class="op">=</span><span class="st">"Simple Canvas"</span>,</span>
+<span id="cb48-44"><a href="#cb48-44" aria-hidden="true" tabindex="-1"></a>                    message<span class="op">=</span><span class="st">"""Controls:</span></span>
+<span id="cb48-45"><a href="#cb48-45" aria-hidden="true" tabindex="-1"></a><span class="st">C - clear canvas</span></span>
+<span id="cb48-46"><a href="#cb48-46" aria-hidden="true" tabindex="-1"></a><span class="st">R - change colour to red</span></span>
+<span id="cb48-47"><a href="#cb48-47" aria-hidden="true" tabindex="-1"></a><span class="st">B - change colour to blue</span></span>
+<span id="cb48-48"><a href="#cb48-48" aria-hidden="true" tabindex="-1"></a><span class="st">G - change colour to green</span></span>
+<span id="cb48-49"><a href="#cb48-49" aria-hidden="true" tabindex="-1"></a><span class="st">S - change brush to square brush</span></span>
+<span id="cb48-50"><a href="#cb48-50" aria-hidden="true" tabindex="-1"></a><span class="st">O - change brush to oval brush</span></span>
+<span id="cb48-51"><a href="#cb48-51" aria-hidden="true" tabindex="-1"></a><span class="st">+ - increase brush size</span></span>
+<span id="cb48-52"><a href="#cb48-52" aria-hidden="true" tabindex="-1"></a><span class="st">- - decrease brush size</span></span>
+<span id="cb48-53"><a href="#cb48-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-54"><a href="#cb48-54" aria-hidden="true" tabindex="-1"></a><span class="st">Right click to erase"""</span>,</span>
+<span id="cb48-55"><a href="#cb48-55" aria-hidden="true" tabindex="-1"></a>                )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You’ll notice that there are three extra bound events that have not been discussed. The first two are the <code>+</code> and <code>-</code> keys which we bind the increasing and decreasing the brush size respectively. Our original drawing code always draw the box as a <span class="math inline">\(10 \times 10\)</span> box around the triggering event. We’ll now let the user control that. We make <code>size</code> a variable, and the user can use <code>+</code> to increase the brush size in increments of <span class="math inline">\(5\)</span> up to <span class="math inline">\(50\)</span>, and decrease the <code>size</code> using <code>-</code> down to <span class="math inline">\(5\)</span>. This <code>size</code> takes the place of the hardcoded <code>event.x + 5</code> statements in <code>mouse_move_oval</code>.</p>
+<p>The next addition you should notice is the <code>H</code> key. This simply uses <code>messagebox</code> to display a dialog to the user listing out all the controls.</p>
+<p>The last functionalty we want to implement is erasing. We want the user to be able to erase over previously drawn elements using the right mouse button. This corresponds to the <code>&lt;B3-Motion&gt;</code> event. Now we could try and right some code that tracks all the drawn elements and tries to locate which element is being dragged over and delete it, but an easy work around is to simply paint over the top with a new rectange that uses the background colour. So in this case, from the <code>tkinter</code> docs we can see that we can set the <code>Canvas</code> background colour to white using <code>bg="white"</code> in the <code>Canvas</code> constructor. We can then define our <code>erase</code> function as,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> erase(event) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">            Erase the canvas</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">            Parameters</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co">            ----------</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">            event</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co">                triggering event</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co">            Notes</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co">            -----</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co">            Erase is implemented by drawing a white rectangle centred on the mouse</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>            canvas.create_rectangle(</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>                event.x <span class="op">-</span> size,</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>                event.y <span class="op">-</span> size,</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>                event.x <span class="op">+</span> size,</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>                event.y <span class="op">+</span> size,</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>                fill<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>                outline<span class="op">=</span><span class="st">"white"</span>,</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We then simply bind this to the the <code>&lt;B3-Motion&gt;</code> event and we’ve got our erase. This fairly straightforward set of steps gives us a fairly complete and good looking little drawing program. You can see the full code in <a href="./Exercises/02_AdvancedDrawingProgram/DrawingProgram.py">DrawingProgram.py</a>. An example of the program looks like below,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Exercises/02_AdvancedDrawingProgram/advanced_canvas.png" class="img-fluid figure-img"></p>
+<figcaption>The improved drawing program supporting multiple colours, brush sizes, help and the ability to erase</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="enter-multiline-text" class="level3">
+<h3 class="anchored" data-anchor-id="enter-multiline-text">Enter Multiline Text</h3>
+<ul>
+<li><code>Entry</code> only supports a single line of text</li>
+<li>Powerful, but not sophisticated enough for all tasks, e.g.&nbsp;a text editor</li>
+<li><code>Text</code> supports pages of text
+<ul>
+<li>Similar to <code>Entry</code></li>
+<li>Some differences</li>
+</ul></li>
+</ul>
+<section id="make-something-happen-investigate-the-text-object" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-investigate-the-text-object">Make Something Happen: Investigate the Text Object</h4>
+<p><em>Investigate the</em> <code>Text</code> <em>object using the python interpreter. Work through the following steps</em></p>
+<ol type="1">
+<li><p><em>Import tkinter</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> tkinter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><em>Create a Tkinter window</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a> root <span class="op">=</span> tkinter.Tk()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><em>Create a</em> <code>Text</code> <em>object</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a> t <span class="op">=</span> tkinter.Text(width<span class="op">=</span><span class="dv">80</span>, height<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>Creates a <code>Text</code> object, assigned to <code>t</code></p></li>
+<li><p><code>width</code> and <code>height</code> correspond to <em>characters</em> (width) and <em>lines</em> (height) <strong>not</strong> pixels</p></li>
+<li><p><em>position the object on the window</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>  t.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/07_Text/text.png" class="img-fluid figure-img"></p>
+<figcaption>The <code>Text</code> widget</figcaption>
+</figure>
+</div></li>
+<li><p><code>Text</code> gives a lot of control over editing the content</p></li>
+<li><p><code>Text</code> let’s us extract it’s contents using <code>get</code> like <code>Entry</code></p>
+<ul>
+<li>But has a more sophisticated functions signature</li>
+</ul></li>
+<li><p>Refer to characters by their row and column positions</p></li>
+</ul></li>
+<li><p><em>Demonstrate the use of</em> <code>get</code> <em>to extract text from the</em> <code>Text</code> <em>widget</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a> t.get(<span class="st">"1.0"</span>, tkinter.END)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="bda0b254" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">Hello, World!\nAnother line of text\n</span>
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li><p>This returns all of the text starting at row <span class="math inline">\(1\)</span>, column <span class="math inline">\(0\)</span> and through the <code>tkinter.END</code> of the <code>Text</code>.</p></li>
+<li><p>If you want to get a specific slice of text, you can instead pass another string of the form <code>"row.column"</code>, e.g.</p></li>
+<li><p>To slice the second row, we write</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>  t.get(<span class="st">"2.0"</span>, <span class="st">"3.0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4ff8bef7" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">Another line of text\n</span>
+</pre>
+</div>
+</div>
+</div></li>
+</ul></li>
+<li><p><em>Demonstrate the use of the</em> <code>delete</code> <em>method to remove text</em></p>
+<ul>
+<li><p><code>delete</code> removes text from a <code>Text</code> widget</p></li>
+<li><p>Has an identical signature to get, e.g.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>  t.delete(<span class="st">"1.0"</span>, tkinter.END)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>deletes all text</p></li>
+</ul></li>
+<li><p><em>Demonstrate the use of the</em> <code>insert</code> <em>method to add text</em></p>
+<ul>
+<li><p>We can add text by defining the start position</p></li>
+<li><p>Then supply the string we want to insert, e.g.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>  t.insert(<span class="st">"1.0"</span>, <span class="st">"New line 1</span><span class="ch">\n</span><span class="st">New line 2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This inserts text into the <code>Text</code> box at the start, <code>\n</code> results in splitting the lines</p></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="group-display-elements-in-frames" class="level3">
+<h3 class="anchored" data-anchor-id="group-display-elements-in-frames">Group Display Elements in Frames</h3>
+<ul>
+<li><code>grid</code> helps us define how we want to layout a complete window</li>
+<li>Often we want to lay out subcomponents on a bigger component first
+<ul>
+<li>That component is then embedded into the window</li>
+</ul></li>
+<li><code>Frame</code> is an object for acting as a root for a set of elements
+<ul>
+<li>Can be used to define how objects are displayed within it</li>
+</ul></li>
+<li>The goal will be to create a graphical version of our <a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html#fashion-shop-application">fashion shop program</a></li>
+<li>We can use a <code>Frame</code> to define a layout for editing a <code>StockItem</code></li>
+<li>The <code>Frame</code> object can then be included in higher level graphical objects
+<ul>
+<li><p><code>Frame</code> acts very similar to the <code>Tk</code> object for the main window</p></li>
+<li><p>We can use it in places that need a root window rather than the <code>Tk</code> object as below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>  frame <span class="op">=</span> tkinter.Frame(root)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  stock_ref_label <span class="op">=</span> tkinter.Label(frame, text<span class="op">=</span><span class="st">"Stock ref:"</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  stock_ref_label.grid(sticky<span class="op">=</span>tkinter.E, row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>stock_ref_label</code> is now part of the <code>frame</code> object</p>
+<ul>
+<li>Positioned in the top left corner of the frame</li>
+<li>This frame component can then be reused elsewhere</li>
+</ul></li>
+<li><p>Note that the <code>stock_ref_label</code> and other components of the frame won’t show up until the frame itself is attached to some other frame or window</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="create-an-editable-stockitem-using-a-gui" class="level3">
+<h3 class="anchored" data-anchor-id="create-an-editable-stockitem-using-a-gui">Create an Editable <code>StockItem</code> Using a GUI</h3>
 </section>
 </section>
 <section id="summary" class="level2">
