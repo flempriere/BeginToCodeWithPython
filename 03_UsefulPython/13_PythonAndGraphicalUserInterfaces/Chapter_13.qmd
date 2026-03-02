@@ -773,6 +773,553 @@ The final working implementation can be found in [FahrenheitToCelsius.py](./Exer
 
 #### Make Something Happen: Investigate Events and Drawing
 
+*Investigate events in* `Tkinter` *by working through the following activity. Start by opening the python interpreter*
+
+1. *Import Tkinter*
+
+   ```python
+       import tkinter
+   ```
+
+2. *Create a window on the screen*
+
+   ```python
+       root = tkinter.Tk()
+   ```
+
+3. *Create a* `Canvas`
+
+    - A `Canvas` is a display component that acts as a container for other display elements
+    - Elements can be drawn and positioned on a canvas
+    - When creating the canvas we need to specify the size
+    - *Enter the following to create a canvas*
+
+      ```python
+        c = Canvas(root, width=500, height=500)
+      ```
+
+    - *place the canvas on the display, by entering the following*
+
+      ```python
+        c.grid(row=0, column=0)
+      ```
+
+4. *Add functionality to the canvas*
+
+    - The canvas currently just appears as a square
+    - We need to attach functionality to the canvas
+    - Similar to how we attach a function to a button
+    - Start by defining our action function
+    - *Define the function below*
+
+      ```python
+        def mouse_move(event):
+            print(event.x, event.y)
+      ```
+
+    - Above function receives a single argument (`event`)
+        - `event` has two attributes, `x` and `y`
+        - These are the positions of the mouse when the event is triggered
+    - This function simply prints out the position of the mouse when the event is triggered
+    - Now we need to connect the event to this function
+        - This process is called *binding*
+    - display objects contain a `bind` method used to bind events triggered on them to a function
+    - *Enter the following to bind the* `<B1-motion>` *event on the canvas to your function*
+
+      ```python
+        c.bind("<B1-Motion>", mouse_move)
+      ```
+
+    - `<B1-Motion>` corresponds to mouse movement with the `B1` button held down (left-button typically)
+    - `bind` returns a unique string to identify the binding
+        - This string can be used to track and recover a binding later
+        - e.g. If we wanted to disable it
+        - String's are typically machine specific
+
+5. *Try out the new functionality*
+
+    - Click and drag your mouse on the canvas
+    - You should see a stream of coordinates in the output
+    - In graphics typically the top left corner is `(0, 0)`
+        - Indices increase *down* the screen and to the *right*
+
+6. *Convert the canvas to a drawing program*
+
+    - We want our canvas to support drawing something!
+    - `Canvas` provides a method `create_rectangle` to draw a rectangle on a screen
+    - *Enter the following to draw a rectangle*
+
+      ```python
+        c.create_rectangle(100, 100, 300, 200, outline="blue", fill="blue")
+      ```
+
+    - `create_rectangle` takes four arguments, corresponding to the `(x, y)` coordinates of the top left and the bottom right corner respectively
+    - `outline` lets us optionally set the outline colour of the rectangle (default is black)
+    - `fill` sets the fill in colour of the block (default black)
+    - `create_rectangle` returns an integer
+    - This is an id for the drawn rectangle
+    - We can use this to manipulate the rectangle
+    - *Delete the rectangle*
+
+      ```python
+        c.delete(1)
+      ```
+
+    - The ability to manipulate the objects on a canvas is very powerful
+    - *Redefine a new function for the mouse press event*
+
+      ```python
+        def mouse_move_draw(event):
+            c.create_rectangle(event.x - 5, event.y -5, event.x + 5, event.y + 5, fill="red", outline="red")
+      ```
+
+    - The above draws a $10 \times 10$ pixel rectangle centred around the mouse click location
+    - *Bind this new function to the canvas*
+
+      ```python
+        c.bind("<B1-Motion>", mouse_move_draw)
+      ```
+
+    - Now attempt to draw on the canvas, you should see something like below
+
+      ![The basic drawing canvas](./Examples/05_Canvas/basic_canvas.png)
+
+The final result can be found in [Canvas.py](./Examples/05_Canvas/basic_canvas.png)
+
+### Tkinter Events
+
+- Events are powerful and flexible
+- Consider the event tag from before `"<B1-Motion>"`
+    - It consists of two parts
+
+        1. The first part is the *modifier* (`B1`)
+            - Condition required for event to generate
+            - Here the condition is that the primary mouse button is clicked
+        2. The second part is the *detail*
+            - Thing that produces the event (here moving the mouse)
+    - We could for example use the event `"<Motion>"`
+        - This produces events for every mouse move
+
+- Below is a table of common and useful events and modifiers
+
+| Modifier | Action                     | Detail        | Action                |
+|----------|----------------------------|---------------|-----------------------|
+| Control  | Control key pressed        | Motion        | Mouse moved           |
+| Shift    | Shifty key pressed         | ButtonPress   | Mouse button pressed  |
+| B1-B4    | corresponding mouse button | ButtonRelease | Mouse button released |
+|          |                            | KeyPress      | Key pressed           |
+|          |                            | KeyRelease    | Key released          |
+|          |                            | MouseWheel    | Mouse wheel moved     |
+
+- Different actions may create different event information
+- Events delivered when a key is pressed identify the key
+- Events delivered by the mouse contain its coordinates
+- Multiple modifiers can create complex events with multiple modifiers
+
+### Create a Drawing Program
+
+- Let's create a more sophisticated version of our drawing program
+
+    1. User can draw with a mouse
+    2. Change the drawing colour with the keyboard
+    3. clear the canvas
+
+```python
+"""
+Example 13.6 Drawing Program
+
+A simple drawing program where the user can
+
+1. Draw
+2. Change brush colour
+3. Clear the canvas
+"""
+
+import tkinter
+
+
+class Drawing:
+    """
+    GUI element for a drawing program
+
+    Notes
+    -----
+    Uses `tkinter` for the GUI framework
+    """
+
+    def display(self):
+        """
+        Display the Drawing Program
+
+        Returns
+        -------
+        None
+        """
+        root = tkinter.Tk()
+        canvas = tkinter.Canvas(root, width=500, height=500)
+        canvas.grid(row=0, column=0)
+
+        draw_colour = "red"
+
+        def mouse_move(event):
+            """
+            Draw a 10 by 10 pixel rectangle centred on the mouse
+
+            Parameters
+            ----------
+            event
+                the triggering event
+
+            Returns
+            -------
+            None
+            """
+            canvas.create_rectangle(
+                event.x - 5,
+                event.y - 5,
+                event.x + 5,
+                event.y + 5,
+                fill=draw_colour,
+                outline=draw_colour,
+            )
+
+        canvas.bind("<B1-Motion>", mouse_move)
+
+        def key_press(event):
+            """
+            Change the drawing program state in response to a key press
+
+            Parameters
+            ----------
+            event
+                key press that triggered the function
+
+            Returns
+            -------
+            None
+            """
+            nonlocal draw_colour
+            ch = event.char.upper()
+            if ch == "C":
+                canvas.delete("all")
+            elif ch == "R":
+                draw_colour = "red"
+            elif ch == "G":
+                draw_colour = "green"
+            elif ch == "B":
+                draw_colour = "blue"
+
+        canvas.bind("<KeyPress>", key_press)
+        canvas.focus_set()
+
+        root.mainloop()
+
+
+if __name__ == "__main__":
+    app = Drawing()
+    app.display()
+```
+
+The output should look something like this,
+
+![A more sophisticated drawing program supporting multiple colours](./Examples/06_DrawingProgram/improved_canvas.png)
+
+and can be found in [DrawingProgram.py](./Examples/06_DrawingProgram/DrawingProgram.py)
+
+#### Code Analysis: Drawing on a Canvas
+
+*To understand the code above, work through the following questions*
+
+1. *What is the* `draw_colour` *variable used for?*
+
+    - `draw_colour` holds the current draw colour
+    - Many colours are recognised by name
+    - There are other methods for specifying colours too, such as by hexcode
+
+      ```python
+        draw_colour = "#FFFF00"
+      ```
+
+      - The hexcode is three two-digit hex values
+      - Correspond to the amount of red, green and blue respectively
+      - The above corresponds to yellow
+
+    - The Tcl wiki maintains a page with the [colour names](https://wiki.tcl-lang.org/page/Color+Names%2C+running%2C+all+screens)
+    - The program starts with `draw_colour` corresponding to red, and uses the keys `R`, `G`, `B` to switch colours
+
+2. *How do you clear the canvas?*
+
+    - We can delete specific items if we keep track of the ID
+    - `delete` can accept `"all"` as its argument
+        - In this case all elements are deleted
+        - This effectively clears the canvas
+    - In our program this is assigned to the `C` key
+
+3. *In the* `key_press` *function, you've created a* `nonlocal` *variable called* `draw_colour`*. What does this mean?*
+
+    ```python
+        def key_press(event):
+            nonlocal draw_colour
+    ```
+
+    - `key_press` needs to be able to change the value of `draw_colour`
+    - `draw_colour` is declared in the outer `display` function scope
+    - `draw_colour` is therefore not a global variable so we can't use `global` to connect the function to the variable
+    - `nonlocal` acts similar but means the variable exists in the enclosing scope
+
+4. *What does the call of* `focus_set` *do?*
+
+    - By default python doesn't know what application a key press should be sent to
+        - Or which component of an application
+    - `focus_set` tells python that this component should receive the keyboard events
+    - This is independent of which window is actually focused (i.e. currently being looked at) by the user
+
+#### Make Something Happen: Make the Drawing Program Draw Ovals
+
+*The* `Canvas` *object provides a method called* `create_oval`*, which can be used to draw ovals. It has a different set of arguments from the* `create_rectangle` *method. Make a version of the drawing program that draws ovals. You could even allow the artist to swap between brushes by pressing S for square brush and O for an oval brush*
+
+Let's first implement the oval drawing mechanics. From the `tkinter` website, we can see that `create_oval` has a similar function signature to create_rectangle, but there is different semantic meaning. The oval is drawn inscribed in a rectangle defined by the upper left corner (the first two arguments) and the lower right corner (bottom two arguments).
+
+So we can define a function to draw an oval in response to an event as follows,
+
+```python
+    def mouse_move_oval(event):
+        """
+        Draw an oval inscribed in an 10 x 10 pixel rectangle centred on
+        the mouse
+
+        Parameters
+        ----------
+        event
+            the triggering event
+        """
+        canvas.create_oval(
+            event.x - size,
+            event.y - size,
+            event.x + size,
+            event.y + size,
+            fill=draw_colour,
+            outline=draw_colour,
+        )
+```
+
+Now we need to add the functionality to switch between the two brushes. By default our program binds the `<B1-Motion>` event to drawing a square. We need to make this binding change. We'll add additional keypress events to the `key_press` function `S` and `O` to switch the brush. Each of these events will have to rebind the appropriate function to the `<B1-Motion>` event. To help the user we'll add a text label below the canvas that indicates the current brush. For symmetry we'll add a second label below this one that indicates the current colour. So we then need to update the `key_press` function to properly update these labels.
+
+The final `key_press` function then looks like,
+
+```python
+        def key_press(event):
+            """
+            Change the drawing program state in response to a key press
+
+            Parameters
+            ----------
+            event
+                key press that triggered the function
+
+            Returns
+            -------
+            None
+            """
+            nonlocal draw_colour
+            nonlocal size
+            ch = event.char.upper()
+            if ch == "C":
+                canvas.delete("all")
+            elif ch == "R":
+                draw_colour = "red"
+                colour_label.config(text="Colour: {0}".format(draw_colour))
+            elif ch == "G":
+                draw_colour = "green"
+                colour_label.config(text="Colour: {0}".format(draw_colour))
+            elif ch == "B":
+                draw_colour = "blue"
+                colour_label.config(text="Colour: {0}".format(draw_colour))
+            elif ch == "S":
+                canvas.bind("<B1-Motion>", mouse_move_square)
+                brush_label.config(text="Brush: square")
+            elif ch == "O":
+                canvas.bind("<B1-Motion>", mouse_move_oval)
+                brush_label.config(text="Brush: oval")
+            elif ch == "+":
+                size = min(size + 5, 50)
+                size_label.config(text="Size: {0}".format(size))
+            elif ch == "-":
+                size = max(size - 5, 5)
+                size_label.config(text="Size: {0}".format(size))
+
+            elif ch == "H":
+                tkinter.messagebox.showinfo(
+                    title="Simple Canvas",
+                    message="""Controls:
+C - clear canvas
+R - change colour to red
+B - change colour to blue
+G - change colour to green
+S - change brush to square brush
+O - change brush to oval brush
++ - increase brush size
+- - decrease brush size
+
+Right click to erase""",
+                )
+```
+
+You'll notice that there are three extra bound events that have not been discussed. The first two are the `+` and `-` keys which we bind the increasing and decreasing the brush size respectively. Our original drawing code always draw the box as a $10 \times 10$ box around the triggering event. We'll now let the user control that. We make `size` a variable, and the user can use `+` to increase the brush size in increments of $5$ up to $50$, and decrease the `size` using `-` down to $5$. This `size` takes the place of the hardcoded `event.x + 5` statements in `mouse_move_oval`.
+
+The next addition you should notice is the `H` key. This simply uses `messagebox` to display a dialog to the user listing out all the controls.
+
+The last functionalty we want to implement is erasing. We want the user to be able to erase over previously drawn elements using the right mouse button. This corresponds to the `<B3-Motion>` event. Now we could try and right some code that tracks all the drawn elements and tries to locate which element is being dragged over and delete it, but an easy work around is to simply paint over the top with a new rectange that uses the background colour. So in this case, from the `tkinter` docs we can see that we can set the `Canvas` background colour to white using `bg="white"` in the `Canvas` constructor. We can then define our `erase` function as,
+
+```python
+        def erase(event) -> None:
+            """
+            Erase the canvas
+
+            Parameters
+            ----------
+            event
+                triggering event
+
+            Notes
+            -----
+            Erase is implemented by drawing a white rectangle centred on the mouse
+            """
+            canvas.create_rectangle(
+                event.x - size,
+                event.y - size,
+                event.x + size,
+                event.y + size,
+                fill="white",
+                outline="white",
+            )
+```
+
+We then simply bind this to the the `<B3-Motion>` event and we've got our erase. This fairly straightforward set of steps
+gives us a fairly complete and good looking little drawing program. You can see the full code in [DrawingProgram.py](./Exercises/02_AdvancedDrawingProgram/DrawingProgram.py). An example of the program looks like below,
+
+
+![The improved drawing program supporting multiple colours, brush sizes, help and the ability to erase](./Exercises/02_AdvancedDrawingProgram/advanced_canvas.png)
+
+### Enter Multiline Text
+
+- `Entry` only supports a single line of text
+- Powerful, but not sophisticated enough for all tasks, e.g. a text editor
+- `Text` supports pages of text
+    - Similar to `Entry`
+    - Some differences
+
+#### Make Something Happen: Investigate the Text Object
+
+*Investigate the* `Text` *object using the python interpreter. Work through the following steps*
+
+1. *Import tkinter*
+
+   ```python
+    import tkinter
+   ```
+
+2. *Create a Tkinter window*
+
+   ```python
+    root = tkinter.Tk()
+   ```
+
+3. *Create a* `Text` *object*
+
+   ```python
+    t = tkinter.Text(width=80, height=10)
+   ```
+
+    - Creates a `Text` object, assigned to `t`
+    - `width` and `height` correspond to *characters* (width) and *lines* (height) **not** pixels
+    - *position the object on the window*
+
+      ```python
+        t.grid(row=0, column=0)
+      ```
+
+      ![The `Text` widget](./Examples/07_Text/text.png)
+
+    - `Text` gives a lot of control over editing the content
+    - `Text` let's us extract it's contents using `get` like `Entry`
+        - But has a  more sophisticated functions signature
+    - Refer to characters by their row and column positions
+
+4. *Demonstrate the use of* `get` *to extract text from the* `Text` *widget*
+
+   ```python
+    t.get("1.0", tkinter.END)
+   ```
+
+   ```{python}
+   #| echo: false
+   print("\033[31mHello, World!\\nAnother line of text\\n\033[0m")
+   ```
+
+    - This returns all of the text starting at row $1$, column $0$ and through the `tkinter.END` of the `Text`.
+
+    - If you want to get a specific slice of text, you can instead pass another string of the form `"row.column"`, e.g.
+    - To slice the second row, we write
+
+      ```python
+        t.get("2.0", "3.0")
+      ```
+
+      ```{python}
+      #| echo: false
+      print("\033[31mAnother line of text\\n\033[0m")
+      ```
+
+5. *Demonstrate the use of the* `delete` *method to remove text*
+
+    - `delete` removes text from a  `Text` widget
+    - Has an identical signature to get, e.g.
+
+      ```python
+        t.delete("1.0", tkinter.END)
+      ```
+
+    - deletes all text
+
+6. *Demonstrate the use of the* `insert` *method to add text*
+
+    - We can add text by defining the start position
+    - Then supply the string we want to insert, e.g.
+
+      ```python
+        t.insert("1.0", "New line 1\nNew line 2")
+      ```
+    - This inserts text into the `Text` box at the start, `\n` results in splitting the lines
+
+### Group Display Elements in Frames
+
+- `grid` helps us define how we want to layout a complete window
+- Often we want to lay out subcomponents on a bigger component first
+    - That component is then embedded into the window
+- `Frame`  is an object for acting as a root for a set of elements
+    - Can be used to define how objects are displayed within it
+- The goal will be to create a graphical version of our [fashion shop program](../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd#fashion-shop-application)
+- We can use a `Frame` to define a layout for editing a `StockItem`
+- The `Frame` object can then be included in higher level graphical objects
+    - `Frame` acts very similar to the `Tk` object for the main window
+    - We can use it in places that need a root window rather than the `Tk` object as below
+
+      ```python
+        frame = tkinter.Frame(root)
+        stock_ref_label = tkinter.Label(frame, text="Stock ref:")
+        stock_ref_label.grid(sticky=tkinter.E, row=0, column=0, padx=5, pady=5)
+      ```
+
+    - `stock_ref_label` is now part of the `frame` object
+        - Positioned in the top left corner of the frame
+        - This frame component can then be reused elsewhere
+    - Note that the `stock_ref_label` and other components of the frame won't show up until the frame itself is attached to some other frame or window
+
+### Create an Editable `StockItem` Using a GUI
+
+
+
 ## Summary
 
 ## Questions and Answers
