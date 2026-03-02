@@ -30,6 +30,13 @@
       Canvas](#code-analysis-drawing-on-a-canvas)
     - [Make Something Happen: Make the Drawing Program Draw
       Ovals](#make-something-happen-make-the-drawing-program-draw-ovals)
+  - [Enter Multiline Text](#enter-multiline-text)
+    - [Make Something Happen: Investigate the Text
+      Object](#make-something-happen-investigate-the-text-object)
+  - [Group Display Elements in
+    Frames](#group-display-elements-in-frames)
+  - [Create an Editable `StockItem` Using a
+    GUI](#create-an-editable-stockitem-using-a-gui)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -1469,6 +1476,141 @@ An example of the program looks like below,
 ![The improved drawing program supporting multiple colours, brush sizes,
 help and the ability to
 erase](./Exercises/02_AdvancedDrawingProgram/advanced_canvas.png)
+
+### Enter Multiline Text
+
+- `Entry` only supports a single line of text
+- Powerful, but not sophisticated enough for all tasks, e.g. a text
+  editor
+- `Text` supports pages of text
+  - Similar to `Entry`
+  - Some differences
+
+#### Make Something Happen: Investigate the Text Object
+
+*Investigate the* `Text` *object using the python interpreter. Work
+through the following steps*
+
+1. *Import tkinter*
+
+    ``` python
+     import tkinter
+    ```
+
+2. *Create a Tkinter window*
+
+    ``` python
+     root = tkinter.Tk()
+    ```
+
+3. *Create a* `Text` *object*
+
+    ``` python
+     t = tkinter.Text(width=80, height=10)
+    ```
+
+    - Creates a `Text` object, assigned to `t`
+
+    - `width` and `height` correspond to *characters* (width) and
+      *lines* (height) **not** pixels
+
+    - *position the object on the window*
+
+      ``` python
+        t.grid(row=0, column=0)
+      ```
+
+      ![The `Text` widget](./Examples/07_Text/text.png)
+
+    - `Text` gives a lot of control over editing the content
+
+    - `Text` let’s us extract it’s contents using `get` like `Entry`
+
+      - But has a more sophisticated functions signature
+
+    - Refer to characters by their row and column positions
+
+4. *Demonstrate the use of* `get` *to extract text from the* `Text`
+    *widget*
+
+    ``` python
+     t.get("1.0", tkinter.END)
+    ```
+
+        Hello, World!\nAnother line of text\n
+
+    - This returns all of the text starting at row $1$, column $0$ and
+      through the `tkinter.END` of the `Text`.
+
+    - If you want to get a specific slice of text, you can instead pass
+      another string of the form `"row.column"`, e.g.
+
+    - To slice the second row, we write
+
+      ``` python
+        t.get("2.0", "3.0")
+      ```
+
+          Another line of text\n
+
+5. *Demonstrate the use of the* `delete` *method to remove text*
+
+    - `delete` removes text from a `Text` widget
+
+    - Has an identical signature to get, e.g.
+
+      ``` python
+        t.delete("1.0", tkinter.END)
+      ```
+
+    - deletes all text
+
+6. *Demonstrate the use of the* `insert` *method to add text*
+
+    - We can add text by defining the start position
+
+    - Then supply the string we want to insert, e.g.
+
+      ``` python
+        t.insert("1.0", "New line 1\nNew line 2")
+      ```
+
+    - This inserts text into the `Text` box at the start, `\n` results
+      in splitting the lines
+
+### Group Display Elements in Frames
+
+- `grid` helps us define how we want to layout a complete window
+- Often we want to lay out subcomponents on a bigger component first
+  - That component is then embedded into the window
+- `Frame` is an object for acting as a root for a set of elements
+  - Can be used to define how objects are displayed within it
+- The goal will be to create a graphical version of our [fashion shop
+  program](../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd#fashion-shop-application)
+- We can use a `Frame` to define a layout for editing a `StockItem`
+- The `Frame` object can then be included in higher level graphical
+  objects
+  - `Frame` acts very similar to the `Tk` object for the main window
+
+  - We can use it in places that need a root window rather than the `Tk`
+    object as below
+
+    ``` python
+      frame = tkinter.Frame(root)
+      stock_ref_label = tkinter.Label(frame, text="Stock ref:")
+      stock_ref_label.grid(sticky=tkinter.E, row=0, column=0, padx=5, pady=5)
+    ```
+
+  - `stock_ref_label` is now part of the `frame` object
+
+    - Positioned in the top left corner of the frame
+    - This frame component can then be reused elsewhere
+
+  - Note that the `stock_ref_label` and other components of the frame
+    won’t show up until the frame itself is attached to some other frame
+    or window
+
+### Create an Editable `StockItem` Using a GUI
 
 ## Summary
 
