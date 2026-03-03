@@ -60,6 +60,10 @@
       - [Setup Selector](#setup-selector)
       - [Setting up a Stock Level Adjuster
         Component](#setting-up-a-stock-level-adjuster-component)
+    - [Code Analysis: Complete Fashion Shop
+      Program](#code-analysis-complete-fashion-shop-program)
+  - [Make Something Happen: Build Your Own
+    Application](#make-something-happen-build-your-own-application)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -2406,10 +2410,13 @@ class StockItemSelector:
 
 - Let’s start by getting our basic set-up working and then add more
   functionality on top
+
 - We want to make our program follow the interface of the shell-based
   fashion shop program, so that we can seamlessly switch between them
+
 - We’ll start with the final implementation found in [Chapter
   12](../../02_AdvancedProgramming/12_PythonApplications/Chapter_12.qmd#exercise-complete-the-testing-of-stockitem)
+
   - We’ll start by modifying the folder structure, now rather than just
     having a `UI` package, we’ll split that into a `GUI` and a `ShellUI`
     subpackage
@@ -2420,18 +2427,66 @@ class StockItemSelector:
   - Let’s start by copying in the `StockItemEditor` and
     `StockItemSelector` components from the previous section
   - We can remove the demo code from these
+
+- The final directory structure should look like,
+
+  ``` bash
+    .
+    ├── Data
+    │   ├── FashionShop.py
+    │   ├── StockItem.py
+    │   └── __init__.py
+    ├── Docs
+    │   ├── Data.FashionShop.html
+    │   ├── Data.StockItem.html
+    │   ├── Data.html
+    │   ├── FashionShopGraphicalUI.html
+    │   ├── FashionShopShellUI.html
+    │   ├── RunTests.html
+    │   ├── UI.GUI.FashionShopGraphicalApplication.html
+    │   ├── UI.GUI.StockItemEditor.html
+    │   ├── UI.GUI.StockItemSelector.html
+    │   ├── UI.GUI.StockItemStockAdjuster.html
+    │   ├── UI.GUI.html
+    │   ├── UI.ShellUI.BTCInput.html
+    │   ├── UI.ShellUI.FashionShopApplication.html
+    │   ├── UI.ShellUI.html
+    │   └── UI.html
+    ├── FashionShopGraphicalUI.py
+    ├── FashionShopShellUI.py
+    ├── RunTests.py
+    ├── UI
+    │   ├── GUI
+    │   │   ├── FashionShopGraphicalApplication.py
+    │   │   ├── StockItemEditor.py
+    │   │   ├── StockItemSelector.py
+    │   │   ├── StockItemStockAdjuster.py
+    │   │   └── __init__.py
+    │   ├── ShellUI
+    │   │   ├── BTCInput.py
+    │   │   ├── FashionShopApplication.py
+    │   │   └── __init__.py
+    │   └── __init__.py
+    └── fashionshop.pickle
+  ```
+
 - Now let’s create a `FashionShopGraphicalApplication` this will act
   like the old `FashionShopApplication` but support a GUI
+
 - The start of the class, is below
+
   - We provide a simple static method for converting between a tag set
     and the text based tag implementation
   - Then define a basic `__init__`
   - To avoid cluttering the `__init__` we define a method
     `self._setup_UI` that contains the user interface setup code
+
 - The rest of the class should look familiar
+
   - We attempt to load the database from a file
   - This time if we fail, we present the user with a *Warning* message
     box
+
 - We also then set the currently selected item, and the current search
   tags to be empty
 
@@ -3227,6 +3282,71 @@ class FashionShopGraphicalApplication:
   - There’s value in looking at both approaches
   - Though I would argue that my implementation has much better handling
     of state to avoid bugs
+
+#### Code Analysis: Complete Fashion Shop Program
+
+*Consider the following questions about the Fashion Shop program*
+
+1. *Can we change the size of the text on the screen?*
+    - Yes, when you add text you can set the *font* and *text size*
+    - Labels can even contain images
+2. *Can we stop the Fashion Shop Application from displaying a command
+    shell each time it runs?*
+    - On windows if you give a python file the extension `.pyw` windows
+      interprets it as a *windowed python program*
+    - Means it will not spawn a terminal
+
+> [!IMPORTANT]
+>
+> **Always try the programs you’ve written**
+>
+> Always try to fully exercise a program you’ve written. This has two
+> purposes. First it helps you find any bugs, or where you might need to
+> implement stronger testing criteria. Second, it helps you understand
+> the ergonomics of the system. For example, it might make sense to
+> display a message box whenever an event successfully occurs in our
+> program e.g. adding an item, editing an item, changing the stock etc.
+> However, after using it for a while you might find that constantly
+> having to dismiss messages when the program is working fine to be very
+> annoying and that really you only need to be informed when an error
+> occurs.
+>
+> This is another reason why clients should be involved throughout the
+> development period, there’s nothing worse than having made a big and
+> complicated program only for your client to hate how it works
+
+### Make Something Happen: Build Your Own Application
+
+*The Fashion shop program is a great-jumping off point for any
+application that you might like to write to store information about
+items. Think of something you’d like to store data about - perhaps
+favourite football players, recipes, monster trucks, or whatever -
+identify the items about each that you would like to store, and then use
+the Fashion Shop code as the basis of an application that can manage
+that data*
+
+In this exercise we’ll work on creating a graphical version of our
+[banking system
+program](../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.qmd#exercise-completing-the-banking-application).
+Recall that our application has to be able to,
+
+1. Create a new account
+2. Deposit into an account
+3. Withdraw from an account
+4. View an account
+5. View all the accounts associated with a user
+6. Manage a matured long-term savings account
+7. Apply interest to all accounts
+
+We’ll make some simplifications to this model. We’ll assume that the
+user has to specify their name (mimicking logging in) and can see the
+accounts associated with their name. They cannot see other people’s
+accounts, and if they don’t specify a name they can’t see any accounts.
+They can then select an account which allows them to see the account
+information, and potentially withdraw or deposit into an account. If
+that account happens to be a matured long-term savings account then they
+can manage it. Lastly we’ll also have the program apply interest to
+accounts.
 
 ## Summary
 
