@@ -359,7 +359,31 @@ window.Quarto = {
   <li><a href="#make-something-happen-investigate-the-text-object" id="toc-make-something-happen-investigate-the-text-object" class="nav-link" data-scroll-target="#make-something-happen-investigate-the-text-object">Make Something Happen: Investigate the Text Object</a></li>
   </ul></li>
   <li><a href="#group-display-elements-in-frames" id="toc-group-display-elements-in-frames" class="nav-link" data-scroll-target="#group-display-elements-in-frames">Group Display Elements in Frames</a></li>
-  <li><a href="#create-an-editable-stockitem-using-a-gui" id="toc-create-an-editable-stockitem-using-a-gui" class="nav-link" data-scroll-target="#create-an-editable-stockitem-using-a-gui">Create an Editable <code>StockItem</code> Using a GUI</a></li>
+  <li><a href="#create-an-editable-stockitem-using-a-gui" id="toc-create-an-editable-stockitem-using-a-gui" class="nav-link" data-scroll-target="#create-an-editable-stockitem-using-a-gui">Create an Editable <code>StockItem</code> Using a GUI</a>
+  <ul>
+  <li><a href="#code-analysis-creating-a-stockitemeditor" id="toc-code-analysis-creating-a-stockitemeditor" class="nav-link" data-scroll-target="#code-analysis-creating-a-stockitemeditor">Code Analysis: Creating a <code>StockItemEditor</code></a></li>
+  <li><a href="#code-analysis-the-load_into_editor-method" id="toc-code-analysis-the-load_into_editor-method" class="nav-link" data-scroll-target="#code-analysis-the-load_into_editor-method">Code Analysis: The <code>load_into_editor</code> Method</a></li>
+  <li><a href="#code-analysis-the-get_from_editor-method" id="toc-code-analysis-the-get_from_editor-method" class="nav-link" data-scroll-target="#code-analysis-the-get_from_editor-method">Code Analysis: The <code>get_from_editor</code> Method</a></li>
+  <li><a href="#code-analysis-editing-stock-items" id="toc-code-analysis-editing-stock-items" class="nav-link" data-scroll-target="#code-analysis-editing-stock-items">Code Analysis: Editing Stock Items</a></li>
+  </ul></li>
+  <li><a href="#create-a-listbox-selector" id="toc-create-a-listbox-selector" class="nav-link" data-scroll-target="#create-a-listbox-selector">Create a Listbox Selector</a>
+  <ul>
+  <li><a href="#make-something-happen-investigating-the-listbox-object" id="toc-make-something-happen-investigating-the-listbox-object" class="nav-link" data-scroll-target="#make-something-happen-investigating-the-listbox-object">Make Something Happen: Investigating the <code>Listbox</code> Object</a></li>
+  <li><a href="#create-a-stockitem-selector" id="toc-create-a-stockitem-selector" class="nav-link" data-scroll-target="#create-a-stockitem-selector">Create a <code>StockItem</code> Selector</a>
+  <ul>
+  <li><a href="#code-analysis-selecting-stock-items" id="toc-code-analysis-selecting-stock-items" class="nav-link" data-scroll-target="#code-analysis-selecting-stock-items">Code Analysis: Selecting Stock Items</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#an-application-with-a-graphical-user-interface" id="toc-an-application-with-a-graphical-user-interface" class="nav-link" data-scroll-target="#an-application-with-a-graphical-user-interface">An Application with a Graphical User Interface</a>
+  <ul>
+  <li><a href="#setting-up-the-file-structure-and-the-basic-graphical-user-interface" id="toc-setting-up-the-file-structure-and-the-basic-graphical-user-interface" class="nav-link" data-scroll-target="#setting-up-the-file-structure-and-the-basic-graphical-user-interface">Setting up the File Structure and the Basic Graphical User Interface</a></li>
+  <li><a href="#adding-selection-and-editing" id="toc-adding-selection-and-editing" class="nav-link" data-scroll-target="#adding-selection-and-editing">Adding Selection and Editing</a>
+  <ul>
+  <li><a href="#adding-editing" id="toc-adding-editing" class="nav-link" data-scroll-target="#adding-editing">Adding Editing</a></li>
+  <li><a href="#setup-selector" id="toc-setup-selector" class="nav-link" data-scroll-target="#setup-selector">Setup Selector</a></li>
+  <li><a href="#setting-up-a-stock-level-adjuster-component" id="toc-setting-up-a-stock-level-adjuster-component" class="nav-link" data-scroll-target="#setting-up-a-stock-level-adjuster-component">Setting up a Stock Level Adjuster Component</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
@@ -555,7 +579,7 @@ window.Quarto = {
 </div>
 <ul>
 <li><p>Click the button a few times and you should see output like,</p>
-<div id="ad1d375c" class="cell" data-execution_count="1">
+<div id="3e3fcd9e" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&gt;&gt;&gt; click
 click
@@ -611,7 +635,7 @@ click</code></pre>
 <li><p><code>get</code> returns the text of the element</p></li>
 <li><p>Running this on our <code>Entry</code> object we should see,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(ent.get())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="744a9aa1" class="cell" data-execution_count="2">
+<div id="9d662480" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>hello world</code></pre>
 </div>
@@ -1677,7 +1701,7 @@ click</code></pre>
 </ul></li>
 <li><p><em>Demonstrate the use of</em> <code>get</code> <em>to extract text from the</em> <code>Text</code> <em>widget</em></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a> t.get(<span class="st">"1.0"</span>, tkinter.END)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="bda0b254" class="cell" data-execution_count="3">
+<div id="097bb6a5" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">Hello, World!\nAnother line of text\n</span>
@@ -1690,7 +1714,7 @@ click</code></pre>
 <li><p>If you want to get a specific slice of text, you can instead pass another string of the form <code>"row.column"</code>, e.g.</p></li>
 <li><p>To slice the second row, we write</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>  t.get(<span class="st">"2.0"</span>, <span class="st">"3.0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="4ff8bef7" class="cell" data-execution_count="4">
+<div id="c37251bd" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">Another line of text\n</span>
@@ -1748,6 +1772,1333 @@ click</code></pre>
 </section>
 <section id="create-an-editable-stockitem-using-a-gui" class="level3">
 <h3 class="anchored" data-anchor-id="create-an-editable-stockitem-using-a-gui">Create an Editable <code>StockItem</code> Using a GUI</h3>
+<ul>
+<li><p>Now let’s start creating a graphical version of our Fashion Shop Program</p></li>
+<li><p>First goal is to create an editable <code>StockItem</code></p></li>
+<li><p>We need the GUI presentation of it to,</p>
+<ol type="1">
+<li>Clear the editor display</li>
+<li>Put a <code>StockItem</code> on display for editing</li>
+<li>Load a <code>StockItem</code> from the display after editing</li>
+</ol></li>
+<li><p>This object will be called <code>StockItemEditor</code></p></li>
+<li><p>Let’s start by stubbinng out the class</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co">Example 13.8 Stock Item Editor</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co">Implements a graphical editor object for editing `StockItem` objects</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockItemEditor:</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Graphical Editor for a StockItem</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Notes</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="co">    -----</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Implemented as a `Tkinter` Frame</span></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, root):</span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new `StockItemEditor`</span></span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a><span class="co">        root</span></span>
+<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a><span class="co">            Tkinter root frame for the editor</span></span>
+<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> clear_editor(<span class="va">self</span>):</span>
+<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a><span class="co">        Clears the editor window</span></span>
+<span id="cb59-31"><a href="#cb59-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb59-33"><a href="#cb59-33" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb59-34"><a href="#cb59-34" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
+<span id="cb59-35"><a href="#cb59-35" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb59-36"><a href="#cb59-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb59-37"><a href="#cb59-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-38"><a href="#cb59-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> load_into_editor(<span class="va">self</span>, item):</span>
+<span id="cb59-39"><a href="#cb59-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb59-40"><a href="#cb59-40" aria-hidden="true" tabindex="-1"></a><span class="co">        Load a `StockItem` into the edit display</span></span>
+<span id="cb59-41"><a href="#cb59-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-42"><a href="#cb59-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-43"><a href="#cb59-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-44"><a href="#cb59-44" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb59-45"><a href="#cb59-45" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb59-46"><a href="#cb59-46" aria-hidden="true" tabindex="-1"></a><span class="co">        item : StockItem</span></span>
+<span id="cb59-47"><a href="#cb59-47" aria-hidden="true" tabindex="-1"></a><span class="co">            stock reference to be loaded</span></span>
+<span id="cb59-48"><a href="#cb59-48" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb59-49"><a href="#cb59-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb59-50"><a href="#cb59-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-51"><a href="#cb59-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_from_editor(<span class="va">self</span>, item):</span>
+<span id="cb59-52"><a href="#cb59-52" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb59-53"><a href="#cb59-53" aria-hidden="true" tabindex="-1"></a><span class="co">        Get an updated `StockItem` from the editor</span></span>
+<span id="cb59-54"><a href="#cb59-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-55"><a href="#cb59-55" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb59-56"><a href="#cb59-56" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb59-57"><a href="#cb59-57" aria-hidden="true" tabindex="-1"></a><span class="co">        item : StockItem</span></span>
+<span id="cb59-58"><a href="#cb59-58" aria-hidden="true" tabindex="-1"></a><span class="co">            stock reference to update</span></span>
+<span id="cb59-59"><a href="#cb59-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-60"><a href="#cb59-60" aria-hidden="true" tabindex="-1"></a><span class="co">        Raises</span></span>
+<span id="cb59-61"><a href="#cb59-61" aria-hidden="true" tabindex="-1"></a><span class="co">        ------</span></span>
+<span id="cb59-62"><a href="#cb59-62" aria-hidden="true" tabindex="-1"></a><span class="co">        ValueError</span></span>
+<span id="cb59-63"><a href="#cb59-63" aria-hidden="true" tabindex="-1"></a><span class="co">            raised if the price entry cannot be converted to a number</span></span>
+<span id="cb59-64"><a href="#cb59-64" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb59-65"><a href="#cb59-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>Implement the methods one by one</p></li>
+<li><p>Start with <code>__init__</code></p></li>
+<li><p>Needs to</p>
+<ul>
+<li>Create display objects</li>
+<li>Add them to the frame</li>
+</ul></li>
+<li><p>Editor exists at the start of the program</p>
+<ul>
+<li>Item’s are loaded into the editor</li>
+</ul></li>
+<li><p>An alteranative design might be to load an editor when we bring up an item</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, root):</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Create a new `StockItemEditor`</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co">      root</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co">          Tkinter root frame for the editor</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.frame <span class="op">=</span> tkinter.Frame(root)</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>      stock_ref_label <span class="op">=</span> tkinter.Label(<span class="va">self</span>.frame, text<span class="op">=</span><span class="st">"Stock ref:"</span>)</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>      stock_ref_label.grid(sticky<span class="op">=</span>tkinter.E, row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_ref_entry <span class="op">=</span> tkinter.Entry(<span class="va">self</span>.frame, width<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_ref_entry.grid(sticky<span class="op">=</span>tkinter.W, row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>      price_label <span class="op">=</span> tkinter.Label(<span class="va">self</span>.frame, text<span class="op">=</span><span class="st">"Price:"</span>)</span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>      price_label.grid(sticky<span class="op">=</span>tkinter.E, row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._price_entry <span class="op">=</span> tkinter.Entry(<span class="va">self</span>.frame, width<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._price_entry.grid(sticky<span class="op">=</span>tkinter.W, row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_level_label <span class="op">=</span> tkinter.Label(<span class="va">self</span>.frame, text<span class="op">=</span><span class="st">"Stock level: 0"</span>)</span>
+<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_level_label.grid(row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">2</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>      tags_label <span class="op">=</span> tkinter.Label(<span class="va">self</span>.frame, text<span class="op">=</span><span class="st">"Tags:"</span>)</span>
+<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a>      tags_label.grid(sticky<span class="op">=</span>tkinter.E <span class="op">+</span> tkinter.N, row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">0</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._tags_text <span class="op">=</span> tkinter.Text(<span class="va">self</span>.frame, width<span class="op">=</span><span class="dv">50</span>, height<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._tags_text.grid(row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The <code>__init__</code> creates a bunch of elements, namely,</p>
+<ol type="1">
+<li>A label, entry pair for the stock item reference number,</li>
+<li>A label, entry pair for the stock item price</li>
+<li>A label for the current stock level</li>
+<li>A label, text pair for the stock item tags</li>
+</ol></li>
+<li><p>We can then create and run our program with this element,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>  root <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  stock_frame <span class="op">=</span> StockItemEditor(root)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  stock_frame.frame.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  root.mainloop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="code-analysis-creating-a-stockitemeditor" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-creating-a-stockitemeditor">Code Analysis: Creating a <code>StockItemEditor</code></h4>
+<p><em>Answer the following questions about how</em> <code>StockItemEditor</code> <code>__init__</code> <em>method</em></p>
+<ol type="1">
+<li><p><em>Why do only some of the display elements have a</em> <code>self</code> <em>element in front of them</em></p>
+<ul>
+<li>We only need to keep a reference to display elements we later want to interact with
+<ul>
+<li>e.g.&nbsp;the various entry boxes and the stock level label</li>
+<li>The former we’ll want to extract and/or update the text from and the later we want to update the text</li>
+<li>Other display elements like static labels we don’t need to change, so no need to keep the reference</li>
+</ul></li>
+</ul></li>
+<li><p><em>What is the frame attribute of the</em> <code>StockItemEditor</code> <em>class used for?</em></p>
+<ul>
+<li><p>The frame contains the objects that make up the editing display</p></li>
+<li><p>Program creating the display needs to use the frame to position the entire component in the larger display</p></li>
+<li><p><code>frame</code> is simply an attribute to hold the <code>Frame</code> object reference</p></li>
+<li><p>e.g.&nbsp;when we actually position the frame,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>  stock_frame.frame.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>Next, the <code>clear_editor</code> method</p>
+<ul>
+<li>Two use cases,</li>
+<li>Loading a new element (clear any previous element first)</li>
+<li>When finished editing an element</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> clear_editor(<span class="va">self</span>):</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Clears the editor window</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_ref_entry.delete(<span class="dv">0</span>, tkinter.END)</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._price_entry.delete(<span class="dv">0</span>, tkinter.END)</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._tags_text.delete(<span class="st">"0.0"</span>, tkinter.END)</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_level_label.config(text<span class="op">=</span><span class="st">"Stock level: 0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Straightforward, justt clear all the text and set the stock level label to zero</li>
+</ul></li>
+<li><p>Next we implement <code>load_into_editor</code> which loads a <code>StockItem</code></p></li>
+<li><p>Need to copy the values from the supplied <code>StockItem</code> into the editor</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> load_into_editor(<span class="va">self</span>, item):</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Load a `StockItem` into the edit display</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co">      item : StockItem</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co">          stock reference to be loaded</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.clear_editor()</span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_ref_entry.insert(<span class="dv">0</span>, item.stock_ref)</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._price_entry.insert(<span class="dv">0</span>, <span class="bu">str</span>(item.price))</span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._stock_level_label.config(text<span class="op">=</span><span class="st">"Stock level </span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(item.stock_level))</span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._tags_text.insert(<span class="st">"0.0"</span>, item.text_tags)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>We call the method and pass the <code>StockItem</code></p></li>
+<li><p>The editor then reads the values from the item</p></li>
+<li><p>Inserts these into the appropriate text boxes</p></li>
+<li><p>We can then use it as below,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> StockItem.StockItem(</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D001"</span>,</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    price<span class="op">=</span><span class="dv">120</span>,</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    tags<span class="op">=</span><span class="st">"dress,colour:red,loc:shop window,pattern:swirly,size:12,evening,long"</span>,</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>item.add_stock(<span class="dv">5</span>)</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>stock_frame.load_into_editor(item)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+</ul>
+</section>
+<section id="code-analysis-the-load_into_editor-method" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-the-load_into_editor-method">Code Analysis: The <code>load_into_editor</code> Method</h4>
+<p><em>Work through the following questions about the</em> <code>load_into_editor</code> <em>method</em></p>
+<ol type="1">
+<li><p><em>What is the purpose of this method?</em></p>
+<ul>
+<li>Used after the user has selected a <code>StockItem</code> to edit</li>
+<li>Needs to load and display the values of the item for the user to then modify
+<ul>
+<li>Compared to our text-based interface which prompted the user to edit each attribute in turn for <code>Contact</code> objects</li>
+</ul></li>
+</ul></li>
+<li><p><em>Why are some of the items converted to a string before editing?</em></p>
+<ul>
+<li>Attributes internally are not strictly held as strings</li>
+<li>E.g. the <code>price</code> is a number and tags are a <code>set</code></li>
+<li><code>Entry</code> and <code>Text</code> expect strings though, so we have to convert back and forth</li>
+</ul></li>
+<li><p><em>What is the</em> <code>text_tags</code> <em>attribute of the a</em> <code>StockItem</code></p>
+<ul>
+<li><p>Good spot!</p></li>
+<li><p>This is a small addition make to the <code>StockItem</code> to simply conversion of a tags set to a string and back</p></li>
+<li><p>Allows the user to easily supply or receive a set of tags as a string of comma-seperated values</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  <span class="at">@property</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> text_tags(<span class="va">self</span>):</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co">      text_tags : str</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co">          item tags as a comma separated string</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>      tag_list <span class="op">=</span> <span class="bu">list</span>(<span class="va">self</span>.tags)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>      tag_list.sort()</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">","</span>.join(tag_list)</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">@text_tags.setter</span></span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> text_tags(<span class="va">self</span>, tag_string):</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.tags <span class="op">=</span> <span class="bu">set</span>(<span class="bu">map</span>(<span class="bu">str</span>.strip, <span class="bu">str</span>.split(<span class="bu">str</span>.lower(tag_string), sep<span class="op">=</span><span class="st">","</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We’ve modified the <code>StockItem</code> implementation to simply support this</p></li>
+<li><p>An alternative would be to provide a wrapper or adaptor</p></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>Last method, is the reverse of the previous. To fetch a <code>StockItem</code> from the editor</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> get_from_editor(<span class="va">self</span>, item):</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Get an updated `StockItem` from the editor</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="co">      item : StockItem</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co">          stock reference to update</span></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="co">      Raises</span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="co">      ------</span></span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a><span class="co">      ValueError</span></span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a><span class="co">          raised if the price entry cannot be converted to a number</span></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>      item.set_price(<span class="va">self</span>._price_entry.get())</span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>      item.stock_ref <span class="op">=</span> <span class="va">self</span>._stock_ref_entry.get()</span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>      item.text_tags <span class="op">=</span> <span class="va">self</span>._tags_text.get(<span class="st">"1.0"</span>, tkinter.END)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>We now want to link this to a button that the user will press</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> save_edit():</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>      stock_frame.get_from_editor(item)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>      stock_frame.clear_editor()</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  save_button <span class="op">=</span> tkinter.Button(root, text<span class="op">=</span><span class="st">"Save"</span>, command<span class="op">=</span>save_edit)</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  save_button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>We can see this updates the item, then clears the editor</p></li>
+<li><p>You might notice a new function on the <code>StockItem</code>, <code>set_price</code></p></li>
+<li><p>This simply validates that a given price is a number and then updates the price</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> set_price(<span class="va">self</span>, new_price):</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Set a new price on the stock item</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="co">      new_price : int | float</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="co">          new price of the item</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="co">      Raises</span></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="co">      ------</span></span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co">      ValueError</span></span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="co">          Raised if the price is outside of the valid range</span></span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a><span class="co">      ValueError</span></span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="co">          Raised if the price is not a number</span></span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> StockItem.show_instrumentation:</span>
+<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="st">"** StockItem set_price called"</span>)</span>
+<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">try</span>:</span>
+<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a>          new_price <span class="op">=</span> <span class="bu">int</span>(new_price)</span>
+<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a>          new_price <span class="op">=</span> <span class="bu">float</span>(new_price)</span>
+<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> new_price <span class="op">&lt;</span> StockItem.min_price <span class="kw">or</span> new_price <span class="op">&gt;</span> StockItem.max_price:</span>
+<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a>          <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Price out of range"</span>)</span>
+<span id="cb69-26"><a href="#cb69-26" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__price <span class="op">=</span> new_price</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+</ul>
+</section>
+<section id="code-analysis-the-get_from_editor-method" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-the-get_from_editor-method">Code Analysis: The <code>get_from_editor</code> Method</h4>
+<p><em>Answer the following questions about</em> <code>get_from_editor</code></p>
+<ol type="1">
+<li><p><em>What is the purpose of this method?</em></p>
+<ul>
+<li>Takes the edited <code>StockItem</code> values and puts them back into a <code>StockItem</code></li>
+<li>Equivalent of saving text in a text editor, your changes are written back to the original file</li>
+</ul></li>
+<li><p><em>Can this method fail?</em></p>
+<ul>
+<li>Yes</li>
+<li>Invalid prices will cause the <code>set_price</code> method to raise a <code>ValueError</code>
+<ul>
+<li>This occurs if the value is not a number or if it’s outside the valid range</li>
+</ul></li>
+<li>The caller is responsible for handling the exception</li>
+</ul></li>
+</ol>
+<ul>
+<li>We can write a simple script to check that the <code>StockItemEditor</code> widget works as expected</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    item <span class="op">=</span> StockItem.StockItem(</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"D001"</span>,</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>        price<span class="op">=</span><span class="dv">120</span>,</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>        tags<span class="op">=</span><span class="st">"dress,colour:red,loc:shop window,pattern:swirly,size:12,evening,long"</span>,</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>    item.add_stock(<span class="dv">5</span>)</span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb70-11"><a href="#cb70-11" aria-hidden="true" tabindex="-1"></a>    stock_frame <span class="op">=</span> StockItemEditor(root)</span>
+<span id="cb70-12"><a href="#cb70-12" aria-hidden="true" tabindex="-1"></a>    stock_frame.frame.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb70-13"><a href="#cb70-13" aria-hidden="true" tabindex="-1"></a>    stock_frame.load_into_editor(item)</span>
+<span id="cb70-14"><a href="#cb70-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-15"><a href="#cb70-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> save_edit():</span>
+<span id="cb70-16"><a href="#cb70-16" aria-hidden="true" tabindex="-1"></a>        stock_frame.get_from_editor(item)</span>
+<span id="cb70-17"><a href="#cb70-17" aria-hidden="true" tabindex="-1"></a>        stock_frame.clear_editor()</span>
+<span id="cb70-18"><a href="#cb70-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-19"><a href="#cb70-19" aria-hidden="true" tabindex="-1"></a>    save_button <span class="op">=</span> tkinter.Button(root, text<span class="op">=</span><span class="st">"Save"</span>, command<span class="op">=</span>save_edit)</span>
+<span id="cb70-20"><a href="#cb70-20" aria-hidden="true" tabindex="-1"></a>    save_button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb70-21"><a href="#cb70-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-22"><a href="#cb70-22" aria-hidden="true" tabindex="-1"></a>    root.mainloop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>For simplicity this has been written in the same file as the <a href="./Examples/08_EditableStockItem/StockItemEditor.py">StockItemEditor</a></p></li>
+<li><p>The final widget should look something like below</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/08_EditableStockItem/stockItemEditorFrame.png" class="img-fluid figure-img"></p>
+<figcaption>The final <code>StockItemEditor</code> widget</figcaption>
+</figure>
+</div></li>
+<li><p>You can also see the updated <a href="./Examples/08_EditableStockItem/StockItem.py"><code>StockItem</code></a></p></li>
+</ul>
+</section>
+<section id="code-analysis-editing-stock-items" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-editing-stock-items">Code Analysis: Editing Stock Items</h4>
+<p><em>Would it not make sense to put the editing behaviour inside the</em> <code>StockItem</code> <em>class?</em></p>
+<p>You can probably make an argument one way or another. The argument in favour might be that all the functionality of a <code>StockItem</code> should be in the <code>StockItem</code> and that by keeping the editing behaviour on the object we can reduce coupling to another edit object that might need to read the internals of the <code>StockItem</code> class.</p>
+<p>The argument against might be that the <code>StockItem</code> is supposed to represent a specific <code>StockItem</code> and its associated data. It would be an additional responsibility for it to also be responsible for editing itself, as that is effectively taking responsibility for creating <code>StockItem</code> objects.</p>
+<p>For this program we decide to go with the second approach, <code>StockItem</code> simply acts as a datastore, and <code>StockItemEditor</code> implements the logic for editing a <code>StockItem</code></p>
+</section>
+</section>
+<section id="create-a-listbox-selector" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-listbox-selector">Create a Listbox Selector</h3>
+<ul>
+<li>We can now load and edit our stock items</li>
+<li>The thing we need is a way for the user to select a stock item</li>
+<li>We can’t just put a simple button in because the number of stock items is dynamic</li>
+<li>One approach would be to use an <code>Entry</code> widget to have the user type in the reference they want to edit
+<ul>
+<li>This has the difficulty that the user has to know the stock reference beforehand</li>
+</ul></li>
+<li>A more useful approach might to be have all the stock references displayed in a list that we can select from
+<ul>
+<li><code>Listbox</code> is a widget that lets us do this</li>
+</ul></li>
+</ul>
+<section id="make-something-happen-investigating-the-listbox-object" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-investigating-the-listbox-object">Make Something Happen: Investigating the <code>Listbox</code> Object</h4>
+<p><em>Start by investigating the</em> <code>Listbox</code> <em>through the python interpreter. Work through the following steps</em></p>
+<ol type="1">
+<li><p><em>Load tkinter and create a window</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> tkinter</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a> root <span class="op">=</span> tkinter.Tk()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><em>Create a</em> <code>Listbox</code> <em>and display it</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a> lb <span class="op">=</span> tkinter.Listbox(root)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a> lb.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>This creates a <code>Listbox</code> assigns it to the variable <code>lb</code></li>
+<li>Then adds <code>lb</code> to the window</li>
+<li>Screen should now have an empty white list box</li>
+</ul></li>
+<li><p><em>Add some items to the box</em></p>
+<ul>
+<li><p>We can add items using the <code>insert</code> method</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>  lb.insert(<span class="dv">0</span>, <span class="st">"hello"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>First argument is the index to insert the item</p></li>
+<li><p>Second argument is the text to insert</p></li>
+<li><p>Add some more items,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>  lb.insert(<span class="dv">1</span>, <span class="st">"goodbye"</span>)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  lb.insert(<span class="dv">0</span>, <span class="st">"top line"</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  lb.insert(tkinter.END, <span class="st">"bottom line"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The final listbox should look like below,</p></li>
+<li><p>We can see that <code>insert</code> doesn’t overwrite elements, if we insert before another element, everything is shifted down</p></li>
+<li><p>We can use <code>tkinter.END</code> to append something to the end</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/09_Listbox/listbox.png" class="img-fluid figure-img"></p>
+<figcaption>The <code>Listbox</code> after adding some items to it</figcaption>
+</figure>
+</div></li>
+<li><p>In our program, we’ll populate the <code>Listbox</code> with the stock references of our stock items</p></li>
+</ul></li>
+<li><p><em>Define a binding to select items from the</em> <code>Listbox</code></p>
+<ul>
+<li><p>Now we need to be able to select items in the box</p></li>
+<li><p>This is an event to bind against</p></li>
+<li><p>Start by defining the function to bind</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> on_select(event):</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Get's the text associated with a selected Listbox item</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>      lb <span class="op">=</span> event.widget</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>      index <span class="op">=</span> <span class="bu">int</span>(lb.curselection()[<span class="dv">0</span>])</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(lb.get(index))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Runs when the user clicks on a <code>Listbox</code></p></li>
+<li><p>We first retrieve the widget that triggered the event with <code>event.widget()</code></p>
+<ul>
+<li>In this case it is the listbox</li>
+</ul></li>
+<li><p>We then get the currently selected index in the list box</p>
+<ul>
+<li><code>curselection</code> returns a tuple of selected elements</li>
+<li>Since we might have multiple selected</li>
+<li>We’re not using this, so we only want the first one</li>
+</ul></li>
+<li><p>Then pass this index to the <code>get</code> method of the list box</p>
+<ul>
+<li>The list box <code>get</code> returns the text associated with a supplied index</li>
+</ul></li>
+<li><p>Now we need to bind this to the listbox</p></li>
+<li><p>The event we want is <code>"&lt;&lt;ListboxSelect&gt;&gt;"</code></p></li>
+<li><p>Enter the following</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>  lb.bind(<span class="st">"&lt;&lt;ListboxSelect&gt;&gt;"</span>, on_select)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+</ol>
+<ul>
+<li>A script version is available in <a href="./Examples/09_Listbox/Listbox.py">Listbox.py</a></li>
+</ul>
+</section>
+<section id="create-a-stockitem-selector" class="level4">
+<h4 class="anchored" data-anchor-id="create-a-stockitem-selector">Create a <code>StockItem</code> Selector</h4>
+<ul>
+<li><p>Now let’s create a <code>StockItem</code> Selector component using a <code>Listbox</code></p></li>
+<li><p>Our <code>StockItemSelector</code> needs to,</p>
+<ol type="1">
+<li>Accept <code>StockItem</code> objects to define the selection list</li>
+<li>Tell the user when an item has been selected from the list</li>
+</ol></li>
+<li><p>First step is straightforward</p></li>
+<li><p>Second is more complicated</p>
+<ul>
+<li>How do we make an object tell us something?</li>
+<li>i.e.&nbsp;the reverse of binding where we do something when something else tells us something</li>
+<li>This is called <em>message passing</em>, one part of a program sends a message to another</li>
+<li>Here <code>StockItemSelector</code> wants to send a message to tell listeners that a <code>StockItem</code> has been selected</li>
+</ul></li>
+<li><p>Implementing message passing can be done using references</p>
+<ul>
+<li>Sender takes in a reference to the receiver object</li>
+<li>Message transmission is then implemented as calling a method on the receiver object</li>
+<li>The receiver object is defined in the initialiser</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockItemSelector:</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Widget providing a list selection for StockItem objects</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, root, receiver):</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a new `StockItemSelector`</span></span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="co">        root</span></span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a><span class="co">            The parent frame or window to attach this component to</span></span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a><span class="co">        receiver</span></span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a><span class="co">            Object to send a message to when the selection changes</span></span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.receiver <span class="op">=</span> receiver</span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.frame <span class="op">=</span> tkinter.Frame()</span>
+<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.listbox <span class="op">=</span> tkinter.Listbox(<span class="va">self</span>.frame)</span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.listbox.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> on_select(event):</span>
+<span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb77-24"><a href="#cb77-24" aria-hidden="true" tabindex="-1"></a><span class="co">            Find the selected text in the Listbox and send it to the</span></span>
+<span id="cb77-25"><a href="#cb77-25" aria-hidden="true" tabindex="-1"></a><span class="co">            receiving object</span></span>
+<span id="cb77-26"><a href="#cb77-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-27"><a href="#cb77-27" aria-hidden="true" tabindex="-1"></a><span class="co">            Bound to the `ListboxSelect` event</span></span>
+<span id="cb77-28"><a href="#cb77-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-29"><a href="#cb77-29" aria-hidden="true" tabindex="-1"></a><span class="co">            Parameters</span></span>
+<span id="cb77-30"><a href="#cb77-30" aria-hidden="true" tabindex="-1"></a><span class="co">            ----------</span></span>
+<span id="cb77-31"><a href="#cb77-31" aria-hidden="true" tabindex="-1"></a><span class="co">            event</span></span>
+<span id="cb77-32"><a href="#cb77-32" aria-hidden="true" tabindex="-1"></a><span class="co">                event that triggered the function</span></span>
+<span id="cb77-33"><a href="#cb77-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-34"><a href="#cb77-34" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb77-35"><a href="#cb77-35" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb77-36"><a href="#cb77-36" aria-hidden="true" tabindex="-1"></a><span class="co">            None</span></span>
+<span id="cb77-37"><a href="#cb77-37" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb77-38"><a href="#cb77-38" aria-hidden="true" tabindex="-1"></a>            lb <span class="op">=</span> event.widget</span>
+<span id="cb77-39"><a href="#cb77-39" aria-hidden="true" tabindex="-1"></a>            index <span class="op">=</span> <span class="bu">int</span>(lb.curselection()[<span class="dv">0</span>])</span>
+<span id="cb77-40"><a href="#cb77-40" aria-hidden="true" tabindex="-1"></a>            receiver.got_selection(lb.get(index))</span>
+<span id="cb77-41"><a href="#cb77-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-42"><a href="#cb77-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.listbox.bind(<span class="st">"&lt;&lt;ListboxSelect&gt;&gt;"</span>, on_select)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="code-analysis-selecting-stock-items" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-selecting-stock-items">Code Analysis: Selecting Stock Items</h5>
+<p><em>Work through the following questions about the code</em></p>
+<ol type="1">
+<li><p><em>What is the following method doing?</em></p>
+<ul>
+<li>Creates an instance of the <code>StockItemSelector</code></li>
+<li>Designed to display a <code>Listbox</code> of <code>StockItem</code> objects</li>
+<li>We want to inform a user-specified receiver object when the selection changes</li>
+<li><code>__init__</code> takes the root window, and the object that should be informed (the receiver)</li>
+<li><code>__init__</code> stores the receiver, creates the <code>Listbox</code> and properly configures an event handler</li>
+</ul></li>
+<li><p><em>What happens if the receiver doesn’t have a</em> <code>got_selection</code> <em>method?</em></p>
+<ul>
+<li><p><code>StockItemSelector</code> calls the <code>got_selection</code> method on the receiving object when the selection changes</p></li>
+<li><p>If there is no such method an exception will be thrown</p></li>
+<li><p>We can test if the function exists using,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">assert</span> <span class="bu">hasattr</span>(receiver, <span class="st">"got_selection"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>hasattr</code> accepts two arguments</p>
+<ol type="1">
+<li>The object to check</li>
+<li>A string identifying the attribute</li>
+</ol></li>
+<li><p><code>hasattr</code> returns <code>True</code> if the attribute exists on the object, else <code>False</code></p></li>
+<li><p>We can use this to raise an exception in the <code>__init__</code> if the supplied object doesn’t have the appropriate method</p></li>
+<li><p>This is the appropriate place to put this check (rather than making it implicit at the point we call the function)</p></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>The second method to implement is the one that actually populates the <code>Listbox</code></p>
+<ul>
+<li>Should accept a list of <code>StockItem</code> objects and add their references to the display</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> populate_listbox(<span class="va">self</span>, items):</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Populate the Listbox with a list of StockItem's</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="co">      items : list[StockItem]</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="co">          a list of stock items to add to the selection</span></span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.listbox.delete(<span class="dv">0</span>, tkinter.END)</span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> item <span class="kw">in</span> items:</span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.listbox.insert(tkinter.END, item.stock_ref)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This method is pretty straightforward</p></li>
+<li><p>First clear any existing elements in the <code>Listbox</code></p></li>
+<li><p>Then iterate over the list inserting the stock references for each item</p></li>
+<li><p>Finally we’ll add a simple demo script in <a href="./Examples/10_StockItemSelector/StockItemSelector.py">StockItemSelector.py</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> MessageReceiver:</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> got_selection(<span class="va">self</span>, stock_ref):</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="st">"stock item selected:"</span>, stock_ref)</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>  stock_list <span class="op">=</span> []</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">100</span>):</span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>      stock_ref <span class="op">=</span> <span class="st">"D</span><span class="sc">{0}</span><span class="st">"</span>.<span class="bu">format</span>(i)</span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>      item <span class="op">=</span> StockItem.StockItem(</span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a>          stock_ref,</span>
+<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a>          <span class="dv">120</span> <span class="op">+</span> (i <span class="op">*</span> <span class="dv">10</span>),</span>
+<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a>          <span class="st">"dress, colour:red, loc:shop window,pattern:swirly, size:12, evening, long"</span>,</span>
+<span id="cb80-16"><a href="#cb80-16" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb80-17"><a href="#cb80-17" aria-hidden="true" tabindex="-1"></a>      stock_list.append(item)</span>
+<span id="cb80-18"><a href="#cb80-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-19"><a href="#cb80-19" aria-hidden="true" tabindex="-1"></a>  receiver <span class="op">=</span> MessageReceiver()</span>
+<span id="cb80-20"><a href="#cb80-20" aria-hidden="true" tabindex="-1"></a>  root <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb80-21"><a href="#cb80-21" aria-hidden="true" tabindex="-1"></a>  stock_selector <span class="op">=</span> StockItemSelector(root, receiver)</span>
+<span id="cb80-22"><a href="#cb80-22" aria-hidden="true" tabindex="-1"></a>  stock_selector.populate_listbox(stock_list)</span>
+<span id="cb80-23"><a href="#cb80-23" aria-hidden="true" tabindex="-1"></a>  stock_selector.frame.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb80-24"><a href="#cb80-24" aria-hidden="true" tabindex="-1"></a>  root.mainloop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Which after running should look like,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/10_StockItemSelector/demoSelector.png" class="img-fluid figure-img"></p>
+<figcaption>Demonstration of the <code>StockItemSelector</code></figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="an-application-with-a-graphical-user-interface" class="level3">
+<h3 class="anchored" data-anchor-id="an-application-with-a-graphical-user-interface">An Application with a Graphical User Interface</h3>
+<ul>
+<li><p>Our goal now is to put all of the pieces of the previous section together to create a full graphical version of the fashion shop program</p></li>
+<li><p>The user should be able to,</p>
+<ol type="1">
+<li>Select Stock Items</li>
+<li>Add or sell stock of a selected item</li>
+<li>Edit an item</li>
+<li>Create a new item</li>
+<li>Search for an item by tags</li>
+</ol></li>
+<li><p>The final version of the program should look something like this,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/11_FashionShopGUI/Docs/final_fashion_shop.png" class="img-fluid figure-img"></p>
+<figcaption>The final implementation of a Graphical Fashion Shop Program</figcaption>
+</figure>
+</div></li>
+</ul>
+<section id="setting-up-the-file-structure-and-the-basic-graphical-user-interface" class="level4">
+<h4 class="anchored" data-anchor-id="setting-up-the-file-structure-and-the-basic-graphical-user-interface">Setting up the File Structure and the Basic Graphical User Interface</h4>
+<ul>
+<li>Let’s start by getting our basic set-up working and then add more functionality on top</li>
+<li>We want to make our program follow the interface of the shell-based fashion shop program, so that we can seamlessly switch between them</li>
+<li>We’ll start with the final implementation found in <a href="../../02_AdvancedProgramming/12_PythonApplications/Chapter_12.html#exercise-complete-the-testing-of-stockitem">Chapter 12</a>
+<ul>
+<li>We’ll start by modifying the folder structure, now rather than just having a <code>UI</code> package, we’ll split that into a <code>GUI</code> and a <code>ShellUI</code> subpackage
+<ul>
+<li>We move the shell implementation into the <code>ShellUI</code> subpackage and update / add <code>__init__.py</code> files as required</li>
+<li>We create a new <code>GUI</code> subpackage which we’ll use to create our gui package</li>
+</ul></li>
+<li>Let’s start by copying in the <code>StockItemEditor</code> and <code>StockItemSelector</code> components from the previous section</li>
+<li>We can remove the demo code from these</li>
+</ul></li>
+<li>Now let’s create a <code>FashionShopGraphicalApplication</code> this will act like the old <code>FashionShopApplication</code> but support a GUI</li>
+<li>The start of the class, is below
+<ul>
+<li>We provide a simple static method for converting between a tag set and the text based tag implementation</li>
+<li>Then define a basic <code>__init__</code></li>
+<li>To avoid cluttering the <code>__init__</code> we define a method <code>self._setup_UI</code> that contains the user interface setup code</li>
+</ul></li>
+<li>The rest of the class should look familiar
+<ul>
+<li>We attempt to load the database from a file</li>
+<li>This time if we fail, we present the user with a <em>Warning</em> message box</li>
+</ul></li>
+<li>We also then set the currently selected item, and the current search tags to be empty</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FashionShopGraphicalApplication:</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Provides a graphical interface for Fashion Shop inventory management</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tag_set_from_text(tag_text):</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a set of tags from a comma-separated list</span></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Tags are normalised as lowercase with leading and</span></span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="co">        trailing whitespace stripped</span></span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-14"><a href="#cb81-14" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb81-15"><a href="#cb81-15" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb81-16"><a href="#cb81-16" aria-hidden="true" tabindex="-1"></a><span class="co">        tag_text: str</span></span>
+<span id="cb81-17"><a href="#cb81-17" aria-hidden="true" tabindex="-1"></a><span class="co">            comma-separated list of tags</span></span>
+<span id="cb81-18"><a href="#cb81-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-19"><a href="#cb81-19" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb81-20"><a href="#cb81-20" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb81-21"><a href="#cb81-21" aria-hidden="true" tabindex="-1"></a><span class="co">        set</span></span>
+<span id="cb81-22"><a href="#cb81-22" aria-hidden="true" tabindex="-1"></a><span class="co">            set containing unique tags. Tags are lowercase with</span></span>
+<span id="cb81-23"><a href="#cb81-23" aria-hidden="true" tabindex="-1"></a><span class="co">            no leading or trailing whitespace</span></span>
+<span id="cb81-24"><a href="#cb81-24" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb81-25"><a href="#cb81-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> tag_text <span class="op">==</span> <span class="st">""</span>:</span>
+<span id="cb81-26"><a href="#cb81-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="bu">set</span>()</span>
+<span id="cb81-27"><a href="#cb81-27" aria-hidden="true" tabindex="-1"></a>        tags <span class="op">=</span> <span class="bu">set</span>(<span class="bu">map</span>(<span class="bu">str</span>.strip, <span class="bu">str</span>.split(<span class="bu">str</span>.lower(tag_text), sep<span class="op">=</span><span class="st">","</span>)))</span>
+<span id="cb81-28"><a href="#cb81-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tags</span>
+<span id="cb81-29"><a href="#cb81-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-30"><a href="#cb81-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, filename, storage_class):</span>
+<span id="cb81-31"><a href="#cb81-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb81-32"><a href="#cb81-32" aria-hidden="true" tabindex="-1"></a><span class="co">        Creates a new `FashionShopApplication`</span></span>
+<span id="cb81-33"><a href="#cb81-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-34"><a href="#cb81-34" aria-hidden="true" tabindex="-1"></a><span class="co">        Attempts to load a `FashionShop` from the provided file. Otherwise</span></span>
+<span id="cb81-35"><a href="#cb81-35" aria-hidden="true" tabindex="-1"></a><span class="co">        an empty instance is created</span></span>
+<span id="cb81-36"><a href="#cb81-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-37"><a href="#cb81-37" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb81-38"><a href="#cb81-38" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb81-39"><a href="#cb81-39" aria-hidden="true" tabindex="-1"></a><span class="co">        filename : str</span></span>
+<span id="cb81-40"><a href="#cb81-40" aria-hidden="true" tabindex="-1"></a><span class="co">            path to a file containing pickled `FashionShop` data</span></span>
+<span id="cb81-41"><a href="#cb81-41" aria-hidden="true" tabindex="-1"></a><span class="co">        storage_class : Data Manager</span></span>
+<span id="cb81-42"><a href="#cb81-42" aria-hidden="true" tabindex="-1"></a><span class="co">            class that supports the Fashion Shop Data Management API</span></span>
+<span id="cb81-43"><a href="#cb81-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-44"><a href="#cb81-44" aria-hidden="true" tabindex="-1"></a><span class="co">        See Also</span></span>
+<span id="cb81-45"><a href="#cb81-45" aria-hidden="true" tabindex="-1"></a><span class="co">        --------</span></span>
+<span id="cb81-46"><a href="#cb81-46" aria-hidden="true" tabindex="-1"></a><span class="co">        FashionShop : Main class for handling inventory management</span></span>
+<span id="cb81-47"><a href="#cb81-47" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb81-48"><a href="#cb81-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-49"><a href="#cb81-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># load the storage class</span></span>
+<span id="cb81-50"><a href="#cb81-50" aria-hidden="true" tabindex="-1"></a>        FashionShopGraphicalApplication.__filename <span class="op">=</span> filename</span>
+<span id="cb81-51"><a href="#cb81-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb81-52"><a href="#cb81-52" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__shop <span class="op">=</span> storage_class.load(filename)</span>
+<span id="cb81-53"><a href="#cb81-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span>:  <span class="co"># noqa: E722</span></span>
+<span id="cb81-54"><a href="#cb81-54" aria-hidden="true" tabindex="-1"></a>            tkinter.messagebox.showwarning(</span>
+<span id="cb81-55"><a href="#cb81-55" aria-hidden="true" tabindex="-1"></a>                title<span class="op">=</span><span class="st">"Mary's Fashion Shop"</span>,</span>
+<span id="cb81-56"><a href="#cb81-56" aria-hidden="true" tabindex="-1"></a>                message<span class="op">=</span><span class="st">"Failed to load Fashion Shop</span><span class="ch">\n</span><span class="st">Creating an empty Fashion Shop"</span>,</span>
+<span id="cb81-57"><a href="#cb81-57" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb81-58"><a href="#cb81-58" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__shop <span class="op">=</span> storage_class()</span>
+<span id="cb81-59"><a href="#cb81-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-60"><a href="#cb81-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># configure the starting state</span></span>
+<span id="cb81-61"><a href="#cb81-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._current_item <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb81-62"><a href="#cb81-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._search_tags <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb81-63"><a href="#cb81-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-64"><a href="#cb81-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># configure the user interface</span></span>
+<span id="cb81-65"><a href="#cb81-65" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._setup_UI()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="adding-selection-and-editing" class="level4">
+<h4 class="anchored" data-anchor-id="adding-selection-and-editing">Adding Selection and Editing</h4>
+<ul>
+<li><p>Now we can start setting up our <code>_setup_UI</code> method</p></li>
+<li><p>It looks like below,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> _setup_UI(<span class="va">self</span>):</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Setup's and initialises the GUI elements</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._program_title <span class="op">=</span> <span class="st">"Mary's Fashion Shop"</span></span>
+<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._root <span class="op">=</span> tkinter.Tk()</span>
+<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a>      title_label <span class="op">=</span> tkinter.Label(<span class="va">self</span>._root, text<span class="op">=</span><span class="va">self</span>._program_title)</span>
+<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a>      title_label.grid(</span>
+<span id="cb82-14"><a href="#cb82-14" aria-hidden="true" tabindex="-1"></a>          sticky<span class="op">=</span>tkinter.E <span class="op">+</span> tkinter.W, row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, columnspan<span class="op">=</span><span class="dv">2</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span></span>
+<span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb82-16"><a href="#cb82-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-17"><a href="#cb82-17" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._setup_editor()</span>
+<span id="cb82-18"><a href="#cb82-18" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._setup_selector()</span>
+<span id="cb82-19"><a href="#cb82-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-20"><a href="#cb82-20" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._adjuster <span class="op">=</span> StockItemStockAdjuster.StockItemStockAdjuster(<span class="va">self</span>._root, <span class="va">self</span>)</span>
+<span id="cb82-21"><a href="#cb82-21" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._adjuster.frame.grid(sticky<span class="op">=</span>tkinter.E, row<span class="op">=</span><span class="dv">4</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb82-22"><a href="#cb82-22" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._adjuster.current_item <span class="op">=</span> <span class="va">self</span>._current_item</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We store the program title as a constant, which is then used for a top level label</p></li>
+<li><p>This <code>program_title</code> variable is used whenever we want to title a message box</p></li>
+<li><p>We then define two functions</p>
+<ol type="1">
+<li><code>self._setup_editor</code></li>
+<li><code>self._setup.selector</code></li>
+</ol></li>
+<li><p>These functions set up the UI elements responsible for editing stock items and selecting them</p></li>
+<li><p>Again just designed to keep the functions small and sell contained so they are easy to understand</p></li>
+<li><p>The last bit about the <code>_adjuster</code> is used to set up the part of the UI that handles adjusting stock item inventory levels and we’ll look at it later</p>
+<ul>
+<li>At it’s most basic it creates a <code>StockItemAdjuster</code> component</li>
+<li>Then adds this to the main window in the bottom right corner</li>
+</ul></li>
+</ul>
+<section id="adding-editing" class="level5">
+<h5 class="anchored" data-anchor-id="adding-editing">Adding Editing</h5>
+<ul>
+<li><p>Editing functionality is handled by the <code>self._setup_editor</code> method</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> _setup_editor(<span class="va">self</span>):</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Setup and configure the editor component</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a>      <span class="co"># set up the editor</span></span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._editor <span class="op">=</span> StockItemEditor.StockItemEditor(<span class="va">self</span>._root)</span>
+<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._editor.frame.grid(sticky<span class="op">=</span>tkinter.W, row<span class="op">=</span><span class="dv">2</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a>      <span class="co"># set up the editor buttons</span></span>
+<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a>      edit_buttons_frame <span class="op">=</span> tkinter.Frame(<span class="va">self</span>._root)</span>
+<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a>      edit_buttons_frame.grid(sticky<span class="op">=</span>tkinter.E, row<span class="op">=</span><span class="dv">3</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb83-18"><a href="#cb83-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-19"><a href="#cb83-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> create_new_stock_item():</span>
+<span id="cb83-20"><a href="#cb83-20" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb83-21"><a href="#cb83-21" aria-hidden="true" tabindex="-1"></a><span class="co">          Configure the UI to create a new `StockItem`</span></span>
+<span id="cb83-22"><a href="#cb83-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-23"><a href="#cb83-23" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb83-24"><a href="#cb83-24" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb83-25"><a href="#cb83-25" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb83-26"><a href="#cb83-26" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb83-27"><a href="#cb83-27" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._current_item <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb83-28"><a href="#cb83-28" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._adjuster.current_item <span class="op">=</span> <span class="va">self</span>._current_item</span>
+<span id="cb83-29"><a href="#cb83-29" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._editor.clear_editor()</span>
+<span id="cb83-30"><a href="#cb83-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-31"><a href="#cb83-31" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> save_item():</span>
+<span id="cb83-32"><a href="#cb83-32" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb83-33"><a href="#cb83-33" aria-hidden="true" tabindex="-1"></a><span class="co">          Save the details of the item currently under edit</span></span>
+<span id="cb83-34"><a href="#cb83-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-35"><a href="#cb83-35" aria-hidden="true" tabindex="-1"></a><span class="co">          If there is an actively selected item, then the save overwrites it,</span></span>
+<span id="cb83-36"><a href="#cb83-36" aria-hidden="true" tabindex="-1"></a><span class="co">          otherwise a new `StockItem` is created</span></span>
+<span id="cb83-37"><a href="#cb83-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-38"><a href="#cb83-38" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb83-39"><a href="#cb83-39" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb83-40"><a href="#cb83-40" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb83-41"><a href="#cb83-41" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb83-42"><a href="#cb83-42" aria-hidden="true" tabindex="-1"></a>          <span class="cf">try</span>:</span>
+<span id="cb83-43"><a href="#cb83-43" aria-hidden="true" tabindex="-1"></a>              item <span class="op">=</span> StockItem.StockItem(<span class="st">""</span>, StockItem.StockItem.min_price, <span class="st">""</span>)</span>
+<span id="cb83-44"><a href="#cb83-44" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>._editor.get_from_editor(item)</span>
+<span id="cb83-45"><a href="#cb83-45" aria-hidden="true" tabindex="-1"></a>          <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb83-46"><a href="#cb83-46" aria-hidden="true" tabindex="-1"></a>              tkinter.messagebox.showerror(title<span class="op">=</span><span class="va">self</span>._program_title, message<span class="op">=</span><span class="st">"Failed to create a new item</span><span class="ch">\n</span><span class="st">Price invalid"</span>)</span>
+<span id="cb83-47"><a href="#cb83-47" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span></span>
+<span id="cb83-48"><a href="#cb83-48" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>._current_item <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> <span class="va">self</span>._current_item.stock_ref <span class="op">==</span> item.stock_ref:</span>
+<span id="cb83-49"><a href="#cb83-49" aria-hidden="true" tabindex="-1"></a>              <span class="co"># edited an item but kept the reference identical</span></span>
+<span id="cb83-50"><a href="#cb83-50" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.__shop.remove_old_stock_item(<span class="va">self</span>._current_item.stock_ref)</span>
+<span id="cb83-51"><a href="#cb83-51" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.__shop.store_new_stock_item(item)</span>
+<span id="cb83-52"><a href="#cb83-52" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span>:</span>
+<span id="cb83-53"><a href="#cb83-53" aria-hidden="true" tabindex="-1"></a>              <span class="co"># edited an item to different reference or new - need to check doesn't clash</span></span>
+<span id="cb83-54"><a href="#cb83-54" aria-hidden="true" tabindex="-1"></a>              <span class="cf">try</span>:</span>
+<span id="cb83-55"><a href="#cb83-55" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>.__shop.store_new_stock_item(item)</span>
+<span id="cb83-56"><a href="#cb83-56" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> <span class="va">self</span>._current_item <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb83-57"><a href="#cb83-57" aria-hidden="true" tabindex="-1"></a>                      <span class="va">self</span>.__shop.remove_old_stock_item(<span class="va">self</span>._current_item.stock_ref)</span>
+<span id="cb83-58"><a href="#cb83-58" aria-hidden="true" tabindex="-1"></a>              <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
+<span id="cb83-59"><a href="#cb83-59" aria-hidden="true" tabindex="-1"></a>                  tkinter.messagebox.showerror(title<span class="op">=</span><span class="va">self</span>._program_title, message<span class="op">=</span><span class="bu">str</span>(e))</span>
+<span id="cb83-60"><a href="#cb83-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-61"><a href="#cb83-61" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._filter_stock_items()</span>
+<span id="cb83-62"><a href="#cb83-62" aria-hidden="true" tabindex="-1"></a>          create_new_stock_item()</span>
+<span id="cb83-63"><a href="#cb83-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-64"><a href="#cb83-64" aria-hidden="true" tabindex="-1"></a>      create_new_button <span class="op">=</span> tkinter.Button(</span>
+<span id="cb83-65"><a href="#cb83-65" aria-hidden="true" tabindex="-1"></a>          edit_buttons_frame,</span>
+<span id="cb83-66"><a href="#cb83-66" aria-hidden="true" tabindex="-1"></a>          text<span class="op">=</span><span class="st">"Create new item"</span>,</span>
+<span id="cb83-67"><a href="#cb83-67" aria-hidden="true" tabindex="-1"></a>          command<span class="op">=</span>create_new_stock_item,</span>
+<span id="cb83-68"><a href="#cb83-68" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb83-69"><a href="#cb83-69" aria-hidden="true" tabindex="-1"></a>      create_new_button.grid(sticky<span class="op">=</span>tkinter.W, row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb83-70"><a href="#cb83-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-71"><a href="#cb83-71" aria-hidden="true" tabindex="-1"></a>      save_button <span class="op">=</span> tkinter.Button(edit_buttons_frame, text<span class="op">=</span><span class="st">"Save"</span>, command<span class="op">=</span>save_item)</span>
+<span id="cb83-72"><a href="#cb83-72" aria-hidden="true" tabindex="-1"></a>      save_button.grid(sticky<span class="op">=</span>tkinter.E, row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>We start by creating a new <code>StockItemEditor</code> component and placing it on the grid</p></li>
+<li><p>You’ve seen this before</p></li>
+<li><p>We premptively put it on row two, because the tags search bar will take up row one</p></li>
+<li><p>We then create a frame to hold the edit buttons</p></li>
+<li><p>We have two edit buttons,</p>
+<ol type="1">
+<li>Create new item
+<ul>
+<li>Clears any currently selected item</li>
+<li>Clears the editor</li>
+<li>Used to be able to input a new item</li>
+</ul></li>
+<li>Save
+<ul>
+<li>Save the current state of the editor into an item</li>
+<li>If there is a currently selected item, it is overwritten</li>
+<li>Otherwise, a new item is created</li>
+</ul></li>
+</ol></li>
+<li><p>We can now define the methods for our buttons</p></li>
+<li><p>Since they only be used by the buttons defined here, we will define the functions local to the <code>_setup_editor</code> function</p>
+<ul>
+<li>Makes the code cleaner since it avoids polluting the scope of the outer <code>FashionShopGraphicalApplication</code> class</li>
+</ul></li>
+<li><p>The first function <code>create_new_stock_item</code> simply deselects the current item and clears the editor</p></li>
+<li><p>The second, <code>save_item</code> is more sophisticated</p>
+<ul>
+<li><p>There are two cases to consider, when we are adding a new item, and when we are editing an old item</p></li>
+<li><p>Let’s refamiliarise ourselves with the code,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> save_item():</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Save the details of the item currently under edit</span></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="co">      If there is an actively selected item, then the save overwrites it,</span></span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="co">      otherwise a new `StockItem` is created</span></span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">try</span>:</span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>          item <span class="op">=</span> StockItem.StockItem(<span class="st">""</span>, StockItem.StockItem.min_price, <span class="st">""</span>)</span>
+<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._editor.get_from_editor(item)</span>
+<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb84-16"><a href="#cb84-16" aria-hidden="true" tabindex="-1"></a>          tkinter.messagebox.showerror(title<span class="op">=</span><span class="va">self</span>._program_title, message<span class="op">=</span><span class="st">"Failed to create a new item</span><span class="ch">\n</span><span class="st">Price invalid"</span>)</span>
+<span id="cb84-17"><a href="#cb84-17" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span></span>
+<span id="cb84-18"><a href="#cb84-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">self</span>._current_item <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> <span class="va">self</span>._current_item.stock_ref <span class="op">==</span> item.stock_ref:</span>
+<span id="cb84-19"><a href="#cb84-19" aria-hidden="true" tabindex="-1"></a>          <span class="co"># edited an item but kept the reference identical</span></span>
+<span id="cb84-20"><a href="#cb84-20" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__shop.remove_old_stock_item(<span class="va">self</span>._current_item.stock_ref)</span>
+<span id="cb84-21"><a href="#cb84-21" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__shop.store_new_stock_item(item)</span>
+<span id="cb84-22"><a href="#cb84-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb84-23"><a href="#cb84-23" aria-hidden="true" tabindex="-1"></a>          <span class="co"># edited an item to different reference or new - need to check doesn't clash</span></span>
+<span id="cb84-24"><a href="#cb84-24" aria-hidden="true" tabindex="-1"></a>          <span class="cf">try</span>:</span>
+<span id="cb84-25"><a href="#cb84-25" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.__shop.store_new_stock_item(item)</span>
+<span id="cb84-26"><a href="#cb84-26" aria-hidden="true" tabindex="-1"></a>              <span class="cf">if</span> <span class="va">self</span>._current_item <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb84-27"><a href="#cb84-27" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>.__shop.remove_old_stock_item(<span class="va">self</span>._current_item.stock_ref)</span>
+<span id="cb84-28"><a href="#cb84-28" aria-hidden="true" tabindex="-1"></a>          <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
+<span id="cb84-29"><a href="#cb84-29" aria-hidden="true" tabindex="-1"></a>              tkinter.messagebox.showerror(title<span class="op">=</span><span class="va">self</span>._program_title, message<span class="op">=</span><span class="bu">str</span>(e))</span>
+<span id="cb84-30"><a href="#cb84-30" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span></span>
+<span id="cb84-31"><a href="#cb84-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-32"><a href="#cb84-32" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._filter_stock_items()</span>
+<span id="cb84-33"><a href="#cb84-33" aria-hidden="true" tabindex="-1"></a>      create_new_stock_item()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>First we create a new dummy <code>StockItem</code> and then attempt to populate it with the values from the editor</p></li>
+<li><p>If the editor has invalid data then we will report the error via message box and stop</p></li>
+<li><p>Next we have to be careful,</p></li>
+<li><p>The storage class stores items in a key-value store where the key is the stock reference</p></li>
+<li><p>For a new item, we have to check that the the key isn’t already in use</p>
+<ul>
+<li>We do this via the catching the <code>KeyError</code> from the <code>store_new_stock</code> method</li>
+<li>In this case we just don’t add the new item</li>
+</ul></li>
+<li><p>For an edited item, it’s a bit more complicated</p>
+<ul>
+<li>If we haven’t changed the stock reference we could just get the old item and manually copy across the values</li>
+<li>This is brittle though, and defeats the whole point of copying the data from the editor (i.e.&nbsp;the editor is responsible for making sure an item has the correct values)</li>
+<li>We <em>could</em> call the <code>editor.get_from_editor</code> method again, passing in our old item object
+<ul>
+<li>But we’ve already got the information and done all the validation, we don’t want to repeat it</li>
+</ul></li>
+<li>The other method would be to delete the old <code>StockItem</code> and then put the new one in</li>
+<li>There’s a catch though - If we delete the old item, <em>then</em> find that the new stock reference is in use, we can’t rollback the change</li>
+<li>We also can’t just add the new item, because if the stock reference hasn’t changed we’ll get an error because the key is in use by the old version of the item</li>
+<li>So we have two cases,
+<ol type="1">
+<li>If the stock reference is unchanged
+<ul>
+<li>Delete the old stock item</li>
+<li>Then add the new one</li>
+<li>This is guaranteed to succeed because the key must exist (it was in use by the same object), and it can’t be in use once we delete it</li>
+</ul></li>
+<li>If the stock reference has changed
+<ul>
+<li>First check that we can add the new item (i.e.&nbsp;attempt to add it)</li>
+<li>Then if that succeeds, delete the old one</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li><p>Finally we have to be careful about what state we’re in</p>
+<ul>
+<li>It’s possible that the user might now have a current item stored which doesn’t actually exist</li>
+<li>So we reset the state
+<ul>
+<li>i.e.&nbsp;clear the editor</li>
+<li>set the current item to <code>None</code></li>
+<li>handled by calling <code>create_new_stock_item</code></li>
+<li>We also want to update the displayed items, which is handled by <code>filter_stock_items</code>
+<ul>
+<li>We’ll look at this function in the next section</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>There is one downside to this approach</p>
+<ul>
+<li>Since python dictionaries maintain their insertion order, every time an item is edited, it will move to the end of the list</li>
+</ul></li>
+</ul></li>
+<li><p>Of course we have to add the a method to <code>FashionShop</code> to actually let us remove items,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> remove_old_stock_item(<span class="va">self</span>, stock_ref):</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Remove an old item in the reference system</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="co">      The provided `item` can be indexed by it's `stock_ref` parameter</span></span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="co">      item : StockItem</span></span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="co">          item to remove from the inventory system</span></span>
+<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb85-13"><a href="#cb85-13" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb85-14"><a href="#cb85-14" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb85-15"><a href="#cb85-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-16"><a href="#cb85-16" aria-hidden="true" tabindex="-1"></a><span class="co">      Raises</span></span>
+<span id="cb85-17"><a href="#cb85-17" aria-hidden="true" tabindex="-1"></a><span class="co">      ------</span></span>
+<span id="cb85-18"><a href="#cb85-18" aria-hidden="true" tabindex="-1"></a><span class="co">      KeyError</span></span>
+<span id="cb85-19"><a href="#cb85-19" aria-hidden="true" tabindex="-1"></a><span class="co">          Raised if the item's `stock_ref` is not registered as a key</span></span>
+<span id="cb85-20"><a href="#cb85-20" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb85-21"><a href="#cb85-21" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__stock_dictionary.pop(stock_ref)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This is a simple wrapper around the dictionary method <code>pop</code></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="setup-selector" class="level5">
+<h5 class="anchored" data-anchor-id="setup-selector">Setup Selector</h5>
+<ul>
+<li>Selection is handled similarly but is relatively straightforward in comparison</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _setup_selector(<span class="va">self</span>):</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="co">        Configure and set-up the selector components, including</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co">        searching on tags</span></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co">        None</span></span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._selector <span class="op">=</span> StockItemSelector.StockItemSelector(<span class="va">self</span>._root, <span class="va">self</span>)</span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._selector.frame.grid(</span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>            sticky<span class="op">=</span>tkinter.N <span class="op">+</span> tkinter.S,</span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>            row<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a>            column<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>            rowspan<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a>            padx<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>            pady<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> update_search_tags():</span>
+<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a><span class="co">            Updates the search tags and the corresponding list box display</span></span>
+<span id="cb86-23"><a href="#cb86-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-24"><a href="#cb86-24" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb86-25"><a href="#cb86-25" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb86-26"><a href="#cb86-26" aria-hidden="true" tabindex="-1"></a><span class="co">            None</span></span>
+<span id="cb86-27"><a href="#cb86-27" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb86-28"><a href="#cb86-28" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._search_tags <span class="op">=</span> <span class="va">self</span>._search_tags_entry.get()</span>
+<span id="cb86-29"><a href="#cb86-29" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._filter_stock_items()</span>
+<span id="cb86-30"><a href="#cb86-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-31"><a href="#cb86-31" aria-hidden="true" tabindex="-1"></a>        search_tags_button <span class="op">=</span> tkinter.Button(</span>
+<span id="cb86-32"><a href="#cb86-32" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._root, text<span class="op">=</span><span class="st">"Search tags:"</span>, command<span class="op">=</span>update_search_tags</span>
+<span id="cb86-33"><a href="#cb86-33" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb86-34"><a href="#cb86-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._search_tags_entry <span class="op">=</span> tkinter.Entry(<span class="va">self</span>._root, width<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb86-35"><a href="#cb86-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-36"><a href="#cb86-36" aria-hidden="true" tabindex="-1"></a>        search_tags_button.grid(sticky<span class="op">=</span>tkinter.E, row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb86-37"><a href="#cb86-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._search_tags_entry.grid(</span>
+<span id="cb86-38"><a href="#cb86-38" aria-hidden="true" tabindex="-1"></a>            sticky<span class="op">=</span>tkinter.E <span class="op">+</span> tkinter.W, row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span></span>
+<span id="cb86-39"><a href="#cb86-39" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb86-40"><a href="#cb86-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-41"><a href="#cb86-41" aria-hidden="true" tabindex="-1"></a>        update_search_tags()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>This is much more straightforward</p></li>
+<li><p>We create a new <code>StockItemSelector</code> component</p></li>
+<li><p>Add it the main window</p></li>
+<li><p>We then define a Button <code>search_tags_button</code> and an Entry element <code>search_tags_entry</code></p>
+<ul>
+<li>When <code>search_tags_button</code> is pressed it reads the tags from <code>search_tags_entry</code> and sets them as the search tags (<code>self._search_tags</code>)</li>
+</ul></li>
+<li><p>We then want to update the displayed items to match the tags</p></li>
+<li><p>This is handled by the method <code>self._filter_stock_items</code></p>
+<ul>
+<li>It is used both by the selection widget when the tags are updated</li>
+<li>and by the editor when we edit items</li>
+<li>Hence we store it at the object level since it needs to be used by multiple components</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> _filter_stock_items(<span class="va">self</span>):</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Populates the list box with item's matching the current search tags</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._selector.populate_listbox(</span>
+<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.__shop.find_matching_with_tags(</span>
+<span id="cb87-11"><a href="#cb87-11" aria-hidden="true" tabindex="-1"></a>              FashionShopGraphicalApplication.tag_set_from_text(<span class="va">self</span>._search_tags)</span>
+<span id="cb87-12"><a href="#cb87-12" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb87-13"><a href="#cb87-13" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Simply converts the current search tags (as a comma-seperated string) to a set of tags</p></li>
+<li><p>Then passes this to the <code>self.__shop</code> <code>find_matching_with_tags</code> method to get the subset of matching items</p></li>
+<li><p>Then updates the selector</p></li>
+<li><p>We <em>could</em> in theory cache the conversion to a set when the tags are updated, however we make the assumption that the need to filter will be infrequent</p>
+<ul>
+<li>If this assumption is wrong, this is a potential source of performance gains</li>
+</ul></li>
+<li><p>The method in the <code>setup_selector</code> function, <code>update_search_tags</code>, simply updates the value of <code>self._search_tags</code> then calls <code>self._filter_stock_items</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> update_search_tags():</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Updates the search tags and the corresponding list box display</span></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._search_tags <span class="op">=</span> <span class="va">self</span>._search_tags_entry.get()</span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._filter_stock_items()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We also have to implement the <code>got_selection</code> method that will be called by <code>StockItemSelector</code> when the selection is changed, it’s given below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> got_selection(<span class="va">self</span>, selection):</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Method to be called when the program detects that the Stock Item selection has changed</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co">      selection : str</span></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="co">          The new selection</span></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._current_item <span class="op">=</span> <span class="va">self</span>.__shop.find_stock_item(selection)</span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._adjuster.current_item <span class="op">=</span> <span class="va">self</span>._current_item</span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._editor.load_into_editor(<span class="va">self</span>._current_item)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This sets the current item to what ever the new selection is and loads it into the editor</p></li>
+<li><p>It also passes this through to the <code>StockItemAdjuster</code> component we’ll look at next</p></li>
+</ul>
+</section>
+<section id="setting-up-a-stock-level-adjuster-component" class="level5">
+<h5 class="anchored">Setting up a Stock Level Adjuster Component</h5>
+<ul>
+<li><p>In the final product you can see that we have a pair of Button-Entry widgets for adding and removing stock</p></li>
+<li><p>Really these should be treated all together</p></li>
+<li><p>So we band them together as one component</p></li>
+<li><p>This will work similar to the selection component</p>
+<ul>
+<li>It takes in the currently selected item and uses that to validate any proposed change in the stock level</li>
+<li>When the stock level is changed, a receiver object is informed of the change so it can properly respond</li>
+</ul></li>
+<li><p>The implementation is below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> StockItemStockAdjuster:</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Graphical Component for adjusting a Stock Item</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a><span class="co">      receiver</span></span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a><span class="co">          Object to send a message to when the stock changes. Must</span></span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a><span class="co">          support a method `stock_level_updated()`</span></span>
+<span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a><span class="co">      frame: tkinter.Frame</span></span>
+<span id="cb90-12"><a href="#cb90-12" aria-hidden="true" tabindex="-1"></a><span class="co">          the tkinter `Frame` this component is contained within</span></span>
+<span id="cb90-13"><a href="#cb90-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-14"><a href="#cb90-14" aria-hidden="true" tabindex="-1"></a><span class="co">      Notes</span></span>
+<span id="cb90-15"><a href="#cb90-15" aria-hidden="true" tabindex="-1"></a><span class="co">      -----</span></span>
+<span id="cb90-16"><a href="#cb90-16" aria-hidden="true" tabindex="-1"></a><span class="co">      Implemented as a `tkinter` frame</span></span>
+<span id="cb90-17"><a href="#cb90-17" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb90-18"><a href="#cb90-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-19"><a href="#cb90-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, root, receiver):</span>
+<span id="cb90-20"><a href="#cb90-20" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb90-21"><a href="#cb90-21" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new `StockItemAdjuster`</span></span>
+<span id="cb90-22"><a href="#cb90-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-23"><a href="#cb90-23" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb90-24"><a href="#cb90-24" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb90-25"><a href="#cb90-25" aria-hidden="true" tabindex="-1"></a><span class="co">          root</span></span>
+<span id="cb90-26"><a href="#cb90-26" aria-hidden="true" tabindex="-1"></a><span class="co">              The parent frame or window to attach this component to</span></span>
+<span id="cb90-27"><a href="#cb90-27" aria-hidden="true" tabindex="-1"></a><span class="co">          receiver</span></span>
+<span id="cb90-28"><a href="#cb90-28" aria-hidden="true" tabindex="-1"></a><span class="co">              Object to send a message to when the stock changes. Must</span></span>
+<span id="cb90-29"><a href="#cb90-29" aria-hidden="true" tabindex="-1"></a><span class="co">              support a method `stock_level_updated()`</span></span>
+<span id="cb90-30"><a href="#cb90-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-31"><a href="#cb90-31" aria-hidden="true" tabindex="-1"></a><span class="co">          Raises</span></span>
+<span id="cb90-32"><a href="#cb90-32" aria-hidden="true" tabindex="-1"></a><span class="co">          ------</span></span>
+<span id="cb90-33"><a href="#cb90-33" aria-hidden="true" tabindex="-1"></a><span class="co">          AttributeError</span></span>
+<span id="cb90-34"><a href="#cb90-34" aria-hidden="true" tabindex="-1"></a><span class="co">              raised if `receiver` does not support `stock_level_updated()`</span></span>
+<span id="cb90-35"><a href="#cb90-35" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb90-36"><a href="#cb90-36" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="kw">not</span> <span class="bu">hasattr</span>(receiver, <span class="st">"stock_level_updated"</span>):</span>
+<span id="cb90-37"><a href="#cb90-37" aria-hidden="true" tabindex="-1"></a>              <span class="cf">raise</span> <span class="pp">AttributeError</span>(</span>
+<span id="cb90-38"><a href="#cb90-38" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Supplied receiver does not support stock_level_updated"</span></span>
+<span id="cb90-39"><a href="#cb90-39" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb90-40"><a href="#cb90-40" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.receiver <span class="op">=</span> receiver</span>
+<span id="cb90-41"><a href="#cb90-41" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._current_item <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb90-42"><a href="#cb90-42" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.frame <span class="op">=</span> tkinter.Frame(root)</span>
+<span id="cb90-43"><a href="#cb90-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-44"><a href="#cb90-44" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._add_stock_entry <span class="op">=</span> tkinter.Entry(<span class="va">self</span>.frame, width<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb90-45"><a href="#cb90-45" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._remove_stock_entry <span class="op">=</span> tkinter.Entry(<span class="va">self</span>.frame, width<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb90-46"><a href="#cb90-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-47"><a href="#cb90-47" aria-hidden="true" tabindex="-1"></a>          <span class="kw">def</span> add_stock():</span>
+<span id="cb90-48"><a href="#cb90-48" aria-hidden="true" tabindex="-1"></a>              <span class="co">"""</span></span>
+<span id="cb90-49"><a href="#cb90-49" aria-hidden="true" tabindex="-1"></a><span class="co">              binding function for adding stock when the button is pressed</span></span>
+<span id="cb90-50"><a href="#cb90-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-51"><a href="#cb90-51" aria-hidden="true" tabindex="-1"></a><span class="co">              Returns</span></span>
+<span id="cb90-52"><a href="#cb90-52" aria-hidden="true" tabindex="-1"></a><span class="co">              -------</span></span>
+<span id="cb90-53"><a href="#cb90-53" aria-hidden="true" tabindex="-1"></a><span class="co">              None</span></span>
+<span id="cb90-54"><a href="#cb90-54" aria-hidden="true" tabindex="-1"></a><span class="co">              """</span></span>
+<span id="cb90-55"><a href="#cb90-55" aria-hidden="true" tabindex="-1"></a>              <span class="co"># Entry box must not be empty</span></span>
+<span id="cb90-56"><a href="#cb90-56" aria-hidden="true" tabindex="-1"></a>              <span class="cf">try</span>:</span>
+<span id="cb90-57"><a href="#cb90-57" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> <span class="va">self</span>._current_item <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb90-58"><a href="#cb90-58" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"No stock item currently selected"</span>)</span>
+<span id="cb90-59"><a href="#cb90-59" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>._current_item.add_stock(<span class="bu">int</span>(<span class="va">self</span>._add_stock_entry.get()))</span>
+<span id="cb90-60"><a href="#cb90-60" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>.receiver.stock_level_updated()</span>
+<span id="cb90-61"><a href="#cb90-61" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>._add_stock_entry.delete(<span class="dv">0</span>, tkinter.END)</span>
+<span id="cb90-62"><a href="#cb90-62" aria-hidden="true" tabindex="-1"></a>              <span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> e:</span>
+<span id="cb90-63"><a href="#cb90-63" aria-hidden="true" tabindex="-1"></a>                  tkinter.messagebox.showerror(</span>
+<span id="cb90-64"><a href="#cb90-64" aria-hidden="true" tabindex="-1"></a>                      title<span class="op">=</span><span class="st">"Failed to Add Stock"</span>, message<span class="op">=</span><span class="bu">str</span>(e)</span>
+<span id="cb90-65"><a href="#cb90-65" aria-hidden="true" tabindex="-1"></a>                  )</span>
+<span id="cb90-66"><a href="#cb90-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-67"><a href="#cb90-67" aria-hidden="true" tabindex="-1"></a>          <span class="kw">def</span> remove_stock():</span>
+<span id="cb90-68"><a href="#cb90-68" aria-hidden="true" tabindex="-1"></a>              <span class="co">"""</span></span>
+<span id="cb90-69"><a href="#cb90-69" aria-hidden="true" tabindex="-1"></a><span class="co">              binding function for removing stock when the button is pressed</span></span>
+<span id="cb90-70"><a href="#cb90-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-71"><a href="#cb90-71" aria-hidden="true" tabindex="-1"></a><span class="co">              Returns</span></span>
+<span id="cb90-72"><a href="#cb90-72" aria-hidden="true" tabindex="-1"></a><span class="co">              -------</span></span>
+<span id="cb90-73"><a href="#cb90-73" aria-hidden="true" tabindex="-1"></a><span class="co">              None</span></span>
+<span id="cb90-74"><a href="#cb90-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-75"><a href="#cb90-75" aria-hidden="true" tabindex="-1"></a><span class="co">              Raises</span></span>
+<span id="cb90-76"><a href="#cb90-76" aria-hidden="true" tabindex="-1"></a><span class="co">              ------</span></span>
+<span id="cb90-77"><a href="#cb90-77" aria-hidden="true" tabindex="-1"></a><span class="co">              ValueError</span></span>
+<span id="cb90-78"><a href="#cb90-78" aria-hidden="true" tabindex="-1"></a><span class="co">                  raised if no stock item is selected</span></span>
+<span id="cb90-79"><a href="#cb90-79" aria-hidden="true" tabindex="-1"></a><span class="co">              ValueError</span></span>
+<span id="cb90-80"><a href="#cb90-80" aria-hidden="true" tabindex="-1"></a><span class="co">                  raised if the value provided stock amount is not a positive</span></span>
+<span id="cb90-81"><a href="#cb90-81" aria-hidden="true" tabindex="-1"></a><span class="co">                  whole number, or larger than the maximum allowed to sell</span></span>
+<span id="cb90-82"><a href="#cb90-82" aria-hidden="true" tabindex="-1"></a><span class="co">              """</span></span>
+<span id="cb90-83"><a href="#cb90-83" aria-hidden="true" tabindex="-1"></a>              <span class="co"># Entry box must not be empty</span></span>
+<span id="cb90-84"><a href="#cb90-84" aria-hidden="true" tabindex="-1"></a>              <span class="cf">try</span>:</span>
+<span id="cb90-85"><a href="#cb90-85" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> <span class="va">self</span>._current_item <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb90-86"><a href="#cb90-86" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">raise</span> <span class="pp">ValueError</span>(</span>
+<span id="cb90-87"><a href="#cb90-87" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Failed to remove stock:</span><span class="ch">\n</span><span class="st">no stock item currently selected"</span></span>
+<span id="cb90-88"><a href="#cb90-88" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb90-89"><a href="#cb90-89" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>._current_item.sell_stock(<span class="bu">int</span>(<span class="va">self</span>._remove_stock_entry.get()))</span>
+<span id="cb90-90"><a href="#cb90-90" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>.receiver.stock_level_updated()</span>
+<span id="cb90-91"><a href="#cb90-91" aria-hidden="true" tabindex="-1"></a>                  <span class="va">self</span>._remove_stock_entry.delete(<span class="dv">0</span>, tkinter.END)</span>
+<span id="cb90-92"><a href="#cb90-92" aria-hidden="true" tabindex="-1"></a>              <span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> e:</span>
+<span id="cb90-93"><a href="#cb90-93" aria-hidden="true" tabindex="-1"></a>                  tkinter.messagebox.showerror(</span>
+<span id="cb90-94"><a href="#cb90-94" aria-hidden="true" tabindex="-1"></a>                      title<span class="op">=</span><span class="st">"Failed to Remove Stock"</span>, message<span class="op">=</span><span class="bu">str</span>(e)</span>
+<span id="cb90-95"><a href="#cb90-95" aria-hidden="true" tabindex="-1"></a>                  )</span>
+<span id="cb90-96"><a href="#cb90-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-97"><a href="#cb90-97" aria-hidden="true" tabindex="-1"></a>          add_stock_button <span class="op">=</span> tkinter.Button(</span>
+<span id="cb90-98"><a href="#cb90-98" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.frame, text<span class="op">=</span><span class="st">"Add stock:"</span>, command<span class="op">=</span>add_stock</span>
+<span id="cb90-99"><a href="#cb90-99" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb90-100"><a href="#cb90-100" aria-hidden="true" tabindex="-1"></a>          remove_stock_button <span class="op">=</span> tkinter.Button(</span>
+<span id="cb90-101"><a href="#cb90-101" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.frame, text<span class="op">=</span><span class="st">"Remove stock:"</span>, command<span class="op">=</span>remove_stock</span>
+<span id="cb90-102"><a href="#cb90-102" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb90-103"><a href="#cb90-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-104"><a href="#cb90-104" aria-hidden="true" tabindex="-1"></a>          add_stock_button.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>tkinter.E, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb90-105"><a href="#cb90-105" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._add_stock_entry.grid(row<span class="op">=</span><span class="dv">0</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>tkinter.E, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb90-106"><a href="#cb90-106" aria-hidden="true" tabindex="-1"></a>          remove_stock_button.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">0</span>, sticky<span class="op">=</span>tkinter.E, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb90-107"><a href="#cb90-107" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._remove_stock_entry.grid(row<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="dv">1</span>, sticky<span class="op">=</span>tkinter.E, padx<span class="op">=</span><span class="dv">5</span>, pady<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb90-108"><a href="#cb90-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-109"><a href="#cb90-109" aria-hidden="true" tabindex="-1"></a>      <span class="at">@property</span></span>
+<span id="cb90-110"><a href="#cb90-110" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> current_item(<span class="va">self</span>):</span>
+<span id="cb90-111"><a href="#cb90-111" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb90-112"><a href="#cb90-112" aria-hidden="true" tabindex="-1"></a><span class="co">          current_item : StockItem | None</span></span>
+<span id="cb90-113"><a href="#cb90-113" aria-hidden="true" tabindex="-1"></a><span class="co">              The currently active `StockItem`</span></span>
+<span id="cb90-114"><a href="#cb90-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-115"><a href="#cb90-115" aria-hidden="true" tabindex="-1"></a><span class="co">          Raises</span></span>
+<span id="cb90-116"><a href="#cb90-116" aria-hidden="true" tabindex="-1"></a><span class="co">          ------</span></span>
+<span id="cb90-117"><a href="#cb90-117" aria-hidden="true" tabindex="-1"></a><span class="co">          TypeError</span></span>
+<span id="cb90-118"><a href="#cb90-118" aria-hidden="true" tabindex="-1"></a><span class="co">              raised if `item` is not a `StockItem`</span></span>
+<span id="cb90-119"><a href="#cb90-119" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb90-120"><a href="#cb90-120" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">self</span>._current_item</span>
+<span id="cb90-121"><a href="#cb90-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-122"><a href="#cb90-122" aria-hidden="true" tabindex="-1"></a>      <span class="at">@current_item.setter</span></span>
+<span id="cb90-123"><a href="#cb90-123" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> current_item(<span class="va">self</span>, item):</span>
+<span id="cb90-124"><a href="#cb90-124" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(item, StockItem.StockItem) <span class="kw">and</span> item <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb90-125"><a href="#cb90-125" aria-hidden="true" tabindex="-1"></a>              <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="st">"item must be of type StockItem or None"</span>)</span>
+<span id="cb90-126"><a href="#cb90-126" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>._current_item <span class="op">=</span> item</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The <code>__init__</code> should look very familiar to the <code>StockItemSelector</code></p>
+<ul>
+<li>Instead of a <code>got_selection</code> function, we have a <code>stock_level_changed</code> function to receive the change
+<ul>
+<li>This time, because the widget can adjust the stock level via the item directly</li>
+</ul></li>
+<li><code>__init__</code> will use <code>hasattr</code> to check that the passed <code>receiver</code> has the required <code>stock_level_changed</code> attribute</li>
+</ul></li>
+<li><p>We then create our buttons and entry widgets for adding and removing stock</p></li>
+<li><p>The <code>add_stock</code> and <code>delete_stock</code> widgets are bound to the respective buttons</p></li>
+<li><p>On being clicked they check that the state is valid, i.e.</p>
+<ol type="1">
+<li>There is a currently selected item</li>
+<li>There is a value in the respective <code>Entry</code> label</li>
+<li>It is a positive number that is either less than the current stock level (selling stock) or less than the maximum we can add (adding stock)</li>
+</ol></li>
+<li><p>We then update the stock level as appropriate</p></li>
+<li><p>Clear the respective <code>Entry</code> label so the user doesn’t accidently press the button multiple times</p></li>
+<li><p>Call the <code>stock_level_changed</code> method on the receiver object</p></li>
+<li><p>Lastly changing the <code>current_item</code> is implemented via a property</p>
+<ul>
+<li>Let’s us enforce that the current item is always a <code>StockItem</code> instance or <code>None</code></li>
+</ul></li>
+<li><p>How do we implement this component in the application?</p>
+<ul>
+<li><p>Well you already saw in <code>self._setup_UI</code> that we added this component to the bottom right corner</p></li>
+<li><p>We’ve seen whenever we change the current item, we have to propagate that through to the adjuster component</p></li>
+<li><p>Now need to implement the <code>stock_level_updated</code> method</p></li>
+<li><p>All this needs to do is reload the current item to update the displayed stock level</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> stock_level_updated(<span class="va">self</span>):</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Method to be called when the program detects the the Stock Item's stock level has changed</span></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="co">  Returns</span></span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="co">  -------</span></span>
+<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a><span class="co">  None</span></span>
+<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb91-9"><a href="#cb91-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>._editor.load_into_editor(<span class="va">self</span>._current_item)  <span class="co"># reload the current item</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="running-the-program" class="anchored" data-anchor-id="setting-up-a-stock-level-adjuster-component">Running the Program</h4></li>
+</ul></li>
+<li><p>The last step is to implement code to actually run the application</p>
+<ul>
+<li>Previously we’ve called this <code>display</code>, but because we want to be consistent with the Shell-based UI, we instead use <code>main_menu</code></li>
+<li>This is just a wrapper around <code>root.mainloop</code> and then a call to save the state of the database when the program is closed</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> main_menu(<span class="va">self</span>):</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Run the program</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Notes</span></span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="co">      -----</span></span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="co">      The function is called `main_menu` to maintain legacy compatibility</span></span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="co">      with the `ShellUI` interface for an application</span></span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>._root.mainloop()</span>
+<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.__shop.save(FashionShopGraphicalApplication.__filename)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We then define our main program, <code>FashionShopGraphicalUI.py</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>      <span class="im">from</span> Data <span class="im">import</span> FashionShop</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>      <span class="im">from</span> UI.GUI <span class="im">import</span> FashionShopGraphicalApplication</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>      <span class="co"># load the UI implementation</span></span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>      ui <span class="op">=</span> FashionShopGraphicalApplication.FashionShopGraphicalApplication</span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>      <span class="co"># load the data management implementation</span></span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>      shop <span class="op">=</span> FashionShop.FashionShop</span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>      app <span class="op">=</span> ui(filename<span class="op">=</span><span class="st">"fashionshop.pickle"</span>, storage_class<span class="op">=</span>shop)</span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a>      app.main_menu()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This looks pretty much identical to the previous shell program</p></li>
+<li><p>Indeed the only changes are that we change the import to <code>from UI.GUI import FashionShopGraphicalApplication</code> and the setup of the <code>ui</code> as <code>ui = FashionShopGraphicalApplication.FashionShopGraphicalApplication</code></p></li>
+<li><p>The code to then run the program is identical because we made the API’s match</p></li>
+<li><p>To emphasise this we have included <code>FashionShopShellUI.py</code> with some minor adjustments to the <code>FashionShopShellApplication</code> (to match the updated <code>StockItem</code> API for handling tags)</p>
+<ul>
+<li>Both interfaces work on the same underlying data model with no issues</li>
+<li>Use the same Data library code</li>
+</ul></li>
+<li><p>We’ve also generated updated documentation and updated the tests</p></li>
+<li><p>You might find it useful to look through the full setup</p></li>
+<li><p>The original answer provided in the samples code implements the solution in a slightly different way</p>
+<ul>
+<li>There’s value in looking at both approaches</li>
+<li>Though I would argue that my implementation has much better handling of state to avoid bugs</li>
+</ul></li>
+</ul>
+</section>
+</section>
 </section>
 </section>
 <section id="summary" class="level2">
