@@ -2705,7 +2705,9 @@ In this exercise we'll work on creating a graphical version of our [banking syst
 6. Manage a matured long-term savings account
 7. Apply interest to all accounts
 
-We'll make some simplifications to this model. We'll assume that the user has to specify their name (mimicking logging in) and can see the accounts associated with their name. They cannot see other people's accounts, and if they don't specify a name they can't see any accounts. They can then select an account which allows them to see the account information, and potentially withdraw or deposit into an account. If that account happens to be a matured long-term savings account then they can manage it. Lastly we'll also have the program apply interest to accounts.
+We'll make some simplifications to this model. We'll assume that the user has to specify their name (mimicking logging in) and can see the accounts associated with their name. They cannot see other people's accounts, and if they don't specify a name they can't see any accounts. They can then select an account which allows them to see the account information, and potentially withdraw or deposit into an account. If that account happens to be a matured long-term savings account then they can manage it. Lastly we'll also have the program apply interest to accounts. The final program should look like the below
+
+![The final interface for a Banking System with a GUI](./Exercises/03_GraphicalBankingApplication/Docs/final_program.png)
 
 This program ends up being quite complicated but we'll try and step through it. The first thing to do is to clean up our shell-based implementation. In the original implementation because we were keeping it lean we kept a lot of business logic in the UI class. Namely the `BankAccountApplication` class tracked the current interest rates, validated that a user could create an account, and applying interest. We want to factor this out.
 
@@ -4085,6 +4087,8 @@ where `value` is whatever number we've extracted from the application form. The 
 ```
 This just adds the new account to the system and then updates the displayed list of accounts
 
+![An Example of opening a new Long Term Savings Account](./Exercises/03_GraphicalBankingApplication/Docs/account_creation.png)
+
 The last widget we want to have is a basic window for managing a matured long term savings account. We've already seen that there's a button that opens this window, but we'll show that code now (contained with the `_setup_UI` method),
 
 ```python
@@ -4316,6 +4320,7 @@ Future directions for this might be to add the ability to transfer money between
 
 In terms of the data model, at this point it would probably be pretty straightforward to add more logic to how accounts are made such as loyalty tiers for credit cards that impact withdrawal limit within mininal GUI changes due to the decoupling. The main issue with the model though is that we still have accounts having interest rates fixed when they're created, and the value hard coded into the authorisation class. This is fine for a toy model but probably the next step if we were to continue expanding this project into something more sophisticated
 
+I've alsoed included the [pydoc documentation](./Exercises/03_GraphicalBankingApplication/Docs/BankAccountGUI.html) which you may like to explore
 ## Summary
 
 - Graphical user interfaces are an alternative presentation style to a shell-based one
