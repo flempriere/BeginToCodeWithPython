@@ -29,6 +29,8 @@ I started this repository to work through an easy and basic book before working 
 
 ### Useful Python
 
+- [Chapter 13: Python and Graphical User Interfaces](./03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.md)
+
 >[!NOTE]
 > Chapter 1 only provides basic information on installing *python* and assumes a Windows environment so is not covered in these notes
 >
