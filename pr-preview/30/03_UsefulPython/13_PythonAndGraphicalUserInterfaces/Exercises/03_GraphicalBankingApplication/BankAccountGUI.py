@@ -1,5 +1,5 @@
 """
-Exercise 13.3 Bank Account GUI
+Exercise 13.3l Bank Account GUI
 
 Loads and runs a graphical-based Bank Account System. Only
 runs if executed as the main program
