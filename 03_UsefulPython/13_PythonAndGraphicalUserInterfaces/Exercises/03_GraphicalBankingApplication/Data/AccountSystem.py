@@ -3,8 +3,8 @@ Exercise 13.3c Account System
 
 Provides implementations for a handling a collection of Accounts
 
-Routine Listings
-----------------
+Classes
+-------
 AccountSystem
     Collection class for handling a collection of `Account` classes
 
@@ -13,8 +13,8 @@ See Also
 Data.Account : Module containing implementation of classes representing a bank account
 """
 
-import pickle
 import datetime
+import pickle
 
 
 class AccountSystem:
@@ -189,7 +189,7 @@ class AccountSystem:
     def date_last_loaded(self):
         """
         date_last_loaded : datetime.date
-            the time this account system was last loaded. Used to apply interest
+            The time this account system was last loaded. Used to apply interest
         """
         return self.__date_last_loaded
 

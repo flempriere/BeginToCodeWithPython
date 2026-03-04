@@ -1,12 +1,14 @@
 """
-Exercise 13.3 Account Selector
+Exercise 13.3f Account Selector
 
-Provides an implementation of a graphical component for selecting Accounts from a list
+Provides graphical components for selecting Accounts from a list
 
-Routine Listings
-----------------
+Classes
+-------
 AccountSelector
     class providing a `tkinter` `Listbox` based widget for selecting an account
+AccountTypeSelection
+    Provides a widget for selecting a new account type
 """
 
 import tkinter
@@ -51,7 +53,9 @@ class AccountSelector:
         self.receiver = receiver
         self.frame = tkinter.Frame(root)
         self.listbox = tkinter.Listbox(self.frame)
-        self.listbox.grid(row=0, column=0)
+        self.listbox.grid(
+            sticky=tkinter.E + tkinter.W + tkinter.N + tkinter.S, row=0, column=0
+        )
 
         def on_select(event):
             """
@@ -91,3 +95,61 @@ class AccountSelector:
         self.listbox.delete(0, tkinter.END)
         for account in accounts:
             self.listbox.insert(tkinter.END, account.account_number)
+
+
+class AccountTypeSelection:
+    """
+    Class for selecting an account type
+
+    Provides a drop-down option menu for selecting an account type and
+    a button for confirming a choice. Will then prompt a dialog for the
+    user to  create that account type
+
+    Attributes
+    ----------
+    frame
+        parent widget
+    receiver
+        object to be notified when a new account is created. Must
+        support the `account_created(account)` method
+    """
+
+    def __init__(self, root, values):
+        """
+        Create a new `AccountTypeSelection` widget
+
+        Parameters
+        ----------
+        root
+            parent widget
+        values : list[str]
+            values to populate the option menu with, corresponding
+            to `Account` class acount_type values
+
+        Raises
+        ------
+        AttributeError
+            raised if receiver does not support the `account_created(account)` method
+        """
+
+        self.frame = tkinter.Frame(root)
+
+        self._current_account_option = tkinter.StringVar(self.frame)
+
+        self._account_type_option_menu = tkinter.OptionMenu(
+            self.frame, self._current_account_option, *values
+        )
+        self._account_type_option_menu.grid(
+            sticky=tkinter.E, row=1, column=0, padx=5, pady=5
+        )
+
+    def get(self):
+        """
+        Get the currently selected option
+
+        Returns
+        -------
+        str
+            Currently selected account option
+        """
+        return self._current_account_option.get()

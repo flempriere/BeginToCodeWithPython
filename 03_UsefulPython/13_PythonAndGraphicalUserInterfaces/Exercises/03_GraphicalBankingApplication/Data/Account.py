@@ -3,8 +3,8 @@ Exercise 13.3a Account
 
 Provides implementations for representing an individual account
 
-Routine Listings
-----------------
+Classes
+-------
 Account
     abstract base class for a bank account
 SavingsAccount
@@ -14,6 +14,11 @@ CreditAccount
 LongTermSavingsAccount
     class representing a long-term deposit in which additional monthly interest is accrued in exchange for restrictions
     on withdrawals
+
+Variables
+---------
+account_dictionary : dict[str, Account]
+    dictionary mapping a human readable string of account types to the class
 """
 
 import abc
@@ -34,7 +39,14 @@ class Account(abc.ABC):
     interest_rate : int | float
         monthly interest rate applied to the account
 
+    Class Attributes
+    ----------------
+    account_type : str
+        human readable string encoding the account type, should be
+        overwritten by subclasses
     """
+
+    account_type = "Account"
 
     def __init__(self, account_number, account_holder, interest_rate):
         """
@@ -147,6 +159,8 @@ class SavingsAccount(Account):
     Account : Parent Class
     """
 
+    account_type = "Savings Account"
+
     def __init__(self, account_number, account_holder, interest_rate):
         """
         Creates a new `SavingsAccount` instance
@@ -214,6 +228,8 @@ class LongTermSavingsAccount(SavingsAccount):
     --------
     SavingsAccount : Parent class
     """
+
+    account_type = "Long Term Savings Account"
 
     min_term_limit = 12
     max_term_limit = 156
@@ -409,6 +425,8 @@ class CreditAccount(Account):
     Account : Parent Class
     """
 
+    account_type = "Credit Account"
+
     def __init__(
         self, account_number, account_holder, interest_rate, max_withdrawal_limit
     ):
@@ -508,3 +526,14 @@ Maximum Withdrawal Limit: {1}"""
             maximum amount that can be withdrawn in dollars
         """
         return self.__max_withdrawal_limit
+
+
+account_dictionary = {
+    SavingsAccount.account_type: SavingsAccount,
+    LongTermSavingsAccount.account_type: LongTermSavingsAccount,
+    CreditAccount.account_type: CreditAccount,
+}
+"""
+Dictionary mapping the human readable string representation of an `Account`
+to the class
+"""

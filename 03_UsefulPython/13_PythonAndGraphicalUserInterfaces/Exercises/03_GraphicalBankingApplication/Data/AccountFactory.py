@@ -3,8 +3,8 @@ Exercise 13.3b Account Factory
 
 Provides implementations for instantiating bank accounts with valid id's and interest rates
 
-Routine Listings
-----------------
+Classes
+-------
 AccountAuthoriser
     class representing an account authorisation system that issues new accounts with an account number, interest rates, and limits
 """
@@ -24,6 +24,8 @@ class AccountAuthoriser:
         monthly interest applied to new savings accounts
     credit_interest : int | float
         monthly interest applied to new credit accounts
+    factory_map : dict[str, function]
+        mapping from an account type string to the respective factory function
     """
 
     def __init__(self, account_system):
@@ -40,6 +42,12 @@ class AccountAuthoriser:
         self.credit_interest = 0.10
         self.__account_number_string_length = 4
         self.__account_system = account_system
+
+        self.factory_map = {
+            Account.SavingsAccount.account_type: self.create_savings_account,
+            Account.LongTermSavingsAccount.account_type: self.create_long_term_savings_account,
+            Account.CreditAccount.account_type: self.create_credit_account,
+        }
 
     def calculate_long_term_interest(self, term_limit):
         """
@@ -109,7 +117,7 @@ class AccountAuthoriser:
             "7",
             "8",
             "9",
-        )
+        )  # Valid characters for an account number
 
         account_number = "".join(
             random.choices(
