@@ -4320,7 +4320,11 @@ Future directions for this might be to add the ability to transfer money between
 
 In terms of the data model, at this point it would probably be pretty straightforward to add more logic to how accounts are made such as loyalty tiers for credit cards that impact withdrawal limit within mininal GUI changes due to the decoupling. The main issue with the model though is that we still have accounts having interest rates fixed when they're created, and the value hard coded into the authorisation class. This is fine for a toy model but probably the next step if we were to continue expanding this project into something more sophisticated
 
-I've alsoed included the [pydoc documentation](./Exercises/03_GraphicalBankingApplication/Docs/BankAccountGUI.html) which you may like to explore
+I've alsoed included the [pydoc documentation] which you may like to explore, (not all the links will work)
+
+1. [Data](./Exercises/03_GraphicalBankingApplication/Docs/Data.html)
+2. [UI](./Exercises/03_GraphicalBankingApplication/Docs/UI.html)
+
 ## Summary
 
 - Graphical user interfaces are an alternative presentation style to a shell-based one
