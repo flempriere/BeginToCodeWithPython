@@ -1337,7 +1337,7 @@ A sample output may look like,
 
       pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
       Hello from the pygame community. https://www.pygame.org/contribute.html
-      The temperature in Seattle is: 49
+      The temperature in Seattle is: 48
 
       /home/runner/work/BeginToCodeWithPython/BeginToCodeWithPython/.venv/lib/python3.12/site-packages/pygame/pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
         from pkg_resources import resource_stream, resource_exists

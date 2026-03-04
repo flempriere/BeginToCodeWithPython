@@ -65,7 +65,6 @@
   - [Make Something Happen: Build Your Own
     Application](#make-something-happen-build-your-own-application)
     - [Design Considerations](#design-considerations)
-- [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
 ## Notes
@@ -3347,7 +3346,10 @@ They can then select an account which allows them to see the account
 information, and potentially withdraw or deposit into an account. If
 that account happens to be a matured long-term savings account then they
 can manage it. Lastly we’ll also have the program apply interest to
-accounts.
+accounts. The final program should look like the below
+
+![The final interface for a Banking System with a
+GUI](./Exercises/03_GraphicalBankingApplication/Docs/final_program.png)
 
 This program ends up being quite complicated but we’ll try and step
 through it. The first thing to do is to clean up our shell-based
@@ -4921,6 +4923,9 @@ handles opening the widget. We then have to implement the
 This just adds the new account to the system and then updates the
 displayed list of accounts
 
+![An Example of opening a new Long Term Savings
+Account](./Exercises/03_GraphicalBankingApplication/Docs/account_creation.png)
+
 The last widget we want to have is a basic window for managing a matured
 long term savings account. We’ve already seen that there’s a button that
 opens this window, but we’ll show that code now (contained with the
@@ -5193,7 +5198,9 @@ they’re created, and the value hard coded into the authorisation class.
 This is fine for a toy model but probably the next step if we were to
 continue expanding this project into something more sophisticated
 
-## Summary
+I’ve alsoed included the [pydoc
+documentation](./Exercises/03_GraphicalBankingApplication/Docs/BankAccountGUI.html)
+which you may like to explore \## Summary
 
 - Graphical user interfaces are an alternative presentation style to a
   shell-based one
