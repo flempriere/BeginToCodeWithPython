@@ -1976,7 +1976,7 @@ line of the class is an empty line*
      print(contact_dictionary)
     ```
 
-        {'Rob Miles': <__main__.Contact object at 0x7f4544383680>}
+        {'Rob Miles': <__main__.Contact object at 0x7f87dcf94080>}
 
   - We can then search for a contact by just querying the key
 
@@ -1984,7 +1984,7 @@ line of the class is an empty line*
       contact_dictionary["Rob Miles"]
     ```
 
-        <__main__.Contact at 0x7f4544383680>
+        <__main__.Contact at 0x7f87dcf94080>
 
   - However the user would have to type the correct full name
 

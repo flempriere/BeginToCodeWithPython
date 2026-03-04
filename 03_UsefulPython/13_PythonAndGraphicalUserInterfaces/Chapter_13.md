@@ -65,6 +65,7 @@
   - [Make Something Happen: Build Your Own
     Application](#make-something-happen-build-your-own-application)
     - [Design Considerations](#design-considerations)
+- [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
 ## Notes
@@ -5198,9 +5199,13 @@ they’re created, and the value hard coded into the authorisation class.
 This is fine for a toy model but probably the next step if we were to
 continue expanding this project into something more sophisticated
 
-I’ve alsoed included the [pydoc
-documentation](./Exercises/03_GraphicalBankingApplication/Docs/BankAccountGUI.html)
-which you may like to explore \## Summary
+I’ve alsoed included the \[pydoc documentation\] which you may like to
+explore, (not all the links will work)
+
+1. [Data](./Exercises/03_GraphicalBankingApplication/Docs/Data.html)
+2. [UI](./Exercises/03_GraphicalBankingApplication/Docs/UI.html)
+
+## Summary
 
 - Graphical user interfaces are an alternative presentation style to a
   shell-based one
