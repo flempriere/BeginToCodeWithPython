@@ -260,7 +260,7 @@ and copy the below text.*
     print("The hour is", hour)
 ```
 
-    The hour is 12
+    The hour is 13
 
 Run the program, it should print out the current hour
 
@@ -295,7 +295,7 @@ simply need to format the attribute as necessary. The final
 ```
 
     The date is 4 / 3 / 2026
-    The time is 12 : 41 : 30
+    The time is 13 : 27 : 54
 
 #### Comparing Values
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 12 : 41
+    The time is 13 : 27
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
