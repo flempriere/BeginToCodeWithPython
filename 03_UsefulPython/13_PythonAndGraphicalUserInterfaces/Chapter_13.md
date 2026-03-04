@@ -64,6 +64,7 @@
       Program](#code-analysis-complete-fashion-shop-program)
   - [Make Something Happen: Build Your Own
     Application](#make-something-happen-build-your-own-application)
+    - [Design Considerations](#design-considerations)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -3348,6 +3349,1918 @@ that account happens to be a matured long-term savings account then they
 can manage it. Lastly we’ll also have the program apply interest to
 accounts.
 
+This program ends up being quite complicated but we’ll try and step
+through it. The first thing to do is to clean up our shell-based
+implementation. In the original implementation because we were keeping
+it lean we kept a lot of business logic in the UI class. Namely the
+`BankAccountApplication` class tracked the current interest rates,
+validated that a user could create an account, and applying interest. We
+want to factor this out.
+
+We’ll make some quick modifications to our `Account` classes. Namely
+we’ll add a class variable, `account_type` which gives a string
+representation for a given `Account` subclass. We can use this a key to
+various dictionaries we’ll use later. We then add a dictionary which
+maps between the `account_type` string, and the actual class
+
+``` python
+account_dictionary = {
+    SavingsAccount.account_type: SavingsAccount,
+    LongTermSavingsAccount.account_type: LongTermSavingsAccount,
+    CreditAccount.account_type: CreditAccount,
+}
+```
+
+This helps us later when we’re dealing with multiple classes to create
+the corresponding GUI elements
+
+The first step is to remove the interest calculation code. We kept this
+in originally so we could manually trigger it and see that it worked.
+Logically the interest rates code belongs in the account tracking code.
+What we want is the `AccountSystem` to update the interest on the month.
+However since this isn’t a live program we have to compromise. We add a
+`.__date_last_loaded` attribute which tracks the date the program was
+last loaded. When we reload the program we can track how many months
+have passed since the last time we loaded, and then apply the interest
+the appropriate number of times.
+
+``` python
+class AccountSystem:
+    """
+    Represents the account management system of a bank
+    """
+
+    def __init__(self):
+        """
+        Create a new `AccountSystem` instance
+        """
+        self.__account_dictionary = {}
+        self.__account_name_dictionary = {}
+        self.__date_last_loaded = datetime.date.today()
+
+    ...
+
+    @staticmethod
+    def load(filename):
+        """
+        Create an `AccountSystem` instance from a pickled binary file
+
+        Parameters
+        ----------
+        filename : str
+            path to a file containing pickled `FashionShop` data
+
+        Returns
+        -------
+        AccountSystem
+            the loaded `AccountSystem` instance
+
+        Raises
+        ------
+        Exceptions
+            raised if the file fails to load
+
+        See Also
+        --------
+        AccountSystem.save : saves an `AccountSystem` instance
+        """
+        with open(filename, "rb") as input_file:
+            accounts = pickle.load(input_file)
+
+        # update the time applying interest as required
+        today = datetime.date.today()
+        last_loaded = accounts.date_last_loaded
+        total_month_delta = (today.year - last_loaded.year) * 12 + (
+            today.month - last_loaded.month
+        )
+
+        # apply interest while there is a difference
+        while total_month_delta >= 1:
+            accounts.apply_interest()
+            total_month_delta -= 1
+
+        accounts.update_date_last_loaded()
+
+        return accounts
+
+    ...
+
+    @property
+    def date_last_loaded(self):
+        """
+        date_last_loaded : datetime.date
+            The time this account system was last loaded. Used to apply interest
+        """
+        return self.__date_last_loaded
+
+    def update_date_last_loaded(self):
+        """
+        Updates the date the account was last loaded to the current date
+
+        Returns
+        -------
+        None
+        """
+        self.__date_last_loaded = datetime.date.today()
+```
+
+We keep the last date loaded as a private variable, and only let it be
+updated to the current date. This helps maintain the integrity of the
+data.
+
+Next we want to remove the account creation business logic from the
+shell UI. We’ll create a new module
+[`AccountFactory`](./Exercises/03_GraphicalBankingApplication/Data/AccountFactory.py)
+this module is designed to hold functions and classes that manage the
+creation of accounts. This means that we can encode the business rules
+into these creation classes. For now we’ll make a pretty basic factory,
+called `AccountAuthoriser`. This class has some pretty basic logic that
+is mainly supposed to show the concept
+
+``` python
+class AccountAuthoriser:
+    """
+    Class representing a system for authorising accounts and issuing interest rates
+
+    Attributes
+    ----------
+    savings_interest : int | float
+        monthly interest applied to new savings accounts
+    credit_interest : int | float
+        monthly interest applied to new credit accounts
+    factory_map : dict[str, function]
+        mapping from an account type string to the respective factory function
+    """
+
+    def __init__(self, account_system):
+        """
+        Create a new `AccountAuthoriser`
+
+        Parameters
+        ----------
+        account_system : AccountSystem
+            class that supports the Account System Data Management API
+        """
+
+        self.savings_interest = 0.01
+        self.credit_interest = 0.10
+        self.__account_number_string_length = 4
+        self.__account_system = account_system
+
+        self.factory_map = {
+            Account.SavingsAccount.account_type: self.create_savings_account,
+            Account.LongTermSavingsAccount.account_type: self.create_long_term_savings_account,
+            Account.CreditAccount.account_type: self.create_credit_account,
+        }
+```
+
+Let’s walk through it, the `__init__` method takes in an
+`AccountSystem`. This is so the factory can interogate the state of the
+system for when we want to create accounts. For example we might want to
+calculate a credit rating based on the sum of a client’s balances and
+use that the define their maximum withdrawal limit for a credit account.
+We’ll see some of that later. Next we set the interest rates that we’ll
+assign to different account types, an internal variable for how long
+generated account numbers should be, and then provide a dictionary
+`factory_map` which allows a user to retrieve the relevant factory
+function for creating and `Account` using the `account_type` class
+attribute as a key
+
+The next method
+
+``` python
+    def calculate_long_term_interest(self, term_limit):
+        """
+        Calculates the bonus interest assigned to a long term savings account
+
+        Parameters
+        ----------
+        term_limit : int
+            proposed term limit in weeks
+
+        Returns
+        -------
+        float
+            interest rate for a long-term savings account
+        """
+        term_contribution = (
+            term_limit / Account.LongTermSavingsAccount.max_term_limit * (0.1)
+        )
+        return self.savings_interest + term_contribution
+```
+
+provides the logic for calculating the interest rate assigned to a long
+term account. This is good, we’ve moved that logic out of the UI, and
+this means that in the future we could potentially replace this function
+with more sophisticated business logic
+
+The next set of methods,
+
+``` python
+    def _generate_account_number(self):
+        """
+        Generates an account number
+
+        The generated account number is a 16 character random
+        alphanumeric string
+
+        Returns
+        -------
+        str
+            string representing a valid account number
+        """
+        account_number_string_tuple = (
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+        )  # Valid characters for an account number
+
+        account_number = "".join(
+            random.choices(
+                account_number_string_tuple, k=self.__account_number_string_length
+            )
+        )
+        return account_number
+
+    def create_savings_account(self, account_holder):
+        """
+        Issue a new `SavingsAccount` to the account holder
+
+        Parameters
+        ---------
+        account_holder : str
+            Person whose name the account will be registered in
+
+        Returns
+        -------
+        SavingsAccount
+            The new savings account
+        """
+        return Account.SavingsAccount(
+            self._generate_account_number(), account_holder, self.savings_interest
+        )
+
+    def create_long_term_savings_account(self, account_holder, term_limit):
+        """
+        Issue a new `LongTermSavingsAccount` to the account holder
+
+        Parameters
+        ----------
+        account_holder : str
+            Person whose name the account will be registered in. That person
+            must hold at least one existing savings account
+        term_limit : int
+            term limit in weeks
+
+        Returns
+        -------
+        LongTermSavingsAccount
+            The new long term savings account
+
+        Raises
+        ------
+        ValueError
+            Raised if the term limit is invalid
+        ValueError
+            Raised if the account holder is not eligible for a long term deposit
+        """
+        if not Account.LongTermSavingsAccount.validate_term_limit(term_limit):
+            raise ValueError("Invalid term limit")
+
+        if not self._has_savings_account(account_holder):
+            raise ValueError("Account holder does not have an active savings account")
+
+        return Account.LongTermSavingsAccount(
+            self._generate_account_number(),
+            account_holder,
+            self.calculate_long_term_interest(term_limit),
+            term_limit,
+        )
+
+    def create_credit_account(self, account_holder, withdrawal_limit):
+        """
+        Issue a new credit account to the account holder
+
+        Parameters
+        ----------
+        account_holder : str
+            Person whose name the account will be registered in
+        withdrawal_limit : int | float
+            Maximum amount that can be withdrawn from the account
+
+        Returns
+        -------
+        CreditAccount
+            The new credit account
+
+        Raises
+        ------
+        ValueError
+            Raised if the account holder is not allowed to open the credit account
+        """
+        if not self._has_savings_account(account_holder):
+            raise ValueError("Account holder does not have an active savings account")
+
+        return Account.CreditAccount(
+            self._generate_account_number(),
+            account_holder,
+            self.credit_interest,
+            withdrawal_limit,
+        )
+
+    def _has_savings_account(self, account_holder):
+        """
+        Check if the account holder, holds any savings accounts
+
+        Parameters
+        ----------
+        account_holder : str
+            name of the person who holds accounts with the bank
+
+        Returns
+        -------
+        bool
+            `True` if the account holder has a savings account, else `False`
+        """
+        accounts = self.__account_system.find_users_accounts(account_holder)
+        return any(map(lambda a: isinstance(a, Account.SavingsAccount), accounts))
+```
+
+deal with creating new accounts. The first `_generate_account_number` is
+an internal method that generates a random string for the account
+number. The account number is an alphanumeric string with valid
+characters defined in an internal tuple. If we want to change what
+characters are allowed we can just change the tuple and if we want to
+change it’s length than we change the classes
+`self.__account_number_string_length` attribute value.
+
+We then define functions that create the different accounts. This gives
+us the opportunity to enforce some business logic on the accounts. We
+say that there are no restrictions on opening a `SavingsAccount`,
+Someone wishing to open a `LongTermSavingsAccount` or `CreditAccount`
+must hold an existing savings account, and a `LongTermSavingsAccount`
+must have a valid term length.
+
+The way these functions are written is designed to be simple, so that a
+different implementation of the authoriser interface might have stricter
+business logic. So long as the support the same public functions with
+the same behaviours, an end user should be able to make a drop in
+replacement.
+
+We can now update the [Shell
+program](./Exercises/03_GraphicalBankingApplication/UI/ShellUI/BankAccountApplication.py)
+to use the `AccountAuthoriser` class. You should look through this code
+yourself. The changes are pretty simple but make the code much cleaner,
+and will help us in defining the graphical version because we can focus
+on the information flows in the system
+
+We’ll start by adapting our selection widget to work for accounts. This
+is very straightforward since the widget was written quite generically.
+We just have to change the `populate_listbox` function to handle
+accounts and use the `account_number` rather than a `StockItem`
+`stock_reference`
+
+``` python
+class AccountSelector:
+    """
+    Widget providing a list selection for Accounts
+
+    Parameters
+    -----------
+    receiver
+        A receiver object that is informed of any change in selection.
+        The receiver must support a method, `got_selection(str)`
+    frame : tkinter.Frame
+        The tkinter `Frame` this component is contained in
+    listbox : tkinter.Listbox
+        list box to populate with stock item references
+    """
+
+    def __init__(self, root, receiver):
+        """
+        Create a new `AccountSelector`
+
+        Parameters
+        ----------
+        root
+            The parent frame or window to attach this component to
+        receiver
+            Object to send a message to when the selection changes.
+            Must support a method `got_selection(str)`
+
+        Raises
+        ------
+        AttributeError
+            raised if `receiver` does not support `got_selection`
+        """
+        if not hasattr(receiver, "got_selection"):
+            raise AttributeError(
+                "Supplied receiver does not support got_selection(str)"
+            )
+        self.receiver = receiver
+        self.frame = tkinter.Frame(root)
+        self.listbox = tkinter.Listbox(self.frame)
+        self.listbox.grid(
+            sticky=tkinter.E + tkinter.W + tkinter.N + tkinter.S, row=0, column=0
+        )
+
+        def on_select(event):
+            """
+            Find the selected text in the Listbox and send it to the
+            receiving object
+
+            Bound to the `ListboxSelect` event
+
+            Parameters
+            ----------
+            event
+                event that triggered the function
+
+            Returns
+            -------
+            None
+            """
+            lb = event.widget
+            index = int(lb.curselection()[0])
+            receiver.got_selection(lb.get(index))
+
+        self.listbox.bind("<<ListboxSelect>>", on_select)
+
+    def populate_listbox(self, accounts):
+        """
+        Populate the Listbox with a list of Accounts
+
+        Parameters
+        ----------
+        accounts : list[Account]
+            a list of accounts to add to the selection
+
+        Returns
+        -------
+        None
+        """
+        self.listbox.delete(0, tkinter.END)
+        for account in accounts:
+            self.listbox.insert(tkinter.END, account.account_number)
+```
+
+For later, we’re also going to want to add the ability to create
+accounts so we want to create an menu that lets us select an account
+type to create. We could reuse the list box selection approach. But
+`tkinter` provides an `OptionMenu` widget which lets us select from a
+prepopulated dropdown. Since the account types are fixed at runtime
+we’ll use this.
+
+``` python
+class AccountTypeSelection:
+    """
+    Class for selecting an account type
+
+    Provides a drop-down option menu for selecting an account type and
+    a button for confirming a choice. Will then prompt a dialog for the
+    user to  create that account type
+
+    Attributes
+    ----------
+    frame
+        parent widget
+    receiver
+        object to be notified when a new account is created. Must
+        support the `account_created(account)` method
+    """
+
+    def __init__(self, root, values):
+        """
+        Create a new `AccountTypeSelection` widget
+
+        Parameters
+        ----------
+        root
+            parent widget
+        values : list[str]
+            values to populate the option menu with, corresponding
+            to `Account` class acount_type values
+
+        Raises
+        ------
+        AttributeError
+            raised if receiver does not support the `account_created(account)` method
+        """
+
+        self.frame = tkinter.Frame(root)
+
+        self._current_account_option = tkinter.StringVar(self.frame)
+
+        self._account_type_option_menu = tkinter.OptionMenu(
+            self.frame, self._current_account_option, *values
+        )
+        self._account_type_option_menu.grid(
+            sticky=tkinter.E, row=1, column=0, padx=5, pady=5
+        )
+
+    def get(self):
+        """
+        Get the currently selected option
+
+        Returns
+        -------
+        str
+            Currently selected account option
+        """
+        return self._current_account_option.get()
+```
+
+This widget takes in a parent and then a list of values to populate the
+widget. Reading the documentation an `OptionMenu` takes a
+`tkinter.StringVar`. This is effectively a wrapper around a string that
+means it always holds the currently selected value of the `OptionMenu`.
+We then implement a `get` method which simply returns this current value
+
+Now we want to create a bunch of views to display account information.
+This should look similar to the editor widget, but we’ll only have to
+deal with dynamically updated labels. The difficulty here is that
+different account types have different properties. We could try and
+create one view, and then hide the unused attributes but this isn’t very
+extensible. So what we’ll do is create an base class `AccountView` that
+holds all the common features, and then implement subclasses that
+provide a specific view for each subclass.
+
+As an example, the base class and the `LongTermSavingsAccountView` are
+shown,
+
+``` python
+class AccountView(abc.ABC):
+    """
+    Abstract class for providing a graphical display of an Account
+
+    Handles displaying the attributes common to all accounts. Subclasses
+    should extend this view with subclass specific attributes
+
+    Attributes
+    ----------
+    frame
+        frame containing this widget
+    """
+
+    def __init__(self, root):
+        """
+        Create a new `AccountView`
+
+        Parameters
+        ----------
+        root
+            parent widget
+        """
+        self.frame = tkinter.Frame(root)
+
+        self._account_type_label = tkinter.Label(self.frame, text="")
+        self._account_type_label.grid(
+            sticky=tkinter.E + tkinter.W, row=0, column=0, padx=5, pady=5
+        )
+        self._account_number_label = tkinter.Label(self.frame, text="Account number:")
+        self._account_number_label.grid(
+            sticky=tkinter.E, row=1, column=0, padx=5, pady=5
+        )
+
+        self._balance_label = tkinter.Label(self.frame, text="Balance:")
+        self._balance_label.grid(sticky=tkinter.E, row=2, column=0, padx=5, pady=5)
+
+        self._interest_rate_label = tkinter.Label(self.frame, text="Interest rate:")
+        self._interest_rate_label.grid(
+            sticky=tkinter.E, row=3, column=0, padx=5, pady=5
+        )
+
+    @abc.abstractmethod
+    def clear_view(self):
+        """
+        Clear the current view
+
+        Returns
+        -------
+        None
+        """
+        self._account_type_label.config(text="")
+        self._account_number_label.config(text="Account number:")
+        self._balance_label.config(text="Balance:")
+        self._interest_rate_label.config(text="Interest rate:")
+
+    @abc.abstractmethod
+    def load_into_view(self, account):
+        """
+        Load an account into the view
+
+        Parameters
+        ----------
+        account : `Account.Account`
+            The account to display
+        """
+        self.clear_view()
+        self._account_type_label.config(text="{0}".format(account.account_type))
+        self._account_number_label.config(
+            text="Account number: {0}".format(account.account_number)
+        )
+        self._balance_label.config(text="Balance: {0:.2f}".format(account.balance))
+        self._interest_rate_label.config(
+            text="Interest rate: {0:.4f}".format(account.interest_rate)
+        )
+
+class LongTermSavingsAccountView(AccountView):
+    """
+    Specific view implementation for a `LongTermSavingsAccount`
+    """
+
+    def __init__(self, root):
+        """
+        Create a new `LongTermSavingsAccountView`
+
+        Parameters
+        ----------
+        root
+            parent widget
+        """
+        super().__init__(root)
+
+        self._term_period_label = tkinter.Label(self.frame, text="Term period:")
+        self._term_period_label.grid(sticky=tkinter.E, row=4, column=0, padx=5, pady=5)
+
+        self._start_date_label = tkinter.Label(self.frame, text="Start date:")
+        self._start_date_label.grid(sticky=tkinter.E, row=5, column=0, padx=5, pady=5)
+
+        self._maturation_date_label = tkinter.Label(self.frame, text="Maturation date:")
+        self._maturation_date_label.grid(
+            sticky=tkinter.E, row=6, column=0, padx=5, pady=5
+        )
+
+    def clear_view(self):
+        super().clear_view()
+        self._term_period_label.config(text="Term period:")
+        self._start_date_label.config(text="Start date:")
+        self._maturation_date_label.config(text="Maturation date:")
+
+    def load_into_view(self, account):
+        super().load_into_view(account)
+        self._term_period_label.config(
+            text="Term Period: {0} weeks".format(account.term_period)
+        )
+        self._start_date_label.config(text="Start date: {0}".format(account.start_date))
+        self._maturation_date_label.config(
+            text="Maturation date: {0}".format(account.maturation_date)
+        )
+```
+
+As you can see similar to the stock item editor, we load an `Account` in
+for display, and we can clear the display. We don’t use this screen for
+editing or modifying accounts so that functionality is removed. You can
+see the full set of views (including a dictionary which maps between the
+account `account_type` strings and the corresponding view in the
+[AccountView.py
+file](./Exercises/03_GraphicalBankingApplication/UI/GUI/AccountView.py))
+
+At this point we almost have the barebones of a program. We can
+implement a simple `Entry` widget and a button that lets the user select
+an account holder. We can then populate selection list with that name’s
+accounts, and the user can then select and display them. This is the
+basic framework for the graphical version of the
+`BankAccountApplication` class
+
+``` python
+class BankAccountApplication:
+    """
+    Provides a graphical interface for a Bank Account System
+    """
+
+    def __init__(self, filename, storage_class):
+        """
+        Create a new `BanAccountApplication`
+
+        Parameters
+        ----------
+        filename : str
+            file to save the system in, the program will try to load
+            from the file
+        storage_class : AccountSystem
+            class to use for the underlying data storage. The data will
+            first attempt to be loaded, otherwise a new instance is
+            created
+        """
+        BankAccountApplication.__filename = filename
+        self._program_title = "Bank Account System"
+        try:
+            self.__account_system = storage_class.load(filename)
+        except:  # noqa: E722
+            tkinter.messagebox.showwarning(
+                title=self._program_title,
+                message="Failed to load Accounts\nCreating a new database",
+            )
+            self.__account_system = storage_class()
+        self.__authoriser = AccountFactory.AccountAuthoriser(
+            self.__account_system
+        )  # validates and creates new accounts
+
+        self._username = ""  # no user to start
+        self._selected_account = None  # no account to start
+
+        self._setup_UI()
+
+    def _setup_UI(self):
+        """
+        Configure and setup the user interface
+
+        Returns
+        -------
+        None
+        """
+        # set up program title
+        self._root = tkinter.Tk()
+        title_label = tkinter.Label(self._root, text=self._program_title)
+        title_label.grid(sticky=tkinter.E + tkinter.W, row=0, column=0, padx=5, pady=5)
+
+        # configure the widgets
+        self._setup_views()
+        self._setup_selector()
+        self._setup_balance_editor()
+        self._setup_account_creation()
+
+        # configure the button to launch long-term account management
+        def launch_manage_long_term_view():
+            """
+            Binding function that launches the manage long term account
+            window for the currently selected long term account
+
+            Returns
+            -------
+            None
+            """
+            ...
+
+    def _setup_views(self):
+        """
+        Setup and configure the Account Display section of the program
+
+        Returns
+        -------
+        None
+        """
+        # store the possible views
+        # set default to a blank savings account
+        self._views = AccountView.account_views_dictionary
+        self._view = self._views[Account.SavingsAccount.account_type](self._root)
+        self._view.frame.grid(
+            sticky=tkinter.E + tkinter.W, row=2, column=1, columnspan=2, padx=5, pady=5
+        )
+
+    def _setup_selector(self):
+        """
+        Setup the Account Selection Listbox and the User Entry
+
+        Returns
+        -------
+        None
+        """
+        # setup the selection widget
+        self._selector = AccountSelector.AccountSelector(self._root, self)
+        self._selector.frame.grid(
+            sticky=tkinter.N + tkinter.S, row=2, column=0, rowspan=2, padx=5, pady=5
+        )
+
+        # populate the initial list of accounts
+        self._filter_user_accounts()
+
+        # add the entry box for the username
+        self._username_entry = tkinter.Entry(self._root, width=40)
+        self._username_entry.grid(
+            sticky=tkinter.E + tkinter.W, row=1, column=1, padx=5, pady=5
+        )
+
+        def update_username():
+            """
+            Binding function handling when the username is changed
+
+            This function has to update the current username and then,
+
+            1. Set the list of viewable accounts
+            2. clear the currently selected account and view
+
+            Returns
+            -------
+            None
+            """
+            self._username = self._username_entry.get()
+            self._filter_user_accounts()
+
+            self._selected_account = None
+            self._view.clear_view()
+
+        user_button = tkinter.Button(
+            self._root, text="Select Account Holder:", command=update_username
+        )
+        user_button.grid(sticky=tkinter.E, row=1, column=0, padx=5, pady=5)
+
+    def _filter_user_accounts(self):
+        """
+        Populate the account selection list with the accounts associated
+        with the current user
+
+        Returns
+        -------
+        None
+        """
+        self._selector.populate_listbox(
+            self.__account_system.find_users_accounts(self._username)
+        )
+```
+
+I’ve trimmed some of the `setup_UI` function for now. We can see that we
+setup our widgets, and button so that when the user enters a name, it is
+set as the username and we load their accounts. Now we need to handle
+what happens when the user actually clicks on an account. This is done
+by implementing the `got_selection` method.
+
+``` python
+    def got_selection(self, selection):
+        """
+        Handles the selection in the account list changing
+
+        This method removes the old account view, and then installs the
+        new one loading the selected account. If the account is a matured
+        long term account the button to manage a long term account is activated,
+        else it is disabled.
+
+        Parameters
+        ----------
+        selection : str
+            account number of the selected account
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        TypeError
+            Raised if there is matching View for the returned account
+        """
+        # clear the current view and construct the relevant new one
+        self._view.frame.grid_forget()  # delete the existing view
+        self._selected_account = self.__account_system.get_account(selection)
+        try:
+            self._view = self._views[self._selected_account.account_type](self._root)
+            if (
+                self._selected_account.account_type
+                == Account.LongTermSavingsAccount.account_type
+                and self._selected_account.has_matured()
+            ):
+                # activate the manage long term button if a long term
+                # account is selected and has matured
+                self._manage_long_term_button.config(state=tkinter.NORMAL)
+            else:
+                # keep it disabled
+                self._manage_long_term_button.config(state=tkinter.DISABLED)
+        except KeyError:
+            raise TypeError(
+                "Selection {0} has no corresponding AccountView".format(
+                    self._selected_account.account_type
+                )
+            )
+
+        self._view.frame.grid(
+            sticky=tkinter.E + tkinter.W, row=2, column=1, padx=5, pady=5
+        )
+        # ensure that all subcomponents have the correct selected account
+        self._view.load_into_view(self._selected_account)
+        self._balance_editor.account = self._selected_account
+```
+
+This function is a little complicated. First it removes the current
+`AccountView`. It then gets the newly selected account and uses it’s
+`account_type` to load the correct `AccountView` class. We then create
+that new view, install it into the interface and load the account into
+it. Later we’ll see that we have a button that handles managing a
+matured long term savings account. This function also checks if we’ve
+selected such an account and if so enables the appropriate button to
+access that menu. The last thing we do is ensure that the
+`self._balance_editor` component has the correct account set. Let’s look
+at that component now.
+
+This is a [simple
+component](./Exercises/03_GraphicalBankingApplication/UI/GUI/AccountBalanceEditor.py)
+consisting of an `Entry` box, and two buttons, one to withdraw money and
+one to deposit it. This widget needs to know the current account so that
+it can ensure that the amount entered into the `Entry` box is valid when
+we try to withdraw or deposit.
+
+``` python
+class AccountBalanceEditor:
+    """
+    Class representing a graphical account balance editor
+
+    Attributes
+    ----------
+    receiver
+        object to notify when an account balance in modified.
+        Must support the `balance_changed()` method
+    frame
+        the widget frame containing the component
+    """
+
+    def __init__(self, root, receiver):
+        """
+        Create a new `AccountBalanceEditor`
+
+        Parameters
+        ----------
+        root :
+            parent widget
+        receiver :
+            object supporting the `balance_changed` method to be notified
+            when a balance changes
+
+        Raises
+        ------
+        AttributeError
+            raised if receiver does not support `balance_changed`
+        """
+        if not hasattr(receiver, "balance_changed"):
+            raise AttributeError(
+                "Supplied receiver does not support balance_changed method"
+            )
+        self.receiver = receiver
+        self._current_account = None
+        self.frame = tkinter.Frame(root)
+
+        self._change_balance_entry = tkinter.Entry(self.frame, width=10)
+        self._change_balance_entry.grid(
+            sticky=tkinter.E + tkinter.W, row=0, column=0, columnspan=2, padx=5, pady=5
+        )
+
+        def modify_balance(fn, error_title="Balance Modification Failed"):
+            """
+            binding function for modifying a balance by a provided function `fn`
+
+            Takes an input function `fn` to control how the balance is modified,
+            but handles validating the state and cleaning up the GUI
+
+            Parameters
+            ----------
+            fn : function
+                function to call to modify the balance
+            error_title : str, optional
+                string to use to title the message box
+                if any errors are reported, by default "Balance Modification Failed"
+
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            Errors will result in a message box being displayed to the user
+            """
+            try:
+                fn(float(self._change_balance_entry.get()))
+                self.receiver.balance_changed()
+                self._change_balance_entry.delete(0, tkinter.END)
+            except ValueError as e:
+                tkinter.messagebox.showerror(title=error_title, message=str(e))
+
+        def deposit():
+            """
+            Provides a binding to the deposit method on the current account
+
+            Returns
+            -------
+            None
+            """
+            modify_balance(self._current_account.deposit, error_title="Deposit failed")  # type: ignore
+
+        def withdraw():
+            """
+            Provides a binding to the withdraw method on the current account
+
+            Returns
+            -------
+            None
+            """
+            modify_balance(
+                self._current_account.withdraw,  # type: ignore
+                error_title="Withdraw failed",
+            )
+
+        self._deposit_button = tkinter.Button(
+            self.frame, text="Deposit", command=deposit
+        )
+        self._deposit_button.grid(sticky=tkinter.W, row=1, column=0, padx=5, pady=5)
+        self._deposit_button.config(state=tkinter.DISABLED)
+
+        self._withdraw_button = tkinter.Button(
+            self.frame, text="Withdraw", command=withdraw
+        )
+        self._withdraw_button.grid(sticky=tkinter.E, row=1, column=1, padx=5, pady=5)
+        self._withdraw_button.config(state=tkinter.DISABLED)
+
+    @property
+    def account(self):
+        """
+        account : Account
+            the account being edited
+
+        Raises
+        ------
+        TypeError
+            raised when attempting to set `account` to a type that is not a subclass of `Account.Account`
+        """
+        return self._current_account
+
+    @account.setter
+    def account(self, account):
+        if not isinstance(account, Account.Account) and account is not None:
+            raise TypeError("account must be a subclass of Account or None")
+        self._current_account = account
+        if self._current_account is None:
+            self._withdraw_button.config(state=tkinter.DISABLED)
+            self._deposit_button.config(state=tkinter.DISABLED)
+        else:
+            self._withdraw_button.config(state=tkinter.NORMAL)
+            self._deposit_button.config(state=tkinter.NORMAL)
+```
+
+Otherwise it’s pretty simple. It deactivates the buttons whenever there
+is no account selected, otherwise when the user clicks the buttons it
+will attempt to modify the account balance. Any exceptions are caught
+and reported to the user, otherwise if it succeeds it emits a
+`balance_changed` message that our program can use to update the view
+with the new balance. Let’s look at how this is implemented in the
+`BankAccountApplication`
+
+``` python
+    def _setup_balance_editor(self):
+        """
+        Setup and configure the component for withdrawing and depositing into accounts
+
+        Returns
+        -------
+        None
+        """
+        self._balance_editor = AccountBalanceEditor.AccountBalanceEditor(
+            self._root, self
+        )
+        self._balance_editor.frame.grid(
+            sticky=tkinter.E + tkinter.W, row=3, column=1, padx=5, pady=5
+        )
+        self._balance_editor.account = self._selected_account
+```
+
+`_setup_balance_editor` sets up the widget in the program, and makes
+sure the intial state is valid.
+
+``` python
+    def balance_changed(self):
+        """
+        Handles the selected account balance changing
+
+        Reloads the view to update the displayed balance
+
+        Returns
+        -------
+        None
+        """
+        self._view.load_into_view(self._selected_account)
+```
+
+`balance_changed` then reloads the view. Note we don’t have to do the
+full view reconstruction because we know that the account type hasn’t
+changed
+
+The next step to implement is probably the most complicated and that is
+account creation. The basic idea is as follows. The user should select
+an account type from a drop down menu, then click a button to apply for
+that account. A new dialog pops up asking them to confirm that they want
+to open the account, and requesting any additional information. If the
+account is successfully created the user is informed and the dialog
+closes, otherwise the error is also reported and they can potentially
+correct it.
+
+Let’s look at how we’ll handle the creation window. Each different
+account type has different requirements. For example a savings account
+has no additional information required, and no restrictions but a term
+deposit must ask for a term length and then validate that the term
+length is valid and the user is eligable to hold that account. So the
+basic idea is to create a basic `ApplicationForm` widget, that provides
+a generic interface for different accounts to implement. The basic
+interface looks as follows,
+
+``` python
+class ApplicationForm(abc.ABC):
+    """
+    Abstract class representing an account application form
+
+    This class should be overwritten with the required fields to get
+    the information required from the user to apply for an account.
+
+    The information should be accessed via the `get` method which should
+    be overwritten by a class
+
+    Attributes
+    ----------
+    frame
+        frame containing the elements of the widget
+    """
+
+    def __init__(self, root):
+        """
+        create a new `ApplicationForm`
+
+        This is an abstract class and the constructor should not be
+        called directly
+
+        Parameters
+        ----------
+        root
+            parent widget
+        """
+        self.frame = tkinter.Frame(root)
+
+    @abc.abstractmethod
+    def get(self):
+        """
+        Return the details of an account application
+
+        The details should be returned in the format of a dictionary
+        containing key : value pairs where the key's are strings describing
+        required attributes and the values are the associated values
+
+        Returns
+        -------
+        dict[str, Any]
+            key : value pairs describing an account application
+        """
+        return {}
+```
+
+The idea is simple. The `__init__` creates whatever widgets are needed
+to get information from the user, and `get` returns that as a dictionary
+where the keys are the parameters to the relevant account factory
+function in `AccountAuthoriser` and the value is the argument. You can
+see the three implementations in
+[AccountCreation.py](./Exercises/03_GraphicalBankingApplication/UI/GUI/AccountCreation.py),
+but we’ll look at the `CreditAccountApplicationForm`
+
+``` python
+class CreditAccountApplicationForm(ApplicationForm):
+    """
+    Represents a graphical application form for a credit account
+    """
+
+    def __init__(self, root):
+        """
+        Create a new `CreditAccountApplicationForm`
+
+        Parameters
+        ----------
+        root
+            parent widget
+        """
+        super().__init__(root)
+        self._withdrawal_limit_entry = tkinter.Entry(self.frame, width=10)
+        withdrawal_limit_label = tkinter.Label(
+            self.frame, text="Enter Withdrawal limit:"
+        )
+
+        withdrawal_limit_label.grid(sticky=tkinter.E, row=0, column=0, padx=5, pady=5)
+        self._withdrawal_limit_entry.grid(
+            sticky=tkinter.E, row=0, column=1, padx=5, pady=5
+        )
+
+    def get(self):
+        """
+        Return the details for a credit account
+
+        Returns
+        -------
+        dict[str, int]
+            dictionary containing the max withdrawal limit keyed by "withdrawal_limit"
+        """
+        return {"withdrawal_limit": int(self._withdrawal_limit_entry.get())}
+```
+
+You can see that this creates a widget with an `Entry` to get the
+maximum withdrawal limit, which is then returned in the `get`
+dictionary. As before we provide a dictionary that let’s user select the
+appropriate application form given an `account_type` string.
+
+``` python
+account_creation_dictionary = {
+    Account.SavingsAccount.account_type: SavingsAccountApplicationForm,
+    Account.LongTermSavingsAccount.account_type: LongTermSavingsAccountApplicationForm,
+    Account.CreditAccount.account_type: CreditAccountApplicationForm,
+}
+"""
+Dictionary mapping `Account.account_type` values to the respective application form class
+"""
+```
+
+We now have these widgets, but what we want to do is to embed them in a
+window. We’ll do this in a two step process. We’re going to do a bit of
+dependency injection magic. When we create an account we want to do the
+same general thing. Display the relevant widget, then have the user
+enter that information into the widget. They’ll then click the button
+which should dispatch the information to the relevant function to create
+an account. We ensure that the account is created successfully and
+inform the user, if it isn’t we inform the user of the error. This basic
+logic is the same but we have an issue, the widget is different for each
+class, and the required constructor is different for each. We want to
+avoid redoing all the presentation logic that just displays the widget
+and informs the user about the attempt to create an account. So we’ll
+create a higher level widget `AccountCreationWidget`
+
+``` python
+class AccountCreationWidget:
+    """
+    Provides a basic widget for Account Creation
+
+    This widget is designed to by contained in a separate dialog window. It displays
+    a button for creating account, and logic for creating the account on click.
+
+    The widget uses dependency injection and has a specific workflow,
+
+    1. Create the AccountCreationWidget assigning its `root` as the dialog
+       and a `receiver` to accept the `account_created(account)` message
+    2. Create a widget to display to the user, to accept any required information.
+       This widget should have the `AccountCreationWidget` as the parent, and be
+       placed into the frame of the widget at `row=0, column=0` on the grid
+    3. Define a function, that takes no arguments and creates an account. This function
+       must use `ValueError` to indicate any failure conditions. The design intent
+       is that this accesses any required input from the widget supplied in step 2
+    4. Register the function by calling `register_account_creation_factory` and
+       passing the function
+    5. Accounts will now be created when the button is clicked, the call to
+       `create_account` will defer to the registered function for account creation
+
+    This allows the same generic window and user input validation logic to be
+    used to display different account application forms. See the `ApplicationForm`
+    class for an example widget designed to work with this class
+
+    Attributes
+    ----------
+    frame
+        the frame containing this component. The user should hook a widget onto
+        this frame using the grid position `row=0, column=0`
+    receiver
+        object to receive the `account_created(account)` message
+    """
+
+    def __init__(self, root, receiver):
+        """
+        Create a new `AccountCreationWidget`
+
+        Parameters
+        ----------
+        root
+            parent widget
+        receiver
+            object to receive the `account_created(account)` message
+        """
+        if not hasattr(receiver, "account_created"):
+            raise AttributeError(
+                "receiver does not support the account_created(account) method"
+            )
+        self.frame = tkinter.Frame(root)
+        self.receiver = receiver
+        self._root = root
+        self._factory_fn = None
+        dialog_button = tkinter.Button(
+            self.frame, text="Create account", command=self.create_account
+        )
+        dialog_button.grid(
+            sticky=tkinter.E + tkinter.W, row=1, column=0, padx=5, pady=5
+        )
+
+    def register_account_creation_factory(self, account_creation_factory):
+        """
+        Register a function for `Account` creation
+
+        The function should take no arguments and return an `Account` object
+        when called, else raise `ValueError` if an object cannot be created
+
+        Parameters
+        ----------
+        account_creation_factory : callable[None,Account.Account]
+            factory function to create accounts. Must take no arguments and
+            return an `Account` subclass on call. May raise `ValueError` to
+            indicate failures
+
+        Returns
+        -------
+        None
+        """
+        self._factory_fn = account_creation_factory
+
+    def create_account(self):
+        """
+        Create a new account
+
+        Defers to the registered factory function to create the account.
+        Inform the user of the result and close the dialog box on success
+
+        Returns
+        -------
+        None
+        """
+        try:
+            if self._factory_fn is None:
+                raise TypeError(
+                    "AccountCreationWidget has no registered factory, did you forget to call register_account_creation_factory?"
+                )
+            account = self._factory_fn()
+            tkinter.messagebox.showinfo(
+                title="{0} created".format(account.account_type),
+                message="Created a new {0}\n{1} - {2}".format(
+                    account.account_type, account.account_holder, account.account_number
+                ),
+            )
+            self.receiver.account_created(account)
+            self._root.grab_release()
+            self._root.destroy()
+        except ValueError as e:
+            tkinter.messagebox.showinfo(
+                title="Account creation failed",
+                message="Failed to create an account\n:{0}".format(e),
+            )
+```
+
+This code probably takes a bit to understand, but the idea is as
+follows, we create the widget that contains the button for creating an
+account. We leave the grid location `row=0, column=0` empty. The person
+who instantiates this object should then embed the appropriate
+application form into that grid location by making the
+`AccountCreationWidget`’s `frame` the parent. The user then registers a
+function via `register_account_creation_function`. This function
+formally just takes no arguments and returns an account (or raises a
+`ValueError` if creating the account fails)
+
+The logic is as follows. We have to create parents before children, so
+we can’t pass the child widget in, so we leave the frame public and
+create it after. The factory function is expected to read the
+information it needs from the application form to create an `Account` so
+it also can’t be passed in at initialisation. So we create the
+`AccountCreationWidget`, then create our `ApplicationForm` and display
+it on the `AccountCreationWidget`. We then define and pass our factory
+function. The `AccountCreationWidget` then handles all the display logic
+around creating an acccount by defers to the registered function to
+actually do it. A client can respond to an account being created by
+being registered as the receiver object in which case it must provide a
+`account_created(account)` method which enables it to receive the new
+account.
+
+Let’s look at it in the `BankAccountApplication`
+
+``` python
+    def _setup_account_creation(self):
+        """
+        Setup and configure the component for creating new accounts
+
+        Returns
+        -------
+        None
+        """
+        creation_frame = tkinter.Frame(self._root)
+
+        # create account label and the account selection option menu
+        create_account_label = tkinter.Label(creation_frame, text="Open a New Account")
+        create_account_label.grid(
+            sticky=tkinter.E + tkinter.W, row=0, column=0, columnspan=2, padx=5, pady=5
+        )
+        account_creator = AccountSelector.AccountTypeSelection(
+            creation_frame, Account.account_dictionary.keys()
+        )
+        account_creator.frame.grid(
+            sticky=tkinter.E + tkinter.W, row=1, column=0, padx=5, pady=5
+        )
+
+        creation_frame.grid(sticky=tkinter.E, row=4, column=0, padx=5, pady=5)
+```
+
+The setup so far is pretty simple, we just add the label and the
+`AccountTypeSelection` widget discussed earlier. Now we need to setup
+our button for creating a new account. This needs to create the new
+window, create the application form and define the appropriate function.
+This is implemented in the `applied_for_account` function in the
+`_setup_account_creation` function
+
+``` python
+def applied_for_account():
+            """
+            binding function that takes the current selected account type
+            and creates the appropriate window for creating a new account
+
+            Returns
+            -------
+            None
+            """
+            if self._username == "":
+                tkinter.messagebox.showerror(
+                    message="Could not create account\nNo account holder selected"
+                )
+                return
+
+            try:
+                account_type = account_creator.get()
+
+                # set up the window to display the application form
+                dlg = tkinter.Toplevel(self._root)
+                dialog_widget = AccountCreation.AccountCreationWidget(dlg, self)
+
+                # create the application form and add it to the window
+                application_form = AccountCreation.account_creation_dictionary[
+                    account_type
+                ](dialog_widget.frame)
+                application_form.frame.grid(
+                    sticky=tkinter.E + tkinter.W, row=0, column=0, padx=5, pady=5
+                )
+
+                def factory_fn():
+                    """
+                    Factory function for creating a new account
+
+                    Get's the appropriate factory method from the authoriser
+                    and links to the application form widget to receive any
+                    additional input
+
+                    Implicitly assumes that the returned dictionary keys
+                    correspond to the function arguments so that they can be
+                    expanded out with `**`
+
+                    Returns
+                    -------
+                    Account.Account
+                        A new account object
+                    """
+                    return self.__authoriser.factory_map[account_type](
+                        self._username, **application_form.get()
+                    )
+
+                dialog_widget.register_account_creation_factory(factory_fn)
+                dialog_widget.frame.grid()
+                dlg.transient(self._root)
+                dlg.wait_visibility()
+                dlg.grab_set()
+                dlg.wait_window()
+
+            except KeyError as e:
+                tkinter.messagebox.showerror(
+                    message="Could not create account:\n{0}".format(e)
+                )
+
+        new_account_button = tkinter.Button(
+            creation_frame, text="Apply for account", command=applied_for_account
+        )
+        new_account_button.grid(
+            sticky=tkinter.E + tkinter.W, row=2, column=0, padx=5, pady=5
+        )
+```
+
+First is the account holder isn’t specified we throw an error and stop.
+Otherwise we get the account type, we then create the new window and the
+`AccountCreationDialog`. We then use the account type to get and create
+the application form and place it in the window. We then define our
+factory function. We use the `factory_map` attribute on the
+`AccountAuthoriser` to access the appropriate construction method, then
+get the required arguments from the widget. This looks like,
+
+``` python
+                def factory_fn():
+                    """
+                    Factory function for creating a new account
+
+                    Get's the appropriate factory method from the authoriser
+                    and links to the application form widget to receive any
+                    additional input
+
+                    Implicitly assumes that the returned dictionary keys
+                    correspond to the function arguments so that they can be
+                    expanded out with `**`
+
+                    Returns
+                    -------
+                    Account.Account
+                        A new account object
+                    """
+                    return self.__authoriser.factory_map[account_type](
+                        self._username, **application_form.get()
+                    )
+```
+
+Which is pretty clean once you understand the logic. The
+`**application_form.get()` converts the dictionary into additional
+keyword arguments. For example, when used to create a `CreditAccount`
+this function call is effectively,
+
+``` python
+return self.__authoriser.create_credit_account(self.__username, withdrawal_limit=value)
+```
+
+where `value` is whatever number we’ve extracted from the application
+form. The remaining code then connects this function to the widget and
+handles opening the widget. We then have to implement the
+`account_created(account)` function,
+
+``` python
+    def account_created(self, account):
+        """
+        Handles a new account being created
+
+        Stores the new account in the storage class and reloads the
+        list of accounts
+
+        Parameters
+        ----------
+        account : Account.Account
+            newly created account
+
+        Returns
+        -------
+        None
+        """
+        self.__account_system.add_new_account(account)
+        self._filter_user_accounts()
+```
+
+This just adds the new account to the system and then updates the
+displayed list of accounts
+
+The last widget we want to have is a basic window for managing a matured
+long term savings account. We’ve already seen that there’s a button that
+opens this window, but we’ll show that code now (contained with the
+`_setup_UI` method),
+
+``` python
+        def launch_manage_long_term_view():
+            """
+            Binding function that launches the manage long term account
+            window for the currently selected long term account
+
+            Returns
+            -------
+            None
+            """
+            if self._selected_account is None:
+                tkinter.messagebox.showerror(message="No account selected")
+                return
+            dlg = tkinter.Toplevel(self._root)
+            manage_view = ManageLongTermAccountView.ManageLongTermAccountView(
+                dlg, self._selected_account, self.__account_system
+            )
+            manage_view.frame.grid()
+            other_accounts = set(
+                self.__account_system.find_users_accounts(self._username)
+            ).difference({self._selected_account})
+            manage_view.populate_listbox(other_accounts)
+            dlg.transient(self._root)
+            dlg.wait_visibility()
+            dlg.grab_set()
+            dlg.wait_window()
+
+        self._manage_long_term_button = tkinter.Button(
+            self._root, text="Manage Term Account", command=launch_manage_long_term_view
+        )
+        self._manage_long_term_button.grid(
+            sticky=tkinter.W, row=4, column=1, padx=5, pady=5
+        )
+        self._manage_long_term_button.config(state=tkinter.DISABLED)
+```
+
+You can see that `launch_manage_long_term_view` first checks that we
+have an account selected, then creates the dialog, including a
+`ManageLongTermAccountView` widget we’ll look at. We can see this widget
+takes the currently selected account and the account system. We then get
+the set of accounts associated with the current user that are *not* the
+currently selected account and use these to populate the selection list
+of the
+[`ManageLongTermAccountView`](./Exercises/03_GraphicalBankingApplication/UI/GUI/ManageLongTermAccountView.py).
+
+Let’s now look at that widget,
+
+``` python
+class ManageLongTermAccountView:
+    """
+    Graphical widget for managing a long term account
+
+    Provides the user with a list to select their other accounts. The user
+    can then either reinvest the matured account or transfer the savings in
+    the account into another account
+
+    Attributes
+    ----------
+    frame
+        the frame holding the graphical component
+    """
+
+    def __init__(self, root, account, account_system):
+        """
+        Create a new `ManageLongTermAccountView`
+
+        Parameters
+        ----------
+        root
+            parent widget
+        account : Account.LongTermSavingsAccount
+            The long term account being managed
+        account_system : AccountSystem.AccountSystem
+            The account system storing the system accounts
+        """
+        self._root = root
+        self.__account_system = account_system
+        self.__selected_transfer_account = None  # no transfer account to start
+        self.__account = account
+
+        self.frame = tkinter.Frame(root)
+
+        # create the views for the long term account, the prospective
+        # transfer account and the list to select other accounts
+        # load the managed account into the view
+        self._selector = AccountSelector.AccountSelector(self.frame, self)
+        self._lt_view = AccountView.LongTermSavingsAccountView(self.frame)
+        self._lt_view.load_into_view(self.__account)
+        self._other_views = AccountView.account_views_dictionary
+        self._other_view = self._other_views[Account.SavingsAccount.account_type](
+            self.frame
+        )
+        self._lt_view_label = tkinter.Label(self.frame, text="Matured Account")
+        self._other_view_label = tkinter.Label(self.frame, text="Transfer Account")
+        self._selector_label = tkinter.Label(self.frame, text="Select Transfer Account")
+
+        self._lt_view.frame.grid(
+            sticky=tkinter.W + tkinter.N, row=1, column=0, padx=5, pady=5
+        )
+        self._other_view.frame.grid(
+            sticky=tkinter.E + tkinter.N, row=1, column=1, padx=5, pady=5
+        )
+        self._selector.frame.grid(
+            sticky=tkinter.E + tkinter.N, row=1, column=2, padx=5, pady=5
+        )
+        self._lt_view_label.grid(sticky=tkinter.W, row=0, column=0, padx=5, pady=5)
+        self._other_view_label.grid(sticky=tkinter.E, row=0, column=1, padx=5, pady=5)
+        self._selector_label.grid(sticky=tkinter.E, row=0, column=2, padx=5, pady=5)
+
+        def dismiss():
+            """
+            binding to dismiss the parent window when the account is no longer being managed
+
+            Returns
+            -------
+            None
+            """
+            self._root.grab_release()
+            self._root.destroy()
+
+        def reinvest():
+            """
+            binding to reinvest an account
+
+            Returns
+            -------
+            None
+            """
+            self.__account.manage_account()
+            tkinter.messagebox.showinfo(message="Reinvested account")
+            dismiss()
+
+        def transfer():
+            """
+            binding to transfer funds to another account
+
+            Requires a selected transfer account. If one is selected will
+            attempt to transfer the funds into that account
+
+            Returns
+            -------
+            None
+            """
+            try:
+                if self.__selected_transfer_account is None:
+                    raise ValueError("No transfer account selected")
+                self.__account.manage_account(self.__selected_transfer_account)
+                tkinter.messagebox.showinfo(
+                    message="Transferred funds from {0} to {1}".format(
+                        self.__account.account_number,
+                        self.__selected_transfer_account.account_number,
+                    )
+                )
+            except ValueError as e:
+                tkinter.messagebox.showerror(
+                    message="Failed to transfer account:\n{0}".format(e)
+                )
+                return
+            dismiss()
+
+        button_frame = tkinter.Frame(self.frame)
+        reinvest_button = tkinter.Button(
+            button_frame, text="Reinvest", command=reinvest
+        )
+        reinvest_button.grid(sticky=tkinter.W, row=0, column=0, padx=5, pady=5)
+        self._transfer_button = tkinter.Button(
+            button_frame, text="Transfer", command=transfer
+        )
+        self._transfer_button.grid(sticky=tkinter.W, row=0, column=1, padx=5, pady=5)
+        button_frame.grid(sticky=tkinter.E + tkinter.W, row=2, column=2, padx=5, pady=5)
+
+    def got_selection(self, selection):
+        """
+        Handles the current selection being changed
+
+        Loads the newly selected transfer account into the view and
+        ensures the transfer button is enabled
+
+        Parameters
+        ----------
+        selection : str
+            account number for the selected transfer account
+
+        Returns
+        -------
+        None
+        """
+        self._transfer_button.config(state=tkinter.NORMAL)
+        self._other_view.frame.grid_forget()  # delete the existing view
+        self.__selected_transfer_account = self.__account_system.get_account(selection)
+        try:
+            self._other_view = self._other_views[
+                self.__selected_transfer_account.account_type
+            ](self.frame)
+        except KeyError:
+            raise TypeError(
+                "selection {0} has no corresponding AccountView".format(
+                    self.__selected_transfer_account.account_type
+                )
+            )
+
+        self._other_view.load_into_view(self.__selected_transfer_account)
+        self._other_view.frame.grid(
+            sticky=tkinter.E + tkinter.N, row=1, column=1, padx=5, pady=5
+        )
+
+    def populate_listbox(self, accounts):
+        """
+        Populate the selection list with the given accounts
+
+        Attributes
+        ----------
+        accounts : list[Account.Account]
+            list of accounts to populate the list with
+
+        Returns
+        -------
+        None
+        """
+        self._selector.populate_listbox(list(accounts))
+```
+
+It should be pretty similar to our main window. What it does is create a
+window where we can see how currently selected long term account using a
+`LongTermSavingsAccountView`, then next to it the optionally selected
+account that we might transfer into to is also displayed. Finally the
+rightmost column contains a selection list that we can use to select
+which account we want to transfer into. There are two buttons, reinvest
+which simply reinvests the account, and transfer which will attempt to
+transfer the account.
+
+The program that actually runs the code is
+[BankAccountGUI.py](./Exercises/03_GraphicalBankingApplication/BankAccountGUI.py).
+It has basically no changes compared to the shell version which is what
+we want. Like with the final graphical fashion shop, we can use a shell
+interface or a graphical interface to the same underlying data model
+
+#### Design Considerations
+
+Now that we’re finished it’s worth again looking at the final design.
+I’m fairly happy with the final result in that the coupling feels quite
+low. This can be seen with the `LongTermSavingsAccountView` which is
+able to easily reuse the `AccountSelector` and `AccountView` components
+made for the main window. In my initial design the components for
+account creation were quite tightly coupled, but this final version
+seems pretty simple to me and concentrates most of the decision logic in
+the main program, the graphical components for the most part only handle
+graphical events.
+
+Our changes with the `AccountSystem` have also decoupled business logic
+and presentation, which made it easy to keep the shell version
+compatible even when we made small A.P.I changes to support the factory
+approach we used for the GUI.
+
+Future directions for this might be to add the ability to transfer money
+between accounts owned by different people. We could probably modify a
+version of the `LongTermSavingsAccountView` to do this pretty easily.
+
+In terms of the data model, at this point it would probably be pretty
+straightforward to add more logic to how accounts are made such as
+loyalty tiers for credit cards that impact withdrawal limit within
+mininal GUI changes due to the decoupling. The main issue with the model
+though is that we still have accounts having interest rates fixed when
+they’re created, and the value hard coded into the authorisation class.
+This is fine for a toy model but probably the next step if we were to
+continue expanding this project into something more sophisticated
+
 ## Summary
 
+- Graphical user interfaces are an alternative presentation style to a
+  shell-based one
+- Typically they consist of multiple interacting components that
+  represent screen elements
+  - e.g. text labels
+  - text entry boxes
+  - buttons to be pressed
+- Screen display or geometry managers handle how components are
+  displayed on a screen
+- Typically a grid layout is the most common approach to laying out an
+  interface
+  - Objects can be placed on specific grid positions,
+  - Made to span multiple rows and columns
+  - Stickied to certain axes to fill them
+- Objects on the screen can generate events
+  - Events are mapped onto calls to a python function (or class method)
+  - E.g. Button’s typically execute a command when they’re clicked
+- Programs can bind events generated by other methods
+  - e.g. mouse movements or clicks
+  - keyboard presses or releases
+
 ## Questions and Answers
+
+1. *Is* `tkinter` *the only way to create Graphical User Interfaces in
+    python?*
+
+    - No, but it does come bundled with the standard library
+      - Generally easy to get started with
+    - Some other examples are
+      1. [Kivy](https://kivy.org/)
+      2. [PyQt](https://www.pythontutorial.net/pyqt/) or the offical
+          [Pyside](https://doc.qt.io/qtforpython-6/)
+      3. [Dear
+          PyGUI](https://dearpygui.readthedocs.io/en/latest/index.html)
+    - Diffrent graphical user interface frameworks have different design
+      philosophies but the general concepts should carry over
+
+2. *Are programs with a graphical user interface easier to create than
+    those that use a command shell?*
+
+    - It probably depends on the individual and their interest
+    - I personally enjoy writing small command line based programs more
+      so find the quicker to write
+    - Graphical user interfaces can typically control user errors easier
+      because they have more control over what the user can do
+      - However positioning, wiring and ensuring logic flow through the
+        program can be more complicated and lead to more bugs
+      - They can also be harder to write in a way that is flexible,
+        generic and extensible
+
+3. *Is a program with a GUI still a “data processing” program?*
+
+    - Depends how you like to think about it
+    - Rather than being a single pipeline of data in and then data out
+      we have a series of events
+    - Each event can be thought of as a little bit of data in (the
+      event) and then data out (the handling of the event)
+    - You can consider a GUI as a series of interacting mini-programs
+    - When creating software components and GUIs you typically have to
+      organise as much as you code
+      - You need to ensure that messages from one source get to another
+      - We also want to seperate different UI components that are
+        distinct from each
+      - Then also want to seperate the presentation UI elements from the
+        data elements themselves
+      - We’ve seen the advantage of this in the fashion shop and bank
+        account programs
+      - But we’ve also seen that it can take a few iterations and add
+        complexity to make it work
