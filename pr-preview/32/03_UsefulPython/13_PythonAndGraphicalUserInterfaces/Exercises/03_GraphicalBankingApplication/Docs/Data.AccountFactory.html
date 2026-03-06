@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module Data.AccountFactory</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="Data.html" class="white">Data</a>.AccountFactory</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Exercises/03_GraphicalBankingApplication/Data/AccountFactory.py">/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Exercises/03_GraphicalBankingApplication/Data/AccountFactory.py</a></td></tr></table>
+    <p><span class="code">Exercise&nbsp;13.3b&nbsp;Account&nbsp;Factory<br>
+&nbsp;<br>
+Provides&nbsp;implementations&nbsp;for&nbsp;instantiating&nbsp;bank&nbsp;accounts&nbsp;with&nbsp;valid&nbsp;id's&nbsp;and&nbsp;interest&nbsp;rates<br>
+&nbsp;<br>
+Classes<br>
+-------<br>
+<a href="#AccountAuthoriser">AccountAuthoriser</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;representing&nbsp;an&nbsp;account&nbsp;authorisation&nbsp;system&nbsp;that&nbsp;issues&nbsp;new&nbsp;accounts&nbsp;with&nbsp;an&nbsp;account&nbsp;number,&nbsp;interest&nbsp;rates,&nbsp;and&nbsp;limits</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="Data.Account.html">Data.Account</a><br>
+</td><td class="multicolumn"><a href="random.html">random</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="Data.AccountFactory.html#AccountAuthoriser">AccountAuthoriser</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="AccountAuthoriser">class <strong>AccountAuthoriser</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#AccountAuthoriser">AccountAuthoriser</a>(account_system)<br>
+&nbsp;<br>
+Class&nbsp;representing&nbsp;a&nbsp;system&nbsp;for&nbsp;authorising&nbsp;accounts&nbsp;and&nbsp;issuing&nbsp;interest&nbsp;rates<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+savings_interest&nbsp;:&nbsp;int&nbsp;|&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;monthly&nbsp;interest&nbsp;applied&nbsp;to&nbsp;new&nbsp;savings&nbsp;accounts<br>
+credit_interest&nbsp;:&nbsp;int&nbsp;|&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;monthly&nbsp;interest&nbsp;applied&nbsp;to&nbsp;new&nbsp;credit&nbsp;accounts<br>
+factory_map&nbsp;:&nbsp;dict[str,&nbsp;function]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mapping&nbsp;from&nbsp;an&nbsp;account&nbsp;type&nbsp;string&nbsp;to&nbsp;the&nbsp;respective&nbsp;factory&nbsp;function<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="AccountAuthoriser-__init__"><strong>__init__</strong></a>(self, account_system)</dt><dd><span class="code">Create&nbsp;a&nbsp;new&nbsp;`<a href="#AccountAuthoriser">AccountAuthoriser</a>`<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+account_system&nbsp;:&nbsp;AccountSystem<br>
+&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;that&nbsp;supports&nbsp;the&nbsp;Account&nbsp;System&nbsp;Data&nbsp;Management&nbsp;API</span></dd></dl>
+
+<dl><dt><a name="AccountAuthoriser-calculate_long_term_interest"><strong>calculate_long_term_interest</strong></a>(self, term_limit)</dt><dd><span class="code">Calculates&nbsp;the&nbsp;bonus&nbsp;interest&nbsp;assigned&nbsp;to&nbsp;a&nbsp;long&nbsp;term&nbsp;savings&nbsp;account<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+term_limit&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;proposed&nbsp;term&nbsp;limit&nbsp;in&nbsp;weeks<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;interest&nbsp;rate&nbsp;for&nbsp;a&nbsp;long-term&nbsp;savings&nbsp;account</span></dd></dl>
+
+<dl><dt><a name="AccountAuthoriser-create_credit_account"><strong>create_credit_account</strong></a>(self, account_holder, withdrawal_limit)</dt><dd><span class="code">Issue&nbsp;a&nbsp;new&nbsp;credit&nbsp;account&nbsp;to&nbsp;the&nbsp;account&nbsp;holder<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+account_holder&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Person&nbsp;whose&nbsp;name&nbsp;the&nbsp;account&nbsp;will&nbsp;be&nbsp;registered&nbsp;in<br>
+withdrawal_limit&nbsp;:&nbsp;int&nbsp;|&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Maximum&nbsp;amount&nbsp;that&nbsp;can&nbsp;be&nbsp;withdrawn&nbsp;from&nbsp;the&nbsp;account<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+CreditAccount<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;new&nbsp;credit&nbsp;account<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Raised&nbsp;if&nbsp;the&nbsp;account&nbsp;holder&nbsp;is&nbsp;not&nbsp;allowed&nbsp;to&nbsp;open&nbsp;the&nbsp;credit&nbsp;account</span></dd></dl>
+
+<dl><dt><a name="AccountAuthoriser-create_long_term_savings_account"><strong>create_long_term_savings_account</strong></a>(self, account_holder, term_limit)</dt><dd><span class="code">Issue&nbsp;a&nbsp;new&nbsp;`LongTermSavingsAccount`&nbsp;to&nbsp;the&nbsp;account&nbsp;holder<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+account_holder&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Person&nbsp;whose&nbsp;name&nbsp;the&nbsp;account&nbsp;will&nbsp;be&nbsp;registered&nbsp;in.&nbsp;That&nbsp;person<br>
+&nbsp;&nbsp;&nbsp;&nbsp;must&nbsp;hold&nbsp;at&nbsp;least&nbsp;one&nbsp;existing&nbsp;savings&nbsp;account<br>
+term_limit&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;term&nbsp;limit&nbsp;in&nbsp;weeks<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+LongTermSavingsAccount<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;new&nbsp;long&nbsp;term&nbsp;savings&nbsp;account<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Raised&nbsp;if&nbsp;the&nbsp;term&nbsp;limit&nbsp;is&nbsp;invalid<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Raised&nbsp;if&nbsp;the&nbsp;account&nbsp;holder&nbsp;is&nbsp;not&nbsp;eligible&nbsp;for&nbsp;a&nbsp;long&nbsp;term&nbsp;deposit</span></dd></dl>
+
+<dl><dt><a name="AccountAuthoriser-create_savings_account"><strong>create_savings_account</strong></a>(self, account_holder)</dt><dd><span class="code">Issue&nbsp;a&nbsp;new&nbsp;`SavingsAccount`&nbsp;to&nbsp;the&nbsp;account&nbsp;holder<br>
+&nbsp;<br>
+Parameters<br>
+---------<br>
+account_holder&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Person&nbsp;whose&nbsp;name&nbsp;the&nbsp;account&nbsp;will&nbsp;be&nbsp;registered&nbsp;in<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+SavingsAccount<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;new&nbsp;savings&nbsp;account</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
