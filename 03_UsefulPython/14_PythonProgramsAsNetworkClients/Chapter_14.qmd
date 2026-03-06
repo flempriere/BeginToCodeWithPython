@@ -1,0 +1,295 @@
+---
+title: "Chapter 14: Python Programs as Network Clients"
+---
+
+## Notes
+
+- In this chapter we'll look at the basics of computer networking
+- These principles allow computers to talk to each other, including over the internet
+- We'll look at fetching information from web servers
+- Discuss standards for data transfer between programs
+
+### Computer Networking
+
+- Networks let computers talk to each other
+
+#### Network communication
+
+- Some form of connection, e.g. wires, radio,  fibre optics
+- Communication takes place by sending "bits" over the network
+    - A $0$ or $1$ which may be represented by a varying voltage, flashing light etc.
+- Computer's have to agree on the understanding  of:
+    - What a "bit" is
+    - How to interpret a sequence of bits
+- These are called protocols
+- We refer to these sequence of protocols as layers
+    - The physical layer is the protocol governing what a signal is
+    - The transport layer is the protocol that tells us to interpret a message
+
+```{mermaid}
+block-beta
+    columns 3
+
+    classDef BG stroke:transparent, fill:transparent
+
+    title["Network Message Protocols"]:3
+
+    class title BG
+
+    class def BG
+    class defDescr BG
+
+    MessageProtocol["Message Protocol"]:2
+    TransportLayer["Transport Layer"]
+
+    class TransportLayer BG
+
+
+    Voltage["Voltage"]
+    Lights["Lights"]
+    PhysicalLayer["Physical Layer"]
+
+    class PhysicalLayer BG
+```
+
+#### Address Messages
+
+- Often there are multiple computers on the network
+- Need some way of specifying which computer we want to talk to
+- Messages typically have two components
+    1. Address message
+        - Specifies which computer to send the message to
+    2. Message contents
+        - The actual specifics of the message being sent
+- Networks may also have a broadcast address
+    - Allows messages to be sent or received from anyone
+- Other people can potentially eavesdrop on your network traffic!
+    - Secure websites will communicate over networks by encrypting the network traffic
+
+:::{.callout-caution}
+**Be careful what you send out over unencrypted networks**
+
+Because anyone can potentially intercept and read what you send over an unencrypted network you should never send any secrets such as passwords over them.
+:::
+
+#### Hosts and Ports
+
+- What do we do if we want to send messages to talk to multiple people at the same address?
+    - We need to improve the protocol
+    - We could require an address to be *more* specific so that it can accurately identify the recipient
+- A single computer might provide multiple different services
+    - e.g. display webpages, provide video content, etc.
+- Since it's the same computer it has the same address
+- Need some way of specifying which specific service we want
+- The solution is called *ports*
+    - A *port* is a number identifying a computer provided service
+    - Port $80$ is traditionally reserved for serving webpages
+    - ie. when connecting to a website, you connect to the computer, then port $80$ to get the webpage
+- Computers typically have to tell a network what services they are offering and on what port
+- Ports are effectively a way of allowing programs on different computers to talk to each other
+- Many networks have *firewalls*
+    - Firewalls are designed to restrict data packets to specific ports
+    - Protect a network client from malicious programs
+
+#### Send Network Messages with Python
+
+- We'll write a python program to send a message
+- We first have to define the protocol we'll use
+    - We'll use the *[User Data Protocol (UDP)](https://en.wikipedia.org/wiki/User_Datagram_Protocol)*
+    - Part of the *internet protocol suite*
+        - Set of standards describing how the internet works
+        - Also called *TCP/IP*
+            - *TCP* is the *Transmission Control Protocol* that defines how to link systems
+            - *IP* is the *Internet Protocol* that defines communication between networks
+- An individual message is called a  *datagram*
+- A sender can send the message, but does not intrinsically know that it's received
+    - A recipient must send an acknowledgement
+
+#### Make Something Happen: Send a Network Message
+
+*We'll start by working through the basics in the python interpreter. Start it up and work through the following steps to send a message*
+
+1. *Import the* `socket` *module*
+
+   ```python
+    import socket
+   ```
+
+    - The `socket` module provides Python with the classes and functions for communicating over a network
+
+2. *Create a* `socket`
+
+    - A `socket` is an object that manages a network connection
+    - Create a socket that can receive a message by executing the statement below
+
+      ```python
+        listen_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+      ```
+
+    - `socket` takes two arguments
+
+        1. The address family
+            - How the socket refers to host
+            - `AF_INET` refers to the internet family
+        2. The type of messages to send
+            - We want to send *datagrams*
+            - A datagram is a single, unacknowledged message sent from one system to another
+3. *Define the address to connect to*
+
+    - Need to define the address to connect to
+    - A network address is defined as a `tuple`
+
+      ```python
+        listen_address = ("localhost", 10001)
+      ```
+
+    - The tuple holds two values
+
+        1. Address to connect to (as a string)
+            - `"localhost"` refers to the current machine
+        2. Port to connect to (as an integer)
+
+4. *Bind the socket to the server address*
+
+    - This a fancy way of assigning the address to the socket
+    - Once bound the socket can listen for messages on this port
+    - Enter the `bind` method as below
+
+      ```python
+        listen_socket.bind(listen_address)
+      ```
+
+5. *Ask the socket to receive some data*
+
+    - `recvfrom` is a method on a socket (short for *receive from*)
+    - Fetches a single message from it
+    - Enter the following,
+
+      ```python
+        result = listen_socket.recvfrom(4096)
+      ```
+
+    - The interpreter should not return the prompt symbol `>>>`
+    - It's waiting to receive the datagram
+
+6. *Create a transmitter*
+
+    - We now need to set up a program to actually send the message
+    - Start a second python interpreter instance (leave the old one running)
+    - Now create a `socket` to send messages,
+
+      ```python
+        import socket
+
+        send_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+      ```
+
+    - So far everything looks the same
+    - We've imported socket and setup a socket with the same address family and message type
+
+7. *Bind the socket to the same port*
+
+    - Our second socket needs to be bound to a network port which will act as the recipient
+    - Our first socket is on `"localhost:10001"` so we do the same
+
+      ```python
+        send_address = ("localhost", 10001)
+      ```
+
+8. *Send a message over a network*
+
+    - Now to send the message
+    - We saw that `recvfrom` told a socket to receive a message
+    - `sendto` is the send counterpart, which sends a message over the network
+    - Enter the following to send the message
+
+      ```python
+        send_socket.sendto(b"hello from me", send_address)
+      ```
+
+      ```{python}
+      #| echo : false
+      print("\033[36m13\033[0m")
+      ```
+
+    - `sendto` returns the number of bytes sent
+    - The `b` prefix to the string tells python to encode the string as bytes
+        - By default python encodes strings using [unicode](https://home.unicode.org/)
+        - Unicode can't be sent over the network, so we need to decompose it into bytes
+
+7. *Receive the message*
+
+    - On the original listening interpreter the prompt should have returned
+    - This means our message has been received
+    - view the result
+
+      ```python
+        print(result)
+      ```
+
+      ```{python}
+      #| echo: false
+      print("\033[36mb(b\"hello from me\", (\"127.0.0.1\", 51883))")
+      ```
+
+    - The result is a tuple of two elements
+
+        1. The actual message contents
+        2. The address of the sender, broken down into a tuple of,
+            1. Address
+            2. Port
+
+#### Code Analysis: Sending Network Messages
+
+*Work through the following questions to clarify what we've just explored*
+
+1. *Can we send things other than text?*
+
+    - Yes
+    - A datagram sends byte streams
+    - The bytes could represent any type of data
+        - This could include complex objects
+    - The receiver just has to know how to reconstruct the byte stream
+        - Easier said than done
+
+2. *What's the largest thing you could send?*
+
+    - `recvfrom` lets us specify the maximum size of an incoming message
+    - A program can send up to $65,000$ bytes
+        - Larger datasets must be broken down into multiple messages
+    - There are network functions for splitting and recombining messages
+
+3. *What happens if a message is sent but the listener is not listening?*
+
+    - For a *datagram*, nothing
+    - This is because there is no formal connection procedure
+    - We simply send the messages out to a specified address
+    - A listener if it exists can receive it
+    - But as a sender, we don't care what happens to the message once it's sent
+
+4. *Can the listener listen to messages from other computers?*
+
+    - Yes
+    - As long as another computer sends the message to the address and port that the socket is bound to it can receive it
+    - Note that `"localhost"` is an alias for the computer's own address
+    - We'd actually have to specify the computer's address on the external network
+
+5. *How long would the listener wait before it heard anything?*
+
+    - By default a listener, listens until anything is received
+    - `Socket` provides the `setdefaulttiimeout` method
+        - Sets the number of seconds that a `recvfrom` waits for a message
+        - An exception is raised if the listener does not receive a message in this timeframe
+
+6. *Can sockets generate exceptions?*
+
+    - Yes
+    - Network connections are some of the most common sources of exceptions since these services can be non-deterministic
+        - The response time may vary
+        - A system may go down
+        - An address or port may change and not propagate through
+    - A program should take care to catch exceptions that might occur when a network fails or disconnects
+
+## Summary
+
+## Questions and Answers

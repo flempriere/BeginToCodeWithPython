@@ -50,3 +50,4 @@ I started this repository to work through an easy and basic book before working 
     2. We use the string method `find` after having been introduced to the concept of string methods and substrings searching with
     `startswith`
     3. We use the `datetime` module to simplify arithmetic on date and time objects after having extensively used the `time` module
+    4. The final Banking Application example in Chapter 13 uses some tkinter elements that are not discussed,but are documented online
