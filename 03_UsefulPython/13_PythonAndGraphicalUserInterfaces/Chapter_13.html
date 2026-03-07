@@ -311,6 +311,12 @@ window.Quarto = {
  <span class="menu-text">Chapter 13: Python and Graphical User Interfaces</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 14: Python Programs as Network Clients</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -584,7 +590,7 @@ window.Quarto = {
 </div>
 <ul>
 <li><p>Click the button a few times and you should see output like,</p>
-<div id="688f4e45" class="cell" data-execution_count="1">
+<div id="fcd02584" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&gt;&gt;&gt; click
 click
@@ -640,7 +646,7 @@ click</code></pre>
 <li><p><code>get</code> returns the text of the element</p></li>
 <li><p>Running this on our <code>Entry</code> object we should see,</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(ent.get())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="0908e4f2" class="cell" data-execution_count="2">
+<div id="87de7519" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>hello world</code></pre>
 </div>
@@ -1706,7 +1712,7 @@ click</code></pre>
 </ul></li>
 <li><p><em>Demonstrate the use of</em> <code>get</code> <em>to extract text from the</em> <code>Text</code> <em>widget</em></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a> t.get(<span class="st">"1.0"</span>, tkinter.END)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="b5ee3ccb" class="cell" data-execution_count="3">
+<div id="b0059d86" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">Hello, World!\nAnother line of text\n</span>
@@ -1719,7 +1725,7 @@ click</code></pre>
 <li><p>If you want to get a specific slice of text, you can instead pass another string of the form <code>"row.column"</code>, e.g.</p></li>
 <li><p>To slice the second row, we write</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>  t.get(<span class="st">"2.0"</span>, <span class="st">"3.0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="07629eb4" class="cell" data-execution_count="4">
+<div id="c26a47e1" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">Another line of text\n</span>
