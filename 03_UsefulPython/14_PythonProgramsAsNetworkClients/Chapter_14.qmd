@@ -290,6 +290,944 @@ Because anyone can potentially intercept and read what you send over an unencryp
         - An address or port may change and not propagate through
     - A program should take care to catch exceptions that might occur when a network fails or disconnects
 
+#### Send a Message to Another Computer
+
+- `sendto` and `recvfrom` from can be used to communicate to other computers on a local network
+    - e.g. two home computers
+- You first need to obtain the IP (internet protocol) address of the receiving machine
+- Python's socket module provides methods to find the IP of the computer running the python program (see [Receiver.py](./Examples/01_Receiver/Receiver.py))
+
+  ```python
+    """
+    Example 14.1 Receiver
+
+    Receive packets on port 10001 from another machine
+    """
+
+    import socket
+
+    host_name = socket.gethostname()
+    host_ip = socket.gethostbyname(host_name)
+    print("The IP address of this computer is:", host_ip)
+    port = 10002
+
+    listen_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    listen_address = (host_ip, port)
+
+    listen_socket.bind(listen_address)
+
+    print("Listening...")
+    while True:
+        reply = listen_socket.recvfrom(4096)
+        print(reply)
+  ```
+
+  ```{python}
+  #|echo: false
+    """
+    Example 14.1 Receiver
+
+    Receive packets on port 10001 from another machine
+    """
+
+    import socket
+
+    host_name = socket.gethostname()
+    host_ip = socket.gethostbyname(host_name)
+    print("The IP address of this computer is:", host_ip)
+    port = 10002
+
+    listen_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    listen_address = (host_ip, port)
+    print("Listening...")
+  ```
+
+- Now we can write a program to send to the packets
+    - This is on the sending machine
+
+  ```python
+    """
+    Example 14.2 Sender
+
+    Send packets to specified port on another machine
+    """
+
+    import socket
+    import time
+
+    target_ip = "127.0.1.1"  # set this to whatever the target ip is from Receiver.py
+    port = 10002
+
+    send_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    destination_address = (target_ip, 10002)
+
+    while True:
+        print("Sending")
+        send_socket.sendto(b"Hello from me", destination_address)
+        time.sleep(1)
+  ```
+
+  ```{python}
+#  #| echo: false
+  for i in range(0, 3):
+      print("Sending")
+  ```
+
+- You should see the [sender program](./Examples/02_Sender/Sender.py) periodically report that it is sending a message
+- A corresponding received message should then appear on the receiving process
+
+#### Route Packets
+
+- Not everything is connected to the same network
+    - Especially over the internet
+- The internet is a connected series of local networks
+- For inter-network messages we need *routing*
+    - A message might have to cross through multiple members in the local network before it can pass it on to the external network
+    - A machine on the local network must be configured to then communicate with the external network
+        - Messages must first reach this machine
+- A *router* is a specialised computer for managing sending and receiving messages using the internet protocols
+
+
+```{mermaid}
+---
+config:
+  htmlLabels: false
+  title: Internet Routing
+---
+flowchart LR
+
+    subgraph local ["Local Network"]
+    Phone
+    Computer
+    Printer
+    end
+
+    subgraph internet
+    Router["Your Router"]<-->Router2["Foreign Router"]
+    end
+
+    Router2<-->Server
+    local<-->Router
+
+    classDef BG stroke:transparent, fill:transparent
+```
+
+- Messages between networks first go to our local router which then routes the message through the internet to the router of the target network. The target network's router then send's the message to the specific machine
+
+#### Connections and Datagrams
+
+- We've already seen datagrams
+    - Simple messages send from one to another
+    - No formal agreement
+    - No confirmation of message receipt
+- An alternative approach is to create connections
+    - The *Transmission Control Protocol* ([TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol))
+- A connection can be thought of as a formal communication arrangement
+- The connection needs to be managed
+- When a message is sent, the recipient must confirm receipt of the message
+    - Or an error that the message failed
+- Connections are important when it's important that an entire message is received
+    - Ensure's that any missing components are resent
+- A connection can be thought of similar to a file
+    - It is an object that can be managed
+- Programs can call methods on connections to,
+    1. Send messages
+    2. Poll for received messages
+    3. and more
+- A connection remains open until something closes it
+
+#### Networks and Addresses
+
+- Previously we worked with address represented as numbers like `127.0.1.1`
+    - These are called IP addresses
+- However typically we want to work with something more semantically meaningful
+    - e.g. a website url (called a hostname)
+- Computer's on the internet use a *name server*
+    - Converts a  host name into an IP address
+    - This system is called the *Domain name system* (DNS)
+- A DNS server collection passes names around until a match is resolved
+
+### Consume the Web from Python
+
+- Webpages are internet content
+- When we want to browse a webpage, a browser has to request the content over a network
+- Webpages are expressed in Hypertext Markup Language (HTML)
+- Page content might contain text, images, links and other semantic elements
+    - A browser will download these too, and put it all together to render the output
+
+
+#### Read a Webpage
+
+- It is possible to write socket based code to read websites from scratch
+    - We could estalish a TCP connection to a web server then request data
+- Python contains the inbuilt `urllib` that simplifies this process with a useful API
+
+  ```python
+    """
+    Example 14.3 Webpage Reader
+
+    A simple program to demonstrate fetching content from a URL
+    """
+
+    import urllib.request
+
+    url = "https://www.robmiles.com"
+
+    req = urllib.request.urlopen(url)
+    for line in req:
+        print(line)
+  ```
+
+  ```{python}
+  #| echo: false
+    """
+    Example 14.3 Webpage Reader
+
+    A simple program to demonstrate fetching content from a URL
+    """
+
+    import urllib.request
+
+    url = "https://www.robmiles.com"
+
+    req = urllib.request.urlopen(url)
+    for (i, line) in enumerate(req):
+        if i > 10:
+            break
+        print(line)
+  ```
+
+- The above show's the result of reading from Rob Miles Blog
+    - The output is truncated to the first couple of output lines
+- You might not recognise this output but it is HTML
+- Effectively a plain-text format for specifying webpage contents
+- `urlopen` uses HTTP to request the webpage
+    - The result is an iterator over the page contents
+
+#### Use Web-based Data
+
+- Reading from the web isn't just restricted to standard websites
+- Many services exist to provide data over a web API
+- RSS (Really Simple Syndication / Rich Site Summary) is a format for specifying web articles and blog posts
+    - It is common for websites to provide RSS feeds of their content
+    - Programs can connect to and consume RSS feeds
+- e.g. if we rerun the program above aimed at the link https://www.robmiles.com/journal/rss.xml
+- Returns an XML document containing recent blog posts
+    - See the first few lines below
+
+  ```python
+    """
+    Example 14.3 Webpage Reader
+
+    A simple program to demonstrate fetching content from a URL
+    """
+
+    import urllib.request
+
+    url = "https://www.robmiles.com/journal/rss.xml"
+
+    req = urllib.request.urlopen(url)
+    for line in req:
+        print(line)
+  ```
+
+  ```{python}
+  #| echo: false
+    """
+    Example 14.3 Webpage Reader
+
+    A simple program to demonstrate fetching content from a URL
+    """
+
+    import urllib.request
+
+    url = "https://www.robmiles.com/journal/rss.xml"
+
+    req = urllib.request.urlopen(url)
+    for (i, line) in enumerate(req):
+        if i > 10:
+            break
+        print(line)
+  ```
+
+- Weather snaps from [Chapter 5](../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.qmd#make-something-happen-weather-helper) also fetches an XML document from the internet
+    - Here it represents weather data
+
+##### XML Document Standard
+
+- XML is a standard for defining documents with structured data
+- Designed to be easy for both computers and humans to read
+    - These days JSON and YAML are more human-readable alternatives in common use
+- XML documents are useful for sending information between computers
+- XML documents are made up of elements
+- Elements may have attributes
+    - Analogous to python class data attributes
+- Elements can be defined in a tree-like structure
+    - i.e. elements may contain elements
+- See the [XML Wikipedia page](https://en.wikipedia.org/wiki/XML) for more information
+- Below shows a simplified example of an XML document one might receive from a website
+
+  ```XML
+    <rss version="2.0"> <!--RSS element in the document-->
+        <channel>   <!--channel sub element of RSS element -->
+            <title> <!--title element of channel sub element -->
+                robmiles.com <!--value of the title element-->
+            </title> <!-- end of title element-->
+            <item>
+                <title>
+                    Water Meter Day
+                </title>
+                <category>Life</category>
+                <description>
+                    <![CDATA[ We had a new water meter installed yay!]]>
+                </description>
+            </item>
+            <item>
+                <title>
+                    Python now in Visual Studio 2017
+                </title>
+                <category>Python</category>
+                <category>Visual Studio</category>
+                <description>
+                    <![CDATA[ Python is now available in Visual Studio 2017 yay! ]]>
+                </description>
+            </item>
+        </channel>
+    </rss>
+  ```
+
+- Document is broken down into elements
+- Element has a name
+- May contain attributes
+- e.g. the `RSS` element has an attribute `version`
+    - In the above example, the version is `2.0`
+- Elements may contain other elements
+- An element is denoted by the `<name>` opening tag, `</name>` closing tag
+    - Any elements contained within these delimiters is a sub element of the outer scope element
+- In the above example, the `channel` element contains two `item` elements
+    - Each `item` contains a `title` and `description` element
+
+##### Code Analysis: The XML Document Format
+
+*Let's look at some questions about the XML format*
+
+1. *How do parent and child elements work in XML?*
+
+    - Elements contained in another element are called *child* elements
+    - Child elements are just a type of XML attribute
+    - You can think of it as composition of classes
+
+2. *What does* `CDATA` *mean?*
+
+    - `CDATA` is used to delimit an extended string
+    - Everything between `<![CDATA][` and `]]>` is treated as text of the element
+    - This lets us contain entire blog posts in one XML section
+3. *Why does the second item in the XML document contain two* `category` *elements?*
+
+    - XML doesn't enforce a standard for how to layout attributes
+    - You can use something called a *schema* to do this
+    - Here a category can be thought of as similar to a tag
+        - Multiple different categories can be associated to an individual document
+
+##### The Python Element Tree
+
+- A fully-specified XML parser is difficult to implement
+- Fortunately python has the `xml` library for parsing XML
+- The `ElementTree` class is designed to working with XML documents
+- XML documents can be loaded into an `ElementTree` instance
+    - We can then use methods on the class to navigate the document
+
+  ```{python}
+    """
+    Example 14.4 Python ElementTree
+
+    Shows a simple example of using the XML library's ElementTree to handle
+    an XML Document
+    """
+
+    import xml.etree.ElementTree as ElementTree
+
+    rss_text = """
+    <rss version="2.0">
+        <channel>
+            <title>
+                robmiles.com
+            </title>
+            <item>
+                <title>
+                    Water Meter Day
+                </title>
+                <category>Life</category>
+                <description>
+                    <![CDATA[ We had a new water meter installed yay!]]>
+                </description>
+            </item>
+            <item>
+                <title>
+                    Python now in Visual Studio 2017
+                </title>
+                <category>Python</category>
+                <category>Visual Studio</category>
+                <description>
+                    <![CDATA[ Python is now available in Visual Studio 2017 yay! ]]>
+                </description>
+            </item>
+        </channel>
+    </rss>
+    """
+
+    doc = ElementTree.fromstring(rss_text)
+
+    for item in doc.iter("item"):
+        title: str = item.find("title").text  # type: ignore
+        print(title.strip())
+        description: str = item.find("description").text  # type: ignore
+        print("    ", description.strip())
+  ```
+
+- `ElementTree` provides several methods for manipulating the through XML documents
+- `iter` is given an element name
+    - Generates an iterator over all the instances of that element in the XML
+- `find` searches for a given element in the child elements of a selected element
+- The `text` attribute is the text payload associated with an element
+- You can even use `ElementTree` to
+    1. Edit the contents of an XML document
+    2. Create new elements
+    3. Remove elements
+
+We can combine the url request code and the RSS walk code into one program that fetches an XML RSS feed from a site, then parses its contents. You can see it in [RSSFeed.py](./Examples/05_RSSFeed/RSSFeed.py)
+
+##### Make Something Happen: Work with Weather Data
+
+*We used weather snaps in Chapter to decode an XML document from the U.S weather Service. The code to get the temperature for a given location is as follows*
+
+```python
+    def get_weather_temp(latitude, longitude):
+        address = "http://forecast.weather.gov/MapClick.php"
+        query = "?lat={0}&lon={1}&unit=0&lg=english&FcstType=dwml".format(latitude, longitude)
+        req = urllib.request.urlopen(address + query)
+        page = req.read()
+        doc = xml.etree.ElementTree.fromstring(page)
+        for d in doc.iter("temperature"):
+            if d.get("type") == "apparent":
+                text_temp_value = d.find("value").text
+                return int(text_temp_value)
+```
+
+*Modify the method so that you get the maximum, minimum and forecast temperature values*
+
+We'll stick with our typical example of Seattle for now. If we look at the appropriate URL for [Seattle](https://forecast.weather.gov/MapClick.php?lat=47.61&lon=-122.33&unit=0&lg=english&FcstType=dwml)
+
+We can see the full XML document. Searching for temperature. We can find the following temperature elements.
+
+
+1. Under the `data` element with type `forecast` we find,
+   ```XML
+   <temperature type="minimum" units="Fahrenheit" time-layout="k-p24h-n7-1">
+       <name>Daily Minimum Temperature</name>
+       <value>48</value>
+       <value>47</value>
+       <value>37</value>
+       <value>35</value>
+       <value>40</value>
+       <value>43</value>
+       <value>40</value>
+   </temperature>
+   <temperature type="maximum" units="Fahrenheit" time-layout="k-p24h-n7-2">
+       <name>Daily Maximum Temperature</name>
+       <value>55</value>
+       <value>52</value>
+       <value>46</value>
+       <value>46</value>
+       <value>48</value>
+       <value>49</value>
+       <value>49</value>
+   </temperature>
+   ```
+    - This gives the seven day forecast maximum and minimum temperatures
+
+2. Under the `data` element with type `current observation` we see,
+
+   ```XML
+    <temperature type="apparent" units="Fahrenheit" time-layout="k-p1h-n1-1">
+        <value>51</value>
+    </temperature>
+    <temperature type="dew point" units="Fahrenheit" time-layout="k-p1h-n1-1">
+        <value>47</value>
+    </temperature>
+   ```
+
+- A caveat for the first point is that we can see the XML tags have an attribute `time-layout`
+    - This seems to tell us how to map the sequence of temperature values back to the days of the week
+
+  ```XML
+    <time-layout time-coordinate="local" summarization="12hourly">
+        <layout-key>k-p24h-n7-1</layout-key>
+        <start-valid-time period-name="Overnight">2026-03-07T02:00:00-08:00</start-valid-time>
+        <start-valid-time period-name="Saturday Night">2026-03-07T18:00:00-08:00</start-valid-time>
+        <start-valid-time period-name="Sunday Night">2026-03-08T18:00:00-07:00</start-valid-time>
+        <start-valid-time period-name="Monday Night">2026-03-09T18:00:00-07:00</start-valid-time>
+        <start-valid-time period-name="Tuesday Night">2026-03-10T18:00:00-07:00</start-valid-time>
+        <start-valid-time period-name="Wednesday Night">2026-03-11T18:00:00-07:00</start-valid-time>
+        <start-valid-time period-name="Thursday Night">2026-03-12T18:00:00-07:00</start-valid-time>
+    </time-layout>
+  ```
+    - We can see the pattern appears to be that it starts with the current date, then counts forward
+    - So we need to include this mapping into our code
+    - We'll write a little bit of code that generates the correct ordering
+
+      ```python
+        day_label_tuple = (
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        )
+
+
+        def order_day_labels(start_date):
+            """
+            Get the days of the week ordered by the current day
+
+            Parameters
+            ----------
+            start_date : int
+                Day of the week returned by a datetime object
+
+            Returns
+            -------
+            tuple[str, str, str, str, str, str, str]
+                Tuple containing the days of the week such that the current day
+                is the first index, and the days follow sequentially
+            """
+            return day_label_tuple[start_date:] + day_label_tuple[:start_date]
+      ```
+
+    - We predefine a tuple with the days of the week in the order expected by `datetime` objects
+    - We then define a function `order_day_labels` which reorders this
+        - The syntax `container_object[a:b:c]` means to "slice" from `a` to `b` taking every `c` elements
+        - If `c` is excluded then every element is taken
+        - `b` is the exclusive upper bound
+    - So here we slice from the current index to the end of the tuple, this is the start of the new tuple
+    - We then shift the remaining elements to the end by slicing from the start up to the current date
+
+- With our mapping set up we can define a function that will convert a sequence of temperatures into a dictionary mapping the weekdays to the temperature values
+    - This will implicitly rely on the fact that a dictionary stores it's keys in insertion order (i.e. we can print them out in the order we inserted them)
+
+  :::{.callout-important}
+  **Dictionaries may not be Insertion Ordered**
+
+  For several version of python 3, dictionaries were not guaranteed to preserve their insertion ordering. If you use a modern version of python this should not be an issue, but on older versions it may not work as expected. It's also work noting that custom sub-types of dictionary may not preserve the insertion ordering too
+  :::
+
+- Our `get_weather_temp` function then becomes
+
+  ```python
+    def get_weather_temp(latitude, longitude):
+        """
+        Return the weather temperature data at a given latitude and longitude
+
+        Relies on US weather data, so should not be expected to work for
+        latitude and longitude values outside of the US
+
+        Parameters
+        ----------
+        latitude : int | float
+            latitude of the location to get the weather data for
+        longitude : int | float
+            longitude of the location to get the weather data for
+
+        Returns
+        -------
+        Forecast
+            7 day forecast for the maximum temperature
+            in Fahrenheit, with the current day as the first
+            value
+        Forecast
+            7 day forecast for the minimum temperature
+            in Fahrenheit, with the current day as the first
+            value
+        int | float
+            Most recent apparent temperature value
+        int | float
+            Most recent dew point temperature
+        """
+        address = "http://forecast.weather.gov/MapClick.php"
+        query = "?lat={0}&lon={1}&unit=0&lg=english&FcstType=dwml".format(
+            latitude, longitude
+        )
+        req = urllib.request.urlopen(address + query)
+        page = req.read()
+        doc = xml.etree.ElementTree.fromstring(page)
+
+        def get_temp_list(e):
+            """
+            Convert value subelements of an element e
+            into a list of temperatures
+
+            Parameters
+            ----------
+            e : XML Element
+                Temperature element
+
+            Returns
+            -------
+            list[int]
+                list of integers corresponding to temperatures.
+                If none found, then the list is empty
+            """
+            res = []
+            for d in e.iter("value"):
+                res.append(int(d.text))  # type: ignore
+            return res
+
+        def get_temp_val(e):
+            """
+            Convert a temperature value subelement of a
+            temperature element to its value
+
+            Parameters
+            ----------
+            e : XML Element
+                Temperature element
+
+            Returns
+            -------
+            int
+                temperature value in Fahrenheit
+                as an int
+            """
+            return get_temp_list(e)[0]
+
+        for d in doc.iter("temperature"):
+            if d.get("type") == "apparent":
+                apparent_temp = get_temp_val(d)
+            elif d.get("type") == "dew point":
+                dew_point = get_temp_val(d)
+            elif d.get("type") == "maximum":
+                max_temp = get_temp_list(d)
+            elif d.get("type") == "minimum":
+                min_temp = get_temp_list(d)
+
+        today = datetime.datetime.today().weekday()
+        return (
+            make_seven_day_forecast(today, max_temp),  # type: ignore
+            make_seven_day_forecast(today, min_temp),  # type: ignore
+            apparent_temp,  # type: ignore
+            dew_point,  # type: ignore
+        )
+  ```
+    - This function returns a tuple containing four elements
+        1. A forecast for maximum temperature
+            - i.e. a dictionary mapping days of the week to the predicted max temperature
+        2. A forecast for minimum temperature
+            - Same as above
+        3. The current apparent temperature observation
+        4. The current dew point temperature
+    - We have to consider that for the min and max temperature we have to parse a sequence of `value` elements
+        - We want to store this in a sequence
+    - For apparent and dew point we have a single value
+    - We would like to write code that can handle both of these cases without repetition
+    - The core is the `get_temp_list` function
+        - Given an XML element corresponding to a temperature, we iterate over all the `value` sub-elements
+        - Convert them to integers and append them to a list
+    - For apparent and dew point we define a `get_temp_value` this uses `get_temp_list` to do the parsing, then extracts the single value
+    - Finally in the body of our main function we iterate over the temperature elements
+    - We check the appropriate type and dispatch as required
+    - Finally package everything into a tuple and return the result
+
+- The last step is then to simply format the output
+
+  ```python
+    if __name__ == "__main__":
+        latitude = 47.61
+        longitude = -122.33
+
+        max_t, min_t, apparent_t, dew_p = get_weather_temp(latitude, longitude)
+
+        days_table_hdr = "\t".join(
+            map(lambda a: str(a)[:2], max_t)
+        )  # slice of the first two characters of the day of the week
+        max_t_str = "\t".join(map(str, max_t.values()))
+        min_t_str = "\t".join(map(str, min_t.values()))
+
+        forecast = days_table_hdr + "\n" + max_t_str + "\n" + min_t_str
+
+        observation_t_str = "Apparent temperature: {0}\nDew point temperature: {1}".format(
+            apparent_t, dew_p
+        )
+
+        print("Temperature Information for Seattle")
+        print(forecast + "\n" + observation_t_str)
+  ```
+
+- This little main script sets up the latitude and longitude and then calls the function
+- We then format the result as follows
+    - Create a header for the days consisting of the first two letters of each day e.g. Sunday -> Su as a tab-separated list
+    - Report the max and min forecast in the same tab-separated format
+- Then we print out the apparent and dew point temperature
+- You may like the example output below
+
+  ```{python}
+  #| echo: false
+    """
+    Exercise 14.1 Weather Data
+
+    Modify the code for reading weather data to report the minimum, maximum
+    and forecast temperature data
+    """
+
+    import datetime
+    import urllib.request
+    import xml.etree.ElementTree
+
+    day_label_tuple = (
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    )
+
+
+    def order_day_labels(start_date):
+        """
+        Get the days of the week ordered by the current day
+
+        Parameters
+        ----------
+        start_date : int
+            Day of the week returned by a datetime object
+
+        Returns
+        -------
+        tuple[str, str, str, str, str, str, str]
+            Tuple containing the days of the week such that the current day
+            is the first index, and the days follow sequentially
+        """
+        return day_label_tuple[start_date:] + day_label_tuple[:start_date]
+
+
+    def make_seven_day_forecast(start_date, temperatures):
+        """
+        Converts a sequence of temperatures into a forecast based
+        on a current date
+
+        Given a sequence of seven temperatures, and the start date
+        produces a forecast as a dictionary, keyed by the the day
+        of the week
+
+        Parameters
+        ----------
+        start_date : int
+            Day of the week represented by a `datetime` object index
+            for a day of the week
+        temperatures : tuple[int]
+            Tuple containing a 7 day sequence of temperature values
+
+        Returns
+        -------
+        Dict[str, int]
+            Dictionary containing a seven day forecast as keyed by the
+            day of the week and the temperature. Ordered from current day to current day + 6
+        """
+        if len(temperatures) != 7:
+            raise ValueError("temperatures must be of length 7")
+
+        # not pythonic but consistent with what we've seen so far
+        dictionary = {}
+        ordered_days = order_day_labels(start_date)
+        for i, t in enumerate(temperatures):
+            dictionary[ordered_days[i]] = t
+
+        return dictionary
+
+
+    def get_weather_temp(latitude, longitude):
+        """
+        Return the weather temperature data at a given latitude and longitude
+
+        Relies on US weather data, so should not be expected to work for
+        latitude and longitude values outside of the US
+
+        Parameters
+        ----------
+        latitude : int | float
+            latitude of the location to get the weather data for
+        longitude : int | float
+            longitude of the location to get the weather data for
+
+        Returns
+        -------
+        Forecast
+            7 day forecast for the maximum temperature
+            in Fahrenheit, with the current day as the first
+            value
+        Forecast
+            7 day forecast for the minimum temperature
+            in Fahrenheit, with the current day as the first
+            value
+        int | float
+            Most recent apparent temperature value
+        int | float
+            Most recent dew point temperature
+        """
+        address = "http://forecast.weather.gov/MapClick.php"
+        query = "?lat={0}&lon={1}&unit=0&lg=english&FcstType=dwml".format(
+            latitude, longitude
+        )
+        req = urllib.request.urlopen(address + query)
+        page = req.read()
+        doc = xml.etree.ElementTree.fromstring(page)
+
+        def get_temp_list(e):
+            """
+            Convert value subelements of an element e
+            into a list of temperatures
+
+            Parameters
+            ----------
+            e : XML Element
+                Temperature element
+
+            Returns
+            -------
+            list[int]
+                list of integers corresponding to temperatures.
+                If none found, then the list is empty
+            """
+            res = []
+            for d in e.iter("value"):
+                res.append(int(d.text))  # type: ignore
+            return res
+
+        def get_temp_val(e):
+            """
+            Convert a temperature value subelement of a
+            temperature element to its value
+
+            Parameters
+            ----------
+            e : XML Element
+                Temperature element
+
+            Returns
+            -------
+            int
+                temperature value in Fahrenheit
+                as an int
+            """
+            return get_temp_list(e)[0]
+
+        for d in doc.iter("temperature"):
+            if d.get("type") == "apparent":
+                apparent_temp = get_temp_val(d)
+            elif d.get("type") == "dew point":
+                dew_point = get_temp_val(d)
+            elif d.get("type") == "maximum":
+                max_temp = get_temp_list(d)
+            elif d.get("type") == "minimum":
+                min_temp = get_temp_list(d)
+
+        today = datetime.datetime.today().weekday()
+        return (
+            make_seven_day_forecast(today, max_temp),  # type: ignore
+            make_seven_day_forecast(today, min_temp),  # type: ignore
+            apparent_temp,  # type: ignore
+            dew_point,  # type: ignore
+        )
+
+
+    if __name__ == "__main__":
+        latitude = 47.61
+        longitude = -122.33
+
+        max_t, min_t, apparent_t, dew_p = get_weather_temp(latitude, longitude)
+
+        days_table_hdr = "\t".join(
+            map(lambda a: str(a)[:2], max_t)
+        )  # slice of the first two characters of the day of the week
+        max_t_str = "\t".join(map(str, max_t.values()))
+        min_t_str = "\t".join(map(str, min_t.values()))
+
+        forecast = days_table_hdr + "\n" + max_t_str + "\n" + min_t_str
+
+        observation_t_str = "Apparent temperature: {0}\nDew point temperature: {1}".format(
+            apparent_t, dew_p
+        )
+
+        print("Temperature Information for Seattle")
+        print(forecast + "\n" + observation_t_str)
+  ```
+
+
 ## Summary
 
+- Computers can communicate to each other over networks
+- A protocol describes how systems can communicate to each other
+-    The internet defines different layers of protocol to define different layers of functionality
+- Information is sent in messages called datagrams
+- An IP address locates a machine on a network
+- The internet can be considered a series of connected local networks
+    - A router routes traffic between these local networks
+- Communication on a network can take place via individual unacknowledged communications or by establishing a connection
+- Connections can be exposed on one or more *ports*
+    - When a program wants to accept connections, it will bind a software *socket* to a port
+- Large amounts of data are transferred as multiple datagrams
+- Python provides the socket class to handle network connections
+- The `urllib` in python simplifies the process of connecting to and working with web servers
+- The eXtensible Markup Language (XML) is a language for specifying the form of data being sent over a network
+    - Python provides the `xml` library for working with XML
+    - The `ElementTree` class lets us work with and manipulate the XML element tree
+
 ## Questions and Answers
+
+1. *Do wireless devices use a different version of the Internet from wired ones?*
+
+    - The communication medium is different
+    - But the connection works the same
+    - Recall that the internet protocols seperate the protocol for the mechanism of transport from the protocol for communication
+    - This is analogous to how we had a GUI and Shell-based class for our Fashion Shop program in [Chapter 13](../13_PythonAndGraphicalUserInterfaces/Chapter_13.qmd#code-analysis-complete-fashion-shop-program)
+        - Different applications for getting the user to interact
+        - Both exposed the same API, so could be run by the same main program
+
+2. *How big can a datagram get?*
+
+    - It depends on the network and transmission medium
+    - It is defined as the Maximum Transmission Unit (MTU)
+
+3. *Do all datagrams follow the same route from one computer to another?*
+
+    - Not necessarily
+    - Network routes typically update very quickly in response to load on various parts of the network
+    - This has some side effects
+        - Messages can arrive *before* a message they were sent *after*
+    - Using a proper connection helps us handle this
+
+4. *Do all datagrams get to their destination?*
+
+    - No
+    - UDP data packets are not guaranteed to arrive
+    - TCP packets are part of a session
+        - Must confirm they are received
+        - Must resend them if they are not
+
+5. *What is the difference between XML and HTML?*
+
+    - They are both markup languages
+    - They use similar syntax for specifying elements and attributes
+    - XML is a standard for defining any kind of document
+    - HTML is specifically for telling web browsers how to render a webpage
+    - HTML elements tend to refer to the styling and content of a page
+        - HTML can be thought of as specialised XML
+
+6. *What is the difference between HTML and HTTP?*
+
+    - HTML is the language that describes how to display a web page
+    - HTTP (HyperText Transfer Protocol) is how the server and browser get that webpage onto your browser from a server
+        - i.e it is the protocol for communicating
