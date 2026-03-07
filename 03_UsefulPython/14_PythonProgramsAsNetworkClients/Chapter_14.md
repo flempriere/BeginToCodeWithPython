@@ -403,7 +403,7 @@ explored*
         print(reply)
   ```
 
-      The IP address of this computer is: 10.1.0.197
+      The IP address of this computer is: 10.1.0.138
       Listening...
 
 - Now we can write a program to send to the packets
@@ -1140,8 +1140,8 @@ the following temperature elements.
       Sa    Su  Mo  Tu  We  Th  Fr
       55    52  46  46  48  49  49
       48    47  37  35  40  43  40
-      Apparent temperature: 51
-      Dew point temperature: 47
+      Apparent temperature: 52
+      Dew point temperature: 46
 
 ## Summary
 
