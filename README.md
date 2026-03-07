@@ -30,6 +30,7 @@ I started this repository to work through an easy and basic book before working 
 ### Useful Python
 
 - [Chapter 13: Python and Graphical User Interfaces](./03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.md)
+- [Chapter 14: Python Programs as Network clients](./03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.md)
 
 >[!NOTE]
 > Chapter 1 only provides basic information on installing *python* and assumes a Windows environment so is not covered in these notes
@@ -50,3 +51,4 @@ I started this repository to work through an easy and basic book before working 
     2. We use the string method `find` after having been introduced to the concept of string methods and substrings searching with
     `startswith`
     3. We use the `datetime` module to simplify arithmetic on date and time objects after having extensively used the `time` module
+    4. The final Banking Application example in Chapter 13 uses some tkinter elements that are not discussed,but are documented online
