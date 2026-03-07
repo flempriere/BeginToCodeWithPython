@@ -1,6 +1,5 @@
 # Chapter 14: Python Programs as Network Clients
 
-
 - [Notes](#notes)
   - [Computer Networking](#computer-networking)
     - [Network communication](#network-communication)
@@ -87,9 +86,9 @@ block-beta
 - Often there are multiple computers on the network
 - Need some way of specifying which computer we want to talk to
 - Messages typically have two components
-  1.  Address message
+  1. Address message
       - Specifies which computer to send the message to
-  2.  Message contents
+  2. Message contents
       - The actual specifics of the message being sent
 - Networks may also have a broadcast address
   - Allows messages to be sent or received from anyone
@@ -152,7 +151,7 @@ block-beta
 *We’ll start by working through the basics in the python interpreter.
 Start it up and work through the following steps to send a message*
 
-1.  *Import the* `socket` *module*
+1. *Import the* `socket` *module*
 
     ``` python
      import socket
@@ -161,7 +160,7 @@ Start it up and work through the following steps to send a message*
     - The `socket` module provides Python with the classes and functions
       for communicating over a network
 
-2.  *Create a* `socket`
+2. *Create a* `socket`
 
     - A `socket` is an object that manages a network connection
 
@@ -174,15 +173,15 @@ Start it up and work through the following steps to send a message*
 
     - `socket` takes two arguments
 
-      1.  The address family
+      1. The address family
           - How the socket refers to host
           - `AF_INET` refers to the internet family
-      2.  The type of messages to send
+      2. The type of messages to send
           - We want to send *datagrams*
           - A datagram is a single, unacknowledged message sent from one
             system to another
 
-3.  *Define the address to connect to*
+3. *Define the address to connect to*
 
     - Need to define the address to connect to
 
@@ -194,11 +193,11 @@ Start it up and work through the following steps to send a message*
 
     - The tuple holds two values
 
-      1.  Address to connect to (as a string)
+      1. Address to connect to (as a string)
           - `"localhost"` refers to the current machine
-      2.  Port to connect to (as an integer)
+      2. Port to connect to (as an integer)
 
-4.  *Bind the socket to the server address*
+4. *Bind the socket to the server address*
 
     - This a fancy way of assigning the address to the socket
 
@@ -210,7 +209,7 @@ Start it up and work through the following steps to send a message*
         listen_socket.bind(listen_address)
       ```
 
-5.  *Ask the socket to receive some data*
+5. *Ask the socket to receive some data*
 
     - `recvfrom` is a method on a socket (short for *receive from*)
 
@@ -226,7 +225,7 @@ Start it up and work through the following steps to send a message*
 
     - It’s waiting to receive the datagram
 
-6.  *Create a transmitter*
+6. *Create a transmitter*
 
     - We now need to set up a program to actually send the message
 
@@ -246,7 +245,7 @@ Start it up and work through the following steps to send a message*
     - We’ve imported socket and setup a socket with the same address
       family and message type
 
-7.  *Bind the socket to the same port*
+7. *Bind the socket to the same port*
 
     - Our second socket needs to be bound to a network port which will
       act as the recipient
@@ -257,7 +256,7 @@ Start it up and work through the following steps to send a message*
         send_address = ("localhost", 10001)
       ```
 
-8.  *Send a message over a network*
+8. *Send a message over a network*
 
     - Now to send the message
 
@@ -284,7 +283,7 @@ Start it up and work through the following steps to send a message*
       - Unicode can’t be sent over the network, so we need to decompose
         it into bytes
 
-9.  *Receive the message*
+9. *Receive the message*
 
     - On the original listening interpreter the prompt should have
       returned
@@ -301,17 +300,17 @@ Start it up and work through the following steps to send a message*
 
     - The result is a tuple of two elements
 
-      1.  The actual message contents
-      2.  The address of the sender, broken down into a tuple of,
-          1.  Address
-          2.  Port
+      1. The actual message contents
+      2. The address of the sender, broken down into a tuple of,
+          1. Address
+          2. Port
 
 #### Code Analysis: Sending Network Messages
 
 *Work through the following questions to clarify what we’ve just
 explored*
 
-1.  *Can we send things other than text?*
+1. *Can we send things other than text?*
 
     - Yes
     - A datagram sends byte streams
@@ -320,14 +319,14 @@ explored*
     - The receiver just has to know how to reconstruct the byte stream
       - Easier said than done
 
-2.  *What’s the largest thing you could send?*
+2. *What’s the largest thing you could send?*
 
     - `recvfrom` lets us specify the maximum size of an incoming message
     - A program can send up to $65,000$ bytes
       - Larger datasets must be broken down into multiple messages
     - There are network functions for splitting and recombining messages
 
-3.  *What happens if a message is sent but the listener is not
+3. *What happens if a message is sent but the listener is not
     listening?*
 
     - For a *datagram*, nothing
@@ -337,7 +336,7 @@ explored*
     - But as a sender, we don’t care what happens to the message once
       it’s sent
 
-4.  *Can the listener listen to messages from other computers?*
+4. *Can the listener listen to messages from other computers?*
 
     - Yes
     - As long as another computer sends the message to the address and
@@ -346,7 +345,7 @@ explored*
     - We’d actually have to specify the computer’s address on the
       external network
 
-5.  *How long would the listener wait before it heard anything?*
+5. *How long would the listener wait before it heard anything?*
 
     - By default a listener, listens until anything is received
     - `Socket` provides the `setdefaulttiimeout` method
@@ -354,7 +353,7 @@ explored*
       - An exception is raised if the listener does not receive a
         message in this timeframe
 
-6.  *Can sockets generate exceptions?*
+6. *Can sockets generate exceptions?*
 
     - Yes
     - Network connections are some of the most common sources of
@@ -478,7 +477,7 @@ flowchart LR
     Computer
     Printer
     end
-    
+
     subgraph internet
     Router["Your Router"]<-->Router2["Foreign Router"]
     end
@@ -514,9 +513,9 @@ flowchart LR
 - A connection can be thought of similar to a file
   - It is an object that can be managed
 - Programs can call methods on connections to,
-  1.  Send messages
-  2.  Poll for received messages
-  3.  and more
+  1. Send messages
+  2. Poll for received messages
+  3. and more
 - A connection remains open until something closes it
 
 #### Networks and Addresses
@@ -602,7 +601,7 @@ flowchart LR
   - It is common for websites to provide RSS feeds of their content
   - Programs can connect to and consume RSS feeds
 - e.g. if we rerun the program above aimed at the link
-  https://www.robmiles.com/journal/rss.xml
+  <https://www.robmiles.com/journal/rss.xml>
 - Returns an XML document containing recent blog posts
   - See the first few lines below
 
@@ -721,20 +720,20 @@ flowchart LR
 
 *Let’s look at some questions about the XML format*
 
-1.  *How do parent and child elements work in XML?*
+1. *How do parent and child elements work in XML?*
 
     - Elements contained in another element are called *child* elements
     - Child elements are just a type of XML attribute
     - You can think of it as composition of classes
 
-2.  *What does* `CDATA` *mean?*
+2. *What does* `CDATA` *mean?*
 
     - `CDATA` is used to delimit an extended string
     - Everything between `<![CDATA][` and `]]>` is treated as text of
       the element
     - This lets us contain entire blog posts in one XML section
 
-3.  *Why does the second item in the XML document contain two*
+3. *Why does the second item in the XML document contain two*
     `category` *elements?*
 
     - XML doesn’t enforce a standard for how to layout attributes
@@ -763,8 +762,8 @@ flowchart LR
 
     rss_text = """
     <rss version="2.0">
-        <channel>   
-            <title> 
+        <channel>
+            <title>
                 robmiles.com
             </title>
             <item>
@@ -812,9 +811,9 @@ flowchart LR
   selected element
 - The `text` attribute is the text payload associated with an element
 - You can even use `ElementTree` to
-  1.  Edit the contents of an XML document
-  2.  Create new elements
-  3.  Remove elements
+  1. Edit the contents of an XML document
+  2. Create new elements
+  3. Remove elements
 
 We can combine the url request code and the RSS walk code into one
 program that fetches an XML RSS feed from a site, then parses its
@@ -850,7 +849,7 @@ the appropriate URL for
 We can see the full XML document. Searching for temperature. We can find
 the following temperature elements.
 
-1.  Under the `data` element with type `forecast` we find,
+1. Under the `data` element with type `forecast` we find,
 
     ``` xml
     <temperature type="minimum" units="Fahrenheit" time-layout="k-p24h-n7-1">
@@ -877,7 +876,7 @@ the following temperature elements.
 
     - This gives the seven day forecast maximum and minimum temperatures
 
-2.  Under the `data` element with type `current observation` we see,
+2. Under the `data` element with type `current observation` we see,
 
     ``` xml
      <temperature type="apparent" units="Fahrenheit" time-layout="k-p1h-n1-1">
@@ -1077,13 +1076,13 @@ the following temperature elements.
   ```
 
   - This function returns a tuple containing four elements
-    1.  A forecast for maximum temperature
+    1. A forecast for maximum temperature
         - i.e. a dictionary mapping days of the week to the predicted
           max temperature
-    2.  A forecast for minimum temperature
+    2. A forecast for minimum temperature
         - Same as above
-    3.  The current apparent temperature observation
-    4.  The current dew point temperature
+    3. The current apparent temperature observation
+    4. The current dew point temperature
   - We have to consider that for the min and max temperature we have to
     parse a sequence of `value` elements
     - We want to store this in a sequence
@@ -1173,7 +1172,7 @@ the following temperature elements.
 
 ## Questions and Answers
 
-1.  *Do wireless devices use a different version of the Internet from
+1. *Do wireless devices use a different version of the Internet from
     wired ones?*
 
     - The communication medium is different
@@ -1187,12 +1186,12 @@ the following temperature elements.
       - Both exposed the same API, so could be run by the same main
         program
 
-2.  *How big can a datagram get?*
+2. *How big can a datagram get?*
 
     - It depends on the network and transmission medium
     - It is defined as the Maximum Transmission Unit (MTU)
 
-3.  *Do all datagrams follow the same route from one computer to
+3. *Do all datagrams follow the same route from one computer to
     another?*
 
     - Not necessarily
@@ -1202,7 +1201,7 @@ the following temperature elements.
       - Messages can arrive *before* a message they were sent *after*
     - Using a proper connection helps us handle this
 
-4.  *Do all datagrams get to their destination?*
+4. *Do all datagrams get to their destination?*
 
     - No
     - UDP data packets are not guaranteed to arrive
@@ -1210,7 +1209,7 @@ the following temperature elements.
       - Must confirm they are received
       - Must resend them if they are not
 
-5.  *What is the difference between XML and HTML?*
+5. *What is the difference between XML and HTML?*
 
     - They are both markup languages
     - They use similar syntax for specifying elements and attributes
@@ -1220,7 +1219,7 @@ the following temperature elements.
     - HTML elements tend to refer to the styling and content of a page
       - HTML can be thought of as specialised XML
 
-6.  *What is the difference between HTML and HTTP?*
+6. *What is the difference between HTML and HTTP?*
 
     - HTML is the language that describes how to display a web page
     - HTTP (HyperText Transfer Protocol) is how the server and browser
