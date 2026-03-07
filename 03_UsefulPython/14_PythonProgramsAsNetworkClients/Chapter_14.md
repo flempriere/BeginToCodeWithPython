@@ -390,7 +390,7 @@ explored*
     host_name = socket.gethostname()
     host_ip = socket.gethostbyname(host_name)
     print("The IP address of this computer is:", host_ip)
-    port = 10001
+    port = 10002
 
     listen_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     listen_address = (host_ip, port)
@@ -403,7 +403,7 @@ explored*
         print(reply)
   ```
 
-      The IP address of this computer is: 127.0.1.1
+      The IP address of this computer is: 10.1.0.37
       Listening...
 
 - Now we can write a program to send to the packets
@@ -433,16 +433,14 @@ explored*
   ```
 
   ``` python
-   #| echo: false
+  ##| echo: false
   for i in range(0, 3):
-      print("Sending)
+      print("Sending")
   ```
 
-      SyntaxError: unterminated string literal (detected at line 3) (754172173.py, line 3)
-        Cell In[12], line 3
-          print("Sending)
-                ^
-      SyntaxError: unterminated string literal (detected at line 3)
+      Sending
+      Sending
+      Sending
 
 - You should see the [sender program](./Examples/02_Sender/Sender.py)
   periodically report that it is sending a message
@@ -1142,8 +1140,8 @@ the following temperature elements.
       Sa    Su  Mo  Tu  We  Th  Fr
       55    52  46  46  48  49  49
       48    47  37  35  40  43  40
-      Apparent temperature: 50
-      Dew point temperature: 48
+      Apparent temperature: 51
+      Dew point temperature: 47
 
 ## Summary
 

@@ -602,9 +602,9 @@ time.sleep(10)  # leave time for the players to read
 
 <!-- -->
 
-    The first number is:  5
+    The first number is:  10
     Will the next be higher or lower?
-    The second number is:  3
+    The second number is:  9
 
 ##### Make Something Happen: [Nerves of Steel](./Exercises/04_NervesOfSteel/nervesOfSteel.py)
 
