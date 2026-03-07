@@ -628,7 +628,7 @@ Caution
 <li><p><code>sendto</code> is the send counterpart, which sends a message over the network</p></li>
 <li><p>Enter the following to send the message</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  send_socket.sendto(<span class="st">b"hello from me"</span>, send_address)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="5af7fd73" class="cell" data-execution_count="1">
+<div id="8470cf90" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-cyan-fg">13</span>
@@ -649,7 +649,7 @@ Caution
 <li><p>This means our message has been received</p></li>
 <li><p>view the result</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="f5ca2b56" class="cell" data-execution_count="2">
+<div id="98b49ac4" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-cyan-fg">b(b"hello from me", ("127.0.0.1", 51883))
@@ -763,9 +763,9 @@ Caution
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      reply <span class="op">=</span> listen_socket.recvfrom(<span class="dv">4096</span>)</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(reply)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="4e0606c6" class="cell" data-execution_count="3">
+<div id="58e8a17b" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
-<pre><code>The IP address of this computer is: 10.1.0.37
+<pre><code>The IP address of this computer is: 10.1.0.54
 Listening...</code></pre>
 </div>
 </div></li>
@@ -792,7 +792,7 @@ Listening...</code></pre>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Sending"</span>)</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>      send_socket.sendto(<span class="st">b"Hello from me"</span>, destination_address)</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      time.sleep(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="d7b595d4" class="cell" data-execution_count="4">
+<div id="e11c246f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">##| echo: false</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">3</span>):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sending"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -948,7 +948,7 @@ flowchart LR
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  req <span class="op">=</span> urllib.request.urlopen(url)</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> line <span class="kw">in</span> req:</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(line)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="7041047c" class="cell" data-execution_count="5">
+<div id="3ee89b43" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>b'&lt;!doctype html&gt;\n'
 b'&lt;html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" lang="en-GB" &gt;\n'
@@ -1003,7 +1003,7 @@ b'&lt;meta http-equiv="Accept-CH" content="Sec-CH-UA-Platform-Version, Sec-CH-UA
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  req <span class="op">=</span> urllib.request.urlopen(url)</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> line <span class="kw">in</span> req:</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(line)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="9f741ed2" class="cell" data-execution_count="6">
+<div id="7991b041" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>b'&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n'
 b'&lt;!--Generated by Site-Server v@build.version@ (http://www.squarespace.com) on Thu, 05 Mar 2026 22:09:14 GMT\n'
@@ -1124,7 +1124,7 @@ b'\n'</code></pre>
 <ul>
 <li>We can then use methods on the class to navigate the document</li>
 </ul>
-<div id="b9b02013" class="cell" data-execution_count="7">
+<div id="f3426005" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 14.4 Python ElementTree</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1469,7 +1469,7 @@ Important
 </ul></li>
 <li><p>Then we print out the apparent and dew point temperature</p></li>
 <li><p>You may like the example output below</p>
-<div id="fe51535d" class="cell" data-execution_count="8">
+<div id="71831517" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>Temperature Information for Seattle
 Sa    Su  Mo  Tu  We  Th  Fr
