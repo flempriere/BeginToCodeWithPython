@@ -1,6 +1,5 @@
 # Chapter 15: Python Programs as Network Servers
 
-
 - [Notes](#notes)
   - [Create a Web Server in Python](#create-a-web-server-in-python)
     - [A Tiny Socket-based Server](#a-tiny-socket-based-server)
