@@ -1,0 +1,12 @@
+{
+  "python.defaultInterpreterPath": "",
+  "python.terminal.activateEnvInCurrentTerminal": false,
+  "cSpell.words": [
+    "namespacing",
+    "Rearchitects",
+    "Regurgitator",
+    "subclassing",
+    "subpackages",
+    "tradeoffs"
+  ]
+}
