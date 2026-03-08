@@ -403,7 +403,7 @@ explored*
         print(reply)
   ```
 
-      The IP address of this computer is: 10.1.0.138
+      The IP address of this computer is: 10.1.0.171
       Listening...
 
 - Now we can write a program to send to the packets
@@ -1137,11 +1137,11 @@ the following temperature elements.
 - You may like the example output below
 
       Temperature Information for Seattle
-      Sa    Su  Mo  Tu  We  Th  Fr
-      55    52  46  46  48  49  49
-      48    47  37  35  40  43  40
-      Apparent temperature: 52
-      Dew point temperature: 46
+      Su    Mo  Tu  We  Th  Fr  Sa
+      50    46  46  48  48  48  48
+      47    36  35  39  42  39  38
+      Apparent temperature: 53
+      Dew point temperature: 47
 
 ## Summary
 

@@ -11,6 +11,21 @@
       - [Code Analysis: Python Server
         Program](#code-analysis-python-server-program)
     - [Serve Webpages from Files](#serve-webpages-from-files)
+      - [Extract Slices from a
+        Collection](#extract-slices-from-a-collection)
+      - [Make Something Happen: Connect to a File
+        Server](#make-something-happen-connect-to-a-file-server)
+    - [Get Information from Web Users](#get-information-from-web-users)
+      - [Make Something Happen: Use a Message
+        Board](#make-something-happen-use-a-message-board)
+      - [The HTTP POST Request](#the-http-post-request)
+      - [Code Analysis: POST Handler](#code-analysis-post-handler)
+      - [Code Analysis: Make a Webpage from
+        Python](#code-analysis-make-a-webpage-from-python)
+    - [Exercise: Improve the Message
+      Board](#exercise-improve-the-message-board)
+  - [Host Python Applications on the
+    Web](#host-python-applications-on-the-web)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -498,8 +513,649 @@ path["TR/WD-html40-970917/htmlweb.html"]
             return
   ```
 
--
+##### Extract Slices from a Collection
+
+- The above code uses *slicing*
+- You see me previously use this in one of the exercises
+
+``` mermaid
+block-beta
+    columns 6
+
+    classDef BG stroke:transparent, fill:transparent
+
+
+    space
+    title["Breakdown of a Slice"]:4
+    space
+
+    class title BG
+
+    block:Collection
+    columns 1
+        collection["collection"]
+        collectionDescr["collection to be sliced"]
+    end
+
+    class collection BG
+    class collectionDescr BG
+
+    block:openBracket
+    columns 1
+        openbracket["["]
+        openbracketDescr[" "]
+    end
+
+    class openbracket BG
+    class openbracketDescr BG
+
+    block:Start
+    columns 1
+        start["start"]
+        startDescr["start of slice"]
+    end
+
+    class start BG
+    class startDescr BG
+
+    block:Optional
+    columns 1
+        colon[":"]
+        colonDescr[" "]
+    end
+
+    class colon BG
+    class colonDescr BG
+
+    block:End
+        columns 1
+        end_block["]"]
+        endDescr[" "]
+    end
+
+    class end_block BG
+    class endDescr BG
+```
+
+- Start and stop are written in square brackets separated by a colon
+
+  ``` python
+    "Robert"[0:3]
+  ```
+
+      'Rob'
+
+- The terminating character is not included in the slice
+
+  ``` python
+    "Robert"[1:2 ]
+  ```
+
+      'o'
+
+- Omitting the start, implicitly slices from the start of the collection
+
+  ``` python
+    "Robert"[:3]
+  ```
+
+      'Rob'
+
+- If the end is omitted, implicitly slices to the end of the collection
+
+  ``` python
+    "Robert"[3:]
+  ```
+
+      'ert'
+
+- You can use negative indices for slices
+
+- Negative indices slice from the end of the collection
+
+  ``` python
+    "Robert"[-2:-1]
+  ```
+
+      'r'
+
+  - The above slices from the the second last character through to the
+    last character
+
+- Slicing can be used on any python collection
+
+- A slice doesn’t impact the original item
+
+- The program above uses slicing to remove a leading `/` on the `path`
+  attribute
+
+##### Make Something Happen: Connect to a File Server
+
+*We can use the web server to browse a small website. Open and run the
+example program
+[PythonFileServer.py](./Examples/03_PythonFileServer/PythonFileServer.py).
+There are two html files in the same directory
+([index.html](./Examples/03_PythonFileServer/index.html) and
+[page.html](./Examples/03_PythonFileServer/page.html)). Work through the
+following steps to understand how it works*
+
+1. *Connect to the website*
+
+    - The website should be running on <http://localhost:8080/index.html>
+
+    - You should see the rendered index page, which contains some basic
+      text and a link to another page
+
+      ``` html
+        <html>
+        <body>
+        <p> This is the index page for our tiny site.</p>
+        <a href="page.html">This is another page</a>
+        </body>
+        </html>
+      ```
+
+2. *Navigate the page*
+
+    - Click on the link and the browser should load the second page
+
+      ``` html
+        <html>
+        <body>
+        <p>This is another page in our tiny web site.</p>
+        <a href="index.html">This takes us back to the index</a> </body>
+        </html>
+      ```
+
+    - Click on the link on the new page and you should return to the
+      original first page
+
+- Nothing restricts a web server to just serving HTML files
+
+- We could extend the web server to serve out image files etc.
+
+- A good idea is to also include the case when a requested file does not
+  exist
+
+- Python provides the `SimpleHTTPRequestHandler` to serve out files
+
+- Below demonstrates using this inbuilt class (see
+  [FullPythonServer.py](./Examples/04_FullPythonServer/FullPythonServer.py))
+
+- This program is basically the same but also contains a link on
+  `page.html` that takes us to a picture. The server is still able to
+  serve this image
+
+#### Get Information from Web Users
+
+- So far our programs have only sent information to a client
+
+- We would like to the client to be able to send information to our
+  program
+
+- We’ll create a very primitive message board program
+
+  ![The basic message board with some
+  messages](./Examples/05_MessageBoard/messageBoard.png)
+
+##### Make Something Happen: Use a Message Board
+
+*Find the example
+[MessageBoard.py](./Examples/05_MessageBoard/MessageBoard.py). Start the
+server and then navigate to the exposed url. It should be
+http:/localhost:8080/index.html*
+
+*You should see the user interface demonstrated above. Enter a new
+message into the text box and then save it using the* **Save Message**
+*button. The page should refresh with your new message now visible. Any
+subsequent messages should appear after the first. Press the* **Clear
+Messages** *button and you should see the messages all disappear*
+
+##### The HTTP POST Request
+
+- We’ve previously only worked with HTTP `GET` requests
+
+- These request resources from a server
+
+- A counterpart is the `POST` request
+
+  - Here the browser is sending some information to the server
+
+  ``` html
+    <form method="post">
+        <textarea name="message"></textarea>
+        <button id="save" type="submit">Save Message</button>
+    </form>
+  ```
+
+- The above creates the HTML elements for submitting a new message
+
+- We can see that we create a `form` element which has a `method` given
+  the value `"post"`
+
+  - This tells the browser that the form should send a post request when
+    the form is submitted
+
+- The form has two elements
+
+  - A `textarea` called message
+    - It’s contents are sent on submission
+  - a `button` called `save`
+    - The `button` has the `type` `"submit"` to denote that it submits
+      the form
+  - When the button is pressed the form is submitted
+
+- To handle a `POST` request, we need a `do_POST` method in our HTTP
+  Handler
+
+  ``` python
+    def do_POST(self):
+        """
+        Handle a `POST` request
+
+        Returns
+        -------
+        None
+        """
+        length = int(self.headers["Content-Length"])
+        post_body_bytes = self.rfile.read(length)
+        post_body_text = post_body_bytes.decode()
+        query_strings = urllib.parse.parse_qs(post_body_text, keep_blank_values=True)
+
+        if "clear" in query_strings:
+            messages.clear()
+        elif "message" in query_strings:
+            message = query_strings["message"][0]
+            messages.append(message)
+
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+
+        message_text = self.make_page()
+        message_bytes = message_text.encode()
+
+        self.wfile.write(message_bytes)
+  ```
+
+##### Code Analysis: POST Handler
+
+*Let’s work through the* `do_POST` *handler method from before. It’s not
+long but it takes a little bit of understanding. Recall that it is
+invoked after the client has decided to save message whose contents are
+in a text box. The browser has sent that to us as a POST request. Work
+through the following questions*
+
+1. *How does* `do_POST` *read the information sent by the browser?*
+
+    - The message is read via the file connection
+
+    - We first determine the size of the file by reading
+      `Content-Length`
+
+      ``` python
+        length = int(self.headers["Content-Length"])
+      ```
+
+    - headers are provided in `WebServerHandler` (via
+      `BaseHTTPRequestHandler`) as a dictionary called `headers`
+
+    - headers can then be loaded by name
+
+    - We then use this to read from the read file (`rfile`)
+
+      ``` python
+        post_body_bytes = self.rfile.read(length)
+      ```
+
+    - This gives us the raw bytes, which then need to be converted into
+      text
+
+      ``` python
+        post_body_text = post_body_bytes.decode()
+      ```
+
+    - The resulting text is represented as a *query string*
+
+      - This is the HTTP method for encoding named items
+      - Items have the key-value form `name=item`
+
+    - For our form we have the name of the text area and it’s content
+
+      - `message=content`
+
+    - We can use `urllib` to parse query strings
+
+      ``` python
+        query_strings = urllib.parse.parse_qs(post_body_text, keep_blank_values=True)
+      ```
+
+    - `parse_qs` method converts the query string into a dictionary
+
+    - The `keep_blank_values` parameter tells the parser to add blank
+      query string values to the dictionary
+
+      - Useful for the `clear` button
+
+    - We can then extract the content with a key-value lookup
+
+      ``` python
+        message = query_strings["message"][0]
+      ```
+
+    - `parse_qs` creates a list of content for all the names
+
+    - Since we only want one message, we just take the first element
+
+    - This gives us the message content that we can then add to our list
+      of messages
+
+      ``` python
+        messages.append(message)
+      ```
+
+    - `messages` is a global list containing each of the entered
+      messages
+
+    - `make_page` uses the contents of `messages` to create a webpage
+      which is then served back to the browser
+
+2. *How does the* `do_POST` *method generate the webpage that contains
+    the messages the user entered?*
+
+    - `do_POST` extracts the message from the `POST` request and adds it
+      to the list of messages
+    - `make_page` is then called to generate the expected webpage
+    - This webpage is then served back to the browser
+
+- A server must send a webpage as a response to a `POST` command
+
+- This could be an acknowledgement or update the page contents
+
+- Here we need to redraw the page with the new message
+
+- We define a method `make_page` that encapsulates making this page
+
+  ``` python
+    def make_page(self):
+        """
+        Generates the HTML page for a message board containing all messages
+
+        Returns
+        -------
+        str
+            the webpage as an html string
+        """
+        all_messages = "<br>\n".join(messages)
+        page = """<html>
+  <body>
+      <h1>Tiny Message Board</h1>
+    <h2>Messages</h2>
+    <p> {0} </p>
+    <h2>New Messages</h2>
+    <form method="post">
+        <textarea name="message"></textarea>
+        <button id="save" type="submit">Save Message</button>
+    </form>
+    <form method="post">
+        <button name="clear" type="submit">Clear Messages</button>
+    </form>
+  </body>
+  </html>"""
+        return page.format(all_messages)
+  ```
+
+##### Code Analysis: Make a Webpage from Python
+
+A web server can send the contents of a file back to the browser client.
+We’ve also seen that we can send raw html as a text string. There’s
+nothing that then prevents us writing an entire page as a HTML string
+and sending that back. The `make_page` method does this, to display all
+the messages to the user.
+
+*Work through the following questions*
+
+1. *How does this method create a list of messages?*
+
+    - The HTML needs to define when to end a line to then display the
+      next method
+    - The HTML command `<br>` indicates a line break
+    - We use `join` to convert the contents of the `messages` list into
+      an HTML list
+    - Each message is separated by the `<br>` HTML command
+
+2. *How does this method insert the message list into the HTML that
+    describes the page?*
+
+    - The method uses python’s string formatting
+    - We use a multi-line string to write out the static HTML template
+      and indicate a format directive `{0}` where the list of messages
+      should go
+    - We then use `format` to inject the joined string and return the
+      final result
+
+- Finally need to implement a clear button to remove all messages
+
+- We can add a clear button
+
+  ``` html
+    <form method="post">
+        <button name="clear" type="submit">Clear Messages</button>
+    </form>
+  ```
+
+- In the `do_POST` method we then add code to distinguish between a new
+  message and a clear message
+
+  ``` python
+    if "clear" in query_strings:
+        messages.clear()
+    elif "message" in query_strings:
+        message = query_strings["message"][0]
+        messages.append(message)
+  ```
+
+- `in` operator returns `True` if a key is in a dictionary
+
+- We check if we have a `clear` key
+
+  - Indicates the clear button was clicked
+
+- Else check if we have a `message` key
+
+  - Indicates that a new message was submitted
+
+#### Exercise: Improve the Message Board
+
+For the following exercise we’ll make the following improvements to the
+message board. First we’ll add data persistence, so that if the server
+goes down, messages can be reloaded. Second, we’ll add a timestamp to
+each message indicating when it was posted.
+
+The full implementation is given in
+[01_PersistentMessageBoard](./Exercises/01_PersistentMessageBoard/MessageBoard.py)
+
+We implement persistence using the standard pickle approach,
+
+``` python
+datafile = "messages.pkl"
+
+
+def load_messages(file):
+    """
+    Load the messages database from a file
+
+    Parameters
+    ----------
+    file : str
+        path to a file storing the messages database
+
+    Returns
+    -------
+    list[(message, time)]
+        A list of time-stamped messages
+    """
+    try:
+        with open(datafile, "rb") as f:
+            messages = pickle.load(f)
+    except:  # noqa: E722
+        print("Datafile missing, creating new log")
+        messages = []
+    return messages
+
+
+def save_messages(file):
+    """
+    Save the messages into the database
+
+    Parameters
+    ----------
+    file : path
+        path to the file
+
+    Returns
+    -------
+    None
+    """
+    with open(file, "wb") as f:
+        pickle.dump(messages, f)
+
+
+messages = load_messages(datafile)
+```
+
+We write `load` and `save` methods, define a `datafile` and then when
+the server starts up attempt to load from the data file. If it doesn’t
+exist we create a new message list. Save is also just a standard pickle
+dump.
+
+However since this program is supposed to be always running the question
+is then when to implement the call to save. In theory we could do this
+when the program ends, but in theory it shouldn’t. It might end
+unexpectedly at which point there’s no guarantee the save would take
+place. So instead we want to `save` the state of the message list every
+time it gets updated.
+
+Here are the changes in `do_POST`
+
+``` python
+        if "clear" in query_strings:
+            messages.clear()
+            save_messages(datafile)
+        elif "message" in query_strings:
+            message = query_strings["message"][0]
+            messages.append((message, datetime.datetime.now()))
+            save_messages(datafile)
+```
+
+Next we want to add a timestamp. You can already see from above that
+this is achieved by instead of just storing the message contents in the
+`messages` list we store a tuple. This tuple contains the contents and
+the current date and time.
+
+When we want to return the page we then adjust our `join` to,
+
+``` python
+        all_messages = "<br>\n".join(
+            map(lambda a: "Posted: {0}<br>\n{1}".format(a[1], a[0]), messages)
+        )
+```
+
+We write a lambda that maps a message tuple `(contents, time)` to the
+form
+
+``` text
+    Posted YYYY-MM-DD etc..
+    Message contents
+```
+
+We then use `map` to apply the transform to all the elements of the
+`messages` list, then `join` as before to create one string that is
+embedded into the HTML template
+
+### Host Python Applications on the Web
+
+- So far we’ve hosted our programs on our local machines
+- In theory we could host our programs on computers connected to the
+  internet
+  - Then anyone could use them
+- There are much better techniques for making advanced web applications
+  - Python has several frameworks to simplify this process, common ones
+    being
+    1. [Flask](https://flask.palletsprojects.com/en/stable/)
+    2. [Django](https://www.djangoproject.com/)
+  - These frameworks hide low level complexity and simplify integrating
+    additional layers e.g. databases
+- Once you’ve created a web app you then need to find a hosting service,
+  common ones are
+  1. Microsoft Azure
+  2. Amazon Web Servers
 
 ## Summary
 
+- We’ve created python projects to serve web pages as web servers
+- We’ve seen that the HTTP protocol specifies requests of different
+  types
+  - GET requests indicate a client wants a resource
+  - POST requests are used to submit information to a client
+- A server response contains
+  1. A status code
+  2. A header
+  3. Message contents
+- Python provides the `HTTP` library for supporting web servers
+  - The `HTTPServer` helps us run a web server
+  - The `BaseHTTPRequestHandler` helps us write classes to handle web
+    requests
+- We created a simple message board program
+  - Responds to `GET` and `POST` requests
+
 ## Questions and Answers
+
+1. *Is this how webpages work?*
+
+    - Yes
+    - However, modern browsers are more complicated and more featurefull
+    - Modern webpages can contain program code (typically JavaScript)
+      - This code interacts with the user and sends requests to a server
+    - Layout and appearance is controlled using style sheets that are
+      acted on by a browser when a page loads
+
+2. *Can a server determine what kind of client program is reading the
+    webpage?*
+
+    - Yes
+    - The header identifies the browser type, the kind of computer and
+      OS
+    - and more…
+
+3. *Can a web server have a conversation with a client?*
+
+    - It is closer to a question
+    - The server is asked for something and provides a response
+    - Each question and answer is an individual transaction
+      - By default there is no maintained state
+    - Websites can use “cookies”
+      - Small pieces of data given by a web server and stored by a
+        browser
+      - The server can then request a cookie to load some knowledge of
+        state associated with a given cookie
+      - Example uses for cookies include
+        - Shopping Carts
+        - User identity
+      - Cookies can also be malicious especially as they are used for
+        recording what people do on their personal devices including for
+        the purposes of advertising
+
+4. *How can I make my website secure?*
+
+    - Our webpages are insecure
+    - They send their responses and receive requests as plain text
+    - Anybody could read these messages
+    - [Wireshark](https://www.wireshark.org/) is an open source tool
+      that lets you capture and view network messages
+    - Modern browsers encrypt the data they transfer
+      - This uses the `https` protocol
+      - Connect via port $443$ rather than $80$
+    - Using a framework such as the two shown earlier helps handle a lot
+      of this complexity for you
+      - Including user authentication
