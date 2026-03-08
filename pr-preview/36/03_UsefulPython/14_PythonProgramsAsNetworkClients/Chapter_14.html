@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 14: Python Programs as Network Clients – Beginning to Code with Python: Notes, Examples and Exercises</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Chapter 14: Python Programs as Network Clients – Beginning to Code with Python: Notes, Examples and Exercises">
+<meta property="og:site_name" content="Beginning to Code with Python: Notes, Examples and Exercises">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Beginning to Code with Python: Notes, Examples and Exercises</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.html">Chapter 14: Python Programs as Network Clients</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Programming Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/02_PythonAndProgramming/Chapter_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2: Python and Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3: Python Program Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/04_WorkingWithVariables/Chapter_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4: Working With Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5: Making Decisions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/06_RepeatingActionsWithLoops/Chapter_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6: Repeating Actions with Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/07_UsingFunctions/Chapter_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7: Using Functions to Simplify Programs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8: Storing Collections of Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Advanced Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 9: Use Classes to Store Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/09_UsingClasses/Chapter_09_ExtensionExercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extended Exercises for Chapter 9</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/10_UseClassesToCreateActiveObjects/Chapter_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 10: Using Classes to Create Active Objects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/11_ObjectBasedSolutionDesign/Chapter_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 11: Object-based Solution Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02_AdvancedProgramming/12_PythonApplications/Chapter_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 12: Python Applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Useful Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 13: Python and Graphical User Interfaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 14: Python Programs as Network Clients</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../03_UsefulPython/15_PythonProgramsAsNetworkServers/Chapter_15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 15: Python Programs as Network Servers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">03_usefulPython/16_CreateGamesWithPython/Chapter_16.qmd</span>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#computer-networking" id="toc-computer-networking" class="nav-link" data-scroll-target="#computer-networking">Computer Networking</a>
+  <ul>
+  <li><a href="#network-communication" id="toc-network-communication" class="nav-link" data-scroll-target="#network-communication">Network communication</a></li>
+  <li><a href="#address-messages" id="toc-address-messages" class="nav-link" data-scroll-target="#address-messages">Address Messages</a></li>
+  <li><a href="#hosts-and-ports" id="toc-hosts-and-ports" class="nav-link" data-scroll-target="#hosts-and-ports">Hosts and Ports</a></li>
+  <li><a href="#send-network-messages-with-python" id="toc-send-network-messages-with-python" class="nav-link" data-scroll-target="#send-network-messages-with-python">Send Network Messages with Python</a></li>
+  <li><a href="#make-something-happen-send-a-network-message" id="toc-make-something-happen-send-a-network-message" class="nav-link" data-scroll-target="#make-something-happen-send-a-network-message">Make Something Happen: Send a Network Message</a></li>
+  <li><a href="#code-analysis-sending-network-messages" id="toc-code-analysis-sending-network-messages" class="nav-link" data-scroll-target="#code-analysis-sending-network-messages">Code Analysis: Sending Network Messages</a></li>
+  <li><a href="#send-a-message-to-another-computer" id="toc-send-a-message-to-another-computer" class="nav-link" data-scroll-target="#send-a-message-to-another-computer">Send a Message to Another Computer</a></li>
+  <li><a href="#route-packets" id="toc-route-packets" class="nav-link" data-scroll-target="#route-packets">Route Packets</a></li>
+  <li><a href="#connections-and-datagrams" id="toc-connections-and-datagrams" class="nav-link" data-scroll-target="#connections-and-datagrams">Connections and Datagrams</a></li>
+  <li><a href="#networks-and-addresses" id="toc-networks-and-addresses" class="nav-link" data-scroll-target="#networks-and-addresses">Networks and Addresses</a></li>
+  </ul></li>
+  <li><a href="#consume-the-web-from-python" id="toc-consume-the-web-from-python" class="nav-link" data-scroll-target="#consume-the-web-from-python">Consume the Web from Python</a>
+  <ul>
+  <li><a href="#read-a-webpage" id="toc-read-a-webpage" class="nav-link" data-scroll-target="#read-a-webpage">Read a Webpage</a></li>
+  <li><a href="#use-web-based-data" id="toc-use-web-based-data" class="nav-link" data-scroll-target="#use-web-based-data">Use Web-based Data</a>
+  <ul>
+  <li><a href="#xml-document-standard" id="toc-xml-document-standard" class="nav-link" data-scroll-target="#xml-document-standard">XML Document Standard</a></li>
+  <li><a href="#code-analysis-the-xml-document-format" id="toc-code-analysis-the-xml-document-format" class="nav-link" data-scroll-target="#code-analysis-the-xml-document-format">Code Analysis: The XML Document Format</a></li>
+  <li><a href="#the-python-element-tree" id="toc-the-python-element-tree" class="nav-link" data-scroll-target="#the-python-element-tree">The Python Element Tree</a></li>
+  <li><a href="#make-something-happen-work-with-weather-data" id="toc-make-something-happen-work-with-weather-data" class="nav-link" data-scroll-target="#make-something-happen-work-with-weather-data">Make Something Happen: Work with Weather Data</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/BeginToCodeWithPython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.html">Chapter 14: Python Programs as Network Clients</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Chapter 14: Python Programs as Network Clients</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>In this chapter we’ll look at the basics of computer networking</li>
+<li>These principles allow computers to talk to each other, including over the internet</li>
+<li>We’ll look at fetching information from web servers</li>
+<li>Discuss standards for data transfer between programs</li>
+</ul>
+<section id="computer-networking" class="level3">
+<h3 class="anchored" data-anchor-id="computer-networking">Computer Networking</h3>
+<ul>
+<li>Networks let computers talk to each other</li>
+</ul>
+<section id="network-communication" class="level4">
+<h4 class="anchored" data-anchor-id="network-communication">Network communication</h4>
+<ul>
+<li>Some form of connection, e.g.&nbsp;wires, radio, fibre optics</li>
+<li>Communication takes place by sending “bits” over the network
+<ul>
+<li>A <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> which may be represented by a varying voltage, flashing light etc.</li>
+</ul></li>
+<li>Computer’s have to agree on the understanding of:
+<ul>
+<li>What a “bit” is</li>
+<li>How to interpret a sequence of bits</li>
+</ul></li>
+<li>These are called protocols</li>
+<li>We refer to these sequence of protocols as layers
+<ul>
+<li>The physical layer is the protocol governing what a signal is</li>
+<li>The transport layer is the protocol that tells us to interpret a message</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">block-beta
+    columns 3
+
+    classDef BG stroke:transparent, fill:transparent
+
+    title["Network Message Protocols"]:3
+
+    class title BG
+
+    class def BG
+    class defDescr BG
+
+    MessageProtocol["Message Protocol"]:2
+    TransportLayer["Transport Layer"]
+
+    class TransportLayer BG
+
+
+    Voltage["Voltage"]
+    Lights["Lights"]
+    PhysicalLayer["Physical Layer"]
+
+    class PhysicalLayer BG
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="address-messages" class="level4">
+<h4 class="anchored" data-anchor-id="address-messages">Address Messages</h4>
+<ul>
+<li>Often there are multiple computers on the network</li>
+<li>Need some way of specifying which computer we want to talk to</li>
+<li>Messages typically have two components
+<ol type="1">
+<li>Address message
+<ul>
+<li>Specifies which computer to send the message to</li>
+</ul></li>
+<li>Message contents
+<ul>
+<li>The actual specifics of the message being sent</li>
+</ul></li>
+</ol></li>
+<li>Networks may also have a broadcast address
+<ul>
+<li>Allows messages to be sent or received from anyone</li>
+</ul></li>
+<li>Other people can potentially eavesdrop on your network traffic!
+<ul>
+<li>Secure websites will communicate over networks by encrypting the network traffic</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Be careful what you send out over unencrypted networks</strong></p>
+<p>Because anyone can potentially intercept and read what you send over an unencrypted network you should never send any secrets such as passwords over them.</p>
+</div>
+</div>
+</section>
+<section id="hosts-and-ports" class="level4">
+<h4 class="anchored" data-anchor-id="hosts-and-ports">Hosts and Ports</h4>
+<ul>
+<li>What do we do if we want to send messages to talk to multiple people at the same address?
+<ul>
+<li>We need to improve the protocol</li>
+<li>We could require an address to be <em>more</em> specific so that it can accurately identify the recipient</li>
+</ul></li>
+<li>A single computer might provide multiple different services
+<ul>
+<li>e.g.&nbsp;display webpages, provide video content, etc.</li>
+</ul></li>
+<li>Since it’s the same computer it has the same address</li>
+<li>Need some way of specifying which specific service we want</li>
+<li>The solution is called <em>ports</em>
+<ul>
+<li>A <em>port</em> is a number identifying a computer provided service</li>
+<li>Port <span class="math inline">\(80\)</span> is traditionally reserved for serving webpages</li>
+<li>ie. when connecting to a website, you connect to the computer, then port <span class="math inline">\(80\)</span> to get the webpage</li>
+</ul></li>
+<li>Computers typically have to tell a network what services they are offering and on what port</li>
+<li>Ports are effectively a way of allowing programs on different computers to talk to each other</li>
+<li>Many networks have <em>firewalls</em>
+<ul>
+<li>Firewalls are designed to restrict data packets to specific ports</li>
+<li>Protect a network client from malicious programs</li>
+</ul></li>
+</ul>
+</section>
+<section id="send-network-messages-with-python" class="level4">
+<h4 class="anchored" data-anchor-id="send-network-messages-with-python">Send Network Messages with Python</h4>
+<ul>
+<li>We’ll write a python program to send a message</li>
+<li>We first have to define the protocol we’ll use
+<ul>
+<li>We’ll use the <em><a href="https://en.wikipedia.org/wiki/User_Datagram_Protocol">User Data Protocol (UDP)</a></em></li>
+<li>Part of the <em>internet protocol suite</em>
+<ul>
+<li>Set of standards describing how the internet works</li>
+<li>Also called <em>TCP/IP</em>
+<ul>
+<li><em>TCP</em> is the <em>Transmission Control Protocol</em> that defines how to link systems</li>
+<li><em>IP</em> is the <em>Internet Protocol</em> that defines communication between networks</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>An individual message is called a <em>datagram</em></li>
+<li>A sender can send the message, but does not intrinsically know that it’s received
+<ul>
+<li>A recipient must send an acknowledgement</li>
+</ul></li>
+</ul>
+</section>
+<section id="make-something-happen-send-a-network-message" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-send-a-network-message">Make Something Happen: Send a Network Message</h4>
+<p><em>We’ll start by working through the basics in the python interpreter. Start it up and work through the following steps to send a message</em></p>
+<ol type="1">
+<li><p><em>Import the</em> <code>socket</code> <em>module</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="im">import</span> socket</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The <code>socket</code> module provides Python with the classes and functions for communicating over a network</li>
+</ul></li>
+<li><p><em>Create a</em> <code>socket</code></p>
+<ul>
+<li><p>A <code>socket</code> is an object that manages a network connection</p></li>
+<li><p>Create a socket that can receive a message by executing the statement below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  listen_socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>socket</code> takes two arguments</p>
+<ol type="1">
+<li>The address family
+<ul>
+<li>How the socket refers to host</li>
+<li><code>AF_INET</code> refers to the internet family</li>
+</ul></li>
+<li>The type of messages to send
+<ul>
+<li>We want to send <em>datagrams</em></li>
+<li>A datagram is a single, unacknowledged message sent from one system to another</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li><p><em>Define the address to connect to</em></p>
+<ul>
+<li><p>Need to define the address to connect to</p></li>
+<li><p>A network address is defined as a <code>tuple</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  listen_address <span class="op">=</span> (<span class="st">"localhost"</span>, <span class="dv">10001</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The tuple holds two values</p>
+<ol type="1">
+<li>Address to connect to (as a string)
+<ul>
+<li><code>"localhost"</code> refers to the current machine</li>
+</ul></li>
+<li>Port to connect to (as an integer)</li>
+</ol></li>
+</ul></li>
+<li><p><em>Bind the socket to the server address</em></p>
+<ul>
+<li><p>This a fancy way of assigning the address to the socket</p></li>
+<li><p>Once bound the socket can listen for messages on this port</p></li>
+<li><p>Enter the <code>bind</code> method as below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  listen_socket.bind(listen_address)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><em>Ask the socket to receive some data</em></p>
+<ul>
+<li><p><code>recvfrom</code> is a method on a socket (short for <em>receive from</em>)</p></li>
+<li><p>Fetches a single message from it</p></li>
+<li><p>Enter the following,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  result <span class="op">=</span> listen_socket.recvfrom(<span class="dv">4096</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The interpreter should not return the prompt symbol <code>&gt;&gt;&gt;</code></p></li>
+<li><p>It’s waiting to receive the datagram</p></li>
+</ul></li>
+<li><p><em>Create a transmitter</em></p>
+<ul>
+<li><p>We now need to set up a program to actually send the message</p></li>
+<li><p>Start a second python interpreter instance (leave the old one running)</p></li>
+<li><p>Now create a <code>socket</code> to send messages,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> socket</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  send_socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>So far everything looks the same</p></li>
+<li><p>We’ve imported socket and setup a socket with the same address family and message type</p></li>
+</ul></li>
+<li><p><em>Bind the socket to the same port</em></p>
+<ul>
+<li><p>Our second socket needs to be bound to a network port which will act as the recipient</p></li>
+<li><p>Our first socket is on <code>"localhost:10001"</code> so we do the same</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  send_address <span class="op">=</span> (<span class="st">"localhost"</span>, <span class="dv">10001</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><em>Send a message over a network</em></p>
+<ul>
+<li><p>Now to send the message</p></li>
+<li><p>We saw that <code>recvfrom</code> told a socket to receive a message</p></li>
+<li><p><code>sendto</code> is the send counterpart, which sends a message over the network</p></li>
+<li><p>Enter the following to send the message</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  send_socket.sendto(<span class="st">b"hello from me"</span>, send_address)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1cf571c2" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">13</span>
+</pre>
+</div>
+</div>
+</div></li>
+<li><p><code>sendto</code> returns the number of bytes sent</p></li>
+<li><p>The <code>b</code> prefix to the string tells python to encode the string as bytes</p>
+<ul>
+<li>By default python encodes strings using <a href="https://home.unicode.org/">unicode</a></li>
+<li>Unicode can’t be sent over the network, so we need to decompose it into bytes</li>
+</ul></li>
+</ul></li>
+<li><p><em>Receive the message</em></p>
+<ul>
+<li><p>On the original listening interpreter the prompt should have returned</p></li>
+<li><p>This means our message has been received</p></li>
+<li><p>view the result</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="98af1751" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">b(b"hello from me", ("127.0.0.1", 51883))
+</span></pre>
+</div>
+</div>
+</div></li>
+<li><p>The result is a tuple of two elements</p>
+<ol type="1">
+<li>The actual message contents</li>
+<li>The address of the sender, broken down into a tuple of,
+<ol type="1">
+<li>Address</li>
+<li>Port</li>
+</ol></li>
+</ol></li>
+</ul></li>
+</ol>
+</section>
+<section id="code-analysis-sending-network-messages" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-sending-network-messages">Code Analysis: Sending Network Messages</h4>
+<p><em>Work through the following questions to clarify what we’ve just explored</em></p>
+<ol type="1">
+<li><p><em>Can we send things other than text?</em></p>
+<ul>
+<li>Yes</li>
+<li>A datagram sends byte streams</li>
+<li>The bytes could represent any type of data
+<ul>
+<li>This could include complex objects</li>
+</ul></li>
+<li>The receiver just has to know how to reconstruct the byte stream
+<ul>
+<li>Easier said than done</li>
+</ul></li>
+</ul></li>
+<li><p><em>What’s the largest thing you could send?</em></p>
+<ul>
+<li><code>recvfrom</code> lets us specify the maximum size of an incoming message</li>
+<li>A program can send up to <span class="math inline">\(65,000\)</span> bytes
+<ul>
+<li>Larger datasets must be broken down into multiple messages</li>
+</ul></li>
+<li>There are network functions for splitting and recombining messages</li>
+</ul></li>
+<li><p><em>What happens if a message is sent but the listener is not listening?</em></p>
+<ul>
+<li>For a <em>datagram</em>, nothing</li>
+<li>This is because there is no formal connection procedure</li>
+<li>We simply send the messages out to a specified address</li>
+<li>A listener if it exists can receive it</li>
+<li>But as a sender, we don’t care what happens to the message once it’s sent</li>
+</ul></li>
+<li><p><em>Can the listener listen to messages from other computers?</em></p>
+<ul>
+<li>Yes</li>
+<li>As long as another computer sends the message to the address and port that the socket is bound to it can receive it</li>
+<li>Note that <code>"localhost"</code> is an alias for the computer’s own address</li>
+<li>We’d actually have to specify the computer’s address on the external network</li>
+</ul></li>
+<li><p><em>How long would the listener wait before it heard anything?</em></p>
+<ul>
+<li>By default a listener, listens until anything is received</li>
+<li><code>Socket</code> provides the <code>setdefaulttiimeout</code> method
+<ul>
+<li>Sets the number of seconds that a <code>recvfrom</code> waits for a message</li>
+<li>An exception is raised if the listener does not receive a message in this timeframe</li>
+</ul></li>
+</ul></li>
+<li><p><em>Can sockets generate exceptions?</em></p>
+<ul>
+<li>Yes</li>
+<li>Network connections are some of the most common sources of exceptions since these services can be non-deterministic
+<ul>
+<li>The response time may vary</li>
+<li>A system may go down</li>
+<li>An address or port may change and not propagate through</li>
+</ul></li>
+<li>A program should take care to catch exceptions that might occur when a network fails or disconnects</li>
+</ul></li>
+</ol>
+</section>
+<section id="send-a-message-to-another-computer" class="level4">
+<h4 class="anchored" data-anchor-id="send-a-message-to-another-computer">Send a Message to Another Computer</h4>
+<ul>
+<li><p><code>sendto</code> and <code>recvfrom</code> from can be used to communicate to other computers on a local network</p>
+<ul>
+<li>e.g.&nbsp;two home computers</li>
+</ul></li>
+<li><p>You first need to obtain the IP (internet protocol) address of the receiving machine</p></li>
+<li><p>Python’s socket module provides methods to find the IP of the computer running the python program (see <a href="./Examples/01_Receiver/Receiver.py">Receiver.py</a>)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 14.1 Receiver</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Receive packets on port 10001 from another machine</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> socket</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  host_name <span class="op">=</span> socket.gethostname()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  host_ip <span class="op">=</span> socket.gethostbyname(host_name)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"The IP address of this computer is:"</span>, host_ip)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  port <span class="op">=</span> <span class="dv">10002</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  listen_socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  listen_address <span class="op">=</span> (host_ip, port)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  listen_socket.bind(listen_address)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Listening..."</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>      reply <span class="op">=</span> listen_socket.recvfrom(<span class="dv">4096</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(reply)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="8e8f2b90" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code>The IP address of this computer is: 10.1.0.18
+Listening...</code></pre>
+</div>
+</div></li>
+<li><p>Now we can write a program to send to the packets</p>
+<ul>
+<li>This is on the sending machine</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 14.2 Sender</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Send packets to specified port on another machine</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> socket</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> time</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  target_ip <span class="op">=</span> <span class="st">"127.0.1.1"</span>  <span class="co"># set this to whatever the target ip is from Receiver.py</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  port <span class="op">=</span> <span class="dv">10002</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  send_socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  destination_address <span class="op">=</span> (target_ip, <span class="dv">10002</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Sending"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>      send_socket.sendto(<span class="st">b"Hello from me"</span>, destination_address)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      time.sleep(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a0ced998" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">##| echo: false</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">3</span>):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Sending"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sending
+Sending
+Sending</code></pre>
+</div>
+</div></li>
+<li><p>You should see the <a href="./Examples/02_Sender/Sender.py">sender program</a> periodically report that it is sending a message</p></li>
+<li><p>A corresponding received message should then appear on the receiving process</p></li>
+</ul>
+</section>
+<section id="route-packets" class="level4">
+<h4 class="anchored" data-anchor-id="route-packets">Route Packets</h4>
+<ul>
+<li>Not everything is connected to the same network
+<ul>
+<li>Especially over the internet</li>
+</ul></li>
+<li>The internet is a connected series of local networks</li>
+<li>For inter-network messages we need <em>routing</em>
+<ul>
+<li>A message might have to cross through multiple members in the local network before it can pass it on to the external network</li>
+<li>A machine on the local network must be configured to then communicate with the external network
+<ul>
+<li>Messages must first reach this machine</li>
+</ul></li>
+</ul></li>
+<li>A <em>router</em> is a specialised computer for managing sending and receiving messages using the internet protocols</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">---
+config:
+  htmlLabels: false
+  title: Internet Routing
+---
+flowchart LR
+
+    subgraph local ["Local Network"]
+    Phone
+    Computer
+    Printer
+    end
+
+    subgraph internet
+    Router["Your Router"]&lt;--&gt;Router2["Foreign Router"]
+    end
+
+    Router2&lt;--&gt;Server
+    local&lt;--&gt;Router
+
+    classDef BG stroke:transparent, fill:transparent
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>Messages between networks first go to our local router which then routes the message through the internet to the router of the target network. The target network’s router then send’s the message to the specific machine</li>
+</ul>
+</section>
+<section id="connections-and-datagrams" class="level4">
+<h4 class="anchored" data-anchor-id="connections-and-datagrams">Connections and Datagrams</h4>
+<ul>
+<li>We’ve already seen datagrams
+<ul>
+<li>Simple messages send from one to another</li>
+<li>No formal agreement</li>
+<li>No confirmation of message receipt</li>
+</ul></li>
+<li>An alternative approach is to create connections
+<ul>
+<li>The <em>Transmission Control Protocol</em> (<a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP</a>)</li>
+</ul></li>
+<li>A connection can be thought of as a formal communication arrangement</li>
+<li>The connection needs to be managed</li>
+<li>When a message is sent, the recipient must confirm receipt of the message
+<ul>
+<li>Or an error that the message failed</li>
+</ul></li>
+<li>Connections are important when it’s important that an entire message is received
+<ul>
+<li>Ensure’s that any missing components are resent</li>
+</ul></li>
+<li>A connection can be thought of similar to a file
+<ul>
+<li>It is an object that can be managed</li>
+</ul></li>
+<li>Programs can call methods on connections to,
+<ol type="1">
+<li>Send messages</li>
+<li>Poll for received messages</li>
+<li>and more</li>
+</ol></li>
+<li>A connection remains open until something closes it</li>
+</ul>
+</section>
+<section id="networks-and-addresses" class="level4">
+<h4 class="anchored" data-anchor-id="networks-and-addresses">Networks and Addresses</h4>
+<ul>
+<li>Previously we worked with address represented as numbers like <code>127.0.1.1</code>
+<ul>
+<li>These are called IP addresses</li>
+</ul></li>
+<li>However typically we want to work with something more semantically meaningful
+<ul>
+<li>e.g.&nbsp;a website url (called a hostname)</li>
+</ul></li>
+<li>Computer’s on the internet use a <em>name server</em>
+<ul>
+<li>Converts a host name into an IP address</li>
+<li>This system is called the <em>Domain name system</em> (DNS)</li>
+</ul></li>
+<li>A DNS server collection passes names around until a match is resolved</li>
+</ul>
+</section>
+</section>
+<section id="consume-the-web-from-python" class="level3">
+<h3 class="anchored" data-anchor-id="consume-the-web-from-python">Consume the Web from Python</h3>
+<ul>
+<li>Webpages are internet content</li>
+<li>When we want to browse a webpage, a browser has to request the content over a network</li>
+<li>Webpages are expressed in Hypertext Markup Language (HTML)</li>
+<li>Page content might contain text, images, links and other semantic elements
+<ul>
+<li>A browser will download these too, and put it all together to render the output</li>
+</ul></li>
+</ul>
+<section id="read-a-webpage" class="level4">
+<h4 class="anchored" data-anchor-id="read-a-webpage">Read a Webpage</h4>
+<ul>
+<li><p>It is possible to write socket based code to read websites from scratch</p>
+<ul>
+<li>We could estalish a TCP connection to a web server then request data</li>
+</ul></li>
+<li><p>Python contains the inbuilt <code>urllib</code> that simplifies this process with a useful API</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 14.3 Webpage Reader</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">  A simple program to demonstrate fetching content from a URL</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> urllib.request</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  url <span class="op">=</span> <span class="st">"https://www.robmiles.com"</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  req <span class="op">=</span> urllib.request.urlopen(url)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> line <span class="kw">in</span> req:</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(line)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="74be2dbb" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>b'&lt;!doctype html&gt;\n'
+b'&lt;html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" lang="en-GB" &gt;\n'
+b'  &lt;head&gt;\n'
+b'\t  \n'
+b'\t  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;\n'
+b'\t  \n'
+b'    &lt;!-- This is Squarespace. --&gt;&lt;!-- rob-miles --&gt;\n'
+b'&lt;base href=""&gt;\n'
+b'&lt;meta charset="utf-8" /&gt;\n'
+b'&lt;title&gt;robmiles.com&lt;/title&gt;\n'
+b'&lt;meta http-equiv="Accept-CH" content="Sec-CH-UA-Platform-Version, Sec-CH-UA-Model" /&gt;&lt;link rel="icon" type="image/x-icon" href="https://assets.squarespace.com/universal/default-favicon.ico"/&gt;\n'</code></pre>
+</div>
+</div></li>
+<li><p>The above show’s the result of reading from Rob Miles Blog</p>
+<ul>
+<li>The output is truncated to the first couple of output lines</li>
+</ul></li>
+<li><p>You might not recognise this output but it is HTML</p></li>
+<li><p>Effectively a plain-text format for specifying webpage contents</p></li>
+<li><p><code>urlopen</code> uses HTTP to request the webpage</p>
+<ul>
+<li>The result is an iterator over the page contents</li>
+</ul></li>
+</ul>
+</section>
+<section id="use-web-based-data" class="level4">
+<h4 class="anchored" data-anchor-id="use-web-based-data">Use Web-based Data</h4>
+<ul>
+<li>Reading from the web isn’t just restricted to standard websites</li>
+<li>Many services exist to provide data over a web API</li>
+<li>RSS (Really Simple Syndication / Rich Site Summary) is a format for specifying web articles and blog posts
+<ul>
+<li>It is common for websites to provide RSS feeds of their content</li>
+<li>Programs can connect to and consume RSS feeds</li>
+</ul></li>
+<li>e.g.&nbsp;if we rerun the program above aimed at the link https://www.robmiles.com/journal/rss.xml</li>
+<li>Returns an XML document containing recent blog posts
+<ul>
+<li>See the first few lines below</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 14.3 Webpage Reader</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">  A simple program to demonstrate fetching content from a URL</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> urllib.request</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  url <span class="op">=</span> <span class="st">"https://www.robmiles.com/journal/rss.xml"</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  req <span class="op">=</span> urllib.request.urlopen(url)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> line <span class="kw">in</span> req:</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(line)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="94f15fd8" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-stdout">
+<pre><code>b'&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n'
+b'&lt;!--Generated by Site-Server v@build.version@ (http://www.squarespace.com) on Thu, 05 Mar 2026 22:09:14 GMT\n'
+b'--&gt;&lt;rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://www.rssboard.org/media-rss" version="2.0"&gt;&lt;channel&gt;&lt;title&gt;robmiles.com&lt;/title&gt;&lt;link&gt;https://www.robmiles.com/&lt;/link&gt;&lt;lastBuildDate&gt;Thu, 05 Mar 2026 22:05:42 +0000&lt;/lastBuildDate&gt;&lt;language&gt;en-GB&lt;/language&gt;&lt;generator&gt;Site-Server v@build.version@ (http://www.squarespace.com)&lt;/generator&gt;&lt;description&gt;&lt;![CDATA[]]&gt;&lt;/description&gt;&lt;item&gt;&lt;title&gt;Instax Film Holders&lt;/title&gt;&lt;category&gt;3D printing&lt;/category&gt;&lt;category&gt;large format cameras&lt;/category&gt;&lt;dc:creator&gt;Rob Miles&lt;/dc:creator&gt;&lt;pubDate&gt;Thu, 05 Mar 2026 22:08:13 +0000&lt;/pubDate&gt;&lt;link&gt;https://www.robmiles.com/journal/2026/3/5/instax-film-holders&lt;/link&gt;&lt;guid isPermaLink="false"&gt;5019271be4b0807297e8f404:52c5bcfce4b0c4bcc9121347:69a9fe369cbcb14be246b532&lt;/guid&gt;&lt;description&gt;&lt;![CDATA[&lt;figure class="\n'
+b'              sqs-block-image-figure\n'
+b'              intrinsic\n'
+b'            "\n'
+b'        &gt;\n'
+b'          \n'
+b'        \n'
+b'        \n'
+b'\n'</code></pre>
+</div>
+</div></li>
+<li>Weather snaps from <a href="../../01_ProgrammingFundamentals/05_MakingDecisions/Chapter_05.html#make-something-happen-weather-helper">Chapter 5</a> also fetches an XML document from the internet
+<ul>
+<li>Here it represents weather data</li>
+</ul></li>
+</ul>
+<section id="xml-document-standard" class="level5">
+<h5 class="anchored" data-anchor-id="xml-document-standard">XML Document Standard</h5>
+<ul>
+<li><p>XML is a standard for defining documents with structured data</p></li>
+<li><p>Designed to be easy for both computers and humans to read</p>
+<ul>
+<li>These days JSON and YAML are more human-readable alternatives in common use</li>
+</ul></li>
+<li><p>XML documents are useful for sending information between computers</p></li>
+<li><p>XML documents are made up of elements</p></li>
+<li><p>Elements may have attributes</p>
+<ul>
+<li>Analogous to python class data attributes</li>
+</ul></li>
+<li><p>Elements can be defined in a tree-like structure</p>
+<ul>
+<li>i.e.&nbsp;elements may contain elements</li>
+</ul></li>
+<li><p>See the <a href="https://en.wikipedia.org/wiki/XML">XML Wikipedia page</a> for more information</p></li>
+<li><p>Below shows a simplified example of an XML document one might receive from a website</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rss</span><span class="ot"> version=</span><span class="st">"2.0"</span>&gt; <span class="co">&lt;!--RSS element in the document--&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">channel</span>&gt;   <span class="co">&lt;!--channel sub element of RSS element --&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">title</span>&gt; <span class="co">&lt;!--title element of channel sub element --&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>              robmiles.com <span class="co">&lt;!--value of the title element--&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">title</span>&gt; <span class="co">&lt;!-- end of title element--&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">item</span>&gt;</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>              &lt;<span class="kw">title</span>&gt;</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                  Water Meter Day</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>              &lt;/<span class="kw">title</span>&gt;</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>              &lt;<span class="kw">category</span>&gt;Life&lt;/<span class="kw">category</span>&gt;</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>              &lt;<span class="kw">description</span>&gt;</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                  <span class="bn">&lt;![CDATA[</span> We had a new water meter installed yay!<span class="bn">]]&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>              &lt;/<span class="kw">description</span>&gt;</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">item</span>&gt;</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">item</span>&gt;</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>              &lt;<span class="kw">title</span>&gt;</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                  Python now in Visual Studio 2017</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>              &lt;/<span class="kw">title</span>&gt;</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>              &lt;<span class="kw">category</span>&gt;Python&lt;/<span class="kw">category</span>&gt;</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>              &lt;<span class="kw">category</span>&gt;Visual Studio&lt;/<span class="kw">category</span>&gt;</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>              &lt;<span class="kw">description</span>&gt;</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>                  <span class="bn">&lt;![CDATA[</span> Python is now available in Visual Studio 2017 yay! <span class="bn">]]&gt;</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>              &lt;/<span class="kw">description</span>&gt;</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">item</span>&gt;</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">channel</span>&gt;</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">rss</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Document is broken down into elements</p></li>
+<li><p>Element has a name</p></li>
+<li><p>May contain attributes</p></li>
+<li><p>e.g.&nbsp;the <code>RSS</code> element has an attribute <code>version</code></p>
+<ul>
+<li>In the above example, the version is <code>2.0</code></li>
+</ul></li>
+<li><p>Elements may contain other elements</p></li>
+<li><p>An element is denoted by the <code>&lt;name&gt;</code> opening tag, <code>&lt;/name&gt;</code> closing tag</p>
+<ul>
+<li>Any elements contained within these delimiters is a sub element of the outer scope element</li>
+</ul></li>
+<li><p>In the above example, the <code>channel</code> element contains two <code>item</code> elements</p>
+<ul>
+<li>Each <code>item</code> contains a <code>title</code> and <code>description</code> element</li>
+</ul></li>
+</ul>
+</section>
+<section id="code-analysis-the-xml-document-format" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-the-xml-document-format">Code Analysis: The XML Document Format</h5>
+<p><em>Let’s look at some questions about the XML format</em></p>
+<ol type="1">
+<li><p><em>How do parent and child elements work in XML?</em></p>
+<ul>
+<li>Elements contained in another element are called <em>child</em> elements</li>
+<li>Child elements are just a type of XML attribute</li>
+<li>You can think of it as composition of classes</li>
+</ul></li>
+<li><p><em>What does</em> <code>CDATA</code> <em>mean?</em></p>
+<ul>
+<li><code>CDATA</code> is used to delimit an extended string</li>
+<li>Everything between <code>&lt;![CDATA][</code> and <code>]]&gt;</code> is treated as text of the element</li>
+<li>This lets us contain entire blog posts in one XML section</li>
+</ul></li>
+<li><p><em>Why does the second item in the XML document contain two</em> <code>category</code> <em>elements?</em></p>
+<ul>
+<li>XML doesn’t enforce a standard for how to layout attributes</li>
+<li>You can use something called a <em>schema</em> to do this</li>
+<li>Here a category can be thought of as similar to a tag
+<ul>
+<li>Multiple different categories can be associated to an individual document</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="the-python-element-tree" class="level5">
+<h5 class="anchored" data-anchor-id="the-python-element-tree">The Python Element Tree</h5>
+<ul>
+<li>A fully-specified XML parser is difficult to implement</li>
+<li>Fortunately python has the <code>xml</code> library for parsing XML</li>
+<li>The <code>ElementTree</code> class is designed to working with XML documents</li>
+<li>XML documents can be loaded into an <code>ElementTree</code> instance
+<ul>
+<li>We can then use methods on the class to navigate the document</li>
+</ul>
+<div id="c3c80880" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 14.4 Python ElementTree</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Shows a simple example of using the XML library's ElementTree to handle</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">  an XML Document</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> xml.etree.ElementTree <span class="im">as</span> ElementTree</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  rss_text <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;rss version="2.0"&gt;</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;channel&gt;</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="st">          &lt;title&gt;</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="st">              robmiles.com</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="st">          &lt;/title&gt;</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="st">          &lt;item&gt;</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;title&gt;</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="st">                  Water Meter Day</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;/title&gt;</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;category&gt;Life&lt;/category&gt;</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;description&gt;</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="st">                  &lt;![CDATA[ We had a new water meter installed yay!]]&gt;</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;/description&gt;</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="st">          &lt;/item&gt;</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="st">          &lt;item&gt;</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;title&gt;</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="st">                  Python now in Visual Studio 2017</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;/title&gt;</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;category&gt;Python&lt;/category&gt;</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;category&gt;Visual Studio&lt;/category&gt;</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;description&gt;</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="st">                  &lt;![CDATA[ Python is now available in Visual Studio 2017 yay! ]]&gt;</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="st">              &lt;/description&gt;</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="st">          &lt;/item&gt;</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="st">      &lt;/channel&gt;</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;/rss&gt;</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="st">  """</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>  doc <span class="op">=</span> ElementTree.fromstring(rss_text)</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> item <span class="kw">in</span> doc.<span class="bu">iter</span>(<span class="st">"item"</span>):</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>      title: <span class="bu">str</span> <span class="op">=</span> item.find(<span class="st">"title"</span>).text  <span class="co"># type: ignore</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(title.strip())</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>      description: <span class="bu">str</span> <span class="op">=</span> item.find(<span class="st">"description"</span>).text  <span class="co"># type: ignore</span></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"    "</span>, description.strip())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Water Meter Day
+     We had a new water meter installed yay!
+Python now in Visual Studio 2017
+     Python is now available in Visual Studio 2017 yay!</code></pre>
+</div>
+</div></li>
+<li><code>ElementTree</code> provides several methods for manipulating the through XML documents</li>
+<li><code>iter</code> is given an element name
+<ul>
+<li>Generates an iterator over all the instances of that element in the XML</li>
+</ul></li>
+<li><code>find</code> searches for a given element in the child elements of a selected element</li>
+<li>The <code>text</code> attribute is the text payload associated with an element</li>
+<li>You can even use <code>ElementTree</code> to
+<ol type="1">
+<li>Edit the contents of an XML document</li>
+<li>Create new elements</li>
+<li>Remove elements</li>
+</ol></li>
+</ul>
+<p>We can combine the url request code and the RSS walk code into one program that fetches an XML RSS feed from a site, then parses its contents. You can see it in <a href="./Examples/05_RSSFeed/RSSFeed.py">RSSFeed.py</a></p>
+</section>
+<section id="make-something-happen-work-with-weather-data" class="level5">
+<h5 class="anchored" data-anchor-id="make-something-happen-work-with-weather-data">Make Something Happen: Work with Weather Data</h5>
+<p><em>We used weather snaps in Chapter to decode an XML document from the U.S weather Service. The code to get the temperature for a given location is as follows</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weather_temp(latitude, longitude):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>        address <span class="op">=</span> <span class="st">"http://forecast.weather.gov/MapClick.php"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        query <span class="op">=</span> <span class="st">"?lat=</span><span class="sc">{0}</span><span class="st">&amp;lon=</span><span class="sc">{1}</span><span class="st">&amp;unit=0&amp;lg=english&amp;FcstType=dwml"</span>.<span class="bu">format</span>(latitude, longitude)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        req <span class="op">=</span> urllib.request.urlopen(address <span class="op">+</span> query)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        page <span class="op">=</span> req.read()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        doc <span class="op">=</span> xml.etree.ElementTree.fromstring(page)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> d <span class="kw">in</span> doc.<span class="bu">iter</span>(<span class="st">"temperature"</span>):</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> d.get(<span class="st">"type"</span>) <span class="op">==</span> <span class="st">"apparent"</span>:</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                text_temp_value <span class="op">=</span> d.find(<span class="st">"value"</span>).text</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="bu">int</span>(text_temp_value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Modify the method so that you get the maximum, minimum and forecast temperature values</em></p>
+<p>We’ll stick with our typical example of Seattle for now. If we look at the appropriate URL for <a href="https://forecast.weather.gov/MapClick.php?lat=47.61&amp;lon=-122.33&amp;unit=0&amp;lg=english&amp;FcstType=dwml">Seattle</a></p>
+<p>We can see the full XML document. Searching for temperature. We can find the following temperature elements.</p>
+<ol type="1">
+<li><p>Under the <code>data</code> element with type <code>forecast</code> we find,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">temperature</span><span class="ot"> type=</span><span class="st">"minimum"</span><span class="ot"> units=</span><span class="st">"Fahrenheit"</span><span class="ot"> time-layout=</span><span class="st">"k-p24h-n7-1"</span>&gt;</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Daily Minimum Temperature&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;48&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;47&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;37&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;35&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;40&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;43&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;40&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">temperature</span>&gt;</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">temperature</span><span class="ot"> type=</span><span class="st">"maximum"</span><span class="ot"> units=</span><span class="st">"Fahrenheit"</span><span class="ot"> time-layout=</span><span class="st">"k-p24h-n7-2"</span>&gt;</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Daily Maximum Temperature&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;55&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;52&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;46&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;46&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;48&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;49&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">value</span>&gt;49&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">temperature</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>This gives the seven day forecast maximum and minimum temperatures</li>
+</ul></li>
+<li><p>Under the <code>data</code> element with type <code>current observation</code> we see,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a> &lt;<span class="kw">temperature</span><span class="ot"> type=</span><span class="st">"apparent"</span><span class="ot"> units=</span><span class="st">"Fahrenheit"</span><span class="ot"> time-layout=</span><span class="st">"k-p1h-n1-1"</span>&gt;</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>     &lt;<span class="kw">value</span>&gt;51&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> &lt;/<span class="kw">temperature</span>&gt;</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a> &lt;<span class="kw">temperature</span><span class="ot"> type=</span><span class="st">"dew point"</span><span class="ot"> units=</span><span class="st">"Fahrenheit"</span><span class="ot"> time-layout=</span><span class="st">"k-p1h-n1-1"</span>&gt;</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>     &lt;<span class="kw">value</span>&gt;47&lt;/<span class="kw">value</span>&gt;</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a> &lt;/<span class="kw">temperature</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+<ul>
+<li><p>A caveat for the first point is that we can see the XML tags have an attribute <code>time-layout</code></p>
+<ul>
+<li>This seems to tell us how to map the sequence of temperature values back to the days of the week</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">time-layout</span><span class="ot"> time-coordinate=</span><span class="st">"local"</span><span class="ot"> summarization=</span><span class="st">"12hourly"</span>&gt;</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">layout-key</span>&gt;k-p24h-n7-1&lt;/<span class="kw">layout-key</span>&gt;</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">start-valid-time</span><span class="ot"> period-name=</span><span class="st">"Overnight"</span>&gt;2026-03-07T02:00:00-08:00&lt;/<span class="kw">start-valid-time</span>&gt;</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">start-valid-time</span><span class="ot"> period-name=</span><span class="st">"Saturday Night"</span>&gt;2026-03-07T18:00:00-08:00&lt;/<span class="kw">start-valid-time</span>&gt;</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">start-valid-time</span><span class="ot"> period-name=</span><span class="st">"Sunday Night"</span>&gt;2026-03-08T18:00:00-07:00&lt;/<span class="kw">start-valid-time</span>&gt;</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">start-valid-time</span><span class="ot"> period-name=</span><span class="st">"Monday Night"</span>&gt;2026-03-09T18:00:00-07:00&lt;/<span class="kw">start-valid-time</span>&gt;</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">start-valid-time</span><span class="ot"> period-name=</span><span class="st">"Tuesday Night"</span>&gt;2026-03-10T18:00:00-07:00&lt;/<span class="kw">start-valid-time</span>&gt;</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">start-valid-time</span><span class="ot"> period-name=</span><span class="st">"Wednesday Night"</span>&gt;2026-03-11T18:00:00-07:00&lt;/<span class="kw">start-valid-time</span>&gt;</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">start-valid-time</span><span class="ot"> period-name=</span><span class="st">"Thursday Night"</span>&gt;2026-03-12T18:00:00-07:00&lt;/<span class="kw">start-valid-time</span>&gt;</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">time-layout</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>We can see the pattern appears to be that it starts with the current date, then counts forward</p></li>
+<li><p>So we need to include this mapping into our code</p></li>
+<li><p>We’ll write a little bit of code that generates the correct ordering</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>  day_label_tuple <span class="op">=</span> (</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Monday"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tuesday"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Wednesday"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Thursday"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Friday"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Saturday"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Sunday"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> order_day_labels(start_date):</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">      Get the days of the week ordered by the current day</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co">      start_date : int</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">          Day of the week returned by a datetime object</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="co">      tuple[str, str, str, str, str, str, str]</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="co">          Tuple containing the days of the week such that the current day</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="co">          is the first index, and the days follow sequentially</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> day_label_tuple[start_date:] <span class="op">+</span> day_label_tuple[:start_date]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We predefine a tuple with the days of the week in the order expected by <code>datetime</code> objects</p></li>
+<li><p>We then define a function <code>order_day_labels</code> which reorders this</p>
+<ul>
+<li>The syntax <code>container_object[a:b:c]</code> means to “slice” from <code>a</code> to <code>b</code> taking every <code>c</code> elements</li>
+<li>If <code>c</code> is excluded then every element is taken</li>
+<li><code>b</code> is the exclusive upper bound</li>
+</ul></li>
+<li><p>So here we slice from the current index to the end of the tuple, this is the start of the new tuple</p></li>
+<li><p>We then shift the remaining elements to the end by slicing from the start up to the current date</p></li>
+</ul></li>
+<li><p>With our mapping set up we can define a function that will convert a sequence of temperatures into a dictionary mapping the weekdays to the temperature values</p>
+<ul>
+<li>This will implicitly rely on the fact that a dictionary stores it’s keys in insertion order (i.e.&nbsp;we can print them out in the order we inserted them)</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Dictionaries may not be Insertion Ordered</strong></p>
+<p>For several version of python 3, dictionaries were not guaranteed to preserve their insertion ordering. If you use a modern version of python this should not be an issue, but on older versions it may not work as expected. It’s also work noting that custom sub-types of dictionary may not preserve the insertion ordering too</p>
+</div>
+</div></li>
+<li><p>Our <code>get_weather_temp</code> function then becomes</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> get_weather_temp(latitude, longitude):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Return the weather temperature data at a given latitude and longitude</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Relies on US weather data, so should not be expected to work for</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">      latitude and longitude values outside of the US</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">      latitude : int | float</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">          latitude of the location to get the weather data for</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">      longitude : int | float</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">          longitude of the location to get the weather data for</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">      Forecast</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">          7 day forecast for the maximum temperature</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">          in Fahrenheit, with the current day as the first</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">          value</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">      Forecast</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co">          7 day forecast for the minimum temperature</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co">          in Fahrenheit, with the current day as the first</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="co">          value</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co">      int | float</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="co">          Most recent apparent temperature value</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co">      int | float</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co">          Most recent dew point temperature</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>      address <span class="op">=</span> <span class="st">"http://forecast.weather.gov/MapClick.php"</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>      query <span class="op">=</span> <span class="st">"?lat=</span><span class="sc">{0}</span><span class="st">&amp;lon=</span><span class="sc">{1}</span><span class="st">&amp;unit=0&amp;lg=english&amp;FcstType=dwml"</span>.<span class="bu">format</span>(</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>          latitude, longitude</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>      req <span class="op">=</span> urllib.request.urlopen(address <span class="op">+</span> query)</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>      page <span class="op">=</span> req.read()</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>      doc <span class="op">=</span> xml.etree.ElementTree.fromstring(page)</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_temp_list(e):</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="co">          Convert value subelements of an element e</span></span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="co">          into a list of temperatures</span></span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="co">          e : XML Element</span></span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="co">              Temperature element</span></span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a><span class="co">          list[int]</span></span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a><span class="co">              list of integers corresponding to temperatures.</span></span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="co">              If none found, then the list is empty</span></span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>          res <span class="op">=</span> []</span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> d <span class="kw">in</span> e.<span class="bu">iter</span>(<span class="st">"value"</span>):</span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>              res.append(<span class="bu">int</span>(d.text))  <span class="co"># type: ignore</span></span>
+<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> res</span>
+<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_temp_val(e):</span>
+<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a><span class="co">          Convert a temperature value subelement of a</span></span>
+<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a><span class="co">          temperature element to its value</span></span>
+<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a><span class="co">          e : XML Element</span></span>
+<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a><span class="co">              Temperature element</span></span>
+<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a><span class="co">          int</span></span>
+<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a><span class="co">              temperature value in Fahrenheit</span></span>
+<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a><span class="co">              as an int</span></span>
+<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> get_temp_list(e)[<span class="dv">0</span>]</span>
+<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> d <span class="kw">in</span> doc.<span class="bu">iter</span>(<span class="st">"temperature"</span>):</span>
+<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> d.get(<span class="st">"type"</span>) <span class="op">==</span> <span class="st">"apparent"</span>:</span>
+<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a>              apparent_temp <span class="op">=</span> get_temp_val(d)</span>
+<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a>          <span class="cf">elif</span> d.get(<span class="st">"type"</span>) <span class="op">==</span> <span class="st">"dew point"</span>:</span>
+<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a>              dew_point <span class="op">=</span> get_temp_val(d)</span>
+<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>          <span class="cf">elif</span> d.get(<span class="st">"type"</span>) <span class="op">==</span> <span class="st">"maximum"</span>:</span>
+<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a>              max_temp <span class="op">=</span> get_temp_list(d)</span>
+<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a>          <span class="cf">elif</span> d.get(<span class="st">"type"</span>) <span class="op">==</span> <span class="st">"minimum"</span>:</span>
+<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a>              min_temp <span class="op">=</span> get_temp_list(d)</span>
+<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a>      today <span class="op">=</span> datetime.datetime.today().weekday()</span>
+<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> (</span>
+<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a>          make_seven_day_forecast(today, max_temp),  <span class="co"># type: ignore</span></span>
+<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>          make_seven_day_forecast(today, min_temp),  <span class="co"># type: ignore</span></span>
+<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>          apparent_temp,  <span class="co"># type: ignore</span></span>
+<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a>          dew_point,  <span class="co"># type: ignore</span></span>
+<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>This function returns a tuple containing four elements
+<ol type="1">
+<li>A forecast for maximum temperature
+<ul>
+<li>i.e.&nbsp;a dictionary mapping days of the week to the predicted max temperature</li>
+</ul></li>
+<li>A forecast for minimum temperature
+<ul>
+<li>Same as above</li>
+</ul></li>
+<li>The current apparent temperature observation</li>
+<li>The current dew point temperature</li>
+</ol></li>
+<li>We have to consider that for the min and max temperature we have to parse a sequence of <code>value</code> elements
+<ul>
+<li>We want to store this in a sequence</li>
+</ul></li>
+<li>For apparent and dew point we have a single value</li>
+<li>We would like to write code that can handle both of these cases without repetition</li>
+<li>The core is the <code>get_temp_list</code> function
+<ul>
+<li>Given an XML element corresponding to a temperature, we iterate over all the <code>value</code> sub-elements</li>
+<li>Convert them to integers and append them to a list</li>
+</ul></li>
+<li>For apparent and dew point we define a <code>get_temp_value</code> this uses <code>get_temp_list</code> to do the parsing, then extracts the single value</li>
+<li>Finally in the body of our main function we iterate over the temperature elements</li>
+<li>We check the appropriate type and dispatch as required</li>
+<li>Finally package everything into a tuple and return the result</li>
+</ul></li>
+<li><p>The last step is then to simply format the output</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>      latitude <span class="op">=</span> <span class="fl">47.61</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>      longitude <span class="op">=</span> <span class="op">-</span><span class="fl">122.33</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>      max_t, min_t, apparent_t, dew_p <span class="op">=</span> get_weather_temp(latitude, longitude)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>      days_table_hdr <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>.join(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>          <span class="bu">map</span>(<span class="kw">lambda</span> a: <span class="bu">str</span>(a)[:<span class="dv">2</span>], max_t)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>      )  <span class="co"># slice of the first two characters of the day of the week</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>      max_t_str <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>.join(<span class="bu">map</span>(<span class="bu">str</span>, max_t.values()))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>      min_t_str <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>.join(<span class="bu">map</span>(<span class="bu">str</span>, min_t.values()))</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>      forecast <span class="op">=</span> days_table_hdr <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> max_t_str <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> min_t_str</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>      observation_t_str <span class="op">=</span> <span class="st">"Apparent temperature: </span><span class="sc">{0}</span><span class="ch">\n</span><span class="st">Dew point temperature: </span><span class="sc">{1}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>          apparent_t, dew_p</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"Temperature Information for Seattle"</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(forecast <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> observation_t_str)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This little main script sets up the latitude and longitude and then calls the function</p></li>
+<li><p>We then format the result as follows</p>
+<ul>
+<li>Create a header for the days consisting of the first two letters of each day e.g.&nbsp;Sunday -&gt; Su as a tab-separated list</li>
+<li>Report the max and min forecast in the same tab-separated format</li>
+</ul></li>
+<li><p>Then we print out the apparent and dew point temperature</p></li>
+<li><p>You may like the example output below</p>
+<div id="e1f6b2b1" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-stdout">
+<pre><code>Temperature Information for Seattle
+Su    Mo  Tu  We  Th  Fr  Sa
+52    46  46  50  47  47  47
+51    36  35  39  42  37  38
+Apparent temperature: 52
+Dew point temperature: 46</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>Computers can communicate to each other over networks</li>
+<li>A protocol describes how systems can communicate to each other</li>
+<li>The internet defines different layers of protocol to define different layers of functionality</li>
+<li>Information is sent in messages called datagrams</li>
+<li>An IP address locates a machine on a network</li>
+<li>The internet can be considered a series of connected local networks
+<ul>
+<li>A router routes traffic between these local networks</li>
+</ul></li>
+<li>Communication on a network can take place via individual unacknowledged communications or by establishing a connection</li>
+<li>Connections can be exposed on one or more <em>ports</em>
+<ul>
+<li>When a program wants to accept connections, it will bind a software <em>socket</em> to a port</li>
+</ul></li>
+<li>Large amounts of data are transferred as multiple datagrams</li>
+<li>Python provides the socket class to handle network connections</li>
+<li>The <code>urllib</code> in python simplifies the process of connecting to and working with web servers</li>
+<li>The eXtensible Markup Language (XML) is a language for specifying the form of data being sent over a network
+<ul>
+<li>Python provides the <code>xml</code> library for working with XML</li>
+<li>The <code>ElementTree</code> class lets us work with and manipulate the XML element tree</li>
+</ul></li>
+</ul>
+</section>
+<section id="questions-and-answers" class="level2">
+<h2 class="anchored" data-anchor-id="questions-and-answers">Questions and Answers</h2>
+<ol type="1">
+<li><p><em>Do wireless devices use a different version of the Internet from wired ones?</em></p>
+<ul>
+<li>The communication medium is different</li>
+<li>But the connection works the same</li>
+<li>Recall that the internet protocols seperate the protocol for the mechanism of transport from the protocol for communication</li>
+<li>This is analogous to how we had a GUI and Shell-based class for our Fashion Shop program in <a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html#code-analysis-complete-fashion-shop-program">Chapter 13</a>
+<ul>
+<li>Different applications for getting the user to interact</li>
+<li>Both exposed the same API, so could be run by the same main program</li>
+</ul></li>
+</ul></li>
+<li><p><em>How big can a datagram get?</em></p>
+<ul>
+<li>It depends on the network and transmission medium</li>
+<li>It is defined as the Maximum Transmission Unit (MTU)</li>
+</ul></li>
+<li><p><em>Do all datagrams follow the same route from one computer to another?</em></p>
+<ul>
+<li>Not necessarily</li>
+<li>Network routes typically update very quickly in response to load on various parts of the network</li>
+<li>This has some side effects
+<ul>
+<li>Messages can arrive <em>before</em> a message they were sent <em>after</em></li>
+</ul></li>
+<li>Using a proper connection helps us handle this</li>
+</ul></li>
+<li><p><em>Do all datagrams get to their destination?</em></p>
+<ul>
+<li>No</li>
+<li>UDP data packets are not guaranteed to arrive</li>
+<li>TCP packets are part of a session
+<ul>
+<li>Must confirm they are received</li>
+<li>Must resend them if they are not</li>
+</ul></li>
+</ul></li>
+<li><p><em>What is the difference between XML and HTML?</em></p>
+<ul>
+<li>They are both markup languages</li>
+<li>They use similar syntax for specifying elements and attributes</li>
+<li>XML is a standard for defining any kind of document</li>
+<li>HTML is specifically for telling web browsers how to render a webpage</li>
+<li>HTML elements tend to refer to the styling and content of a page
+<ul>
+<li>HTML can be thought of as specialised XML</li>
+</ul></li>
+</ul></li>
+<li><p><em>What is the difference between HTML and HTTP?</em></p>
+<ul>
+<li>HTML is the language that describes how to display a web page</li>
+<li>HTTP (HyperText Transfer Protocol) is how the server and browser get that webpage onto your browser from a server
+<ul>
+<li>i.e it is the protocol for communicating</li>
+</ul></li>
+</ul></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

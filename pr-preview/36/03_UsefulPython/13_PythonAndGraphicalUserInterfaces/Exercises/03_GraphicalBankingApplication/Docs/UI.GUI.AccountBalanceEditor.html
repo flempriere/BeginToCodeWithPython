@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module UI.GUI.AccountBalanceEditor</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="UI.html" class="white">UI</a>.<a href="UI.GUI.html" class="white">GUI</a>.AccountBalanceEditor</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Exercises/03_GraphicalBankingApplication/UI/GUI/AccountBalanceEditor.py">/home/flempriere/personal_projects/Languages/Python/BeginToCodeWithPython/03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Exercises/03_GraphicalBankingApplication/UI/GUI/AccountBalanceEditor.py</a></td></tr></table>
+    <p><span class="code">Exercise&nbsp;13.3d&nbsp;Account&nbsp;Balance&nbsp;Editor<br>
+&nbsp;<br>
+Provides&nbsp;a&nbsp;graphical&nbsp;component&nbsp;for&nbsp;withdrawing&nbsp;and&nbsp;depositing&nbsp;into&nbsp;a&nbsp;Bank&nbsp;Account<br>
+&nbsp;<br>
+Classes<br>
+-------<br>
+<a href="#AccountBalanceEditor">AccountBalanceEditor</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;tkinter&nbsp;widget&nbsp;providing&nbsp;an&nbsp;entry&nbsp;box&nbsp;and&nbsp;two&nbsp;buttons&nbsp;for&nbsp;withdrawing&nbsp;or&nbsp;depositing&nbsp;to&nbsp;an&nbsp;account</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="Data.Account.html">Data.Account</a><br>
+</td><td class="multicolumn"><a href="tkinter.html">tkinter</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="UI.GUI.AccountBalanceEditor.html#AccountBalanceEditor">AccountBalanceEditor</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="AccountBalanceEditor">class <strong>AccountBalanceEditor</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#AccountBalanceEditor">AccountBalanceEditor</a>(root,&nbsp;receiver)<br>
+&nbsp;<br>
+Class&nbsp;representing&nbsp;a&nbsp;graphical&nbsp;account&nbsp;balance&nbsp;editor<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+receiver<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;notify&nbsp;when&nbsp;an&nbsp;account&nbsp;balance&nbsp;in&nbsp;modified.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Must&nbsp;support&nbsp;the&nbsp;`balance_changed()`&nbsp;method<br>
+frame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;widget&nbsp;frame&nbsp;containing&nbsp;the&nbsp;component<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="AccountBalanceEditor-__init__"><strong>__init__</strong></a>(self, root, receiver)</dt><dd><span class="code">Create&nbsp;a&nbsp;new&nbsp;`<a href="#AccountBalanceEditor">AccountBalanceEditor</a>`<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+root&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parent&nbsp;widget<br>
+receiver&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="builtins.html#object">object</a>&nbsp;supporting&nbsp;the&nbsp;`balance_changed`&nbsp;method&nbsp;to&nbsp;be&nbsp;notified<br>
+&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;a&nbsp;balance&nbsp;changes<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+AttributeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;raised&nbsp;if&nbsp;receiver&nbsp;does&nbsp;not&nbsp;support&nbsp;`balance_changed`</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<dl><dt><strong>account</strong></dt>
+<dd><span class="code">account&nbsp;:&nbsp;Account<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;account&nbsp;being&nbsp;edited<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;raised&nbsp;when&nbsp;attempting&nbsp;to&nbsp;set&nbsp;`account`&nbsp;to&nbsp;a&nbsp;type&nbsp;that&nbsp;is&nbsp;not&nbsp;a&nbsp;subclass&nbsp;of&nbsp;`Account.Account`</span></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
