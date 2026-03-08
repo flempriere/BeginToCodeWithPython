@@ -37,6 +37,7 @@ I started this repository to work through an easy and basic book before working 
 
   - [Chapter 13: Python and Graphical User Interfaces](./03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.qmd)
   - [Chapter 14: Python Programs as Network Clients](./03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.qmd)
+  - [Chapter 15: Python Programs as Network Servers](./03_UsefulPython/15_PythonProgramsAsNetworkServers/Chapter_15.qmd)
 
 ### Useful Python
 
@@ -58,3 +59,5 @@ I started this repository to work through an easy and basic book before working 
     libraries
     2. We use the string method `find` after having been introduced to the concept of string methods and substrings searching with
     `startswith`
+    3. We use the `datetime` module to simplify arithmetic on date and time objects after having extensively used the `time` module
+    4. The final Banking Application example in Chapter 13 uses some tkinter elements that are not discussed,but are documented online
