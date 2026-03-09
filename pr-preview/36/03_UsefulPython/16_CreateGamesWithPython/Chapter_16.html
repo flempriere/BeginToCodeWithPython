@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -69,8 +104,38 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="Create Games with PyGame – Beginning to Code with Python: Notes, Examples and Exercises">
+<meta property="og:image" content="./Examples/02_PygameDraw/drawing_program.png">
 <meta property="og:site_name" content="Beginning to Code with Python: Notes, Examples and Exercises">
 </head>
 
@@ -108,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Create Games with PyGame</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html">Create Games with PyGame</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -259,8 +324,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">03_usefulPython/16_CreateGamesWithPython/Chapter_16.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Create Games with PyGame</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -273,7 +341,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a>
+  <ul>
+  <li><a href="#getting-started-with-pygame" id="toc-getting-started-with-pygame" class="nav-link" data-scroll-target="#getting-started-with-pygame">Getting Started with PyGame</a>
+  <ul>
+  <li><a href="#make-something-happen-start-pygame-and-draw-some-lines" id="toc-make-something-happen-start-pygame-and-draw-some-lines" class="nav-link" data-scroll-target="#make-something-happen-start-pygame-and-draw-some-lines">Make Something Happen: Start PyGame and Draw Some Lines</a></li>
+  <li><a href="#make-something-happen-making-art" id="toc-make-something-happen-making-art" class="nav-link" data-scroll-target="#make-something-happen-making-art">Make Something Happen: Making Art</a></li>
+  </ul></li>
+  <li><a href="#draw-images-using-pygame" id="toc-draw-images-using-pygame" class="nav-link" data-scroll-target="#draw-images-using-pygame">Draw Images using Pygame</a>
+  <ul>
+  <li><a href="#image-file-types" id="toc-image-file-types" class="nav-link" data-scroll-target="#image-file-types">Image File Types</a></li>
+  <li><a href="#load-an-image-into-a-game" id="toc-load-an-image-into-a-game" class="nav-link" data-scroll-target="#load-an-image-into-a-game">Load an Image into a Game</a></li>
+  <li><a href="#make-an-image-move" id="toc-make-an-image-move" class="nav-link" data-scroll-target="#make-an-image-move">Make an Image Move</a>
+  <ul>
+  <li><a href="#make-something-happen-move-an-image" id="toc-make-something-happen-move-an-image" class="nav-link" data-scroll-target="#make-something-happen-move-an-image">Make Something Happen: Move an Image</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#get-user-input-from-pygame" id="toc-get-user-input-from-pygame" class="nav-link" data-scroll-target="#get-user-input-from-pygame">Get User Input from Pygame</a>
+  <ul>
+  <li><a href="#make-something-happen-investigate-events-in-pygame" id="toc-make-something-happen-investigate-events-in-pygame" class="nav-link" data-scroll-target="#make-something-happen-investigate-events-in-pygame">Make Something Happen: Investigate Events in Pygame</a></li>
+  <li><a href="#code-analysis-game-loops" id="toc-code-analysis-game-loops" class="nav-link" data-scroll-target="#code-analysis-game-loops">Code Analysis: Game Loops</a></li>
+  </ul></li>
+  <li><a href="#create-game-sprites" id="toc-create-game-sprites" class="nav-link" data-scroll-target="#create-game-sprites">Create Game Sprites</a></li>
+  </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
   </ul>
@@ -282,7 +372,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html">Create Games with PyGame</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Create Games with PyGame</h1>
 </div>
@@ -303,6 +393,927 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="getting-started-with-pygame" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started-with-pygame">Getting Started with PyGame</h3>
+<ul>
+<li>PyGame is a module for creating games</li>
+<li>This means that it includes support for graphics, sound, shapes etc.</li>
+<li>We’ve already seen this, pygame powered the <a href="../../01_ProgrammingFundamentals/03_PythonProgramStructure/Chapter_03.html#adding-some-snaps">snaps module</a></li>
+<li>pygame uses tuples to create items that contain colours and coordinates
+<ul>
+<li>Make sure you’re familiar with tuples (see <a href="../../01_ProgrammingFundamentals/08_StoringCollectionsOfData/Chapter_08.html#tuples">Chapter 8</a>)</li>
+</ul></li>
+</ul>
+<section id="make-something-happen-start-pygame-and-draw-some-lines" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-start-pygame-and-draw-some-lines">Make Something Happen: Start PyGame and Draw Some Lines</h4>
+<p><em>The best way to learn is to dive right in. Open up the python interpreter and work through the following steps</em></p>
+<ol type="1">
+<li><p><em>load</em> <code>pygame</code></p>
+<ul>
+<li><p>This is done through the usual import</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> pygame</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We can now use pygame’s functions and classes</p></li>
+</ul></li>
+<li><p><em>Initialise pygame</em></p>
+<ul>
+<li><p>The pygame framework needs to be initialised</p></li>
+<li><p>This handles setting everything up</p></li>
+<li><p>do so as follows</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  pygame.init()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This sets up the pygame elements for handling various tasks</p></li>
+<li><p>This includes,</p>
+<ol type="1">
+<li>Reading user input</li>
+<li>Making sounds</li>
+<li>and more…</li>
+</ol></li>
+<li><p><code>init</code> returns a tuple indicating how many elements have initialised and how many have failed</p></li>
+<li><p>If an element fails to initialise it can indicate that pygame hasn’t installed correctly</p>
+<ol type="1">
+<li>The first element of the tuple is the number of successfully initialised elements</li>
+<li>The second element of the tuple is the number of failed elements</li>
+</ol></li>
+</ul></li>
+<li><p><em>Create a drawing surface</em></p>
+<ul>
+<li><p>To draw objects we first need to define a drawing surface</p></li>
+<li><p>Drawing surface has a fixed size</p>
+<ul>
+<li>Set at the time of creation</li>
+<li>Size is specified in pixels</li>
+<li>More pixels give a better quality display</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  size <span class="op">=</span> (<span class="dv">800</span>, <span class="dv">600</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We can then use this size tuple to create our display</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  surface <span class="op">=</span> pygame.display.set_mode(size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This creates a drawing surface, references it with the variable <code>surface</code></p></li>
+<li><p>The result is then displayed</p></li>
+</ul></li>
+<li><p><em>Set the title</em></p>
+<ul>
+<li><p>Like with <code>tkinter</code> these windows have methods for changing how they display</p></li>
+<li><p>We can change the title</p></li>
+<li><p>Do so as follows,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  pygame.display.set_caption(<span class="st">"An awesome game"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><em>Draw something on the canvas</em></p>
+<ul>
+<li><p>Now we can draw on the canvas</p></li>
+<li><p>For example we can draw a line</p></li>
+<li><p>This takes four arguments</p>
+<ol type="1">
+<li>The surface to draw on</li>
+<li>The drawing colour</li>
+<li>The start position of the line</li>
+<li>The end position of the line</li>
+</ol></li>
+<li><p>We already have our surface</p></li>
+<li><p>Next define a colour</p>
+<ul>
+<li>This is a 3-tuple containing red, green, blue values from <span class="math inline">\(0\)</span> to <span class="math inline">\(255\)</span>
+<ul>
+<li>The lowest level is <span class="math inline">\(0\)</span></li>
+<li>The highest level is <span class="math inline">\(255\)</span></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  red <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p>Now we need to define the start and end coordinates</p></li>
+<li><p>Like with tkinter</p>
+<ul>
+<li><span class="math inline">\(x\)</span> coordinate measures from the left of the screen to the right</li>
+<li><span class="math inline">\(y\)</span> coordinate measures from the top of the screen to the bottom</li>
+</ul></li>
+<li><p>We then represent a coordinate with a tuple <code>(x, y)</code></p></li>
+<li><p>Define our coordinates as below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  start <span class="op">=</span> (<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  end <span class="op">=</span> (<span class="dv">500</span>, <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Now we just have to issue our actual drawing command</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  pygame.draw.line(surface, red, start, end)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e46c4002" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;rect(0, 0, 501, 301)&gt;</code></pre>
+</div>
+</div></li>
+<li><p>This returns a rectangle object enclosing the line</p></li>
+<li><p>You can ignore this</p></li>
+</ul></li>
+<li><p><em>Render the line</em></p>
+<ul>
+<li><p>Looking at the window we can see that no line has appeared</p></li>
+<li><p>Draw operations end up on the <em>back buffer</em></p>
+<ul>
+<li>Managed by pygame</li>
+</ul></li>
+<li><p>We don’t draw directly on the screen for every draw command</p>
+<ul>
+<li>In the context of a video game we don’t want to do every draw immediately</li>
+<li>This is quite slow</li>
+<li>We also might want to only show the final result rather than the immediate states</li>
+</ul></li>
+<li><p>Instead all operations are drawn to the back buffer</p>
+<ul>
+<li>When drawing is done this copy can be drawn over the display memory to replace it</li>
+<li>The memory then used to display becomes the new back buffer</li>
+<li>We then repeat</li>
+</ul></li>
+<li><p>The <code>flip</code> function is used to swap the display and back buffer memory</p></li>
+<li><p>Call it now</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  pygame.display.flip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><em>Change the background</em></p>
+<ul>
+<li><p>Currently the background is black</p></li>
+<li><p>We can use the <code>fill</code> function to change the background colour</p></li>
+<li><p>The below creates a tuple with the colour white, paints the background, then applies this</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  white <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  surface.fill(white)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  pygame.display.flip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>You’ll notice this has erased the red line</p></li>
+</ul></li>
+</ol>
+<ul>
+<li>We can use these functions to create some images</li>
+<li>We’ll create a function to draw <span class="math inline">\(100\)</span> randomly coloured and positioned lines and dots</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">Example 16.2 Pygame Drawing Functions</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">Demonstrates the use of pygame's drawing functionality to create</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">some artwork</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygame</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DrawDemo:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Draws an image of randomly coloured and positioned lines and dots</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> do_draw_demo():</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">        Create a demonstration display</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        init_result <span class="op">=</span> pygame.init()</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> init_result[<span class="dv">1</span>] <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Failed to initialise all elements, check pygame installation"</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        width <span class="op">=</span> <span class="dv">800</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        height <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        size <span class="op">=</span> (width, height)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> get_random_coordinates():</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co">            Generates a random (X,Y) coordinate tuple</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co">            tuple[int, int]</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co">                X,Y coordinates</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>            X <span class="op">=</span> random.randint(<span class="dv">0</span>, width <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>            Y <span class="op">=</span> random.randint(<span class="dv">0</span>, height <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> (X, Y)</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> get_random_colour():</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="co">            Generate a random (R,G,B) colour tuple</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co">            tuple[int, int, int]</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="co">                R,G,B colour tuple</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>            red <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="dv">255</span>)</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>            green <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="dv">255</span>)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>            blue <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="dv">255</span>)</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> (red, green, blue)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>        surface <span class="op">=</span> pygame.display.set_mode(size)</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>        pygame.display.set_caption(<span class="st">"Drawing Example"</span>)</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>        red <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>        green <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>        blue <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>        black <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>        yellow <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">0</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>        magenta <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">255</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>        cyan <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">255</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>        white <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>        gray <span class="op">=</span> (<span class="dv">128</span>, <span class="dv">128</span>, <span class="dv">128</span>)  <span class="co"># noqa: F841</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>        surface.fill(white)</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> get_random_coordinates()</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>            stop <span class="op">=</span> get_random_coordinates()</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>            colour <span class="op">=</span> get_random_colour()</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>            pygame.draw.line(surface, colour, start, stop)</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>            pos <span class="op">=</span> get_random_coordinates()</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>            colour <span class="op">=</span> get_random_colour()</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>            radius <span class="op">=</span> random.randint(<span class="dv">5</span>, <span class="dv">50</span>)</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>            pygame.draw.circle(surface, colour, pos, radius)</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>        pygame.display.flip()</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>DrawDemo.do_draw_demo()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>The output should look similar (but slightly different) to the below</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/02_PygameDraw/drawing_program.png" class="img-fluid figure-img"></p>
+<figcaption>Image generated using pygame</figcaption>
+</figure>
+</div></li>
+<li><p>As a personal aside, since we’re implemented <code>do_draw_demo</code> as a static method there isn’t really a need for there to be a class here</p></li>
+<li><p>We could really just write <code>do_draw_demo</code> as a standalone function</p></li>
+</ul>
+</section>
+<section id="make-something-happen-making-art" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-making-art">Make Something Happen: Making Art</h4>
+<p><em>Create a program that varies a displayed pattern. Use the time of day and the weather to adjust the colours. Use bright primary colours in the morning and more mellow dark colours in the evening. If the weather is warm, the colours could have a red tinge, and if it’s colder, you could create colours with more blues. Remember that you can create any colour you like for you graphics by modifying the amount of red, green and blue</em></p>
+<p>This one is quite a fun little program. We’ll use the core implementation from <a href="#make-something-happen-start-pygame-and-draw-some-lines">the previous example</a>. The basic idea is to wrap the drawing code in a loop that will periodically redraw the image. The second step is to add code that will adjust the weighting of the generated colour in response to the time of day and the current weather.</p>
+<p>Lets plan out how we generate out colours first. Before we generated a colour by randomly generating red, green, blue colour values from <span class="math inline">\(0\)</span> to <span class="math inline">\(255\)</span> using a uniform distribution. This means that each colour value is equally likely. We could tune the uniform distribution, e.g.&nbsp;by limiting it to a subrange of a colour value, then shifting this up and down the spectrum, but we’ll instead use another distribution, the <em>gaussian</em>. A guassian distribution also called the normal distribution, lets us define a mean point, then the standard deviation (or spread) for our colour value. We can then clip the values to ensure they remain in the <span class="math inline">\(0\)</span> to <span class="math inline">\(255\)</span> range. The advantage of this is that we can then easily shift the mean to weight towards specific colours, but we still have a chance of generating any possible colour.</p>
+<p>The code implementing this is given below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_random_colour(means):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">        Generate a random (R,G,B) colour tuple</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">        means : tuple[int, int, int]</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">            Tuple containing the mean values in RGB space for the generated</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">            colours</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">        -------</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">        tuple[int, int, int]</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">            R,G,B colour tuple</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> random_single_colour_channel(mean, sigma):</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            <span class="co">"""</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">            Generate a random single colour value from 0 to 255</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">            Number is generated using a clipped gaussian</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">            Parameters</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">            ----------</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">            mean : int | float</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">                mean generated colour value</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">            sigma : int | float</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">                standard deviation in generated colour</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">            Returns</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">            -------</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">            int</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">                colour channel value between 0 and 255 inclusive</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">            """</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="bu">int</span>(<span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, random.gauss(mean, sigma))))</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>        sigma <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>        red <span class="op">=</span> random_single_colour_channel(means[<span class="dv">0</span>], sigma)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>        green <span class="op">=</span> random_single_colour_channel(means[<span class="dv">1</span>], sigma)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        blue <span class="op">=</span> random_single_colour_channel(means[<span class="dv">2</span>], sigma)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (red, green, blue)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>We set our standard deviation to <span class="math inline">\(20\)</span></p>
+<ul>
+<li>This was chosen through trial and error, to give a decent spread of colours</li>
+</ul></li>
+<li><p><code>random_single_colour_channel</code> takes a mean and sigma (standard deviation), then generates a colour value using a Gaussian distribution</p>
+<ul>
+<li>We then clip the value to the range <span class="math inline">\(0\)</span> to <span class="math inline">\(255\)</span></li>
+</ul></li>
+<li><p><code>get_random_colour</code> wraps the above function</p>
+<ul>
+<li>It defines the standard deviation</li>
+<li>Then generates colour values for red, green and blue</li>
+<li>It accepts a tuple of means corresponding to the mean red, green and blue component
+<ul>
+<li>This lets us shift the mean amount of each individual colour individually</li>
+</ul></li>
+</ul></li>
+<li><p>We then want to add code to shift these means based on the temperature and time of day</p></li>
+<li><p>For temperature, we want to increase the amount of red when it is hot, and increase the amount of blue when it is cold</p></li>
+<li><p>We first need to get the temperature data, which we do by using the Weather Data program from <a href="../../03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.html#make-something-happen-work-with-weather-data">Chapter 14</a> as a module</p></li>
+<li><p>We then want to convert the temperature to celsius (because I intuitively understand those values)</p>
+<ul>
+<li><p>We then use a basic formula for shifting the mean, we use the formula,</p>
+<p><span class="math display">\[
+  \left(R, G, B\right) = \text{scale} \times \left(\text{temperature} - \text{offset}\right)
+\]</span></p></li>
+<li><p>The idea is we define a <em>hot</em> threshold, and then increase the red the more the temperature is above this threshold</p></li>
+<li><p>We then scale this by a scale factor to ensure the appropriate impact on the mean</p></li>
+<li><p>We define a similar setup for a <em>cold</em> threshold to increase the blue</p></li>
+<li><p>We want to return the final result as a tuple of R,G,B shift, because this will be easier to work with and means we don’t need to denote which colour value we are adjusted</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> fahrenheit_to_celsius(temperature):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Convert fahrenheit to celsius</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">      temperature : int | float</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">          the temperature in fahrenheit</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">      int | float</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">          temperature in celsius</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> (temperature <span class="op">-</span> <span class="fl">32.0</span>) <span class="op">*</span> (<span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> convert_temperature_to_colour_shift(temperature):</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">      Convert the given temperature into an RGB colour shift</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">      Low temperatures give a blue shift, high temperatures give a red shift</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co">      temperature : int | float</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co">          the current temperature</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co">      tuple[int, int, int]</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="co">          tuple giving the colour shift in RGB</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>      scale_factor <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>      <span class="co"># if hot increase the amount of red (more heat = more red)</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> temperature <span class="op">&gt;</span> <span class="dv">25</span>:</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> (scale_factor <span class="op">*</span> (<span class="bu">int</span>(temperature) <span class="op">-</span> <span class="dv">25</span>), <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>      <span class="co"># if cold increase the amount of blue (lower temp = more blue)</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>      <span class="cf">elif</span> temperature <span class="op">&lt;</span> <span class="dv">10</span>:</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> (<span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span>scale_factor <span class="op">*</span> (temperature <span class="op">-</span> <span class="dv">10</span>))  <span class="co"># i.e. 10 -&gt; 0, -10 -&gt; 20</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> (<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We then want to use the same idea for the time. However in this case we want higher saturation colours early in the morning, and low saturation colours late in the day</p>
+<ul>
+<li>A high saturation colour has high values across <span class="math inline">\((R,G,B)\)</span></li>
+<li>A low saturation colour has low values across <span class="math inline">\((R,G,B)\)</span>
+<ul>
+<li>So we want to adjust the mean across all three colours</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> convert_hour_to_colour_shift(hour):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Convert the given time into an RGB colour shift</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Night times give a shift towards smaller RGB values, morning times</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">      give a shift towards larger RGB values</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">      hour : int</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">          the current hour</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">      tuple[int, int, int]</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">          RGB colour tuple giving the colour shift in RGB space</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>      scale_factor <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>      offset <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="dv">6</span> <span class="op">&lt;=</span> hour <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>          <span class="co"># want morning to increase the average</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>          shift <span class="op">=</span> scale_factor <span class="op">*</span> (offset <span class="op">-</span> hour) <span class="co"># shift range: (0 - 120)</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>      <span class="cf">elif</span> <span class="dv">18</span> <span class="op">&lt;=</span> hour <span class="kw">or</span> hour <span class="op">&lt;</span> <span class="dv">6</span>:</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>          <span class="co"># want evening to decrease the range</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>          shift <span class="op">=</span> <span class="op">-</span>(scale_factor <span class="op">*</span> <span class="bu">abs</span>(offset <span class="op">-</span> hour)) <span class="co"># shift range (0 - 120)</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>          shift <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> (shift, shift, shift)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We use the same kind of formula as before, however this time we shift the mean for all three colours</p></li>
+<li><p>We have two cases</p>
+<ul>
+<li>Morning, in which case we can use the simple formula before (We define morning as between <span class="math inline">\(6\)</span> and <span class="math inline">\(12\)</span>)</li>
+<li>Evening, here we want to get more mellow as we get close to midnight, then progressively less mellow</li>
+<li>So we can use the same idea as before but we want to use <code>abs</code> or absolute value to effectively measure the distance of the current hour to midnight</li>
+</ul></li>
+<li><p>The drawing code is then given as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> draw_art(surface, width, height, hour, temperature):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Draw an artwork with time and temperature dependent colouring</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">      surface : surface</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">          pygame surface to draw on</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">      width : int</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">          width of the image in pixels</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">      height : int</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">          height of the image in pixels</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">      hour : int</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">          The current hour</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">      temperature : int | float</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">          The current temperature</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_random_coordinates():</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">          Generates a random (X,Y) coordinate tuple</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">          tuple[int, int]</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">              X,Y coordinates</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>          X <span class="op">=</span> random.randint(<span class="dv">0</span>, width <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>          Y <span class="op">=</span> random.randint(<span class="dv">0</span>, height <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> (X, Y)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> get_random_colour(means):</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">          Generate a random (R,G,B) colour tuple</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">          means : tuple[int, int, int]</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">              Tuple containing the mean values in RGB space for the generated</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">              colours</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="co">          tuple[int, int, int]</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co">              R,G,B colour tuple</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>          <span class="kw">def</span> random_single_colour_channel(mean, sigma):</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>              <span class="co">"""</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="co">              Generate a random single colour value from 0 to 255</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="co">              Number is generated using a clipped gaussian</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="co">              Parameters</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="co">              ----------</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="co">              mean : int | float</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="co">                  mean generated colour value</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="co">              sigma : int | float</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="co">                  standard deviation in generated colour</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="co">              Returns</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a><span class="co">              -------</span></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="co">              int</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a><span class="co">                  colour channel value between 0 and 255 inclusive</span></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a><span class="co">              """</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> <span class="bu">int</span>(<span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, random.gauss(mean, sigma))))</span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>          sigma <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>          red <span class="op">=</span> random_single_colour_channel(means[<span class="dv">0</span>], sigma)</span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>          green <span class="op">=</span> random_single_colour_channel(means[<span class="dv">1</span>], sigma)</span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>          blue <span class="op">=</span> random_single_colour_channel(means[<span class="dv">2</span>], sigma)</span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> (red, green, blue)</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>      white <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>      surface.fill(white)</span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>      mean <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>      means <span class="op">=</span> (mean, mean, mean)</span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>      hour_shift <span class="op">=</span> convert_hour_to_colour_shift(hour)</span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>      temperature_shift <span class="op">=</span> convert_temperature_to_colour_shift(temperature)</span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>      new_means <span class="op">=</span> []</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(means)):</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a>          new_means.append(means[i] <span class="op">+</span> hour_shift[i] <span class="op">+</span> temperature_shift[i])</span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>      means <span class="op">=</span> <span class="bu">tuple</span>(new_means)</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>          start <span class="op">=</span> get_random_coordinates()</span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>          stop <span class="op">=</span> get_random_coordinates()</span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a>          colour <span class="op">=</span> get_random_colour(means)</span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>          pygame.draw.line(surface, colour, start, stop)</span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>          pos <span class="op">=</span> get_random_coordinates()</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>          colour <span class="op">=</span> get_random_colour(means)</span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>          radius <span class="op">=</span> random.randint(<span class="dv">5</span>, <span class="dv">50</span>)</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>          pygame.draw.circle(surface, colour, pos, radius)</span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>      pygame.display.flip()</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> update_artwork_mainloop():</span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a><span class="co">      Create an art work that updates hourly</span></span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>      init_result <span class="op">=</span> pygame.init()</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> init_result[<span class="dv">1</span>] <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="st">"Failed to initialise all elements, check pygame installation"</span>)</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a>      width <span class="op">=</span> <span class="dv">800</span></span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a>      height <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>      size <span class="op">=</span> (width, height)</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a>      surface <span class="op">=</span> pygame.display.set_mode(size)</span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a>      pygame.display.set_caption(<span class="st">"Drawing Example"</span>)</span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a>          hour <span class="op">=</span> time.localtime().tm_hour</span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a>          latitude <span class="op">=</span> <span class="fl">47.61</span></span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a>          longitude <span class="op">=</span> <span class="op">-</span><span class="fl">122.33</span></span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a>          _, _, temperature, _ <span class="op">=</span> WeatherData.get_weather_temp(</span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a>              latitude<span class="op">=</span>latitude, longitude<span class="op">=</span>longitude</span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a>          temperature <span class="op">=</span> fahrenheit_to_celsius(temperature)</span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(</span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Updating artwork, it is </span><span class="sc">{0}</span><span class="st"> and the temperature is </span><span class="sc">{1}</span><span class="st">C"</span>.<span class="bu">format</span>(</span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a>                  hour, temperature</span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a>          draw_art(surface, width, height, hour, temperature)</span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a>          time.sleep(<span class="dv">60</span> <span class="op">*</span> <span class="dv">30</span>) <span class="co"># update every 30 minutes</span></span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a>  update_artwork_mainloop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This program will redraw the artwork every half an hour</p></li>
+<li><p>When it does it pulls the current time and temperature (We’re sticking with Seattle here)</p></li>
+<li><p>Then redraws the image</p></li>
+<li><p>Two example images are shown below, the first later at night, the second earlier in a cold morning</p>
+<p><img src="./Exercises/01_MakingArt/late_night.png" class="img-fluid" alt="Art generated at late night"> <img src="./Exercises/01_MakingArt/cold_morning.png" class="img-fluid" alt="Art generated in the morning"></p></li>
+</ul>
+</section>
+</section>
+<section id="draw-images-using-pygame" class="level3">
+<h3 class="anchored" data-anchor-id="draw-images-using-pygame">Draw Images using Pygame</h3>
+<ul>
+<li>Pygame can draw images on the screen</li>
+<li>Images are loaded from files</li>
+</ul>
+<section id="image-file-types" class="level4">
+<h4 class="anchored" data-anchor-id="image-file-types">Image File Types</h4>
+<ul>
+<li><p>There are many different image formats</p></li>
+<li><p>For pygame you should use one of the following</p>
+<ol type="1">
+<li>PNG
+<ul>
+<li>This format is lossless</li>
+<li>An exact version of the image is always stored</li>
+<li>PNG can also have transparent sections
+<ul>
+<li>Allows images to be drawn on top of each other</li>
+</ul></li>
+</ul></li>
+<li>JPEG
+<ul>
+<li>This format is <em>lossy</em></li>
+<li>The program stores a compressed version of the image</li>
+<li>Smaller, but less precise</li>
+</ul></li>
+</ol></li>
+<li><p>You should use JPEG for large background images and PNG for items drawn over the top</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>You can use an image manipulation program to convert image file types</strong></p>
+<p>Most image programs will let you load a png or jpeg and export it as a different format. Some common examples include paint (bundled with Windows), paint.net (a free download) or GIMP (a free heavy duty image manipulation program similar to photoshop)</p>
+</div>
+</div>
+</section>
+<section id="load-an-image-into-a-game" class="level4">
+<h4 class="anchored" data-anchor-id="load-an-image-into-a-game">Load an Image into a Game</h4>
+<ul>
+<li><p>The pygame <code>image</code> module handles displayed images</p></li>
+<li><p>Images are loaded by providing the file path using the <code>load</code> function</p>
+<ul>
+<li>The path can be relative to the directly that the program is running from</li>
+</ul></li>
+<li><p>For example below loads an image and assigns it to a variable</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  cheeseImage <span class="op">=</span> pygame.image.load(<span class="st">"cheese.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Loading an image is separate to actually drawing the image</p></li>
+<li><p>Drawing is the process of actually copying the image into the display memory</p></li>
+<li><p><code>blit</code> is the method that performs this action</p></li>
+<li><p><code>blit</code> requires</p>
+<ol type="1">
+<li>The image to be drawn</li>
+<li>The coordinates on the screen where the image is to be blitted</li>
+</ol></li>
+<li><p>To put <code>cheeseImage</code> at the top left corner we can write,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  cheesePos <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  surface.blit(cheeseImage, cheesePos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This assume <code>surface</code> is the display window as discussed in the <a href="#make-something-happen-start-pygame-and-draw-some-lines">previous section</a></p></li>
+<li><p>The <a href="./Examples/03_DrawImage/DrawImage.py">complete program</a> can be seen below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 16.3 Draw Image</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Demonstrates drawing an image with pygame</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> time</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> pygame</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> do_image_demo():</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">      Demonstrate loading and drawing an image using pygame</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>      init_result <span class="op">=</span> pygame.init()</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> init_result[<span class="dv">1</span>] <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">"pygame failed to load </span><span class="sc">{0}</span><span class="st"> elements. Please verify installation"</span>.<span class="bu">format</span>(</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>                  init_result[<span class="dv">1</span>]</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>      width <span class="op">=</span> <span class="dv">800</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>      height <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>      size <span class="op">=</span> (width, height)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>      surface <span class="op">=</span> pygame.display.set_mode(size)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>      pygame.display.set_caption(<span class="st">"Image Example"</span>)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>      white <span class="op">=</span> (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>      surface.fill(white)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>      cheeseImage <span class="op">=</span> pygame.image.load(<span class="st">"cheese.png"</span>)</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>      cheesePos <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>      surface.blit(cheeseImage, cheesePos)</span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>      pygame.display.flip()</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>      do_image_demo()</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>      time.sleep(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The screen should look like below</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/03_DrawImage/cheeseExample.png" class="img-fluid figure-img"></p>
+<figcaption>The cheese image loaded onto a white background</figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="make-an-image-move" class="level4">
+<h4 class="anchored" data-anchor-id="make-an-image-move">Make an Image Move</h4>
+<ul>
+<li><p><code>blit</code> draws an image</p></li>
+<li><p>If we want to make an image move we can repeatedly call <code>blit</code></p></li>
+<li><p>See the <a href="./Examples/04_MovingImage/MovingImage.py">example below</a>, you should see the image move from the top left corner towards the botttom right</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 16.4 Moving Image</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Demonstrates using `blit` to make an image move in pygame</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> time</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> pygame</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> show_moving_image():</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">      Demonstrate a moving image in pygame</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>      init_result <span class="op">=</span> pygame.init()</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> init_result[<span class="dv">1</span>] <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Failed to initialise </span><span class="sc">{0}</span><span class="st"> elements, verify pygame installation"</span>.<span class="bu">format</span>(</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>                  init_result[<span class="dv">1</span>]</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> setup_pygame_window(caption):</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="co">          Setup a pygame window with the specified caption</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="co">          caption : str</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="co">              caption for the window</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="co">          Surface</span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="co">              the window</span></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>          width <span class="op">=</span> <span class="dv">800</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>          height <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>          size <span class="op">=</span> (width, height)</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>          surface <span class="op">=</span> pygame.display.set_mode(size)</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>          pygame.display.set_caption(caption)</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> surface</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>      surface <span class="op">=</span> setup_pygame_window(<span class="st">"Moving Image Example"</span>)</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>      cheeseImage <span class="op">=</span> pygame.image.load(<span class="st">"cheese.png"</span>)</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>      cheeseX <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>      cheeseY <span class="op">=</span> <span class="dv">60</span></span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>      clock <span class="op">=</span> pygame.time.Clock()</span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">100</span>):</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>          clock.tick(<span class="dv">30</span>)  <span class="co"># pause the game to 30 frames per second</span></span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>          surface.fill((<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>))</span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>          cheeseX <span class="op">=</span> cheeseX <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>          cheeseY <span class="op">=</span> cheeseY <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>          cheesePos <span class="op">=</span> (cheeseX, cheeseY)</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>          surface.blit(cheeseImage, cheesePos)</span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a>          pygame.display.flip()</span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a>      show_moving_image()</span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a>      time.sleep(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="make-something-happen-move-an-image" class="level5">
+<h5 class="anchored" data-anchor-id="make-something-happen-move-an-image">Make Something Happen: Move an Image</h5>
+<p>Lets work through the previous example in some detail to understand some of the intricacies around handling a moving image. When you run the program you should see the cheese image move diagonally down the screen. The speed is controlled by the <em>frame rate</em>. The frame rate is the rate at which the screen is updated or redrawn. Pygame provides the <code>Clock</code> class which contains the <code>tick</code> method. This can be passed the target frame rate. We start by creating a clock before moving the sprite</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>clock <span class="op">=</span> pygame.time.Clock()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>Clock</code> contains other methods for controlling how time progresses. We’ll stick with using <code>tick</code> for now, which makes the game run at a constant speed. By default the program will try to update as fast as python can execute</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>clock.tick(<span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>tick</code> pauses the game until the next “slot”. Effectively the next frame. If you updated the argument from <span class="math inline">\(30\)</span> to <span class="math inline">\(60\)</span> the program will now target <span class="math inline">\(60\)</span> frames per second and should run twice as fast. If you instead changed the argument to <span class="math inline">\(5\)</span> the program will run much slower. Typically games target frame rates between <span class="math inline">\(30\)</span> and <span class="math inline">\(60\)</span>.</p>
+</section>
+</section>
+</section>
+<section id="get-user-input-from-pygame" class="level3">
+<h3 class="anchored" data-anchor-id="get-user-input-from-pygame">Get User Input from Pygame</h3>
+<ul>
+<li>We’ve seen how to display and update images on a screen</li>
+<li>Now we need to add interactivity</li>
+<li>Much like <a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html#tkinter-events">tkinter</a>, pygame updates in response to <em>events</em>
+<ul>
+<li>An event is a user action
+<ul>
+<li>Like pushing a button</li>
+<li>Clicking the mouse etc</li>
+</ul></li>
+</ul></li>
+<li>In tkinter, we saw that we bound events to components</li>
+<li>Pygame instead uses a queue
+<ul>
+<li>The queue is polled regularly for events to respond to</li>
+</ul></li>
+</ul>
+<section id="make-something-happen-investigate-events-in-pygame" class="level4">
+<h4 class="anchored" data-anchor-id="make-something-happen-investigate-events-in-pygame">Make Something Happen: Investigate Events in Pygame</h4>
+<p><em>Work through the basics of events in pygame by opening an interpreter and following the steps below</em></p>
+<ol type="1">
+<li><p><em>Create a pygame window</em></p>
+<ul>
+<li><p>This should be straightforward by now</p>
+<p>```python import pygame pygame.init() size = (800, 600) surface = pygame.display.set_mode(size)</p></li>
+</ul></li>
+<li><p><em>Capture events in pygame</em></p>
+<ul>
+<li><p>Clicking the mouse and pressing keys will generate events</p></li>
+<li><p>First step to responding to events is to capture them</p></li>
+<li><p>Execute the following,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> e <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(e)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This should print out the events you issued previously</p></li>
+<li><p><code>get</code> method returns a collection of events</p></li>
+<li><p>The loop then lets us iterate over the events in the collection</p></li>
+<li><p>Some sample is displayed below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"&lt;Event(768-KeyDown {'unicode': 'h', 'key': 104, 'mod': 4096, 'scancode': 11, 'window': None})"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"&lt;Event(771-TextInput {'text': 'i', 'window': None})&gt;"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"&lt;Event(769-KeyUp {'unicode': 'i', 'key': 105, 'mod': 4096, 'scancode': 12, 'window': None})&gt;"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"&lt;Event(1024-MouseMotion {'pos': (440, 253), 'rel': (-7, 4), 'buttons': (0, 0, 0), 'touch': False, 'window': None})&gt;"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"&lt;Event(1024-MouseMotion {'pos': (425, 263), 'rel': (-15, 10), 'buttons': (0, 0, 0), 'touch': False, 'window': None})&gt;"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Each event is described by a dictionary holding information about the event</p></li>
+<li><p>Above we can see a mix of mouse moves combined with key presses and text input</p></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>We need to periodically check the event queue for events</p></li>
+<li><p>If these events should cause some state update then we have to respond to them</p></li>
+<li><p>For example, we might want our moving image to be controlled by the arrow keys</p></li>
+<li><p>Below shows an <a href="./Examples/05_ControllableImage/ControllableImage.py">example</a> and has the added functionality that pressing ESC closes the game</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> show_moving_image():</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Demonstrate a moving image in pygame</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">      None</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      surface <span class="op">=</span> setup_pygame_window(<span class="st">"Controllable Image"</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      image <span class="op">=</span> pygame.image.load(<span class="st">"cheese.png"</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>      cheeseX <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      cheeseY <span class="op">=</span> <span class="dv">60</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>      cheeseSpeed <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>      cheeseMovingUp <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>      cheeseMovingDown <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>      clock <span class="op">=</span> pygame.time.Clock()</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>          clock.tick(<span class="dv">60</span>)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> e <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>              <span class="cf">if</span> e.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> e.key <span class="op">==</span> pygame.K_ESCAPE:</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>                      pygame.quit()</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">return</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> e.key <span class="op">==</span> pygame.K_UP:</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>                      cheeseMovingUp <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_DOWN:</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>                      cheeseMovingDown <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>              <span class="cf">elif</span> e.<span class="bu">type</span> <span class="op">==</span> pygame.KEYUP:</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> e.key <span class="op">==</span> pygame.K_UP:</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>                      cheeseMovingUp <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_DOWN:</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>                      cheeseMovingDown <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> cheeseMovingDown:</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>              cheeseY <span class="op">=</span> cheeseY <span class="op">+</span> cheeseSpeed</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> cheeseMovingUp:</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>              cheeseY <span class="op">=</span> cheeseY <span class="op">-</span> cheeseSpeed</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>          cheesePos <span class="op">=</span> (cheeseX, cheeseY)</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>          surface.fill((<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>))</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>          surface.blit(image, cheesePos)</span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>          pygame.display.flip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>See the full example for all the rest of the setup</p></li>
+</ul>
+</section>
+<section id="code-analysis-game-loops" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-game-loops">Code Analysis: Game Loops</h4>
+<p><em>The above provides a very basic example of whats called a game loop. Consider the following questions</em></p>
+<ol type="1">
+<li><p><em>What is the variable</em> <code>e</code> <em>used for in the program?</em></p>
+<ul>
+<li><code>e</code>contains the current event being examined</li>
+<li>We only care about events corresponding to key presses (<code>KEYDOWN</code>) and releases (<code>KEYUP</code>)</li>
+<li>When a key is pressed, we
+<ul>
+<li>Check if an arrow key is pressed</li>
+<li>If it’s an up arrow, we set the flag to indicate that we should move up</li>
+<li>If it’s a down arrow we set the flag to indicate tthat we should move down</li>
+<li>We then have a matching pair that resets the flag when the corresponding key is released</li>
+</ul></li>
+</ul></li>
+<li><p><em>Why does the cheese move when a key is held down?</em></p>
+<ul>
+<li>Statements are updated every <span class="math inline">\(60\)</span> times</li>
+<li>If a key is down, then the cheese moves every iteration of the loop</li>
+</ul></li>
+<li><p><em>How do you change the speed of the image?</em></p>
+<ul>
+<li>This is stored in the variable <code>cheeseSpeed</code></li>
+<li>We just have to change the value of this variable</li>
+<li>We could make this a more complicated function, for example adding acceleration</li>
+</ul></li>
+<li><p><em>Why do we increase the value of y to move the cheese down the screen?</em></p>
+<ul>
+<li>This is because the y coordinates on a pixel display increase as we go down the screen</li>
+</ul></li>
+<li><p><em>What would happen if the player pressed both the up and down arrows at the same time?</em></p>
+<ul>
+<li>Cheese would move both up and down</li>
+<li>Net result would be that the cheese doesn’t move at all</li>
+</ul></li>
+<li><p><em>What would happen if the player moved the cheese right off the screen?</em></p>
+<ul>
+<li>The program disappears off the screen and is no longer visible</li>
+<li>Nothing in the code restricts it to the visible screen</li>
+</ul></li>
+<li><p><em>What does the</em> <code>pygame.quit()</code> <em>method do?</em></p>
+<ul>
+<li>It closes pygame and causes the window to be closed</li>
+<li>Makes sure that all the proper clean up is carried out</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="create-game-sprites" class="level3">
+<h3 class="anchored" data-anchor-id="create-game-sprites">Create Game Sprites</h3>
+</section>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
