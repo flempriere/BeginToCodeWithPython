@@ -42,7 +42,7 @@ website:
           - 03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.qmd
           - 03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.qmd
           - 03_UsefulPython/15_PythonProgramsAsNetworkServers/Chapter_15.qmd
-          - 03_usefulPython/16_CreateGamesWithPython/Chapter_16.qmd
+          - 03_UsefulPython/16_CreateGamesWithPython/Chapter_16.qmd
 format:
   html:
     code-fold: false
