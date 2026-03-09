@@ -6,6 +6,18 @@
       Lines](#make-something-happen-start-pygame-and-draw-some-lines)
     - [Make Something Happen: Making
       Art](#make-something-happen-making-art)
+  - [Draw Images using Pygame](#draw-images-using-pygame)
+    - [Image File Types](#image-file-types)
+    - [Load an Image into a Game](#load-an-image-into-a-game)
+    - [Make an Image Move](#make-an-image-move)
+      - [Make Something Happen: Move an
+        Image](#make-something-happen-move-an-image)
+  - [Get User Input from Pygame](#get-user-input-from-pygame)
+    - [Make Something Happen: Investigate Events in
+      Pygame](#make-something-happen-investigate-events-in-pygame)
+    - [Code Analysis: Game Loops](#code-analysis-game-loops)
+  - [Create Game Sprites](#create-game-sprites)
+- [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
 ## Notes
@@ -696,12 +708,434 @@ The code implementing this is given below
 
 - Then redraws the image
 
-- Two example images are shown below
+- Two example images are shown below, the first later at night, the
+  second earlier in a cold morning
 
   ![Art generated at late
   night](./Exercises/01_MakingArt/late_night.png) ![Art generated in the
   morning](./Exercises/01_MakingArt/cold_morning.png)
 
-- ## Summary
+### Draw Images using Pygame
+
+- Pygame can draw images on the screen
+- Images are loaded from files
+
+#### Image File Types
+
+- There are many different image formats
+
+- For pygame you should use one of the following
+
+  1. PNG
+      - This format is lossless
+      - An exact version of the image is always stored
+      - PNG can also have transparent sections
+        - Allows images to be drawn on top of each other
+  2. JPEG
+      - This format is *lossy*
+      - The program stores a compressed version of the image
+      - Smaller, but less precise
+
+- You should use JPEG for large background images and PNG for items
+  drawn over the top
+
+> [!TIP]
+>
+> **You can use an image manipulation program to convert image file
+> types**
+>
+> Most image programs will let you load a png or jpeg and export it as a
+> different format. Some common examples include paint (bundled with
+> Windows), paint.net (a free download) or GIMP (a free heavy duty image
+> manipulation program similar to photoshop)
+
+#### Load an Image into a Game
+
+- The pygame `image` module handles displayed images
+
+- Images are loaded by providing the file path using the `load` function
+
+  - The path can be relative to the directly that the program is running
+    from
+
+- For example below loads an image and assigns it to a variable
+
+  ``` python
+    cheeseImage = pygame.image.load("cheese.png")
+  ```
+
+- Loading an image is separate to actually drawing the image
+
+- Drawing is the process of actually copying the image into the display
+  memory
+
+- `blit` is the method that performs this action
+
+- `blit` requires
+
+  1. The image to be drawn
+  2. The coordinates on the screen where the image is to be blitted
+
+- To put `cheeseImage` at the top left corner we can write,
+
+  ``` python
+    cheesePos = (0, 0)
+    surface.blit(cheeseImage, cheesePos)
+  ```
+
+- This assume `surface` is the display window as discussed in the
+  [previous
+  section](#make-something-happen-start-pygame-and-draw-some-lines)
+
+- The [complete program](./Examples/03_DrawImage/DrawImage.py) can be
+  seen below
+
+  ``` python
+    """
+    Example 16.3 Draw Image
+
+    Demonstrates drawing an image with pygame
+    """
+
+    import time
+
+    import pygame
+
+
+    def do_image_demo():
+        """
+        Demonstrate loading and drawing an image using pygame
+
+        Returns
+        -------
+        None
+        """
+        init_result = pygame.init()
+        if init_result[1] != 0:
+            print(
+                "pygame failed to load {0} elements. Please verify installation".format(
+                    init_result[1]
+                )
+            )
+
+        width = 800
+        height = 600
+        size = (width, height)
+
+        surface = pygame.display.set_mode(size)
+        pygame.display.set_caption("Image Example")
+
+        white = (255, 255, 255)
+        surface.fill(white)
+
+        cheeseImage = pygame.image.load("cheese.png")
+        cheesePos = (0, 0)
+        surface.blit(cheeseImage, cheesePos)
+        pygame.display.flip()
+
+
+    if __name__ == "__main__":
+        do_image_demo()
+        time.sleep(10)
+  ```
+
+- The screen should look like below
+
+  ![The cheese image loaded onto a white
+  background](./Examples/03_DrawImage/cheeseExample.png)
+
+#### Make an Image Move
+
+- `blit` draws an image
+
+- If we want to make an image move we can repeatedly call `blit`
+
+- See the [example below](./Examples/04_MovingImage/MovingImage.py), you
+  should see the image move from the top left corner towards the botttom
+  right
+
+  ``` python
+    """
+    Example 16.4 Moving Image
+
+    Demonstrates using `blit` to make an image move in pygame
+    """
+
+    import time
+
+    import pygame
+
+
+    def show_moving_image():
+        """
+        Demonstrate a moving image in pygame
+
+        Returns
+        -------
+        None
+        """
+        init_result = pygame.init()
+        if init_result[1] != 0:
+            print(
+                "Failed to initialise {0} elements, verify pygame installation".format(
+                    init_result[1]
+                )
+            )
+
+        def setup_pygame_window(caption):
+            """
+            Setup a pygame window with the specified caption
+
+            Parameters
+            ----------
+            caption : str
+                caption for the window
+
+            Returns
+            -------
+            Surface
+                the window
+            """
+            width = 800
+            height = 600
+            size = (width, height)
+            surface = pygame.display.set_mode(size)
+            pygame.display.set_caption(caption)
+
+            return surface
+
+        surface = setup_pygame_window("Moving Image Example")
+        cheeseImage = pygame.image.load("cheese.png")
+
+        cheeseX = 40
+        cheeseY = 60
+
+        clock = pygame.time.Clock()
+
+        for i in range(1, 100):
+            clock.tick(30)  # pause the game to 30 frames per second
+            surface.fill((255, 255, 255))
+            cheeseX = cheeseX + 1
+            cheeseY = cheeseY + 1
+            cheesePos = (cheeseX, cheeseY)
+            surface.blit(cheeseImage, cheesePos)
+            pygame.display.flip()
+
+
+    if __name__ == "__main__":
+        show_moving_image()
+        time.sleep(10)
+  ```
+
+##### Make Something Happen: Move an Image
+
+Lets work through the previous example in some detail to understand some
+of the intricacies around handling a moving image. When you run the
+program you should see the cheese image move diagonally down the screen.
+The speed is controlled by the *frame rate*. The frame rate is the rate
+at which the screen is updated or redrawn. Pygame provides the `Clock`
+class which contains the `tick` method. This can be passed the target
+frame rate. We start by creating a clock before moving the sprite
+
+``` python
+clock = pygame.time.Clock()
+```
+
+`Clock` contains other methods for controlling how time progresses.
+We’ll stick with using `tick` for now, which makes the game run at a
+constant speed. By default the program will try to update as fast as
+python can execute
+
+``` python
+clock.tick(30)
+```
+
+`tick` pauses the game until the next “slot”. Effectively the next
+frame. If you updated the argument from $30$ to $60$ the program will
+now target $60$ frames per second and should run twice as fast. If you
+instead changed the argument to $5$ the program will run much slower.
+Typically games target frame rates between $30$ and $60$.
+
+### Get User Input from Pygame
+
+- We’ve seen how to display and update images on a screen
+- Now we need to add interactivity
+- Much like
+  [tkinter](../13_PythonAndGraphicalUserInterfaces/Chapter_13.qmd#tkinter-events),
+  pygame updates in response to *events*
+  - An event is a user action
+    - Like pushing a button
+    - Clicking the mouse etc
+- In tkinter, we saw that we bound events to components
+- Pygame instead uses a queue
+  - The queue is polled regularly for events to respond to
+
+#### Make Something Happen: Investigate Events in Pygame
+
+*Work through the basics of events in pygame by opening an interpreter
+and following the steps below*
+
+1. *Create a pygame window*
+
+    - This should be straightforward by now
+
+      \`\`\`python import pygame pygame.init() size = (800, 600) surface
+      = pygame.display.set_mode(size)
+
+2. *Capture events in pygame*
+
+    - Clicking the mouse and pressing keys will generate events
+
+    - First step to responding to events is to capture them
+
+    - Execute the following,
+
+      ``` python
+        for e in pygame.event.get():
+            print(e)
+      ```
+
+    - This should print out the events you issued previously
+
+    - `get` method returns a collection of events
+
+    - The loop then lets us iterate over the events in the collection
+
+    - Some sample is displayed below
+
+      ``` python
+      #| echo: false
+        print("<Event(768-KeyDown {'unicode': 'h', 'key': 104, 'mod': 4096, 'scancode': 11, 'window': None})")
+        print("<Event(771-TextInput {'text': 'i', 'window': None})>")
+        print("<Event(769-KeyUp {'unicode': 'i', 'key': 105, 'mod': 4096, 'scancode': 12, 'window': None})>")
+        print("<Event(1024-MouseMotion {'pos': (440, 253), 'rel': (-7, 4), 'buttons': (0, 0, 0), 'touch': False, 'window': None})>")
+        print("<Event(1024-MouseMotion {'pos': (425, 263), 'rel': (-15, 10), 'buttons': (0, 0, 0), 'touch': False, 'window': None})>")
+      ```
+
+    - Each event is described by a dictionary holding information about
+      the event
+
+    - Above we can see a mix of mouse moves combined with key presses
+      and text input
+
+- We need to periodically check the event queue for events
+
+- If these events should cause some state update then we have to respond
+  to them
+
+- For example, we might want our moving image to be controlled by the
+  arrow keys
+
+- Below shows an
+  [example](./Examples/05_ControllableImage/ControllableImage.py) and
+  has the added functionality that pressing ESC closes the game
+
+  ``` python
+    def show_moving_image():
+        """
+        Demonstrate a moving image in pygame
+
+        Returns
+        -------
+        None
+        """
+        surface = setup_pygame_window("Controllable Image")
+        image = pygame.image.load("cheese.png")
+
+        cheeseX = 40
+        cheeseY = 60
+        cheeseSpeed = 2
+        cheeseMovingUp = False
+        cheeseMovingDown = False
+
+        clock = pygame.time.Clock()
+
+        while True:
+            clock.tick(60)
+            for e in pygame.event.get():
+                if e.type == pygame.KEYDOWN:
+                    if e.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        return
+                    if e.key == pygame.K_UP:
+                        cheeseMovingUp = True
+                    elif e.key == pygame.K_DOWN:
+                        cheeseMovingDown = True
+                elif e.type == pygame.KEYUP:
+                    if e.key == pygame.K_UP:
+                        cheeseMovingUp = False
+                    elif e.key == pygame.K_DOWN:
+                        cheeseMovingDown = False
+            if cheeseMovingDown:
+                cheeseY = cheeseY + cheeseSpeed
+            if cheeseMovingUp:
+                cheeseY = cheeseY - cheeseSpeed
+
+            cheesePos = (cheeseX, cheeseY)
+            surface.fill((255, 255, 255))
+            surface.blit(image, cheesePos)
+            pygame.display.flip()
+  ```
+
+- See the full example for all the rest of the setup
+
+#### Code Analysis: Game Loops
+
+*The above provides a very basic example of whats called a game loop.
+Consider the following questions*
+
+1. *What is the variable* `e` *used for in the program?*
+
+    - `e`contains the current event being examined
+    - We only care about events corresponding to key presses (`KEYDOWN`)
+      and releases (`KEYUP`)
+    - When a key is pressed, we
+      - Check if an arrow key is pressed
+      - If it’s an up arrow, we set the flag to indicate that we should
+        move up
+      - If it’s a down arrow we set the flag to indicate tthat we should
+        move down
+      - We then have a matching pair that resets the flag when the
+        corresponding key is released
+
+2. *Why does the cheese move when a key is held down?*
+
+    - Statements are updated every $60$ times
+    - If a key is down, then the cheese moves every iteration of the
+      loop
+
+3. *How do you change the speed of the image?*
+
+    - This is stored in the variable `cheeseSpeed`
+    - We just have to change the value of this variable
+    - We could make this a more complicated function, for example adding
+      acceleration
+
+4. *Why do we increase the value of y to move the cheese down the
+    screen?*
+
+    - This is because the y coordinates on a pixel display increase as
+      we go down the screen
+
+5. *What would happen if the player pressed both the up and down arrows
+    at the same time?*
+
+    - Cheese would move both up and down
+    - Net result would be that the cheese doesn’t move at all
+
+6. *What would happen if the player moved the cheese right off the
+    screen?*
+
+    - The program disappears off the screen and is no longer visible
+    - Nothing in the code restricts it to the visible screen
+
+7. *What does the* `pygame.quit()` *method do?*
+
+    - It closes pygame and causes the window to be closed
+    - Makes sure that all the proper clean up is carried out
+
+### Create Game Sprites
+
+## Summary
 
 ## Questions and Answers
