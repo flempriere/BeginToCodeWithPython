@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Create Games with PyGame – Beginning to Code with Python: Notes, Examples and Exercises</title>
+<title>Chapter 16: Create Games with PyGame – Beginning to Code with Python: Notes, Examples and Exercises</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -134,7 +134,7 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Create Games with PyGame – Beginning to Code with Python: Notes, Examples and Exercises">
+<meta property="og:title" content="Chapter 16: Create Games with PyGame – Beginning to Code with Python: Notes, Examples and Exercises">
 <meta property="og:image" content="./Examples/02_PygameDraw/drawing_program.png">
 <meta property="og:site_name" content="Beginning to Code with Python: Notes, Examples and Exercises">
 </head>
@@ -146,8 +146,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Beginning to Code with Python: Notes, Examples and Exercises</span>
     </a>
@@ -159,7 +157,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -173,7 +171,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html">Create Games with PyGame</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html">Chapter 16: Create Games with PyGame</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,10 +184,6 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -326,7 +320,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Create Games with PyGame</span></a>
+ <span class="menu-text">Chapter 16: Create Games with PyGame</span></a>
   </div>
 </li>
       </ul>
@@ -362,7 +356,17 @@ window.Quarto = {
   <li><a href="#make-something-happen-investigate-events-in-pygame" id="toc-make-something-happen-investigate-events-in-pygame" class="nav-link" data-scroll-target="#make-something-happen-investigate-events-in-pygame">Make Something Happen: Investigate Events in Pygame</a></li>
   <li><a href="#code-analysis-game-loops" id="toc-code-analysis-game-loops" class="nav-link" data-scroll-target="#code-analysis-game-loops">Code Analysis: Game Loops</a></li>
   </ul></li>
-  <li><a href="#create-game-sprites" id="toc-create-game-sprites" class="nav-link" data-scroll-target="#create-game-sprites">Create Game Sprites</a></li>
+  <li><a href="#create-game-sprites" id="toc-create-game-sprites" class="nav-link" data-scroll-target="#create-game-sprites">Create Game Sprites</a>
+  <ul>
+  <li><a href="#code-analysis-sprite-superclass" id="toc-code-analysis-sprite-superclass" class="nav-link" data-scroll-target="#code-analysis-sprite-superclass">Code Analysis: Sprite Superclass</a></li>
+  <li><a href="#code-analysis-game-class" id="toc-code-analysis-game-class" class="nav-link" data-scroll-target="#code-analysis-game-class">Code Analysis: <code>Game</code> Class</a></li>
+  <li><a href="#add-a-player-sprite" id="toc-add-a-player-sprite" class="nav-link" data-scroll-target="#add-a-player-sprite">Add a Player Sprite</a>
+  <ul>
+  <li><a href="#code-analysis-player-sprite" id="toc-code-analysis-player-sprite" class="nav-link" data-scroll-target="#code-analysis-player-sprite">Code Analysis: Player Sprite</a></li>
+  </ul></li>
+  <li><a href="#control-the-player-sprite" id="toc-control-the-player-sprite" class="nav-link" data-scroll-target="#control-the-player-sprite">Control the Player Sprite</a></li>
+  <li><a href="#add-a-cracker-sprite" id="toc-add-a-cracker-sprite" class="nav-link" data-scroll-target="#add-a-cracker-sprite">Add a Cracker Sprite</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
@@ -372,9 +376,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html">Create Games with PyGame</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.html">Useful Python</a></li><li class="breadcrumb-item"><a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html">Chapter 16: Create Games with PyGame</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Create Games with PyGame</h1>
+<h1 class="title">Chapter 16: Create Games with PyGame</h1>
 </div>
 
 
@@ -489,7 +493,7 @@ window.Quarto = {
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  end <span class="op">=</span> (<span class="dv">500</span>, <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Now we just have to issue our actual drawing command</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  pygame.draw.line(surface, red, start, end)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="e46c4002" class="cell" data-execution_count="1">
+<div id="adfa67a8" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;rect(0, 0, 501, 301)&gt;</code></pre>
 </div>
@@ -1313,6 +1317,552 @@ Tip
 </section>
 <section id="create-game-sprites" class="level3">
 <h3 class="anchored" data-anchor-id="create-game-sprites">Create Game Sprites</h3>
+<ul>
+<li>Our game will display three sprites
+<ol type="1">
+<li><strong>Cheese</strong>
+<ul>
+<li>Steered by the player around the screen</li>
+</ul></li>
+<li><strong>Crackers</strong>
+<ul>
+<li>The goal, a player tries to catch the crackers</li>
+</ul></li>
+<li><strong>Tomatoes</strong>
+<ul>
+<li>Enemies, the tomato will chase the cheese</li>
+</ul></li>
+</ol></li>
+<li>Screen objects are typically called <em>sprites</em>
+<ul>
+<li>A sprite is an image part of the game display</li>
+</ul></li>
+<li>We can encapsulate the basic behaviour of all our sprites in a base class <code>Sprite</code></li>
+<li>A <code>Sprite</code> will have
+<ul>
+<li>The image to draw</li>
+<li>A position on the screen,</li>
+<li>a set of behaviours
+<ul>
+<li>Draw itself on the screen</li>
+<li>Update itself
+<ul>
+<li>E.g. <code>Cheese</code> will move in response to player input</li>
+<li><code>Tomato</code> chases the player</li>
+</ul></li>
+<li>Reset itself
+<ul>
+<li>When starting the game, we have to reset the sprites</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Sprite:</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Base class for a game Sprite</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Attributes</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">      image : surface</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">          The sprite image</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">      game :</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, image, game):</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">          Create a new `Sprite`</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co">          Parameters</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co">          ----------</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co">          image : pygame.Surface</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">              image to draw</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co">          game :</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.image <span class="op">=</span> image</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.position <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">0</span>) <span class="co">#list so it's mutable</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.game <span class="op">=</span> game</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.reset()</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> update(<span class="va">self</span>):</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="co">          Update the sprite</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a><span class="co">          Called in the game loop to update the status of the sprite. Does</span></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a><span class="co">          nothing in the superclass</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>          <span class="cf">pass</span></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> draw(<span class="va">self</span>):</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a><span class="co">          Draw the sprite on the screen</span></span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a><span class="co">          The sprite is drawn at it's current position</span></span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.game.surface.blit(<span class="va">self</span>.image, <span class="va">self</span>.position)</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> reset(<span class="va">self</span>):</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a><span class="co">          Reset the sprite</span></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a><span class="co">          Called at the start of the game</span></span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>          <span class="cf">pass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="code-analysis-sprite-superclass" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-sprite-superclass">Code Analysis: Sprite Superclass</h4>
+<p><em>Work through the following questions to understand how the</em> <code>Sprite</code> <em>campaign works</em></p>
+<ol type="1">
+<li><p><em>What is the</em> <code>game</code> <em>parameter used for in the initializer?</em></p>
+<ul>
+<li>New sprites have no knowledge of which game they belong to</li>
+<li>But they need to know this so they can use game information</li>
+<li>e.g.&nbsp;if the cheese captures a cracker, score is updated, and the sprites might change</li>
+<li>This <em>tightly couples</em> the <code>Sprite</code> class and the <code>Game</code> class
+<ul>
+<li>Changes in the game may flow through to our sprite representations</li>
+<li>Generally want to avoid tight coupling
+<ul>
+<li>Means changes in the game will have to be propagated to the sprite</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><em>Why are the</em> <code>update</code> <em>and</em> <code>reset</code> <em>methods empty?</em></p>
+<ul>
+<li><code>Sprite</code> as a base class is a template for subclasses</li>
+<li>By default there’s not a need for every sprite to change, e.g.&nbsp;a background
+<ul>
+<li>Subclasses probably want to have very specific <code>update</code> and <code>reset</code></li>
+</ul></li>
+<li>So in the base class we put the most generic / basic behaviour
+<ul>
+<li>Let more complex subclasses overwrite them</li>
+</ul></li>
+<li>The advantage is that this gives us a generic interface that we can use to refer to <em>any</em> sprite</li>
+</ul></li>
+<li><p><em>How does the</em> <code>draw</code> <em>method work?</em></p>
+<ul>
+<li><p>The <code>draw</code> method asks the sprite to draw itself on screen</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> draw(<span class="va">self</span>):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.game.surface.blit(<span class="va">self</span>.image, <span class="va">self</span>.position)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><code>game</code> contains an attribute <code>surface</code></p>
+<ul>
+<li>This is the window to draw on</li>
+</ul></li>
+<li><p>We use the internally stored <code>image</code> and <code>position</code> to draw the image</p></li>
+</ul></li>
+</ol>
+<ul>
+<li><p>The base <code>Sprite</code> class doesn’t do much</p></li>
+<li><p>Can be used to implement a generic background</p></li>
+<li><p>Here we’ll use a tablecloth</p></li>
+<li><p>Can be thought of as a big sprite that covers the entire screen</p></li>
+<li><p>We just need to add the basic game loop</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> CrackerChase:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">      CrackerChase game</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Runs a simple game loop to display a background sprite</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> play_game(<span class="va">self</span>):</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">          Load the game and start the game loop</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>          init_result <span class="op">=</span> pygame.init()</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> init_result[<span class="dv">1</span>] <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>              <span class="bu">print</span>(<span class="st">"Failed to initialise </span><span class="sc">{0}</span><span class="st"> elements, verify pygame installation"</span>.<span class="bu">format</span>(init_result))</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>          width <span class="op">=</span> <span class="dv">800</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>          height <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.size <span class="op">=</span> (height, width)</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.surface <span class="op">=</span> pygame.display.set_mode(<span class="va">self</span>.size)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>          pygame.display.set_caption(<span class="st">"Cracker Chase"</span>)</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.background_sprite <span class="op">=</span> Sprite(pygame.image.load(<span class="st">"background.png"</span>), <span class="va">self</span>)</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>          clock <span class="op">=</span> pygame.time.Clock()</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>          <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>              clock.tick(<span class="dv">60</span>)</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> e <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> e.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">if</span> e.key <span class="op">==</span> pygame.K_ESCAPE:</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>                          pygame.quit()</span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">return</span></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.background_sprite.draw()</span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>              pygame.display.flip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+</section>
+<section id="code-analysis-game-class" class="level4">
+<h4 class="anchored" data-anchor-id="code-analysis-game-class">Code Analysis: <code>Game</code> Class</h4>
+<p><em>The above class is the shell of our the final class we’ll use to implement our game. Work through the following questions to make sure you understand how the class works</em></p>
+<ol type="1">
+<li><p><em>How does the game pass a reference to itself to the sprite constructor?</em></p>
+<ul>
+<li><p><code>self</code> references the object within which a method is running</p></li>
+<li><p><code>self</code> can be passed around like any other variable, including as a function argument</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.background_sprite <span class="op">=</span> Sprite(image<span class="op">=</span>pygame.image.load(<span class="st">"background.png"</span>),  game<span class="op">=</span><span class="va">self</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Above creates a new <code>Sprite</code> instance, and passes the game’s <code>self</code> reference so the <code>Sprite</code> references the current game</p></li>
+</ul></li>
+<li><p><em>Why does the game call the</em> <code>draw</code> <em>method on the sprite to draw it? Can’t the game just draw the image held inside the sprite?</em></p>
+<ul>
+<li>This is a question of responsibility</li>
+<li>Should the sprite draw itself, or should the game draw the sprite?
+<ul>
+<li>Generally making a sprite draw itself gives us more flexibility</li>
+</ul></li>
+<li>We could make sprites composable
+<ul>
+<li>e.g.&nbsp;letting a sprite draw a smoke sub-sprite behind it</li>
+<li>We could add this logic to smoke sprites</li>
+<li>Making the game track all this composition would get complex fast</li>
+</ul></li>
+<li>The game needing to only keep track of which sprites are in existence then call the draw method is a much cleaner interface</li>
+</ul></li>
+<li><p><em>Does this mean when the game is run the entire screen is redrawn each time, even if nothing is on the screen?</em></p>
+<ul>
+<li>Yes</li>
+<li>This is how most games work, it is often quicker to just redraw an entire screen then first spend all the time recalculating what has changed</li>
+</ul></li>
+</ol>
+<ul>
+<li><p>With our two classes, we can then start the game</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>  game <span class="op">=</span> CrackerChase()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  game.play_game()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<p>The full code is given in <a href="./Examples/06_Sprite/Sprite.py">Sprite.py</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/06_Sprite/game_with_background.png" class="img-fluid figure-img"></p>
+<figcaption>The game with just a background sprite displayed</figcaption>
+</figure>
+</div>
+</section>
+<section id="add-a-player-sprite" class="level4">
+<h4 class="anchored" data-anchor-id="add-a-player-sprite">Add a Player Sprite</h4>
+<ul>
+<li><p>We’ve already seen the basic idea behind the player sprite with the <a href="#make-an-image-move">steerable cheese</a></p></li>
+<li><p>The trick here is to implement this into our sprite framework</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Structure your code as you go</strong></p>
+<p>Before we just had everything in the one file. This was good because we only had the basic sprite and a pretty simple game. Now I’ll separate the sprites out into one file and the game logic into another. This is a good way to develop, we split out the functionality as it gets to the appropriate size.</p>
+</div>
+</div></li>
+<li><p>We’ll create a <code>Cheese</code> class to handle the player sprite class</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Cheese(Sprite):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Player controlled cheese sprite</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Steerable cheese sprite controllable by the player</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> reset(<span class="va">self</span>):</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">          Reset the player sprite</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co">          Stops the sprite moving and returns it to it's starting position</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingUp <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingDown <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingLeft <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingRight <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.position <span class="op">=</span> [(<span class="va">self</span>.game.width <span class="op">-</span> <span class="va">self</span>.image.get_width())<span class="op">/</span><span class="dv">2</span>, (<span class="va">self</span>.game.height <span class="op">-</span> <span class="va">self</span>.image.get_height())<span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.speed <span class="op">=</span> [<span class="dv">5</span>,<span class="dv">5</span>]</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> update(<span class="va">self</span>):</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="co">          Update the cheese position</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a><span class="co">          Notes</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="co">          -----</span></span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="co">          Ensures the player is restricted to the play screen</span></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.movingUp:</span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">=</span> <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">-</span> <span class="va">self</span>.speed[<span class="dv">1</span>]</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.movingDown:</span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">=</span> <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">+</span> <span class="va">self</span>.speed[<span class="dv">1</span>]</span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.movingLeft:</span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">=</span> <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">-</span> <span class="va">self</span>.speed[<span class="dv">0</span>]</span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.movingRight:</span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">=</span> <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">+</span> <span class="va">self</span>.speed[<span class="dv">0</span>]</span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>          <span class="co"># bound movement to the game space</span></span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">+</span> <span class="va">self</span>.image.get_width() <span class="op">&gt;</span> <span class="va">self</span>.game.width:</span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">=</span> <span class="va">self</span>.game.width <span class="op">-</span> <span class="va">self</span>.image.get_width()</span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">+</span> <span class="va">self</span>.image.get_height() <span class="op">&gt;</span> <span class="va">self</span>.game.height:</span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">=</span> <span class="va">self</span>.game.height <span class="op">-</span> <span class="va">self</span>.image.get_height()</span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> startMovingUp(<span class="va">self</span>):</span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a><span class="co">          Start the cheese moving up</span></span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-63"><a href="#cb31-63" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-64"><a href="#cb31-64" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-65"><a href="#cb31-65" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingUp <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb31-66"><a href="#cb31-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-67"><a href="#cb31-67" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> stopMovingUp(<span class="va">self</span>):</span>
+<span id="cb31-68"><a href="#cb31-68" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-69"><a href="#cb31-69" aria-hidden="true" tabindex="-1"></a><span class="co">          Stop the cheese moving up</span></span>
+<span id="cb31-70"><a href="#cb31-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-71"><a href="#cb31-71" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-72"><a href="#cb31-72" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-73"><a href="#cb31-73" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-74"><a href="#cb31-74" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-75"><a href="#cb31-75" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingUp <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb31-76"><a href="#cb31-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-77"><a href="#cb31-77" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> startMovingDown(<span class="va">self</span>):</span>
+<span id="cb31-78"><a href="#cb31-78" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-79"><a href="#cb31-79" aria-hidden="true" tabindex="-1"></a><span class="co">          Start the cheese moving down</span></span>
+<span id="cb31-80"><a href="#cb31-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-81"><a href="#cb31-81" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-82"><a href="#cb31-82" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-83"><a href="#cb31-83" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-84"><a href="#cb31-84" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-85"><a href="#cb31-85" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingDown <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb31-86"><a href="#cb31-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-87"><a href="#cb31-87" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> stopMovingDown(<span class="va">self</span>):</span>
+<span id="cb31-88"><a href="#cb31-88" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-89"><a href="#cb31-89" aria-hidden="true" tabindex="-1"></a><span class="co">          Stop the cheese moving down</span></span>
+<span id="cb31-90"><a href="#cb31-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-91"><a href="#cb31-91" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-92"><a href="#cb31-92" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-93"><a href="#cb31-93" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-94"><a href="#cb31-94" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-95"><a href="#cb31-95" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingDown <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb31-96"><a href="#cb31-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-97"><a href="#cb31-97" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> startMovingLeft(<span class="va">self</span>):</span>
+<span id="cb31-98"><a href="#cb31-98" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-99"><a href="#cb31-99" aria-hidden="true" tabindex="-1"></a><span class="co">          Start the cheese moving left</span></span>
+<span id="cb31-100"><a href="#cb31-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-102"><a href="#cb31-102" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-103"><a href="#cb31-103" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-104"><a href="#cb31-104" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-105"><a href="#cb31-105" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingLeft <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb31-106"><a href="#cb31-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-107"><a href="#cb31-107" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> stopMovingLeft(<span class="va">self</span>):</span>
+<span id="cb31-108"><a href="#cb31-108" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-109"><a href="#cb31-109" aria-hidden="true" tabindex="-1"></a><span class="co">          Stop the cheese moving left</span></span>
+<span id="cb31-110"><a href="#cb31-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-111"><a href="#cb31-111" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-112"><a href="#cb31-112" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-113"><a href="#cb31-113" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-114"><a href="#cb31-114" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-115"><a href="#cb31-115" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingLeft <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb31-116"><a href="#cb31-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-117"><a href="#cb31-117" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> startMovingRight(<span class="va">self</span>):</span>
+<span id="cb31-118"><a href="#cb31-118" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-119"><a href="#cb31-119" aria-hidden="true" tabindex="-1"></a><span class="co">          Start the cheese moving right</span></span>
+<span id="cb31-120"><a href="#cb31-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-121"><a href="#cb31-121" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-122"><a href="#cb31-122" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-123"><a href="#cb31-123" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-124"><a href="#cb31-124" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-125"><a href="#cb31-125" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingRight <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb31-126"><a href="#cb31-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-127"><a href="#cb31-127" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> stopMovingRight(<span class="va">self</span>):</span>
+<span id="cb31-128"><a href="#cb31-128" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb31-129"><a href="#cb31-129" aria-hidden="true" tabindex="-1"></a><span class="co">          Stop the cheese moving right</span></span>
+<span id="cb31-130"><a href="#cb31-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-131"><a href="#cb31-131" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb31-132"><a href="#cb31-132" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb31-133"><a href="#cb31-133" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb31-134"><a href="#cb31-134" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb31-135"><a href="#cb31-135" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.movingRight <span class="op">=</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="code-analysis-player-sprite" class="level5">
+<h5 class="anchored" data-anchor-id="code-analysis-player-sprite">Code Analysis: Player Sprite</h5>
+<p><em>Our</em> <code>Cheese</code> <em>sprite encapsulates the player functionality. You can find the example code in <a href="./Examples/07_GameWithPlayer/Sprite.py">Sprite.py</a>. Work through the following questions</em></p>
+<ol type="1">
+<li><p><em>Why does the</em> <code>Cheese</code> <em>class not have an</em> <code>__init__</code> <em>or</em> <code>draw</code> <em>method?</em></p>
+<ul>
+<li>The <code>Cheese</code> class subclasses <code>Sprite</code></li>
+<li>It inherits the <code>__init__</code> and <code>draw</code> methods from <code>Sprite</code></li>
+<li>We don’t need to overwrite those so we can just leave them implicit</li>
+</ul></li>
+<li><p><em>What do the</em> <code>get_width</code> <em>and</em> <code>get_height</code> <em>methods do?</em></p>
+<ul>
+<li>They are provided by the pygame image class</li>
+<li>Let us determine the width and height of an image</li>
+<li>We use it to properly bound the player sprite to the window</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/07_GameWithPlayer/coordinate_map.png" class="img-fluid figure-img"></p>
+<figcaption>Sprite dimensions overlaid on the game window dimensions</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>Program knows the position of the cheese</p>
+<ul>
+<li>Position being the top left corner of the sprite</li>
+</ul></li>
+<li><p>So we can make sure the cheese is in on the left of the screen by just checking the current position</p>
+<ul>
+<li><p>To check the right, we have to check that the current position plus the image’s width is within the window width</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">+</span> <span class="va">self</span>.image.get_width() <span class="op">&gt;</span> <span class="va">self</span>.game.width:</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">=</span> <span class="va">self</span>.game.width <span class="op">-</span> <span class="va">self</span>.image.get_width()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Identical logic follows for the <span class="math inline">\(y\)</span> axis</p></li>
+</ul></li>
+<li><p>We store the position in a list so that we can mutate the position</p>
+<ul>
+<li>Rather than a tuple as we’ve used for positions before</li>
+<li>This is because a tuple is <em>immutable</em></li>
+</ul></li>
+<li><p>Restricting a sprite to the screen is also called <em>clamping</em></p></li>
+<li><p>We also start the cheese at the centre of the screen</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">=</span> (<span class="va">self</span>.game.width <span class="op">-</span> <span class="va">self</span>.image.get_width()) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">=</span> (<span class="va">self</span>.game.height <span class="op">-</span> <span class="va">self</span>.image.get_height()) <span class="op">/</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="control-the-player-sprite" class="level4">
+<h4 class="anchored" data-anchor-id="control-the-player-sprite">Control the Player Sprite</h4>
+<ul>
+<li><p>We then have to update the <code>Game</code> class to add the player sprite in</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">  Example 16.7a Game</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Contains the main game loop class for our cracker chasing game</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> pygame</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> Sprite</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> CrackerChase:</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">      CrackerChase game</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co">      Runs a simple game loop to display a background sprite</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">      Attributes</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">      size : tuple[int, int]</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">          The size of the game screen in pixels</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co">      surface : pygame.Surface</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="co">          The game window</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="co">      background_sprite : Sprite</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="co">          Sprite representing the background of the game</span></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> play_game(<span class="va">self</span>):</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="co">          Load the game and start the game loop</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>          init_result <span class="op">=</span> pygame.init()</span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> init_result[<span class="dv">1</span>] <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>              <span class="bu">print</span>(<span class="st">"Failed to initialise </span><span class="sc">{0}</span><span class="st"> elements, verify pygame installation"</span>.<span class="bu">format</span>(init_result))</span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.width <span class="op">=</span> <span class="dv">800</span></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.height <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.size <span class="op">=</span> (<span class="va">self</span>.width, <span class="va">self</span>.height)</span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.surface <span class="op">=</span> pygame.display.set_mode(<span class="va">self</span>.size)</span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>          pygame.display.set_caption(<span class="st">"Cracker Chase"</span>)</span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.background_sprite <span class="op">=</span> Sprite.Sprite(pygame.image.load(<span class="st">"Images/background.png"</span>), <span class="va">self</span>)</span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.player_sprite <span class="op">=</span> Sprite.Cheese(pygame.image.load(<span class="st">"Images/cheese.png"</span>), <span class="va">self</span>)</span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>          clock <span class="op">=</span> pygame.time.Clock()</span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a>          <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>              clock.tick(<span class="dv">60</span>)</span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> e <span class="kw">in</span> pygame.event.get():</span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> e.<span class="bu">type</span> <span class="op">==</span> pygame.KEYDOWN:</span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">if</span> e.key <span class="op">==</span> pygame.K_ESCAPE:</span>
+<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a>                          pygame.quit()</span>
+<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">return</span></span>
+<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_UP:</span>
+<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.startMovingUp()</span>
+<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_DOWN:</span>
+<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.startMovingDown()</span>
+<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_LEFT:</span>
+<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.startMovingLeft()</span>
+<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_RIGHT:</span>
+<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.startMovingRight()</span>
+<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">elif</span> e.<span class="bu">type</span> <span class="op">==</span> pygame.KEYUP:</span>
+<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">if</span> e.key <span class="op">==</span> pygame.K_UP:</span>
+<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.stopMovingUp()</span>
+<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_DOWN:</span>
+<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.stopMovingDown()</span>
+<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_LEFT:</span>
+<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.stopMovingLeft()</span>
+<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a>                      <span class="cf">elif</span> e.key <span class="op">==</span> pygame.K_RIGHT:</span>
+<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a>                          <span class="va">self</span>.player_sprite.stopMovingRight()</span>
+<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.background_sprite.draw()</span>
+<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.background_sprite.update()</span>
+<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.player_sprite.draw()</span>
+<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a>              <span class="va">self</span>.player_sprite.update()</span>
+<span id="cb34-80"><a href="#cb34-80" aria-hidden="true" tabindex="-1"></a>              pygame.display.flip()</span>
+<span id="cb34-81"><a href="#cb34-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-82"><a href="#cb34-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb34-83"><a href="#cb34-83" aria-hidden="true" tabindex="-1"></a>      game <span class="op">=</span> CrackerChase()</span>
+<span id="cb34-84"><a href="#cb34-84" aria-hidden="true" tabindex="-1"></a>      game.play_game()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This allows the player sprite to be controlled with the arrow keys</p></li>
+<li><p>Running this code (<a href="./Examples/07_GameWithPlayer/Game.py">Game.py</a>) will show a screen with the player that can be moved around the screen</p>
+<ul>
+<li>You should be unable to move off the screen</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/07_GameWithPlayer/game_with_player.png" class="img-fluid figure-img"></p>
+<figcaption>The game with a player sprite now movable over the background</figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="add-a-cracker-sprite" class="level4">
+<h4 class="anchored" data-anchor-id="add-a-cracker-sprite">Add a Cracker Sprite</h4>
+<ul>
+<li>We now need to add targets for the player</li>
+<li>This is a new sprite type, <em>Crackers</em>
+<ul>
+<li>The player must try to catch these crackers</li>
+</ul></li>
+<li>When a player captures a cracker their score increases
+<ul>
+<li>The cracker then moves elsewhere</li>
+</ul></li>
+<li><code>Cracker</code> again subclasses <code>Sprite</code></li>
+<li>The class itself inherits most of its functionality from <code>Sprite</code>
+<ul>
+<li>Only need to update the <code>reset</code> method</li>
+</ul></li>
+</ul>
+</section>
 </section>
 </section>
 <section id="summary" class="level2">
