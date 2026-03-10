@@ -294,8 +294,8 @@ simply need to format the attribute as necessary. The final
     print("The time is", hours, ":", minutes, ":", seconds)
 ```
 
-    The date is 9 / 3 / 2026
-    The time is 13 : 35 : 58
+    The date is 10 / 3 / 2026
+    The time is 13 : 56 : 23
 
 #### Comparing Values
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 13 : 35
+    The time is 13 : 56
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -1641,7 +1641,7 @@ else:
     print("You will soon face a decision that will redefine everything")
 ```
 
-    You will meet a tall, dark stranger
+    Nobody unexpected will enter your life
     You would do well to husband your wealth
     Sometimes the answers to our future, come from the past
 

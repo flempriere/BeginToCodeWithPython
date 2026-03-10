@@ -1,4 +1,4 @@
-# Create Games with PyGame
+# Chapter 16: Create Games with PyGame
 
 - [Notes](#notes)
   - [Getting Started with PyGame](#getting-started-with-pygame)
@@ -17,6 +17,13 @@
       Pygame](#make-something-happen-investigate-events-in-pygame)
     - [Code Analysis: Game Loops](#code-analysis-game-loops)
   - [Create Game Sprites](#create-game-sprites)
+    - [Code Analysis: Sprite
+      Superclass](#code-analysis-sprite-superclass)
+    - [Code Analysis: `Game` Class](#code-analysis-game-class)
+    - [Add a Player Sprite](#add-a-player-sprite)
+      - [Code Analysis: Player Sprite](#code-analysis-player-sprite)
+    - [Control the Player Sprite](#control-the-player-sprite)
+    - [Add a Cracker Sprite](#add-a-cracker-sprite)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -1135,6 +1142,556 @@ Consider the following questions*
     - Makes sure that all the proper clean up is carried out
 
 ### Create Game Sprites
+
+- Our game will display three sprites
+  1. **Cheese**
+      - Steered by the player around the screen
+  2. **Crackers**
+      - The goal, a player tries to catch the crackers
+  3. **Tomatoes**
+      - Enemies, the tomato will chase the cheese
+- Screen objects are typically called *sprites*
+  - A sprite is an image part of the game display
+- We can encapsulate the basic behaviour of all our sprites in a base
+  class `Sprite`
+- A `Sprite` will have
+  - The image to draw
+  - A position on the screen,
+  - a set of behaviours
+    - Draw itself on the screen
+    - Update itself
+      - E.g. `Cheese` will move in response to player input
+      - `Tomato` chases the player
+    - Reset itself
+      - When starting the game, we have to reset the sprites
+
+  ``` python
+    class Sprite:
+        """
+        Base class for a game Sprite
+
+        Attributes
+        ----------
+        image : surface
+            The sprite image
+        game :
+        """
+
+        def __init__(self, image, game):
+            """
+            Create a new `Sprite`
+
+            Parameters
+            ----------
+            image : pygame.Surface
+                image to draw
+            game :
+            """
+            self.image = image
+            self.position = (0, 0) #list so it's mutable
+            self.game = game
+            self.reset()
+
+        def update(self):
+            """
+            Update the sprite
+
+            Called in the game loop to update the status of the sprite. Does
+            nothing in the superclass
+            """
+            pass
+
+        def draw(self):
+            """
+            Draw the sprite on the screen
+
+            The sprite is drawn at it's current position
+            """
+            self.game.surface.blit(self.image, self.position)
+
+        def reset(self):
+            """
+            Reset the sprite
+
+            Called at the start of the game
+            """
+            pass
+  ```
+
+#### Code Analysis: Sprite Superclass
+
+*Work through the following questions to understand how the* `Sprite`
+*campaign works*
+
+1. *What is the* `game` *parameter used for in the initializer?*
+
+    - New sprites have no knowledge of which game they belong to
+    - But they need to know this so they can use game information
+    - e.g. if the cheese captures a cracker, score is updated, and the
+      sprites might change
+    - This *tightly couples* the `Sprite` class and the `Game` class
+      - Changes in the game may flow through to our sprite
+        representations
+      - Generally want to avoid tight coupling
+        - Means changes in the game will have to be propagated to the
+          sprite
+
+2. *Why are the* `update` *and* `reset` *methods empty?*
+
+    - `Sprite` as a base class is a template for subclasses
+    - By default there’s not a need for every sprite to change, e.g. a
+      background
+      - Subclasses probably want to have very specific `update` and
+        `reset`
+    - So in the base class we put the most generic / basic behaviour
+      - Let more complex subclasses overwrite them
+    - The advantage is that this gives us a generic interface that we
+      can use to refer to *any* sprite
+
+3. *How does the* `draw` *method work?*
+
+    - The `draw` method asks the sprite to draw itself on screen
+
+      ``` python
+        def draw(self):
+            self.game.surface.blit(self.image, self.position)
+      ```
+
+    - `game` contains an attribute `surface`
+
+      - This is the window to draw on
+
+    - We use the internally stored `image` and `position` to draw the
+      image
+
+- The base `Sprite` class doesn’t do much
+
+- Can be used to implement a generic background
+
+- Here we’ll use a tablecloth
+
+- Can be thought of as a big sprite that covers the entire screen
+
+- We just need to add the basic game loop
+
+  ``` python
+    class CrackerChase:
+        """
+        CrackerChase game
+
+        Runs a simple game loop to display a background sprite
+        """
+
+        def play_game(self):
+            """
+            Load the game and start the game loop
+
+            Returns
+            -------
+            None
+            """
+            init_result = pygame.init()
+            if init_result[1] != 0:
+                print("Failed to initialise {0} elements, verify pygame installation".format(init_result))
+
+            width = 800
+            height = 600
+            self.size = (height, width)
+
+            self.surface = pygame.display.set_mode(self.size)
+            pygame.display.set_caption("Cracker Chase")
+            self.background_sprite = Sprite(pygame.image.load("background.png"), self)
+
+            clock = pygame.time.Clock()
+            while True:
+                clock.tick(60)
+                for e in pygame.event.get():
+                    if e.type == pygame.KEYDOWN:
+                        if e.key == pygame.K_ESCAPE:
+                            pygame.quit()
+                            return
+                self.background_sprite.draw()
+                pygame.display.flip()
+  ```
+
+#### Code Analysis: `Game` Class
+
+*The above class is the shell of our the final class we’ll use to
+implement our game. Work through the following questions to make sure
+you understand how the class works*
+
+1. *How does the game pass a reference to itself to the sprite
+    constructor?*
+
+    - `self` references the object within which a method is running
+
+    - `self` can be passed around like any other variable, including as
+      a function argument
+
+      ``` python
+        self.background_sprite = Sprite(image=pygame.image.load("background.png"),  game=self)
+      ```
+
+    - Above creates a new `Sprite` instance, and passes the game’s
+      `self` reference so the `Sprite` references the current game
+
+2. *Why does the game call the* `draw` *method on the sprite to draw
+    it? Can’t the game just draw the image held inside the sprite?*
+
+    - This is a question of responsibility
+    - Should the sprite draw itself, or should the game draw the sprite?
+      - Generally making a sprite draw itself gives us more flexibility
+    - We could make sprites composable
+      - e.g. letting a sprite draw a smoke sub-sprite behind it
+      - We could add this logic to smoke sprites
+      - Making the game track all this composition would get complex
+        fast
+    - The game needing to only keep track of which sprites are in
+      existence then call the draw method is a much cleaner interface
+
+3. *Does this mean when the game is run the entire screen is redrawn
+    each time, even if nothing is on the screen?*
+
+    - Yes
+    - This is how most games work, it is often quicker to just redraw an
+      entire screen then first spend all the time recalculating what has
+      changed
+
+- With our two classes, we can then start the game
+
+  ``` python
+    game = CrackerChase()
+    game.play_game()
+  ```
+
+The full code is given in [Sprite.py](./Examples/06_Sprite/Sprite.py)
+
+![The game with just a background sprite
+displayed](./Examples/06_Sprite/game_with_background.png)
+
+#### Add a Player Sprite
+
+- We’ve already seen the basic idea behind the player sprite with the
+  [steerable cheese](#make-an-image-move)
+
+- The trick here is to implement this into our sprite framework
+
+  > [!NOTE]
+  >
+  > **Structure your code as you go**
+  >
+  > Before we just had everything in the one file. This was good because
+  > we only had the basic sprite and a pretty simple game. Now I’ll
+  > separate the sprites out into one file and the game logic into
+  > another. This is a good way to develop, we split out the
+  > functionality as it gets to the appropriate size.
+
+- We’ll create a `Cheese` class to handle the player sprite class
+
+  ``` python
+    class Cheese(Sprite):
+        """
+        Player controlled cheese sprite
+
+        Steerable cheese sprite controllable by the player
+        """
+        def reset(self):
+            """
+            Reset the player sprite
+
+            Stops the sprite moving and returns it to it's starting position
+
+            Returns
+            -------
+            None
+            """
+            self.movingUp = False
+            self.movingDown = False
+            self.movingLeft = False
+            self.movingRight = False
+
+            self.position = [(self.game.width - self.image.get_width())/2, (self.game.height - self.image.get_height())/2]
+            self.speed = [5,5]
+
+
+        def update(self):
+            """
+            Update the cheese position
+
+            Notes
+            -----
+            Ensures the player is restricted to the play screen
+
+            Returns
+            -------
+            None
+            """
+            if self.movingUp:
+                self.position[1] = self.position[1] - self.speed[1]
+            if self.movingDown:
+                self.position[1] = self.position[1] + self.speed[1]
+            if self.movingLeft:
+                self.position[0] = self.position[0] - self.speed[0]
+            if self.movingRight:
+                self.position[0] = self.position[0] + self.speed[0]
+
+            # bound movement to the game space
+            if self.position[0] < 0:
+                self.position[0] = 0
+            if self.position[1] < 0:
+                self.position[1] = 0
+            if self.position[0] + self.image.get_width() > self.game.width:
+                self.position[0] = self.game.width - self.image.get_width()
+            if self.position[1] + self.image.get_height() > self.game.height:
+                self.position[1] = self.game.height - self.image.get_height()
+
+        def startMovingUp(self):
+            """
+            Start the cheese moving up
+
+            Returns
+            -------
+            None
+            """
+            self.movingUp = True
+
+        def stopMovingUp(self):
+            """
+            Stop the cheese moving up
+
+            Returns
+            -------
+            None
+            """
+            self.movingUp = False
+
+        def startMovingDown(self):
+            """
+            Start the cheese moving down
+
+            Returns
+            -------
+            None
+            """
+            self.movingDown = True
+
+        def stopMovingDown(self):
+            """
+            Stop the cheese moving down
+
+            Returns
+            -------
+            None
+            """
+            self.movingDown = False
+
+        def startMovingLeft(self):
+            """
+            Start the cheese moving left
+
+            Returns
+            -------
+            None
+            """
+            self.movingLeft = True
+
+        def stopMovingLeft(self):
+            """
+            Stop the cheese moving left
+
+            Returns
+            -------
+            None
+            """
+            self.movingLeft = False
+
+        def startMovingRight(self):
+            """
+            Start the cheese moving right
+
+            Returns
+            -------
+            None
+            """
+            self.movingRight = True
+
+        def stopMovingRight(self):
+            """
+            Stop the cheese moving right
+
+            Returns
+            -------
+            None
+            """
+            self.movingRight = False
+  ```
+
+##### Code Analysis: Player Sprite
+
+*Our* `Cheese` *sprite encapsulates the player functionality. You can
+find the example code in
+[Sprite.py](./Examples/07_GameWithPlayer/Sprite.py). Work through the
+following questions*
+
+1. *Why does the* `Cheese` *class not have an* `__init__` *or* `draw`
+    *method?*
+
+    - The `Cheese` class subclasses `Sprite`
+    - It inherits the `__init__` and `draw` methods from `Sprite`
+    - We don’t need to overwrite those so we can just leave them
+      implicit
+
+2. *What do the* `get_width` *and* `get_height` *methods do?*
+
+    - They are provided by the pygame image class
+    - Let us determine the width and height of an image
+    - We use it to properly bound the player sprite to the window
+
+    ![Sprite dimensions overlaid on the game window
+    dimensions](./Examples/07_GameWithPlayer/coordinate_map.png)
+
+    - Program knows the position of the cheese
+
+      - Position being the top left corner of the sprite
+
+    - So we can make sure the cheese is in on the left of the screen by
+      just checking the current position
+
+      - To check the right, we have to check that the current position
+        plus the image’s width is within the window width
+
+        ``` python
+          if self.position[0] + self.image.get_width() > self.game.width:
+              self.position[0] = self.game.width - self.image.get_width()
+        ```
+
+      - Identical logic follows for the $y$ axis
+
+    - We store the position in a list so that we can mutate the position
+
+      - Rather than a tuple as we’ve used for positions before
+      - This is because a tuple is *immutable*
+
+    - Restricting a sprite to the screen is also called *clamping*
+
+    - We also start the cheese at the centre of the screen
+
+      ``` python
+        self.position[0] = (self.game.width - self.image.get_width()) / 2
+        self.position[1] = (self.game.height - self.image.get_height()) / 2
+      ```
+
+#### Control the Player Sprite
+
+- We then have to update the `Game` class to add the player sprite in
+
+  ``` python
+    """
+    Example 16.7a Game
+
+    Contains the main game loop class for our cracker chasing game
+    """
+    import pygame
+
+    import Sprite
+
+    class CrackerChase:
+        """
+        CrackerChase game
+
+        Runs a simple game loop to display a background sprite
+
+        Attributes
+        ----------
+        size : tuple[int, int]
+            The size of the game screen in pixels
+        surface : pygame.Surface
+            The game window
+        background_sprite : Sprite
+            Sprite representing the background of the game
+        """
+
+        def play_game(self):
+            """
+            Load the game and start the game loop
+
+            Returns
+            -------
+            None
+            """
+            init_result = pygame.init()
+            if init_result[1] != 0:
+                print("Failed to initialise {0} elements, verify pygame installation".format(init_result))
+
+            self.width = 800
+            self.height = 600
+            self.size = (self.width, self.height)
+
+            self.surface = pygame.display.set_mode(self.size)
+            pygame.display.set_caption("Cracker Chase")
+
+            self.background_sprite = Sprite.Sprite(pygame.image.load("Images/background.png"), self)
+            self.player_sprite = Sprite.Cheese(pygame.image.load("Images/cheese.png"), self)
+
+
+
+            clock = pygame.time.Clock()
+            while True:
+                clock.tick(60)
+                for e in pygame.event.get():
+                    if e.type == pygame.KEYDOWN:
+                        if e.key == pygame.K_ESCAPE:
+                            pygame.quit()
+                            return
+                        elif e.key == pygame.K_UP:
+                            self.player_sprite.startMovingUp()
+                        elif e.key == pygame.K_DOWN:
+                            self.player_sprite.startMovingDown()
+                        elif e.key == pygame.K_LEFT:
+                            self.player_sprite.startMovingLeft()
+                        elif e.key == pygame.K_RIGHT:
+                            self.player_sprite.startMovingRight()
+                    elif e.type == pygame.KEYUP:
+                        if e.key == pygame.K_UP:
+                            self.player_sprite.stopMovingUp()
+                        elif e.key == pygame.K_DOWN:
+                            self.player_sprite.stopMovingDown()
+                        elif e.key == pygame.K_LEFT:
+                            self.player_sprite.stopMovingLeft()
+                        elif e.key == pygame.K_RIGHT:
+                            self.player_sprite.stopMovingRight()
+
+                self.background_sprite.draw()
+                self.background_sprite.update()
+                self.player_sprite.draw()
+                self.player_sprite.update()
+                pygame.display.flip()
+
+    if __name__ == "__main__":
+        game = CrackerChase()
+        game.play_game()
+  ```
+
+- This allows the player sprite to be controlled with the arrow keys
+
+- Running this code ([Game.py](./Examples/07_GameWithPlayer/Game.py))
+  will show a screen with the player that can be moved around the screen
+
+  - You should be unable to move off the screen
+
+  ![The game with a player sprite now movable over the
+  background](./Examples/07_GameWithPlayer/game_with_player.png)
+
+#### Add a Cracker Sprite
+
+- We now need to add targets for the player
+- This is a new sprite type, *Crackers*
+  - The player must try to catch these crackers
+- When a player captures a cracker their score increases
+  - The cracker then moves elsewhere
+- `Cracker` again subclasses `Sprite`
+- The class itself inherits most of its functionality from `Sprite`
+  - Only need to update the `reset` method
 
 ## Summary
 
