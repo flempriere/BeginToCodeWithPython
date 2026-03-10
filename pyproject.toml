@@ -4,9 +4,7 @@ version = "0.1.0"
 description = "A Collection of Exercises and Examples from the book, Begin to Code With Python by Rob Miles"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "pygame>=2.6.1",
-]
+dependencies = ["pygame>=2.6.1"]
 
 [dependency-groups]
 dev = [
@@ -14,5 +12,5 @@ dev = [
     "pre-commit>=4.4.0",
     "pre-commit-uv>=4.2.0",
     "quarto-cli>=1.8.25",
-    "ruff>=0.14.5",
+    "ruff>=0.15.0",
 ]
