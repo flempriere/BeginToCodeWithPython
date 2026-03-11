@@ -2597,18 +2597,16 @@ Tags: {3}"""
 <!-- -->
 
     .
-
-    **StockItem __init__ called
-    **StockItem get price called
-    **StockItem get stock_level called
-
-
     ----------------------------------------------------------------------
     Ran 1 test in 0.001s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fd1ac38f9b0>
+    **StockItem __init__ called
+    **StockItem get price called
+    **StockItem get stock_level called
+
+    <unittest.main.TestProgram at 0x7f5c001e8800>
 
 - The above should show that our test executed successfully
 - If we want more detail we can use the `verbosity` parameter
@@ -2621,7 +2619,7 @@ Tags: {3}"""
     test_StockItem_init (__main__.TestStockItem.test_StockItem_init) ... ok
 
     ----------------------------------------------------------------------
-    Ran 1 test in 0.002s
+    Ran 1 test in 0.001s
 
     OK
 
@@ -2629,7 +2627,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fd1ac38ce30>
+    <unittest.main.TestProgram at 0x7f5c0039c260>
 
 - We can now see the name and status of each individual test
 
@@ -2674,7 +2672,7 @@ Tags: {3}"""
     FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_3485/3483629732.py", line 4, in test_that_fails
+      File "/tmp/ipykernel_3426/3483629732.py", line 4, in test_that_fails
         self.assertEqual(1, 0)
     AssertionError: 1 != 0
 
@@ -2687,7 +2685,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fd1ac1d9910>
+    <unittest.main.TestProgram at 0x7f5c0044d220>
 
 - The output indicates that tests have failed
 
@@ -2747,14 +2745,14 @@ class TestStockItem(unittest.TestCase):
 
     .
     ----------------------------------------------------------------------
-    Ran 1 test in 0.000s
+    Ran 1 test in 0.001s
 
     OK
 
     **StockItem __init__ called
     **StockItem add_stock called
 
-    <unittest.main.TestProgram at 0x7fd1ac365160>
+    <unittest.main.TestProgram at 0x7f5c02aa81a0>
 
 - If we wanted to test for specific exceptions we can pass them to
   `assertRaises` as arguments
@@ -2810,7 +2808,7 @@ class TestStockItem(unittest.TestCase):
     **StockItem sell_stock called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fd1ac3670e0>
+    <unittest.main.TestProgram at 0x7f5c00437fe0>
 
 - `unittest` can be used to create more complex testing scenarios
   - [Read the docs at the python
@@ -2978,11 +2976,11 @@ unittest.main(verbosity=2)
     test_str (__main__.TestStockItem.test_str) ... ok
 
     ----------------------------------------------------------------------
-    Ran 9 tests in 0.010s
+    Ran 9 tests in 0.007s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fd1ac45e660>
+    <unittest.main.TestProgram at 0x7f5c0044da00>
 
 #### Exercise: Refactoring Ride Selector to Support Testing
 
@@ -3563,11 +3561,11 @@ unitttest.main()
 
     ...............................
     ----------------------------------------------------------------------
-    Ran 31 tests in 0.013s
+    Ran 31 tests in 0.017s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fd1b0b622a0>
+    <unittest.main.TestProgram at 0x7f5c001e8800>
 
 > [!NOTE]
 >
