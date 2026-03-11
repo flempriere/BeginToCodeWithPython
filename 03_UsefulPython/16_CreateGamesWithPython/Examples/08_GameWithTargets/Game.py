@@ -5,7 +5,6 @@ Contains the main game loop class for our cracker chasing game
 """
 
 import pygame
-
 import Sprite
 
 
@@ -17,12 +16,20 @@ class CrackerChase:
 
     Attributes
     ----------
+    width : int
+        width of the game window in pixels
+    height : int
+        height of the game window in pixels
     size : tuple[int, int]
         The size of the game screen in pixels
     surface : pygame.Surface
         The game window
     background_sprite : Sprite
         Sprite representing the background of the game
+    player_sprite : Sprite
+        Sprite representing the cheese controlled by the player
+    cracker_sprite : Sprite
+        Sprite representing the cracker the player has to reach
     """
 
     def play_game(self):
@@ -52,6 +59,10 @@ class CrackerChase:
             pygame.image.load("Images/background.png"), self
         )
         self.player_sprite = Sprite.Cheese(pygame.image.load("Images/cheese.png"), self)
+
+        self.cracker_sprite = Sprite.Cracker(
+            pygame.image.load("Images/cracker.png"), self
+        )
 
         clock = pygame.time.Clock()
         while True:
@@ -83,6 +94,8 @@ class CrackerChase:
             self.background_sprite.update()
             self.player_sprite.draw()
             self.player_sprite.update()
+            self.cracker_sprite.draw()
+            self.cracker_sprite.update()
             pygame.display.flip()
 
 

@@ -1,7 +1,7 @@
 """
-Example 16.8b Sprite
+Example 16.9b Sprite
 
-Extends the sprite collection with a target cracker sprite
+Demonstrates handling a collection of `Sprite` objects
 """
 
 import random

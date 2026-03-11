@@ -1435,6 +1435,105 @@ The full code is given in [Sprite.py](./Examples/06_Sprite/Sprite.py)
 - The class itself inherits most of its functionality from `Sprite`
     - Only need to update the `reset` method
 
+  ```python
+    class Cracker(Sprite):
+        """
+        Cracker sprite representing a target for the player
+
+        Moves to random place on the screen once captured
+        """
+
+        def reset(self):
+            """
+            Reset the Cracker to a new random position
+
+            Returns
+            -------
+            None
+            """
+            self.position = [
+                random.randint(0, self.game.width - self.image.get_width()),
+                random.randint(0, self.game.height - self.image.get_height()),
+            ]
+  ```
+
+- The `reset` method just randomly places the cracker on the screen
+    - The upper bound is chosen so that the the sprite is always contained in the game window
+- This is contained in the updated [Sprite.py](./Examples/08_GameWithTargets/Sprite.py)
+- We then make some minor updates to the [Game.py](./Examples/08_GameWithTargets/Game.py)
+
+  ```python
+    def play_game:
+        ...
+        self.background_sprite = Sprite.Sprite(
+            pygame.image.load("Images/background.png"), self
+        )
+        self.player_sprite = Sprite.Cheese(pygame.image.load("Images/cheese.png"), self)
+
+        self.cracker_sprite = Sprite.Cracker(
+            pygame.image.load("Images/cracker.png"), self
+        )
+        ...
+        self.background_sprite.draw()
+        self.background_sprite.update()
+        self.player_sprite.draw()
+        self.player_sprite.update()
+        self.cracker_sprite.draw()
+        self.cracker_sprite.update()
+        pygame.display.flip()
+  ```
+
+- We effectively just add the cracker sprite then include it in the sprite processing
+- The screenshot below shows how the game looks when we've moved the cheese to the cracker
+
+  ![The cheese disappears under the cracker](./Examples/08_GameWithTargets/cheese_under_cracker.png)
+
+- There's three things to observe here
+    1. Nothing happens when the cheese reaches the cracker
+        - We'll implement that logic later
+    2. The cheese appears under the cracker
+        - We really want this to be the other way around
+        - This happens because by default pygame layers images in their draw order
+        - This means that we need to draw the player *last*
+    3. The screen seems quite sparse
+        - We should add more crackers!
+
+#### Add lots of Sprite Instances
+
+- At this point individually declaring then calling `draw` and `update` on every sprite is getting a bit tedious
+- The best solution here would be to store the cracker sprites in a collection (inside the `CrackerChase` game class)
+- In fact we can store all the sprites in a list
+
+  ```python
+    cracker_image = pygame.image.load("Images/cracker.png")
+
+    self.sprites = [self.background_sprite]
+    for i in range(20):
+        cracker_sprite = Sprite.Cracker(image=cracker_image, game=self)
+        self.sprites.append(cracker_sprite)
+    self.sprites.append(self.player_sprite)
+  ```
+
+- Adding the background sprite first, and the player sprite last ensures that the background is drawn first and the player drawn last when we later update the game state
+- We can then replace our specific calls to each sprite's `update` and `draw` with iteration over the collection
+
+  ```python
+    for sprite in self.sprites:
+        sprite.update()
+    for sprite in self.sprites:
+        sprite.draw()
+    pygame.display.flip()
+  ```
+
+- We can see the result below
+- There are now multiple crackers
+- Crucially, the player's cheese is now also drawn over the top of crackers
+
+  ![The game with multiple crackers and the correct draw order](./Examples/09_GameWithMultipleTargets/cheese_over_crackers.png)
+
+#### Catch the Crackers
+
+
 ## Summary
 
 
