@@ -366,6 +366,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#control-the-player-sprite" id="toc-control-the-player-sprite" class="nav-link" data-scroll-target="#control-the-player-sprite">Control the Player Sprite</a></li>
   <li><a href="#add-a-cracker-sprite" id="toc-add-a-cracker-sprite" class="nav-link" data-scroll-target="#add-a-cracker-sprite">Add a Cracker Sprite</a></li>
+  <li><a href="#add-lots-of-sprite-instances" id="toc-add-lots-of-sprite-instances" class="nav-link" data-scroll-target="#add-lots-of-sprite-instances">Add lots of Sprite Instances</a></li>
+  <li><a href="#catch-the-crackers" id="toc-catch-the-crackers" class="nav-link" data-scroll-target="#catch-the-crackers">Catch the Crackers</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
@@ -493,7 +495,7 @@ window.Quarto = {
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  end <span class="op">=</span> (<span class="dv">500</span>, <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Now we just have to issue our actual drawing command</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  pygame.draw.line(surface, red, start, end)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="adfa67a8" class="cell" data-execution_count="1">
+<div id="794ff276" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;rect(0, 0, 501, 301)&gt;</code></pre>
 </div>
@@ -1847,21 +1849,123 @@ Note
 <section id="add-a-cracker-sprite" class="level4">
 <h4 class="anchored" data-anchor-id="add-a-cracker-sprite">Add a Cracker Sprite</h4>
 <ul>
-<li>We now need to add targets for the player</li>
-<li>This is a new sprite type, <em>Crackers</em>
+<li><p>We now need to add targets for the player</p></li>
+<li><p>This is a new sprite type, <em>Crackers</em></p>
 <ul>
 <li>The player must try to catch these crackers</li>
 </ul></li>
-<li>When a player captures a cracker their score increases
+<li><p>When a player captures a cracker their score increases</p>
 <ul>
 <li>The cracker then moves elsewhere</li>
 </ul></li>
-<li><code>Cracker</code> again subclasses <code>Sprite</code></li>
-<li>The class itself inherits most of its functionality from <code>Sprite</code>
+<li><p><code>Cracker</code> again subclasses <code>Sprite</code></p></li>
+<li><p>The class itself inherits most of its functionality from <code>Sprite</code></p>
 <ul>
 <li>Only need to update the <code>reset</code> method</li>
-</ul></li>
 </ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">class</span> Cracker(Sprite):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Cracker sprite representing a target for the player</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Moves to random place on the screen once captured</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">def</span> reset(<span class="va">self</span>):</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>          <span class="co">"""</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co">          Reset the Cracker to a new random position</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">          Returns</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">          -------</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co">          None</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="co">          """</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.position <span class="op">=</span> [</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>              random.randint(<span class="dv">0</span>, <span class="va">self</span>.game.width <span class="op">-</span> <span class="va">self</span>.image.get_width()),</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>              random.randint(<span class="dv">0</span>, <span class="va">self</span>.game.height <span class="op">-</span> <span class="va">self</span>.image.get_height()),</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>          ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The <code>reset</code> method just randomly places the cracker on the screen</p>
+<ul>
+<li>The upper bound is chosen so that the the sprite is always contained in the game window</li>
+</ul></li>
+<li><p>This is contained in the updated <a href="./Examples/08_GameWithTargets/Sprite.py">Sprite.py</a></p></li>
+<li><p>We then make some minor updates to the <a href="./Examples/08_GameWithTargets/Game.py">Game.py</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> play_game:</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>      ...</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.background_sprite <span class="op">=</span> Sprite.Sprite(</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>          pygame.image.load(<span class="st">"Images/background.png"</span>), <span class="va">self</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.player_sprite <span class="op">=</span> Sprite.Cheese(pygame.image.load(<span class="st">"Images/cheese.png"</span>), <span class="va">self</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.cracker_sprite <span class="op">=</span> Sprite.Cracker(</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>          pygame.image.load(<span class="st">"Images/cracker.png"</span>), <span class="va">self</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>      ...</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.background_sprite.draw()</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.background_sprite.update()</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.player_sprite.draw()</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.player_sprite.update()</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.cracker_sprite.draw()</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.cracker_sprite.update()</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>      pygame.display.flip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We effectively just add the cracker sprite then include it in the sprite processing</p></li>
+<li><p>The screenshot below shows how the game looks when we’ve moved the cheese to the cracker</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/08_GameWithTargets/cheese_under_cracker.png" class="img-fluid figure-img"></p>
+<figcaption>The cheese disappears under the cracker</figcaption>
+</figure>
+</div></li>
+<li><p>There’s three things to observe here</p>
+<ol type="1">
+<li>Nothing happens when the cheese reaches the cracker
+<ul>
+<li>We’ll implement that logic later</li>
+</ul></li>
+<li>The cheese appears under the cracker
+<ul>
+<li>We really want this to be the other way around</li>
+<li>This happens because by default pygame layers images in their draw order</li>
+<li>This means that we need to draw the player <em>last</em></li>
+</ul></li>
+<li>The screen seems quite sparse
+<ul>
+<li>We should add more crackers!</li>
+</ul></li>
+</ol></li>
+</ul>
+</section>
+<section id="add-lots-of-sprite-instances" class="level4">
+<h4 class="anchored" data-anchor-id="add-lots-of-sprite-instances">Add lots of Sprite Instances</h4>
+<ul>
+<li><p>At this point individually declaring then calling <code>draw</code> and <code>update</code> on every sprite is getting a bit tedious</p></li>
+<li><p>The best solution here would be to store the cracker sprites in a collection (inside the <code>CrackerChase</code> game class)</p></li>
+<li><p>In fact we can store all the sprites in a list</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>  cracker_image <span class="op">=</span> pygame.image.load(<span class="st">"Images/cracker.png"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.sprites <span class="op">=</span> [<span class="va">self</span>.background_sprite]</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>      cracker_sprite <span class="op">=</span> Sprite.Cracker(image<span class="op">=</span>cracker_image, game<span class="op">=</span><span class="va">self</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.sprites.append(cracker_sprite)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.sprites.append(<span class="va">self</span>.player_sprite)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Adding the background sprite first, and the player sprite last ensures that the background is drawn first and the player drawn last when we later update the game state</p></li>
+<li><p>We can then replace our specific calls to each sprite’s <code>update</code> and <code>draw</code> with iteration over the collection</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> sprite <span class="kw">in</span> <span class="va">self</span>.sprites:</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>      sprite.update()</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> sprite <span class="kw">in</span> <span class="va">self</span>.sprites:</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>      sprite.draw()</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  pygame.display.flip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We can see the result below</p></li>
+<li><p>There are now multiple crackers</p></li>
+<li><p>Crucially, the player’s cheese is now also drawn over the top of crackers</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Examples/09_GameWithMultipleTargets/cheese_over_crackers.png" class="img-fluid figure-img"></p>
+<figcaption>The game with multiple crackers and the correct draw order</figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="catch-the-crackers" class="level4">
+<h4 class="anchored" data-anchor-id="catch-the-crackers">Catch the Crackers</h4>
 </section>
 </section>
 </section>

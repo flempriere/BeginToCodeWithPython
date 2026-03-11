@@ -1,7 +1,8 @@
 """
-Example 16.7a Game
+Example 16.9a Game
 
-Contains the main game loop class for our cracker chasing game
+Contains the main game loop class for our cracker chasing game, adds
+a collection for handling sprite updates
 """
 
 import pygame
@@ -58,6 +59,14 @@ class CrackerChase:
         )
         self.player_sprite = Sprite.Cheese(pygame.image.load("Images/cheese.png"), self)
 
+        cracker_image = pygame.image.load("Images/cracker.png")
+
+        self.sprites = [self.background_sprite]
+        for i in range(20):
+            cracker_sprite = Sprite.Cracker(image=cracker_image, game=self)
+            self.sprites.append(cracker_sprite)
+        self.sprites.append(self.player_sprite)
+
         clock = pygame.time.Clock()
         while True:
             clock.tick(60)
@@ -84,10 +93,10 @@ class CrackerChase:
                     elif e.key == pygame.K_RIGHT:
                         self.player_sprite.stopMovingRight()
 
-            self.background_sprite.draw()
-            self.background_sprite.update()
-            self.player_sprite.draw()
-            self.player_sprite.update()
+            for sprite in self.sprites:
+                sprite.update()
+            for sprite in self.sprites:
+                sprite.draw()
             pygame.display.flip()
 
 

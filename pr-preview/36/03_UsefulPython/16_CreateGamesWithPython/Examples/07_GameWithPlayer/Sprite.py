@@ -13,6 +13,9 @@ class Sprite:
     ----------
     image : pygame.Surface
         The sprite image
+    position : list[int, int]
+        The position of the sprite, in pixels, determined by the pixel
+        position of the top left corner of the sprite
     game : CrackerChase
         The current game instance
     """
@@ -76,6 +79,19 @@ class Cheese(Sprite):
     Player controlled cheese sprite
 
     Steerable cheese sprite controllable by the player
+
+    Attributes
+    ----------
+    speed : tuple[int, int]
+        The velocity of the sprite in pixels per frame
+    movingUp : bool
+        Indicates the sprite is moving up
+    movingDown : bool
+        Indicates the sprite is moving down
+    movingLeft : bool
+        Indicates the sprite is moving left
+    movingRight : bool
+        Indicates the sprite is moving right
     """
 
     def reset(self):

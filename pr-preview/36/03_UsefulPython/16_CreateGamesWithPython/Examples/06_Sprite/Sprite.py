@@ -15,6 +15,9 @@ class Sprite:
     ----------
     image : pygame.Surface
         The sprite image
+    position : list[int, int]
+        The position of the sprite, in pixels, determined by the pixel
+        position of the top left corner of the sprite
     game : CrackerChase
         The current game instance
     """
