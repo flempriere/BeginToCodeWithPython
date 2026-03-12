@@ -1644,6 +1644,7 @@ The full code is given in [Sprite.py](./Examples/06_Sprite/Sprite.py)
     2. Use distance rather than a bounding box
         - Works well for circular sprites
     3. Make the sprites as close to rectangular as possible
+:::
 
 :::{.callout-tip}
 **When you write a game, you control the universe**
