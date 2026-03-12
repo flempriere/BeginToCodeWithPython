@@ -27,6 +27,14 @@
     - [Add lots of Sprite Instances](#add-lots-of-sprite-instances)
     - [Catch the Crackers](#catch-the-crackers)
       - [Add Sound](#add-sound)
+    - [Add a Killer Tomato](#add-a-killer-tomato)
+      - [Add Artificial Intelligence to a
+        Sprite](#add-artificial-intelligence-to-a-sprite)
+      - [Add Physics to a Sprite](#add-physics-to-a-sprite)
+      - [Create Timed Sprites](#create-timed-sprites)
+  - [Complete the Game](#complete-the-game)
+- [Summary](#summary)
+- [Questions and Answers](#questions-and-answers)
 
 ## Notes
 
@@ -1955,201 +1963,198 @@ following questions*
 >   2. Use distance rather than a bounding box
 >       - Works well for circular sprites
 >   3. Make the sprites as close to rectangular as possible
+
+> [!TIP]
 >
-> > [!TIP]
-> >
-> > **When you write a game, you control the universe**
-> >
-> > When making a game, unlike when making a product, you typically have
-> > a lot more freedom to design the product according to what you want
-> > it to do. Feel free to play around and experiment to find out what
-> > makes the gameplay fun to you.
+> **When you write a game, you control the universe**
 >
-> #### Add a Killer Tomato
+> When making a game, unlike when making a product, you typically have a
+> lot more freedom to design the product according to what you want it
+> to do. Feel free to play around and experiment to find out what makes
+> the gameplay fun to you.
+
+#### Add a Killer Tomato
+
+- We’ve set up the game and the player’s objective
+- Now we need to add the challenge
+- The third sprite to add is the *Killer Tomato*
+  - This enemy will try and get to the player
+  - We’ll slowly increase the number of Tomatoes until the player is
+    overwhelmed
+
+##### Add Artificial Intelligence to a Sprite
+
+- The A.I for our killer tomato is very basic
+- It simply looks at it’s position relative to the player
+  - Calculates the vector to the player
+  - Then follows this vector
+
+  ``` python
+    # calculate x-axis velocity component
+    if game.player_sprite.position[0] > self.position[0]:
+        self.x_speed = self.x_speed + self.x_accel
+    else:
+        self.x_speed = self.x_speed - self.x_accel
+
+    # calculate the y-axis velocity component
+    if game.player_sprite.position[1] > self.position[1]:
+        self.y_speed = self.y_speed + self.y_accel
+    else:
+        self.y_speed = self.y_speed - self.y_accel
+  ```
+
+- Observe that we don’t have a fixed speed for the tomato
+  - It accelerates towards the player
+  - This means it will get faster over time (in a straight line)
+  - To turn around it needs to decelerate first
+- The player however has a fixed speed
+  - So can potentially move around the tomato
+
+> [!NOTE]
 >
-> - We’ve set up the game and the player’s objective
-> - Now we need to add the challenge
-> - The third sprite to add is the *Killer Tomato*
->   - This enemy will try and get to the player
->   - We’ll slowly increase the number of Tomatoes until the player is
->     overwhelmed
+> **Using “artificial Intelligence” makes games much more interesting**
 >
-> ##### Add Artificial Intelligence to a Sprite
+> The term A.I is used to mean a lot of different technologies.
+> Especially at the time of writing up these notes. The argument about
+> if simple logic like above (or video game A.I more broadly) is “real
+> A.I” is largely a semantic one. Players react to the enemy like it has
+> intelligence, and it makes the game much more compelling when players
+> feel like they’re facing a “real” opponent
+
+##### Add Physics to a Sprite
+
+- Each update our game does two things
+
+  - It updates the sprites
+  - It redraws the screen
+
+- The *speed* of an object is thus the amount it moves each update, in
+  pixels / frame
+
+  - Our player cheese moves $5$ pixels in either direction per update
+
+- The game updates at $60$ frames per second
+
+  - This means our player can move $5 \times 60 = 300$ pixels per second
+  - It is good to get a good idea of these heuristics so you can
+    correctly estimate the speed value
+
+- *Acceleration* measures how fast the speed is changing
+
+- We see this with the tomato, which is initially at rest then
+  accelerates
+
+- The tomato, if given enough time will start to move at absurdly high
+  speed
+
+  - We add *friction*
+
+  - Friction reduces the overall speed towards zero
+
+  - The faster the tomato is, the greater the effect of friction
+
+  - We can implement it as below
+
+    ``` python
+      self.x_speed = self.x_speed * self.friction_value
+    ```
+
+- We set the initial conditions as part of the `reset` method
+
+  ``` python
+    def reset(self):
+        self.entry_count = 0
+        self.friction_value = 0.99
+        self.x_accel = 0.2
+        self.y_accel = 0.2
+        self.x_speed = 0
+        self.y_speed = 0
+        self.position = [-100, -100]
+  ```
+
+- The chosen values for acceleration and friction are chosen by
+  trialling values to get something that feels right
+
+- If we calculate the steady point we see that the maximum speed is
+  given by
+
+  $$
+    \begin{align}
+        v_{x} &= f\left(v_{x} + a_{x}\right) \\
+        \left(1 - f\right)v_{x} &= f a_{x} \\
+        v_{x} &= \frac{f}{1 - f} a_{x}
+    \end{align}
+  $$
+
+- Which for our chosen values, corresponds to
+  $0.99 / 0.01 \times 0.2 = 19.8$
+
+  - Which is about four times as fast as the player
+
+> [!TIP]
 >
-> - The A.I for our killer tomato is very basic
-> - It simply looks at it’s position relative to the player
->   - Calculates the vector to the player
->   - Then follows this vector
+> **When you write a game, you can always cheat**
 >
->   ``` python
->     # calculate x-axis velocity component
->     if game.player_sprite.position[0] > self.position[0]:
->         self.x_speed = self.x_speed + self.x_accel
->     else:
->         self.x_speed = self.x_speed - self.x_accel
+> With games, as with any software, it’s good to start with the minimum
+> working implementation of a feature. Often this is easier in games
+> because you get the define what your features actually are. You can
+> then improve it as needed to improve the quality of the game. If the
+> feature isn’t very important then there isn’t really a need to give it
+> a more detailed implementation.
 >
->     # calculate the y-axis velocity component
->     if game.player_sprite.position[1] > self.position[1]:
->         self.y_speed = self.y_speed + self.y_accel
->     else:
->         self.y_speed = self.y_speed - self.y_accel
->   ```
->
-> - Observe that we don’t have a fixed speed for the tomato
->   - It accelerates towards the player
->   - This means it will get faster over time (in a straight line)
->   - To turn around it needs to decelerate first
-> - The player however has a fixed speed
->   - So can potentially move around the tomato
->
-> > [!NOTE]
-> >
-> > **Using “artificial Intelligence” makes games much more
-> > interesting**
-> >
-> > The term A.I is used to mean a lot of different technologies.
-> > Especially at the time of writing up these notes. The argument about
-> > if simple logic like above (or video game A.I more broadly) is “real
-> > A.I” is largely a semantic one. Players react to the enemy like it
-> > has intelligence, and it makes the game much more compelling when
-> > players feel like they’re facing a “real” opponent
->
-> ##### Add Physics to a Sprite
->
-> - Each update our game does two things
->
->   - It updates the sprites
->   - It redraws the screen
->
-> - The *speed* of an object is thus the amount it moves each update, in
->   pixels / frame
->
->   - Our player cheese moves $5$ pixels in either direction per update
->
-> - The game updates at $60$ frames per second
->
->   - This means our player can move $5 \times 60 = 300$ pixels per
->     second
->   - It is good to get a good idea of these heuristics so you can
->     correctly estimate the speed value
->
-> - *Acceleration* measures how fast the speed is changing
->
-> - We see this with the tomato, which is initially at rest then
->   accelerates
->
-> - The tomato, if given enough time will start to move at absurdly high
->   speed
->
->   - We add *friction*
->
->   - Friction reduces the overall speed towards zero
->
->   - The faster the tomato is, the greater the effect of friction
->
->   - We can implement it as below
->
->     ``` python
->       self.x_speed = self.x_speed * self.friction_value
->     ```
->
-> - We set the initial conditions as part of the `reset` method
->
->   ``` python
->     def reset(self):
->         self.entry_count = 0
->         self.friction_value = 0.99
->         self.x_accel = 0.2
->         self.y_accel = 0.2
->         self.x_speed = 0
->         self.y_speed = 0
->         self.position = [-100, -100]
->   ```
->
-> - The chosen values for acceleration and friction are chosen by
->   trialling values to get something that feels right
->
-> - If we calculate the steady point we see that the maximum speed is
->   given by
->
->   $$
->     \begin{align}
->         v_{x} &= f\left(v_{x} + a_{x}\right) \\
->         \left(1 - f\right)v_{x} &= f a_{x} \\
->         v_{x} &= \frac{f}{1 - f} a_{x}
->     \end{align}
->   $$
->
-> - Which for our chosen values, corresponds to
->   $0.99 / 0.01 \times 0.2 = 19.8$
->
->   - Which is about four times as fast as the player
->
-> > [!TIP]
-> >
-> > **When you write a game, you can always cheat**
-> >
-> > With games, as with any software, it’s good to start with the
-> > minimum working implementation of a feature. Often this is easier in
-> > games because you get the define what your features actually are.
-> > You can then improve it as needed to improve the quality of the
-> > game. If the feature isn’t very important then there isn’t really a
-> > need to give it a more detailed implementation.
-> >
-> > Here the physics are very simplistic, and the friction factor is not
-> > very realistic. But the goal here is to provide a good gameplay
-> > experience, not an accurate physics simulation. The more important
-> > fact is that the it feels real to a player. A more accurate physics
-> > model, if anything might actually detract from the gameplay
-> > experience
->
-> ##### Create Timed Sprites
->
-> - It’s important that a game be progressive
-> - A screen immediately filled with killer tomatoes would be
->   overwhelming and not much fun
-> - We want to progressively increase the number of killer tomatoes on
->   screen
-> - We add an `entry_delay` parameter
->   - This effectively counts down the time until a sprite is active
->   - We vary this parameter as we construct the tomatoes in the game
->
->   ``` python
->     tomato_image = pygame.image.load("tomato.png")
->
->     for entry_delay in range(300, 3000, 300):
->         tomato_sprite = Tomato(image=tomato_image, game=self, entry_delay=entry_delay)
->
->     self.sprites.append(tomato_sprite)
->   ```
->
-> - This version of `range` accepts three arguments
->   1. `start`
->       - The inclusive starting value
->   2. `stop`
->       - The exclusive finishing value
->   3. `step`
->       - The step between values, i.e. if `start` is the first value,
->         the second is `start + step`
-> - We have to update the `Tomato` sprite `__init__` method to accept
->   this new parameter
-> - Every time `update` is called the tomato will count up
->   - Once this counter reaches the `entry_delay` then we can spawn this
->     sprite
->
->   ``` python
->     def update(self):
->         self.entry_count = self.entry_count + 1
->         if self.entry_count < self.entry_delay:
->             return
->   ```
->
-> - Observe that we have to give the values for `entry_count` and
->   `entry_delay` in terms of the number of frames
->   - This converts to seconds as $\text{seconds} = \text{frames}/60$
->
-> ### Complete the Game
->
-> ## Summary
->
-> ## Questions and Answers
+> Here the physics are very simplistic, and the friction factor is not
+> very realistic. But the goal here is to provide a good gameplay
+> experience, not an accurate physics simulation. The more important
+> fact is that the it feels real to a player. A more accurate physics
+> model, if anything might actually detract from the gameplay experience
+
+##### Create Timed Sprites
+
+- It’s important that a game be progressive
+- A screen immediately filled with killer tomatoes would be overwhelming
+  and not much fun
+- We want to progressively increase the number of killer tomatoes on
+  screen
+- We add an `entry_delay` parameter
+  - This effectively counts down the time until a sprite is active
+  - We vary this parameter as we construct the tomatoes in the game
+
+  ``` python
+    tomato_image = pygame.image.load("tomato.png")
+
+    for entry_delay in range(300, 3000, 300):
+        tomato_sprite = Tomato(image=tomato_image, game=self, entry_delay=entry_delay)
+
+    self.sprites.append(tomato_sprite)
+  ```
+
+- This version of `range` accepts three arguments
+  1. `start`
+      - The inclusive starting value
+  2. `stop`
+      - The exclusive finishing value
+  3. `step`
+      - The step between values, i.e. if `start` is the first value, the
+        second is `start + step`
+- We have to update the `Tomato` sprite `__init__` method to accept this
+  new parameter
+- Every time `update` is called the tomato will count up
+  - Once this counter reaches the `entry_delay` then we can spawn this
+    sprite
+
+  ``` python
+    def update(self):
+        self.entry_count = self.entry_count + 1
+        if self.entry_count < self.entry_delay:
+            return
+  ```
+
+- Observe that we have to give the values for `entry_count` and
+  `entry_delay` in terms of the number of frames
+  - This converts to seconds as $\text{seconds} = \text{frames}/60$
+
+### Complete the Game
+
+## Summary
+
+## Questions and Answers

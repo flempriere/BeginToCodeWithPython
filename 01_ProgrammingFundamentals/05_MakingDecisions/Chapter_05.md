@@ -295,7 +295,7 @@ simply need to format the attribute as necessary. The final
 ```
 
     The date is 12 / 3 / 2026
-    The time is 13 : 27 : 42
+    The time is 13 : 55 : 38
 
 #### Comparing Values
 
@@ -703,7 +703,7 @@ print("The time is", hour, ":", minute)
     TIME TO GET UP
     RISE AND SHINE
     THE EARLY BIRD GETS THE WORM
-    The time is 13 : 27
+    The time is 13 : 55
 
 - The program above will always print the current time, regardless of if
   the alarm block is run
@@ -1643,7 +1643,7 @@ else:
 
     Nobody unexpected will enter your life
     A life of comfort is coming
-    To define your future, avoid getting hung up on the past
+    You will soon face a decision that will redefine everything
 
 We use a mix of `==`, `<=` and `<` operators to emphasise the clarity of
 the branching. This implementation is quite simple (because the exercise
