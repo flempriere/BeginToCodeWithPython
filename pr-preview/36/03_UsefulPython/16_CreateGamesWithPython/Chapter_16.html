@@ -371,8 +371,17 @@ window.Quarto = {
   <ul>
   <li><a href="#add-sound" id="toc-add-sound" class="nav-link" data-scroll-target="#add-sound">Add Sound</a></li>
   </ul></li>
+  <li><a href="#add-a-killer-tomato" id="toc-add-a-killer-tomato" class="nav-link" data-scroll-target="#add-a-killer-tomato">Add a Killer Tomato</a>
+  <ul>
+  <li><a href="#add-artificial-intelligence-to-a-sprite" id="toc-add-artificial-intelligence-to-a-sprite" class="nav-link" data-scroll-target="#add-artificial-intelligence-to-a-sprite">Add Artificial Intelligence to a Sprite</a></li>
+  <li><a href="#add-physics-to-a-sprite" id="toc-add-physics-to-a-sprite" class="nav-link" data-scroll-target="#add-physics-to-a-sprite">Add Physics to a Sprite</a></li>
+  <li><a href="#create-timed-sprites" id="toc-create-timed-sprites" class="nav-link" data-scroll-target="#create-timed-sprites">Create Timed Sprites</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#complete-the-game" id="toc-complete-the-game" class="nav-link" data-scroll-target="#complete-the-game">Complete the Game</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/BeginToCodeWithPython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></nav>
     </div>
@@ -496,7 +505,7 @@ window.Quarto = {
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  end <span class="op">=</span> (<span class="dv">500</span>, <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Now we just have to issue our actual drawing command</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  pygame.draw.line(surface, red, start, end)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="6547be1e" class="cell" data-execution_count="1">
+<div id="62950bab" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;rect(0, 0, 501, 301)&gt;</code></pre>
 </div>
@@ -1319,7 +1328,7 @@ Tip
 </section>
 </section>
 <section id="create-game-sprites" class="level3">
-<h3 class="anchored">Create Game Sprites</h3>
+<h3 class="anchored" data-anchor-id="create-game-sprites">Create Game Sprites</h3>
 <ul>
 <li>Our game will display three sprites
 <ol type="1">
@@ -1966,7 +1975,7 @@ Note
 </ul>
 </section>
 <section id="catch-the-crackers" class="level4">
-<h4 class="anchored">Catch the Crackers</h4>
+<h4 class="anchored" data-anchor-id="catch-the-crackers">Catch the Crackers</h4>
 <ul>
 <li><p>Currently nothing happens when we actually land on a cracker</p></li>
 <li><p>We need to add <em>collision detection</em></p></li>
@@ -2033,7 +2042,7 @@ Note
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.reset()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 <section id="add-sound" class="level5">
-<h5 class="anchored">Add Sound</h5>
+<h5 class="anchored" data-anchor-id="add-sound">Add Sound</h5>
 <ul>
 <li><p>You should notice hidden in the <code>update</code> method above is a line</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.captured_sound.play()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
@@ -2085,6 +2094,8 @@ Caution
 <li>Make the sprites as close to rectangular as possible</li>
 </ol></li>
 </ul>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2099,6 +2110,8 @@ Tip
 <p>When making a game, unlike when making a product, you typically have a lot more freedom to design the product according to what you want it to do. Feel free to play around and experiment to find out what makes the gameplay fun to you.</p>
 </div>
 </div>
+</section>
+</section>
 <section id="add-a-killer-tomato" class="level4">
 <h4 class="anchored" data-anchor-id="add-a-killer-tomato">Add a Killer Tomato</h4>
 <ul>
@@ -2270,8 +2283,10 @@ Tip
 </ul>
 </section>
 </section>
+</section>
 <section id="complete-the-game" class="level3">
 <h3 class="anchored" data-anchor-id="complete-the-game">Complete the Game</h3>
+</section>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
@@ -2280,12 +2295,6 @@ Tip
 <h2 class="anchored" data-anchor-id="questions-and-answers">Questions and Answers</h2>
 
 
-</section>
-</div>
-</div>
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
