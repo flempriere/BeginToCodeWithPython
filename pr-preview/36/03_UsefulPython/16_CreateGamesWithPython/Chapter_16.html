@@ -367,11 +367,12 @@ window.Quarto = {
   <li><a href="#control-the-player-sprite" id="toc-control-the-player-sprite" class="nav-link" data-scroll-target="#control-the-player-sprite">Control the Player Sprite</a></li>
   <li><a href="#add-a-cracker-sprite" id="toc-add-a-cracker-sprite" class="nav-link" data-scroll-target="#add-a-cracker-sprite">Add a Cracker Sprite</a></li>
   <li><a href="#add-lots-of-sprite-instances" id="toc-add-lots-of-sprite-instances" class="nav-link" data-scroll-target="#add-lots-of-sprite-instances">Add lots of Sprite Instances</a></li>
-  <li><a href="#catch-the-crackers" id="toc-catch-the-crackers" class="nav-link" data-scroll-target="#catch-the-crackers">Catch the Crackers</a></li>
+  <li><a href="#catch-the-crackers" id="toc-catch-the-crackers" class="nav-link" data-scroll-target="#catch-the-crackers">Catch the Crackers</a>
+  <ul>
+  <li><a href="#add-sound" id="toc-add-sound" class="nav-link" data-scroll-target="#add-sound">Add Sound</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#questions-and-answers" id="toc-questions-and-answers" class="nav-link" data-scroll-target="#questions-and-answers">Questions and Answers</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/flempriere/BeginToCodeWithPython/" target="_blank"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></nav>
     </div>
@@ -495,7 +496,7 @@ window.Quarto = {
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  end <span class="op">=</span> (<span class="dv">500</span>, <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Now we just have to issue our actual drawing command</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  pygame.draw.line(surface, red, start, end)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="794ff276" class="cell" data-execution_count="1">
+<div id="6547be1e" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;rect(0, 0, 501, 301)&gt;</code></pre>
 </div>
@@ -1318,7 +1319,7 @@ Tip
 </section>
 </section>
 <section id="create-game-sprites" class="level3">
-<h3 class="anchored" data-anchor-id="create-game-sprites">Create Game Sprites</h3>
+<h3 class="anchored">Create Game Sprites</h3>
 <ul>
 <li>Our game will display three sprites
 <ol type="1">
@@ -1965,9 +1966,312 @@ Note
 </ul>
 </section>
 <section id="catch-the-crackers" class="level4">
-<h4 class="anchored" data-anchor-id="catch-the-crackers">Catch the Crackers</h4>
+<h4 class="anchored">Catch the Crackers</h4>
+<ul>
+<li><p>Currently nothing happens when we actually land on a cracker</p></li>
+<li><p>We need to add <em>collision detection</em></p></li>
+<li><p>A simple method</p>
+<ul>
+<li>We can bound each sprite by a rectangle</li>
+<li>Check when two rectangles overlap</li>
+</ul></li>
+<li><p>It’s easier to check that two rectangles don’t intersect</p>
+<ul>
+<li>Fix one rectangle
+<ul>
+<li>Check the other is not above</li>
+<li>Check the other is not below</li>
+<li>check the other is not left</li>
+<li>Check the other is not right</li>
+<li>They must then intersect</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> intersects_with(<span class="va">self</span>, target):</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>      <span class="co">"""</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co">      Check if this sprite intersects the target sprite</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co">      Uses a rectangular bounding box to compare for intersection.</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co">      This is a simpler calculation but can overestimate intersection</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co">      for non-rectangular sprites</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co">      Parameters</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co">      ----------</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="co">      target : Sprite</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co">          sprite to compare for intersection</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co">      Returns</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co">      -------</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="co">      bool</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co">          `True` if the sprites intersect, else `False`</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="co">      """</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>      max_x <span class="op">=</span> <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">+</span> <span class="va">self</span>.image.get_width()</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>      max_y <span class="op">=</span> <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">+</span> <span class="va">self</span>.image.get_height()</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>      target_max_x <span class="op">=</span> target.position[<span class="dv">0</span>] <span class="op">+</span> target.image.get_width()</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>      target_max_y <span class="op">=</span> target.position[<span class="dv">1</span>] <span class="op">+</span> target.image.get_height()</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> max_x <span class="op">&lt;</span> target.position[<span class="dv">0</span>]: <span class="co"># To the left of the target sprite</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> max_y <span class="op">&lt;</span> target.position[<span class="dv">1</span>]: <span class="co"># Below the target sprite</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">self</span>.position[<span class="dv">0</span>] <span class="op">&gt;</span> target_max_x: <span class="co"># To the right of the target sprite</span></span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">self</span>.position[<span class="dv">1</span>] <span class="op">&gt;</span> target_max_y: <span class="co"># Above the target sprite</span></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Passes all the exclusion principles, so must intersect</span></span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We write this as a method on the <code>Sprite</code> class</p>
+<ul>
+<li>Automatically then inherited by all the downstream sprite subclasses</li>
+</ul></li>
+<li><p>Pass in the sprite we want to check for intersection</p></li>
+<li><p>Now we can update <code>Cracker</code> to check if it has been intersected by the player</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> update(<span class="va">self</span>):</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">self</span>.intersects_with(<span class="va">self</span>.game.player_sprite):</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.captured_sound.play()</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>          <span class="va">self</span>.reset()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="add-sound" class="level5">
+<h5 class="anchored">Add Sound</h5>
+<ul>
+<li><p>You should notice hidden in the <code>update</code> method above is a line</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.captured_sound.play()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This plays a sound when the cracker is captured</p></li>
+<li><p>pygame provides a <code>Sound</code> class</p>
+<ul>
+<li>Manages sound playback</li>
+</ul></li>
+<li><p>Loading a sound works much like loading an image</p></li>
+<li><p>We provide a path to the sound file we want to load</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>  cracker_eat_sound <span class="op">=</span> pygame.mixer.Sound(<span class="st">"burp.wav"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>We need to update the <code>Cracker</code> constructor to take in a reference to this sound file</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, image, game, captured_sound):</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>      <span class="bu">super</span>().<span class="fu">__init__</span>(image, game)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.captured_sound <span class="op">=</span> captured_sound</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The new call should look like,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>  cracker_sprite <span class="op">=</span> Cracker(image<span class="op">=</span>cracker_image, game<span class="op">=</span><span class="va">self</span>, captured_sound<span class="op">=</span>cracker_eat_sound)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The relevant updates can be found in Example 10, under <a href="./Examples/10_GameWithCrackerCapture/Sprite.py">Sprite.py</a> and <a href="./Examples/10_GameWithCrackerCapture/Game.py">Game.py</a> respectively</p></li>
+</ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>What Could go Wrong: Bad Collision Detection</strong></p>
+<ul>
+<li>The problem with bounding boxes is that they are always strictly larger than the sprite</li>
+<li>If the sprite is close to rectangular this isn’t much of a problem</li>
+<li>But if the sprite doesn’t fit the bounding box very well then the effect probably doesn’t look great
+<ul>
+<li>This could potentially annoy the player if it looks like they’re being unfairly penalised</li>
+</ul></li>
+<li>There techniques to work around this
+<ol type="1">
+<li>Do a first pass with a bounding box
+<ul>
+<li>This eliminates obvious non-intersections</li>
+<li>Then for intersection candidates more intricately check if any pixels overlap</li>
+</ul></li>
+<li>Use distance rather than a bounding box
+<ul>
+<li>Works well for circular sprites</li>
+</ul></li>
+<li>Make the sprites as close to rectangular as possible</li>
+</ol></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>When you write a game, you control the universe</strong></p>
+<p>When making a game, unlike when making a product, you typically have a lot more freedom to design the product according to what you want it to do. Feel free to play around and experiment to find out what makes the gameplay fun to you.</p>
+</div>
+</div>
+<section id="add-a-killer-tomato" class="level4">
+<h4 class="anchored" data-anchor-id="add-a-killer-tomato">Add a Killer Tomato</h4>
+<ul>
+<li>We’ve set up the game and the player’s objective</li>
+<li>Now we need to add the challenge</li>
+<li>The third sprite to add is the <em>Killer Tomato</em>
+<ul>
+<li>This enemy will try and get to the player</li>
+<li>We’ll slowly increase the number of Tomatoes until the player is overwhelmed</li>
+</ul></li>
+</ul>
+<section id="add-artificial-intelligence-to-a-sprite" class="level5">
+<h5 class="anchored" data-anchor-id="add-artificial-intelligence-to-a-sprite">Add Artificial Intelligence to a Sprite</h5>
+<ul>
+<li>The A.I for our killer tomato is very basic</li>
+<li>It simply looks at it’s position relative to the player
+<ul>
+<li>Calculates the vector to the player</li>
+<li>Then follows this vector</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate x-axis velocity component</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> game.player_sprite.position[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="va">self</span>.position[<span class="dv">0</span>]:</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.x_speed <span class="op">=</span> <span class="va">self</span>.x_speed <span class="op">+</span> <span class="va">self</span>.x_accel</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.x_speed <span class="op">=</span> <span class="va">self</span>.x_speed <span class="op">-</span> <span class="va">self</span>.x_accel</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the y-axis velocity component</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> game.player_sprite.position[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="va">self</span>.position[<span class="dv">1</span>]:</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.y_speed <span class="op">=</span> <span class="va">self</span>.y_speed <span class="op">+</span> <span class="va">self</span>.y_accel</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.y_speed <span class="op">=</span> <span class="va">self</span>.y_speed <span class="op">-</span> <span class="va">self</span>.y_accel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li>Observe that we don’t have a fixed speed for the tomato
+<ul>
+<li>It accelerates towards the player</li>
+<li>This means it will get faster over time (in a straight line)</li>
+<li>To turn around it needs to decelerate first</li>
+</ul></li>
+<li>The player however has a fixed speed
+<ul>
+<li>So can potentially move around the tomato</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Using “artificial Intelligence” makes games much more interesting</strong></p>
+<p>The term A.I is used to mean a lot of different technologies. Especially at the time of writing up these notes. The argument about if simple logic like above (or video game A.I more broadly) is “real A.I” is largely a semantic one. Players react to the enemy like it has intelligence, and it makes the game much more compelling when players feel like they’re facing a “real” opponent</p>
+</div>
+</div>
+</section>
+<section id="add-physics-to-a-sprite" class="level5">
+<h5 class="anchored" data-anchor-id="add-physics-to-a-sprite">Add Physics to a Sprite</h5>
+<ul>
+<li><p>Each update our game does two things</p>
+<ul>
+<li>It updates the sprites</li>
+<li>It redraws the screen</li>
+</ul></li>
+<li><p>The <em>speed</em> of an object is thus the amount it moves each update, in pixels / frame</p>
+<ul>
+<li>Our player cheese moves <span class="math inline">\(5\)</span> pixels in either direction per update</li>
+</ul></li>
+<li><p>The game updates at <span class="math inline">\(60\)</span> frames per second</p>
+<ul>
+<li>This means our player can move <span class="math inline">\(5 \times 60 = 300\)</span> pixels per second</li>
+<li>It is good to get a good idea of these heuristics so you can correctly estimate the speed value</li>
+</ul></li>
+<li><p><em>Acceleration</em> measures how fast the speed is changing</p></li>
+<li><p>We see this with the tomato, which is initially at rest then accelerates</p></li>
+<li><p>The tomato, if given enough time will start to move at absurdly high speed</p>
+<ul>
+<li><p>We add <em>friction</em></p></li>
+<li><p>Friction reduces the overall speed towards zero</p></li>
+<li><p>The faster the tomato is, the greater the effect of friction</p></li>
+<li><p>We can implement it as below</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.x_speed <span class="op">=</span> <span class="va">self</span>.x_speed <span class="op">*</span> <span class="va">self</span>.friction_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p>We set the initial conditions as part of the <code>reset</code> method</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> reset(<span class="va">self</span>):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.entry_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.friction_value <span class="op">=</span> <span class="fl">0.99</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.x_accel <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.y_accel <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.x_speed <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.y_speed <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.position <span class="op">=</span> [<span class="op">-</span><span class="dv">100</span>, <span class="op">-</span><span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>The chosen values for acceleration and friction are chosen by trialling values to get something that feels right</p></li>
+<li><p>If we calculate the steady point we see that the maximum speed is given by</p>
+<p><span class="math display">\[
+  \begin{align}
+      v_{x} &amp;= f\left(v_{x} + a_{x}\right) \\
+      \left(1 - f\right)v_{x} &amp;= f a_{x} \\
+      v_{x} &amp;= \frac{f}{1 - f} a_{x}
+  \end{align}
+\]</span></p></li>
+<li><p>Which for our chosen values, corresponds to <span class="math inline">\(0.99 / 0.01 \times 0.2 = 19.8\)</span></p>
+<ul>
+<li>Which is about four times as fast as the player</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>When you write a game, you can always cheat</strong></p>
+<p>With games, as with any software, it’s good to start with the minimum working implementation of a feature. Often this is easier in games because you get the define what your features actually are. You can then improve it as needed to improve the quality of the game. If the feature isn’t very important then there isn’t really a need to give it a more detailed implementation.</p>
+<p>Here the physics are very simplistic, and the friction factor is not very realistic. But the goal here is to provide a good gameplay experience, not an accurate physics simulation. The more important fact is that the it feels real to a player. A more accurate physics model, if anything might actually detract from the gameplay experience</p>
+</div>
+</div>
+</section>
+<section id="create-timed-sprites" class="level5">
+<h5 class="anchored" data-anchor-id="create-timed-sprites">Create Timed Sprites</h5>
+<ul>
+<li>It’s important that a game be progressive</li>
+<li>A screen immediately filled with killer tomatoes would be overwhelming and not much fun</li>
+<li>We want to progressively increase the number of killer tomatoes on screen</li>
+<li>We add an <code>entry_delay</code> parameter
+<ul>
+<li>This effectively counts down the time until a sprite is active</li>
+<li>We vary this parameter as we construct the tomatoes in the game</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>  tomato_image <span class="op">=</span> pygame.image.load(<span class="st">"tomato.png"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> entry_delay <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">300</span>, <span class="dv">3000</span>, <span class="dv">300</span>):</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>      tomato_sprite <span class="op">=</span> Tomato(image<span class="op">=</span>tomato_image, game<span class="op">=</span><span class="va">self</span>, entry_delay<span class="op">=</span>entry_delay)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span>.sprites.append(tomato_sprite)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li>This version of <code>range</code> accepts three arguments
+<ol type="1">
+<li><code>start</code>
+<ul>
+<li>The inclusive starting value</li>
+</ul></li>
+<li><code>stop</code>
+<ul>
+<li>The exclusive finishing value</li>
+</ul></li>
+<li><code>step</code>
+<ul>
+<li>The step between values, i.e.&nbsp;if <code>start</code> is the first value, the second is <code>start + step</code></li>
+</ul></li>
+</ol></li>
+<li>We have to update the <code>Tomato</code> sprite <code>__init__</code> method to accept this new parameter</li>
+<li>Every time <code>update</code> is called the tomato will count up
+<ul>
+<li>Once this counter reaches the <code>entry_delay</code> then we can spawn this sprite</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> update(<span class="va">self</span>):</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>      <span class="va">self</span>.entry_count <span class="op">=</span> <span class="va">self</span>.entry_count <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="va">self</span>.entry_count <span class="op">&lt;</span> <span class="va">self</span>.entry_delay:</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li>Observe that we have to give the values for <code>entry_count</code> and <code>entry_delay</code> in terms of the number of frames
+<ul>
+<li>This converts to seconds as <span class="math inline">\(\text{seconds} = \text{frames}/60\)</span></li>
+</ul></li>
+</ul>
 </section>
 </section>
+<section id="complete-the-game" class="level3">
+<h3 class="anchored" data-anchor-id="complete-the-game">Complete the Game</h3>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
@@ -1976,6 +2280,12 @@ Note
 <h2 class="anchored" data-anchor-id="questions-and-answers">Questions and Answers</h2>
 
 
+</section>
+</div>
+</div>
+</section>
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
