@@ -33,6 +33,14 @@
       - [Add Physics to a Sprite](#add-physics-to-a-sprite)
       - [Create Timed Sprites](#create-timed-sprites)
   - [Complete the Game](#complete-the-game)
+    - [Add a Start Screen](#add-a-start-screen)
+      - [Use `exit` to Shut Down Python](#use-exit-to-shut-down-python)
+      - [Draw Text in Pygame](#draw-text-in-pygame)
+    - [End the Game](#end-the-game)
+      - [Detect the Game End](#detect-the-game-end)
+    - [Score the Game](#score-the-game)
+  - [Make Something Happen: Make a game of your
+    own](#make-something-happen-make-a-game-of-your-own)
 - [Summary](#summary)
 - [Questions and Answers](#questions-and-answers)
 
@@ -2155,6 +2163,391 @@ following questions*
 
 ### Complete the Game
 
+- We have all the mechanics implemented
+- Now need to implement quality of life features to convert it into a
+  game
+
+#### Add a Start Screen
+
+- When the game starts the player should see a start screen
+
+- When they finish the game they should return to the start screen
+
+- We use a flag to track which state we’re in (start screen or game)
+
+  ``` python
+    def start_game(self):
+        for sprite in self.sprites:
+            sprite.reset()
+        self.score = 0
+        self.game_running = True
+  ```
+
+- Above start’s a game running
+
+- All sprites are reset and the game is marked as running
+
+- We then update the game loop to rely on the game being in the running
+  state
+
+  ``` python
+    while True:
+        clock.tick(60)
+        if self.game_running:
+            self.update_game()
+            self.draw_game()
+        else:
+            self.update_start()
+            self.draw_start()
+        pygame.display.flip()
+  ```
+
+- Our game loop now distinguishes two states
+
+  1. The game is running in which case the game is updated and drawn
+  2. The game is not running in which case the start screen is updated
+      and drawn
+
+  ``` python
+    def update_start(self):
+        for e in pygame.event.get():
+            if e.type == pygame.KEYDOWN:
+                if e.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+                elif e.key == pygame.K_g:
+                    self.start_game()
+  ```
+
+- Updating the start screen checks for two cases
+
+  1. The player presses the `G` key
+      - Start the game
+  2. The player presses the `ESC` key
+      - Quit the game
+
+##### Use `exit` to Shut Down Python
+
+- `exit` in the `sys` module allows us to safely shut down python
+
+  ``` python
+    import sys
+    ...
+    sys.exit()
+  ```
+
+##### Draw Text in Pygame
+
+- The start screen needs to give the player information
+
+- We do this by drawing text using a `Font` object
+
+  ``` python
+    self.font = pygame.font.Font(None, 60)
+  ```
+
+- The `__init__` for `Font` takes two parameters
+
+  - The font design
+    - Here specified as `None` to provide the default font
+  - The font size
+
+- Text is placed by using the `render` method on a `Font` object
+
+  ``` python
+    text = self.font.render("hello world", True, (255, 0, 0))
+  ```
+
+- `render` accepts three arguments
+
+  1. The first is the string of text to render
+  2. The second is *aliasing*
+      - Smooths the edges of text to make it look nice
+  3. Colour of the text as an RBG tuple
+
+- The above renders `"Hello World"` in red text
+
+- Now need to `blit` it onto the screen
+
+  ``` python
+    self.surface.blit(text, (0, 0))
+  ```
+
+- First argument is the object to draw
+
+  - Here our text
+
+- Second is the position
+
+- It would be nice to be able to position the text relative to the size
+  of the window
+
+  - e.g. To centre the text
+
+- We can get the height and width of rendered text to adjust it
+
+  ``` python
+    def display_message(self, message, y_pos):
+        """
+        Display a message on the screen
+
+        The message is drawn centred on the screen with a black shadow
+
+        Parameters
+        ----------
+        message : str
+            string containing the text to render
+        y_pos : int
+            vertical position of the text in pixels
+
+        Returns
+        -------
+        None
+        """
+        shadow = self.font.render(message, True, (0, 0, 0))
+        text = self.font.render(message, True, (0, 0, 255))
+        text_position = [self.width/2 - text.get_width() / 2, y_pos]
+
+        # draw the text twice with a slight offset to create a shadow effect
+        self.surface.blit(shadow, text_position)
+        text_position[0] += 2
+        text_position[1] += 2
+        self.surface.blit(text, text_position)
+  ```
+
+- This method calculates the horizontal position of the text
+
+  - Centres the middle of the text
+
+- The text is drawn twice
+
+  - First in black
+  - Then in blue with a slight shift
+  - This creates a shadow effect
+
+- You’ll notice in lots of code I’ve been using the `+=` or `*=`
+  operator
+
+  - This is a shorthand for writing `x = x + y` or `x = x * y`
+    respectively
+  - Similar operators exist for `-` and `/`
+
+> [!TIP]
+>
+> **Don’t worry about making the graphics hardware work for you**
+>
+> You might think it’s overkill to draw the entire text twice to get a
+> shadow effect. Most modern graphics hardware should be easily capable
+> of satisfying this number of drawing operations. It’s always a good
+> idea just to try something and see if it has an impact on performance
+> before you actually go to the effort of a more complicated solution
+
+- Last thing to do is to actually draw our start menu
+
+  ``` python
+    def draw_start(self):
+        self.start_background_sprite.draw()
+        self.display_message(message="Top Score: {0}".format(self.top_score), y_pos=0)
+        self.display_message(message="Welcome to Cracker Chase", y_pos=150)
+        self.display_message(message="Steer the cheese to", y_pos=250)
+        self.display_message(message="capture the crackers", y_pos=300)
+        self.display_message(message="BEWARE THE KILLER TOMATOES", y_pos=350)
+        self.display_message(message="Arrow keys to move", y_pos=450)
+        self.display_message(message="Press G to play", y_pos=500)
+        self.display_message(message="Press Escape to exit", y_pos=550)
+  ```
+
+> [!IMPORTANT]
+>
+> **Make sure to tell people how to play your game**
+>
+> It’s very easy to get lost focusing on making a game and forget that
+> people need to actually know how to play it. If player’s can’t work
+> out what they need to do and how to do it they are likely to get
+> pretty frustrated quickly
+
+#### End the Game
+
+- The player can now start the game
+
+- Now need to add the code which can stop the game
+
+  ``` python
+    def end_game(self):
+        self.game_running = False
+        if self.score > self.top_score:
+            self.top_score = self.score
+  ```
+
+- This marks the game as no longer running
+
+- Then also updates the high score if the player has beat the high score
+
+> [!TIP]
+>
+> **Adding a high score makes a game more interesting**
+>
+> Adding some kind of persistent score makes the game more compelling.
+> It gives players an incentive to replay the game in order to try and
+> beat their previous attempts. We could persist this across multiple
+> game sessions by saving or loading it to a file
+
+##### Detect the Game End
+
+- The game ends when a killer tomato intercepts the player
+
+- We need to include an intersection check in the `Tomato` class
+  `update` method
+
+  ``` python
+    def update(self):
+
+        ... # tomato pathing logic as before goes here
+
+        if self.intersects_with(game.player_sprite):
+            self.game.end_game()
+  ```
+
+- We could expand on this if we wanted
+
+  - We could add lives or health to the player
+
+> [!IMPORTANT]
+>
+> **Always make a playable game**
+>
+> It can be very easy to fixated on creating a very strong and riveting
+> piece of gameplay, but then to actually forget to attach it to any
+> real game itself. You should make sure that you have a complete game
+> that a player can play through from start to finish. It is easier to
+> then fill out the middle sections. Gameplay without a game is little
+> more than a technical demo. It also makes it easier to solicit
+> feedback when prospective players are able to get to grips with the
+> game immediately
+
+#### Score the Game
+
+- We have a score, but no way of scoring
+
+- We need to implement an update to the score whenever a cracker catches
+  a cracker
+
+  - The best place for this logic to sit is in the `update` method of
+    the cracker
+  - This is where we are checking if the player has collided with the
+    cracker
+
+  ``` python
+    def update(self):
+        if self.intersects_with(game.player_sprite):
+            self.captured_sound.play()
+            self.reset()
+            self.game.score += 10
+  ```
+
+- We then want to display this score to the player
+
+- Need to add drawing it to the `draw_game` code
+
+  ``` python
+    def draw_game(self):
+        for sprite in self.sprites:
+            sprite.draw()
+        status = "Score: {0}".format(self.score)
+        self.display_message(status, 0)
+  ```
+
+- You can find the updated
+  [Sprite.py](./Examples/12_CompleteGame/Sprite.py) and
+  [Game.py](./Examples/12_CompleteGame/Game.py) in [Example
+  12](./Examples/12_CompleteGame/)
+
+### Make Something Happen: Make a game of your own
+
+*Cracker chase can be used as the basis of any sprite based game, you
+might like to create. You can change the artwork, create new types of
+enemies, make the game two player or add extra sound effects. Unleash
+your creativity to make a simple game. Don’t have too many ideas, it’s
+easy to get upset if you can’t get all of your ideas to work at once. It
+is much more sensible to get something simple working that you can
+expand on later.*
+
+You should feel free to create your own implementation of a game for
+this exericise. I’ve done a simple recreation of ATARI Breakout, but
+added in some extra physics but having the ball accelerate under gravity
+and lose speed when it bounces off walls. So that’s playable and to
+reward the player there is a speed boost when they bounce off the
+player’s paddle.
+
+The code itself is pretty similar to before, and has been mostly written
+to make things work, rather than have the most elegant layout. For
+example this means that a lot of the game logic is contained in the
+`update` method of the `Ball` sprite which the player must hit.
+
+For example the `Ball` will update its position then check if it has
+collided with any of the game objects, then implement the logic for the
+collision. A more clean architecture would perhaps reverse this. That
+way each sprite can implement it’s own behaviour of how to handle
+colliding with the ball. This would also mean that only active sprites
+would need to check if they intersected the ball. Currently the ball
+checks every sprite (including broken bricks) to see if they’ve
+intersected.
+
+The point is that often it’s good to get something quick and dirty done,
+and I had a lot of fun knocking this up in about two hours. The biggest
+rewrite, aside from some of the logic, is to
+[Sprite.py](./Exercises/02_BrickBreak/Sprite.py) which has a small class
+hierachy to handle drawing sprites with simple shapes rather than
+images. [Game.py](./Exercises/02_BrickBreak/Game.py) contains the
+updated game logic. You can see some a sample gameplay still below
+
+![Brick Break, an ATARI Breakout
+Clone](./Exercises/02_BrickBreak/brick_break.png)
+
 ## Summary
 
+- Pygame can be used to create games
+- Pygame also supports graphics and sound
+- A class hierarchy can simplify the process of making games
+- The game loop is the basic cycle of updating the game state and then
+  redrawing it
+- Events can be used to capture and respond to user input
+- Physics and A.I help make games feel more alive
+- We saw how to implement some basic menus to help a game feel complete
+
 ## Questions and Answers
+
+1. *Do all games work using a game loop?*
+
+    - Most do
+    - Some games, like text-based adventures will instead wait on user
+      input
+
+2. *Why are draw and update separate methods?*
+
+    - For performance reasons
+    - For complex systems you might want to update the state and perform
+      the redraw at different rates
+    - Generally you want the state calculations to stay at the highest
+      required rate
+      - Drawing can be slowed down if needed
+
+3. *How would I create an attract mode for my game?*
+
+    - Games often have an *attract mode*
+    - This simply demos some gameplay
+    - A simple way to make one is:
+      - Make an A.I player that simulates the actions of a player
+        - E.g. randomly moves, or aims towards the nearest cracker
+      - Update the tomatoes to fly *near* but not at the player to make
+        it last longer
+
+4. *How could I make the gameplay the same each time the game is
+    played?*
+
+    - The game uses the python random number generator to position the
+      crackers
+    - Each time the game runs the crackers are in different positions
+    - We could use the `seed` function from the `random` library
+      - By fixing the seed the same sequence of random numbers will be
+        generated

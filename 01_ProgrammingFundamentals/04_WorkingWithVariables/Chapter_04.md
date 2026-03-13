@@ -346,7 +346,7 @@ print("****TIMES UP, LAST TO SIT WINS!****")
     Then sit down
     Anyone still standing when the time expires loses
     The last person to sit down before the time ended will win
-    Stay standing for 13 seconds.
+    Stay standing for 20 seconds.
     ****TIMES UP, LAST TO SIT WINS!****
 
 Most of the code is just text, but the key takeaway is the line
@@ -1337,7 +1337,7 @@ A sample output may look like,
 
       pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
       Hello from the pygame community. https://www.pygame.org/contribute.html
-      The temperature in Seattle is: 46
+      The temperature in Seattle is: 37
 
 #### Example: [Seattle Weather](./Examples/07_SeattleWeather/SeattleWeather.py)
 
