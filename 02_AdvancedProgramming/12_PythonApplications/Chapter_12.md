@@ -2606,7 +2606,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fc11a470800>
+    <unittest.main.TestProgram at 0x7f4cd8fa7470>
 
 - The above should show that our test executed successfully
 - If we want more detail we can use the `verbosity` parameter
@@ -2627,7 +2627,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fc110cedee0>
+    <unittest.main.TestProgram at 0x7f4cd8fa4110>
 
 - We can now see the name and status of each individual test
 
@@ -2672,7 +2672,7 @@ Tags: {3}"""
     FAIL: test_that_fails (__main__.TestAlwaysFails.test_that_fails)
     ----------------------------------------------------------------------
     Traceback (most recent call last):
-      File "/tmp/ipykernel_3313/3483629732.py", line 4, in test_that_fails
+      File "/tmp/ipykernel_3238/3483629732.py", line 4, in test_that_fails
         self.assertEqual(1, 0)
     AssertionError: 1 != 0
 
@@ -2685,7 +2685,7 @@ Tags: {3}"""
     **StockItem get price called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fc110cf0800>
+    <unittest.main.TestProgram at 0x7f4cd8fe7440>
 
 - The output indicates that tests have failed
 
@@ -2745,14 +2745,14 @@ class TestStockItem(unittest.TestCase):
 
     .
     ----------------------------------------------------------------------
-    Ran 1 test in 0.001s
+    Ran 1 test in 0.000s
 
     OK
 
     **StockItem __init__ called
     **StockItem add_stock called
 
-    <unittest.main.TestProgram at 0x7fc11a470800>
+    <unittest.main.TestProgram at 0x7f4ce85f0800>
 
 - If we wanted to test for specific exceptions we can pass them to
   `assertRaises` as arguments
@@ -2808,7 +2808,7 @@ class TestStockItem(unittest.TestCase):
     **StockItem sell_stock called
     **StockItem get stock_level called
 
-    <unittest.main.TestProgram at 0x7fc110b440b0>
+    <unittest.main.TestProgram at 0x7f4cd8f8fe30>
 
 - `unittest` can be used to create more complex testing scenarios
   - [Read the docs at the python
@@ -2976,11 +2976,11 @@ unittest.main(verbosity=2)
     test_str (__main__.TestStockItem.test_str) ... ok
 
     ----------------------------------------------------------------------
-    Ran 9 tests in 0.008s
+    Ran 9 tests in 0.018s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fc11a470800>
+    <unittest.main.TestProgram at 0x7f4ce85f0800>
 
 #### Exercise: Refactoring Ride Selector to Support Testing
 
@@ -3561,11 +3561,11 @@ unitttest.main()
 
     ...............................
     ----------------------------------------------------------------------
-    Ran 31 tests in 0.011s
+    Ran 31 tests in 0.012s
 
     OK
 
-    <unittest.main.TestProgram at 0x7fc110db8800>
+    <unittest.main.TestProgram at 0x7f4cd8fb1a30>
 
 > [!NOTE]
 >
