@@ -14,7 +14,7 @@ shopt -s nullglob  # expand patterns that don't match anything to the empty stri
 shopt -s globstar  # search multiple layers of directories
 
 ## move index file as the readme
-mv $dirFrom/**/index.md "${dirTo}/README.md"
+mv "$dirFrom"/**/index.md "${dirTo}/README.md"
 
 # Use globbing to find all subdirectories - note the trailing '/'
 # to ensure that only directories match.

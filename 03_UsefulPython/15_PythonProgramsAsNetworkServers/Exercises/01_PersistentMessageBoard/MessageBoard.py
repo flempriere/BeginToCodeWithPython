@@ -29,7 +29,7 @@ def load_messages(file):
         A list of time-stamped messages
     """
     try:
-        with open(datafile, "rb") as f:
+        with open(file, "rb") as f:
             messages = pickle.load(f)
     except:  # noqa: E722
         print("Datafile missing, creating new log")

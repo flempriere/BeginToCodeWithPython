@@ -38,6 +38,7 @@ I started this repository to work through an easy and basic book before working 
   - [Chapter 13: Python and Graphical User Interfaces](./03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.qmd)
   - [Chapter 14: Python Programs as Network Clients](./03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.qmd)
   - [Chapter 15: Python Programs as Network Servers](./03_UsefulPython/15_PythonProgramsAsNetworkServers/Chapter_15.qmd)
+  - [Chapter 16: Create Games using PyGame](./03_UsefulPython/16_CreateGamesWithPython/Chapter_16.qmd)
 
 ### Useful Python
 

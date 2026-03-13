@@ -30,7 +30,9 @@ I started this repository to work through an easy and basic book before working 
 ### Useful Python
 
 - [Chapter 13: Python and Graphical User Interfaces](./03_UsefulPython/13_PythonAndGraphicalUserInterfaces/Chapter_13.md)
-- [Chapter 14: Python Programs as Network clients](./03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.md)
+- [Chapter 14: Python Programs as Network Clients](./03_UsefulPython/14_PythonProgramsAsNetworkClients/Chapter_14.md)
+- [Chapter 15: Python Programs as Network Servers](./03_UsefulPython/15_PythonProgramsAsNetworkServers/Chapter_15.md)
+- [Chapter 16: Create Games using PyGame](./03_UsefulPython/16_CreateGamesWithPython/Chapter_16.md)
 
 >[!NOTE]
 > Chapter 1 only provides basic information on installing *python* and assumes a Windows environment so is not covered in these notes

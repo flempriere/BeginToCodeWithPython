@@ -8,6 +8,7 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
+        args: ["--maxkb=2000"]
   - repo: https://github.com/gitleaks/gitleaks #security check
     rev: v8.30.0
     hooks:
@@ -23,7 +24,7 @@ repos:
       - id: sync-with-uv
   - repo: https://github.com/astral-sh/ruff-pre-commit #use ruff to format and lint python
     # Ruff version.
-    rev: v0.14.5
+    rev: v0.15.5
     hooks:
       # Run the linter.
       - id: ruff-check
