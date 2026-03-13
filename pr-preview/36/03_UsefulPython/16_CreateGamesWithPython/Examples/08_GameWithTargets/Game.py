@@ -12,7 +12,9 @@ class CrackerChase:
     """
     CrackerChase game
 
-    Runs a simple game loop to display a background sprite
+    Runs a simple game loop in which a player can navigate a sprite
+    around. A target sprite is randomly placed on the map. No interactivity
+    is added yet
 
     Attributes
     ----------

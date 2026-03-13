@@ -12,7 +12,7 @@ class CrackerChase:
     """
     CrackerChase game
 
-    Runs a simple game loop to display a background sprite
+    Runs a simple game loop with a moveable player on a background
 
     Attributes
     ----------

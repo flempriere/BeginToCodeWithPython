@@ -13,7 +13,8 @@ class CrackerChase:
     """
     CrackerChase game
 
-    Runs a simple game loop to display a background sprite
+    Runs a simple game loop in which a player must their cheese around the
+    map to collect crackers
 
     Attributes
     ----------
@@ -29,6 +30,8 @@ class CrackerChase:
         Sprite representing the background of the game
     player_sprite : Sprite
         Sprite representing the cheese controlled by the player
+    sprites : list[Sprite]
+        collection containing all the game sprites
     """
 
     def play_game(self):

@@ -470,7 +470,7 @@ window.Quarto = {
 <h5 class="anchored" data-anchor-id="make-something-happen-connect-to-a-simple-server">Make Something Happen: Connect to a Simple Server</h5>
 <p><em>Use the socket server example to explore how the web works. Open the program and work through the following activity</em></p>
 <p>When the program is run, it will display the web server’s host address, you should see</p>
-<div id="b615fc23" class="cell" data-execution_count="1">
+<div id="85874c63" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>Open your browser and connect: http://localhost:8080</code></pre>
 </div>
@@ -844,6 +844,15 @@ path["TR/WD-html40-970917/htmlweb.html"]
     class colon BG
     class colonDescr BG
 
+    block:Stop
+    columns 1
+        stop["stop"]
+        stopDescr[" "]
+    end
+
+    class stop BG
+    class stopDescr BG
+
     block:End
         columns 1
         end_block["]"]
@@ -860,28 +869,28 @@ path["TR/WD-html40-970917/htmlweb.html"]
 </div>
 <ul>
 <li><p>Start and stop are written in square brackets separated by a colon</p>
-<div id="7eb0488a" class="cell" data-execution_count="2">
+<div id="04fd4154" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="dv">0</span>:<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>'Rob'</code></pre>
 </div>
 </div></li>
 <li><p>The terminating character is not included in the slice</p>
-<div id="60aebd2b" class="cell" data-execution_count="3">
+<div id="b1085043" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="dv">1</span>:<span class="dv">2</span> ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>'o'</code></pre>
 </div>
 </div></li>
 <li><p>Omitting the start, implicitly slices from the start of the collection</p>
-<div id="725fc0fb" class="cell" data-execution_count="4">
+<div id="95fa8089" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[:<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>'Rob'</code></pre>
 </div>
 </div></li>
 <li><p>If the end is omitted, implicitly slices to the end of the collection</p>
-<div id="05dcde4f" class="cell" data-execution_count="5">
+<div id="e559a0b3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="dv">3</span>:]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>'ert'</code></pre>
@@ -889,7 +898,7 @@ path["TR/WD-html40-970917/htmlweb.html"]
 </div></li>
 <li><p>You can use negative indices for slices</p></li>
 <li><p>Negative indices slice from the end of the collection</p>
-<div id="9a310f00" class="cell" data-execution_count="6">
+<div id="029432f7" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="op">-</span><span class="dv">2</span>:<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>'r'</code></pre>
@@ -1163,7 +1172,7 @@ path["TR/WD-html40-970917/htmlweb.html"]
 <span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">        A list of time-stamped messages</span></span>
 <span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(datafile, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
 <span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>            messages <span class="op">=</span> pickle.load(f)</span>
 <span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:  <span class="co"># noqa: E722</span></span>
 <span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Datafile missing, creating new log"</span>)</span>
