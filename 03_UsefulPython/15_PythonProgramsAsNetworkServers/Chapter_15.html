@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-007a8609411f977ffbfe52380a417f90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -149,8 +149,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Beginning to Code with Python: Notes, Examples and Exercises</span>
     </a>
@@ -162,7 +160,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -189,10 +187,6 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -324,6 +318,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../03_UsefulPython/15_PythonProgramsAsNetworkServers/Chapter_15.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chapter 15: Python Programs as Network Servers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../03_UsefulPython/16_CreateGamesWithPython/Chapter_16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 16: Create Games with PyGame</span></a>
   </div>
 </li>
       </ul>
@@ -470,7 +470,7 @@ window.Quarto = {
 <h5 class="anchored" data-anchor-id="make-something-happen-connect-to-a-simple-server">Make Something Happen: Connect to a Simple Server</h5>
 <p><em>Use the socket server example to explore how the web works. Open the program and work through the following activity</em></p>
 <p>When the program is run, it will display the web server’s host address, you should see</p>
-<div id="ea116e32" class="cell" data-execution_count="1">
+<div id="adb1e10e" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>Open your browser and connect: http://localhost:8080</code></pre>
 </div>
@@ -844,6 +844,15 @@ path["TR/WD-html40-970917/htmlweb.html"]
     class colon BG
     class colonDescr BG
 
+    block:Stop
+    columns 1
+        stop["stop"]
+        stopDescr[" "]
+    end
+
+    class stop BG
+    class stopDescr BG
+
     block:End
         columns 1
         end_block["]"]
@@ -860,28 +869,28 @@ path["TR/WD-html40-970917/htmlweb.html"]
 </div>
 <ul>
 <li><p>Start and stop are written in square brackets separated by a colon</p>
-<div id="f62c751b" class="cell" data-execution_count="2">
+<div id="8cce4766" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="dv">0</span>:<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>'Rob'</code></pre>
 </div>
 </div></li>
 <li><p>The terminating character is not included in the slice</p>
-<div id="65254c63" class="cell" data-execution_count="3">
+<div id="d619ae4a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="dv">1</span>:<span class="dv">2</span> ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>'o'</code></pre>
 </div>
 </div></li>
 <li><p>Omitting the start, implicitly slices from the start of the collection</p>
-<div id="7fbe5856" class="cell" data-execution_count="4">
+<div id="f57264b3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[:<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>'Rob'</code></pre>
 </div>
 </div></li>
 <li><p>If the end is omitted, implicitly slices to the end of the collection</p>
-<div id="adfd40fe" class="cell" data-execution_count="5">
+<div id="41f8cb2c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="dv">3</span>:]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>'ert'</code></pre>
@@ -889,7 +898,7 @@ path["TR/WD-html40-970917/htmlweb.html"]
 </div></li>
 <li><p>You can use negative indices for slices</p></li>
 <li><p>Negative indices slice from the end of the collection</p>
-<div id="f6d40007" class="cell" data-execution_count="6">
+<div id="aa8c5414" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">"Robert"</span>[<span class="op">-</span><span class="dv">2</span>:<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>'r'</code></pre>
@@ -1163,7 +1172,7 @@ path["TR/WD-html40-970917/htmlweb.html"]
 <span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">        A list of time-stamped messages</span></span>
 <span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(datafile, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
 <span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>            messages <span class="op">=</span> pickle.load(f)</span>
 <span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:  <span class="co"># noqa: E722</span></span>
 <span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Datafile missing, creating new log"</span>)</span>
